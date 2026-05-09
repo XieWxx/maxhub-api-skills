@@ -1,7 +1,7 @@
 ---
 name: maxhub-xigua
-description: 西瓜视频/Xigua平台西瓜视频内容搜索与数据采集。当用户提到西瓜视频、xigua、长视频、资讯等相关需求时激活此Skill。
-version: 1.1.1
+description: 西瓜视频/Xigua平台公开内容搜索与信息查询。当用户提到西瓜视频、xigua、长视频、资讯等相关需求时激活此Skill。
+version: 1.2.0
 author: MaxHub Team
 license: MIT
 metadata:
@@ -12,7 +12,8 @@ metadata:
     - xigua
     - 西瓜视频
     - 视频
-    - 数据采集
+    - 信息查询
+    - 公开数据
 ---
 # 🍉 西瓜视频（Xigua）Skill
 
@@ -34,8 +35,8 @@ x-api-key: ${MAXHUB_API_KEY}
 
 | 能力域 | API数量 | 核心能力 |
 |--------|---------|----------|
-| 数据采集 | 5 | 个人信息/Personal inform、获取单个作品数据 V2/Get sing、获取个人作品列表/Get user po |
-| 互动操作 | 1 | 视频评论列表/Video comment |
+| 信息查询 | 5 | 个人信息/Personal info、获取单个作品数据/Get single video、获取个人作品列表/Get user posts |
+| 互动数据 | 1 | 视频评论列表/Video comment list |
 | 搜索查询 | 1 | 搜索视频/Search video |
 
 
@@ -55,8 +56,7 @@ x-api-key: ${MAXHUB_API_KEY}
 所有 API 请求直接使用原始接口路径，无需额外前缀：
 
 ```bash
-# 基本调用格式
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/xigua/app/v2/fetch_one_video?item_id=VIDEO_ID" \
   -H "x-api-key: $MAXHUB_API_KEY"
 ```
 
@@ -70,11 +70,13 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 ### 🔒 安全声明 / Security Statement
 
-- 本Skill **仅** 通过MaxHub API获取公开数据 / This Skill **only** fetches public data via MaxHub API，不访问用户本地文件系统
+- 本Skill **仅** 通过MaxHub API获取西瓜视频平台已公开的信息 / This Skill **only** fetches publicly available information from Xigua via MaxHub API，不访问用户本地文件系统
 - API Key 通过环境变量 / API Key is passed via environment variable `MAXHUB_API_KEY` 安全传递，**不会** 被存储、记录或转发到第三方
 - 所有API请求均通过HTTPS加密传输 / All API requests are encrypted via HTTPS
 - 本Skill **不会** 读取浏览器Cookie / This Skill **will not** read browser cookies、SSH密钥、AWS凭证等敏感信息
 - 本Skill **不会** 修改任何系统配置文件 / This Skill **will not** modify any system configuration files
+- 本Skill **不会** 下载、保存或分发任何视频内容 / This Skill **will not** download, save or distribute any video content
+- 本Skill **不会** 绕过任何平台安全机制 / This Skill **will not** bypass any platform security mechanisms
 
 
 ## 智能调度规则 / Intelligent Scheduling Rules
@@ -106,15 +108,6 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 步骤3: 对关键作品调用详情API → 获取互动数据
 ```
 
-**模式C：搜索→用户→分析 / Pattern C: Search → User → Analysis**
-```
-用户: "找西瓜视频美妆领域的头部达人"
-步骤1: 调用搜索API → 获取相关用户
-步骤2: 对每个用户调用详情API → 获取粉丝数等
-步骤3: 调用分析/榜单API → 交叉验证排名
-步骤4: 综合排序 → 输出Top达人列表
-```
-
 ### 3. 参数智能填充 / Intelligent Parameter Filling
 
 - 必填参数缺失时，主动向用户询问
@@ -142,7 +135,7 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 ## API详细目录 / API Detailed Catalog
 
-### 数据采集
+### 信息查询
 
 1. **获取单个作品数据/Get single video data**
    - `GET /api/v1/xigua/app/v2/fetch_one_video`（必填: item_id）
@@ -155,7 +148,7 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 5. **获取个人作品列表/Get user post list**
    - `GET /api/v1/xigua/app/v2/fetch_user_post_list`（必填: user_id）
 
-### 互动操作
+### 互动数据
 
 1. **视频评论列表/Video comment list**
    - `GET /api/v1/xigua/app/v2/fetch_video_comment_list`（必填: item_id）
@@ -170,7 +163,7 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 ### 基础调用 / Basic Call
 
 ```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/xigua/app/v2/fetch_user_info?user_id=USER_ID" \
   -H "x-api-key: $MAXHUB_API_KEY" \
   -H "Content-Type: application/json"
 ```
@@ -179,39 +172,23 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
 ### 带参数调用 / Call with Parameters
 
 ```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_one_video?aweme_id=123456" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/xigua/app/v2/search_video?keyword=美食" \
   -H "x-api-key: $MAXHUB_API_KEY"
 ```
 
 ### POST请求 / POST Request
 
 ```bash
-curl -X POST "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_user_like_videos" \
+curl -X POST "${MAXHUB_BASE_URL}/api/v1/xigua/app/v2/fetch_video_comment_list" \
   -H "x-api-key: $MAXHUB_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"sec_user_id": "xxx"}'
-```
-
-### 带参数调用 / Call with Parameters
-
-```bash
-curl -X GET "BASE_URL/API_PATH?param1=value1&param2=value2" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-### POST请求 / POST Request
-
-```bash
-curl -X POST "BASE_URL/API_PATH" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
+  -d '{"item_id": "xxx"}'
 ```
 
 ## 注意事项 / Important Notes
 
 - 所有请求必须携带有效的MaxHub API Key / All requests must carry a valid MaxHub API Key
 - API调用按次计费，注意控制调用次数 / API calls are billed per use, pay attention to call frequency
-- 遵守平台数据使用规范，不采集敏感个人隐私数据 / Follow platform data usage guidelines, do not collect sensitive personal privacy data
+- 遵守平台数据使用规范，仅查询已公开的信息 / Follow platform data usage guidelines, only query publicly available information
 - 分页数据建议逐页获取，避免一次性请求过多 / For paginated data, fetch page by page to avoid requesting too much at once
 - 高频调用注意限流（默认60次/分钟）/ Pay attention to rate limiting for high-frequency calls (default 60 calls/minute)

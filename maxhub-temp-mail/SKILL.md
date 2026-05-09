@@ -1,7 +1,7 @@
 ---
 name: maxhub-temp-mail
-description: 临时邮箱/TempMail平台临时邮箱创建、邮件接收与验证码提取。当用户提到临时邮箱、temp mail、邮箱、隐私、验证码等相关需求时激活此Skill。
-version: 1.1.1
+description: 临时邮箱/TempMail平台临时邮箱创建与邮件接收服务。当用户提到临时邮箱、temp mail、隐私邮箱、一次性邮箱等相关需求时激活此Skill。
+version: 1.2.0
 author: MaxHub Team
 license: MIT
 metadata:
@@ -11,9 +11,9 @@ metadata:
   tags:
     - temp-mail
     - 临时邮箱
-    - 邮箱
+    - 隐私保护
     - 工具
-    - 数据采集
+    - 邮件服务
 ---
 # 📧 临时邮箱（TempMail）Skill
 
@@ -35,7 +35,7 @@ x-api-key: ${MAXHUB_API_KEY}
 
 | 能力域 | API数量 | 核心能力 |
 |--------|---------|----------|
-| 数据采集 | 3 | Get Email By Id、Get Emails、Get Temp Email |
+| 邮件服务 | 3 | 创建临时邮箱、获取收件箱、查看邮件详情 |
 
 
 
@@ -54,8 +54,7 @@ x-api-key: ${MAXHUB_API_KEY}
 所有 API 请求直接使用原始接口路径，无需额外前缀：
 
 ```bash
-# 基本调用格式
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/temp_mail/v1/get_temp_email_address" \
   -H "x-api-key: $MAXHUB_API_KEY"
 ```
 
@@ -69,11 +68,14 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 ### 🔒 安全声明 / Security Statement
 
-- 本Skill **仅** 通过MaxHub API获取公开数据 / This Skill **only** fetches public data via MaxHub API，不访问用户本地文件系统
+- 本Skill **仅** 通过MaxHub API提供临时邮箱服务 / This Skill **only** provides temporary email service via MaxHub API，不访问用户本地文件系统
 - API Key 通过环境变量 / API Key is passed via environment variable `MAXHUB_API_KEY` 安全传递，**不会** 被存储、记录或转发到第三方
 - 所有API请求均通过HTTPS加密传输 / All API requests are encrypted via HTTPS
 - 本Skill **不会** 读取浏览器Cookie / This Skill **will not** read browser cookies、SSH密钥、AWS凭证等敏感信息
 - 本Skill **不会** 修改任何系统配置文件 / This Skill **will not** modify any system configuration files
+- 本Skill **不会** 用于发送垃圾邮件或进行任何违法活动 / This Skill **will not** be used for sending spam or any illegal activities
+- 本Skill **不会** 访问或读取用户的个人邮箱 / This Skill **will not** access or read users' personal email accounts
+- 临时邮箱仅用于隐私保护场景，如网站注册时避免暴露真实邮箱 / Temporary emails are only for privacy protection scenarios, such as avoiding exposing real email when registering on websites
 
 
 ## 智能调度规则 / Intelligent Scheduling Rules
@@ -82,43 +84,33 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 根据用户描述，按以下优先级匹配API：
 
-1. **精确匹配**：用户明确指定操作（如"搜索xxx的视频"→搜索API）
-2. **语义推断**：根据上下文推断意图（如"这个博主有多少粉丝"→用户信息API）
-3. **默认兜底**：无法精确匹配时，优先使用搜索类API获取基础数据
+1. **精确匹配**：用户明确指定操作（如"创建临时邮箱"→创建邮箱API）
+2. **语义推断**：根据上下文推断意图（如"查看收到的邮件"→收件箱API）
+3. **默认兜底**：无法精确匹配时，优先使用创建邮箱API
 
 ### 2. 链式调用策略 / Chain Call Strategy
 
 当单个API无法满足需求时，按以下模式链式调用：
 
-**模式A：搜索→详情 / Pattern A: Search → Details**
+**模式A：创建→接收 / Pattern A: Create → Receive**
 ```
-用户: "帮我找临时邮箱上关于美食的热门内容"
-步骤1: 调用搜索API → 获取内容ID列表
-步骤2: 对每个ID调用详情API → 获取完整数据
-```
-
-**模式B：用户→内容 / Pattern B: User → Content**
-```
-用户: "分析这个临时邮箱博主的内容数据"
-步骤1: 调用用户信息API → 获取用户ID和基础数据
-步骤2: 调用用户作品列表API → 获取内容列表
-步骤3: 对关键作品调用详情API → 获取互动数据
+用户: "帮我创建一个临时邮箱并查看收到的邮件"
+步骤1: 调用创建邮箱API → 获取临时邮箱地址和token
+步骤2: 使用token调用收件箱API → 获取邮件列表
+步骤3: 对需要查看的邮件调用详情API → 获取邮件内容
 ```
 
-**模式C：搜索→用户→分析 / Pattern C: Search → User → Analysis**
+**模式B：查询→阅读 / Pattern B: Query → Read**
 ```
-用户: "找临时邮箱美妆领域的头部达人"
-步骤1: 调用搜索API → 获取相关用户
-步骤2: 对每个用户调用详情API → 获取粉丝数等
-步骤3: 调用分析/榜单API → 交叉验证排名
-步骤4: 综合排序 → 输出Top达人列表
+用户: "查看我的临时邮箱收件箱"
+步骤1: 调用收件箱API → 获取邮件列表
+步骤2: 对需要查看的邮件调用详情API → 获取邮件内容
 ```
 
 ### 3. 参数智能填充 / Intelligent Parameter Filling
 
 - 必填参数缺失时，主动向用户询问
 - 可选参数根据上下文智能推断默认值
-- 分页参数自动管理（首次page=1，根据需要自动翻页）
 
 
 ## ⚡ 调用限制 / Rate Limits
@@ -141,13 +133,13 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 ## API详细目录 / API Detailed Catalog
 
-### 数据采集
+### 邮件服务
 
-1. **Get Temp Email**
+1. **创建临时邮箱/Get Temp Email**
    - `GET /api/v1/temp_mail/v1/get_temp_email_address`
-2. **Get Emails**
+2. **获取收件箱/Get Emails**
    - `GET /api/v1/temp_mail/v1/get_emails_inbox`（必填: token）
-3. **Get Email By Id**
+3. **查看邮件详情/Get Email By Id**
    - `GET /api/v1/temp_mail/v1/get_email_by_id`（必填: token, message_id）
 
 ## 调用示例 / API Call Examples
@@ -155,7 +147,7 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 ### 基础调用 / Basic Call
 
 ```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/temp_mail/v1/get_temp_email_address" \
   -H "x-api-key: $MAXHUB_API_KEY" \
   -H "Content-Type: application/json"
 ```
@@ -164,39 +156,24 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
 ### 带参数调用 / Call with Parameters
 
 ```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_one_video?aweme_id=123456" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/temp_mail/v1/get_emails_inbox?token=YOUR_TOKEN" \
   -H "x-api-key: $MAXHUB_API_KEY"
 ```
 
 ### POST请求 / POST Request
 
 ```bash
-curl -X POST "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_user_like_videos" \
+curl -X POST "${MAXHUB_BASE_URL}/api/v1/temp_mail/v1/get_email_by_id" \
   -H "x-api-key: $MAXHUB_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"sec_user_id": "xxx"}'
-```
-
-### 带参数调用 / Call with Parameters
-
-```bash
-curl -X GET "BASE_URL/API_PATH?param1=value1&param2=value2" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-### POST请求 / POST Request
-
-```bash
-curl -X POST "BASE_URL/API_PATH" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
+  -d '{"token": "xxx", "message_id": "xxx"}'
 ```
 
 ## 注意事项 / Important Notes
 
 - 所有请求必须携带有效的MaxHub API Key / All requests must carry a valid MaxHub API Key
 - API调用按次计费，注意控制调用次数 / API calls are billed per use, pay attention to call frequency
-- 遵守平台数据使用规范，不采集敏感个人隐私数据 / Follow platform data usage guidelines, do not collect sensitive personal privacy data
-- 分页数据建议逐页获取，避免一次性请求过多 / For paginated data, fetch page by page to avoid requesting too much at once
+- 临时邮箱仅用于合法的隐私保护场景 / Temporary emails are only for legitimate privacy protection scenarios
+- 不得将临时邮箱用于发送垃圾邮件、钓鱼或其他违法活动 / Must not use temporary emails for spam, phishing or other illegal activities
+- 临时邮箱为一次性使用，邮件不会永久保存 / Temporary emails are for one-time use, emails will not be permanently saved
 - 高频调用注意限流（默认60次/分钟）/ Pay attention to rate limiting for high-frequency calls (default 60 calls/minute)

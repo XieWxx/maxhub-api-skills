@@ -1,7 +1,7 @@
 ---
 name: maxhub-sora2
-description: Sora2/Sora2平台Sora2 AI视频生成与创作工具。当用户提到sora、ai、视频生成、创作、openai等相关需求时激活此Skill。
-version: 1.1.1
+description: Sora2平台公开内容浏览与用户信息查询。当用户提到sora、sora2、ai视频、视频创作者等相关需求时激活此Skill。
+version: 1.2.0
 author: MaxHub Team
 license: MIT
 metadata:
@@ -11,11 +11,11 @@ metadata:
   tags:
     - sora2
     - ai视频
-    - 视频生成
-    - ai
-    - 数据采集
+    - 视频创作者
+    - 信息查询
+    - 公开数据
 ---
-# 🤖 Sora2（Sora2）Skill
+# 🤖 Sora2 Skill
 
 你是Sora2平台的数据专家。你精通Sora2平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。
 
@@ -31,16 +31,15 @@ x-api-key: ${MAXHUB_API_KEY}
 
 ## API能力全景 / API Capabilities Overview
 
-本Skill掌握Sora2 **17个API**，覆盖6大能力域：
+本Skill掌握Sora2 **13个API**，覆盖5大能力域：
 
 | 能力域 | API数量 | 核心能力 |
 |--------|---------|----------|
-| 数据采集 | 8 | 获取作品的 Remix 列表/Fetch、获取用户发布的帖子列表/Fetch us、获取用户信息档案/Fetch user  |
-| 内容解析 | 1 | 获取无水印视频下载信息/Fetch no |
-| 互动操作 | 4 | 获取用户粉丝列表/Fetch user 、获取作品一级评论/Fetch post 、获取用户关注列表/Fetch user  |
-| 创作者/达人 | 1 | 获取 Cameo 出镜秀达人排行榜/Fe |
-| 搜索查询 | 1 | 搜索用户/Search users |
-| 工具服务 | 2 | [已弃用/Deprecated] 文本/、[已弃用/Deprecated] 获取任 |
+| 信息查询 | 5 | 获取作品详情、获取用户信息、获取用户帖子列表、获取用户Cameo列表、获取Feed流 |
+| 互动数据 | 4 | 获取评论、获取回复、获取粉丝列表、获取关注列表 |
+| 创作者排行 | 1 | 获取Cameo达人排行榜 |
+| 搜索查询 | 1 | 搜索用户 |
+| 内容解析 | 2 | 获取视频信息、获取Remix列表 |
 
 
 
@@ -59,8 +58,7 @@ x-api-key: ${MAXHUB_API_KEY}
 所有 API 请求直接使用原始接口路径，无需额外前缀：
 
 ```bash
-# 基本调用格式
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/sora2/get_user_profile?user_id=USER_ID" \
   -H "x-api-key: $MAXHUB_API_KEY"
 ```
 
@@ -74,11 +72,14 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 ### 🔒 安全声明 / Security Statement
 
-- 本Skill **仅** 通过MaxHub API获取公开数据 / This Skill **only** fetches public data via MaxHub API，不访问用户本地文件系统
+- 本Skill **仅** 通过MaxHub API获取Sora2平台已公开的信息 / This Skill **only** fetches publicly available information from Sora2 via MaxHub API，不访问用户本地文件系统
 - API Key 通过环境变量 / API Key is passed via environment variable `MAXHUB_API_KEY` 安全传递，**不会** 被存储、记录或转发到第三方
 - 所有API请求均通过HTTPS加密传输 / All API requests are encrypted via HTTPS
 - 本Skill **不会** 读取浏览器Cookie / This Skill **will not** read browser cookies、SSH密钥、AWS凭证等敏感信息
 - 本Skill **不会** 修改任何系统配置文件 / This Skill **will not** modify any system configuration files
+- 本Skill **不会** 下载、保存或分发任何视频内容 / This Skill **will not** download, save or distribute any video content
+- 本Skill **不会** 绕过任何平台安全机制 / This Skill **will not** bypass any platform security mechanisms
+- 本Skill **不会** 自动生成或创建视频内容 / This Skill **will not** automatically generate or create video content
 
 
 ## 智能调度规则 / Intelligent Scheduling Rules
@@ -87,8 +88,8 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 根据用户描述，按以下优先级匹配API：
 
-1. **精确匹配**：用户明确指定操作（如"搜索xxx的视频"→搜索API）
-2. **语义推断**：根据上下文推断意图（如"这个博主有多少粉丝"→用户信息API）
+1. **精确匹配**：用户明确指定操作（如"搜索xxx的用户"→搜索API）
+2. **语义推断**：根据上下文推断意图（如"这个创作者有多少粉丝"→用户信息API）
 3. **默认兜底**：无法精确匹配时，优先使用搜索类API获取基础数据
 
 ### 2. 链式调用策略 / Chain Call Strategy
@@ -97,26 +98,17 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 **模式A：搜索→详情 / Pattern A: Search → Details**
 ```
-用户: "帮我找Sora2上关于美食的热门内容"
-步骤1: 调用搜索API → 获取内容ID列表
-步骤2: 对每个ID调用详情API → 获取完整数据
+用户: "帮我找Sora2上关于美食的热门创作者"
+步骤1: 调用搜索API → 获取用户列表
+步骤2: 对每个用户调用详情API → 获取完整数据
 ```
 
 **模式B：用户→内容 / Pattern B: User → Content**
 ```
-用户: "分析这个Sora2博主的内容数据"
+用户: "分析这个Sora2创作者的内容数据"
 步骤1: 调用用户信息API → 获取用户ID和基础数据
-步骤2: 调用用户作品列表API → 获取内容列表
+步骤2: 调用用户帖子列表API → 获取内容列表
 步骤3: 对关键作品调用详情API → 获取互动数据
-```
-
-**模式C：搜索→用户→分析 / Pattern C: Search → User → Analysis**
-```
-用户: "找Sora2美妆领域的头部达人"
-步骤1: 调用搜索API → 获取相关用户
-步骤2: 对每个用户调用详情API → 获取粉丝数等
-步骤3: 调用分析/榜单API → 交叉验证排名
-步骤4: 综合排序 → 输出Top达人列表
 ```
 
 ### 3. 参数智能填充 / Intelligent Parameter Filling
@@ -146,31 +138,27 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 
 ## API详细目录 / API Detailed Catalog
 
-### 数据采集
+### 信息查询
 
 1. **获取单一作品详情/Fetch single post detail**
    - `GET /api/v1/sora2/get_post_detail`
-2. **获取作品的 Remix 列表/Fetch post remix list**
-   - `GET /api/v1/sora2/get_post_remix_list`
-3. **获取用户信息档案/Fetch user profile**
+2. **获取用户信息档案/Fetch user profile**
    - `GET /api/v1/sora2/get_user_profile`（必填: user_id）
-4. **获取用户发布的帖子列表/Fetch user posts**
+3. **获取用户发布的帖子列表/Fetch user posts**
    - `GET /api/v1/sora2/get_user_posts`（必填: user_id）
-5. **获取用户Cameo出镜秀列表/Fetch user cameo appearances**
+4. **获取用户Cameo出镜秀列表/Fetch user cameo appearances**
    - `GET /api/v1/sora2/get_user_cameo_appearances`（必填: user_id）
-6. **获取Feed流（热门/推荐视频）/Fetch feed**
+5. **获取Feed流（热门/推荐视频）/Fetch feed**
    - `GET /api/v1/sora2/get_feed`
-7. **上传图片获取media_id/Upload image to get media_id**
-   - `POST /api/v1/sora2/upload_image`
-8. **[已弃用/Deprecated] 查询任务状态/Get task status**
-   - `GET /api/v1/sora2/get_task_status`（必填: task_id）
 
 ### 内容解析
 
-1. **获取无水印视频下载信息/Fetch none watermark video download info**
+1. **获取视频信息/Fetch video info**
    - `GET /api/v1/sora2/get_video_download_info`
+2. **获取作品的 Remix 列表/Fetch post remix list**
+   - `GET /api/v1/sora2/get_post_remix_list`
 
-### 互动操作
+### 互动数据
 
 1. **获取作品一级评论/Fetch post comments**
    - `GET /api/v1/sora2/get_post_comments`（必填: post_id）
@@ -181,7 +169,7 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 4. **获取用户关注列表/Fetch user following**
    - `GET /api/v1/sora2/get_user_following`（必填: user_id）
 
-### 创作者/达人
+### 创作者排行
 
 1. **获取 Cameo 出镜秀达人排行榜/Fetch Cameo leaderboard**
    - `GET /api/v1/sora2/get_cameo_leaderboard`
@@ -191,19 +179,12 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
 1. **搜索用户/Search users**
    - `GET /api/v1/sora2/search_users`（必填: username）
 
-### 工具服务
-
-1. **[已弃用/Deprecated] 文本/图片生成视频/Create video from text or image**
-   - `POST /api/v1/sora2/create_video`
-2. **[已弃用/Deprecated] 获取任务生成的作品详情（无水印版本）/Get task-generated post detail (watermark-free)**
-   - `GET /api/v1/sora2/get_task_detail`
-
 ## 调用示例 / API Call Examples
 
 ### 基础调用 / Basic Call
 
 ```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/sora2/get_user_profile?user_id=USER_ID" \
   -H "x-api-key: $MAXHUB_API_KEY" \
   -H "Content-Type: application/json"
 ```
@@ -212,39 +193,23 @@ curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
 ### 带参数调用 / Call with Parameters
 
 ```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_one_video?aweme_id=123456" \
+curl -X GET "${MAXHUB_BASE_URL}/api/v1/sora2/search_users?username=creator_name" \
   -H "x-api-key: $MAXHUB_API_KEY"
 ```
 
 ### POST请求 / POST Request
 
 ```bash
-curl -X POST "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_user_like_videos" \
+curl -X POST "${MAXHUB_BASE_URL}/api/v1/sora2/get_post_comments" \
   -H "x-api-key: $MAXHUB_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"sec_user_id": "xxx"}'
-```
-
-### 带参数调用 / Call with Parameters
-
-```bash
-curl -X GET "BASE_URL/API_PATH?param1=value1&param2=value2" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-### POST请求 / POST Request
-
-```bash
-curl -X POST "BASE_URL/API_PATH" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
+  -d '{"post_id": "xxx"}'
 ```
 
 ## 注意事项 / Important Notes
 
 - 所有请求必须携带有效的MaxHub API Key / All requests must carry a valid MaxHub API Key
 - API调用按次计费，注意控制调用次数 / API calls are billed per use, pay attention to call frequency
-- 遵守平台数据使用规范，不采集敏感个人隐私数据 / Follow platform data usage guidelines, do not collect sensitive personal privacy data
+- 遵守平台数据使用规范，仅查询已公开的信息 / Follow platform data usage guidelines, only query publicly available information
 - 分页数据建议逐页获取，避免一次性请求过多 / For paginated data, fetch page by page to avoid requesting too much at once
 - 高频调用注意限流（默认60次/分钟）/ Pay attention to rate limiting for high-frequency calls (default 60 calls/minute)
