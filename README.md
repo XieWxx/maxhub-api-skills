@@ -1,8 +1,13 @@
-# MaxHub API Skills
+# MaxHub API Skills / MaxHub API 技能集合
+
+[English](#english) | [中文](#中文)
+
+---
+
+<a name="中文"></a>
+## 📋 Skill 列表
 
 MaxHub API 平台的 OpenClaw Skill 集合，提供多平台数据采集和分析能力。
-
-## 📋 Skill 列表
 
 | Skill | 平台 | 功能 | API数量 |
 |-------|------|------|---------|
@@ -88,6 +93,7 @@ export MAXHUB_BASE_URL=https://www.aconfig.cn
 - 移除高风险 API 端点
 - 添加调用限制和安全声明
 - 更新文档与安全声明一致性
+- **新增：所有文档支持中英双语**
 
 ### v1.0.0 (2026-05-08)
 
@@ -104,4 +110,110 @@ MIT License
 
 ---
 
-**MaxHub API** - 让数据采集更简单
+<a name="english"></a>
+## 📋 Skill List
+
+OpenClaw Skill collection for MaxHub API platform, providing multi-platform data collection and analysis capabilities.
+
+| Skill | Platform | Features | APIs |
+|-------|----------|----------|------|
+| [maxhub-douyin](./maxhub-douyin) | Douyin | Hot search, videos, users, comments, etc. | 280+ |
+| [maxhub-tiktok](./maxhub-tiktok) | TikTok | Videos, users, comments, live streams, etc. | 190+ |
+| [maxhub-bilibili](./maxhub-bilibili) | Bilibili | Videos, users, comments, live streams, etc. | 70+ |
+| [maxhub-xiaohongshu](./maxhub-xiaohongshu) | Xiaohongshu | Posts, users, comments, etc. | 75+ |
+| [maxhub-weibo](./maxhub-weibo) | Weibo | Hot search, users, comments, etc. | 30+ |
+| [maxhub-kuaishou](./maxhub-kuaishou) | Kuaishou | Videos, users, comments, etc. | 50+ |
+| [maxhub-youtube](./maxhub-youtube) | YouTube | Videos, channels, comments, etc. | 40+ |
+| [maxhub-twitter](./maxhub-twitter) | Twitter/X | Tweets, users, comments, etc. | 30+ |
+| [maxhub-instagram](./maxhub-instagram) | Instagram | Posts, users, comments, etc. | 30+ |
+| [maxhub-zhihu](./maxhub-zhihu) | Zhihu | Q&A, users, comments, etc. | 25+ |
+| [maxhub-toutiao](./maxhub-toutiao) | Toutiao | Articles, users, comments, etc. | 20+ |
+| [maxhub-xigua](./maxhub-xigua) | Xigua Video | Videos, users, comments, etc. | 15+ |
+| [maxhub-pipixia](./maxhub-pipixia) | Pipixia | Videos, users, comments, etc. | 15+ |
+| [maxhub-lemon8](./maxhub-lemon8) | Lemon8 | Posts, users, comments, etc. | 20+ |
+| [maxhub-threads](./maxhub-threads) | Threads | Posts, users, comments, etc. | 15+ |
+| [maxhub-linkedin](./maxhub-linkedin) | LinkedIn | Jobs, companies, users, etc. | 20+ |
+| [maxhub-reddit](./maxhub-reddit) | Reddit | Posts, comments, users, etc. | 20+ |
+| [maxhub-wechat](./maxhub-wechat) | WeChat Official | Articles, comments, etc. | 15+ |
+| [maxhub-sora2](./maxhub-sora2) | Sora2 | AI video generation | 5+ |
+| [maxhub-temp-mail](./maxhub-temp-mail) | Temp Mail | Temporary email service | 5+ |
+| [maxhub-hybrid](./maxhub-hybrid) | Multi-platform | Comprehensive data collection | 500+ |
+
+## 🚀 Quick Start
+
+### 1. Get API Key
+
+Visit [MaxHub Official Site](https://www.aconfig.cn) to register and get your API Key.
+
+### 2. Configure Environment Variables
+
+```bash
+export MAXHUB_API_KEY=mh_sk_your_api_key_here
+export MAXHUB_BASE_URL=https://www.aconfig.cn
+```
+
+### 3. Use Skills
+
+Install the corresponding skill in OpenClaw to start using.
+
+## 🔒 Security Statement
+
+All Skills follow these security principles:
+
+- ✅ Only call MaxHub API via HTTPS
+- ✅ Do not store or forward user credentials
+- ✅ Do not access local file system
+- ✅ Do not perform any platform manipulation (fake views, likes, etc.)
+- ✅ Do not generate platform security bypass signatures
+
+## ⚡ Rate Limits
+
+To protect user account security and control costs, all Skills follow these limits:
+
+| Limit Item | Default Value |
+|------------|---------------|
+| Max pages per request | 5 pages |
+| Max results per request | 50 items |
+| Max chain call depth | 3 layers |
+| Max batch operation size | 10 items |
+| Cost alert threshold | Alert after 20 consecutive calls |
+
+## 📖 Documentation
+
+Each Skill directory contains:
+
+- `SKILL.md` - Skill documentation
+- `references/api-catalog.md` - API catalog
+
+## 🔗 Related Links
+
+- [MaxHub Official Site](https://www.aconfig.cn)
+- [API Documentation](https://www.aconfig.cn/api/docs)
+- [GitHub Repository](https://github.com/XieWxx/maxhub-api-skills)
+
+## 📝 Version History
+
+### v1.1.0 (2026-05-09)
+
+- Fixed ClawHub security scan issues
+- Removed high-risk API endpoints
+- Added rate limits and security statements
+- Updated documentation for security statement consistency
+- **New: All documentation now supports bilingual (Chinese/English)**
+
+### v1.0.0 (2026-05-08)
+
+- Initial release
+- Support for 21 platforms data collection
+
+## 📄 License
+
+MIT License
+
+## 🤝 Contributing
+
+Issues and Pull Requests are welcome!
+
+---
+
+**MaxHub API** - Making Data Collection Easier / 让数据采集更简单
