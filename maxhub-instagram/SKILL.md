@@ -1,7 +1,7 @@
 ---
 name: maxhub-instagram
 description: Instagram/Instagram平台Instagram用户、帖子、Reel与Story数据采集。当用户提到instagram、ins、图片、reel、story等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

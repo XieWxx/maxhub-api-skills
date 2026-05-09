@@ -1,7 +1,7 @@
 ---
 name: maxhub-xiaohongshu
 description: 小红书/Xiaohongshu平台小红书笔记搜索、用户分析与种草数据采集。当用户提到小红书、xiaohongshu、red、种草、笔记等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

@@ -1,7 +1,7 @@
 ---
 name: maxhub-twitter
 description: Twitter/Twitter平台Twitter/X推文搜索、用户数据与趋势分析。当用户提到twitter、x、推文、tweet、话题等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

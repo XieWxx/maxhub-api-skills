@@ -87,6 +87,13 @@ export MAXHUB_BASE_URL=https://www.aconfig.cn
 
 ## 📝 版本历史
 
+### v1.1.1 (2026-05-09)
+
+- 修复 YAML 元数据格式（分隔符、缩进、空值字段）
+- repository 地址从 gitee 改为 GitHub
+- 统一所有 skill 的 metadata 结构
+- 建立 develop 开发分支流程
+
 ### v1.1.0 (2026-05-09)
 
 - 修复 ClawHub 安全扫描问题

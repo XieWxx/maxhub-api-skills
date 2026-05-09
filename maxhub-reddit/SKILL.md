@@ -1,7 +1,7 @@
 ---
 name: maxhub-reddit
 description: Reddit/Reddit平台Reddit社区帖子搜索、评论与Subreddit数据采集。当用户提到reddit、社区、帖子、评论、subreddit等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

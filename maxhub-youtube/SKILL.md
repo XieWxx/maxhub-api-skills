@@ -1,7 +1,7 @@
 ---
 name: maxhub-youtube
 description: YouTube/YouTube平台YouTube视频、频道、评论与播放列表数据采集。当用户提到youtube、视频、频道、评论、播放列表等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

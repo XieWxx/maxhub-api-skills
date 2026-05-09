@@ -1,7 +1,7 @@
 ---
 name: maxhub-pipixia
 description: 皮皮虾/PiPiXia平台皮皮虾搞笑内容与社区数据采集。当用户提到皮皮虾、pipixia、搞笑、段子等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

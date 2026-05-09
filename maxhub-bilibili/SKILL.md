@@ -1,7 +1,7 @@
 ---
 name: maxhub-bilibili
 description: B站/Bilibili平台B站视频数据、UP主分析与弹幕采集。当用户提到b站、bilibili、弹幕、视频、番剧等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

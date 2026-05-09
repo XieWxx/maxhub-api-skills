@@ -1,7 +1,7 @@
 ---
 name: maxhub-hybrid
 description: 混合解析/HybridParser平台多平台混合内容解析与聚合提取。当用户提到混合解析、hybrid、解析、聚合、多等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

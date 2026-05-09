@@ -1,7 +1,7 @@
 ---
 name: maxhub-lemon8
 description: Lemon8/Lemon8平台Lemon8生活方式图文与种草数据采集。当用户提到lemon8、生活方式、图文、种草等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

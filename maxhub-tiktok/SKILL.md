@@ -1,7 +1,7 @@
 ---
 name: maxhub-tiktok
 description: TikTok/TikTok平台TikTok数据采集、创作者分析与电商洞察。当用户提到tiktok、国际版抖音、海外短视频、creator、analytics等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

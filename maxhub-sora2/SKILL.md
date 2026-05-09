@@ -1,7 +1,7 @@
 ---
 name: maxhub-sora2
 description: Sora2/Sora2平台Sora2 AI视频生成与创作工具。当用户提到sora、ai、视频生成、创作、openai等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

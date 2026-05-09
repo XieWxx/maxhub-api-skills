@@ -1,7 +1,7 @@
 ---
 name: maxhub-xigua
 description: 西瓜视频/Xigua平台西瓜视频内容搜索与数据采集。当用户提到西瓜视频、xigua、长视频、资讯等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

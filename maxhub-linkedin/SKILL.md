@@ -1,7 +1,7 @@
 ---
 name: maxhub-linkedin
 description: LinkedIn/LinkedIn平台LinkedIn职场数据、公司信息与职位搜索。当用户提到linkedin、职场、公司、职位、人脉等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

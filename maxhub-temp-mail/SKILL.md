@@ -1,7 +1,7 @@
 ---
 name: maxhub-temp-mail
 description: 临时邮箱/TempMail平台临时邮箱创建、邮件接收与验证码提取。当用户提到临时邮箱、temp mail、邮箱、隐私、验证码等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

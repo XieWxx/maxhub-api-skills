@@ -1,7 +1,7 @@
 ---
 name: maxhub-zhihu
 description: 知乎/Zhihu平台知乎问答搜索、专栏文章与话题数据采集。当用户提到知乎、zhihu、问答、专栏、话题等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:

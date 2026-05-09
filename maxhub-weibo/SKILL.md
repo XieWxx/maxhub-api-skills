@@ -1,7 +1,7 @@
 ---
 name: maxhub-weibo
 description: 微博/Weibo平台微博热搜、话题、用户与博文数据采集。当用户提到微博、weibo、热搜、超话、话题等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 metadata:
