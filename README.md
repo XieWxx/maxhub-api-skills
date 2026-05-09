@@ -1,0 +1,1 @@
+# maxhub-api-skills
