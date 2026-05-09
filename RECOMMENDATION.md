@@ -13,6 +13,14 @@
 - **版本**: v1.1.0
 - **协议**: MIT License
 
+### 📦 下载地址
+
+| 平台 | 地址 | 说明 |
+|------|------|------|
+| GitHub | https://github.com/XieWxx/maxhub-api-skills | 源码仓库 |
+| ModelScope | https://modelscope.cn/collections/XieWxx/MaxHub-API | 魔搭社区 |
+| ClawHub | https://clawhub.ai/u/xiewxx | OpenClaw 技能市场 |
+
 ---
 
 ## ✨ 核心优势
