@@ -1,7 +1,7 @@
 ---
 name: maxhub-youtube
 description: YouTube数据采集与分析。当用户提到youtube、视频、频道等相关需求时激活此Skill。
-version: 1.0.1
+version: 1.0.2
 author: MaxHub Team
 license: MIT
 trigger: "youtube|视频|频道|评论|播放列表|youtube搜索"
@@ -46,7 +46,7 @@ metadata:
 # ▶️ YouTube数据采集与分析
 
 唯一标识：`maxhub-youtube`
-版本：v1.0.1
+版本：v1.0.2
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -107,4 +107,4 @@ YouTube数据采集与分析——youtube、视频、频道等平台数据的智
 
 ## 更新日志
 
-v1.0.1 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+v1.0.2 V2架构升级，全量API覆盖，兼容层设计，场景化展示

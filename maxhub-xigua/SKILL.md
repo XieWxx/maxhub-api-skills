@@ -1,7 +1,7 @@
 ---
 name: maxhub-xigua
 description: 西瓜视频数据采集。当用户提到西瓜视频、xigua、长视频等相关需求时激活此Skill。
-version: 1.1.0
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "西瓜视频|xigua|长视频|西瓜搜索"
@@ -44,7 +44,7 @@ metadata:
 # 🍉 西瓜视频数据采集
 
 唯一标识：`maxhub-xigua`
-版本：v1.1.0
+版本：v1.1.1
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -89,4 +89,4 @@ metadata:
 
 ## 更新日志
 
-v1.1.0 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+v1.1.1 V2架构升级，全量API覆盖，兼容层设计，场景化展示
