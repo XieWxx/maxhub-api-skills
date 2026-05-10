@@ -350,6 +350,8 @@ ${Object.keys(categories).map(cat => {
 // ==================== 生成 SKILL.md ====================
 
 function generateSkillMd(config, apis) {
+  const today = new Date().toISOString().split('T')[0];
+
   let md = `---
 name: maxhub-${config.platform}
 description: ${config.displayName}。当用户提到${config.trigger.split('|').slice(0, 3).join('、')}等相关需求时激活此Skill。
@@ -390,33 +392,48 @@ ${config.trigger.split('|').map(t => `    - ${t}`).join('\n')}
 
 # ${config.emoji} ${config.displayName}
 
-## 🎯 我能做什么
+唯一标识：\`maxhub-${config.platform}\`
+版本：v2.0.0
+更新时间：${today}
+适配平台：MaxHub / Tikhub
 
-以下是你可以用自然语言向我提问的真实场景：
+## 简介
+
+${config.displayName}——${config.trigger.split('|').slice(0, 3).join('、')}等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+
+## 功能亮点
+
+- 智能识别：根据自然语言自动匹配最合适的API
+- 链式调用：复杂需求自动串联多个API完成
+- 全量覆盖：共 ${apis.length} 个API，覆盖数据采集、搜索查询、用户分析等场景
+- 兼容设计：API返回字段变化时自动适配，无需手动调整
+
+## 使用方法
+
+### 触发指令
+
+直接输入：${config.trigger.split('|').slice(0, 5).join('、')}
+
+### 使用示例
 
 `;
 
-  for (const scenario of config.scenarios) {
-    md += `### ${scenario.title}\n\n`;
-    md += `**你说：** \`${scenario.input}\`\n\n`;
-    md += `**我返回：** ${scenario.output}\n\n`;
+  for (let i = 0; i < config.scenarios.length; i++) {
+    const s = config.scenarios[i];
+    md += `${i + 1}. 示例：${s.input} → ${s.output}\n`;
   }
 
-  md += `> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！\n\n---\n\n`;
+  md += `\n## 参数说明\n\n`;
+  md += `| 参数名 | 是否必填 | 说明 |\n`;
+  md += `|--------|----------|------|\n`;
+  md += `| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |\n`;
+  md += `| keyword | 否 | 搜索关键词 |\n`;
+  md += `| page | 否 | 页码，默认1 |\n`;
+  md += `| count | 否 | 每页条数，默认20 |\n\n`;
 
-  // 认证方式（场景之后）
-  md += `## 🔑 认证方式\n\n`;
-  md += `本 Skill 需要通过 MaxHub API Key 进行认证：\n\n`;
-  md += `1. 访问 [MaxHub API](https://www.aconfig.cn) 注册账号\n`;
-  md += `2. 在用户中心创建 API Key\n`;
-  md += `3. 将 API Key 配置到环境变量 \`MAXHUB_API_KEY\`\n\n`;
-  md += `> 新用户注册即赠送 ¥0.10 体验金\n\n---\n\n`;
+  // 支持功能 - 按分类分组
+  md += `## 支持功能\n\n`;
 
-  // API 能力概览
-  md += `## 📋 API 能力概览\n\n`;
-  md += `共 **${apis.length}** 个 API，覆盖以下能力：\n\n`;
-
-  // 按分类分组
   const catGroups = {};
   for (const api of apis) {
     const cat = api.docDir.replace(/-API$/, '').replace(/-/g, ' ');
@@ -425,10 +442,10 @@ ${config.trigger.split('|').map(t => `    - ${t}`).join('\n')}
   }
 
   for (const [cat, catApis] of Object.entries(catGroups)) {
-    md += `### ${cat}（${catApis.length}个API）\n\n`;
+    md += `**${cat}**（${catApis.length}个API）\n\n`;
     md += `| API | 方法 | 必填参数 | 说明 |\n`;
     md += `|:---|:---|:---|:---|\n`;
-    for (const api of catApis.slice(0, 10)) { // 每类最多展示10个
+    for (const api of catApis.slice(0, 10)) {
       const shortPath = api.path.replace(`/api/v1/${config.platform}/`, '');
       const requiredParams = api.params.filter(p => p.required).map(p => p.name).join(', ') || '-';
       md += `| \`${shortPath}\` | ${api.method} | ${requiredParams} | ${api.description || api.summary} |\n`;
@@ -439,23 +456,16 @@ ${config.trigger.split('|').map(t => `    - ${t}`).join('\n')}
     md += `\n`;
   }
 
-  md += `---\n\n`;
+  // 注意事项
+  md += `## 注意事项\n\n`;
+  md += `1. 使用前需配置环境变量 \`MAXHUB_API_KEY\`，新用户注册即赠送体验金\n`;
+  md += `2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额\n`;
+  md += `3. 默认最多翻5页，如需更多数据请明确指定\n`;
+  md += `4. 遇到429错误请等待30秒后重试\n\n`;
 
-  // 常见错误
-  md += `## ⚠️ 常见错误\n\n`;
-  md += `| 错误码 | 原因 | 解决方法 |\n`;
-  md += `|:---|:---|:---|\n`;
-  md += `| 401 | API Key无效或未配置 | 访问 https://www.aconfig.cn 创建API Key |\n`;
-  md += `| 402 | 账户余额不足 | 访问 https://www.aconfig.cn 充值 |\n`;
-  md += `| 429 | 请求频率超限 | 等待30秒后重试 |\n`;
-  md += `| 404 | API端点不存在 | 检查API路径是否正确 |\n\n`;
-
-  // 安全声明
-  md += `---\n\n## 🔒 安全声明\n\n`;
-  md += `- 本 Skill **仅** 获取平台已公开的信息\n`;
-  md += `- API Key 通过环境变量安全传递，**不会** 被存储或转发\n`;
-  md += `- 所有请求均通过 HTTPS 加密传输\n`;
-  md += `- 本 Skill **不会** 读取浏览器 Cookie 或其他敏感信息\n`;
+  // 更新日志
+  md += `## 更新日志\n\n`;
+  md += `v2.0.0 V2架构升级，全量API覆盖，兼容层设计，场景化展示\n`;
 
   return md;
 }
