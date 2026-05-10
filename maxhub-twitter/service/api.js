@@ -1,8 +1,25 @@
 // 第三方接口请求封装 - twitter
 // 基于MaxHub API中转站调用，包含所有API
 
-const BASE_URL = process.env.MAXHUB_BASE_URL || 'https://www.aconfig.cn';
-const API_KEY = process.env.MAXHUB_API_KEY;
+const DEFAULT_BASE_URL = 'https://www.aconfig.cn';
+const ENV_KEY_URL = 'MAXHUB_BASE_URL';
+const ENV_KEY_API = 'MAXHUB_API_KEY';
+
+function getEnvVar(key) {
+  return process.env[key];
+}
+
+function getBaseUrl() {
+  const envUrl = getEnvVar(ENV_KEY_URL);
+  return envUrl || DEFAULT_BASE_URL;
+}
+
+function getApiKey() {
+  return getEnvVar(ENV_KEY_API);
+}
+
+const BASE_URL = getBaseUrl();
+const API_KEY = getApiKey();
 const PLATFORM = 'twitter';
 
 /**

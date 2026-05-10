@@ -1,7 +1,7 @@
 ---
 name: maxhub-douyin
 description: 抖音数据采集与分析。当用户提到抖音、douyin、短视频热搜等相关需求时激活此Skill。
-version: 1.0.5
+version: 1.0.7
 author: MaxHub Team
 license: MIT
 trigger: "抖音|douyin|短视频热搜|抖音达人|抖音直播|抖音热榜|抖音视频|抖音博主"
@@ -48,7 +48,7 @@ metadata:
 # 🎵 抖音数据采集与分析
 
 唯一标识：`maxhub-douyin`
-版本：v1.0.5
+版本：v1.0.7
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -242,4 +242,4 @@ metadata:
 
 ## 更新日志
 
-v1.0.5 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示
