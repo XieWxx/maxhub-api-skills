@@ -10,8 +10,8 @@
       "viewCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "viewCount",
+      "likeCount"
     ],
     "maxDisplay": 1
   },
@@ -26,8 +26,8 @@
       "tags"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "viewCount",
+      "likeCount"
     ],
     "maxDisplay": 20
   },

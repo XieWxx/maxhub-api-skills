@@ -11,8 +11,8 @@
       "verified"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "likeCount",
+      "retweetCount"
     ],
     "maxDisplay": 1
   },
@@ -28,8 +28,8 @@
       "lang"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "likeCount",
+      "retweetCount"
     ],
     "maxDisplay": 20
   },

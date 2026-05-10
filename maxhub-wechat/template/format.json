@@ -9,8 +9,7 @@
       "readCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "readCount"
     ],
     "maxDisplay": 1
   },
@@ -25,8 +24,7 @@
       "likeNum"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "readCount"
     ],
     "maxDisplay": 20
   },

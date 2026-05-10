@@ -42,41 +42,57 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // api/v1/temp_mail/v1
+  getTempEmailAddress: { path: '/api/v1/temp_mail/v1/get_temp_email_address' },
+  getEmailsInbox: { path: '/api/v1/temp_mail/v1/get_emails_inbox', params: ['token'] },
+  getEmailById: { path: '/api/v1/temp_mail/v1/get_email_by_id', params: ['token', 'message_id'] },
+};
 
 /**
- * Get Temp Email
- * GET /api/v1/temp_mail/v1/get_temp_email_address
- * 无必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function getTempEmailAddress(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/api/v1/temp_mail/v1/get_temp_email_address', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * Get Emails
- * GET /api/v1/temp_mail/v1/get_emails_inbox
- * @param {string} token - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function getEmailsInbox(token, extraParams = {}) {
-  const params = { token, ...extraParams };
-  return request('/api/v1/temp_mail/v1/get_emails_inbox', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * Get Email By Id
- * GET /api/v1/temp_mail/v1/get_email_by_id
- * @param {string, string} token, message_id - 必填参数
- */
-async function getEmailById(token, message_id, extraParams = {}) {
-  const params = { token, message_id, ...extraParams };
-  return request('/api/v1/temp_mail/v1/get_email_by_id', params);
-}
-
 module.exports = {
   request,
-  getTempEmailAddress,
-  getEmailsInbox,
-  getEmailById,
+  callApi,
+  API_REGISTRY,
+  getTempEmailAddress: api.getTempEmailAddress,
+  getEmailsInbox: api.getEmailsInbox,
+  getEmailById: api.getEmailById,
 };

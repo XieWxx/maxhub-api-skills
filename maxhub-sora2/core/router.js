@@ -1,4 +1,4 @@
-// 指令路由、分支分发 - Sora2内容浏览
+// 指令路由、分支分发 - Sora2平台
 // 根据用户意图路由到对应的API调用
 
 const api = require('../service/api');
@@ -14,52 +14,66 @@ const router = {
   },
 
   routes: {
-    async search({ keyword, page = 1, count = 20 }) {
-      const result = await api.search(keyword, page, count);
+    // 搜索创作者
+    async search_user({ keyword, page = 1, count = 20 }) {
+      const result = await api.searchUsers({ keyword });
       return {
         success: true,
-        intent: 'search',
-        data: data.formatSearchResults(result),
-        hasMore: result.has_more || false,
+        intent: 'search_user',
+        data: data.formatItem(result),
       };
     },
 
-    async get_user_profile(params) {
-      const result = await api.fetchUserProfile(params);
+    // 获取创作者信息
+    async get_user_profile({ user_id, page = 1, count = 20 }) {
+      const result = await api.getUserProfile({ user_id });
       return {
         success: true,
         intent: 'get_user_profile',
-        data: data.formatUserProfile(result.data),
+        data: data.formatItem(result),
       };
     },
 
-    async get_detail({ id }) {
-      const result = await api.fetchDetail(id);
+    // 获取创作者作品
+    async get_user_posts({ user_id, page = 1, count = 20 }) {
+      const result = await api.getUserPosts({ user_id });
       return {
         success: true,
-        intent: 'get_detail',
-        data: data.formatContentInfo(result.data),
+        intent: 'get_user_posts',
+        data: data.formatItem(result),
       };
     },
 
-    async get_trending() {
-      const result = await api.fetchTrending();
+    // 获取作品详情
+    async get_post_detail({ post_id, page = 1, count = 20 }) {
+      const result = await api.getPostDetail({ post_id });
       return {
         success: true,
-        intent: 'get_trending',
-        data: result.data || [],
+        intent: 'get_post_detail',
+        data: data.formatItem(result),
       };
     },
 
-    async get_comments({ id, page = 1, count = 20 }) {
-      const result = await api.fetchComments(id, page, count);
+    // 获取作品评论
+    async get_comments({ post_id, page = 1, count = 20 }) {
+      const result = await api.getPostComments({ post_id });
       return {
         success: true,
         intent: 'get_comments',
-        data: result.data || [],
-        hasMore: result.has_more || false,
+        data: data.formatItem(result),
       };
     },
+
+    // 获取推荐内容
+    async get_feed({  }) {
+      const result = await api.getFeed({});
+      return {
+        success: true,
+        intent: 'get_feed',
+        data: data.formatItem(result),
+      };
+    },
+
   },
 };
 

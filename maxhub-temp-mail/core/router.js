@@ -14,50 +14,52 @@ const router = {
   },
 
   routes: {
-    async search({ keyword, page = 1, count = 20 }) {
-      const result = await api.search(keyword, page, count);
+    // 创建临时邮箱
+    async create_email(params = {}) {
+      const result = await api.getTempEmailAddress(params);
       return {
         success: true,
-        intent: 'search',
-        data: data.formatSearchResults(result),
-        hasMore: result.has_more || false,
+        intent: 'create_email',
+        data: data.formatItem(result),
       };
     },
 
-    async get_user_profile(params) {
-      const result = await api.fetchUserProfile(params);
+    // 查看收件箱
+    async get_inbox({ token }) {
+      const result = await api.getEmailsInbox({ token });
       return {
         success: true,
-        intent: 'get_user_profile',
-        data: data.formatUserProfile(result.data),
+        intent: 'get_inbox',
+        data: data.formatData('/temp_mail/v1/get_emails_inbox', result),
+        hasMore: false,
       };
     },
 
-    async get_detail({ id }) {
-      const result = await api.fetchDetail(id);
+    // 查看邮件详情
+    async get_email_detail({ token, message_id }) {
+      const result = await api.getEmailById({ token, message_id });
       return {
         success: true,
-        intent: 'get_detail',
-        data: data.formatContentInfo(result.data),
+        intent: 'get_email_detail',
+        data: data.formatItem(result),
       };
     },
 
-    async get_trending() {
-      const result = await api.fetchTrending();
+    // 链式调用：创建邮箱→查看收件箱
+    async create_and_check(params = {}) {
+      const createResult = await api.getTempEmailAddress(params);
+      const token = createResult?.token || createResult?.data?.token;
+      if (!token) {
+        return { success: false, message: '创建邮箱失败，无法获取token' };
+      }
+      const inboxResult = await api.getEmailsInbox({ token });
       return {
         success: true,
-        intent: 'get_trending',
-        data: result.data || [],
-      };
-    },
-
-    async get_comments({ id, page = 1, count = 20 }) {
-      const result = await api.fetchComments(id, page, count);
-      return {
-        success: true,
-        intent: 'get_comments',
-        data: result.data || [],
-        hasMore: result.has_more || false,
+        intent: 'create_and_check',
+        data: {
+          email: data.formatItem(createResult),
+          inbox: data.formatData('/temp_mail/v1/get_emails_inbox', inboxResult),
+        },
       };
     },
   },

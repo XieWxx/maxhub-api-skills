@@ -42,232 +42,92 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // _mp/web
+  fetchMpArticleDetailJson: { path: '_mp/web/fetch_mp_article_detail_json', params: ['url'] },
+  fetchMpArticleDetailHtml: { path: '_mp/web/fetch_mp_article_detail_html', params: ['url'] },
+  fetchMpArticleList: { path: '_mp/web/fetch_mp_article_list', params: ['ghid'] },
+  fetchMpArticleReadCount: { path: '_mp/web/fetch_mp_article_read_count', params: ['url', 'comment_id'] },
+  fetchMpArticleUrl: { path: '_mp/web/fetch_mp_article_url', params: ['sogou_url'] },
+  fetchMpArticleAd: { path: '_mp/web/fetch_mp_article_ad', params: ['url'] },
+  fetchMpArticleUrlConversion: { path: '_mp/web/fetch_mp_article_url_conversion', params: ['url'] },
+  fetchMpRelatedArticles: { path: '_mp/web/fetch_mp_related_articles', params: ['url'] },
+  fetchMpArticleCommentList: { path: '_mp/web/fetch_mp_article_comment_list', params: ['url'] },
+  fetchMpArticleCommentReplyList: { path: '_mp/web/fetch_mp_article_comment_reply_list', params: ['comment_id', 'content_id'] },
+  // _channels
+  fetchVideoDetail: { path: '_channels/fetch_video_detail' },
+  fetchHomePage: { path: '_channels/fetch_home_page', method: 'POST' },
+  fetchLiveHistory: { path: '_channels/fetch_live_history', params: ['username'] },
+  fetchHotWords: { path: '_channels/fetch_hot_words' },
+  fetchComments: { path: '_channels/fetch_comments', method: 'POST' },
+  fetchDefaultSearch: { path: '_channels/fetch_default_search', method: 'POST' },
+  fetchSearchLatest: { path: '_channels/fetch_search_latest', params: ['keywords'] },
+  fetchSearchOrdinary: { path: '_channels/fetch_search_ordinary', params: ['keywords'] },
+  fetchUserSearch: { path: '_channels/fetch_user_search', params: ['keywords'] },
+  fetchUserSearchV2: { path: '_channels/fetch_user_search_v2' },
+};
 
 /**
- * 获取微信公众号文章详情的JSON/Get Wechat MP Article D
- * GET /api/v1/wechat_mp/web/fetch_mp_article_detail_json
- * @param {string} url - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchMpArticleDetailJson(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('_mp/web/fetch_mp_article_detail_json', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取微信公众号文章详情的HTML/Get Wechat MP Article D
- * GET /api/v1/wechat_mp/web/fetch_mp_article_detail_html
- * @param {string} url - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchMpArticleDetailHtml(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('_mp/web/fetch_mp_article_detail_html', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取微信公众号文章列表/Get Wechat MP Article List
- * GET /api/v1/wechat_mp/web/fetch_mp_article_list
- * @param {string} ghid - 必填参数
- */
-async function fetchMpArticleList(ghid, extraParams = {}) {
-  const params = { ghid, ...extraParams };
-  return request('_mp/web/fetch_mp_article_list', params);
-}
-
-/**
- * 获取微信公众号文章阅读量/Get Wechat MP Article Read
- * GET /api/v1/wechat_mp/web/fetch_mp_article_read_count
- * @param {string, string} url, comment_id - 必填参数
- */
-async function fetchMpArticleReadCount(url, comment_id, extraParams = {}) {
-  const params = { url, comment_id, ...extraParams };
-  return request('_mp/web/fetch_mp_article_read_count', params);
-}
-
-/**
- * 获取微信公众号文章永久链接/Get Wechat MP Article URL
- * GET /api/v1/wechat_mp/web/fetch_mp_article_url
- * @param {string} sogou_url - 必填参数
- */
-async function fetchMpArticleUrl(sogou_url, extraParams = {}) {
-  const params = { sogou_url, ...extraParams };
-  return request('_mp/web/fetch_mp_article_url', params);
-}
-
-/**
- * 获取微信公众号广告/Get Wechat MP Article Ad
- * GET /api/v1/wechat_mp/web/fetch_mp_article_ad
- * @param {string} url - 必填参数
- */
-async function fetchMpArticleAd(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('_mp/web/fetch_mp_article_ad', params);
-}
-
-/**
- * 获取微信公众号长链接转短链接/Get Wechat MP Long URL to
- * GET /api/v1/wechat_mp/web/fetch_mp_article_url_conversion
- * @param {string} url - 必填参数
- */
-async function fetchMpArticleUrlConversion(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('_mp/web/fetch_mp_article_url_conversion', params);
-}
-
-/**
- * 获取微信公众号关联文章/Get Wechat MP Related Articl
- * GET /api/v1/wechat_mp/web/fetch_mp_related_articles
- * @param {string} url - 必填参数
- */
-async function fetchMpRelatedArticles(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('_mp/web/fetch_mp_related_articles', params);
-}
-
-/**
- * 微信视频号视频详情/WeChat Channels Video Detail
- * GET /api/v1/wechat_channels/fetch_video_detail
- * 无必填参数
- */
-async function fetchVideoDetail(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('_channels/fetch_video_detail', params);
-}
-
-/**
- * 微信视频号主页/WeChat Channels Home Page
- * POST /api/v1/wechat_channels/fetch_home_page
- * 无必填参数
- */
-async function fetchHomePage(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('_channels/fetch_home_page', params, 'POST');
-}
-
-/**
- * 微信视频号直播回放/WeChat Channels Live History
- * GET /api/v1/wechat_channels/fetch_live_history
- * @param {string} username - 必填参数
- */
-async function fetchLiveHistory(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('_channels/fetch_live_history', params);
-}
-
-/**
- * 微信视频号热门话题/WeChat Channels Hot Topics
- * GET /api/v1/wechat_channels/fetch_hot_words
- * 无必填参数
- */
-async function fetchHotWords(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('_channels/fetch_hot_words', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取微信公众号文章评论列表/Get Wechat MP Article Comm
- * GET /api/v1/wechat_mp/web/fetch_mp_article_comment_list
- * @param {string} url - 必填参数
- */
-async function fetchMpArticleCommentList(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('_mp/web/fetch_mp_article_comment_list', params);
-}
-
-/**
- * 获取微信公众号文章评论回复列表/Get Wechat MP Article Co
- * GET /api/v1/wechat_mp/web/fetch_mp_article_comment_reply_list
- * @param {string, string} comment_id, content_id - 必填参数
- */
-async function fetchMpArticleCommentReplyList(comment_id, content_id, extraParams = {}) {
-  const params = { comment_id, content_id, ...extraParams };
-  return request('_mp/web/fetch_mp_article_comment_reply_list', params);
-}
-
-/**
- * 微信视频号评论/WeChat Channels Comments
- * POST /api/v1/wechat_channels/fetch_comments
- * 无必填参数
- */
-async function fetchComments(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('_channels/fetch_comments', params, 'POST');
-}
-
-// ==================== 搜 ====================
-
-/**
- * 微信视频号默认搜索/WeChat Channels Default Search
- * POST /api/v1/wechat_channels/fetch_default_search
- * 无必填参数
- */
-async function fetchDefaultSearch(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('_channels/fetch_default_search', params, 'POST');
-}
-
-/**
- * 微信视频号搜索最新视频/WeChat Channels Search Lates
- * GET /api/v1/wechat_channels/fetch_search_latest
- * @param {string} keywords - 必填参数
- */
-async function fetchSearchLatest(keywords, extraParams = {}) {
-  const params = { keywords, ...extraParams };
-  return request('_channels/fetch_search_latest', params);
-}
-
-/**
- * 微信视频号综合搜索/WeChat Channels Comprehensive
- * GET /api/v1/wechat_channels/fetch_search_ordinary
- * @param {string} keywords - 必填参数
- */
-async function fetchSearchOrdinary(keywords, extraParams = {}) {
-  const params = { keywords, ...extraParams };
-  return request('_channels/fetch_search_ordinary', params);
-}
-
-/**
- * 微信视频号用户搜索/WeChat Channels User Search
- * GET /api/v1/wechat_channels/fetch_user_search
- * @param {string} keywords - 必填参数
- */
-async function fetchUserSearch(keywords, extraParams = {}) {
-  const params = { keywords, ...extraParams };
-  return request('_channels/fetch_user_search', params);
-}
-
-/**
- * 微信视频号用户搜索V2/WeChat Channels User Search
- * GET /api/v1/wechat_channels/fetch_user_search_v2
- * 无必填参数
- */
-async function fetchUserSearchV2(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('_channels/fetch_user_search_v2', params);
-}
-
 module.exports = {
   request,
-  fetchMpArticleDetailJson,
-  fetchMpArticleDetailHtml,
-  fetchMpArticleList,
-  fetchMpArticleReadCount,
-  fetchMpArticleUrl,
-  fetchMpArticleAd,
-  fetchMpArticleUrlConversion,
-  fetchMpRelatedArticles,
-  fetchVideoDetail,
-  fetchHomePage,
-  fetchLiveHistory,
-  fetchHotWords,
-  fetchMpArticleCommentList,
-  fetchMpArticleCommentReplyList,
-  fetchComments,
-  fetchDefaultSearch,
-  fetchSearchLatest,
-  fetchSearchOrdinary,
-  fetchUserSearch,
-  fetchUserSearchV2,
+  callApi,
+  API_REGISTRY,
+  fetchMpArticleDetailJson: api.fetchMpArticleDetailJson,
+  fetchMpArticleDetailHtml: api.fetchMpArticleDetailHtml,
+  fetchMpArticleList: api.fetchMpArticleList,
+  fetchMpArticleReadCount: api.fetchMpArticleReadCount,
+  fetchMpArticleUrl: api.fetchMpArticleUrl,
+  fetchMpArticleAd: api.fetchMpArticleAd,
+  fetchMpArticleUrlConversion: api.fetchMpArticleUrlConversion,
+  fetchMpRelatedArticles: api.fetchMpRelatedArticles,
+  fetchVideoDetail: api.fetchVideoDetail,
+  fetchHomePage: api.fetchHomePage,
+  fetchLiveHistory: api.fetchLiveHistory,
+  fetchHotWords: api.fetchHotWords,
+  fetchMpArticleCommentList: api.fetchMpArticleCommentList,
+  fetchMpArticleCommentReplyList: api.fetchMpArticleCommentReplyList,
+  fetchComments: api.fetchComments,
+  fetchDefaultSearch: api.fetchDefaultSearch,
+  fetchSearchLatest: api.fetchSearchLatest,
+  fetchSearchOrdinary: api.fetchSearchOrdinary,
+  fetchUserSearch: api.fetchUserSearch,
+  fetchUserSearchV2: api.fetchUserSearchV2,
 };

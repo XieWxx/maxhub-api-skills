@@ -12,8 +12,8 @@
       "videoCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "playCount",
+      "likeCount"
     ],
     "maxDisplay": 1
   },
@@ -29,7 +29,7 @@
     ],
     "highlight": [
       "playCount",
-      "viewCount"
+      "likeCount"
     ],
     "maxDisplay": 20
   },

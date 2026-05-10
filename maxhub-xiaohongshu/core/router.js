@@ -1,4 +1,4 @@
-// 指令路由、分支分发 - 小红书数据采集与分析
+// 指令路由、分支分发 - 小红书平台
 // 根据用户意图路由到对应的API调用
 
 const api = require('../service/api');
@@ -14,52 +14,66 @@ const router = {
   },
 
   routes: {
-    async search({ keyword, page = 1, count = 20 }) {
-      const result = await api.search(keyword, page, count);
+    // 搜索笔记
+    async search_note({ keyword, page = 1, count = 20 }) {
+      const result = await api.fetchSearchNotes({ keyword });
       return {
         success: true,
-        intent: 'search',
-        data: data.formatSearchResults(result),
-        hasMore: result.has_more || false,
+        intent: 'search_note',
+        data: data.formatItem(result),
       };
     },
 
-    async get_user_profile(params) {
-      const result = await api.fetchUserProfile(params);
+    // 搜索用户
+    async search_user({ keyword, page = 1, count = 20 }) {
+      const result = await api.fetchSearchUsers({ keyword });
+      return {
+        success: true,
+        intent: 'search_user',
+        data: data.formatItem(result),
+      };
+    },
+
+    // 获取笔记详情
+    async get_note_detail({ note_id, page = 1, count = 20 }) {
+      const result = await api.fetchNoteDetail({ note_id });
+      return {
+        success: true,
+        intent: 'get_note_detail',
+        data: data.formatItem(result),
+      };
+    },
+
+    // 获取用户信息
+    async get_user_profile({ user_id, page = 1, count = 20 }) {
+      const result = await api.fetchUserInfo({ user_id });
       return {
         success: true,
         intent: 'get_user_profile',
-        data: data.formatUserProfile(result.data),
+        data: data.formatItem(result),
       };
     },
 
-    async get_detail({ id }) {
-      const result = await api.fetchDetail(id);
-      return {
-        success: true,
-        intent: 'get_detail',
-        data: data.formatContentInfo(result.data),
-      };
-    },
-
-    async get_trending() {
-      const result = await api.fetchTrending();
-      return {
-        success: true,
-        intent: 'get_trending',
-        data: result.data || [],
-      };
-    },
-
-    async get_comments({ id, page = 1, count = 20 }) {
-      const result = await api.fetchComments(id, page, count);
+    // 获取笔记评论
+    async get_comments({ note_id, page = 1, count = 20 }) {
+      const result = await api.fetchNoteComments({ note_id });
       return {
         success: true,
         intent: 'get_comments',
-        data: result.data || [],
-        hasMore: result.has_more || false,
+        data: data.formatItem(result),
       };
     },
+
+    // 获取用户笔记
+    async get_user_notes({ user_id, page = 1, count = 20 }) {
+      const result = await api.fetchUserNotes({ user_id });
+      return {
+        success: true,
+        intent: 'get_user_notes',
+        data: data.formatItem(result),
+      };
+    },
+
   },
 };
 

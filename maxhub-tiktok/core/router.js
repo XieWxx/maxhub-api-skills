@@ -1,4 +1,4 @@
-// 指令路由、分支分发 - TikTok数据采集与分析
+// 指令路由、分支分发 - TikTok平台
 // 根据用户意图路由到对应的API调用
 
 const api = require('../service/api');
@@ -14,52 +14,68 @@ const router = {
   },
 
   routes: {
-    async search({ keyword, page = 1, count = 20 }) {
-      const result = await api.search(keyword, page, count);
+    // 搜索视频
+    async search_video({ keyword, page = 1, count = 20 }) {
+      const result = await api.fetchGeneralSearch({ keyword });
       return {
         success: true,
-        intent: 'search',
-        data: data.formatSearchResults(result),
-        hasMore: result.has_more || false,
+        intent: 'search_video',
+        data: data.formatItem(result),
       };
     },
 
-    async get_user_profile(params) {
-      const result = await api.fetchUserProfile(params);
+    // 搜索用户
+    async search_user({ keyword, page = 1, count = 20 }) {
+      const result = await api.fetchSearchUser({ keyword });
       return {
         success: true,
-        intent: 'get_user_profile',
-        data: data.formatUserProfile(result.data),
+        intent: 'search_user',
+        data: data.formatItem(result),
       };
     },
 
-    async get_detail({ id }) {
-      const result = await api.fetchDetail(id);
+    // 获取视频详情
+    async get_video_detail({ aweme_id, page = 1, count = 20 }) {
+      const result = await api.fetchOneVideo({ aweme_id });
       return {
         success: true,
-        intent: 'get_detail',
-        data: data.formatContentInfo(result.data),
+        intent: 'get_video_detail',
+        data: data.formatItem(result),
       };
     },
 
-    async get_trending() {
-      const result = await api.fetchTrending();
-      return {
-        success: true,
-        intent: 'get_trending',
-        data: result.data || [],
-      };
+    // 获取用户信息
+    async get_user_profile({ unique_id, page = 1, count = 20 }) {
+      if (unique_id) {
+        const result = await api.fetchUserProfile({ unique_id });
+        return { success: true, intent: 'get_user_profile', data: data.formatItem(result) };
+      } else if (sec_uid) {
+        const result = await api.handlerUserProfile({ sec_uid });
+        return { success: true, intent: 'get_user_profile', data: data.formatItem(result) };
+      }
+      return { success: false, message: '请提供必要参数' };
     },
 
-    async get_comments({ id, page = 1, count = 20 }) {
-      const result = await api.fetchComments(id, page, count);
+    // 获取评论
+    async get_comments({ aweme_id, page = 1, count = 20 }) {
+      const result = await api.fetchVideoComments({ aweme_id });
       return {
         success: true,
         intent: 'get_comments',
-        data: result.data || [],
-        hasMore: result.has_more || false,
+        data: data.formatItem(result),
       };
     },
+
+    // 获取用户视频
+    async get_user_videos({ sec_uid, page = 1, count = 20 }) {
+      const result = await api.fetchUserPostVideos({ sec_uid });
+      return {
+        success: true,
+        intent: 'get_user_videos',
+        data: data.formatItem(result),
+      };
+    },
+
   },
 };
 

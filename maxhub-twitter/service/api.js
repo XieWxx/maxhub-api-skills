@@ -42,155 +42,77 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // web
+  fetchTweetDetail: { path: '/web/fetch_tweet_detail', params: ['tweet_id'] },
+  fetchUserProfile: { path: '/web/fetch_user_profile' },
+  fetchUserPostTweet: { path: '/web/fetch_user_post_tweet' },
+  fetchUserTweetReplies: { path: '/web/fetch_user_tweet_replies', params: ['screen_name'] },
+  fetchUserHighlightsTweets: { path: '/web/fetch_user_highlights_tweets', params: ['userId'] },
+  fetchUserMedia: { path: '/web/fetch_user_media', params: ['screen_name'] },
+  fetchRetweetUserList: { path: '/web/fetch_retweet_user_list', params: ['tweet_id'] },
+  fetchTrending: { path: '/web/fetch_trending' },
+  fetchSearchTimeline: { path: '/web/fetch_search_timeline', params: ['keyword'] },
+  fetchPostComments: { path: '/web/fetch_post_comments', params: ['tweet_id'] },
+  fetchLatestPostComments: { path: '/web/fetch_latest_post_comments', params: ['tweet_id'] },
+  fetchUserFollowings: { path: '/web/fetch_user_followings', params: ['screen_name'] },
+  fetchUserFollowers: { path: '/web/fetch_user_followers', params: ['screen_name'] },
+};
 
 /**
- * 获取单个推文数据/Get single tweet data
- * GET /api/v1/twitter/web/fetch_tweet_detail
- * @param {string} tweet_id - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchTweetDetail(tweet_id, extraParams = {}) {
-  const params = { tweet_id, ...extraParams };
-  return request('/web/fetch_tweet_detail', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取用户资料/Get user profile
- * GET /api/v1/twitter/web/fetch_user_profile
- * 无必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchUserProfile(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_user_profile', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取用户发帖/Get user post
- * GET /api/v1/twitter/web/fetch_user_post_tweet
- * 无必填参数
- */
-async function fetchUserPostTweet(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_user_post_tweet', params);
-}
-
-/**
- * 获取用户推文回复/Get user tweet replies
- * GET /api/v1/twitter/web/fetch_user_tweet_replies
- * @param {string} screen_name - 必填参数
- */
-async function fetchUserTweetReplies(screen_name, extraParams = {}) {
-  const params = { screen_name, ...extraParams };
-  return request('/web/fetch_user_tweet_replies', params);
-}
-
-/**
- * 获取用户高光推文/Get user highlights tweets
- * GET /api/v1/twitter/web/fetch_user_highlights_tweets
- * @param {string} userId - 必填参数
- */
-async function fetchUserHighlightsTweets(userId, extraParams = {}) {
-  const params = { userId, ...extraParams };
-  return request('/web/fetch_user_highlights_tweets', params);
-}
-
-/**
- * 获取用户媒体/Get user media
- * GET /api/v1/twitter/web/fetch_user_media
- * @param {string} screen_name - 必填参数
- */
-async function fetchUserMedia(screen_name, extraParams = {}) {
-  const params = { screen_name, ...extraParams };
-  return request('/web/fetch_user_media', params);
-}
-
-/**
- * 转推用户列表/ReTweet User list
- * GET /api/v1/twitter/web/fetch_retweet_user_list
- * @param {string} tweet_id - 必填参数
- */
-async function fetchRetweetUserList(tweet_id, extraParams = {}) {
-  const params = { tweet_id, ...extraParams };
-  return request('/web/fetch_retweet_user_list', params);
-}
-
-/**
- * 趋势/Trending
- * GET /api/v1/twitter/web/fetch_trending
- * 无必填参数
- */
-async function fetchTrending(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_trending', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 搜索/Search
- * GET /api/v1/twitter/web/fetch_search_timeline
- * @param {string} keyword - 必填参数
- */
-async function fetchSearchTimeline(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/web/fetch_search_timeline', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取评论/Get comments
- * GET /api/v1/twitter/web/fetch_post_comments
- * @param {string} tweet_id - 必填参数
- */
-async function fetchPostComments(tweet_id, extraParams = {}) {
-  const params = { tweet_id, ...extraParams };
-  return request('/web/fetch_post_comments', params);
-}
-
-/**
- * 获取最新的推文评论/Get the latest tweet comments
- * GET /api/v1/twitter/web/fetch_latest_post_comments
- * @param {string} tweet_id - 必填参数
- */
-async function fetchLatestPostComments(tweet_id, extraParams = {}) {
-  const params = { tweet_id, ...extraParams };
-  return request('/web/fetch_latest_post_comments', params);
-}
-
-/**
- * 用户关注/User Followings
- * GET /api/v1/twitter/web/fetch_user_followings
- * @param {string} screen_name - 必填参数
- */
-async function fetchUserFollowings(screen_name, extraParams = {}) {
-  const params = { screen_name, ...extraParams };
-  return request('/web/fetch_user_followings', params);
-}
-
-/**
- * 用户粉丝/User Followers
- * GET /api/v1/twitter/web/fetch_user_followers
- * @param {string} screen_name - 必填参数
- */
-async function fetchUserFollowers(screen_name, extraParams = {}) {
-  const params = { screen_name, ...extraParams };
-  return request('/web/fetch_user_followers', params);
-}
-
 module.exports = {
   request,
-  fetchTweetDetail,
-  fetchUserProfile,
-  fetchUserPostTweet,
-  fetchUserTweetReplies,
-  fetchUserHighlightsTweets,
-  fetchUserMedia,
-  fetchRetweetUserList,
-  fetchSearchTimeline,
-  fetchPostComments,
-  fetchLatestPostComments,
-  fetchUserFollowings,
-  fetchUserFollowers,
-  fetchTrending,
+  callApi,
+  API_REGISTRY,
+  fetchTweetDetail: api.fetchTweetDetail,
+  fetchUserProfile: api.fetchUserProfile,
+  fetchUserPostTweet: api.fetchUserPostTweet,
+  fetchUserTweetReplies: api.fetchUserTweetReplies,
+  fetchUserHighlightsTweets: api.fetchUserHighlightsTweets,
+  fetchUserMedia: api.fetchUserMedia,
+  fetchRetweetUserList: api.fetchRetweetUserList,
+  fetchTrending: api.fetchTrending,
+  fetchSearchTimeline: api.fetchSearchTimeline,
+  fetchPostComments: api.fetchPostComments,
+  fetchLatestPostComments: api.fetchLatestPostComments,
+  fetchUserFollowings: api.fetchUserFollowings,
+  fetchUserFollowers: api.fetchUserFollowers,
 };

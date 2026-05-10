@@ -42,87 +42,61 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // app
+  getArticleInfo: { path: '/app/get_article_info', params: ['group_id'] },
+  getVideoInfo: { path: '/app/get_video_info', params: ['group_id'] },
+  getUserInfo: { path: '/app/get_user_info', params: ['user_id'] },
+  getUserId: { path: '/app/get_user_id', params: ['user_profile_url'] },
+  getComments: { path: '/app/get_comments', params: ['group_id', 'offset'] },
+};
 
 /**
- * 获取指定文章的信息/Get information of specified a
- * GET /api/v1/toutiao/web/get_article_info
- * @param {string} aweme_id - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function getArticleInfo(aweme_id, extraParams = {}) {
-  const params = { aweme_id, ...extraParams };
-  return request('/web/get_article_info', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取指定视频的信息/Get information of specified v
- * GET /api/v1/toutiao/web/get_video_info
- * @param {string} aweme_id - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function getVideoInfo(aweme_id, extraParams = {}) {
-  const params = { aweme_id, ...extraParams };
-  return request('/web/get_video_info', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取指定文章的信息/Get information of specified a
- * GET /api/v1/toutiao/app/get_article_info
- * @param {string} group_id - 必填参数
- */
-async function getArticleInfo(group_id, extraParams = {}) {
-  const params = { group_id, ...extraParams };
-  return request('/app/get_article_info', params);
-}
-
-/**
- * 获取指定视频的信息/Get information of specified v
- * GET /api/v1/toutiao/app/get_video_info
- * @param {string} group_id - 必填参数
- */
-async function getVideoInfo(group_id, extraParams = {}) {
-  const params = { group_id, ...extraParams };
-  return request('/app/get_video_info', params);
-}
-
-/**
- * 获取指定用户的信息/Get information of specified u
- * GET /api/v1/toutiao/app/get_user_info
- * @param {string} user_id - 必填参数
- */
-async function getUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/get_user_info', params);
-}
-
-/**
- * 从头条用户主页获取用户user_id/Get user_id from user
- * GET /api/v1/toutiao/app/get_user_id
- * @param {string} user_profile_url - 必填参数
- */
-async function getUserId(user_profile_url, extraParams = {}) {
-  const params = { user_profile_url, ...extraParams };
-  return request('/app/get_user_id', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取指定作品的评论/Get comments of specified post
- * GET /api/v1/toutiao/app/get_comments
- * @param {string, string} group_id, offset - 必填参数
- */
-async function getComments(group_id, offset, extraParams = {}) {
-  const params = { group_id, offset, ...extraParams };
-  return request('/app/get_comments', params);
-}
-
 module.exports = {
   request,
-  getArticleInfo,
-  getVideoInfo,
-  getArticleInfo,
-  getVideoInfo,
-  getUserInfo,
-  getUserId,
-  getComments,
+  callApi,
+  API_REGISTRY,
+  getArticleInfo: api.getArticleInfo,
+  getVideoInfo: api.getVideoInfo,
+  getUserInfo: api.getUserInfo,
+  getUserId: api.getUserId,
+  getComments: api.getComments,
 };

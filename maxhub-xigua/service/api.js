@@ -42,89 +42,65 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // app/v2
+  fetchOneVideo: { path: '/app/v2/fetch_one_video', params: ['item_id'] },
+  fetchOneVideoV2: { path: '/app/v2/fetch_one_video_v2', params: ['item_id'] },
+  fetchOneVideoPlayUrl: { path: '/app/v2/fetch_one_video_play_url', params: ['item_id'] },
+  fetchUserInfo: { path: '/app/v2/fetch_user_info', params: ['user_id'] },
+  fetchUserPostList: { path: '/app/v2/fetch_user_post_list', params: ['user_id'] },
+  fetchVideoCommentList: { path: '/app/v2/fetch_video_comment_list', params: ['item_id'] },
+  searchVideo: { path: '/app/v2/search_video', params: ['keyword'] },
+};
 
 /**
- * 获取单个作品数据/Get single video data
- * GET /api/v1/xigua/app/v2/fetch_one_video
- * @param {string} item_id - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchOneVideo(item_id, extraParams = {}) {
-  const params = { item_id, ...extraParams };
-  return request('/app/v2/fetch_one_video', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取单个作品数据 V2/Get single video data V2
- * GET /api/v1/xigua/app/v2/fetch_one_video_v2
- * @param {string} item_id - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchOneVideoV2(item_id, extraParams = {}) {
-  const params = { item_id, ...extraParams };
-  return request('/app/v2/fetch_one_video_v2', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取单个作品的播放链接/Get single video play URL
- * GET /api/v1/xigua/app/v2/fetch_one_video_play_url
- * @param {string} item_id - 必填参数
- */
-async function fetchOneVideoPlayUrl(item_id, extraParams = {}) {
-  const params = { item_id, ...extraParams };
-  return request('/app/v2/fetch_one_video_play_url', params);
-}
-
-/**
- * 个人信息/Personal information
- * GET /api/v1/xigua/app/v2/fetch_user_info
- * @param {string} user_id - 必填参数
- */
-async function fetchUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/v2/fetch_user_info', params);
-}
-
-/**
- * 获取个人作品列表/Get user post list
- * GET /api/v1/xigua/app/v2/fetch_user_post_list
- * @param {string} user_id - 必填参数
- */
-async function fetchUserPostList(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/v2/fetch_user_post_list', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 视频评论列表/Video comment list
- * GET /api/v1/xigua/app/v2/fetch_video_comment_list
- * @param {string} item_id - 必填参数
- */
-async function fetchVideoCommentList(item_id, extraParams = {}) {
-  const params = { item_id, ...extraParams };
-  return request('/app/v2/fetch_video_comment_list', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 搜索视频/Search video
- * GET /api/v1/xigua/app/v2/search_video
- * @param {string} keyword - 必填参数
- */
-async function searchVideo(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app/v2/search_video', params);
-}
-
 module.exports = {
   request,
-  fetchOneVideo,
-  fetchOneVideoV2,
-  fetchOneVideoPlayUrl,
-  fetchUserInfo,
-  fetchUserPostList,
-  fetchVideoCommentList,
-  searchVideo,
+  callApi,
+  API_REGISTRY,
+  fetchOneVideo: api.fetchOneVideo,
+  fetchOneVideoV2: api.fetchOneVideoV2,
+  fetchOneVideoPlayUrl: api.fetchOneVideoPlayUrl,
+  fetchUserInfo: api.fetchUserInfo,
+  fetchUserPostList: api.fetchUserPostList,
+  fetchVideoCommentList: api.fetchVideoCommentList,
+  searchVideo: api.searchVideo,
 };

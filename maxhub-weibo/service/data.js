@@ -2,14 +2,6 @@
 // 兼容层设计：支持API返回参数变化时自动调整
 // 当API返回字段与预期不一致时，使用fallback策略提取数据
 
-/**
- * 安全取值 - 兼容层核心函数
- * 按优先级尝试多个可能的字段路径，返回第一个有效值
- * @param {object} obj - 数据对象
- * @param {string[]} paths - 字段路径数组（按优先级排序）
- * @param {*} defaultValue - 默认值
- * @returns {*} 取到的值
- */
 function safeGet(obj, paths, defaultValue = '-') {
   if (!obj) return defaultValue;
   for (const path of paths) {
@@ -19,9 +11,6 @@ function safeGet(obj, paths, defaultValue = '-') {
   return defaultValue;
 }
 
-/**
- * 格式化数字（如 12345 → 1.2万）
- */
 function formatNumber(num) {
   if (typeof num === 'string') num = parseInt(num, 10);
   if (isNaN(num)) return '0';
@@ -30,9 +19,6 @@ function formatNumber(num) {
   return num.toLocaleString();
 }
 
-/**
- * 格式化日期
- */
 function formatDate(timestamp) {
   if (!timestamp) return '-';
   const date = new Date(typeof timestamp === 'number' ? (timestamp > 1e12 ? timestamp : timestamp * 1000) : timestamp);
@@ -43,9 +29,6 @@ function formatDate(timestamp) {
   });
 }
 
-/**
- * 格式化时长（毫秒 → mm:ss）
- */
 function formatDuration(ms) {
   if (!ms) return '-';
   const seconds = Math.floor(ms / 1000);
@@ -55,51 +38,25 @@ function formatDuration(ms) {
 }
 
 /**
- * 格式化Weibo Web数据
+ * 通用内容格式化函数
  * 使用 safeGet 兼容不同API版本的返回字段差异
+ * @param {object} rawData - 原始API返回数据
+ * @returns {object|null} 格式化后的数据
  */
-function formatWeibo_Web(rawData) {
+function formatItem(rawData) {
   if (!rawData) return null;
   const item = rawData.data || rawData.aweme_detail || rawData.item || rawData;
 
   return {
-    id: safeGet(item, ['aweme_id', 'id', 'item_id', 'note_id', 'bvid', 'video_id', 'uid']),
+    id: safeGet(item, ['id', 'id', 'item_id', 'note_id', 'bvid', 'video_id', 'uid']),
     title: safeGet(item, ['desc', 'title', 'caption', 'text', 'content']),
     author: safeGet(item, ['author.nickname', 'author.name', 'author.userName', 'user.nickname', 'owner.name', 'channelTitle']),
     authorId: safeGet(item, ['author.uid', 'author.id', 'author.user_id', 'user.uid', 'owner.mid']),
     cover: safeGet(item, ['video.cover.url_list.0', 'cover', 'pic', 'thumbnail', 'avatar']),
     stats: {
-      playCount: formatNumber(safeGet(item, ['statistics.play_count', 'stat.play', 'stat.view', 'playCount', 'viewCount', 'play_count'], 0)),
-      likeCount: formatNumber(safeGet(item, ['statistics.digg_count', 'stat.like', 'stat.likes', 'likeCount', 'diggCount', 'likes'], 0)),
-      commentCount: formatNumber(safeGet(item, ['statistics.comment_count', 'stat.comment', 'stat.comments', 'commentCount', 'comments'], 0)),
-      shareCount: formatNumber(safeGet(item, ['statistics.share_count', 'stat.share', 'stat.shares', 'shareCount', 'shares', 'repostCount'], 0)),
-      collectCount: formatNumber(safeGet(item, ['statistics.collect_count', 'stat.favorite', 'stat.favorites', 'collectCount', 'favoriteCount'], 0)),
-    },
-    createTime: formatDate(safeGet(item, ['create_time', 'publishTime', 'createdAt', 'created_time', 'pubdate', 'publishedAt'])),
-    duration: formatDuration(safeGet(item, ['duration', 'video.duration', 'length'], 0)),
-  };
-}
-
-/**
- * 格式化Weibo App数据
- * 使用 safeGet 兼容不同API版本的返回字段差异
- */
-function formatWeibo_App(rawData) {
-  if (!rawData) return null;
-  const item = rawData.data || rawData.aweme_detail || rawData.item || rawData;
-
-  return {
-    id: safeGet(item, ['aweme_id', 'id', 'item_id', 'note_id', 'bvid', 'video_id', 'uid']),
-    title: safeGet(item, ['desc', 'title', 'caption', 'text', 'content']),
-    author: safeGet(item, ['author.nickname', 'author.name', 'author.userName', 'user.nickname', 'owner.name', 'channelTitle']),
-    authorId: safeGet(item, ['author.uid', 'author.id', 'author.user_id', 'user.uid', 'owner.mid']),
-    cover: safeGet(item, ['video.cover.url_list.0', 'cover', 'pic', 'thumbnail', 'avatar']),
-    stats: {
-      playCount: formatNumber(safeGet(item, ['statistics.play_count', 'stat.play', 'stat.view', 'playCount', 'viewCount', 'play_count'], 0)),
-      likeCount: formatNumber(safeGet(item, ['statistics.digg_count', 'stat.like', 'stat.likes', 'likeCount', 'diggCount', 'likes'], 0)),
-      commentCount: formatNumber(safeGet(item, ['statistics.comment_count', 'stat.comment', 'stat.comments', 'commentCount', 'comments'], 0)),
-      shareCount: formatNumber(safeGet(item, ['statistics.share_count', 'stat.share', 'stat.shares', 'shareCount', 'shares', 'repostCount'], 0)),
-      collectCount: formatNumber(safeGet(item, ['statistics.collect_count', 'stat.favorite', 'stat.favorites', 'collectCount', 'favoriteCount'], 0)),
+      likeCount: formatNumber(safeGet(item, ['attitudes_count', 'likeCount'], 0)),
+      commentCount: formatNumber(safeGet(item, ['comments_count', 'commentCount'], 0)),
+      repostCount: formatNumber(safeGet(item, ['reposts_count', 'repostCount'], 0)),
     },
     createTime: formatDate(safeGet(item, ['create_time', 'publishTime', 'createdAt', 'created_time', 'pubdate', 'publishedAt'])),
     duration: formatDuration(safeGet(item, ['duration', 'video.duration', 'length'], 0)),
@@ -113,31 +70,30 @@ function formatWeibo_App(rawData) {
 function formatData(apiPath, rawData) {
   if (!rawData) return null;
 
-  // 列表数据处理
   const list = rawData.list || rawData.data?.list || rawData.items || rawData.videos || rawData.aweme_list;
   if (list && Array.isArray(list)) {
-    return list.map(item => ({
-      id: safeGet(item, ['aweme_id', 'id', 'item_id', 'note_id', 'bvid']),
-      title: safeGet(item, ['desc', 'title', 'caption', 'text']),
-      author: safeGet(item, ['author.nickname', 'author.name']),
-      playCount: formatNumber(safeGet(item, ['statistics.play_count', 'playCount'], 0)),
-      likeCount: formatNumber(safeGet(item, ['statistics.digg_count', 'likeCount', 'diggCount'], 0)),
-    }));
+    return list.map(item => formatItem({ data: item, aweme_detail: item, item }));
   }
 
-  // 单条数据处理
-  return {
-    id: safeGet(rawData, ['aweme_id', 'id', 'item_id', 'note_id', 'bvid']),
-    title: safeGet(rawData, ['desc', 'title', 'caption', 'text']),
-  };
+  return formatItem(rawData);
 }
+
+/**
+ * 向后兼容别名
+ * 旧代码可能使用 formatXxx_Web 等函数名，统一指向 formatItem
+ */
+const formatWeibo_Web = formatItem;
+const formatWeibo_App = formatItem;
+const formatWeibo_Search = formatItem;
 
 module.exports = {
   safeGet,
   formatNumber,
   formatDate,
   formatDuration,
+  formatItem,
   formatData,
   formatWeibo_Web,
   formatWeibo_App,
+  formatWeibo_Search,
 };

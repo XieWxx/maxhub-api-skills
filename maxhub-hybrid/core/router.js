@@ -14,50 +14,23 @@ const router = {
   },
 
   routes: {
-    async search({ keyword, page = 1, count = 20 }) {
-      const result = await api.search(keyword, page, count);
+    // 通过URL解析视频数据
+    async parse_url({ url }) {
+      const result = await api.videoData({ url });
       return {
         success: true,
-        intent: 'search',
-        data: data.formatSearchResults(result),
-        hasMore: result.has_more || false,
+        intent: 'parse_url',
+        data: data.formatItem(result),
       };
     },
 
-    async get_user_profile(params) {
-      const result = await api.fetchUserProfile(params);
-      return {
-        success: true,
-        intent: 'get_user_profile',
-        data: data.formatUserProfile(result.data),
-      };
-    },
-
-    async get_detail({ id }) {
-      const result = await api.fetchDetail(id);
+    // 通过URL解析视频数据（别名）
+    async get_detail({ url }) {
+      const result = await api.videoData({ url });
       return {
         success: true,
         intent: 'get_detail',
-        data: data.formatContentInfo(result.data),
-      };
-    },
-
-    async get_trending() {
-      const result = await api.fetchTrending();
-      return {
-        success: true,
-        intent: 'get_trending',
-        data: result.data || [],
-      };
-    },
-
-    async get_comments({ id, page = 1, count = 20 }) {
-      const result = await api.fetchComments(id, page, count);
-      return {
-        success: true,
-        intent: 'get_comments',
-        data: result.data || [],
-        hasMore: result.has_more || false,
+        data: data.formatItem(result),
       };
     },
   },

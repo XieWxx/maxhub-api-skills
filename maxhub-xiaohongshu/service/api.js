@@ -42,841 +42,175 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
-
-/**
- * 获取笔记详情/Fetch note detail
- * GET /api/v1/xiaohongshu/web_v3/fetch_note_detail
- * @param {string, string} note_id, xsec_token - 必填参数
- */
-async function fetchNoteDetail(note_id, xsec_token, extraParams = {}) {
-  const params = { note_id, xsec_token, ...extraParams };
-  return request('/web_v3/fetch_note_detail', params);
-}
-
-/**
- * 获取首页推荐/Fetch homepage feed
- * GET /api/v1/xiaohongshu/web_v3/fetch_homefeed
- * 无必填参数
- */
-async function fetchHomefeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web_v3/fetch_homefeed', params);
-}
-
-/**
- * 获取首页分类列表/Fetch homepage categories
- * GET /api/v1/xiaohongshu/web_v3/fetch_homefeed_categories
- * 无必填参数
- */
-async function fetchHomefeedCategories(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web_v3/fetch_homefeed_categories', params);
-}
-
-/**
- * 获取用户信息/Fetch user info
- * GET /api/v1/xiaohongshu/web_v3/fetch_user_info
- * @param {string} user_id - 必填参数
- */
-async function fetchUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v3/fetch_user_info', params);
-}
-
-/**
- * 获取用户笔记列表/Fetch user notes
- * GET /api/v1/xiaohongshu/web_v3/fetch_user_notes
- * @param {string} user_id - 必填参数
- */
-async function fetchUserNotes(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v3/fetch_user_notes', params);
-}
-
-/**
- * 获取图文笔记详情/Get image note detail
- * GET /api/v1/xiaohongshu/app_v2/get_image_note_detail
- * 无必填参数
- */
-async function getImageNoteDetail(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_image_note_detail', params);
-}
-
-/**
- * 获取视频笔记详情/Get video note detail
- * GET /api/v1/xiaohongshu/app_v2/get_video_note_detail
- * 无必填参数
- */
-async function getVideoNoteDetail(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_video_note_detail', params);
-}
-
-/**
- * 获取用户信息/Get user info
- * GET /api/v1/xiaohongshu/app_v2/get_user_info
- * 无必填参数
- */
-async function getUserInfo(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_user_info', params);
-}
-
-/**
- * 获取用户笔记列表/Get user posted notes
- * GET /api/v1/xiaohongshu/app_v2/get_user_posted_notes
- * 无必填参数
- */
-async function getUserPostedNotes(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_user_posted_notes', params);
-}
-
-/**
- * 获取商品详情/Get product detail
- * GET /api/v1/xiaohongshu/app_v2/get_product_detail
- * @param {string} sku_id - 必填参数
- */
-async function getProductDetail(sku_id, extraParams = {}) {
-  const params = { sku_id, ...extraParams };
-  return request('/app_v2/get_product_detail', params);
-}
-
-/**
- * 获取商品推荐列表/Get product recommendations
- * GET /api/v1/xiaohongshu/app_v2/get_product_recommendations
- * @param {string} sku_id - 必填参数
- */
-async function getProductRecommendations(sku_id, extraParams = {}) {
-  const params = { sku_id, ...extraParams };
-  return request('/app_v2/get_product_recommendations', params);
-}
-
-/**
- * 获取话题详情/Get topic info
- * GET /api/v1/xiaohongshu/app_v2/get_topic_info
- * @param {string} page_id - 必填参数
- */
-async function getTopicInfo(page_id, extraParams = {}) {
-  const params = { page_id, ...extraParams };
-  return request('/app_v2/get_topic_info', params);
-}
-
-/**
- * 获取话题笔记列表/Get topic feed
- * GET /api/v1/xiaohongshu/app_v2/get_topic_feed
- * @param {string} page_id - 必填参数
- */
-async function getTopicFeed(page_id, extraParams = {}) {
-  const params = { page_id, ...extraParams };
-  return request('/app_v2/get_topic_feed', params);
-}
-
-/**
- * 获取笔记信息 V1/Get note info V1
- * GET /api/v1/xiaohongshu/app/get_note_info
- * 无必填参数
- */
-async function getNoteInfo(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/get_note_info', params);
-}
-
-/**
- * 获取笔记信息 V2 (蒲公英商家后台)/Get note info V2 (Pu
- * GET /api/v1/xiaohongshu/app/get_note_info_v2
- * 无必填参数
- */
-async function getNoteInfoV2(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/get_note_info_v2', params);
-}
-
-/**
- * [已弃用/Deprecated] 根据话题标签获取作品/Get notes by
- * GET /api/v1/xiaohongshu/app/get_notes_by_topic
- * @param {string, string} page_id, first_load_time - 必填参数
- */
-async function getNotesByTopic(page_id, first_load_time, extraParams = {}) {
-  const params = { page_id, first_load_time, ...extraParams };
-  return request('/app/get_notes_by_topic', params);
-}
-
-/**
- * 获取用户信息/Get user info
- * GET /api/v1/xiaohongshu/app/get_user_info
- * @param {string} user_id - 必填参数
- */
-async function getUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/get_user_info', params);
-}
-
-/**
- * 获取用户作品列表/Get user notes
- * GET /api/v1/xiaohongshu/app/get_user_notes
- * @param {string} user_id - 必填参数
- */
-async function getUserNotes(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/get_user_notes', params);
-}
-
-/**
- * 获取商品详情/Get product detail
- * GET /api/v1/xiaohongshu/app/get_product_detail
- * @param {string} sku_id - 必填参数
- */
-async function getProductDetail(sku_id, extraParams = {}) {
-  const params = { sku_id, ...extraParams };
-  return request('/app/get_product_detail', params);
-}
-
-/**
- * 获取单一笔记和推荐笔记 V1 (已弃用)/Fetch one note and
- * GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes
- * @param {string} note_id - 必填参数
- */
-async function fetchFeedNotes(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web_v2/fetch_feed_notes', params);
-}
-
-/**
- * 获取单一笔记和推荐笔记 V2/Fetch one note and feed n
- * GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v2
- * @param {string} note_id - 必填参数
- */
-async function fetchFeedNotesV2(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web_v2/fetch_feed_notes_v2', params);
-}
-
-/**
- * 获取单一笔记和推荐笔记 V3/Fetch one note and feed n
- * GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v3
- * @param {string} short_url - 必填参数
- */
-async function fetchFeedNotesV3(short_url, extraParams = {}) {
-  const params = { short_url, ...extraParams };
-  return request('/web_v2/fetch_feed_notes_v3', params);
-}
-
-/**
- * 获取小红书笔记图片/Fetch Xiaohongshu note image
- * GET /api/v1/xiaohongshu/web_v2/fetch_note_image
- * @param {string} note_id - 必填参数
- */
-async function fetchNoteImage(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web_v2/fetch_note_image', params);
-}
-
-/**
- * 获取Web用户主页笔记/Fetch web user profile notes
- * GET /api/v1/xiaohongshu/web_v2/fetch_home_notes
- * @param {string} user_id - 必填参数
- */
-async function fetchHomeNotes(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_home_notes', params);
-}
-
-/**
- * 获取App用户主页笔记/Fetch App user home notes
- * GET /api/v1/xiaohongshu/web_v2/fetch_home_notes_app
- * @param {string} user_id - 必填参数
- */
-async function fetchHomeNotesApp(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_home_notes_app', params);
-}
-
-/**
- * 获取用户信息/Fetch user info
- * GET /api/v1/xiaohongshu/web_v2/fetch_user_info
- * @param {string} user_id - 必填参数
- */
-async function fetchUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_user_info', params);
-}
-
-/**
- * 获取App用户信息/Fetch App user info
- * GET /api/v1/xiaohongshu/web_v2/fetch_user_info_app
- * @param {string} user_id - 必填参数
- */
-async function fetchUserInfoApp(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_user_info_app', params);
-}
-
-/**
- * 获取小红书商品列表/Fetch Xiaohongshu product list
- * GET /api/v1/xiaohongshu/web_v2/fetch_product_list
- * @param {string} user_id - 必填参数
- */
-async function fetchProductList(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_product_list', params);
-}
-
-/**
- * 获取小红书热榜/Fetch Xiaohongshu hot list
- * GET /api/v1/xiaohongshu/web_v2/fetch_hot_list
- * 无必填参数
- */
-async function fetchHotList(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web_v2/fetch_hot_list', params);
-}
-
-/**
- * 获取首页推荐/Get home recommend
- * POST /api/v1/xiaohongshu/web/get_home_recommend
- * 无必填参数
- */
-async function getHomeRecommend(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/get_home_recommend', params, 'POST');
-}
-
-/**
- * 获取笔记信息 V2/Get note info V2
- * GET /api/v1/xiaohongshu/web/get_note_info_v2
- * 无必填参数
- */
-async function getNoteInfoV2(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/get_note_info_v2', params);
-}
-
-/**
- * 获取笔记信息 V4/Get note info V4
- * GET /api/v1/xiaohongshu/web/get_note_info_v4
- * 无必填参数
- */
-async function getNoteInfoV4(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/get_note_info_v4', params);
-}
-
-/**
- * 获取笔记信息 V7/Get note info V7
- * GET /api/v1/xiaohongshu/web/get_note_info_v7
- * 无必填参数
- */
-async function getNoteInfoV7(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/get_note_info_v7', params);
-}
-
-/**
- * 获取用户信息 V1/Get user info V1
- * GET /api/v1/xiaohongshu/web/get_user_info
- * @param {string} user_id - 必填参数
- */
-async function getUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/get_user_info', params);
-}
-
-/**
- * 获取用户信息 V2/Get user info V2
- * GET /api/v1/xiaohongshu/web/get_user_info_v2
- * 无必填参数
- */
-async function getUserInfoV2(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/get_user_info_v2', params);
-}
-
-/**
- * 获取用户的笔记 V2/Get user notes V2
- * GET /api/v1/xiaohongshu/web/get_user_notes_v2
- * @param {string} user_id - 必填参数
- */
-async function getUserNotesV2(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/get_user_notes_v2', params);
-}
-
-/**
- * 通过分享链接获取小红书的Note ID 和 xsec_token/Get Xia
- * GET /api/v1/xiaohongshu/web/get_note_id_and_xsec_token
- * @param {string} share_text - 必填参数
- */
-async function getNoteIdAndXsecToken(share_text, extraParams = {}) {
-  const params = { share_text, ...extraParams };
-  return request('/web/get_note_id_and_xsec_token', params);
-}
-
-/**
- * 获取小红书商品信息/Get Xiaohongshu product info
- * GET /api/v1/xiaohongshu/web/get_product_info
- * 无必填参数
- */
-async function getProductInfo(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/get_product_info', params);
-}
-
-/**
- * 获取热搜词/Fetch trending keywords
- * GET /api/v1/xiaohongshu/web_v3/fetch_trending
- * 无必填参数
- */
-async function fetchTrending(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web_v3/fetch_trending', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取笔记评论/Fetch note comments
- * GET /api/v1/xiaohongshu/web_v3/fetch_note_comments
- * @param {string, string} note_id, xsec_token - 必填参数
- */
-async function fetchNoteComments(note_id, xsec_token, extraParams = {}) {
-  const params = { note_id, xsec_token, ...extraParams };
-  return request('/web_v3/fetch_note_comments', params);
-}
-
-/**
- * 获取子评论/Fetch sub comments
- * GET /api/v1/xiaohongshu/web_v3/fetch_sub_comments
- * @param {string, string, string} note_id, root_comment_id, xsec_token - 必填参数
- */
-async function fetchSubComments(note_id, root_comment_id, xsec_token, extraParams = {}) {
-  const params = { note_id, root_comment_id, xsec_token, ...extraParams };
-  return request('/web_v3/fetch_sub_comments', params);
-}
-
-/**
- * 获取笔记评论列表/Get note comments
- * GET /api/v1/xiaohongshu/app_v2/get_note_comments
- * 无必填参数
- */
-async function getNoteComments(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_note_comments', params);
-}
-
-/**
- * 获取笔记二级评论列表/Get note sub comments
- * GET /api/v1/xiaohongshu/app_v2/get_note_sub_comments
- * @param {string} comment_id - 必填参数
- */
-async function getNoteSubComments(comment_id, extraParams = {}) {
-  const params = { comment_id, ...extraParams };
-  return request('/app_v2/get_note_sub_comments', params);
-}
-
-/**
- * 获取用户收藏笔记列表/Get user faved notes
- * GET /api/v1/xiaohongshu/app_v2/get_user_faved_notes
- * 无必填参数
- */
-async function getUserFavedNotes(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_user_faved_notes', params);
-}
-
-/**
- * 获取商品评论总览/Get product review overview
- * GET /api/v1/xiaohongshu/app_v2/get_product_review_overview
- * @param {string} sku_id - 必填参数
- */
-async function getProductReviewOverview(sku_id, extraParams = {}) {
-  const params = { sku_id, ...extraParams };
-  return request('/app_v2/get_product_review_overview', params);
-}
-
-/**
- * 获取商品评论列表/Get product reviews
- * GET /api/v1/xiaohongshu/app_v2/get_product_reviews
- * @param {string} sku_id - 必填参数
- */
-async function getProductReviews(sku_id, extraParams = {}) {
-  const params = { sku_id, ...extraParams };
-  return request('/app_v2/get_product_reviews', params);
-}
-
-/**
- * 获取笔记评论/Get note comments
- * GET /api/v1/xiaohongshu/app/get_note_comments
- * @param {string} note_id - 必填参数
- */
-async function getNoteComments(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/app/get_note_comments', params);
-}
-
-/**
- * 获取子评论/Get sub comments
- * GET /api/v1/xiaohongshu/app/get_sub_comments
- * @param {string, string} note_id, comment_id - 必填参数
- */
-async function getSubComments(note_id, comment_id, extraParams = {}) {
-  const params = { note_id, comment_id, ...extraParams };
-  return request('/app/get_sub_comments', params);
-}
-
-/**
- * 获取单一笔记和推荐笔记 V4 (互动量有延迟)/Fetch one note a
- * GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v4
- * @param {string} note_id - 必填参数
- */
-async function fetchFeedNotesV4(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web_v2/fetch_feed_notes_v4', params);
-}
-
-/**
- * 获取单一笔记和推荐笔记 V5 (互动量有缺失)/Fetch one note a
- * GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v5
- * @param {string} note_id - 必填参数
- */
-async function fetchFeedNotesV5(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web_v2/fetch_feed_notes_v5', params);
-}
-
-/**
- * 获取笔记评论/Fetch note comments
- * GET /api/v1/xiaohongshu/web_v2/fetch_note_comments
- * @param {string} note_id - 必填参数
- */
-async function fetchNoteComments(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web_v2/fetch_note_comments', params);
-}
-
-/**
- * 获取子评论/Fetch sub comments
- * GET /api/v1/xiaohongshu/web_v2/fetch_sub_comments
- * @param {string, string} note_id, comment_id - 必填参数
- */
-async function fetchSubComments(note_id, comment_id, extraParams = {}) {
-  const params = { note_id, comment_id, ...extraParams };
-  return request('/web_v2/fetch_sub_comments', params);
-}
-
-/**
- * 获取用户粉丝列表/Fetch follower list
- * GET /api/v1/xiaohongshu/web_v2/fetch_follower_list
- * @param {string} user_id - 必填参数
- */
-async function fetchFollowerList(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_follower_list', params);
-}
-
-/**
- * 获取用户关注列表/Fetch following list
- * GET /api/v1/xiaohongshu/web_v2/fetch_following_list
- * @param {string} user_id - 必填参数
- */
-async function fetchFollowingList(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web_v2/fetch_following_list', params);
-}
-
-/**
- * 获取笔记评论 V1/Get note comments V1
- * GET /api/v1/xiaohongshu/web/get_note_comments
- * @param {string} note_id - 必填参数
- */
-async function getNoteComments(note_id, extraParams = {}) {
-  const params = { note_id, ...extraParams };
-  return request('/web/get_note_comments', params);
-}
-
-/**
- * 获取笔记评论回复 V1/Get note comment replies V1
- * GET /api/v1/xiaohongshu/web/get_note_comment_replies
- * @param {string, string} note_id, comment_id - 必填参数
- */
-async function getNoteCommentReplies(note_id, comment_id, extraParams = {}) {
-  const params = { note_id, comment_id, ...extraParams };
-  return request('/web/get_note_comment_replies', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 搜索笔记/Search notes
- * GET /api/v1/xiaohongshu/web_v3/fetch_search_notes
- * @param {string} keyword - 必填参数
- */
-async function fetchSearchNotes(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/web_v3/fetch_search_notes', params);
-}
-
-/**
- * 搜索用户/Search users
- * GET /api/v1/xiaohongshu/web_v3/fetch_search_users
- * @param {string} keyword - 必填参数
- */
-async function fetchSearchUsers(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/web_v3/fetch_search_users', params);
-}
-
-/**
- * 获取搜索联想词/Fetch search suggestions
- * GET /api/v1/xiaohongshu/web_v3/fetch_search_suggest
- * 无必填参数
- */
-async function fetchSearchSuggest(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web_v3/fetch_search_suggest', params);
-}
-
-/**
- * 搜索笔记/Search notes
- * GET /api/v1/xiaohongshu/app_v2/search_notes
- * @param {string} keyword - 必填参数
- */
-async function searchNotes(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app_v2/search_notes', params);
-}
-
-/**
- * 搜索用户/Search users
- * GET /api/v1/xiaohongshu/app_v2/search_users
- * @param {string} keyword - 必填参数
- */
-async function searchUsers(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app_v2/search_users', params);
-}
-
-/**
- * 搜索图片/Search images
- * GET /api/v1/xiaohongshu/app_v2/search_images
- * @param {string} keyword - 必填参数
- */
-async function searchImages(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app_v2/search_images', params);
-}
-
-/**
- * 搜索商品/Search products
- * GET /api/v1/xiaohongshu/app_v2/search_products
- * @param {string} keyword - 必填参数
- */
-async function searchProducts(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app_v2/search_products', params);
-}
-
-/**
- * 搜索群聊/Search groups
- * GET /api/v1/xiaohongshu/app_v2/search_groups
- * @param {string} keyword - 必填参数
- */
-async function searchGroups(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app_v2/search_groups', params);
-}
-
-/**
- * 搜索笔记/Search notes
- * GET /api/v1/xiaohongshu/app/search_notes
- * @param {string, string} keyword, page - 必填参数
- */
-async function searchNotes(keyword, page, extraParams = {}) {
-  const params = { keyword, page, ...extraParams };
-  return request('/app/search_notes', params);
-}
-
-/**
- * 搜索商品/Search products
- * GET /api/v1/xiaohongshu/app/search_products
- * @param {string, string} keyword, page - 必填参数
- */
-async function searchProducts(keyword, page, extraParams = {}) {
-  const params = { keyword, page, ...extraParams };
-  return request('/app/search_products', params);
-}
-
-/**
- * 获取搜索笔记/Fetch search notes
- * GET /api/v1/xiaohongshu/web_v2/fetch_search_notes
- * @param {string} keywords - 必填参数
- */
-async function fetchSearchNotes(keywords, extraParams = {}) {
-  const params = { keywords, ...extraParams };
-  return request('/web_v2/fetch_search_notes', params);
-}
-
-/**
- * 获取搜索用户/Fetch search users
- * GET /api/v1/xiaohongshu/web_v2/fetch_search_users
- * @param {string} keywords - 必填参数
- */
-async function fetchSearchUsers(keywords, extraParams = {}) {
-  const params = { keywords, ...extraParams };
-  return request('/web_v2/fetch_search_users', params);
-}
-
-/**
- * 搜索笔记/Search notes
- * GET /api/v1/xiaohongshu/web/search_notes
- * @param {string} keyword - 必填参数
- */
-async function searchNotes(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/web/search_notes', params);
-}
-
-/**
- * 搜索笔记 V3/Search notes V3
- * GET /api/v1/xiaohongshu/web/search_notes_v3
- * @param {string} keyword - 必填参数
- */
-async function searchNotesV3(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/web/search_notes_v3', params);
-}
-
-/**
- * 搜索用户/Search users
- * GET /api/v1/xiaohongshu/web/search_users
- * @param {string} keyword - 必填参数
- */
-async function searchUsers(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/web/search_users', params);
+const API_REGISTRY = {
+  // web_v3
+  fetchNoteDetail: { path: '/web_v3/fetch_note_detail', params: ['note_id', 'xsec_token'] },
+  fetchHomefeed: { path: '/web_v3/fetch_homefeed' },
+  fetchHomefeedCategories: { path: '/web_v3/fetch_homefeed_categories' },
+  fetchUserNotes: { path: '/web_v3/fetch_user_notes', params: ['user_id'] },
+  fetchTrending: { path: '/web_v3/fetch_trending' },
+  fetchSearchSuggest: { path: '/web_v3/fetch_search_suggest' },
+  // app_v2
+  getImageNoteDetail: { path: '/app_v2/get_image_note_detail' },
+  getVideoNoteDetail: { path: '/app_v2/get_video_note_detail' },
+  getUserPostedNotes: { path: '/app_v2/get_user_posted_notes' },
+  getProductRecommendations: { path: '/app_v2/get_product_recommendations', params: ['sku_id'] },
+  getTopicInfo: { path: '/app_v2/get_topic_info', params: ['page_id'] },
+  getTopicFeed: { path: '/app_v2/get_topic_feed', params: ['page_id'] },
+  getNoteSubComments: { path: '/app_v2/get_note_sub_comments', params: ['comment_id'] },
+  getUserFavedNotes: { path: '/app_v2/get_user_faved_notes' },
+  getProductReviewOverview: { path: '/app_v2/get_product_review_overview', params: ['sku_id'] },
+  getProductReviews: { path: '/app_v2/get_product_reviews', params: ['sku_id'] },
+  searchImages: { path: '/app_v2/search_images', params: ['keyword'] },
+  searchGroups: { path: '/app_v2/search_groups', params: ['keyword'] },
+  getCreatorInspirationFeed: { path: '/app_v2/get_creator_inspiration_feed' },
+  getCreatorHotInspirationFeed: { path: '/app_v2/get_creator_hot_inspiration_feed' },
+  // app
+  getNoteInfo: { path: '/app/get_note_info' },
+  getNotesByTopic: { path: '/app/get_notes_by_topic', params: ['page_id', 'first_load_time'] },
+  getUserNotes: { path: '/app/get_user_notes', params: ['user_id'] },
+  getProductDetail: { path: '/app/get_product_detail', params: ['sku_id'] },
+  getSubComments: { path: '/app/get_sub_comments', params: ['note_id', 'comment_id'] },
+  searchProducts: { path: '/app/search_products', params: ['keyword', 'page'] },
+  extractShareInfo: { path: '/app/extract_share_info', params: ['share_link'] },
+  getUserIdAndXsecToken: { path: '/app/get_user_id_and_xsec_token', params: ['share_link'] },
+  // web_v2
+  fetchFeedNotes: { path: '/web_v2/fetch_feed_notes', params: ['note_id'] },
+  fetchFeedNotesV2: { path: '/web_v2/fetch_feed_notes_v2', params: ['note_id'] },
+  fetchFeedNotesV3: { path: '/web_v2/fetch_feed_notes_v3', params: ['short_url'] },
+  fetchNoteImage: { path: '/web_v2/fetch_note_image', params: ['note_id'] },
+  fetchHomeNotes: { path: '/web_v2/fetch_home_notes', params: ['user_id'] },
+  fetchHomeNotesApp: { path: '/web_v2/fetch_home_notes_app', params: ['user_id'] },
+  fetchUserInfo: { path: '/web_v2/fetch_user_info', params: ['user_id'] },
+  fetchUserInfoApp: { path: '/web_v2/fetch_user_info_app', params: ['user_id'] },
+  fetchProductList: { path: '/web_v2/fetch_product_list', params: ['user_id'] },
+  fetchHotList: { path: '/web_v2/fetch_hot_list' },
+  fetchFeedNotesV4: { path: '/web_v2/fetch_feed_notes_v4', params: ['note_id'] },
+  fetchFeedNotesV5: { path: '/web_v2/fetch_feed_notes_v5', params: ['note_id'] },
+  fetchNoteComments: { path: '/web_v2/fetch_note_comments', params: ['note_id'] },
+  fetchSubComments: { path: '/web_v2/fetch_sub_comments', params: ['note_id', 'comment_id'] },
+  fetchFollowerList: { path: '/web_v2/fetch_follower_list', params: ['user_id'] },
+  fetchFollowingList: { path: '/web_v2/fetch_following_list', params: ['user_id'] },
+  fetchSearchNotes: { path: '/web_v2/fetch_search_notes', params: ['keywords'] },
+  fetchSearchUsers: { path: '/web_v2/fetch_search_users', params: ['keywords'] },
+  // web
+  getHomeRecommend: { path: '/web/get_home_recommend', method: 'POST' },
+  getNoteInfoV2: { path: '/web/get_note_info_v2' },
+  getNoteInfoV4: { path: '/web/get_note_info_v4' },
+  getNoteInfoV7: { path: '/web/get_note_info_v7' },
+  getUserInfo: { path: '/web/get_user_info', params: ['user_id'] },
+  getUserInfoV2: { path: '/web/get_user_info_v2' },
+  getUserNotesV2: { path: '/web/get_user_notes_v2', params: ['user_id'] },
+  getNoteIdAndXsecToken: { path: '/web/get_note_id_and_xsec_token', params: ['share_text'] },
+  getProductInfo: { path: '/web/get_product_info' },
+  getNoteComments: { path: '/web/get_note_comments', params: ['note_id'] },
+  getNoteCommentReplies: { path: '/web/get_note_comment_replies', params: ['note_id', 'comment_id'] },
+  searchNotes: { path: '/web/search_notes', params: ['keyword'] },
+  searchNotesV3: { path: '/web/search_notes_v3', params: ['keyword'] },
+  searchUsers: { path: '/web/search_users', params: ['keyword'] },
+};
+
+/**
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
+ */
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
+}
+
+/**
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
+ */
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-// ==================== 创 ====================
-
-/**
- * 获取创作者推荐灵感列表/Get creator inspiration feed
- * GET /api/v1/xiaohongshu/app_v2/get_creator_inspiration_feed
- * 无必填参数
- */
-async function getCreatorInspirationFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_creator_inspiration_feed', params);
-}
-
-/**
- * 获取创作者热点灵感列表/Get creator hot inspiration
- * GET /api/v1/xiaohongshu/app_v2/get_creator_hot_inspiration_feed
- * 无必填参数
- */
-async function getCreatorHotInspirationFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app_v2/get_creator_hot_inspiration_feed', params);
-}
-
-// ==================== 内 ====================
-
-/**
- * 提取分享链接信息/Extract share link info
- * GET /api/v1/xiaohongshu/app/extract_share_info
- * @param {string} share_link - 必填参数
- */
-async function extractShareInfo(share_link, extraParams = {}) {
-  const params = { share_link, ...extraParams };
-  return request('/app/extract_share_info', params);
-}
-
-/**
- * 从分享链接中提取用户ID和xsec_token/Extract user ID
- * GET /api/v1/xiaohongshu/app/get_user_id_and_xsec_token
- * @param {string} share_link - 必填参数
- */
-async function getUserIdAndXsecToken(share_link, extraParams = {}) {
-  const params = { share_link, ...extraParams };
-  return request('/app/get_user_id_and_xsec_token', params);
-}
-
 module.exports = {
   request,
-  fetchNoteDetail,
-  fetchHomefeed,
-  fetchHomefeedCategories,
-  fetchUserInfo,
-  fetchUserNotes,
-  getImageNoteDetail,
-  getVideoNoteDetail,
-  getUserInfo,
-  getUserPostedNotes,
-  getProductDetail,
-  getProductRecommendations,
-  getTopicInfo,
-  getTopicFeed,
-  getNoteInfo,
-  getNoteInfoV2,
-  getNotesByTopic,
-  getUserInfo,
-  getUserNotes,
-  getProductDetail,
-  fetchFeedNotes,
-  fetchFeedNotesV2,
-  fetchFeedNotesV3,
-  fetchNoteImage,
-  fetchHomeNotes,
-  fetchHomeNotesApp,
-  fetchUserInfo,
-  fetchUserInfoApp,
-  fetchProductList,
-  fetchHotList,
-  getHomeRecommend,
-  getNoteInfoV2,
-  getNoteInfoV4,
-  getNoteInfoV7,
-  getUserInfo,
-  getUserInfoV2,
-  getUserNotesV2,
-  getNoteIdAndXsecToken,
-  getProductInfo,
-  fetchNoteComments,
-  fetchSubComments,
-  getNoteComments,
-  getNoteSubComments,
-  getUserFavedNotes,
-  getProductReviewOverview,
-  getProductReviews,
-  getNoteComments,
-  getSubComments,
-  fetchFeedNotesV4,
-  fetchFeedNotesV5,
-  fetchNoteComments,
-  fetchSubComments,
-  fetchFollowerList,
-  fetchFollowingList,
-  getNoteComments,
-  getNoteCommentReplies,
-  fetchSearchNotes,
-  fetchSearchUsers,
-  fetchSearchSuggest,
-  searchNotes,
-  searchUsers,
-  searchImages,
-  searchProducts,
-  searchGroups,
-  searchNotes,
-  searchProducts,
-  fetchSearchNotes,
-  fetchSearchUsers,
-  searchNotes,
-  searchNotesV3,
-  searchUsers,
-  fetchTrending,
-  getCreatorInspirationFeed,
-  getCreatorHotInspirationFeed,
-  extractShareInfo,
-  getUserIdAndXsecToken,
+  callApi,
+  API_REGISTRY,
+  fetchNoteDetail: api.fetchNoteDetail,
+  fetchHomefeed: api.fetchHomefeed,
+  fetchHomefeedCategories: api.fetchHomefeedCategories,
+  fetchUserNotes: api.fetchUserNotes,
+  getImageNoteDetail: api.getImageNoteDetail,
+  getVideoNoteDetail: api.getVideoNoteDetail,
+  getUserPostedNotes: api.getUserPostedNotes,
+  getProductRecommendations: api.getProductRecommendations,
+  getTopicInfo: api.getTopicInfo,
+  getTopicFeed: api.getTopicFeed,
+  getNoteInfo: api.getNoteInfo,
+  getNotesByTopic: api.getNotesByTopic,
+  getUserNotes: api.getUserNotes,
+  getProductDetail: api.getProductDetail,
+  fetchFeedNotes: api.fetchFeedNotes,
+  fetchFeedNotesV2: api.fetchFeedNotesV2,
+  fetchFeedNotesV3: api.fetchFeedNotesV3,
+  fetchNoteImage: api.fetchNoteImage,
+  fetchHomeNotes: api.fetchHomeNotes,
+  fetchHomeNotesApp: api.fetchHomeNotesApp,
+  fetchUserInfo: api.fetchUserInfo,
+  fetchUserInfoApp: api.fetchUserInfoApp,
+  fetchProductList: api.fetchProductList,
+  fetchHotList: api.fetchHotList,
+  getHomeRecommend: api.getHomeRecommend,
+  getNoteInfoV2: api.getNoteInfoV2,
+  getNoteInfoV4: api.getNoteInfoV4,
+  getNoteInfoV7: api.getNoteInfoV7,
+  getUserInfo: api.getUserInfo,
+  getUserInfoV2: api.getUserInfoV2,
+  getUserNotesV2: api.getUserNotesV2,
+  getNoteIdAndXsecToken: api.getNoteIdAndXsecToken,
+  getProductInfo: api.getProductInfo,
+  fetchTrending: api.fetchTrending,
+  getNoteSubComments: api.getNoteSubComments,
+  getUserFavedNotes: api.getUserFavedNotes,
+  getProductReviewOverview: api.getProductReviewOverview,
+  getProductReviews: api.getProductReviews,
+  getSubComments: api.getSubComments,
+  fetchFeedNotesV4: api.fetchFeedNotesV4,
+  fetchFeedNotesV5: api.fetchFeedNotesV5,
+  fetchNoteComments: api.fetchNoteComments,
+  fetchSubComments: api.fetchSubComments,
+  fetchFollowerList: api.fetchFollowerList,
+  fetchFollowingList: api.fetchFollowingList,
+  getNoteComments: api.getNoteComments,
+  getNoteCommentReplies: api.getNoteCommentReplies,
+  fetchSearchSuggest: api.fetchSearchSuggest,
+  searchImages: api.searchImages,
+  searchGroups: api.searchGroups,
+  searchProducts: api.searchProducts,
+  fetchSearchNotes: api.fetchSearchNotes,
+  fetchSearchUsers: api.fetchSearchUsers,
+  searchNotes: api.searchNotes,
+  searchNotesV3: api.searchNotesV3,
+  searchUsers: api.searchUsers,
+  getCreatorInspirationFeed: api.getCreatorInspirationFeed,
+  getCreatorHotInspirationFeed: api.getCreatorHotInspirationFeed,
+  extractShareInfo: api.extractShareInfo,
+  getUserIdAndXsecToken: api.getUserIdAndXsecToken,
 };

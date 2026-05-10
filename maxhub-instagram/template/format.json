@@ -11,8 +11,7 @@
       "isVerified"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "likeCount"
     ],
     "maxDisplay": 1
   },
@@ -28,8 +27,7 @@
       "mediaType"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "likeCount"
     ],
     "maxDisplay": 20
   },

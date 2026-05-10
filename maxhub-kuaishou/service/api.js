@@ -42,377 +42,112 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // web
+  fetchOneVideoV2: { path: '/web/fetch_one_video_v2', params: ['photo_id'] },
+  fetchUserInfo: { path: '/web/fetch_user_info', params: ['user_id'] },
+  fetchUserPost: { path: '/web/fetch_user_post', params: ['user_id'] },
+  fetchUserLiveReplay: { path: '/web/fetch_user_live_replay', params: ['user_id'] },
+  fetchUserCollect: { path: '/web/fetch_user_collect', params: ['user_id'] },
+  fetchKuaishouHotListV1: { path: '/web/fetch_kuaishou_hot_list_v1' },
+  fetchKuaishouHotListV2: { path: '/web/fetch_kuaishou_hot_list_v2' },
+  fetchGetUserId: { path: '/web/fetch_get_user_id', params: ['share_link'] },
+  fetchOneVideoSubComment: { path: '/web/fetch_one_video_sub_comment', params: ['photo_id', 'root_comment_id'] },
+  generateShareShortUrl: { path: '/web/generate_share_short_url', params: ['photo_id'] },
+  // app
+  fetchOneVideo: { path: '/app/fetch_one_video', params: ['photo_id'] },
+  fetchOneVideoByUrl: { path: '/app/fetch_one_video_by_url', params: ['share_text'] },
+  fetchOneUserV2: { path: '/app/fetch_one_user_v2', params: ['user_id'] },
+  fetchUserLiveInfo: { path: '/app/fetch_user_live_info', params: ['user_id'] },
+  fetchUserHotPost: { path: '/app/fetch_user_hot_post', params: ['user_id'] },
+  fetchUserPostV2: { path: '/app/fetch_user_post_v2', params: ['user_id'] },
+  fetchHotBoardCategories: { path: '/app/fetch_hot_board_categories' },
+  fetchHotBoardDetail: { path: '/app/fetch_hot_board_detail' },
+  fetchLiveTopList: { path: '/app/fetch_live_top_list' },
+  fetchShoppingTopList: { path: '/app/fetch_shopping_top_list' },
+  fetchBrandTopList: { path: '/app/fetch_brand_top_list' },
+  fetchMagicFaceUsage: { path: '/app/fetch_magic_face_usage', params: ['magic_face_id'] },
+  fetchMagicFaceHot: { path: '/app/fetch_magic_face_hot', params: ['magic_face_id'] },
+  fetchOneVideoComment: { path: '/app/fetch_one_video_comment', params: ['photo_id'] },
+  generateKuaishouShareLink: { path: '/app/generate_kuaishou_share_link', params: ['shareObjectId'] },
+  fetchVideosBatch: { path: '/app/fetch_videos_batch', params: ['photo_ids'] },
+  searchComprehensive: { path: '/app/search_comprehensive', params: ['keyword'] },
+  searchVideoV2: { path: '/app/search_video_v2', params: ['keyword'] },
+  searchUserV2: { path: '/app/search_user_v2', params: ['keyword'] },
+  fetchHotSearchPerson: { path: '/app/fetch_hot_search_person' },
+};
 
 /**
- * 获取单个作品数据 V1/Get single video data V1
- * GET /api/v1/kuaishou/web/fetch_one_video
- * @param {string} share_text - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchOneVideo(share_text, extraParams = {}) {
-  const params = { share_text, ...extraParams };
-  return request('/web/fetch_one_video', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取单个作品数据 V2/Get single video data V2
- * GET /api/v1/kuaishou/web/fetch_one_video_v2
- * @param {string} photo_id - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchOneVideoV2(photo_id, extraParams = {}) {
-  const params = { photo_id, ...extraParams };
-  return request('/web/fetch_one_video_v2', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 链接获取作品数据/Fetch single video by URL
- * GET /api/v1/kuaishou/web/fetch_one_video_by_url
- * @param {string} url - 必填参数
- */
-async function fetchOneVideoByUrl(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('/web/fetch_one_video_by_url', params);
-}
-
-/**
- * 获取用户信息/Fetch user info
- * GET /api/v1/kuaishou/web/fetch_user_info
- * @param {string} user_id - 必填参数
- */
-async function fetchUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_info', params);
-}
-
-/**
- * 获取用户发布作品/Fetch user posts
- * GET /api/v1/kuaishou/web/fetch_user_post
- * @param {string} user_id - 必填参数
- */
-async function fetchUserPost(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_post', params);
-}
-
-/**
- * 获取用户直播回放/Fetch user live replay
- * GET /api/v1/kuaishou/web/fetch_user_live_replay
- * @param {string} user_id - 必填参数
- */
-async function fetchUserLiveReplay(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_live_replay', params);
-}
-
-/**
- * 获取用户收藏作品/Fetch user collect
- * GET /api/v1/kuaishou/web/fetch_user_collect
- * @param {string} user_id - 必填参数
- */
-async function fetchUserCollect(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_collect', params);
-}
-
-/**
- * 获取快手热榜 V1/Fetch Kuaishou Hot List V1
- * GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1
- * 无必填参数
- */
-async function fetchKuaishouHotListV1(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_kuaishou_hot_list_v1', params);
-}
-
-/**
- * 获取快手热榜 V2/Fetch Kuaishou Hot List V2
- * GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2
- * 无必填参数
- */
-async function fetchKuaishouHotListV2(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_kuaishou_hot_list_v2', params);
-}
-
-/**
- * 获取用户ID/Fetch user ID
- * GET /api/v1/kuaishou/web/fetch_get_user_id
- * @param {string} share_link - 必填参数
- */
-async function fetchGetUserId(share_link, extraParams = {}) {
-  const params = { share_link, ...extraParams };
-  return request('/web/fetch_get_user_id', params);
-}
-
-/**
- * 视频详情V1/Video detailsV1
- * GET /api/v1/kuaishou/app/fetch_one_video
- * @param {string} photo_id - 必填参数
- */
-async function fetchOneVideo(photo_id, extraParams = {}) {
-  const params = { photo_id, ...extraParams };
-  return request('/app/fetch_one_video', params);
-}
-
-/**
- * 根据链接获取单个作品数据/Fetch single video by URL
- * GET /api/v1/kuaishou/app/fetch_one_video_by_url
- * @param {string} share_text - 必填参数
- */
-async function fetchOneVideoByUrl(share_text, extraParams = {}) {
-  const params = { share_text, ...extraParams };
-  return request('/app/fetch_one_video_by_url', params);
-}
-
-/**
- * 获取单个用户数据V2/Get single user data V2
- * GET /api/v1/kuaishou/app/fetch_one_user_v2
- * @param {string} user_id - 必填参数
- */
-async function fetchOneUserV2(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_one_user_v2', params);
-}
-
-/**
- * 获取用户直播信息/Get user live info
- * GET /api/v1/kuaishou/app/fetch_user_live_info
- * @param {string} user_id - 必填参数
- */
-async function fetchUserLiveInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_live_info', params);
-}
-
-/**
- * 获取用户热门作品数据/Get user hot post data
- * GET /api/v1/kuaishou/app/fetch_user_hot_post
- * @param {string} user_id - 必填参数
- */
-async function fetchUserHotPost(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_hot_post', params);
-}
-
-/**
- * 用户视频列表V2/User video list V2
- * GET /api/v1/kuaishou/app/fetch_user_post_v2
- * @param {string} user_id - 必填参数
- */
-async function fetchUserPostV2(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_post_v2', params);
-}
-
-/**
- * 快手热榜分类/Kuaishou hot categories
- * GET /api/v1/kuaishou/app/fetch_hot_board_categories
- * 无必填参数
- */
-async function fetchHotBoardCategories(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_hot_board_categories', params);
-}
-
-/**
- * 快手热榜详情/Kuaishou hot board detail
- * GET /api/v1/kuaishou/app/fetch_hot_board_detail
- * 无必填参数
- */
-async function fetchHotBoardDetail(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_hot_board_detail', params);
-}
-
-/**
- * 快手直播榜单/Kuaishou live top list
- * GET /api/v1/kuaishou/app/fetch_live_top_list
- * 无必填参数
- */
-async function fetchLiveTopList(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_live_top_list', params);
-}
-
-/**
- * 快手购物榜单/Kuaishou shopping top list
- * GET /api/v1/kuaishou/app/fetch_shopping_top_list
- * 无必填参数
- */
-async function fetchShoppingTopList(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_shopping_top_list', params);
-}
-
-/**
- * 快手品牌榜单/Kuaishou brand top list
- * GET /api/v1/kuaishou/app/fetch_brand_top_list
- * 无必填参数
- */
-async function fetchBrandTopList(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_brand_top_list', params);
-}
-
-/**
- * 获取魔法表情使用人数/Fetch magic face usage count
- * GET /api/v1/kuaishou/app/fetch_magic_face_usage
- * @param {string} magic_face_id - 必填参数
- */
-async function fetchMagicFaceUsage(magic_face_id, extraParams = {}) {
-  const params = { magic_face_id, ...extraParams };
-  return request('/app/fetch_magic_face_usage', params);
-}
-
-/**
- * 获取魔法表情热门视频/Fetch magic face hot videos
- * GET /api/v1/kuaishou/app/fetch_magic_face_hot
- * @param {string} magic_face_id - 必填参数
- */
-async function fetchMagicFaceHot(magic_face_id, extraParams = {}) {
-  const params = { magic_face_id, ...extraParams };
-  return request('/app/fetch_magic_face_hot', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取作品一级评论/Fetch video comments
- * GET /api/v1/kuaishou/web/fetch_one_video_comment
- * @param {string} photo_id - 必填参数
- */
-async function fetchOneVideoComment(photo_id, extraParams = {}) {
-  const params = { photo_id, ...extraParams };
-  return request('/web/fetch_one_video_comment', params);
-}
-
-/**
- * 获取作品二级评论/Fetch video sub comments
- * GET /api/v1/kuaishou/web/fetch_one_video_sub_comment
- * @param {string, string} photo_id, root_comment_id - 必填参数
- */
-async function fetchOneVideoSubComment(photo_id, root_comment_id, extraParams = {}) {
-  const params = { photo_id, root_comment_id, ...extraParams };
-  return request('/web/fetch_one_video_sub_comment', params);
-}
-
-/**
- * 获取单个作品评论数据/Get single video comment data
- * GET /api/v1/kuaishou/app/fetch_one_video_comment
- * @param {string} photo_id - 必填参数
- */
-async function fetchOneVideoComment(photo_id, extraParams = {}) {
-  const params = { photo_id, ...extraParams };
-  return request('/app/fetch_one_video_comment', params);
-}
-
-// ==================== 工 ====================
-
-/**
- * 生成分享短连接/Generate share short URL
- * GET /api/v1/kuaishou/web/generate_share_short_url
- * @param {string} photo_id - 必填参数
- */
-async function generateShareShortUrl(photo_id, extraParams = {}) {
-  const params = { photo_id, ...extraParams };
-  return request('/web/generate_share_short_url', params);
-}
-
-/**
- * 生成快手分享链接/Generate Kuaishou share link
- * GET /api/v1/kuaishou/app/generate_kuaishou_share_link
- * @param {string} shareObjectId - 必填参数
- */
-async function generateKuaishouShareLink(shareObjectId, extraParams = {}) {
-  const params = { shareObjectId, ...extraParams };
-  return request('/app/generate_kuaishou_share_link', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 快手批量视频查询接口/Kuaishou batch video query AP
- * GET /api/v1/kuaishou/app/fetch_videos_batch
- * @param {string} photo_ids - 必填参数
- */
-async function fetchVideosBatch(photo_ids, extraParams = {}) {
-  const params = { photo_ids, ...extraParams };
-  return request('/app/fetch_videos_batch', params);
-}
-
-/**
- * 综合搜索/Comprehensive search
- * GET /api/v1/kuaishou/app/search_comprehensive
- * @param {string} keyword - 必填参数
- */
-async function searchComprehensive(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app/search_comprehensive', params);
-}
-
-/**
- * 搜索视频V2/Search video V2
- * GET /api/v1/kuaishou/app/search_video_v2
- * @param {string} keyword - 必填参数
- */
-async function searchVideoV2(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app/search_video_v2', params);
-}
-
-/**
- * 搜索用户V2/Search user V2
- * GET /api/v1/kuaishou/app/search_user_v2
- * @param {string} keyword - 必填参数
- */
-async function searchUserV2(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app/search_user_v2', params);
-}
-
-/**
- * 快手热搜人物榜单/Kuaishou hot search person boar
- * GET /api/v1/kuaishou/app/fetch_hot_search_person
- * 无必填参数
- */
-async function fetchHotSearchPerson(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_hot_search_person', params);
-}
-
 module.exports = {
   request,
-  fetchOneVideo,
-  fetchOneVideoV2,
-  fetchOneVideoByUrl,
-  fetchUserInfo,
-  fetchUserPost,
-  fetchUserLiveReplay,
-  fetchUserCollect,
-  fetchKuaishouHotListV1,
-  fetchKuaishouHotListV2,
-  fetchGetUserId,
-  fetchOneVideo,
-  fetchOneVideoByUrl,
-  fetchOneUserV2,
-  fetchUserLiveInfo,
-  fetchUserHotPost,
-  fetchUserPostV2,
-  fetchHotBoardCategories,
-  fetchHotBoardDetail,
-  fetchLiveTopList,
-  fetchShoppingTopList,
-  fetchBrandTopList,
-  fetchMagicFaceUsage,
-  fetchMagicFaceHot,
-  fetchOneVideoComment,
-  fetchOneVideoSubComment,
-  fetchOneVideoComment,
-  generateShareShortUrl,
-  generateKuaishouShareLink,
-  fetchVideosBatch,
-  searchComprehensive,
-  searchVideoV2,
-  searchUserV2,
-  fetchHotSearchPerson,
+  callApi,
+  API_REGISTRY,
+  fetchOneVideoV2: api.fetchOneVideoV2,
+  fetchUserInfo: api.fetchUserInfo,
+  fetchUserPost: api.fetchUserPost,
+  fetchUserLiveReplay: api.fetchUserLiveReplay,
+  fetchUserCollect: api.fetchUserCollect,
+  fetchKuaishouHotListV1: api.fetchKuaishouHotListV1,
+  fetchKuaishouHotListV2: api.fetchKuaishouHotListV2,
+  fetchGetUserId: api.fetchGetUserId,
+  fetchOneVideo: api.fetchOneVideo,
+  fetchOneVideoByUrl: api.fetchOneVideoByUrl,
+  fetchOneUserV2: api.fetchOneUserV2,
+  fetchUserLiveInfo: api.fetchUserLiveInfo,
+  fetchUserHotPost: api.fetchUserHotPost,
+  fetchUserPostV2: api.fetchUserPostV2,
+  fetchHotBoardCategories: api.fetchHotBoardCategories,
+  fetchHotBoardDetail: api.fetchHotBoardDetail,
+  fetchLiveTopList: api.fetchLiveTopList,
+  fetchShoppingTopList: api.fetchShoppingTopList,
+  fetchBrandTopList: api.fetchBrandTopList,
+  fetchMagicFaceUsage: api.fetchMagicFaceUsage,
+  fetchMagicFaceHot: api.fetchMagicFaceHot,
+  fetchOneVideoSubComment: api.fetchOneVideoSubComment,
+  fetchOneVideoComment: api.fetchOneVideoComment,
+  generateShareShortUrl: api.generateShareShortUrl,
+  generateKuaishouShareLink: api.generateKuaishouShareLink,
+  fetchVideosBatch: api.fetchVideosBatch,
+  searchComprehensive: api.searchComprehensive,
+  searchVideoV2: api.searchVideoV2,
+  searchUserV2: api.searchUserV2,
+  fetchHotSearchPerson: api.fetchHotSearchPerson,
 };

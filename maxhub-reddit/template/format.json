@@ -10,8 +10,7 @@
       "isGold"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "upvoteCount"
     ],
     "maxDisplay": 1
   },
@@ -27,8 +26,7 @@
       "subreddit"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "upvoteCount"
     ],
     "maxDisplay": 20
   },

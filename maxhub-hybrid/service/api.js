@@ -42,19 +42,53 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 内 ====================
+const API_REGISTRY = {
+  // other
+  videoData: { path: '/video_data', params: ['url'] },
+};
 
 /**
- * 混合解析单一视频接口/Hybrid parsing single video e
- * GET /api/v1/hybrid/video_data
- * @param {string} url - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function videoData(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('/video_data', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
+/**
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
+ */
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
+}
 module.exports = {
   request,
-  videoData,
+  callApi,
+  API_REGISTRY,
+  videoData: api.videoData,
 };

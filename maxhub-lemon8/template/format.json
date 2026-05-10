@@ -9,8 +9,7 @@
       "followingCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "likeCount"
     ],
     "maxDisplay": 1
   },
@@ -24,8 +23,7 @@
       "publishTime"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "likeCount"
     ],
     "maxDisplay": 20
   },

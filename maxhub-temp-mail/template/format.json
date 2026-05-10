@@ -5,10 +5,7 @@
       "token",
       "expiresAt"
     ],
-    "highlight": [
-      "followerCount",
-      "fansCount"
-    ],
+    "highlight": [],
     "maxDisplay": 1
   },
   "contentInfo": {
@@ -20,10 +17,7 @@
       "date",
       "read"
     ],
-    "highlight": [
-      "playCount",
-      "viewCount"
-    ],
+    "highlight": [],
     "maxDisplay": 20
   },
   "searchResults": {

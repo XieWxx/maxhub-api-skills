@@ -42,456 +42,128 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // web
+  fetchOneVideoV2: { path: '/web/fetch_one_video_v2', params: ['a_id', 'c_id'] },
+  fetchOneVideoV3: { path: '/web/fetch_one_video_v3', params: ['url'] },
+  fetchVideoDetail: { path: '/web/fetch_video_detail', params: ['aid'] },
+  fetchVideoPlayInfo: { path: '/web/fetch_video_play_info', params: ['url'] },
+  fetchVideoSubtitle: { path: '/web/fetch_video_subtitle', params: ['a_id', 'c_id'] },
+  fetchVideoPlayurl: { path: '/web/fetch_video_playurl', params: ['bv_id', 'cid'] },
+  fetchUserPostVideos: { path: '/web/fetch_user_post_videos', params: ['uid'] },
+  fetchCollectFolders: { path: '/web/fetch_collect_folders', params: ['uid'] },
+  fetchUserCollectionVideos: { path: '/web/fetch_user_collection_videos', params: ['folder_id'] },
+  fetchUserProfile: { path: '/web/fetch_user_profile', params: ['uid'] },
+  fetchComPopular: { path: '/web/fetch_com_popular' },
+  fetchUserDynamic: { path: '/web/fetch_user_dynamic', params: ['uid'] },
+  fetchDynamicDetail: { path: '/web/fetch_dynamic_detail', params: ['dynamic_id'] },
+  fetchDynamicDetailV2: { path: '/web/fetch_dynamic_detail_v2', params: ['dynamic_id'] },
+  fetchVideoDanmaku: { path: '/web/fetch_video_danmaku', params: ['cid'] },
+  fetchLiveRoomDetail: { path: '/web/fetch_live_room_detail', params: ['room_id'] },
+  fetchLiveVideos: { path: '/web/fetch_live_videos', params: ['room_id'] },
+  fetchLiveStreamers: { path: '/web/fetch_live_streamers', params: ['area_id'] },
+  fetchAllLiveAreas: { path: '/web/fetch_all_live_areas' },
+  fetchVideoParts: { path: '/web/fetch_video_parts', params: ['bv_id'] },
+  fetchUserUpStat: { path: '/web/fetch_user_up_stat', params: ['uid'] },
+  fetchUserRelationStat: { path: '/web/fetch_user_relation_stat', params: ['uid'] },
+  fetchHotSearch: { path: '/web/fetch_hot_search', params: ['limit'] },
+  fetchGeneralSearch: { path: '/web/fetch_general_search', params: ['keyword', 'order', 'page', 'page_size'] },
+  fetchCommentReply: { path: '/web/fetch_comment_reply', params: ['bv_id', 'rpid'] },
+  bvToAid: { path: '/web/bv_to_aid', params: ['bv_id'] },
+  fetchGetUserId: { path: '/web/fetch_get_user_id', params: ['share_link'] },
+  // app
+  fetchOneVideo: { path: '/app/fetch_one_video' },
+  fetchUserVideos: { path: '/app/fetch_user_videos', params: ['user_id'] },
+  fetchUserInfo: { path: '/app/fetch_user_info', params: ['user_id'] },
+  fetchHomeFeed: { path: '/app/fetch_home_feed' },
+  fetchPopularFeed: { path: '/app/fetch_popular_feed' },
+  fetchCinemaTab: { path: '/app/fetch_cinema_tab' },
+  fetchBangumiTab: { path: '/app/fetch_bangumi_tab' },
+  fetchSearchAll: { path: '/app/fetch_search_all', params: ['keyword'] },
+  fetchSearchByType: { path: '/app/fetch_search_by_type', params: ['keyword'] },
+  fetchVideoComments: { path: '/app/fetch_video_comments' },
+  fetchReplyDetail: { path: '/app/fetch_reply_detail', params: ['root'] },
+};
 
 /**
- * 获取单个视频详情信息/Get single video data
- * GET /api/v1/bilibili/web/fetch_one_video
- * @param {string} bv_id - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchOneVideo(bv_id, extraParams = {}) {
-  const params = { bv_id, ...extraParams };
-  return request('/web/fetch_one_video', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取单个视频详情信息V2/Get single video data V2
- * GET /api/v1/bilibili/web/fetch_one_video_v2
- * @param {string, string} a_id, c_id - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchOneVideoV2(a_id, c_id, extraParams = {}) {
-  const params = { a_id, c_id, ...extraParams };
-  return request('/web/fetch_one_video_v2', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取单个视频详情信息V3/Get single video data V3
- * GET /api/v1/bilibili/web/fetch_one_video_v3
- * @param {string} url - 必填参数
- */
-async function fetchOneVideoV3(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('/web/fetch_one_video_v3', params);
-}
-
-/**
- * 获取单个视频详情/Get single video detail
- * GET /api/v1/bilibili/web/fetch_video_detail
- * @param {string} aid - 必填参数
- */
-async function fetchVideoDetail(aid, extraParams = {}) {
-  const params = { aid, ...extraParams };
-  return request('/web/fetch_video_detail', params);
-}
-
-/**
- * 获取单个视频播放信息/Get single video play info
- * GET /api/v1/bilibili/web/fetch_video_play_info
- * @param {string} url - 必填参数
- */
-async function fetchVideoPlayInfo(url, extraParams = {}) {
-  const params = { url, ...extraParams };
-  return request('/web/fetch_video_play_info', params);
-}
-
-/**
- * 获取视频字幕信息/Get video subtitle info
- * GET /api/v1/bilibili/web/fetch_video_subtitle
- * @param {string, string} a_id, c_id - 必填参数
- */
-async function fetchVideoSubtitle(a_id, c_id, extraParams = {}) {
-  const params = { a_id, c_id, ...extraParams };
-  return request('/web/fetch_video_subtitle', params);
-}
-
-/**
- * 获取视频流地址/Get video playurl
- * GET /api/v1/bilibili/web/fetch_video_playurl
- * @param {string, string} bv_id, cid - 必填参数
- */
-async function fetchVideoPlayurl(bv_id, cid, extraParams = {}) {
-  const params = { bv_id, cid, ...extraParams };
-  return request('/web/fetch_video_playurl', params);
-}
-
-/**
- * 获取用户主页作品数据/Get user homepage video data
- * GET /api/v1/bilibili/web/fetch_user_post_videos
- * @param {string} uid - 必填参数
- */
-async function fetchUserPostVideos(uid, extraParams = {}) {
-  const params = { uid, ...extraParams };
-  return request('/web/fetch_user_post_videos', params);
-}
-
-/**
- * 获取用户所有收藏夹信息/Get user collection folders
- * GET /api/v1/bilibili/web/fetch_collect_folders
- * @param {string} uid - 必填参数
- */
-async function fetchCollectFolders(uid, extraParams = {}) {
-  const params = { uid, ...extraParams };
-  return request('/web/fetch_collect_folders', params);
-}
-
-/**
- * 获取指定收藏夹内视频数据/Gets video data from a coll
- * GET /api/v1/bilibili/web/fetch_user_collection_videos
- * @param {string} folder_id - 必填参数
- */
-async function fetchUserCollectionVideos(folder_id, extraParams = {}) {
-  const params = { folder_id, ...extraParams };
-  return request('/web/fetch_user_collection_videos', params);
-}
-
-/**
- * 获取指定用户的信息/Get information of specified u
- * GET /api/v1/bilibili/web/fetch_user_profile
- * @param {string} uid - 必填参数
- */
-async function fetchUserProfile(uid, extraParams = {}) {
-  const params = { uid, ...extraParams };
-  return request('/web/fetch_user_profile', params);
-}
-
-/**
- * 获取综合热门视频信息/Get comprehensive popular vid
- * GET /api/v1/bilibili/web/fetch_com_popular
- * 无必填参数
- */
-async function fetchComPopular(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_com_popular', params);
-}
-
-/**
- * 获取指定用户动态/Get dynamic information of spec
- * GET /api/v1/bilibili/web/fetch_user_dynamic
- * @param {string} uid - 必填参数
- */
-async function fetchUserDynamic(uid, extraParams = {}) {
-  const params = { uid, ...extraParams };
-  return request('/web/fetch_user_dynamic', params);
-}
-
-/**
- * 获取动态详情/Get dynamic detail
- * GET /api/v1/bilibili/web/fetch_dynamic_detail
- * @param {string} dynamic_id - 必填参数
- */
-async function fetchDynamicDetail(dynamic_id, extraParams = {}) {
-  const params = { dynamic_id, ...extraParams };
-  return request('/web/fetch_dynamic_detail', params);
-}
-
-/**
- * 获取动态详情v2/Get dynamic detail v2
- * GET /api/v1/bilibili/web/fetch_dynamic_detail_v2
- * @param {string} dynamic_id - 必填参数
- */
-async function fetchDynamicDetailV2(dynamic_id, extraParams = {}) {
-  const params = { dynamic_id, ...extraParams };
-  return request('/web/fetch_dynamic_detail_v2', params);
-}
-
-/**
- * 获取视频实时弹幕/Get Video Danmaku
- * GET /api/v1/bilibili/web/fetch_video_danmaku
- * @param {string} cid - 必填参数
- */
-async function fetchVideoDanmaku(cid, extraParams = {}) {
-  const params = { cid, ...extraParams };
-  return request('/web/fetch_video_danmaku', params);
-}
-
-/**
- * 获取指定直播间信息/Get information of specified l
- * GET /api/v1/bilibili/web/fetch_live_room_detail
- * @param {string} room_id - 必填参数
- */
-async function fetchLiveRoomDetail(room_id, extraParams = {}) {
-  const params = { room_id, ...extraParams };
-  return request('/web/fetch_live_room_detail', params);
-}
-
-/**
- * 获取直播间视频流/Get live video data of specifie
- * GET /api/v1/bilibili/web/fetch_live_videos
- * @param {string} room_id - 必填参数
- */
-async function fetchLiveVideos(room_id, extraParams = {}) {
-  const params = { room_id, ...extraParams };
-  return request('/web/fetch_live_videos', params);
-}
-
-/**
- * 获取指定分区正在直播的主播/Get live streamers of spec
- * GET /api/v1/bilibili/web/fetch_live_streamers
- * @param {string} area_id - 必填参数
- */
-async function fetchLiveStreamers(area_id, extraParams = {}) {
-  const params = { area_id, ...extraParams };
-  return request('/web/fetch_live_streamers', params);
-}
-
-/**
- * 获取所有直播分区列表/Get a list of all live areas
- * GET /api/v1/bilibili/web/fetch_all_live_areas
- * 无必填参数
- */
-async function fetchAllLiveAreas(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_all_live_areas', params);
-}
-
-/**
- * 通过bv号获得视频分p信息/Get Video Parts By bvid
- * GET /api/v1/bilibili/web/fetch_video_parts
- * @param {string} bv_id - 必填参数
- */
-async function fetchVideoParts(bv_id, extraParams = {}) {
-  const params = { bv_id, ...extraParams };
-  return request('/web/fetch_video_parts', params);
-}
-
-/**
- * 获取单个视频详情信息/Get single video data
- * GET /api/v1/bilibili/app/fetch_one_video
- * 无必填参数
- */
-async function fetchOneVideo(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_one_video', params);
-}
-
-/**
- * 获取用户投稿视频/Get user videos
- * GET /api/v1/bilibili/app/fetch_user_videos
- * @param {string} user_id - 必填参数
- */
-async function fetchUserVideos(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_videos', params);
-}
-
-/**
- * 获取用户信息/Get user info
- * GET /api/v1/bilibili/app/fetch_user_info
- * @param {string} user_id - 必填参数
- */
-async function fetchUserInfo(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_info', params);
-}
-
-/**
- * 获取主页推荐视频流/Get home feed
- * GET /api/v1/bilibili/app/fetch_home_feed
- * 无必填参数
- */
-async function fetchHomeFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_home_feed', params);
-}
-
-/**
- * 获取热门推荐/Get popular feed
- * GET /api/v1/bilibili/app/fetch_popular_feed
- * 无必填参数
- */
-async function fetchPopularFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_popular_feed', params);
-}
-
-/**
- * 获取影视推荐/Get cinema tab
- * GET /api/v1/bilibili/app/fetch_cinema_tab
- * 无必填参数
- */
-async function fetchCinemaTab(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_cinema_tab', params);
-}
-
-/**
- * 获取番剧推荐/Get bangumi tab
- * GET /api/v1/bilibili/app/fetch_bangumi_tab
- * 无必填参数
- */
-async function fetchBangumiTab(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_bangumi_tab', params);
-}
-
-/**
- * 获取UP主状态统计/Get UP stat (total likes and v
- * GET /api/v1/bilibili/web/fetch_user_up_stat
- * @param {string} uid - 必填参数
- */
-async function fetchUserUpStat(uid, extraParams = {}) {
-  const params = { uid, ...extraParams };
-  return request('/web/fetch_user_up_stat', params);
-}
-
-/**
- * 获取用户关系状态统计/Get user relation stat (follo
- * GET /api/v1/bilibili/web/fetch_user_relation_stat
- * @param {string} uid - 必填参数
- */
-async function fetchUserRelationStat(uid, extraParams = {}) {
-  const params = { uid, ...extraParams };
-  return request('/web/fetch_user_relation_stat', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 获取热门搜索信息/Get hot search data
- * GET /api/v1/bilibili/web/fetch_hot_search
- * @param {string} limit - 必填参数
- */
-async function fetchHotSearch(limit, extraParams = {}) {
-  const params = { limit, ...extraParams };
-  return request('/web/fetch_hot_search', params);
-}
-
-/**
- * 获取综合搜索信息/Get general search data
- * GET /api/v1/bilibili/web/fetch_general_search
- * @param {string, string, string, string} keyword, order, page, page_size - 必填参数
- */
-async function fetchGeneralSearch(keyword, order, page, page_size, extraParams = {}) {
-  const params = { keyword, order, page, page_size, ...extraParams };
-  return request('/web/fetch_general_search', params);
-}
-
-/**
- * 综合搜索/search all
- * GET /api/v1/bilibili/app/fetch_search_all
- * @param {string} keyword - 必填参数
- */
-async function fetchSearchAll(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app/fetch_search_all', params);
-}
-
-/**
- * 分类搜索/ search by type
- * GET /api/v1/bilibili/app/fetch_search_by_type
- * @param {string} keyword - 必填参数
- */
-async function fetchSearchByType(keyword, extraParams = {}) {
-  const params = { keyword, ...extraParams };
-  return request('/app/fetch_search_by_type', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取指定视频的评论/Get comments on the specified
- * GET /api/v1/bilibili/web/fetch_video_comments
- * @param {string} bv_id - 必填参数
- */
-async function fetchVideoComments(bv_id, extraParams = {}) {
-  const params = { bv_id, ...extraParams };
-  return request('/web/fetch_video_comments', params);
-}
-
-/**
- * 获取视频下指定评论的回复/Get reply to the specified
- * GET /api/v1/bilibili/web/fetch_comment_reply
- * @param {string, string} bv_id, rpid - 必填参数
- */
-async function fetchCommentReply(bv_id, rpid, extraParams = {}) {
-  const params = { bv_id, rpid, ...extraParams };
-  return request('/web/fetch_comment_reply', params);
-}
-
-/**
- * 获取视频评论列表/Get video comments
- * GET /api/v1/bilibili/app/fetch_video_comments
- * 无必填参数
- */
-async function fetchVideoComments(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_video_comments', params);
-}
-
-/**
- * 获取二级评论回复/Get reply detail
- * GET /api/v1/bilibili/app/fetch_reply_detail
- * @param {string} root - 必填参数
- */
-async function fetchReplyDetail(root, extraParams = {}) {
-  const params = { root, ...extraParams };
-  return request('/app/fetch_reply_detail', params);
-}
-
-// ==================== 工 ====================
-
-/**
- * 通过bv号获得视频aid号/Generate aid by bvid
- * GET /api/v1/bilibili/web/bv_to_aid
- * @param {string} bv_id - 必填参数
- */
-async function bvToAid(bv_id, extraParams = {}) {
-  const params = { bv_id, ...extraParams };
-  return request('/web/bv_to_aid', params);
-}
-
-// ==================== 内 ====================
-
-/**
- * 提取用户ID/Extract user ID
- * GET /api/v1/bilibili/web/fetch_get_user_id
- * @param {string} share_link - 必填参数
- */
-async function fetchGetUserId(share_link, extraParams = {}) {
-  const params = { share_link, ...extraParams };
-  return request('/web/fetch_get_user_id', params);
-}
-
 module.exports = {
   request,
-  fetchOneVideo,
-  fetchOneVideoV2,
-  fetchOneVideoV3,
-  fetchVideoDetail,
-  fetchVideoPlayInfo,
-  fetchVideoSubtitle,
-  fetchVideoPlayurl,
-  fetchUserPostVideos,
-  fetchCollectFolders,
-  fetchUserCollectionVideos,
-  fetchUserProfile,
-  fetchComPopular,
-  fetchUserDynamic,
-  fetchDynamicDetail,
-  fetchDynamicDetailV2,
-  fetchVideoDanmaku,
-  fetchLiveRoomDetail,
-  fetchLiveVideos,
-  fetchLiveStreamers,
-  fetchAllLiveAreas,
-  fetchVideoParts,
-  fetchOneVideo,
-  fetchUserVideos,
-  fetchUserInfo,
-  fetchHomeFeed,
-  fetchPopularFeed,
-  fetchCinemaTab,
-  fetchBangumiTab,
-  fetchHotSearch,
-  fetchGeneralSearch,
-  fetchSearchAll,
-  fetchSearchByType,
-  fetchUserUpStat,
-  fetchUserRelationStat,
-  fetchVideoComments,
-  fetchCommentReply,
-  fetchVideoComments,
-  fetchReplyDetail,
-  bvToAid,
-  fetchGetUserId,
+  callApi,
+  API_REGISTRY,
+  fetchOneVideoV2: api.fetchOneVideoV2,
+  fetchOneVideoV3: api.fetchOneVideoV3,
+  fetchVideoDetail: api.fetchVideoDetail,
+  fetchVideoPlayInfo: api.fetchVideoPlayInfo,
+  fetchVideoSubtitle: api.fetchVideoSubtitle,
+  fetchVideoPlayurl: api.fetchVideoPlayurl,
+  fetchUserPostVideos: api.fetchUserPostVideos,
+  fetchCollectFolders: api.fetchCollectFolders,
+  fetchUserCollectionVideos: api.fetchUserCollectionVideos,
+  fetchUserProfile: api.fetchUserProfile,
+  fetchComPopular: api.fetchComPopular,
+  fetchUserDynamic: api.fetchUserDynamic,
+  fetchDynamicDetail: api.fetchDynamicDetail,
+  fetchDynamicDetailV2: api.fetchDynamicDetailV2,
+  fetchVideoDanmaku: api.fetchVideoDanmaku,
+  fetchLiveRoomDetail: api.fetchLiveRoomDetail,
+  fetchLiveVideos: api.fetchLiveVideos,
+  fetchLiveStreamers: api.fetchLiveStreamers,
+  fetchAllLiveAreas: api.fetchAllLiveAreas,
+  fetchVideoParts: api.fetchVideoParts,
+  fetchOneVideo: api.fetchOneVideo,
+  fetchUserVideos: api.fetchUserVideos,
+  fetchUserInfo: api.fetchUserInfo,
+  fetchHomeFeed: api.fetchHomeFeed,
+  fetchPopularFeed: api.fetchPopularFeed,
+  fetchCinemaTab: api.fetchCinemaTab,
+  fetchBangumiTab: api.fetchBangumiTab,
+  fetchUserUpStat: api.fetchUserUpStat,
+  fetchUserRelationStat: api.fetchUserRelationStat,
+  fetchHotSearch: api.fetchHotSearch,
+  fetchGeneralSearch: api.fetchGeneralSearch,
+  fetchSearchAll: api.fetchSearchAll,
+  fetchSearchByType: api.fetchSearchByType,
+  fetchCommentReply: api.fetchCommentReply,
+  fetchVideoComments: api.fetchVideoComments,
+  fetchReplyDetail: api.fetchReplyDetail,
+  bvToAid: api.bvToAid,
+  fetchGetUserId: api.fetchGetUserId,
 };

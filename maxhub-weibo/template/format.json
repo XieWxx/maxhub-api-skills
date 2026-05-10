@@ -11,8 +11,8 @@
       "verified"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "likeCount",
+      "repostCount"
     ],
     "maxDisplay": 1
   },
@@ -27,8 +27,8 @@
       "createdAt"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "likeCount",
+      "repostCount"
     ],
     "maxDisplay": 20
   },

@@ -42,188 +42,83 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // app
+  fetchUserProfile: { path: '/app/fetch_user_profile', params: ['user_id'] },
+  fetchPostDetail: { path: '/app/fetch_post_detail', params: ['item_id'] },
+  fetchDiscoverBanners: { path: '/app/fetch_discover_banners' },
+  fetchDiscoverTab: { path: '/app/fetch_discover_tab' },
+  fetchDiscoverTabInformationTabs: { path: '/app/fetch_discover_tab_information_tabs' },
+  fetchTopicInfo: { path: '/app/fetch_topic_info', params: ['forum_id'] },
+  fetchTopicPostList: { path: '/app/fetch_topic_post_list', params: ['category', 'category_parameter', 'hashtag_name'] },
+  getItemId: { path: '/app/get_item_id', params: ['share_text'] },
+  getUserId: { path: '/app/get_user_id', params: ['share_text'] },
+  getItemIds: { path: '/app/get_item_ids', method: 'POST' },
+  getUserIds: { path: '/app/get_user_ids', method: 'POST' },
+  fetchUserFollowerList: { path: '/app/fetch_user_follower_list', params: ['user_id'] },
+  fetchUserFollowingList: { path: '/app/fetch_user_following_list', params: ['user_id'] },
+  fetchPostCommentList: { path: '/app/fetch_post_comment_list', params: ['group_id', 'item_id', 'media_id'] },
+  fetchHotSearchKeywords: { path: '/app/fetch_hot_search_keywords' },
+  fetchSearch: { path: '/app/fetch_search', params: ['query'] },
+};
 
 /**
- * 获取指定用户的信息/Get information of specified u
- * GET /api/v1/lemon8/app/fetch_user_profile
- * @param {string} user_id - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchUserProfile(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_profile', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取指定作品的信息/Get information of specified p
- * GET /api/v1/lemon8/app/fetch_post_detail
- * @param {string} item_id - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchPostDetail(item_id, extraParams = {}) {
-  const params = { item_id, ...extraParams };
-  return request('/app/fetch_post_detail', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取发现页Banner/Get banners of discover page
- * GET /api/v1/lemon8/app/fetch_discover_banners
- * 无必填参数
- */
-async function fetchDiscoverBanners(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_discover_banners', params);
-}
-
-/**
- * 获取发现页主体内容/Get main content of discover p
- * GET /api/v1/lemon8/app/fetch_discover_tab
- * 无必填参数
- */
-async function fetchDiscoverTab(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_discover_tab', params);
-}
-
-/**
- * 获取发现页的 Editor's Picks/Get Editor's Picks
- * GET /api/v1/lemon8/app/fetch_discover_tab_information_tabs
- * 无必填参数
- */
-async function fetchDiscoverTabInformationTabs(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_discover_tab_information_tabs', params);
-}
-
-/**
- * 获取话题信息/Get topic information
- * GET /api/v1/lemon8/app/fetch_topic_info
- * @param {string} forum_id - 必填参数
- */
-async function fetchTopicInfo(forum_id, extraParams = {}) {
-  const params = { forum_id, ...extraParams };
-  return request('/app/fetch_topic_info', params);
-}
-
-/**
- * 获取话题作品列表/Get topic post list
- * GET /api/v1/lemon8/app/fetch_topic_post_list
- * @param {string, string, string} category, category_parameter, hashtag_name - 必填参数
- */
-async function fetchTopicPostList(category, category_parameter, hashtag_name, extraParams = {}) {
-  const params = { category, category_parameter, hashtag_name, ...extraParams };
-  return request('/app/fetch_topic_post_list', params);
-}
-
-/**
- * 通过分享链接获取作品ID/Get post ID through sharing
- * GET /api/v1/lemon8/app/get_item_id
- * @param {string} share_text - 必填参数
- */
-async function getItemId(share_text, extraParams = {}) {
-  const params = { share_text, ...extraParams };
-  return request('/app/get_item_id', params);
-}
-
-/**
- * 通过分享链接获取用户ID/Get user ID through sharing
- * GET /api/v1/lemon8/app/get_user_id
- * @param {string} share_text - 必填参数
- */
-async function getUserId(share_text, extraParams = {}) {
-  const params = { share_text, ...extraParams };
-  return request('/app/get_user_id', params);
-}
-
-/**
- * 通过分享链接批量获取作品ID/Get post IDs in batch thr
- * POST /api/v1/lemon8/app/get_item_ids
- * 无必填参数
- */
-async function getItemIds(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/get_item_ids', params, 'POST');
-}
-
-/**
- * 通过分享链接批量获取用户ID/Get user IDs in batch thr
- * POST /api/v1/lemon8/app/get_user_ids
- * 无必填参数
- */
-async function getUserIds(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/get_user_ids', params, 'POST');
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取指定用户的粉丝列表/Get fans list of specified u
- * GET /api/v1/lemon8/app/fetch_user_follower_list
- * @param {string} user_id - 必填参数
- */
-async function fetchUserFollowerList(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_follower_list', params);
-}
-
-/**
- * 获取指定用户的关注列表/Get following list of specif
- * GET /api/v1/lemon8/app/fetch_user_following_list
- * @param {string} user_id - 必填参数
- */
-async function fetchUserFollowingList(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/app/fetch_user_following_list', params);
-}
-
-/**
- * 获取指定作品的评论列表/Get comments list of specifi
- * GET /api/v1/lemon8/app/fetch_post_comment_list
- * @param {string, string, string} group_id, item_id, media_id - 必填参数
- */
-async function fetchPostCommentList(group_id, item_id, media_id, extraParams = {}) {
-  const params = { group_id, item_id, media_id, ...extraParams };
-  return request('/app/fetch_post_comment_list', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 获取热搜关键词/Get hot search keywords
- * GET /api/v1/lemon8/app/fetch_hot_search_keywords
- * 无必填参数
- */
-async function fetchHotSearchKeywords(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_hot_search_keywords', params);
-}
-
-/**
- * 搜索接口/Search API
- * GET /api/v1/lemon8/app/fetch_search
- * @param {string} query - 必填参数
- */
-async function fetchSearch(query, extraParams = {}) {
-  const params = { query, ...extraParams };
-  return request('/app/fetch_search', params);
-}
-
 module.exports = {
   request,
-  fetchUserProfile,
-  fetchPostDetail,
-  fetchDiscoverBanners,
-  fetchDiscoverTab,
-  fetchDiscoverTabInformationTabs,
-  fetchTopicInfo,
-  fetchTopicPostList,
-  getItemId,
-  getUserId,
-  getItemIds,
-  getUserIds,
-  fetchUserFollowerList,
-  fetchUserFollowingList,
-  fetchPostCommentList,
-  fetchHotSearchKeywords,
-  fetchSearch,
+  callApi,
+  API_REGISTRY,
+  fetchUserProfile: api.fetchUserProfile,
+  fetchPostDetail: api.fetchPostDetail,
+  fetchDiscoverBanners: api.fetchDiscoverBanners,
+  fetchDiscoverTab: api.fetchDiscoverTab,
+  fetchDiscoverTabInformationTabs: api.fetchDiscoverTabInformationTabs,
+  fetchTopicInfo: api.fetchTopicInfo,
+  fetchTopicPostList: api.fetchTopicPostList,
+  getItemId: api.getItemId,
+  getUserId: api.getUserId,
+  getItemIds: api.getItemIds,
+  getUserIds: api.getUserIds,
+  fetchUserFollowerList: api.fetchUserFollowerList,
+  fetchUserFollowingList: api.fetchUserFollowingList,
+  fetchPostCommentList: api.fetchPostCommentList,
+  fetchHotSearchKeywords: api.fetchHotSearchKeywords,
+  fetchSearch: api.fetchSearch,
 };

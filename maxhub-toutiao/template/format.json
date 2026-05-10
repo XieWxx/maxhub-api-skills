@@ -9,8 +9,8 @@
       "followingCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "readCount",
+      "commentCount"
     ],
     "maxDisplay": 1
   },
@@ -25,8 +25,8 @@
       "abstract"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "readCount",
+      "commentCount"
     ],
     "maxDisplay": 20
   },

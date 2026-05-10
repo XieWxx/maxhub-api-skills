@@ -42,133 +42,73 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // web
+  fetchUserInfo: { path: '/web/fetch_user_info', params: ['username'] },
+  fetchUserInfoById: { path: '/web/fetch_user_info_by_id', params: ['user_id'] },
+  fetchUserPosts: { path: '/web/fetch_user_posts', params: ['user_id'] },
+  fetchUserReposts: { path: '/web/fetch_user_reposts', params: ['user_id'] },
+  fetchUserReplies: { path: '/web/fetch_user_replies', params: ['user_id'] },
+  fetchPostDetail: { path: '/web/fetch_post_detail', params: ['post_id'] },
+  fetchPostDetailV2: { path: '/web/fetch_post_detail_v2' },
+  fetchPostComments: { path: '/web/fetch_post_comments', params: ['post_id'] },
+  searchTop: { path: '/web/search_top', params: ['query'] },
+  searchRecent: { path: '/web/search_recent', params: ['query'] },
+  searchProfiles: { path: '/web/search_profiles', params: ['query'] },
+};
 
 /**
- * 获取用户信息/Get user info
- * GET /api/v1/threads/web/fetch_user_info
- * @param {string} username - 必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchUserInfo(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('/web/fetch_user_info', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 根据用户ID获取用户信息/Get user info by ID
- * GET /api/v1/threads/web/fetch_user_info_by_id
- * @param {string} user_id - 必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchUserInfoById(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_info_by_id', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取用户帖子列表/Get user posts
- * GET /api/v1/threads/web/fetch_user_posts
- * @param {string} user_id - 必填参数
- */
-async function fetchUserPosts(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_posts', params);
-}
-
-/**
- * 获取用户转发列表/Get user reposts
- * GET /api/v1/threads/web/fetch_user_reposts
- * @param {string} user_id - 必填参数
- */
-async function fetchUserReposts(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_reposts', params);
-}
-
-/**
- * 获取用户回复列表/Get user replies
- * GET /api/v1/threads/web/fetch_user_replies
- * @param {string} user_id - 必填参数
- */
-async function fetchUserReplies(user_id, extraParams = {}) {
-  const params = { user_id, ...extraParams };
-  return request('/web/fetch_user_replies', params);
-}
-
-/**
- * 获取帖子详情/Get post detail
- * GET /api/v1/threads/web/fetch_post_detail
- * @param {string} post_id - 必填参数
- */
-async function fetchPostDetail(post_id, extraParams = {}) {
-  const params = { post_id, ...extraParams };
-  return request('/web/fetch_post_detail', params);
-}
-
-/**
- * 获取帖子详情 V2(支持链接)/Get post detail V2(suppo
- * GET /api/v1/threads/web/fetch_post_detail_v2
- * 无必填参数
- */
-async function fetchPostDetailV2(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/web/fetch_post_detail_v2', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取帖子评论/Get post comments
- * GET /api/v1/threads/web/fetch_post_comments
- * @param {string} post_id - 必填参数
- */
-async function fetchPostComments(post_id, extraParams = {}) {
-  const params = { post_id, ...extraParams };
-  return request('/web/fetch_post_comments', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 搜索热门内容/Search top content
- * GET /api/v1/threads/web/search_top
- * @param {string} query - 必填参数
- */
-async function searchTop(query, extraParams = {}) {
-  const params = { query, ...extraParams };
-  return request('/web/search_top', params);
-}
-
-/**
- * 搜索最新内容/Search recent content
- * GET /api/v1/threads/web/search_recent
- * @param {string} query - 必填参数
- */
-async function searchRecent(query, extraParams = {}) {
-  const params = { query, ...extraParams };
-  return request('/web/search_recent', params);
-}
-
-/**
- * 搜索用户档案/Search profiles
- * GET /api/v1/threads/web/search_profiles
- * @param {string} query - 必填参数
- */
-async function searchProfiles(query, extraParams = {}) {
-  const params = { query, ...extraParams };
-  return request('/web/search_profiles', params);
-}
-
 module.exports = {
   request,
-  fetchUserInfo,
-  fetchUserInfoById,
-  fetchUserPosts,
-  fetchUserReposts,
-  fetchUserReplies,
-  fetchPostDetail,
-  fetchPostDetailV2,
-  fetchPostComments,
-  searchTop,
-  searchRecent,
-  searchProfiles,
+  callApi,
+  API_REGISTRY,
+  fetchUserInfo: api.fetchUserInfo,
+  fetchUserInfoById: api.fetchUserInfoById,
+  fetchUserPosts: api.fetchUserPosts,
+  fetchUserReposts: api.fetchUserReposts,
+  fetchUserReplies: api.fetchUserReplies,
+  fetchPostDetail: api.fetchPostDetail,
+  fetchPostDetailV2: api.fetchPostDetailV2,
+  fetchPostComments: api.fetchPostComments,
+  searchTop: api.searchTop,
+  searchRecent: api.searchRecent,
+  searchProfiles: api.searchProfiles,
 };

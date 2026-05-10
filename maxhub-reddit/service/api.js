@@ -42,276 +42,99 @@ async function handleResponse(response) {
   return data;
 }
 
-// ==================== 数 ====================
+const API_REGISTRY = {
+  // app
+  fetchHomeFeed: { path: '/app/fetch_home_feed' },
+  fetchPopularFeed: { path: '/app/fetch_popular_feed' },
+  fetchGamesFeed: { path: '/app/fetch_games_feed' },
+  fetchNewsFeed: { path: '/app/fetch_news_feed' },
+  fetchPostDetails: { path: '/app/fetch_post_details', params: ['post_id'] },
+  fetchPostDetailsBatch: { path: '/app/fetch_post_details_batch', params: ['post_ids'] },
+  fetchPostDetailsBatchLarge: { path: '/app/fetch_post_details_batch_large', params: ['post_ids'] },
+  fetchSubredditStyle: { path: '/app/fetch_subreddit_style' },
+  fetchSubredditPostChannels: { path: '/app/fetch_subreddit_post_channels' },
+  fetchSubredditInfo: { path: '/app/fetch_subreddit_info' },
+  fetchSubredditSettings: { path: '/app/fetch_subreddit_settings', params: ['subreddit_id'] },
+  fetchCommunityHighlights: { path: '/app/fetch_community_highlights', params: ['subreddit_id'] },
+  fetchUserProfile: { path: '/app/fetch_user_profile', params: ['username'] },
+  fetchUserActiveSubreddits: { path: '/app/fetch_user_active_subreddits', params: ['username'] },
+  fetchUserPosts: { path: '/app/fetch_user_posts', params: ['username'] },
+  fetchSubredditFeed: { path: '/app/fetch_subreddit_feed', params: ['subreddit_name'] },
+  checkSubredditMuted: { path: '/app/check_subreddit_muted', params: ['subreddit_id'] },
+  fetchUserTrophies: { path: '/app/fetch_user_trophies', params: ['username'] },
+  fetchPostComments: { path: '/app/fetch_post_comments', params: ['post_id'] },
+  fetchCommentReplies: { path: '/app/fetch_comment_replies', params: ['post_id', 'cursor'] },
+  fetchUserComments: { path: '/app/fetch_user_comments', params: ['username'] },
+  fetchSearchTypeahead: { path: '/app/fetch_search_typeahead', params: ['query'] },
+  fetchDynamicSearch: { path: '/app/fetch_dynamic_search', params: ['query'] },
+  fetchTrendingSearches: { path: '/app/fetch_trending_searches' },
+};
 
 /**
- * 获取Reddit APP首页推荐内容/Fetch Reddit APP Home
- * GET /api/v1/reddit/app/fetch_home_feed
- * 无必填参数
+ * 通用API调用方法
+ * 根据API注册表动态调用，替代重复的函数定义
+ * @param {string} apiName - 注册表中的API名称
+ * @param {object} params - 请求参数
+ * @returns {Promise<object>} API响应数据
  */
-async function fetchHomeFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_home_feed', params);
+async function callApi(apiName, params = {}) {
+  const def = API_REGISTRY[apiName];
+  if (!def) throw new Error(`未知的API: ${apiName}`);
+  const reqParams = {};
+  if (def.params) {
+    for (const key of def.params) {
+      if (params[key] !== undefined) reqParams[key] = params[key];
+    }
+  }
+  Object.assign(reqParams, params);
+  return request(def.path, reqParams, def.method || 'GET');
 }
 
 /**
- * 获取Reddit APP流行推荐内容/Fetch Reddit APP Popu
- * GET /api/v1/reddit/app/fetch_popular_feed
- * 无必填参数
+ * 批量生成API调用函数
+ * 从注册表自动生成所有API的便捷调用方法
  */
-async function fetchPopularFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_popular_feed', params);
+const api = {};
+for (const [name, def] of Object.entries(API_REGISTRY)) {
+  api[name] = async (...args) => {
+    const params = {};
+    if (def.params) {
+      for (let i = 0; i < def.params.length; i++) {
+        if (args[i] !== undefined) params[def.params[i]] = args[i];
+      }
+    }
+    if (args.length > 0 && typeof args[args.length - 1] === 'object' && !Array.isArray(args[args.length - 1])) {
+      Object.assign(params, args[args.length - 1]);
+    }
+    return request(def.path, params, def.method || 'GET');
+  };
 }
-
-/**
- * 获取Reddit APP游戏推荐内容/Fetch Reddit APP Game
- * GET /api/v1/reddit/app/fetch_games_feed
- * 无必填参数
- */
-async function fetchGamesFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_games_feed', params);
-}
-
-/**
- * 获取Reddit APP资讯推荐内容/Fetch Reddit APP News
- * GET /api/v1/reddit/app/fetch_news_feed
- * 无必填参数
- */
-async function fetchNewsFeed(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_news_feed', params);
-}
-
-/**
- * 获取单个Reddit帖子详情/Fetch Single Reddit Post
- * GET /api/v1/reddit/app/fetch_post_details
- * @param {string} post_id - 必填参数
- */
-async function fetchPostDetails(post_id, extraParams = {}) {
-  const params = { post_id, ...extraParams };
-  return request('/app/fetch_post_details', params);
-}
-
-/**
- * 批量获取Reddit帖子详情(最多5条)/Fetch Reddit Post D
- * GET /api/v1/reddit/app/fetch_post_details_batch
- * @param {string} post_ids - 必填参数
- */
-async function fetchPostDetailsBatch(post_ids, extraParams = {}) {
-  const params = { post_ids, ...extraParams };
-  return request('/app/fetch_post_details_batch', params);
-}
-
-/**
- * 大批量获取Reddit帖子详情(最多30条)/Fetch Reddit Post
- * GET /api/v1/reddit/app/fetch_post_details_batch_large
- * @param {string} post_ids - 必填参数
- */
-async function fetchPostDetailsBatchLarge(post_ids, extraParams = {}) {
-  const params = { post_ids, ...extraParams };
-  return request('/app/fetch_post_details_batch_large', params);
-}
-
-/**
- * 获取Reddit APP版块规则样式信息/Fetch Reddit APP Su
- * GET /api/v1/reddit/app/fetch_subreddit_style
- * 无必填参数
- */
-async function fetchSubredditStyle(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_subreddit_style', params);
-}
-
-/**
- * 获取Reddit APP版块帖子频道信息/Fetch Reddit APP Su
- * GET /api/v1/reddit/app/fetch_subreddit_post_channels
- * 无必填参数
- */
-async function fetchSubredditPostChannels(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_subreddit_post_channels', params);
-}
-
-/**
- * 获取Reddit APP版块信息/Fetch Reddit APP Subred
- * GET /api/v1/reddit/app/fetch_subreddit_info
- * 无必填参数
- */
-async function fetchSubredditInfo(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_subreddit_info', params);
-}
-
-/**
- * 获取Reddit APP版块设置/Fetch Reddit APP Subred
- * GET /api/v1/reddit/app/fetch_subreddit_settings
- * @param {string} subreddit_id - 必填参数
- */
-async function fetchSubredditSettings(subreddit_id, extraParams = {}) {
-  const params = { subreddit_id, ...extraParams };
-  return request('/app/fetch_subreddit_settings', params);
-}
-
-/**
- * 获取Reddit APP社区亮点/Fetch Reddit APP Commun
- * GET /api/v1/reddit/app/fetch_community_highlights
- * @param {string} subreddit_id - 必填参数
- */
-async function fetchCommunityHighlights(subreddit_id, extraParams = {}) {
-  const params = { subreddit_id, ...extraParams };
-  return request('/app/fetch_community_highlights', params);
-}
-
-/**
- * 获取Reddit APP用户资料信息/Fetch Reddit APP User
- * GET /api/v1/reddit/app/fetch_user_profile
- * @param {string} username - 必填参数
- */
-async function fetchUserProfile(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('/app/fetch_user_profile', params);
-}
-
-/**
- * 获取用户活跃的社区列表/Fetch User's Active Subreddi
- * GET /api/v1/reddit/app/fetch_user_active_subreddits
- * @param {string} username - 必填参数
- */
-async function fetchUserActiveSubreddits(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('/app/fetch_user_active_subreddits', params);
-}
-
-/**
- * 获取用户发布的帖子列表/Fetch User Posts
- * GET /api/v1/reddit/app/fetch_user_posts
- * @param {string} username - 必填参数
- */
-async function fetchUserPosts(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('/app/fetch_user_posts', params);
-}
-
-/**
- * 获取Reddit APP版块Feed内容/Fetch Reddit APP Su
- * GET /api/v1/reddit/app/fetch_subreddit_feed
- * @param {string} subreddit_name - 必填参数
- */
-async function fetchSubredditFeed(subreddit_name, extraParams = {}) {
-  const params = { subreddit_name, ...extraParams };
-  return request('/app/fetch_subreddit_feed', params);
-}
-
-/**
- * 检查版块是否静音/Check if Subreddit is Muted
- * GET /api/v1/reddit/app/check_subreddit_muted
- * @param {string} subreddit_id - 必填参数
- */
-async function checkSubredditMuted(subreddit_id, extraParams = {}) {
-  const params = { subreddit_id, ...extraParams };
-  return request('/app/check_subreddit_muted', params);
-}
-
-/**
- * 获取用户公开奖杯/Fetch User Public Trophies
- * GET /api/v1/reddit/app/fetch_user_trophies
- * @param {string} username - 必填参数
- */
-async function fetchUserTrophies(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('/app/fetch_user_trophies', params);
-}
-
-// ==================== 互 ====================
-
-/**
- * 获取Reddit APP帖子评论/Fetch Reddit APP Post C
- * GET /api/v1/reddit/app/fetch_post_comments
- * @param {string} post_id - 必填参数
- */
-async function fetchPostComments(post_id, extraParams = {}) {
-  const params = { post_id, ...extraParams };
-  return request('/app/fetch_post_comments', params);
-}
-
-/**
- * 获取Reddit APP评论回复（二级评论）/Fetch Reddit APP
- * GET /api/v1/reddit/app/fetch_comment_replies
- * @param {string, string} post_id, cursor - 必填参数
- */
-async function fetchCommentReplies(post_id, cursor, extraParams = {}) {
-  const params = { post_id, cursor, ...extraParams };
-  return request('/app/fetch_comment_replies', params);
-}
-
-/**
- * 获取用户评论列表/Fetch User Comments
- * GET /api/v1/reddit/app/fetch_user_comments
- * @param {string} username - 必填参数
- */
-async function fetchUserComments(username, extraParams = {}) {
-  const params = { username, ...extraParams };
-  return request('/app/fetch_user_comments', params);
-}
-
-// ==================== 搜 ====================
-
-/**
- * 获取Reddit APP搜索自动补全建议/Fetch Reddit APP Se
- * GET /api/v1/reddit/app/fetch_search_typeahead
- * @param {string} query - 必填参数
- */
-async function fetchSearchTypeahead(query, extraParams = {}) {
-  const params = { query, ...extraParams };
-  return request('/app/fetch_search_typeahead', params);
-}
-
-/**
- * 获取Reddit APP动态搜索结果/Fetch Reddit APP Dyna
- * GET /api/v1/reddit/app/fetch_dynamic_search
- * @param {string} query - 必填参数
- */
-async function fetchDynamicSearch(query, extraParams = {}) {
-  const params = { query, ...extraParams };
-  return request('/app/fetch_dynamic_search', params);
-}
-
-/**
- * 获取Reddit APP今日热门搜索/Fetch Reddit APP Tren
- * GET /api/v1/reddit/app/fetch_trending_searches
- * 无必填参数
- */
-async function fetchTrendingSearches(extraParams = {}) {
-  const params = { ...extraParams };
-  return request('/app/fetch_trending_searches', params);
-}
-
 module.exports = {
   request,
-  fetchHomeFeed,
-  fetchPopularFeed,
-  fetchGamesFeed,
-  fetchNewsFeed,
-  fetchPostDetails,
-  fetchPostDetailsBatch,
-  fetchPostDetailsBatchLarge,
-  fetchSubredditStyle,
-  fetchSubredditPostChannels,
-  fetchSubredditInfo,
-  fetchSubredditSettings,
-  fetchCommunityHighlights,
-  fetchUserProfile,
-  fetchUserActiveSubreddits,
-  fetchUserPosts,
-  fetchSubredditFeed,
-  checkSubredditMuted,
-  fetchUserTrophies,
-  fetchPostComments,
-  fetchCommentReplies,
-  fetchUserComments,
-  fetchSearchTypeahead,
-  fetchDynamicSearch,
-  fetchTrendingSearches,
+  callApi,
+  API_REGISTRY,
+  fetchHomeFeed: api.fetchHomeFeed,
+  fetchPopularFeed: api.fetchPopularFeed,
+  fetchGamesFeed: api.fetchGamesFeed,
+  fetchNewsFeed: api.fetchNewsFeed,
+  fetchPostDetails: api.fetchPostDetails,
+  fetchPostDetailsBatch: api.fetchPostDetailsBatch,
+  fetchPostDetailsBatchLarge: api.fetchPostDetailsBatchLarge,
+  fetchSubredditStyle: api.fetchSubredditStyle,
+  fetchSubredditPostChannels: api.fetchSubredditPostChannels,
+  fetchSubredditInfo: api.fetchSubredditInfo,
+  fetchSubredditSettings: api.fetchSubredditSettings,
+  fetchCommunityHighlights: api.fetchCommunityHighlights,
+  fetchUserProfile: api.fetchUserProfile,
+  fetchUserActiveSubreddits: api.fetchUserActiveSubreddits,
+  fetchUserPosts: api.fetchUserPosts,
+  fetchSubredditFeed: api.fetchSubredditFeed,
+  checkSubredditMuted: api.checkSubredditMuted,
+  fetchUserTrophies: api.fetchUserTrophies,
+  fetchPostComments: api.fetchPostComments,
+  fetchCommentReplies: api.fetchCommentReplies,
+  fetchUserComments: api.fetchUserComments,
+  fetchSearchTypeahead: api.fetchSearchTypeahead,
+  fetchDynamicSearch: api.fetchDynamicSearch,
+  fetchTrendingSearches: api.fetchTrendingSearches,
 };

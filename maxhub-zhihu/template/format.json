@@ -11,8 +11,7 @@
       "articlesCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "voteupCount"
     ],
     "maxDisplay": 1
   },
@@ -27,8 +26,7 @@
       "createdTime"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "voteupCount"
     ],
     "maxDisplay": 20
   },

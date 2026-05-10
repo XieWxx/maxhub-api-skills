@@ -1,7 +1,7 @@
 ---
 name: maxhub-zhihu
 description: 知乎数据采集与分析。当用户提到知乎、zhihu、问答等相关需求时激活此Skill。
-version: 2.0.0
+version: 1.0.1
 author: MaxHub Team
 license: MIT
 trigger: "知乎|zhihu|问答|专栏|话题|知乎搜索"
@@ -46,9 +46,9 @@ metadata:
 # 💡 知乎数据采集与分析
 
 唯一标识：`maxhub-zhihu`
-版本：v2.0.0
+版本：v1.0.1
 更新时间：2026-05-10
-适配平台：MaxHub / Tikhub
+适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
 ## 简介
 
@@ -107,4 +107,4 @@ metadata:
 
 ## 更新日志
 
-v2.0.0 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+v1.0.1 V2架构升级，全量API覆盖，兼容层设计，场景化展示

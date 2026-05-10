@@ -1,4 +1,4 @@
-// 指令路由、分支分发 - Instagram数据采集
+// 指令路由、分支分发 - Instagram平台
 // 根据用户意图路由到对应的API调用
 
 const api = require('../service/api');
@@ -14,52 +14,58 @@ const router = {
   },
 
   routes: {
-    async search({ keyword, page = 1, count = 20 }) {
-      const result = await api.search(keyword, page, count);
+    // 搜索用户
+    async search_user({ keyword, page = 1, count = 20 }) {
+      const result = await api.searchUsers({ keyword });
       return {
         success: true,
-        intent: 'search',
-        data: data.formatSearchResults(result),
-        hasMore: result.has_more || false,
+        intent: 'search_user',
+        data: data.formatItem(result),
       };
     },
 
-    async get_user_profile(params) {
-      const result = await api.fetchUserProfile(params);
+    // 获取用户信息
+    async get_user_profile({ username, page = 1, count = 20 }) {
+      if (username) {
+        const result = await api.fetchUserInfoByUsername({ username });
+        return { success: true, intent: 'get_user_profile', data: data.formatItem(result) };
+      } else if (user_id) {
+        const result = await api.fetchUserInfoById({ user_id });
+        return { success: true, intent: 'get_user_profile', data: data.formatItem(result) };
+      }
+      return { success: false, message: '请提供必要参数' };
+    },
+
+    // 获取用户帖子
+    async get_user_posts({ user_id, page = 1, count = 20 }) {
+      const result = await api.fetchUserPosts({ user_id });
       return {
         success: true,
-        intent: 'get_user_profile',
-        data: data.formatUserProfile(result.data),
+        intent: 'get_user_posts',
+        data: data.formatItem(result),
       };
     },
 
-    async get_detail({ id }) {
-      const result = await api.fetchDetail(id);
+    // 获取帖子详情
+    async get_post_detail({ shortcode, page = 1, count = 20 }) {
+      const result = await api.fetchPostByUrl({ shortcode });
       return {
         success: true,
-        intent: 'get_detail',
-        data: data.formatContentInfo(result.data),
+        intent: 'get_post_detail',
+        data: data.formatItem(result),
       };
     },
 
-    async get_trending() {
-      const result = await api.fetchTrending();
-      return {
-        success: true,
-        intent: 'get_trending',
-        data: result.data || [],
-      };
-    },
-
-    async get_comments({ id, page = 1, count = 20 }) {
-      const result = await api.fetchComments(id, page, count);
+    // 获取评论
+    async get_comments({ shortcode, page = 1, count = 20 }) {
+      const result = await api.fetchPostComments({ shortcode });
       return {
         success: true,
         intent: 'get_comments',
-        data: result.data || [],
-        hasMore: result.has_more || false,
+        data: data.formatItem(result),
       };
     },
+
   },
 };
 

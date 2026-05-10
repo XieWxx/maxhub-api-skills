@@ -8,8 +8,7 @@
       "followerCount"
     ],
     "highlight": [
-      "followerCount",
-      "fansCount"
+      "likeCount"
     ],
     "maxDisplay": 1
   },
@@ -23,8 +22,7 @@
       "createdAt"
     ],
     "highlight": [
-      "playCount",
-      "viewCount"
+      "likeCount"
     ],
     "maxDisplay": 20
   },
