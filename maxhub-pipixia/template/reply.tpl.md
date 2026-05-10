@@ -1,11 +1,10 @@
 # 🦐 皮皮虾数据采集 回复模板
 
-## 数
+## PiPiXia App
 
-### 获取单个作品数据/Get single video data
+### 增加作品浏览数/Increase post view count
 
-`GET /api/v1/pipixia/app/fetch_post_detail`
-必填参数：cell_id
+`GET /api/v1/pipixia/app/fetch_increase_post_view_count`
 
 **返回数据展示：**
 
@@ -17,15 +16,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 执行结果 |
 
 ---
 
-### 获取用户信息/Get user information
+### 搜索接口/Search API
 
-`GET /api/v1/pipixia/app/fetch_user_info`
-必填参数：user_id
+`GET /api/v1/pipixia/app/fetch_search`
 
 **返回数据展示：**
 
@@ -37,15 +35,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 搜索结果 |
 
 ---
 
-### 获取用户作品列表/Get user post list
+### 生成短连接/Generate short URL
 
-`GET /api/v1/pipixia/app/fetch_user_post_list`
-必填参数：user_id
+`GET /api/v1/pipixia/app/fetch_short_url`
 
 **返回数据展示：**
 
@@ -57,17 +54,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 短连接 |
 
 ---
 
-## 互
+### 获取作品统计数据/Get post statistics
 
-### 获取用户粉丝列表/Get user follower list
-
-`GET /api/v1/pipixia/app/fetch_user_follower_list`
-必填参数：user_id
+`GET /api/v1/pipixia/app/fetch_post_statistics`
 
 **返回数据展示：**
 
@@ -79,35 +73,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
-
----
-
-### 获取用户关注列表/Get user following list
-
-`GET /api/v1/pipixia/app/fetch_user_following_list`
-必填参数：user_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
+| 数据说明 | 作品统计数据 |
 
 ---
 
 ### 获取作品评论列表/Get post comment list
 
 `GET /api/v1/pipixia/app/fetch_post_comment_list`
-必填参数：cell_id
 
 **返回数据展示：**
 
@@ -119,94 +92,12 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 作品评论列表 |
 
 ---
 
-## 工
-
-### 生成短连接/Generate short URL
-
-`GET /api/v1/pipixia/app/fetch_short_url`
-必填参数：original_url
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-## 搜
-
-### 获取热搜词条/Get hot search words
-
-`GET /api/v1/pipixia/app/fetch_hot_search_words`
-无必填参数
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取热搜榜单列表/Get hot search board list
-
-`GET /api/v1/pipixia/app/fetch_hot_search_board_list`
-无必填参数
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取热搜榜单详情/Get hot search board detail
-
-`GET /api/v1/pipixia/app/fetch_hot_search_board_detail`
-必填参数：block_type
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
+> 该分类下还有 12 个API，详见 api-catalog.md
 
 ## 错误回复
 
@@ -217,7 +108,3 @@
 | 错误码 | {{code}} |
 | 错误信息 | {{message}} |
 | 解决方法 | {{solution}} |
-
-{{#retryable}}
-💡 可以稍后重试（建议等待{{retryDelay}}秒）
-{{/retryable}}

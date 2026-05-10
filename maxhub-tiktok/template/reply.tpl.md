@@ -1,31 +1,10 @@
 # 🎶 TikTok数据采集与分析 回复模板
 
-## 数
+## TikTok Web
 
-### 获取单个作品数据/Get single video data
+### Tag作品/Tag Post
 
-`GET /api/v1/tiktok/web/fetch_post_detail`
-必填参数：itemId
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取单个作品数据 V2/Get single video data V2
-
-`GET /api/v1/tiktok/web/fetch_post_detail_v2`
-必填参数：itemId
+`GET /api/v1/tiktok/web/fetch_tag_post`
 
 **返回数据展示：**
 
@@ -37,15 +16,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | Tag作品 |
 
 ---
 
-### 获取探索作品数据/Get explore video data
+### Tag详情/Tag Detail
 
-`GET /api/v1/tiktok/web/fetch_explore_post`
-无必填参数
+`GET /api/v1/tiktok/web/fetch_tag_detail`
 
 **返回数据展示：**
 
@@ -57,17 +35,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | Tag详情 |
 
 ---
 
-## 搜
+### TikTok直播间弹幕参数获取/tiktok live room danmaku parameters
 
-### 获取每日趋势搜索关键词/Get daily trending search wo
-
-`GET /api/v1/tiktok/web/fetch_trending_searchwords`
-无必填参数
+`GET /api/v1/tiktok/web/fetch_live_im_fetch`
 
 **返回数据展示：**
 
@@ -79,15 +54,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 弹幕参数数据 |
 
 ---
 
-### 获取综合搜索列表/Get general search list
+### 加密strData/Encrypt strData
 
-`GET /api/v1/tiktok/web/fetch_general_search`
-必填参数：keyword
+`GET /api/v1/tiktok/web/encrypt_strData`
 
 **返回数据展示：**
 
@@ -99,15 +73,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 加密后的strData |
 
 ---
 
-### 搜索关键字推荐/Search keyword suggest
+### 批量直播间开播状态检测/Batch live room start status check
 
-`GET /api/v1/tiktok/web/fetch_search_keyword_suggest`
-必填参数：keyword
+`GET /api/v1/tiktok/web/fetch_batch_check_live_alive`
 
 **返回数据展示：**
 
@@ -119,258 +92,12 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 批量直播间开播状态列表 |
 
 ---
 
-## 互
-
-### 获取用户的点赞列表/Get user likes
-
-`GET /api/v1/tiktok/web/fetch_user_like`
-必填参数：secUid
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取用户的收藏列表/Get user favorites
-
-`GET /api/v1/tiktok/web/fetch_user_collect`
-必填参数：cookie, secUid
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取作品的评论列表/Get video comments
-
-`GET /api/v1/tiktok/web/fetch_post_comment`
-必填参数：aweme_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-## 工
-
-### 生成 XBogus/Generate XBogus
-
-`POST /api/v1/tiktok/web/generate_xbogus`
-无必填参数
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 生成哈希ID/Generate hashed ID
-
-`GET /api/v1/tiktok/web/generate_hashed_id`
-必填参数：email
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 生成TikTok分享链接，唤起TikTok APP，跳转指定作品详情页/Gene
-
-`GET /api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail`
-必填参数：aweme_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-## 内
-
-### 提取用户user_id/Extract user user_id
-
-`GET /api/v1/tiktok/web/get_user_id`
-必填参数：url
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 提取用户sec_user_id/Extract user sec_user_id
-
-`GET /api/v1/tiktok/web/get_sec_user_id`
-必填参数：url
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 提取列表用户sec_user_id/Extract list user sec_
-
-`POST /api/v1/tiktok/web/get_all_sec_user_id`
-无必填参数
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-## 创
-
-### 获取带货创作者信息/Get shopping creator informati
-
-`GET /api/v1/tiktok/app/v3/fetch_creator_info`
-必填参数：creator_uid
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取创作者橱窗商品列表/Get creator showcase product
-
-`GET /api/v1/tiktok/app/v3/fetch_creator_showcase_product_list`
-必填参数：kol_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取创作者账号健康状态/Get Creator Account Health S
-
-`POST /api/v1/tiktok/creator/get_account_health_status`
-无必填参数
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
+> 该分类下还有 53 个API，详见 api-catalog.md
 
 ## 错误回复
 
@@ -381,7 +108,3 @@
 | 错误码 | {{code}} |
 | 错误信息 | {{message}} |
 | 解决方法 | {{solution}} |
-
-{{#retryable}}
-💡 可以稍后重试（建议等待{{retryDelay}}秒）
-{{/retryable}}

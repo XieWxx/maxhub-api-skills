@@ -1,11 +1,10 @@
 # 📺 B站数据采集与分析 回复模板
 
-## 数
+## Bilibili Web
 
-### 获取单个视频详情信息/Get single video data
+### 提取用户ID/Extract user ID
 
-`GET /api/v1/bilibili/web/fetch_one_video`
-必填参数：bv_id
+`GET /api/v1/bilibili/web/fetch_get_user_id`
 
 **返回数据展示：**
 
@@ -17,15 +16,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 用户ID |
 
 ---
 
-### 获取单个视频详情信息V2/Get single video data V2
+### 获取UP主状态统计/Get UP stat (total likes and views)
 
-`GET /api/v1/bilibili/web/fetch_one_video_v2`
-必填参数：a_id, c_id
+`GET /api/v1/bilibili/web/fetch_user_up_stat`
 
 **返回数据展示：**
 
@@ -37,15 +35,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | UP主状态统计数据 |
 
 ---
 
-### 获取单个视频详情信息V3/Get single video data V3
+### 获取动态详情/Get dynamic detail
 
-`GET /api/v1/bilibili/web/fetch_one_video_v3`
-必填参数：url
+`GET /api/v1/bilibili/web/fetch_dynamic_detail`
 
 **返回数据展示：**
 
@@ -57,17 +54,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 动态详情数据 |
 
 ---
 
-## 搜
+### 获取动态详情v2/Get dynamic detail v2
 
-### 获取热门搜索信息/Get hot search data
-
-`GET /api/v1/bilibili/web/fetch_hot_search`
-必填参数：limit
+`GET /api/v1/bilibili/web/fetch_dynamic_detail_v2`
 
 **返回数据展示：**
 
@@ -79,15 +73,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 动态详情数据 |
 
 ---
 
-### 获取综合搜索信息/Get general search data
+### 获取单个视频播放信息/Get single video play info
 
-`GET /api/v1/bilibili/web/fetch_general_search`
-必填参数：keyword, order, page, page_size
+`GET /api/v1/bilibili/web/fetch_video_play_info`
 
 **返回数据展示：**
 
@@ -99,15 +92,37 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 视频播放信息 |
+
+---
+
+> 该分类下还有 25 个API，详见 api-catalog.md
+
+## Bilibili App
+
+### 分类搜索/ search by type
+
+`GET /api/v1/bilibili/app/fetch_search_by_type`
+
+**返回数据展示：**
+
+| 字段 | 说明 |
+|:---|:---|
+| ID | 内容唯一标识 |
+| 标题 | 内容标题/描述 |
+| 作者 | 创作者昵称 |
+| 播放量 | 播放/浏览次数 |
+| 点赞数 | 点赞/喜欢次数 |
+| 评论数 | 评论条数 |
+| 发布时间 | 内容创建时间 |
+| 数据说明 | 搜索结果 |
 
 ---
 
 ### 综合搜索/search all
 
 `GET /api/v1/bilibili/app/fetch_search_all`
-必填参数：keyword
 
 **返回数据展示：**
 
@@ -119,17 +134,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 搜索结果，包含nav（分类导航）、item（搜索结果）、pagination（分页信息）等 |
 
 ---
 
-## 互
+### 获取主页推荐视频流/Get home feed
 
-### 获取指定视频的评论/Get comments on the specified
-
-`GET /api/v1/bilibili/web/fetch_video_comments`
-必填参数：bv_id
+`GET /api/v1/bilibili/app/fetch_home_feed`
 
 **返回数据展示：**
 
@@ -141,15 +153,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 推荐视频流数据 |
 
 ---
 
-### 获取视频下指定评论的回复/Get reply to the specified
+### 获取二级评论回复/Get reply detail
 
-`GET /api/v1/bilibili/web/fetch_comment_reply`
-必填参数：bv_id, rpid
+`GET /api/v1/bilibili/app/fetch_reply_detail`
 
 **返回数据展示：**
 
@@ -161,15 +172,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 二级评论列表数据 |
 
 ---
 
-### 获取视频评论列表/Get video comments
+### 获取单个视频详情信息/Get single video data
 
-`GET /api/v1/bilibili/app/fetch_video_comments`
-无必填参数
+`GET /api/v1/bilibili/app/fetch_one_video`
 
 **返回数据展示：**
 
@@ -181,54 +191,12 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 视频详情信息 |
 
 ---
 
-## 工
-
-### 通过bv号获得视频aid号/Generate aid by bvid
-
-`GET /api/v1/bilibili/web/bv_to_aid`
-必填参数：bv_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-## 内
-
-### 提取用户ID/Extract user ID
-
-`GET /api/v1/bilibili/web/fetch_get_user_id`
-必填参数：share_link
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
+> 该分类下还有 6 个API，详见 api-catalog.md
 
 ## 错误回复
 
@@ -239,7 +207,3 @@
 | 错误码 | {{code}} |
 | 错误信息 | {{message}} |
 | 解决方法 | {{solution}} |
-
-{{#retryable}}
-💡 可以稍后重试（建议等待{{retryDelay}}秒）
-{{/retryable}}

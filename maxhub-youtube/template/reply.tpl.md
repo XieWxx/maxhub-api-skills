@@ -1,31 +1,10 @@
 # ▶️ YouTube数据采集与分析 回复模板
 
-## 数
+## YouTube Web
 
-### 获取视频信息 V1/Get video information V1
+### YouTube Shorts短视频搜索/YouTube Shorts search
 
-`GET /api/v1/youtube/web/get_video_info`
-必填参数：video_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取视频信息 V2/Get video information V2
-
-`GET /api/v1/youtube/web/get_video_info_v2`
-必填参数：video_id
+`GET /api/v1/youtube/web/get_shorts_search`
 
 **返回数据展示：**
 
@@ -37,15 +16,13 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
 
 ---
 
-### 获取视频详情 V3/Get video information V3
+### 从频道ID获取频道URL/Get channel URL from channel ID
 
-`GET /api/v1/youtube/web/get_video_info_v3`
-必填参数：video_id
+`GET /api/v1/youtube/web/get_channel_url`
 
 **返回数据展示：**
 
@@ -57,17 +34,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | channel_id: 频道ID |
 
 ---
 
-## 互
+### 从频道URL获取频道ID V2/Get channel ID from URL V2
 
-### 获取视频评论/Get video comments
-
-`GET /api/v1/youtube/web/get_video_comments`
-必填参数：video_id
+`GET /api/v1/youtube/web/get_channel_id_v2`
 
 **返回数据展示：**
 
@@ -79,57 +53,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | channel_id: 频道ID（如：UCeu6U67OzJhV1KwBansH3Dg） |
 
 ---
-
-### 获取视频二级评论/Get video sub comments
-
-`GET /api/v1/youtube/web/get_video_comment_replies`
-必填参数：continuation_token
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取视频评论/Get video comments
-
-`GET /api/v1/youtube/web_v2/get_video_comments`
-必填参数：video_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-## 搜
 
 ### 搜索视频/Search video
 
 `GET /api/v1/youtube/web/search_video`
-必填参数：search_query
 
 **返回数据展示：**
 
@@ -141,15 +72,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 搜索结果。 |
 
 ---
 
-### 综合搜索（支持过滤条件）/General search with filters
+### 搜索频道/Search channel
 
-`GET /api/v1/youtube/web/get_general_search`
-必填参数：search_query
+`GET /api/v1/youtube/web/search_channel`
 
 **返回数据展示：**
 
@@ -161,30 +91,12 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 搜索结果。 |
 
 ---
 
-### YouTube Shorts短视频搜索/YouTube Shorts searc
-
-`GET /api/v1/youtube/web/get_shorts_search`
-必填参数：search_query
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
+> 该分类下还有 16 个API，详见 api-catalog.md
 
 ## 错误回复
 
@@ -195,7 +107,3 @@
 | 错误码 | {{code}} |
 | 错误信息 | {{message}} |
 | 解决方法 | {{solution}} |
-
-{{#retryable}}
-💡 可以稍后重试（建议等待{{retryDelay}}秒）
-{{/retryable}}

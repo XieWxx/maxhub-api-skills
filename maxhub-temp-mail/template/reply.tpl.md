@@ -1,11 +1,10 @@
 # 📧 临时邮箱服务 回复模板
 
-## 数
+## Temp Mail
 
-### Get Temp Email
+### Get Email By Id
 
-`GET /api/v1/temp_mail/v1/get_temp_email_address`
-无必填参数
+`GET /api/v1/temp_mail/v1/get_email_by_id`
 
 **返回数据展示：**
 
@@ -17,15 +16,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 邮件数据 |
 
 ---
 
 ### Get Emails
 
 `GET /api/v1/temp_mail/v1/get_emails_inbox`
-必填参数：token
 
 **返回数据展示：**
 
@@ -37,15 +35,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | emails: 邮件列表 |
 
 ---
 
-### Get Email By Id
+### Get Temp Email
 
-`GET /api/v1/temp_mail/v1/get_email_by_id`
-必填参数：token, message_id
+`GET /api/v1/temp_mail/v1/get_temp_email_address`
 
 **返回数据展示：**
 
@@ -57,8 +54,8 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | domain: 邮箱域名 |
 
 ---
 
@@ -71,7 +68,3 @@
 | 错误码 | {{code}} |
 | 错误信息 | {{message}} |
 | 解决方法 | {{solution}} |
-
-{{#retryable}}
-💡 可以稍后重试（建议等待{{retryDelay}}秒）
-{{/retryable}}

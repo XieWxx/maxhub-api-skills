@@ -1,6 +1,6 @@
 ---
 name: maxhub-sora2
-description: Sora2平台公开内容浏览与用户信息查询。当用户提到sora、sora2、ai视频等相关需求时激活此Skill。
+description: Sora2内容浏览。当用户提到sora、sora2、ai视频等相关需求时激活此Skill。
 version: 2.0.0
 author: MaxHub Team
 license: MIT
@@ -41,22 +41,6 @@ metadata:
     - 视频创作者
     - sora搜索
 ---
-# 🎥 Sora2内容浏览
-
-## 🎯 我能做什么
-
-以下是你可以用自然语言向我提问的真实场景：
-
-### 浏览Sora2内容
-
-**你说：** `Browse Sora2 AI video creations`
-
-**我返回：** 返回内容列表，包含标题、作者、点赞数
-
-> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
-
----
-
 
 # 🎥 Sora2内容浏览
 
@@ -74,202 +58,38 @@ metadata:
 
 ---
 
+## 🔑 认证方式
 
-# 🤖 Sora2 Skill
+本 Skill 需要通过 MaxHub API Key 进行认证：
 
-你是Sora2平台的数据专家。你精通Sora2平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。
+1. 访问 [MaxHub API](https://www.aconfig.cn) 注册账号
+2. 在用户中心创建 API Key
+3. 将 API Key 配置到环境变量 `MAXHUB_API_KEY`
 
-## 认证方式 / Authentication Method
+> 新用户注册即赠送 ¥0.10 体验金
 
-所有API请求通过MaxHub API中转站调用，需在请求头中携带API Key：
+---
 
-```
-x-api-key: ${MAXHUB_API_KEY}
-```
+## 📋 API 能力概览
 
-基础URL：`${MAXHUB_BASE_URL}`（默认 https://www.aconfig.cn）
+共 **0** 个 API，覆盖以下能力：
 
-## API能力全景 / API Capabilities Overview
+---
 
-本Skill掌握Sora2 **13个API**，覆盖5大能力域：
+## ⚠️ 常见错误
 
-| 能力域 | API数量 | 核心能力 |
-|--------|---------|----------|
-| 信息查询 | 5 | 获取作品详情、获取用户信息、获取用户帖子列表、获取用户Cameo列表、获取Feed流 |
-| 互动数据 | 4 | 获取评论、获取回复、获取粉丝列表、获取关注列表 |
-| 创作者排行 | 1 | 获取Cameo达人排行榜 |
-| 搜索查询 | 1 | 搜索用户 |
-| 内容解析 | 2 | 获取视频信息、获取Remix列表 |
+| 错误码 | 原因 | 解决方法 |
+|:---|:---|:---|
+| 401 | API Key无效或未配置 | 访问 https://www.aconfig.cn 创建API Key |
+| 402 | 账户余额不足 | 访问 https://www.aconfig.cn 充值 |
+| 429 | 请求频率超限 | 等待30秒后重试 |
+| 404 | API端点不存在 | 检查API路径是否正确 |
 
+---
 
+## 🔒 安全声明
 
-## 🚀 快速开始 / Quick Start
-
-### 首次使用 / First Time Use
-
-如果您是第一次使用本 Skill，请先完成以下步骤：
-
-1. 访问 [MaxHub 官网](https://www.aconfig.cn) 注册账号
-2. 在控制台创建 API Key
-3. 将 API Key 配置到环境变量 `MAXHUB_API_KEY` 中
-
-### API 调用格式 / API Call Format
-
-所有 API 请求直接使用原始接口路径，无需额外前缀：
-
-```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/sora2/get_user_profile?user_id=USER_ID" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-
-### 认证说明 / Authentication Instructions
-
-所有 API 请求需在请求头中携带 API Key：
-- 请求头：`x-api-key: $MAXHUB_API_KEY`
-- 在 [MaxHub 官网](https://www.aconfig.cn) 注册并获取 API Key
-
-
-### 🔒 安全声明 / Security Statement
-
-- 本Skill **仅** 通过MaxHub API获取Sora2平台已公开的信息 / This Skill **only** fetches publicly available information from Sora2 via MaxHub API，不访问用户本地文件系统
-- API Key 通过环境变量 / API Key is passed via environment variable `MAXHUB_API_KEY` 安全传递，**不会** 被存储、记录或转发到第三方
-- 所有API请求均通过HTTPS加密传输 / All API requests are encrypted via HTTPS
-- 本Skill **不会** 读取浏览器Cookie / This Skill **will not** read browser cookies、SSH密钥、AWS凭证等敏感信息
-- 本Skill **不会** 修改任何系统配置文件 / This Skill **will not** modify any system configuration files
-- 本Skill **不会** 下载、保存或分发任何视频内容 / This Skill **will not** download, save or distribute any video content
-- 本Skill **不会** 绕过任何平台安全机制 / This Skill **will not** bypass any platform security mechanisms
-- 本Skill **不会** 自动生成或创建视频内容 / This Skill **will not** automatically generate or create video content
-
-
-## 智能调度规则 / Intelligent Scheduling Rules
-
-### 1. 意图识别 → API选择 / Intent Recognition → API Selection
-
-根据用户描述，按以下优先级匹配API：
-
-1. **精确匹配**：用户明确指定操作（如"搜索xxx的用户"→搜索API）
-2. **语义推断**：根据上下文推断意图（如"这个创作者有多少粉丝"→用户信息API）
-3. **默认兜底**：无法精确匹配时，优先使用搜索类API获取基础数据
-
-### 2. 链式调用策略 / Chain Call Strategy
-
-当单个API无法满足需求时，按以下模式链式调用：
-
-**模式A：搜索→详情 / Pattern A: Search → Details**
-```
-用户: "帮我找Sora2上关于美食的热门创作者"
-步骤1: 调用搜索API → 获取用户列表
-步骤2: 对每个用户调用详情API → 获取完整数据
-```
-
-**模式B：用户→内容 / Pattern B: User → Content**
-```
-用户: "分析这个Sora2创作者的内容数据"
-步骤1: 调用用户信息API → 获取用户ID和基础数据
-步骤2: 调用用户帖子列表API → 获取内容列表
-步骤3: 对关键作品调用详情API → 获取互动数据
-```
-
-### 3. 参数智能填充 / Intelligent Parameter Filling
-
-- 必填参数缺失时，主动向用户询问
-- 可选参数根据上下文智能推断默认值
-- 分页参数自动管理（首次page=1，根据需要自动翻页）
-
-
-## ⚡ 调用限制 / Rate Limits
-
-为保护用户账户安全和控制费用，本Skill遵循以下限制：
-
-| 限制项 / Limit Item | 默认值 / Default | 说明 / Description |
-|--------|--------|------|
-| 单次最大翻页数 / Max Pages | 5页 / pages | 防止意外大量调用 |
-| 单次最大返回条数 / Max Results | 50条 / items | 控制数据量 |
-| 链式调用最大深度 / Max Chain Depth | 3层 / layers | 防止无限递归 |
-| 批量操作最大数量 / Max Batch Size | 10条 / items | 控制批量大小 |
-| 费用提醒阈值 / Cost Alert Threshold | 连续调用超过20次时提醒 | 避免意外消耗余额 |
-
-**重要规则 / Important Rules:**
-- 每次调用前检查账户余额是否充足 / Check account balance before each call
-- 翻页超过5页时必须提醒用户并确认 / Must remind and confirm with user when pagination exceeds 5 pages
-- 批量操作前必须告知用户预计调用次数和费用 / Must inform user of estimated calls and costs before batch operations
-- 不自动执行可能产生大量费用的操作 / Will not automatically execute operations that may incur high costs
-
-## API详细目录 / API Detailed Catalog
-
-### 信息查询
-
-1. **获取单一作品详情/Fetch single post detail**
-   - `GET /api/v1/sora2/get_post_detail`
-2. **获取用户信息档案/Fetch user profile**
-   - `GET /api/v1/sora2/get_user_profile`（必填: user_id）
-3. **获取用户发布的帖子列表/Fetch user posts**
-   - `GET /api/v1/sora2/get_user_posts`（必填: user_id）
-4. **获取用户Cameo出镜秀列表/Fetch user cameo appearances**
-   - `GET /api/v1/sora2/get_user_cameo_appearances`（必填: user_id）
-5. **获取Feed流（热门/推荐视频）/Fetch feed**
-   - `GET /api/v1/sora2/get_feed`
-
-### 内容解析
-
-1. **获取视频信息/Fetch video info**
-   - `GET /api/v1/sora2/get_video_download_info`
-2. **获取作品的 Remix 列表/Fetch post remix list**
-   - `GET /api/v1/sora2/get_post_remix_list`
-
-### 互动数据
-
-1. **获取作品一级评论/Fetch post comments**
-   - `GET /api/v1/sora2/get_post_comments`（必填: post_id）
-2. **获取评论的回复/Fetch comment replies**
-   - `GET /api/v1/sora2/get_comment_replies`（必填: comment_id）
-3. **获取用户粉丝列表/Fetch user followers**
-   - `GET /api/v1/sora2/get_user_followers`（必填: user_id）
-4. **获取用户关注列表/Fetch user following**
-   - `GET /api/v1/sora2/get_user_following`（必填: user_id）
-
-### 创作者排行
-
-1. **获取 Cameo 出镜秀达人排行榜/Fetch Cameo leaderboard**
-   - `GET /api/v1/sora2/get_cameo_leaderboard`
-
-### 搜索查询
-
-1. **搜索用户/Search users**
-   - `GET /api/v1/sora2/search_users`（必填: username）
-
-## 调用示例 / API Call Examples
-
-### 基础调用 / Basic Call
-
-```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/sora2/get_user_profile?user_id=USER_ID" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json"
-```
-
-
-### 带参数调用 / Call with Parameters
-
-```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/sora2/search_users?username=creator_name" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-### POST请求 / POST Request
-
-```bash
-curl -X POST "${MAXHUB_BASE_URL}/api/v1/sora2/get_post_comments" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"post_id": "xxx"}'
-```
-
-## 注意事项 / Important Notes
-
-- 所有请求必须携带有效的MaxHub API Key / All requests must carry a valid MaxHub API Key
-- API调用按次计费，注意控制调用次数 / API calls are billed per use, pay attention to call frequency
-- 遵守平台数据使用规范，仅查询已公开的信息 / Follow platform data usage guidelines, only query publicly available information
-- 分页数据建议逐页获取，避免一次性请求过多 / For paginated data, fetch page by page to avoid requesting too much at once
-- 高频调用注意限流（默认60次/分钟）/ Pay attention to rate limiting for high-frequency calls (default 60 calls/minute)
+- 本 Skill **仅** 获取平台已公开的信息
+- API Key 通过环境变量安全传递，**不会** 被存储或转发
+- 所有请求均通过 HTTPS 加密传输
+- 本 Skill **不会** 读取浏览器 Cookie 或其他敏感信息

@@ -1,31 +1,10 @@
 # 💡 知乎数据采集与分析 回复模板
 
-## 数
+## Zhihu Web
 
-### 获取知乎专栏文章列表/Get Zhihu Column Articles
+### 知乎搜索预测词/Get Zhihu Search Suggest
 
-`GET /api/v1/zhihu/web/fetch_column_articles`
-必填参数：column_id
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取知乎专栏文章详情/Get Zhihu Column Article Deta
-
-`GET /api/v1/zhihu/web/fetch_column_article_detail`
-必填参数：article_id
+`GET /api/v1/zhihu/web/fetch_search_suggest`
 
 **返回数据展示：**
 
@@ -37,15 +16,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 知乎搜索预测词 |
 
 ---
 
-### 获取知乎相似专栏推荐/Get Zhihu Similar Column Reco
+### 获取知乎AI搜索/Get Zhihu AI Search
 
-`GET /api/v1/zhihu/web/fetch_column_recommend`
-必填参数：article_id
+`GET /api/v1/zhihu/web/fetch_ai_search`
 
 **返回数据展示：**
 
@@ -57,17 +35,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 知乎AI搜索消息ID，用于请求搜索结果 |
 
 ---
 
-## 互
+### 获取知乎AI搜索结果/Get Zhihu AI Search Result
 
-### 获取知乎专栏评论区配置/Get Zhihu Column Comment Con
-
-`GET /api/v1/zhihu/web/fetch_column_comment_config`
-必填参数：article_id
+`GET /api/v1/zhihu/web/fetch_ai_search_result`
 
 **返回数据展示：**
 
@@ -79,15 +54,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 知乎AI搜索结果 |
 
 ---
 
-### 获取知乎评论区V5/Get Zhihu Comment V5
+### 获取知乎专栏搜索V3/Get Zhihu Column Search V3
 
-`GET /api/v1/zhihu/web/fetch_comment_v5`
-必填参数：answer_id
+`GET /api/v1/zhihu/web/fetch_column_search_v3`
 
 **返回数据展示：**
 
@@ -99,15 +73,14 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 知乎专栏搜索V3 |
 
 ---
 
-### 获取知乎子评论区V5/Get Zhihu Sub Comment V5
+### 获取知乎专栏文章互动关系/Get Zhihu Column Article Relationship
 
-`GET /api/v1/zhihu/web/fetch_sub_comment_v5`
-必填参数：comment_id
+`GET /api/v1/zhihu/web/fetch_column_relationship`
 
 **返回数据展示：**
 
@@ -119,72 +92,12 @@
 | 播放量 | 播放/浏览次数 |
 | 点赞数 | 点赞/喜欢次数 |
 | 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
 | 发布时间 | 内容创建时间 |
+| 数据说明 | 知乎专栏互动关系 |
 
 ---
 
-## 搜
-
-### 获取知乎文章搜索V3/Get Zhihu Article Search V3
-
-`GET /api/v1/zhihu/web/fetch_article_search_v3`
-必填参数：keyword
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取知乎用户搜索V3/Get Zhihu User Search V3
-
-`GET /api/v1/zhihu/web/fetch_user_search_v3`
-必填参数：keyword
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
-
-### 获取知乎话题搜索V3/Get Zhihu Topic Search V3
-
-`GET /api/v1/zhihu/web/fetch_topic_search_v3`
-必填参数：keyword
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 分享数 | 分享次数 |
-| 发布时间 | 内容创建时间 |
-
----
+> 该分类下还有 29 个API，详见 api-catalog.md
 
 ## 错误回复
 
@@ -195,7 +108,3 @@
 | 错误码 | {{code}} |
 | 错误信息 | {{message}} |
 | 解决方法 | {{solution}} |
-
-{{#retryable}}
-💡 可以稍后重试（建议等待{{retryDelay}}秒）
-{{/retryable}}

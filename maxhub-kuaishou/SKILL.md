@@ -1,6 +1,6 @@
 ---
 name: maxhub-kuaishou
-description: 快手短视频、直播与电商数据采集。当用户提到快手、kuaishou、快手视频等相关需求时激活此Skill。
+description: 快手数据采集与分析。当用户提到快手、kuaishou、快手视频等相关需求时激活此Skill。
 version: 2.0.0
 author: MaxHub Team
 license: MIT
@@ -41,28 +41,6 @@ metadata:
     - 快手直播
     - 快手电商
 ---
-# 🎬 快手数据采集与分析
-
-## 🎯 我能做什么
-
-以下是你可以用自然语言向我提问的真实场景：
-
-### 搜索快手视频
-
-**你说：** `搜索快手上的美食视频`
-
-**我返回：** 返回视频列表，包含标题、作者、播放量
-
-### 查看直播数据
-
-**你说：** `这个快手直播间数据`
-
-**我返回：** 返回直播间信息，包含观看人数、点赞数
-
-> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
-
----
-
 
 # 🎬 快手数据采集与分析
 
@@ -76,271 +54,74 @@ metadata:
 
 **我返回：** 返回视频列表，包含标题、作者、播放量
 
-### 查看直播数据
-
-**你说：** `这个快手直播间数据`
-
-**我返回：** 返回直播间信息，包含观看人数、点赞数
-
 > 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
 
 ---
 
-
-# 🎬 快手（Kuaishou）Skill
-
-你是快手平台的数据专家。你精通快手平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。
-
-## 认证方式 / Authentication Method
-
-所有API请求通过MaxHub API中转站调用，需在请求头中携带API Key：
-
-```
-x-api-key: ${MAXHUB_API_KEY}
-```
-
-基础URL：`${MAXHUB_BASE_URL}`（默认 https://www.aconfig.cn）
-
-## API能力全景 / API Capabilities Overview
-
-本Skill掌握快手 **33个API**，覆盖4大能力域：
-
-| 能力域 | API数量 | 核心能力 |
-|--------|---------|----------|
-| 数据采集 | 23 | 获取单个作品数据 V1/Get sing、获取单个作品数据 V2/Get sing、获取用户发布作品/Fetch user  |
-| 互动操作 | 3 | 获取作品二级评论/Fetch video、获取单个作品评论数据/Get singl、获取作品一级评论/Fetch video |
-| 工具服务 | 2 | 生成快手分享链接/Generate Ku、生成分享短连接/Generate sha |
-| 搜索查询 | 5 | 搜索视频V2/Search video 、快手批量视频查询接口/Kuaishou 、综合搜索/Comprehensive s |
-
-
-
-## 🚀 快速开始 / Quick Start
-
-### 首次使用 / First Time Use
-
-如果您是第一次使用本 Skill，请先完成以下步骤：
-
-1. 访问 [MaxHub 官网](https://www.aconfig.cn) 注册账号
-2. 在控制台创建 API Key
-3. 将 API Key 配置到环境变量 `MAXHUB_API_KEY` 中
-
-### API 调用格式 / API Call Format
-
-所有 API 请求直接使用原始接口路径，无需额外前缀：
-
-```bash
-# 基本调用格式
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/{platform}/web/fetch_data" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-
-### 认证说明 / Authentication Instructions
-
-所有 API 请求需在请求头中携带 API Key：
-- 请求头：`x-api-key: $MAXHUB_API_KEY`
-- 在 [MaxHub 官网](https://www.aconfig.cn) 注册并获取 API Key
-
-
-### 🔒 安全声明 / Security Statement
-
-- 本Skill **仅** 通过MaxHub API获取公开数据 / This Skill **only** fetches public data via MaxHub API，不访问用户本地文件系统
-- API Key 通过环境变量 / API Key is passed via environment variable `MAXHUB_API_KEY` 安全传递，**不会** 被存储、记录或转发到第三方
-- 所有API请求均通过HTTPS加密传输 / All API requests are encrypted via HTTPS
-- 本Skill **不会** 读取浏览器Cookie / This Skill **will not** read browser cookies、SSH密钥、AWS凭证等敏感信息
-- 本Skill **不会** 修改任何系统配置文件 / This Skill **will not** modify any system configuration files
-
-
-## 智能调度规则 / Intelligent Scheduling Rules
-
-### 1. 意图识别 → API选择 / Intent Recognition → API Selection
-
-根据用户描述，按以下优先级匹配API：
-
-1. **精确匹配**：用户明确指定操作（如"搜索xxx的视频"→搜索API）
-2. **语义推断**：根据上下文推断意图（如"这个博主有多少粉丝"→用户信息API）
-3. **默认兜底**：无法精确匹配时，优先使用搜索类API获取基础数据
-
-### 2. 链式调用策略 / Chain Call Strategy
-
-当单个API无法满足需求时，按以下模式链式调用：
-
-**模式A：搜索→详情 / Pattern A: Search → Details**
-```
-用户: "帮我找快手上关于美食的热门内容"
-步骤1: 调用搜索API → 获取内容ID列表
-步骤2: 对每个ID调用详情API → 获取完整数据
-```
-
-**模式B：用户→内容 / Pattern B: User → Content**
-```
-用户: "分析这个快手博主的内容数据"
-步骤1: 调用用户信息API → 获取用户ID和基础数据
-步骤2: 调用用户作品列表API → 获取内容列表
-步骤3: 对关键作品调用详情API → 获取互动数据
-```
-
-**模式C：搜索→用户→分析 / Pattern C: Search → User → Analysis**
-```
-用户: "找快手美妆领域的头部达人"
-步骤1: 调用搜索API → 获取相关用户
-步骤2: 对每个用户调用详情API → 获取粉丝数等
-步骤3: 调用分析/榜单API → 交叉验证排名
-步骤4: 综合排序 → 输出Top达人列表
-```
-
-### 3. 参数智能填充 / Intelligent Parameter Filling
-
-- 必填参数缺失时，主动向用户询问
-- 可选参数根据上下文智能推断默认值
-- 分页参数自动管理（首次page=1，根据需要自动翻页）
-
-
-## ⚡ 调用限制 / Rate Limits
-
-为保护用户账户安全和控制费用，本Skill遵循以下限制：
-
-| 限制项 / Limit Item | 默认值 / Default | 说明 / Description |
-|--------|--------|------|
-| 单次最大翻页数 / Max Pages | 5页 / pages | 防止意外大量调用 |
-| 单次最大返回条数 / Max Results | 50条 / items | 控制数据量 |
-| 链式调用最大深度 / Max Chain Depth | 3层 / layers | 防止无限递归 |
-| 批量操作最大数量 / Max Batch Size | 10条 / items | 控制批量大小 |
-| 费用提醒阈值 / Cost Alert Threshold | 连续调用超过20次时提醒 | 避免意外消耗余额 |
-
-**重要规则 / Important Rules:**
-- 每次调用前检查账户余额是否充足 / Check account balance before each call
-- 翻页超过5页时必须提醒用户并确认 / Must remind and confirm with user when pagination exceeds 5 pages
-- 批量操作前必须告知用户预计调用次数和费用 / Must inform user of estimated calls and costs before batch operations
-- 不自动执行可能产生大量费用的操作 / Will not automatically execute operations that may incur high costs
-
-## API详细目录 / API Detailed Catalog
-
-### 数据采集
-
-1. **获取单个作品数据 V1/Get single video data V1**
-   - `GET /api/v1/kuaishou/web/fetch_one_video`（必填: share_text）
-2. **获取单个作品数据 V2/Get single video data V2**
-   - `GET /api/v1/kuaishou/web/fetch_one_video_v2`（必填: photo_id）
-3. **链接获取作品数据/Fetch single video by URL**
-   - `GET /api/v1/kuaishou/web/fetch_one_video_by_url`（必填: url）
-4. **获取用户信息/Fetch user info**
-   - `GET /api/v1/kuaishou/web/fetch_user_info`（必填: user_id）
-5. **获取用户发布作品/Fetch user posts**
-   - `GET /api/v1/kuaishou/web/fetch_user_post`（必填: user_id）
-6. **获取用户直播回放/Fetch user live replay**
-   - `GET /api/v1/kuaishou/web/fetch_user_live_replay`（必填: user_id）
-7. **获取用户收藏作品/Fetch user collect**
-   - `GET /api/v1/kuaishou/web/fetch_user_collect`（必填: user_id）
-8. **获取快手热榜 V1/Fetch Kuaishou Hot List V1**
-   - `GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1`
-9. **获取快手热榜 V2/Fetch Kuaishou Hot List V2**
-   - `GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2`
-10. **获取用户ID/Fetch user ID**
-   - `GET /api/v1/kuaishou/web/fetch_get_user_id`（必填: share_link）
-11. **视频详情V1/Video detailsV1**
-   - `GET /api/v1/kuaishou/app/fetch_one_video`（必填: photo_id）
-12. **根据链接获取单个作品数据/Fetch single video by URL**
-   - `GET /api/v1/kuaishou/app/fetch_one_video_by_url`（必填: share_text）
-13. **获取单个用户数据V2/Get single user data V2**
-   - `GET /api/v1/kuaishou/app/fetch_one_user_v2`（必填: user_id）
-14. **获取用户直播信息/Get user live info**
-   - `GET /api/v1/kuaishou/app/fetch_user_live_info`（必填: user_id）
-15. **获取用户热门作品数据/Get user hot post data**
-   - `GET /api/v1/kuaishou/app/fetch_user_hot_post`（必填: user_id）
-16. **用户视频列表V2/User video list V2**
-   - `GET /api/v1/kuaishou/app/fetch_user_post_v2`（必填: user_id）
-17. **快手热榜分类/Kuaishou hot categories**
-   - `GET /api/v1/kuaishou/app/fetch_hot_board_categories`
-18. **快手热榜详情/Kuaishou hot board detail**
-   - `GET /api/v1/kuaishou/app/fetch_hot_board_detail`
-19. **快手直播榜单/Kuaishou live top list**
-   - `GET /api/v1/kuaishou/app/fetch_live_top_list`
-20. **快手购物榜单/Kuaishou shopping top list**
-   - `GET /api/v1/kuaishou/app/fetch_shopping_top_list`
-21. **快手品牌榜单/Kuaishou brand top list**
-   - `GET /api/v1/kuaishou/app/fetch_brand_top_list`
-22. **获取魔法表情使用人数/Fetch magic face usage count**
-   - `GET /api/v1/kuaishou/app/fetch_magic_face_usage`（必填: magic_face_id）
-23. **获取魔法表情热门视频/Fetch magic face hot videos**
-   - `GET /api/v1/kuaishou/app/fetch_magic_face_hot`（必填: magic_face_id）
-
-### 互动操作
-
-1. **获取作品一级评论/Fetch video comments**
-   - `GET /api/v1/kuaishou/web/fetch_one_video_comment`（必填: photo_id）
-2. **获取作品二级评论/Fetch video sub comments**
-   - `GET /api/v1/kuaishou/web/fetch_one_video_sub_comment`（必填: photo_id, root_comment_id）
-3. **获取单个作品评论数据/Get single video comment data**
-   - `GET /api/v1/kuaishou/app/fetch_one_video_comment`（必填: photo_id）
-
-### 工具服务
-
-1. **生成分享短连接/Generate share short URL**
-   - `GET /api/v1/kuaishou/web/generate_share_short_url`（必填: photo_id）
-2. **生成快手分享链接/Generate Kuaishou share link**
-   - `GET /api/v1/kuaishou/app/generate_kuaishou_share_link`（必填: shareObjectId）
-
-### 搜索查询
-
-1. **快手批量视频查询接口/Kuaishou batch video query API**
-   - `GET /api/v1/kuaishou/app/fetch_videos_batch`（必填: photo_ids）
-2. **综合搜索/Comprehensive search**
-   - `GET /api/v1/kuaishou/app/search_comprehensive`（必填: keyword）
-3. **搜索视频V2/Search video V2**
-   - `GET /api/v1/kuaishou/app/search_video_v2`（必填: keyword）
-4. **搜索用户V2/Search user V2**
-   - `GET /api/v1/kuaishou/app/search_user_v2`（必填: keyword）
-5. **快手热搜人物榜单/Kuaishou hot search person board**
-   - `GET /api/v1/kuaishou/app/fetch_hot_search_person`
-
-## 调用示例 / API Call Examples
-
-### 基础调用 / Basic Call
-
-```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_hot_search_result" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json"
-```
-
-
-### 带参数调用 / Call with Parameters
-
-```bash
-curl -X GET "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_one_video?aweme_id=123456" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-### POST请求 / POST Request
-
-```bash
-curl -X POST "${MAXHUB_BASE_URL}/api/v1/douyin/web/fetch_user_like_videos" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"sec_user_id": "xxx"}'
-```
-
-### 带参数调用 / Call with Parameters
-
-```bash
-curl -X GET "BASE_URL/API_PATH?param1=value1&param2=value2" \
-  -H "x-api-key: $MAXHUB_API_KEY"
-```
-
-### POST请求 / POST Request
-
-```bash
-curl -X POST "BASE_URL/API_PATH" \
-  -H "x-api-key: $MAXHUB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
-```
-
-## 注意事项 / Important Notes
-
-- 所有请求必须携带有效的MaxHub API Key / All requests must carry a valid MaxHub API Key
-- API调用按次计费，注意控制调用次数 / API calls are billed per use, pay attention to call frequency
-- 遵守平台数据使用规范，不采集敏感个人隐私数据 / Follow platform data usage guidelines, do not collect sensitive personal privacy data
-- 分页数据建议逐页获取，避免一次性请求过多 / For paginated data, fetch page by page to avoid requesting too much at once
-- 高频调用注意限流（默认60次/分钟）/ Pay attention to rate limiting for high-frequency calls (default 60 calls/minute)
+## 🔑 认证方式
+
+本 Skill 需要通过 MaxHub API Key 进行认证：
+
+1. 访问 [MaxHub API](https://www.aconfig.cn) 注册账号
+2. 在用户中心创建 API Key
+3. 将 API Key 配置到环境变量 `MAXHUB_API_KEY`
+
+> 新用户注册即赠送 ¥0.10 体验金
+
+---
+
+## 📋 API 能力概览
+
+共 **33** 个 API，覆盖以下能力：
+
+### Kuaishou App（20个API）
+
+| API | 方法 | 必填参数 | 说明 |
+|:---|:---|:---|:---|
+| `app/fetch_brand_top_list` | GET | - | 快手品牌榜单 |
+| `app/fetch_videos_batch` | GET | - | 批量获取多个作品数据，单次请求最多支持40个视频ID。 |
+| `app/fetch_hot_search_person` | GET | - | 快手热搜人物榜单 |
+| `app/fetch_hot_board_categories` | GET | - | 快手热榜分类 |
+| `app/fetch_hot_board_detail` | GET | - | 快手热榜详情 |
+| `app/fetch_live_top_list` | GET | - | 快手直播榜单 |
+| `app/fetch_shopping_top_list` | GET | - | 快手购物榜单 |
+| `app/search_user_v2` | GET | - | 搜索用户 V2 |
+| `app/search_video_v2` | GET | - | 搜索视频 V2 |
+| `app/fetch_one_video_by_url` | GET | - | 根据链接获取单个作品数据，此接口默认使用价格更便宜的V1接口进行请求。 |
+| ... | | | 还有 10 个API |
+
+### Kuaishou Web（13个API）
+
+| API | 方法 | 必填参数 | 说明 |
+|:---|:---|:---|:---|
+| `web/generate_share_short_url` | GET | - | 生成分享短连接 |
+| `web/fetch_one_video_comment` | GET | - | 获取单个作品评论数据 |
+| `web/fetch_one_video_sub_comment` | GET | - | 获取单个作品二级评论数据 |
+| `web/fetch_one_video` | GET | - | 获取单个作品数据，此接口不支持图文作品。 |
+| `web/fetch_one_video_v2` | GET | - | 快手单一视频查询接口V2 |
+| `web/fetch_kuaishou_hot_list_v1` | GET | - | 获取快手热榜 V1 |
+| `web/fetch_kuaishou_hot_list_v2` | GET | - | 获取快手热榜 V2 |
+| `web/fetch_get_user_id` | GET | - | 通过用户分享链接获取用户ID |
+| `web/fetch_user_info` | GET | - | 获取用户信息 |
+| `web/fetch_user_post` | GET | - | 获取用户作品列表 |
+| ... | | | 还有 3 个API |
+
+---
+
+## ⚠️ 常见错误
+
+| 错误码 | 原因 | 解决方法 |
+|:---|:---|:---|
+| 401 | API Key无效或未配置 | 访问 https://www.aconfig.cn 创建API Key |
+| 402 | 账户余额不足 | 访问 https://www.aconfig.cn 充值 |
+| 429 | 请求频率超限 | 等待30秒后重试 |
+| 404 | API端点不存在 | 检查API路径是否正确 |
+
+---
+
+## 🔒 安全声明
+
+- 本 Skill **仅** 获取平台已公开的信息
+- API Key 通过环境变量安全传递，**不会** 被存储或转发
+- 所有请求均通过 HTTPS 加密传输
+- 本 Skill **不会** 读取浏览器 Cookie 或其他敏感信息
