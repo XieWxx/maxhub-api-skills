@@ -94,7 +94,7 @@ metadata:
 | `app/fetch_shopping_top_list` | GET | - | 快手购物榜单 |
 | `app/search_user_v2` | GET | - | 搜索用户 V2 |
 | `app/search_video_v2` | GET | - | 搜索视频 V2 |
-| `app/fetch_one_video_by_url` | GET | - | 根据链接获取单个作品数据，此接口默认使用价格更便宜的V1接口进行请求。 |
+| `app/fetch_one_video_by_url` | GET | - | 根据链接获取单个作品数据 |
 | ... | | | 还有 10 个API |
 
 **Kuaishou Web**（13个API）

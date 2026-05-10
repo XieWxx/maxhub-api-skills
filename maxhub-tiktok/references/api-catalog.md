@@ -29,7 +29,7 @@
 | 21 | 获取直播间首页推荐列表/Get live room homepage recom | GET | `/api/v1/tiktok/web/fetch_live_recommend` | related_live_tag |
 | 22 | 获取直播间礼物列表/Get live room gift list | GET | `/api/v1/tiktok/web/fetch_live_gift_list` | - |
 | 26 | 根据Gift ID查询礼物名称/Get gift name by gift ID | POST | `/api/v1/tiktok/web/fetch_gift_name_by_id` | - |
-| 27 | 批量查询Gift ID对应的礼物名称($0.025/次,建议50个)/Batch | POST | `/api/v1/tiktok/web/fetch_gift_names_by_ids` | - |
+| 27 | 批量查询Gift ID对应的礼物名称/Batch | POST | `/api/v1/tiktok/web/fetch_gift_names_by_ids` | - |
 | 30 | 获取单个作品数据/Get single video data | GET | `/api/v1/tiktok/app/v3/fetch_one_video` | aweme_id |
 | 31 | 获取单个作品数据 V2/Get single video data V2 | GET | `/api/v1/tiktok/app/v3/fetch_one_video_v2` | aweme_id |
 | 32 | 获取单个作品数据 V3(支持国家参数)/Get single video dat | GET | `/api/v1/tiktok/app/v3/fetch_one_video_v3` | aweme_id |
