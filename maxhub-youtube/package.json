@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-youtube",
+  "version": "2.0.0",
+  "description": "YouTube视频、频道、评论与播放列表数据采集Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "youtube",
+    "YouTube",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

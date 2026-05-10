@@ -1,19 +1,46 @@
 ---
 name: maxhub-zhihu
-description: 知乎/Zhihu平台知乎问答搜索、专栏文章与话题数据采集。当用户提到知乎、zhihu、问答、专栏、话题等相关需求时激活此Skill。
-version: 1.1.1
+description: 知乎问答搜索、专栏文章与话题数据采集。当用户提到知乎、zhihu、问答等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "知乎|zhihu|问答|专栏|话题|知乎搜索"
+categories:
+  - social-media
+  - data-collection
+  - knowledge-base
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "💡"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
-    - zhihu
     - 知乎
+    - zhihu
     - 问答
-    - 知识
-    - 数据采集
+    - 专栏
+    - 话题
+    - 知乎搜索
 ---
 # 💡 知乎（Zhihu）Skill
 

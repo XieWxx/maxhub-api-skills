@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MaxHub LinkedIn数据采集 Skill Schema",
+  "description": "LinkedIn数据采集 Skill入参出参结构校验",
+  "input": {
+    "type": "object",
+    "properties": {
+      "intent": {
+        "type": "string",
+        "description": "用户意图类型"
+      },
+      "keyword": {
+        "type": "string",
+        "description": "搜索关键词"
+      },
+      "page": {
+        "type": "number",
+        "default": 1,
+        "description": "页码"
+      },
+      "count": {
+        "type": "number",
+        "default": 20,
+        "description": "每页条数"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "请求是否成功"
+      },
+      "code": {
+        "type": "number",
+        "description": "状态码"
+      },
+      "message": {
+        "type": "string",
+        "description": "状态信息"
+      },
+      "data": {
+        "type": "object",
+        "description": "响应数据"
+      }
+    }
+  },
+  "errorCodes": {
+    "401": "API Key无效或未配置",
+    "402": "账户余额不足",
+    "404": "API端点不存在或资源未找到",
+    "429": "请求频率超限，请稍后重试",
+    "500": "服务器内部错误"
+  }
+}

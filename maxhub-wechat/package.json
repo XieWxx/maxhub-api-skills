@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-wechat",
+  "version": "2.0.0",
+  "description": "微信视频号与公众号数据采集分析Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "wechat",
+    "微信",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

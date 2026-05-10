@@ -1,0 +1,58 @@
+{
+  "name": "maxhub-xiaohongshu",
+  "displayName": "小红书数据采集与分析",
+  "displayNameEn": "Xiaohongshu Data Collection & Analysis",
+  "version": "2.0.0",
+  "description": "小红书笔记搜索、用户分析与种草数据采集",
+  "descriptionEn": "Xiaohongshu note search, user analysis and recommendation data collection",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "platform": "xiaohongshu",
+  "emoji": "📕",
+  "trigger": "小红书|xiaohongshu|red|种草|笔记|小红书搜索",
+  "categories": [
+    "social-media",
+    "data-collection",
+    "content-analysis"
+  ],
+  "tools": [
+    "http"
+  ],
+  "requires": {
+    "env": [
+      "MAXHUB_API_KEY"
+    ],
+    "primaryEnv": "MAXHUB_API_KEY"
+  },
+  "config": {
+    "default_page_size": {
+      "type": "number",
+      "default": 20,
+      "description": "默认每页返回条数"
+    },
+    "max_chain_depth": {
+      "type": "number",
+      "default": 3,
+      "description": "链式调用最大深度"
+    },
+    "cost_alert_threshold": {
+      "type": "number",
+      "default": 20,
+      "description": "连续调用超过此数值时提醒费用"
+    }
+  },
+  "apiBase": {
+    "url": "https://www.aconfig.cn",
+    "authHeader": "x-api-key",
+    "authEnvVar": "MAXHUB_API_KEY",
+    "prefix": "/api/v1/xiaohongshu"
+  },
+  "rateLimit": {
+    "maxPages": 5,
+    "maxResults": 50,
+    "maxBatchSize": 10,
+    "requestsPerMinute": 60
+  }
+}

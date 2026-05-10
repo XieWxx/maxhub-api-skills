@@ -1,19 +1,47 @@
 ---
 name: maxhub-bilibili
-description: B站/Bilibili平台B站视频数据、UP主分析与弹幕采集。当用户提到b站、bilibili、弹幕、视频、番剧等相关需求时激活此Skill。
-version: 1.1.1
+description: B站视频数据、UP主分析与弹幕采集。当用户提到b站、bilibili、弹幕等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "b站|bilibili|弹幕|番剧|up主|b站视频|哔哩哔哩"
+categories:
+  - social-media
+  - data-collection
+  - content-analysis
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "📺"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
-    - bilibili
     - b站
+    - bilibili
     - 弹幕
-    - 视频
     - 番剧
+    - up主
+    - b站视频
+    - 哔哩哔哩
 ---
 # 📺 B站（Bilibili）Skill
 

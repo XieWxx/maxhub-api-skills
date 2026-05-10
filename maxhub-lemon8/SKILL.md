@@ -1,19 +1,45 @@
 ---
 name: maxhub-lemon8
-description: Lemon8/Lemon8平台Lemon8生活方式图文与种草数据采集。当用户提到lemon8、生活方式、图文、种草等相关需求时激活此Skill。
-version: 1.1.1
+description: Lemon8生活方式图文与种草数据采集。当用户提到lemon8、生活方式、图文等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "lemon8|生活方式|图文|种草|lemon8搜索"
+categories:
+  - social-media
+  - data-collection
+  - lifestyle
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🍋"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
     - lemon8
-    - 帖子
-    - 用户
-    - 评论
-    - 数据采集
+    - 生活方式
+    - 图文
+    - 种草
+    - lemon8搜索
 ---
 # 🍋 Lemon8（Lemon8）Skill
 

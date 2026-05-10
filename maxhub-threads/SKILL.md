@@ -1,19 +1,43 @@
 ---
 name: maxhub-threads
-description: Threads/Threads平台Threads帖子搜索与用户数据采集。当用户提到threads、meta、帖子、用户等相关需求时激活此Skill。
-version: 1.1.1
+description: Threads帖子搜索与用户数据采集。当用户提到threads、meta、帖子等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "threads|meta|帖子|threads搜索"
+categories:
+  - social-media
+  - data-collection
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🧵"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
     - threads
+    - meta
     - 帖子
-    - 用户
-    - 评论
-    - 数据采集
+    - threads搜索
 ---
 # 🧵 Threads（Threads）Skill
 

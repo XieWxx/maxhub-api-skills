@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-sora2",
+  "version": "2.0.0",
+  "description": "Sora2平台公开内容浏览与用户信息查询Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "sora2",
+    "Sora2内容浏览",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

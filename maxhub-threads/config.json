@@ -1,0 +1,57 @@
+{
+  "name": "maxhub-threads",
+  "displayName": "Threads数据采集",
+  "displayNameEn": "Threads Data Collection",
+  "version": "2.0.0",
+  "description": "Threads帖子搜索与用户数据采集",
+  "descriptionEn": "Threads post search and user data collection",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "platform": "threads",
+  "emoji": "🧵",
+  "trigger": "threads|meta|帖子|threads搜索",
+  "categories": [
+    "social-media",
+    "data-collection"
+  ],
+  "tools": [
+    "http"
+  ],
+  "requires": {
+    "env": [
+      "MAXHUB_API_KEY"
+    ],
+    "primaryEnv": "MAXHUB_API_KEY"
+  },
+  "config": {
+    "default_page_size": {
+      "type": "number",
+      "default": 20,
+      "description": "默认每页返回条数"
+    },
+    "max_chain_depth": {
+      "type": "number",
+      "default": 3,
+      "description": "链式调用最大深度"
+    },
+    "cost_alert_threshold": {
+      "type": "number",
+      "default": 20,
+      "description": "连续调用超过此数值时提醒费用"
+    }
+  },
+  "apiBase": {
+    "url": "https://www.aconfig.cn",
+    "authHeader": "x-api-key",
+    "authEnvVar": "MAXHUB_API_KEY",
+    "prefix": "/api/v1/threads"
+  },
+  "rateLimit": {
+    "maxPages": 5,
+    "maxResults": 50,
+    "maxBatchSize": 10,
+    "requestsPerMinute": 60
+  }
+}

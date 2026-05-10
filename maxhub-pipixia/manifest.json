@@ -1,0 +1,50 @@
+{
+  "manifestVersion": "1.0.0",
+  "name": "maxhub-pipixia",
+  "entry": "SKILL.md",
+  "files": {
+    "skill": "SKILL.md",
+    "systemPrompt": "system.prompt.md",
+    "config": "config.json",
+    "schema": "schema.json",
+    "apiCatalog": "references/api-catalog.md",
+    "chainPatterns": "references/chain-patterns.md",
+    "apiService": "service/api.js",
+    "dataService": "service/data.js",
+    "utils": "service/utils.js",
+    "router": "core/router.js",
+    "errorCode": "core/error-code.js",
+    "replyTemplate": "template/reply.tpl.md",
+    "formatTemplate": "template/format.json",
+    "envExample": ".env.example"
+  },
+  "dependencies": {},
+  "platforms": {
+    "clawhub": {
+      "compatible": true,
+      "entry": "SKILL.md"
+    },
+    "coze": {
+      "compatible": true,
+      "entry": "openapi.yaml",
+      "runtime": "nodejs"
+    },
+    "dify": {
+      "compatible": true,
+      "entry": "openapi.yaml"
+    },
+    "gpts": {
+      "compatible": true,
+      "entry": "openapi.yaml"
+    },
+    "skills_sh": {
+      "compatible": true,
+      "entry": "SKILL.md"
+    }
+  },
+  "capabilities": [
+    "content-search",
+    "user-profile-analysis",
+    "comment-analysis"
+  ]
+}

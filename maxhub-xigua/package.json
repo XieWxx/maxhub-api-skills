@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-xigua",
+  "version": "2.0.0",
+  "description": "西瓜视频公开内容搜索与信息查询Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "xigua",
+    "西瓜视频",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

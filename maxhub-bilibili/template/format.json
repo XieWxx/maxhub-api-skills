@@ -1,0 +1,49 @@
+{
+  "userProfile": {
+    "fields": [
+      "name",
+      "mid",
+      "sign",
+      "face",
+      "fans",
+      "attention",
+      "level",
+      "isLive"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "bvid",
+      "aid",
+      "title",
+      "owner",
+      "stat",
+      "duration",
+      "pubdate",
+      "desc",
+      "tag"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

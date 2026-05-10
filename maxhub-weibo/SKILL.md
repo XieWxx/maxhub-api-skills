@@ -1,19 +1,46 @@
 ---
 name: maxhub-weibo
-description: 微博/Weibo平台微博热搜、话题、用户与博文数据采集。当用户提到微博、weibo、热搜、超话、话题等相关需求时激活此Skill。
-version: 1.1.1
+description: 微博热搜、话题、用户与博文数据采集。当用户提到微博、weibo、热搜等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "微博|weibo|热搜|超话|话题|微博搜索"
+categories:
+  - social-media
+  - data-collection
+  - trending
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🔥"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
-    - weibo
     - 微博
+    - weibo
     - 热搜
     - 超话
     - 话题
+    - 微博搜索
 ---
 # 📢 微博（Weibo）Skill
 

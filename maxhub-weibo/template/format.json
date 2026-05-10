@@ -1,0 +1,47 @@
+{
+  "userProfile": {
+    "fields": [
+      "screenName",
+      "id",
+      "description",
+      "profileImage",
+      "followersCount",
+      "friendsCount",
+      "statusesCount",
+      "verified"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "id",
+      "text",
+      "user",
+      "repostsCount",
+      "commentsCount",
+      "attitudesCount",
+      "createdAt"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

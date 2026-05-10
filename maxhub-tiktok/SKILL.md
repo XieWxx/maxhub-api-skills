@@ -1,19 +1,45 @@
 ---
 name: maxhub-tiktok
-description: TikTok/TikTok平台TikTok数据采集、创作者分析与电商洞察。当用户提到tiktok、国际版抖音、海外短视频、creator、analytics等相关需求时激活此Skill。
-version: 1.1.1
+description: TikTok数据采集、创作者分析与电商洞察。当用户提到tiktok、国际版抖音、海外短视频等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "tiktok|国际版抖音|海外短视频|tiktok creator|tiktok analytics"
+categories:
+  - social-media
+  - data-collection
+  - e-commerce
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🎶"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
     - tiktok
     - 国际版抖音
     - 海外短视频
-    - creator
-    - analytics
+    - tiktok creator
+    - tiktok analytics
 ---
 # 🎶 TikTok（TikTok）Skill
 

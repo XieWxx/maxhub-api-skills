@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-bilibili",
+  "version": "2.0.0",
+  "description": "B站视频数据、UP主分析与弹幕采集Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "bilibili",
+    "B站",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

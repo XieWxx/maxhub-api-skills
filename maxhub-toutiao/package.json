@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-toutiao",
+  "version": "2.0.0",
+  "description": "今日头条新闻资讯搜索与数据采集Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "toutiao",
+    "头条",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

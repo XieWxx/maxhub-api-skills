@@ -1,19 +1,46 @@
 ---
 name: maxhub-linkedin
-description: LinkedIn/LinkedIn平台LinkedIn职场数据、公司信息与职位搜索。当用户提到linkedin、职场、公司、职位、人脉等相关需求时激活此Skill。
-version: 1.1.1
+description: LinkedIn职场数据、公司信息与职位搜索。当用户提到linkedin、职场、公司等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "linkedin|职场|公司|职位|人脉|linkedin搜索"
+categories:
+  - professional
+  - data-collection
+  - job-search
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "💼"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
     - linkedin
-    - 职位
+    - 职场
     - 公司
-    - 用户
-    - 数据采集
+    - 职位
+    - 人脉
+    - linkedin搜索
 ---
 # 💼 LinkedIn（LinkedIn）Skill
 

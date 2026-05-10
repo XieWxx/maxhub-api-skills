@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-tiktok",
+  "version": "2.0.0",
+  "description": "TikTok数据采集、创作者分析与电商洞察Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "tiktok",
+    "TikTok",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

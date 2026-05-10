@@ -1,19 +1,46 @@
 ---
 name: maxhub-hybrid
-description: 混合解析/HybridParser平台多平台混合内容解析与聚合提取。当用户提到混合解析、hybrid、解析、聚合、多等相关需求时激活此Skill。
-version: 1.1.1
+description: 多平台混合内容解析与聚合提取。当用户提到混合解析、hybrid、解析等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "混合解析|hybrid|解析|聚合|多平台解析|url解析"
+categories:
+  - tools
+  - data-collection
+  - parser
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🔄"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
+    - 混合解析
     - hybrid
-    - 多平台
-    - 综合
-    - 数据采集
-    - api
+    - 解析
+    - 聚合
+    - 多平台解析
+    - url解析
 ---
 # 🔗 混合解析（HybridParser）Skill
 

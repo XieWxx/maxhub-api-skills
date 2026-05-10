@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-linkedin",
+  "version": "2.0.0",
+  "description": "LinkedIn职场数据、公司信息与职位搜索Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "linkedin",
+    "LinkedIn",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-twitter",
+  "version": "2.0.0",
+  "description": "Twitter/X推文搜索、用户数据与趋势分析Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "twitter",
+    "Twitter/X",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-temp-mail",
+  "version": "2.0.0",
+  "description": "临时邮箱创建与邮件接收服务Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "temp-mail",
+    "临时邮箱服务",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

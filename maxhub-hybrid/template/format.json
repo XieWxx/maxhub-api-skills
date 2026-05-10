@@ -1,0 +1,43 @@
+{
+  "userProfile": {
+    "fields": [
+      "platform",
+      "type",
+      "id",
+      "url"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "id",
+      "type",
+      "platform",
+      "title",
+      "author",
+      "content",
+      "mediaUrls"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

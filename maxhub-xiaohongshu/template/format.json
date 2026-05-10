@@ -1,0 +1,47 @@
+{
+  "userProfile": {
+    "fields": [
+      "nickname",
+      "redId",
+      "desc",
+      "image",
+      "fans",
+      "follows",
+      "interaction",
+      "tags"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "noteId",
+      "title",
+      "type",
+      "user",
+      "interactInfo",
+      "time",
+      "tagList"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

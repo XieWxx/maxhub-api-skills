@@ -1,0 +1,45 @@
+{
+  "userProfile": {
+    "fields": [
+      "nickname",
+      "alias",
+      "signature",
+      "headImgUrl",
+      "fansCount",
+      "readCount"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "title",
+      "author",
+      "digest",
+      "contentUrl",
+      "publishTime",
+      "readNum",
+      "likeNum"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

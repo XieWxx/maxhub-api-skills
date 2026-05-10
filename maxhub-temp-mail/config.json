@@ -1,0 +1,58 @@
+{
+  "name": "maxhub-temp-mail",
+  "displayName": "临时邮箱服务",
+  "displayNameEn": "TempMail Service",
+  "version": "2.0.0",
+  "description": "临时邮箱创建与邮件接收服务",
+  "descriptionEn": "TempMail platform temporary email creation and mail receiving service",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "platform": "temp-mail",
+  "emoji": "📧",
+  "trigger": "临时邮箱|temp mail|隐私邮箱|一次性邮箱|临时email",
+  "categories": [
+    "tools",
+    "privacy",
+    "email"
+  ],
+  "tools": [
+    "http"
+  ],
+  "requires": {
+    "env": [
+      "MAXHUB_API_KEY"
+    ],
+    "primaryEnv": "MAXHUB_API_KEY"
+  },
+  "config": {
+    "default_page_size": {
+      "type": "number",
+      "default": 20,
+      "description": "默认每页返回条数"
+    },
+    "max_chain_depth": {
+      "type": "number",
+      "default": 3,
+      "description": "链式调用最大深度"
+    },
+    "cost_alert_threshold": {
+      "type": "number",
+      "default": 20,
+      "description": "连续调用超过此数值时提醒费用"
+    }
+  },
+  "apiBase": {
+    "url": "https://www.aconfig.cn",
+    "authHeader": "x-api-key",
+    "authEnvVar": "MAXHUB_API_KEY",
+    "prefix": "/api/v1/temp-mail"
+  },
+  "rateLimit": {
+    "maxPages": 5,
+    "maxResults": 50,
+    "maxBatchSize": 10,
+    "requestsPerMinute": 60
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-zhihu",
+  "version": "2.0.0",
+  "description": "知乎问答搜索、专栏文章与话题数据采集Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "zhihu",
+    "知乎",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

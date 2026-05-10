@@ -1,0 +1,45 @@
+{
+  "userProfile": {
+    "fields": [
+      "name",
+      "userId",
+      "description",
+      "avatarUrl",
+      "followersCount",
+      "followingCount"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "itemId",
+      "title",
+      "source",
+      "commentCount",
+      "diggCount",
+      "publishTime",
+      "abstract"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

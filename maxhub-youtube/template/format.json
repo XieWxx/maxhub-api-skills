@@ -1,0 +1,46 @@
+{
+  "userProfile": {
+    "fields": [
+      "channelName",
+      "channelId",
+      "description",
+      "avatar",
+      "subscriberCount",
+      "videoCount",
+      "viewCount"
+    ],
+    "highlight": [
+      "followerCount",
+      "fansCount"
+    ],
+    "maxDisplay": 1
+  },
+  "contentInfo": {
+    "fields": [
+      "videoId",
+      "title",
+      "channelTitle",
+      "statistics",
+      "duration",
+      "publishedAt",
+      "tags"
+    ],
+    "highlight": [
+      "playCount",
+      "viewCount"
+    ],
+    "maxDisplay": 20
+  },
+  "searchResults": {
+    "fields": [
+      "title",
+      "author",
+      "likeCount",
+      "commentCount"
+    ],
+    "highlight": [
+      "likeCount"
+    ],
+    "maxDisplay": 20
+  }
+}

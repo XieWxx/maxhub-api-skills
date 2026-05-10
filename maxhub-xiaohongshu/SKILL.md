@@ -1,19 +1,46 @@
 ---
 name: maxhub-xiaohongshu
-description: 小红书/Xiaohongshu平台小红书笔记搜索、用户分析与种草数据采集。当用户提到小红书、xiaohongshu、red、种草、笔记等相关需求时激活此Skill。
-version: 1.1.1
+description: 小红书笔记搜索、用户分析与种草数据采集。当用户提到小红书、xiaohongshu、red等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "小红书|xiaohongshu|red|种草|笔记|小红书搜索"
+categories:
+  - social-media
+  - data-collection
+  - content-analysis
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "📕"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
-    - xiaohongshu
     - 小红书
+    - xiaohongshu
+    - red
     - 种草
     - 笔记
-    - 生活方式
+    - 小红书搜索
 ---
 # 📕 小红书（Xiaohongshu）Skill
 

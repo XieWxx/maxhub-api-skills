@@ -1,19 +1,44 @@
 ---
 name: maxhub-xigua
-description: 西瓜视频/Xigua平台公开内容搜索与信息查询。当用户提到西瓜视频、xigua、长视频、资讯等相关需求时激活此Skill。
-version: 1.2.0
+description: 西瓜视频公开内容搜索与信息查询。当用户提到西瓜视频、xigua、长视频等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "西瓜视频|xigua|长视频|西瓜搜索"
+categories:
+  - social-media
+  - data-collection
+  - video-platform
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🍉"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
-    - xigua
     - 西瓜视频
-    - 视频
-    - 信息查询
-    - 公开数据
+    - xigua
+    - 长视频
+    - 西瓜搜索
 ---
 # 🍉 西瓜视频（Xigua）Skill
 

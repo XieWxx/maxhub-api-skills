@@ -1,0 +1,19 @@
+{
+  "name": "maxhub-threads",
+  "version": "2.0.0",
+  "description": "Threads帖子搜索与用户数据采集Skill",
+  "main": "index.ts",
+  "author": "MaxHub Team",
+  "license": "MIT",
+  "keywords": [
+    "threads",
+    "Threads",
+    "skill",
+    "data-collection"
+  ],
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

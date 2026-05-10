@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MaxHub Douyin Skill Schema",
+  "description": "抖音Skill入参出参结构校验",
+  "input": {
+    "type": "object",
+    "properties": {
+      "intent": {
+        "type": "string",
+        "enum": [
+          "search_video",
+          "search_user",
+          "get_video_detail",
+          "get_user_profile",
+          "get_hot_search",
+          "get_live_data",
+          "get_comments",
+          "get_trending",
+          "get_creator_data",
+          "get_hashtag_data"
+        ],
+        "description": "用户意图类型"
+      },
+      "keyword": {
+        "type": "string",
+        "description": "搜索关键词"
+      },
+      "aweme_id": {
+        "type": "string",
+        "description": "视频作品ID"
+      },
+      "sec_user_id": {
+        "type": "string",
+        "description": "用户加密ID"
+      },
+      "uid": {
+        "type": "string",
+        "description": "用户UID"
+      },
+      "unique_id": {
+        "type": "string",
+        "description": "抖音号"
+      },
+      "room_id": {
+        "type": "string",
+        "description": "直播间房间ID"
+      },
+      "page": {
+        "type": "number",
+        "default": 1,
+        "description": "页码"
+      },
+      "count": {
+        "type": "number",
+        "default": 20,
+        "description": "每页条数"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "请求是否成功"
+      },
+      "code": {
+        "type": "number",
+        "description": "状态码"
+      },
+      "message": {
+        "type": "string",
+        "description": "状态信息"
+      },
+      "data": {
+        "type": "object",
+        "properties": {
+          "has_more": {
+            "type": "boolean",
+            "description": "是否有更多数据"
+          },
+          "cursor": {
+            "type": ["string", "number"],
+            "description": "翻页游标"
+          },
+          "list": {
+            "type": "array",
+            "description": "数据列表"
+          }
+        }
+      }
+    }
+  },
+  "errorCodes": {
+    "401": "API Key无效或未配置",
+    "402": "账户余额不足",
+    "404": "API端点不存在或资源未找到",
+    "429": "请求频率超限，请稍后重试",
+    "500": "服务器内部错误"
+  }
+}

@@ -1,19 +1,45 @@
 ---
 name: maxhub-sora2
-description: Sora2平台公开内容浏览与用户信息查询。当用户提到sora、sora2、ai视频、视频创作者等相关需求时激活此Skill。
-version: 1.2.0
+description: Sora2平台公开内容浏览与用户信息查询。当用户提到sora、sora2、ai视频等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "sora|sora2|ai视频|视频创作者|sora搜索"
+categories:
+  - ai-tools
+  - data-collection
+  - video-platform
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🎥"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
+    - sora
     - sora2
     - ai视频
     - 视频创作者
-    - 信息查询
-    - 公开数据
+    - sora搜索
 ---
 # 🤖 Sora2 Skill
 

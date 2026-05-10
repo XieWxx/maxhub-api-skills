@@ -1,11 +1,37 @@
 ---
 name: maxhub-youtube
-description: YouTube/YouTube平台YouTube视频、频道、评论与播放列表数据采集。当用户提到youtube、视频、频道、评论、播放列表等相关需求时激活此Skill。
-version: 1.1.1
+description: YouTube视频、频道、评论与播放列表数据采集。当用户提到youtube、视频、频道等相关需求时激活此Skill。
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "youtube|视频|频道|评论|播放列表|youtube搜索"
+categories:
+  - social-media
+  - data-collection
+  - video-platform
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "▶️"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
@@ -13,7 +39,8 @@ metadata:
     - 视频
     - 频道
     - 评论
-    - 数据采集
+    - 播放列表
+    - youtube搜索
 ---
 # ▶️ YouTube（YouTube）Skill
 

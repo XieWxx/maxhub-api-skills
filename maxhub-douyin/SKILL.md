@@ -1,11 +1,37 @@
 ---
 name: maxhub-douyin
 description: 抖音/Douyin平台数据采集与智能分析。当用户提到抖音、douyin、短视频、直播、达人等相关需求时激活此Skill。
-version: 1.1.1
+version: 2.0.0
 author: MaxHub Team
 license: MIT
+trigger: "抖音|douyin|短视频热搜|抖音达人|抖音直播|抖音热榜|抖音视频|抖音博主"
+categories:
+  - social-media
+  - data-collection
+  - content-analysis
+tools:
+  - http
 metadata:
-  openclaw: true
+  openclaw:
+    requires:
+      env:
+        - MAXHUB_API_KEY
+    primaryEnv: MAXHUB_API_KEY
+    emoji: "🎵"
+    homepage: https://www.aconfig.cn
+    config:
+      default_page_size:
+        type: number
+        default: 20
+        description: "默认每页返回条数"
+      max_chain_depth:
+        type: number
+        default: 3
+        description: "链式调用最大深度"
+      cost_alert_threshold:
+        type: number
+        default: 20
+        description: "连续调用超过此数值时提醒费用"
   homepage: https://www.aconfig.cn
   repository: https://github.com/XieWxx/maxhub-api-skills
   tags:
@@ -14,6 +40,8 @@ metadata:
     - 短视频
     - 直播
     - 数据采集
+    - 热搜
+    - 达人分析
 ---
 
 # 🎵 抖音（Douyin）Skill
