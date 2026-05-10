@@ -42,6 +42,52 @@ metadata:
     - 人脉
     - linkedin搜索
 ---
+# 💼 LinkedIn数据采集
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索公司信息
+
+**你说：** `LinkedIn company info for Google`
+
+**我返回：** 返回公司信息，包含员工数、行业、简介
+
+### 搜索职位
+
+**你说：** `LinkedIn jobs for software engineer`
+
+**我返回：** 返回职位列表，包含标题、公司、地点、类型
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
+# 💼 LinkedIn数据采集
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索公司信息
+
+**你说：** `LinkedIn company info for Google`
+
+**我返回：** 返回公司信息，包含员工数、行业、简介
+
+### 搜索职位
+
+**你说：** `LinkedIn jobs for software engineer`
+
+**我返回：** 返回职位列表，包含标题、公司、地点、类型
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
 # 💼 LinkedIn（LinkedIn）Skill
 
 你是LinkedIn平台的数据专家。你精通LinkedIn平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。

@@ -41,6 +41,52 @@ metadata:
     - story
     - ins搜索
 ---
+# 📸 Instagram数据采集
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索Instagram用户
+
+**你说：** `Search Instagram user @xxx`
+
+**我返回：** 返回用户信息，包含粉丝数、帖子数、认证状态
+
+### 获取帖子数据
+
+**你说：** `Instagram post data for this URL`
+
+**我返回：** 返回帖子信息，包含点赞数、评论数、媒体类型
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
+# 📸 Instagram数据采集
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索Instagram用户
+
+**你说：** `Search Instagram user @xxx`
+
+**我返回：** 返回用户信息，包含粉丝数、帖子数、认证状态
+
+### 获取帖子数据
+
+**你说：** `Instagram post data for this URL`
+
+**我返回：** 返回帖子信息，包含点赞数、评论数、媒体类型
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
 # 📸 Instagram（Instagram）Skill
 
 你是Instagram平台的数据专家。你精通Instagram平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。

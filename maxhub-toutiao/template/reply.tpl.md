@@ -1,36 +1,86 @@
-# 头条数据采集与分析数据回复模板
+# 📰 头条数据采集与分析 回复模板
 
-## 用户信息回复
+## 数
 
-**{{nickname}}** {{#isVerified}}✅ 已认证{{/isVerified}}
+### 获取指定文章的信息/Get information of specified a
 
-| 属性 | 信息 |
+`GET /api/v1/toutiao/web/get_article_info`
+必填参数：aweme_id
+
+**返回数据展示：**
+
+| 字段 | 说明 |
 |:---|:---|
-{{#userFields}}
-| {{label}} | {{value}} |
-{{/userFields}}
+| ID | 内容唯一标识 |
+| 标题 | 内容标题/描述 |
+| 作者 | 创作者昵称 |
+| 播放量 | 播放/浏览次数 |
+| 点赞数 | 点赞/喜欢次数 |
+| 评论数 | 评论条数 |
+| 分享数 | 分享次数 |
+| 发布时间 | 内容创建时间 |
 
 ---
 
-## 内容/视频信息回复
+### 获取指定视频的信息/Get information of specified v
 
-**{{title}}**
+`GET /api/v1/toutiao/web/get_video_info`
+必填参数：aweme_id
 
-| 属性 | 数据 |
+**返回数据展示：**
+
+| 字段 | 说明 |
 |:---|:---|
-{{#contentFields}}
-| {{label}} | {{value}} |
-{{/contentFields}}
+| ID | 内容唯一标识 |
+| 标题 | 内容标题/描述 |
+| 作者 | 创作者昵称 |
+| 播放量 | 播放/浏览次数 |
+| 点赞数 | 点赞/喜欢次数 |
+| 评论数 | 评论条数 |
+| 分享数 | 分享次数 |
+| 发布时间 | 内容创建时间 |
 
 ---
 
-## 搜索结果回复
+### 获取指定文章的信息/Get information of specified a
 
-🔍 **头条数据采集与分析搜索结果**
+`GET /api/v1/toutiao/app/get_article_info`
+必填参数：group_id
 
-{{#results}}
-- **{{title}}** — {{author}} · 👍 {{likeCount}} · 💬 {{commentCount}}
-{{/results}}
+**返回数据展示：**
+
+| 字段 | 说明 |
+|:---|:---|
+| ID | 内容唯一标识 |
+| 标题 | 内容标题/描述 |
+| 作者 | 创作者昵称 |
+| 播放量 | 播放/浏览次数 |
+| 点赞数 | 点赞/喜欢次数 |
+| 评论数 | 评论条数 |
+| 分享数 | 分享次数 |
+| 发布时间 | 内容创建时间 |
+
+---
+
+## 互
+
+### 获取指定作品的评论/Get comments of specified post
+
+`GET /api/v1/toutiao/app/get_comments`
+必填参数：group_id, offset
+
+**返回数据展示：**
+
+| 字段 | 说明 |
+|:---|:---|
+| ID | 内容唯一标识 |
+| 标题 | 内容标题/描述 |
+| 作者 | 创作者昵称 |
+| 播放量 | 播放/浏览次数 |
+| 点赞数 | 点赞/喜欢次数 |
+| 评论数 | 评论条数 |
+| 分享数 | 分享次数 |
+| 发布时间 | 内容创建时间 |
 
 ---
 
@@ -38,6 +88,12 @@
 
 ❌ **操作失败**
 
-**错误信息：** {{message}}
+| 字段 | 内容 |
+|:---|:---|
+| 错误码 | {{code}} |
+| 错误信息 | {{message}} |
+| 解决方法 | {{solution}} |
 
-**解决方法：** {{solution}}
+{{#retryable}}
+💡 可以稍后重试（建议等待{{retryDelay}}秒）
+{{/retryable}}

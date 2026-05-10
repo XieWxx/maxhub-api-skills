@@ -42,6 +42,64 @@ metadata:
     - 播放列表
     - youtube搜索
 ---
+# ▶️ YouTube数据采集与分析
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索YouTube视频
+
+**你说：** `Search YouTube for AI tutorials`
+
+**我返回：** 返回视频列表，包含标题、频道、观看数、点赞数
+
+### 查看频道信息
+
+**你说：** `YouTube channel stats for @xxx`
+
+**我返回：** 返回频道信息，包含订阅数、视频数、总观看数
+
+### 获取视频评论
+
+**你说：** `Comments for this YouTube video`
+
+**我返回：** 返回评论列表，包含内容、点赞数、回复数
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
+# ▶️ YouTube数据采集与分析
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索YouTube视频
+
+**你说：** `Search YouTube for AI tutorials`
+
+**我返回：** 返回视频列表，包含标题、频道、观看数、点赞数
+
+### 查看频道信息
+
+**你说：** `YouTube channel stats for @xxx`
+
+**我返回：** 返回频道信息，包含订阅数、视频数、总观看数
+
+### 获取视频评论
+
+**你说：** `Comments for this YouTube video`
+
+**我返回：** 返回评论列表，包含内容、点赞数、回复数
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
 # ▶️ YouTube（YouTube）Skill
 
 你是YouTube平台的数据专家。你精通YouTube平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。

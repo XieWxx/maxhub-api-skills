@@ -1,36 +1,24 @@
-# 混合解析服务数据回复模板
+# 🔄 混合解析服务 回复模板
 
-## 用户信息回复
+## 内
 
-**{{nickname}}** {{#isVerified}}✅ 已认证{{/isVerified}}
+### 混合解析单一视频接口/Hybrid parsing single video e
 
-| 属性 | 信息 |
+`GET /api/v1/hybrid/video_data`
+必填参数：url
+
+**返回数据展示：**
+
+| 字段 | 说明 |
 |:---|:---|
-{{#userFields}}
-| {{label}} | {{value}} |
-{{/userFields}}
-
----
-
-## 内容/视频信息回复
-
-**{{title}}**
-
-| 属性 | 数据 |
-|:---|:---|
-{{#contentFields}}
-| {{label}} | {{value}} |
-{{/contentFields}}
-
----
-
-## 搜索结果回复
-
-🔍 **混合解析服务搜索结果**
-
-{{#results}}
-- **{{title}}** — {{author}} · 👍 {{likeCount}} · 💬 {{commentCount}}
-{{/results}}
+| ID | 内容唯一标识 |
+| 标题 | 内容标题/描述 |
+| 作者 | 创作者昵称 |
+| 播放量 | 播放/浏览次数 |
+| 点赞数 | 点赞/喜欢次数 |
+| 评论数 | 评论条数 |
+| 分享数 | 分享次数 |
+| 发布时间 | 内容创建时间 |
 
 ---
 
@@ -38,6 +26,12 @@
 
 ❌ **操作失败**
 
-**错误信息：** {{message}}
+| 字段 | 内容 |
+|:---|:---|
+| 错误码 | {{code}} |
+| 错误信息 | {{message}} |
+| 解决方法 | {{solution}} |
 
-**解决方法：** {{solution}}
+{{#retryable}}
+💡 可以稍后重试（建议等待{{retryDelay}}秒）
+{{/retryable}}

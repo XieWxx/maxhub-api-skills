@@ -41,6 +41,64 @@ metadata:
     - tiktok creator
     - tiktok analytics
 ---
+# 🎶 TikTok数据采集与分析
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索TikTok视频
+
+**你说：** `Search TikTok videos about AI art`
+
+**我返回：** 返回视频列表，包含标题、作者、播放量、点赞数
+
+### 查看创作者数据
+
+**你说：** `TikTok creator @xxx analytics`
+
+**我返回：** 返回创作者信息，包含粉丝数、点赞数、视频数
+
+### 获取热门趋势
+
+**你说：** `TikTok trending now`
+
+**我返回：** 返回热门趋势列表，包含标签、视频数
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
+# 🎶 TikTok数据采集与分析
+
+## 🎯 我能做什么
+
+以下是你可以用自然语言向我提问的真实场景：
+
+### 搜索TikTok视频
+
+**你说：** `Search TikTok videos about AI art`
+
+**我返回：** 返回视频列表，包含标题、作者、播放量、点赞数
+
+### 查看创作者数据
+
+**你说：** `TikTok creator @xxx analytics`
+
+**我返回：** 返回创作者信息，包含粉丝数、点赞数、视频数
+
+### 获取热门趋势
+
+**你说：** `TikTok trending now`
+
+**我返回：** 返回热门趋势列表，包含标签、视频数
+
+> 💡 只要用自然语言描述你的需求，我会自动选择最合适的API来获取数据！
+
+---
+
+
 # 🎶 TikTok（TikTok）Skill
 
 你是TikTok平台的数据专家。你精通TikTok平台所有API的能力和限制，能根据用户需求智能选择最合适的API，必要时链式调用多个API完成复杂任务。

@@ -1,130 +1,5 @@
-// 数据解析、格式化处理 - 抖音平台
+// 数据解析、格式化处理 - douyin
 // 将API返回的原始数据转换为用户友好的格式
-
-/**
- * 格式化用户信息
- * @param {object} rawData - API返回的原始用户数据
- * @returns {object} 格式化后的用户信息
- */
-function formatUserProfile(rawData) {
-  if (!rawData) return null;
-
-  const userInfo = rawData.user || rawData;
-
-  return {
-    nickname: userInfo.nickname || '-',
-    uniqueId: userInfo.unique_id || '-',
-    uid: userInfo.uid || '-',
-    secUid: userInfo.sec_uid || '-',
-    signature: userInfo.signature || '-',
-    avatar: userInfo.avatar_larger?.url_list?.[0] || userInfo.avatar_thumb?.url_list?.[0] || '-',
-    followerCount: formatNumber(userInfo.follower_count || 0),
-    followingCount: formatNumber(userInfo.following_count || 0),
-    fansCount: formatNumber(userInfo.fans_count || 0),
-    totalFavorited: formatNumber(userInfo.total_favorited || 0),
-    awemeCount: formatNumber(userInfo.aweme_count || 0),
-    isVerified: userInfo.custom_verify || userInfo.enterprise_verify_reason ? true : false,
-    verifyReason: userInfo.custom_verify || userInfo.enterprise_verify_reason || '',
-    ipLocation: userInfo.ip_location || '-',
-  };
-}
-
-/**
- * 格式化视频信息
- * @param {object} rawData - API返回的原始视频数据
- * @returns {object} 格式化后的视频信息
- */
-function formatVideoInfo(rawData) {
-  if (!rawData) return null;
-
-  const video = rawData.aweme_detail || rawData;
-  const stats = video.statistics || {};
-  const author = video.author || {};
-
-  return {
-    awemeId: video.aweme_id || '-',
-    title: video.desc || '-',
-    author: {
-      nickname: author.nickname || '-',
-      uid: author.uid || '-',
-      secUid: author.sec_uid || '-',
-    },
-    statistics: {
-      playCount: formatNumber(stats.play_count || 0),
-      diggCount: formatNumber(stats.digg_count || 0),
-      commentCount: formatNumber(stats.comment_count || 0),
-      shareCount: formatNumber(stats.share_count || 0),
-      collectCount: formatNumber(stats.collect_count || 0),
-    },
-    duration: formatDuration(video.duration || 0),
-    createTime: formatDate(video.create_time),
-    coverUrl: video.video?.cover?.url_list?.[0] || '-',
-    shareUrl: video.share_url || '-',
-    tags: (video.text_extra || []).map(t => t.hashtag_name).filter(Boolean),
-  };
-}
-
-/**
- * 格式化评论数据
- * @param {object} rawData - API返回的原始评论数据
- * @returns {Array} 格式化后的评论列表
- */
-function formatComments(rawData) {
-  if (!rawData || !rawData.comments) return [];
-
-  return rawData.comments.map(comment => ({
-    cid: comment.cid,
-    text: comment.text || '-',
-    author: comment.user?.nickname || '-',
-    diggCount: formatNumber(comment.digg_count || 0),
-    replyCount: comment.reply_comment_total || 0,
-    createTime: formatDate(comment.create_time),
-    ipLocation: comment.ip_label || '-',
-  }));
-}
-
-/**
- * 格式化热搜数据
- * @param {object} rawData - API返回的原始热搜数据
- * @returns {Array} 格式化后的热搜列表
- */
-function formatHotSearch(rawData) {
-  if (!rawData || !rawData.data) return [];
-
-  return rawData.data.map((item, index) => ({
-    rank: index + 1,
-    title: item.word || item.word_name || '-',
-    hotValue: formatNumber(item.hot_value || 0),
-    tag: item.label || '',
-  }));
-}
-
-/**
- * 格式化直播数据
- * @param {object} rawData - API返回的原始直播数据
- * @returns {object} 格式化后的直播信息
- */
-function formatLiveData(rawData) {
-  if (!rawData) return null;
-
-  const room = rawData.data || rawData;
-  const owner = room.owner || {};
-
-  return {
-    roomId: room.room_id || '-',
-    title: room.title || '-',
-    owner: {
-      nickname: owner.nickname || '-',
-      uid: owner.uid || '-',
-    },
-    userCount: formatNumber(room.user_count_str || room.user_count || 0),
-    likeCount: formatNumber(room.like_count || 0),
-    status: room.status === 2 ? '直播中' : '未开播',
-    coverUrl: room.cover?.url_list?.[0] || '-',
-  };
-}
-
-// ==================== 工具函数 ====================
 
 /**
  * 格式化数字（如 12345 → 1.2万）
@@ -138,9 +13,23 @@ function formatNumber(num) {
 }
 
 /**
+ * 格式化日期
+ */
+function formatDate(timestamp) {
+  if (!timestamp) return '-';
+  const date = new Date(typeof timestamp === 'number' ? timestamp * 1000 : timestamp);
+  if (isNaN(date.getTime())) return '-';
+  return date.toLocaleString('zh-CN', {
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+  });
+}
+
+/**
  * 格式化时长（毫秒 → mm:ss）
  */
 function formatDuration(ms) {
+  if (!ms) return '-';
   const seconds = Math.floor(ms / 1000);
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -148,29 +37,159 @@ function formatDuration(ms) {
 }
 
 /**
- * 格式化日期（时间戳 → YYYY-MM-DD HH:mm:ss）
+ * 格式化数数据
  */
-function formatDate(timestamp) {
-  if (!timestamp) return '-';
-  const date = new Date(typeof timestamp === 'number' ? timestamp * 1000 : timestamp);
-  if (isNaN(date.getTime())) return '-';
-  return date.toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+function format数(rawData) {
+  if (!rawData) return null;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
+  return {
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
+  };
+}
+
+/**
+ * 格式化互数据
+ */
+function format互(rawData) {
+  if (!rawData) return null;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
+  return {
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
+  };
+}
+
+/**
+ * 格式化搜数据
+ */
+function format搜(rawData) {
+  if (!rawData) return null;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
+  return {
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
+  };
+}
+
+/**
+ * 格式化工数据
+ */
+function format工(rawData) {
+  if (!rawData) return null;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
+  return {
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
+  };
+}
+
+/**
+ * 格式化内数据
+ */
+function format内(rawData) {
+  if (!rawData) return null;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
+  return {
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
+  };
+}
+
+/**
+ * 格式化创数据
+ */
+function format创(rawData) {
+  if (!rawData) return null;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
+  return {
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
+  };
+}
+
+/**
+ * 通用数据格式化 - 根据API路径自动选择格式化函数
+ */
+function formatData(apiPath, rawData) {
+  if (!rawData) return null;
+  // 列表数据处理
+  if (rawData.list || rawData.data?.list || rawData.items) {
+    const list = rawData.list || rawData.data?.list || rawData.items || [];
+    return list.map(item => ({
+      id: item.id || item.aweme_id || item.itemId || '-',
+      title: item.desc || item.title || item.caption || item.text || '-',
+      author: item.author?.nickname || item.author?.name || '-',
+      stats: {
+        playCount: formatNumber(item.statistics?.play_count || item.playCount || 0),
+        likeCount: formatNumber(item.statistics?.digg_count || item.likeCount || item.diggCount || 0),
+      },
+    }));
+  }
+  // 单条数据处理
+  return {
+    id: rawData.id || rawData.aweme_id || rawData.itemId || '-',
+    title: rawData.desc || rawData.title || rawData.caption || rawData.text || '-',
+  };
 }
 
 module.exports = {
-  formatUserProfile,
-  formatVideoInfo,
-  formatComments,
-  formatHotSearch,
-  formatLiveData,
   formatNumber,
-  formatDuration,
   formatDate,
+  formatDuration,
+  formatData,
+  format数,
+  format互,
+  format搜,
+  format工,
+  format内,
+  format创,
 };

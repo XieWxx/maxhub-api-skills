@@ -1,4 +1,4 @@
-// 数据解析、格式化处理 - 临时邮箱服务
+// 数据解析、格式化处理 - temp-mail
 // 将API返回的原始数据转换为用户友好的格式
 
 /**
@@ -29,6 +29,7 @@ function formatDate(timestamp) {
  * 格式化时长（毫秒 → mm:ss）
  */
 function formatDuration(ms) {
+  if (!ms) return '-';
   const seconds = Math.floor(ms / 1000);
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -36,49 +37,54 @@ function formatDuration(ms) {
 }
 
 /**
- * 格式化用户信息
- * 适配临时邮箱服务平台API返回格式
+ * 格式化数数据
  */
-function formatUserProfile(rawData) {
+function format数(rawData) {
   if (!rawData) return null;
-  const user = rawData.user || rawData.userInfo || rawData;
+  const item = rawData.data || rawData.item || rawData.aweme_detail || rawData;
   return {
-    email: user.email || '-',
-    token: user.token || '-',
-    expiresAt: user.expiresAt || '-'
+    id: item.id || item.aweme_id || item.itemId || item.note_id || '-',
+    title: item.desc || item.title || item.caption || item.text || '-',
+    author: item.author?.nickname || item.author?.name || item.author?.userName || '-',
+    stats: {
+      playCount: formatNumber(item.statistics?.play_count || item.stat?.play || item.playCount || 0),
+      likeCount: formatNumber(item.statistics?.digg_count || item.stat?.like || item.likeCount || item.diggCount || 0),
+      commentCount: formatNumber(item.statistics?.comment_count || item.stat?.comment || item.commentCount || 0),
+      shareCount: formatNumber(item.statistics?.share_count || item.stat?.share || item.shareCount || 0),
+    },
+    createTime: formatDate(item.create_time || item.publishTime || item.createdAt || item.created_time),
   };
 }
 
 /**
- * 格式化内容/视频信息
- * 适配临时邮箱服务平台API返回格式
+ * 通用数据格式化 - 根据API路径自动选择格式化函数
  */
-function formatContentInfo(rawData) {
+function formatData(apiPath, rawData) {
   if (!rawData) return null;
-  const item = rawData.data || rawData.item || rawData;
+  // 列表数据处理
+  if (rawData.list || rawData.data?.list || rawData.items) {
+    const list = rawData.list || rawData.data?.list || rawData.items || [];
+    return list.map(item => ({
+      id: item.id || item.aweme_id || item.itemId || '-',
+      title: item.desc || item.title || item.caption || item.text || '-',
+      author: item.author?.nickname || item.author?.name || '-',
+      stats: {
+        playCount: formatNumber(item.statistics?.play_count || item.playCount || 0),
+        likeCount: formatNumber(item.statistics?.digg_count || item.likeCount || item.diggCount || 0),
+      },
+    }));
+  }
+  // 单条数据处理
   return {
-    id: item.id || '-',
-    from: item.from || '-',
-    subject: item.subject || '-',
-    body: item.body || '-',
-    date: item.date || '-',
-    read: item.read || '-'
+    id: rawData.id || rawData.aweme_id || rawData.itemId || '-',
+    title: rawData.desc || rawData.title || rawData.caption || rawData.text || '-',
   };
-}
-
-/**
- * 格式化搜索结果
- */
-function formatSearchResults(rawData) {
-  if (!rawData || !rawData.list) return [];
-  return rawData.list.map(item => formatContentInfo(item));
 }
 
 module.exports = {
   formatNumber,
   formatDate,
   formatDuration,
-  formatUserProfile,
-  formatContentInfo,
-  formatSearchResults,
+  formatData,
+  format数,
 };
