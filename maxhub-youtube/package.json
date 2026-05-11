@@ -1,6 +1,6 @@
 {
   "name": "maxhub-youtube",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "YouTube视频、频道、评论与播放列表数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

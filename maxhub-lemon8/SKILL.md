@@ -1,7 +1,7 @@
 ---
 name: maxhub-lemon8
 description: Lemon8数据采集。当用户提到lemon8、生活方式、图文等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.0.11
 author: MaxHub Team
 license: MIT
 trigger: "lemon8|生活方式|图文|种草|lemon8搜索"
@@ -45,7 +45,7 @@ metadata:
 # 🍋 Lemon8数据采集
 
 唯一标识：`maxhub-lemon8`
-版本：v1.0.10
+版本：v1.0.11
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

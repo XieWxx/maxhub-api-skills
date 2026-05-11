@@ -1,7 +1,7 @@
 ---
 name: maxhub-weibo
 description: 微博数据采集与分析。当用户提到微博、weibo、热搜等相关需求时激活此Skill。
-version: 1.0.9
+version: 1.0.10
 author: MaxHub Team
 license: MIT
 trigger: "微博|weibo|热搜|超话|话题|微博搜索"
@@ -46,7 +46,7 @@ metadata:
 # 🔥 微博数据采集与分析
 
 唯一标识：`maxhub-weibo`
-版本：v1.0.9
+版本：v1.0.10
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

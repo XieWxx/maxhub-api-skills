@@ -1,7 +1,7 @@
 ---
 name: maxhub-douyin
 description: 抖音数据采集与分析。当用户提到抖音、douyin、短视频热搜等相关需求时激活此Skill。
-version: 1.0.14
+version: 1.0.15
 author: MaxHub Team
 license: MIT
 trigger: "抖音|douyin|短视频热搜|抖音达人|抖音直播|抖音热榜|抖音视频|抖音博主"
@@ -48,7 +48,7 @@ metadata:
 # 🎵 抖音数据采集与分析
 
 唯一标识：`maxhub-douyin`
-版本：v1.0.14
+版本：v1.0.15
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -60,7 +60,7 @@ metadata:
 
 - 智能识别：根据自然语言自动匹配最合适的API
 - 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 290 个API，覆盖数据采集、搜索查询、用户分析等场景
+- 全量覆盖：共 285 个API，覆盖数据采集、搜索查询、用户分析等场景
 - 兼容设计：API返回字段变化时自动适配，无需手动调整
 
 ## 使用方法
@@ -105,21 +105,18 @@ metadata:
 | `web/fetch_multi_video` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频 |
 | ... | | | 还有 61 个API |
 
-**Douyin App V3**（47个API）
+**Douyin App V3**（44个API）
 
 | API | 方法 | 必填参数 | 说明 |
 |:---|:---|:---|:---|
 | `app/v3` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持10个视频 |
 | `app/v3` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频 |
 | `app/v3` | POST | - | 批量获取视频信息 |
-| `app/v3` | GET | - | ⚠️敏感数据：抖音APP注册设备，获取设备信息及Cookie（会话类数据，需用户明确确认，输出中应脱敏处理） |
 | `app/v3` | GET | - | 根据分享口令获取分享信息，比如抖音文章的分享口令提取分享人信息和文章ID等然后再去请求单一作品数据接口获取文章内容。 |
 | `app/v3` | GET | - | 根据分享链接获取单个作品数据 |
 | `app/v3` | GET | - | 根据视频ID获取作品的统计数据，支持多个视频id，一次性最多支持50个视频。 |
-| `app/v3` | GET | - | ⚠️变异操作：根据视频ID来增加作品的播放数（需用户明确确认） |
 | `app/v3` | GET | - | 根据视频ID获取作品的统计数据 |
-| `app/v3` | GET | - | ⚠️变异操作：生成抖音分享链接，唤起抖音APP，给指定用户发送私信（需用户明确确认） |
-| ... | | | 还有 37 个API |
+| ... | | | 还有 38 个API |
 
 **Douyin Search**（19个API）
 

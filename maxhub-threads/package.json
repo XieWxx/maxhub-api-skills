@@ -1,6 +1,6 @@
 {
   "name": "maxhub-threads",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Threads帖子搜索与用户数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

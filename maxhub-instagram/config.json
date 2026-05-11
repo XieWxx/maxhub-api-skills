@@ -2,7 +2,7 @@
   "name": "maxhub-instagram",
   "displayName": "Instagram数据采集",
   "displayNameEn": "Instagram Data Collection",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Instagram用户、帖子、Reel与Story数据采集",
   "descriptionEn": "Instagram user, post, Reel and Story data collection",
   "author": "MaxHub Team",

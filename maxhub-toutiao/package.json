@@ -1,6 +1,6 @@
 {
   "name": "maxhub-toutiao",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "今日头条新闻资讯搜索与数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

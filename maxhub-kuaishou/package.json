@@ -1,6 +1,6 @@
 {
   "name": "maxhub-kuaishou",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "快手短视频、直播与电商数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

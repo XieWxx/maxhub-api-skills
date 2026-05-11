@@ -1,7 +1,7 @@
 ---
 name: maxhub-kuaishou
 description: 快手数据采集与分析。当用户提到快手、kuaishou、快手视频等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.0.11
 author: MaxHub Team
 license: MIT
 trigger: "快手|kuaishou|快手视频|快手直播|快手电商"
@@ -45,7 +45,7 @@ metadata:
 # 🎬 快手数据采集与分析
 
 唯一标识：`maxhub-kuaishou`
-版本：v1.0.10
+版本：v1.0.11
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

@@ -1,7 +1,7 @@
 ---
 name: maxhub-sora2
 description: Sora2内容浏览。当用户提到sora、sora2、ai视频等相关需求时激活此Skill。
-version: 1.1.8
+version: 1.1.9
 author: MaxHub Team
 license: MIT
 trigger: "sora|sora2|ai视频|视频创作者|sora搜索"
@@ -45,7 +45,7 @@ metadata:
 # 🎥 Sora2内容浏览
 
 唯一标识：`maxhub-sora2`
-版本：v1.1.8
+版本：v1.1.9
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

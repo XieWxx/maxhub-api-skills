@@ -1,6 +1,6 @@
 {
   "name": "maxhub-hybrid",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "多平台混合内容解析与聚合提取Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

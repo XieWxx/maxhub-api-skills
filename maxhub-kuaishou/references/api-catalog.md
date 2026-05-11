@@ -43,7 +43,6 @@
 | # | 名称 | 方法 | 路径 | 必填参数 |
 |---|------|------|------|----------|
 | 1 | 生成分享短连接/Generate share short URL | GET | `/api/v1/kuaishou/web/generate_share_short_url` | photo_id |
-| 2 | 生成快手分享链接/Generate Kuaishou share link | GET | `/api/v1/kuaishou/app/generate_kuaishou_share_link` | shareObjectId |
 
 ## 搜索查询（5个API）
 

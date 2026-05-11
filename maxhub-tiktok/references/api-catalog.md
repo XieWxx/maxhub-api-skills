@@ -151,7 +151,6 @@
 | 19 | 搜索粉丝列表/Search follower list | GET | `/api/v1/tiktok/app/v3/search_follower_list` | user_id, keyword |
 | 20 | 搜索关注列表/Search following list | GET | `/api/v1/tiktok/app/v3/search_following_list` | user_id, keyword |
 | 21 | 获取商品搜索结果/Get product search results | GET | `/api/v1/tiktok/app/v3/fetch_product_search` | keyword |
-| 22 | 生成TikTok分享链接，唤起TikTok APP，跳转指定关键词搜索结果/Ge | GET | `/api/v1/tiktok/app/v3/open_tiktok_app_to_keyword_search` | keyword |
 | 23 | 搜索广告/Search ads | GET | `/api/v1/tiktok/ads/search_ads` | - |
 | 24 | 获取查询建议/Get query suggestions | GET | `/api/v1/tiktok/ads/get_query_suggestions` | - |
 | 25 | 搜索音乐提示/Search sound hints | GET | `/api/v1/tiktok/ads/search_sound_hint` | keyword |
@@ -163,7 +162,7 @@
 | 31 | 搜索商品列表V2(移动端)/Search products list V2 (M | GET | `/api/v1/tiktok/shop/web/fetch_search_products_list_v2` | search_word |
 | 32 | 搜索商品列表V3/Search products list V3 | GET | `/api/v1/tiktok/shop/web/fetch_search_products_list_v3` | keyword |
 
-## 互动操作（20个API）
+## 互动操作（12个API）
 
 | # | 名称 | 方法 | 路径 | 必填参数 |
 |---|------|------|------|----------|
@@ -180,23 +179,13 @@
 | 11 | 获取指定用户的关注列表数据/Get following list of spec | GET | `/api/v1/tiktok/app/v3/fetch_user_following_list` | - |
 | 12 | 获取商品评论V1/Get product reviews V1 | GET | `/api/v1/tiktok/shop/web/fetch_product_reviews_v1` | product_id |
 | 13 | 获取商品评论V2/Get product reviews V2 | GET | `/api/v1/tiktok/shop/web/fetch_product_reviews_v2` | product_id |
-| 14 | 申请使用TikTok交互API权限（Scope）/Apply for TikTo | GET | `/api/v1/tiktok/interaction/apply` | api_key, invite_code |
-| 15 | 发送评论/Post comment | POST | `/api/v1/tiktok/interaction/post_comment` | - |
-| 16 | 回复评论/Reply to comment | POST | `/api/v1/tiktok/interaction/reply_comment` | - |
-| 17 | 点赞/Like | POST | `/api/v1/tiktok/interaction/like` | - |
-| 18 | 关注/Follow | POST | `/api/v1/tiktok/interaction/follow` | - |
-| 19 | 收藏/Collect | POST | `/api/v1/tiktok/interaction/collect` | - |
-| 20 | 转发/Forward | POST | `/api/v1/tiktok/interaction/forward` | - |
 
-## 工具服务（13个API）
+## 工具服务（2个API）
 
 | # | 名称 | 方法 | 路径 | 必填参数 |
 |---|------|------|------|----------|
 | 5 | 生成 XBogus/Generate XBogus | POST | `/api/v1/tiktok/web/generate_xbogus` | - |
 | 10 | 生成哈希ID/Generate hashed ID | GET | `/api/v1/tiktok/web/generate_hashed_id` | email |
-| 11 | 生成TikTok分享链接，唤起TikTok APP，跳转指定作品详情页/Gene | GET | `/api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail` | aweme_id |
-| 12 | 生成TikTok分享链接，唤起TikTok APP，跳转指定用户主页/Gener | GET | `/api/v1/tiktok/app/v3/open_tiktok_app_to_user_profile` | uid |
-| 13 | 生成TikTok分享链接，唤起TikTok APP，给指定用户发送私信/Gene | GET | `/api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message` | uid |
 
 ## 内容解析（7个API）
 

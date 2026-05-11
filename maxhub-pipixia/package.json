@@ -1,6 +1,6 @@
 {
   "name": "maxhub-pipixia",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "皮皮虾搞笑内容与社区数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

@@ -1,6 +1,6 @@
 # 抖音（Douyin）API完整目录
 
-> 共 290 个API，按能力域分类
+> 共 285 个API，按能力域分类
 
 ## 数据采集（70个API）
 
@@ -206,7 +206,6 @@
 | 20 | 获取抖音音乐榜数据/Get Douyin music hot search li | GET | `/api/v1/douyin/app/v3/fetch_music_hot_search_list` | - |
 | 21 | 获取抖音品牌热榜分类数据/Get Douyin brand hot search | GET | `/api/v1/douyin/app/v3/fetch_brand_hot_search_list` | - |
 | 22 | 获取抖音品牌热榜具体分类数据/Get Douyin brand hot sear | GET | `/api/v1/douyin/app/v3/fetch_brand_hot_search_list_detail` | category_id |
-| 23 | 生成抖音分享链接，唤起抖音APP，跳转指定关键词搜索结果/Generate Do | GET | `/api/v1/douyin/app/v3/open_douyin_app_to_keyword_search` | keyword |
 | 24 | 搜索用户/Search users | GET | `/api/v1/douyin/creator/fetch_user_search` | user_name |
 | 25 | 获取作品搜索关键词统计/Fetch item search keywords s | POST | `/api/v1/douyin/creator_v2/fetch_item_search_keyword` | - |
 | 26 | 达人搜索建议/Daren search suggest | POST | `/api/v1/douyin/index/fetch_daren_sug_great_user_list` | keyword |
@@ -244,15 +243,12 @@
 | 58 | 高级搜索kol V2/Search Kol Advanced V2 | GET | `/api/v1/douyin/xingtu/search_kol_v2` | keyword |
 | 59 | 搜索MCN机构列表/Get Demander MCN List | GET | `/api/v1/douyin/xingtu_v2/get_demander_mcn_list` | - |
 
-## 工具服务（12个API）
+## 工具服务（2个API）
 
 | # | 名称 | 方法 | 路径 | 必填参数 |
 |---|------|------|------|----------|
 | 8 | 生成抖音短链接/Generate Douyin short link | GET | `/api/v1/douyin/app/v3/generate_douyin_short_url` | url |
 | 9 | 生成抖音视频分享二维码/Generate Douyin video share  | GET | `/api/v1/douyin/app/v3/generate_douyin_video_share_qrcode` | object_id |
-| 10 | 生成抖音分享链接，唤起抖音APP，跳转指定作品详情页/Generate Douy | GET | `/api/v1/douyin/app/v3/open_douyin_app_to_video_detail` | aweme_id |
-| 11 | 生成抖音分享链接，唤起抖音APP，跳转指定用户主页/Generate Douyi | GET | `/api/v1/douyin/app/v3/open_douyin_app_to_user_profile` | uid, sec_uid |
-| 12 | 生成抖音分享链接，唤起抖音APP，给指定用户发送私信/Generate Douy | GET | `/api/v1/douyin/app/v3/open_douyin_app_to_send_private_message` | uid, sec_uid |
 
 ## 内容解析（7个API）
 

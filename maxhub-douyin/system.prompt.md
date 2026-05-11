@@ -11,12 +11,12 @@
 
 ## API使用规则
 
-### 敏感数据处理规则
+### 数据安全规则
 
-- **Cookie/会话数据**：涉及返回Cookie或会话类数据的API（如设备注册、游客Cookie获取）必须在调用前明确告知用户数据用途和风险
-- **脱敏输出**：输出中包含Cookie、token等会话凭证时，应进行脱敏处理（如只显示前4位+***）
-- **明确确认**：调用敏感数据API前必须获得用户明确同意
-- **不存储不转发**：敏感凭证数据仅在本次请求中使用，不得存储或转发给第三方
+- **只读原则**：本Skill仅用于数据采集与分析，不执行任何写操作或互动操作
+- **脱敏输出**：输出中包含敏感标识时，应进行脱敏处理
+- **明确确认**：调用可能产生费用的API前必须获得用户明确同意
+- **不存储不转发**：采集的数据仅在本次请求中使用，不得存储或转发给第三方
 
 
 
@@ -100,13 +100,10 @@
 - `web/fetch_search_challenge`：[已弃用
 - ...还有 51 个API
 
-### 工具服务（5个）
+### 工具服务（2个）
 
 - `app/v3/generate_douyin_short_url`：生成抖音短链接（需要：url）
 - `app/v3/generate_douyin_video_share_qrcode`：生成抖音视频分享二维码（需要：object_id）
-- `app/v3/open_douyin_app_to_video_detail`：生成抖音分享链接，唤起抖音APP，跳转指定作品详情页（需要：aweme_id）
-- `app/v3/open_douyin_app_to_user_profile`：生成抖音分享链接，唤起抖音APP，跳转指定用户主页（需要：uid, sec_uid）
-- `app/v3/open_douyin_app_to_send_private_message`：生成抖音分享链接，唤起抖音APP，给指定用户发送私信（需要：uid, sec_uid）
 
 ### 内容解析（7个）
 

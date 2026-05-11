@@ -1,6 +1,6 @@
 {
   "name": "maxhub-sora2",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Sora2平台公开内容浏览与用户信息查询Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

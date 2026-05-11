@@ -1,6 +1,6 @@
 {
   "name": "maxhub-tiktok",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "TikTok数据采集、创作者分析与电商洞察Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

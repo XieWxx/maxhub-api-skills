@@ -1,7 +1,7 @@
 ---
 name: maxhub-hybrid
 description: 混合解析服务。当用户提到混合解析、hybrid、解析等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.0.11
 author: MaxHub Team
 license: MIT
 trigger: "混合解析|hybrid|解析|聚合|多平台解析|url解析"
@@ -46,7 +46,7 @@ metadata:
 # 🔄 混合解析服务
 
 唯一标识：`maxhub-hybrid`
-版本：v1.0.10
+版本：v1.0.11
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

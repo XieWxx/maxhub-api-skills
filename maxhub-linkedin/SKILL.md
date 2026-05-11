@@ -1,7 +1,7 @@
 ---
 name: maxhub-linkedin
 description: LinkedIn数据采集。当用户提到linkedin、职场、公司等相关需求时激活此Skill。
-version: 1.0.8
+version: 1.0.9
 author: MaxHub Team
 license: MIT
 trigger: "linkedin|职场|公司|职位|人脉|linkedin搜索"
@@ -46,7 +46,7 @@ metadata:
 # 💼 LinkedIn数据采集
 
 唯一标识：`maxhub-linkedin`
-版本：v1.0.8
+版本：v1.0.9
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

@@ -1,7 +1,7 @@
 ---
 name: maxhub-tiktok
 description: TikTok数据采集与分析。当用户提到tiktok、国际版抖音、海外短视频等相关需求时激活此Skill。
-version: 1.0.12
+version: 1.0.13
 author: MaxHub Team
 license: MIT
 trigger: "tiktok|国际版抖音|海外短视频|tiktok creator|tiktok analytics"
@@ -45,7 +45,7 @@ metadata:
 # 🎶 TikTok数据采集与分析
 
 唯一标识：`maxhub-tiktok`
-版本：v1.0.12
+版本：v1.0.13
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

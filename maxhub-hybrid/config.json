@@ -2,7 +2,7 @@
   "name": "maxhub-hybrid",
   "displayName": "混合解析服务",
   "displayNameEn": "Hybrid Parser Service",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "多平台混合内容解析与聚合提取",
   "descriptionEn": "Multi-platform content parsing and aggregation extraction",
   "author": "MaxHub Team",

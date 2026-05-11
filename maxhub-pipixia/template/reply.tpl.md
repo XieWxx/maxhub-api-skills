@@ -2,24 +2,6 @@
 
 ## PiPiXia App
 
-### 增加作品浏览数/Increase post view count
-
-`GET /api/v1/pipixia/app/fetch_increase_post_view_count`
-
-**返回数据展示：**
-
-| 字段 | 说明 |
-|:---|:---|
-| ID | 内容唯一标识 |
-| 标题 | 内容标题/描述 |
-| 作者 | 创作者昵称 |
-| 播放量 | 播放/浏览次数 |
-| 点赞数 | 点赞/喜欢次数 |
-| 评论数 | 评论条数 |
-| 发布时间 | 内容创建时间 |
-| 数据说明 | 执行结果 |
-
----
 
 ### 搜索接口/Search API
 

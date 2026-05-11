@@ -1,6 +1,6 @@
 {
   "name": "maxhub-twitter",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Twitter/X推文搜索、用户数据与趋势分析Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

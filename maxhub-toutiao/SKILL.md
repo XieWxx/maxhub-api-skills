@@ -1,7 +1,7 @@
 ---
 name: maxhub-toutiao
 description: 头条数据采集与分析。当用户提到头条、toutiao、新闻等相关需求时激活此Skill。
-version: 1.0.8
+version: 1.0.9
 author: MaxHub Team
 license: MIT
 trigger: "头条|toutiao|新闻|资讯|今日头条"
@@ -45,7 +45,7 @@ metadata:
 # 📰 头条数据采集与分析
 
 唯一标识：`maxhub-toutiao`
-版本：v1.0.8
+版本：v1.0.9
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 

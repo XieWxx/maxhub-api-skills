@@ -1,7 +1,7 @@
 ---
 name: maxhub-bilibili
 description: B站数据采集与分析。当用户提到b站、bilibili、弹幕等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.0.11
 author: MaxHub Team
 license: MIT
 trigger: "b站|bilibili|弹幕|番剧|up主|b站视频|哔哩哔哩"
@@ -47,7 +47,7 @@ metadata:
 # 📺 B站数据采集与分析
 
 唯一标识：`maxhub-bilibili`
-版本：v1.0.10
+版本：v1.0.11
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
