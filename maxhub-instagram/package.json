@@ -14,6 +14,6 @@
   "homepage": "https://www.aconfig.cn",
   "repository": "https://github.com/XieWxx/maxhub-api-skills",
   "dependencies": {
-    "node-fetch": "^2.7.0"
+    "node-fetch": "2.7.0"
   }
 }

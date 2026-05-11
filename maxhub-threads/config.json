@@ -53,5 +53,6 @@
     "maxResults": 50,
     "maxBatchSize": 10,
     "requestsPerMinute": 60
-  }
+  },
+  "privacyNote": "User query parameters are sent to the configured API provider (aconfig.cn). Do not submit sensitive private information."
 }

@@ -1,7 +1,7 @@
 ---
 name: maxhub-weibo
 description: 微博数据采集与分析。当用户提到微博、weibo、热搜等相关需求时激活此Skill。
-version: 1.0.6
+version: 1.0.7
 author: MaxHub Team
 license: MIT
 trigger: "微博|weibo|热搜|超话|话题|微博搜索"
@@ -46,7 +46,7 @@ metadata:
 # 🔥 微博数据采集与分析
 
 唯一标识：`maxhub-weibo`
-版本：v1.0.6
+版本：v1.0.7
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -57,8 +57,8 @@ metadata:
 ## 功能亮点
 
 - 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求自动串联多个API完成
-- 全量覆盖：共 31 个API，覆盖数据采集、搜索查询、用户分析等场景
+- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
+- 全量覆盖：共 64 个API，覆盖数据采集、搜索查询、用户分析等场景
 - 兼容设计：API返回字段变化时自动适配，无需手动调整
 
 ## 使用方法
@@ -122,6 +122,12 @@ metadata:
 3. 默认最多翻5页，如需更多数据请明确指定
 4. 遇到429错误请等待30秒后重试
 
+
+## 数据隐私说明
+
+- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
+- 请勿提交涉及个人隐私的敏感信息
+- API密钥仅在本地环境变量中读取，不会外泄
 ## 更新日志
 
-v1.0.6 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示
