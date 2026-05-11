@@ -7,6 +7,12 @@ const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
 const PLATFORM = 'tiktok';
 
+function resolveCredential() {
+  const proc = typeof process !== 'undefined' ? process : {};
+  const env = proc.env || {};
+  return env[AUTH_ENV_NAME] || '';
+}
+
 /**
  * 通用API请求方法
  * @param {string} path - API路径
@@ -17,7 +23,7 @@ const PLATFORM = 'tiktok';
 async function request(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
-    [AUTH_HEADER]: process.env[AUTH_ENV_NAME],
+    [AUTH_HEADER]: resolveCredential(),
     'Content-Type': 'application/json',
   };
   const options = { method, headers };
