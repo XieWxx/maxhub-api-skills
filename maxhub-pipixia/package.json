@@ -1,6 +1,6 @@
 {
   "name": "maxhub-pipixia",
-  "version": "2.0.0",
+  "version": "1.0.8",
   "description": "皮皮虾搞笑内容与社区数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",
@@ -13,7 +13,5 @@
   ],
   "homepage": "https://www.aconfig.cn",
   "repository": "https://github.com/XieWxx/maxhub-api-skills",
-  "dependencies": {
-    "node-fetch": "2.7.0"
-  }
+  "dependencies": {}
 }

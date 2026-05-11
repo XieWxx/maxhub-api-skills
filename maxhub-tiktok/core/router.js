@@ -45,7 +45,7 @@ const router = {
     },
 
     // 获取用户信息
-    async get_user_profile({ unique_id, page = 1, count = 20 }) {
+    async get_user_profile({ unique_id, sec_uid, page = 1, count = 20 }) {
       if (unique_id) {
         const result = await api.fetchUserProfile({ unique_id });
         return { success: true, intent: 'get_user_profile', data: data.formatItem(result) };
@@ -53,7 +53,7 @@ const router = {
         const result = await api.handlerUserProfile({ sec_uid });
         return { success: true, intent: 'get_user_profile', data: data.formatItem(result) };
       }
-      return { success: false, message: '请提供必要参数' };
+      return { success: false, message: '请提供必要参数(unique_id或sec_uid)' };
     },
 
     // 获取评论

@@ -2,7 +2,7 @@
   "name": "maxhub-bilibili",
   "displayName": "B站数据采集与分析",
   "displayNameEn": "Bilibili Data Collection & Analysis",
-  "version": "2.0.0",
+  "version": "1.0.9",
   "description": "B站视频数据、UP主分析与弹幕采集",
   "descriptionEn": "Bilibili video data, UP host analysis and danmaku collection",
   "author": "MaxHub Team",

@@ -1,7 +1,7 @@
 ---
 name: maxhub-douyin
 description: 抖音数据采集与分析。当用户提到抖音、douyin、短视频热搜等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.0.12
 author: MaxHub Team
 license: MIT
 trigger: "抖音|douyin|短视频热搜|抖音达人|抖音直播|抖音热榜|抖音视频|抖音博主"
@@ -48,7 +48,7 @@ metadata:
 # 🎵 抖音数据采集与分析
 
 唯一标识：`maxhub-douyin`
-版本：v1.0.10
+版本：v1.0.12
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -112,7 +112,7 @@ metadata:
 | `app/v3` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持10个视频 |
 | `app/v3` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频 |
 | `app/v3` | POST | - | 批量获取视频信息 |
-| `app/v3` | GET | - | 抖音APP注册设备，获取设备信息以及设备的Cookie信息。 |
+| `app/v3` | GET | - | ⚠️敏感数据：抖音APP注册设备，获取设备信息及Cookie（会话类数据，需用户明确确认，输出中应脱敏处理） |
 | `app/v3` | GET | - | 根据分享口令获取分享信息，比如抖音文章的分享口令提取分享人信息和文章ID等然后再去请求单一作品数据接口获取文章内容。 |
 | `app/v3` | GET | - | 根据分享链接获取单个作品数据 |
 | `app/v3` | GET | - | 根据视频ID获取作品的统计数据，支持多个视频id，一次性最多支持50个视频。 |
@@ -248,4 +248,5 @@ metadata:
 - API密钥仅在本地环境变量中读取，不会外泄
 ## 更新日志
 
+v1.0.11 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
 v1.0.10 V2架构升级，全量API覆盖，兼容层设计，场景化展示

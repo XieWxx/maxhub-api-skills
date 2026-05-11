@@ -23,7 +23,8 @@ async function handle(intent, params = {}) {
     }
 
     // 检查API Key
-    if (!config.requires?.primaryEnv) {
+    const apiKey = (typeof process !== 'undefined' && process.env?.[config.requires?.primaryEnv]) || '';
+    if (!apiKey) {
       return errorCode.formatErrorResponse(401, '未配置API密钥，请在平台设置中配置MAXHUB_API_KEY');
     }
 

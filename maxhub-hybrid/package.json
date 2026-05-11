@@ -1,6 +1,6 @@
 {
   "name": "maxhub-hybrid",
-  "version": "2.0.0",
+  "version": "1.0.9",
   "description": "多平台混合内容解析与聚合提取Skill",
   "main": "index.ts",
   "author": "MaxHub Team",
@@ -13,7 +13,5 @@
   ],
   "homepage": "https://www.aconfig.cn",
   "repository": "https://github.com/XieWxx/maxhub-api-skills",
-  "dependencies": {
-    "node-fetch": "2.7.0"
-  }
+  "dependencies": {}
 }

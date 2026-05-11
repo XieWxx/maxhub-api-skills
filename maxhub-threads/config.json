@@ -2,7 +2,7 @@
   "name": "maxhub-threads",
   "displayName": "Threads数据采集",
   "displayNameEn": "Threads Data Collection",
-  "version": "2.0.0",
+  "version": "1.0.7",
   "description": "Threads帖子搜索与用户数据采集",
   "descriptionEn": "Threads post search and user data collection",
   "author": "MaxHub Team",

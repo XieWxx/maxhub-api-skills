@@ -24,19 +24,6 @@
       "compatible": true,
       "entry": "SKILL.md"
     },
-    "coze": {
-      "compatible": true,
-      "entry": "openapi.yaml",
-      "runtime": "nodejs"
-    },
-    "dify": {
-      "compatible": true,
-      "entry": "openapi.yaml"
-    },
-    "gpts": {
-      "compatible": true,
-      "entry": "openapi.yaml"
-    },
     "skills_sh": {
       "compatible": true,
       "entry": "SKILL.md"

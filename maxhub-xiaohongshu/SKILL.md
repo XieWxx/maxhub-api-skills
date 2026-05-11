@@ -1,7 +1,7 @@
 ---
 name: maxhub-xiaohongshu
 description: 小红书数据采集与分析。当用户提到小红书、xiaohongshu、red等相关需求时激活此Skill。
-version: 1.0.7
+version: 1.0.9
 author: MaxHub Team
 license: MIT
 trigger: "小红书|xiaohongshu|red|种草|笔记|小红书搜索"
@@ -46,7 +46,7 @@ metadata:
 # 📕 小红书数据采集与分析
 
 唯一标识：`maxhub-xiaohongshu`
-版本：v1.0.7
+版本：v1.0.9
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -92,7 +92,7 @@ metadata:
 | `web/search_notes_v3` | GET | - | 搜索笔记 V3 |
 | `web/search_notes` | GET | - | 搜索笔记 |
 | `web/get_product_info` | GET | - | 通过分享链接获取小红书的商品信息 |
-| `web/get_visitor_cookie` | GET | - | 获取小红书网页版的游客Cookie，可以用于爬取小红书的一些数据。 |
+| `web/get_visitor_cookie` | GET | - | ⚠️敏感数据：获取小红书网页版游客Cookie（会话类数据，需用户明确确认，输出中应脱敏处理） |
 | `web/get_user_info` | GET | - | 获取用户信息 V1 |
 | `web/get_user_info_v2` | GET | - | 获取用户信息 V2 |
 | `web/get_user_notes_v2` | GET | - | 获取用户的笔记 |
@@ -130,4 +130,5 @@ metadata:
 - API密钥仅在本地环境变量中读取，不会外泄
 ## 更新日志
 
+v1.0.8 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
 v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示

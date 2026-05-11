@@ -11,7 +11,6 @@ function resolveCredential() {
   const env = proc.env || {};
   return env[AUTH_ENV_NAME] || '';
 }
-const PLATFORM = 'toutiao';
 
 /**
  * 通用API请求方法
@@ -20,22 +19,34 @@ const PLATFORM = 'toutiao';
  * @param {string} method - 请求方法 GET/POST
  * @returns {Promise<object>} API响应数据
  */
+const REQUEST_TIMEOUT = 30000;
+
 async function request(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
     'Content-Type': 'application/json',
   };
-  const options = { method, headers };
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+  const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-    const query = new URLSearchParams(params).toString();
-    const fullUrl = query ? `${url}?${query}` : url;
-    const response = await fetch(fullUrl, options);
-    return handleResponse(response);
-  }
+      const query = new URLSearchParams(params).toString();
+      const fullUrl = query ? `${url}?${query}` : url;
+      try {
+        const response = await fetch(fullUrl, options);
+        return await handleResponse(response);
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    }
   options.body = JSON.stringify(params);
-  const response = await fetch(url, options);
-  return handleResponse(response);
+    try {
+      const response = await fetch(url, options);
+      return await handleResponse(response);
+    } finally {
+      clearTimeout(timeoutId);
+    }
 }
 
 /**
@@ -75,7 +86,7 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  Object.assign(reqParams, params);
+  
   return request(def.path, reqParams, def.method || 'GET');
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "maxhub-tiktok",
-  "version": "2.0.0",
+  "version": "1.0.11",
   "description": "TikTok数据采集、创作者分析与电商洞察Skill",
   "main": "index.ts",
   "author": "MaxHub Team",
@@ -13,7 +13,5 @@
   ],
   "homepage": "https://www.aconfig.cn",
   "repository": "https://github.com/XieWxx/maxhub-api-skills",
-  "dependencies": {
-    "node-fetch": "2.7.0"
-  }
+  "dependencies": {}
 }

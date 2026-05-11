@@ -1,7 +1,7 @@
 ---
 name: maxhub-wechat
 description: 微信数据采集与分析。当用户提到微信、wechat、视频号等相关需求时激活此Skill。
-version: 1.0.7
+version: 1.0.9
 author: MaxHub Team
 license: MIT
 trigger: "微信|wechat|视频号|公众号|微信文章"
@@ -44,7 +44,7 @@ metadata:
 # 💬 微信数据采集与分析
 
 唯一标识：`maxhub-wechat`
-版本：v1.0.7
+版本：v1.0.9
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -95,4 +95,5 @@ metadata:
 - API密钥仅在本地环境变量中读取，不会外泄
 ## 更新日志
 
+v1.0.8 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
 v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示

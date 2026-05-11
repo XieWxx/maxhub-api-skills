@@ -2,7 +2,7 @@
   "name": "maxhub-toutiao",
   "displayName": "头条数据采集与分析",
   "displayNameEn": "Toutiao Data Collection & Analysis",
-  "version": "2.0.0",
+  "version": "1.0.7",
   "description": "今日头条新闻资讯搜索与数据采集",
   "descriptionEn": "Toutiao news and information search and data collection",
   "author": "MaxHub Team",

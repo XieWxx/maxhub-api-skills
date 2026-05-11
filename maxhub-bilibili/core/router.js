@@ -35,20 +35,20 @@ const router = {
     },
 
     // 获取视频详情
-    async get_video_detail({ bvid, page = 1, count = 20 }) {
+    async get_video_detail({ bvid, aid, page = 1, count = 20 }) {
       if (bvid) {
-        const result = await api.fetchOneVideo({ bvid });
+        const result = await api.fetchOneVideo({ bv_id: bvid });
         return { success: true, intent: 'get_video_detail', data: data.formatItem(result) };
       } else if (aid) {
-        const result = await api.fetchOneVideoV2({ aid });
+        const result = await api.fetchVideoDetail({ aid });
         return { success: true, intent: 'get_video_detail', data: data.formatItem(result) };
       }
-      return { success: false, message: '请提供必要参数' };
+      return { success: false, message: '请提供必要参数(bvid或aid)' };
     },
 
     // 获取用户信息
-    async get_user_profile({ mid, page = 1, count = 20 }) {
-      const result = await api.fetchUserProfile({ mid });
+    async get_user_profile({ uid, page = 1, count = 20 }) {
+      const result = await api.fetchUserProfile({ uid });
       return {
         success: true,
         intent: 'get_user_profile',
@@ -67,8 +67,8 @@ const router = {
     },
 
     // 获取视频评论
-    async get_comments({ oid, page = 1, count = 20 }) {
-      const result = await api.fetchVideoComments({ oid });
+    async get_comments({ bv_id, page = 1, count = 20 }) {
+      const result = await api.fetchVideoComments({ bv_id });
       return {
         success: true,
         intent: 'get_comments',
@@ -77,8 +77,8 @@ const router = {
     },
 
     // 获取评论回复
-    async get_comment_replies({ oid, rpid, page = 1, count = 20 }) {
-      const result = await api.fetchCommentReply({ oid, rpid });
+    async get_comment_replies({ bv_id, rpid, page = 1, count = 20 }) {
+      const result = await api.fetchCommentReply({ bv_id, rpid });
       return {
         success: true,
         intent: 'get_comment_replies',
@@ -87,8 +87,8 @@ const router = {
     },
 
     // 获取用户投稿
-    async get_user_videos({ mid, page = 1, count = 20 }) {
-      const result = await api.fetchUserPostVideos({ mid });
+    async get_user_videos({ uid, page = 1, count = 20 }) {
+      const result = await api.fetchUserPostVideos({ uid });
       return {
         success: true,
         intent: 'get_user_videos',

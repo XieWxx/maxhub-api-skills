@@ -1,14 +1,18 @@
 {
   "name": "maxhub-douyin",
-  "version": "2.0.0",
+  "version": "1.0.11",
   "description": "抖音/Douyin平台数据采集与智能分析Skill",
   "main": "index.ts",
   "author": "MaxHub Team",
   "license": "MIT",
-  "keywords": ["douyin", "抖音", "短视频", "数据采集", "skill"],
+  "keywords": [
+    "douyin",
+    "抖音",
+    "短视频",
+    "数据采集",
+    "skill"
+  ],
   "homepage": "https://www.aconfig.cn",
   "repository": "https://github.com/XieWxx/maxhub-api-skills",
-  "dependencies": {
-    "node-fetch": "2.7.0"
-  }
+  "dependencies": {}
 }
