@@ -1,7 +1,7 @@
 ---
 name: maxhub-xiaohongshu
 description: 小红书数据采集与分析。当用户提到小红书、xiaohongshu、red等相关需求时激活此Skill。
-version: 1.0.9
+version: 1.0.10
 author: MaxHub Team
 license: MIT
 trigger: "小红书|xiaohongshu|red|种草|笔记|小红书搜索"
@@ -46,7 +46,7 @@ metadata:
 # 📕 小红书数据采集与分析
 
 唯一标识：`maxhub-xiaohongshu`
-版本：v1.0.9
+版本：v1.0.10
 更新时间：2026-05-10
 适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
 
@@ -58,7 +58,7 @@ metadata:
 
 - 智能识别：根据自然语言自动匹配最合适的API
 - 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 78 个API，覆盖数据采集、搜索查询、用户分析等场景
+- 全量覆盖：共 77 个API，覆盖数据采集、搜索查询、用户分析等场景
 - 兼容设计：API返回字段变化时自动适配，无需手动调整
 
 ## 使用方法
@@ -83,7 +83,7 @@ metadata:
 
 ## 支持功能
 
-**Xiaohongshu Web**（17个API）
+**Xiaohongshu Web**（16个API）
 
 | API | 方法 | 必填参数 | 说明 |
 |:---|:---|:---|:---|
@@ -92,12 +92,11 @@ metadata:
 | `web/search_notes_v3` | GET | - | 搜索笔记 V3 |
 | `web/search_notes` | GET | - | 搜索笔记 |
 | `web/get_product_info` | GET | - | 通过分享链接获取小红书的商品信息 |
-| `web/get_visitor_cookie` | GET | - | ⚠️敏感数据：获取小红书网页版游客Cookie（会话类数据，需用户明确确认，输出中应脱敏处理） |
 | `web/get_user_info` | GET | - | 获取用户信息 V1 |
 | `web/get_user_info_v2` | GET | - | 获取用户信息 V2 |
 | `web/get_user_notes_v2` | GET | - | 获取用户的笔记 |
 | `web/get_note_info_v2` | GET | - | 获取笔记信息 V2 |
-| ... | | | 还有 7 个API |
+| ... | | | 还有 6 个API |
 
 **Xiaohongshu App**（11个API）
 

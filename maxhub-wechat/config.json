@@ -2,7 +2,7 @@
   "name": "maxhub-wechat",
   "displayName": "微信数据采集与分析",
   "displayNameEn": "WeChat Data Collection & Analysis",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "微信视频号与公众号数据采集分析",
   "descriptionEn": "WeChat Channels and Official Account data collection and analysis",
   "author": "MaxHub Team",

@@ -1,6 +1,6 @@
 {
   "name": "maxhub-weibo",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "微博热搜、话题、用户与博文数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

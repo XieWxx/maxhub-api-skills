@@ -2,7 +2,7 @@
   "name": "maxhub-weibo",
   "displayName": "微博数据采集与分析",
   "displayNameEn": "Weibo Data Collection & Analysis",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "微博热搜、话题、用户与博文数据采集",
   "descriptionEn": "Weibo hot search, topic, user and post data collection",
   "author": "MaxHub Team",

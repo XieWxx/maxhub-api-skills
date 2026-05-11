@@ -1,6 +1,6 @@
 {
   "name": "maxhub-douyin",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "description": "抖音/Douyin平台数据采集与智能分析Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

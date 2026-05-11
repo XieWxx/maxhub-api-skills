@@ -2,7 +2,7 @@
   "name": "maxhub-temp-mail",
   "displayName": "临时邮箱服务",
   "displayNameEn": "TempMail Service",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "临时邮箱创建与邮件接收服务",
   "descriptionEn": "TempMail platform temporary email creation and mail receiving service",
   "author": "MaxHub Team",

@@ -2,7 +2,7 @@
   "name": "maxhub-xiaohongshu",
   "displayName": "小红书数据采集与分析",
   "displayNameEn": "Xiaohongshu Data Collection & Analysis",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "小红书笔记搜索、用户分析与种草数据采集",
   "descriptionEn": "Xiaohongshu note search, user analysis and recommendation data collection",
   "author": "MaxHub Team",

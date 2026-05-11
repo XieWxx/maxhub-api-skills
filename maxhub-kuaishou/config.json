@@ -2,7 +2,7 @@
   "name": "maxhub-kuaishou",
   "displayName": "快手数据采集与分析",
   "displayNameEn": "Kuaishou Data Collection & Analysis",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "快手短视频、直播与电商数据采集",
   "descriptionEn": "Kuaishou short video, live streaming and e-commerce data collection",
   "author": "MaxHub Team",

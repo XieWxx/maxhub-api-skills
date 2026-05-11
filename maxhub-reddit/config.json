@@ -2,7 +2,7 @@
   "name": "maxhub-reddit",
   "displayName": "Reddit数据采集",
   "displayNameEn": "Reddit Data Collection",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Reddit社区帖子搜索、评论与Subreddit数据采集",
   "descriptionEn": "Reddit community post search, comments and Subreddit data collection",
   "author": "MaxHub Team",

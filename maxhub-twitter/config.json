@@ -2,7 +2,7 @@
   "name": "maxhub-twitter",
   "displayName": "Twitter/X数据采集与分析",
   "displayNameEn": "Twitter/X Data Collection & Analysis",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Twitter/X推文搜索、用户数据与趋势分析",
   "descriptionEn": "Twitter/X tweet search, user data and trend analysis",
   "author": "MaxHub Team",

@@ -1,6 +1,6 @@
 {
   "name": "maxhub-lemon8",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Lemon8生活方式图文与种草数据采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

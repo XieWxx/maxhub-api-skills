@@ -1,6 +1,6 @@
 {
   "name": "maxhub-bilibili",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "B站视频数据、UP主分析与弹幕采集Skill",
   "main": "index.ts",
   "author": "MaxHub Team",

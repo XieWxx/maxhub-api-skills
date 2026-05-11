@@ -2,7 +2,7 @@
   "name": "maxhub-zhihu",
   "displayName": "知乎数据采集与分析",
   "displayNameEn": "Zhihu Data Collection & Analysis",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "知乎问答搜索、专栏文章与话题数据采集",
   "descriptionEn": "Zhihu Q&A search, column article and topic data collection",
   "author": "MaxHub Team",
