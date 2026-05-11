@@ -5,6 +5,12 @@ const config = require('../config.json');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
+
+function resolveCredential() {
+  const proc = typeof process !== 'undefined' ? process : {};
+  const env = proc.env || {};
+  return env[AUTH_ENV_NAME] || '';
+}
 const PLATFORM = 'bilibili';
 
 /**
@@ -17,7 +23,7 @@ const PLATFORM = 'bilibili';
 async function request(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
-    [AUTH_HEADER]: process.env[AUTH_ENV_NAME],
+    [AUTH_HEADER]: resolveCredential(),
     'Content-Type': 'application/json',
   };
   const options = { method, headers };
