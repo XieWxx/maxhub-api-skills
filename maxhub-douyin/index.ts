@@ -23,8 +23,8 @@ async function handle(intent, params = {}) {
     }
 
     // 检查API Key
-    if (!process.env.MAXHUB_API_KEY) {
-      return errorCode.formatErrorResponse(401, '未配置MAXHUB_API_KEY环境变量');
+    if (!config.requires?.primaryEnv) {
+      return errorCode.formatErrorResponse(401, '未配置API密钥，请在平台设置中配置MAXHUB_API_KEY');
     }
 
     // 路由分发

@@ -18,7 +18,7 @@ const errorCode = require('./core/error-code');
 async function handle(intent, params = {}) {
   try {
     if (!intent) return errorCode.formatErrorResponse('PARAM_MISSING', '缺少意图参数');
-    if (!process.env.MAXHUB_API_KEY) return errorCode.formatErrorResponse(401, '未配置MAXHUB_API_KEY环境变量');
+    if (!config.requires?.primaryEnv) return errorCode.formatErrorResponse(401, '未配置API密钥，请在平台设置中配置MAXHUB_API_KEY');
     return await router.dispatch(intent, params);
   } catch (error) {
     const statusCode = error.message?.match(/(\d{3})/)?.[1];

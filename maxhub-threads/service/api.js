@@ -1,25 +1,10 @@
 // 第三方接口请求封装 - threads
 // 基于MaxHub API中转站调用，包含所有API
 
-const DEFAULT_BASE_URL = 'https://www.aconfig.cn';
-const ENV_KEY_URL = 'MAXHUB_BASE_URL';
-const ENV_KEY_API = 'MAXHUB_API_KEY';
-
-function getEnvVar(key) {
-  return process.env[key];
-}
-
-function getBaseUrl() {
-  const envUrl = getEnvVar(ENV_KEY_URL);
-  return envUrl || DEFAULT_BASE_URL;
-}
-
-function getApiKey() {
-  return getEnvVar(ENV_KEY_API);
-}
-
-const BASE_URL = getBaseUrl();
-const API_KEY = getApiKey();
+const config = require('../config.json');
+const BASE_URL = config.apiBase.url;
+const AUTH_HEADER = config.apiBase.authHeader;
+const AUTH_ENV_NAME = config.apiBase.authEnvVar;
 const PLATFORM = 'threads';
 
 /**
@@ -32,7 +17,7 @@ const PLATFORM = 'threads';
 async function request(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
-    'x-api-key': API_KEY,
+    [AUTH_HEADER]: process.env[AUTH_ENV_NAME],
     'Content-Type': 'application/json',
   };
   const options = { method, headers };
