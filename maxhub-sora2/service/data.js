@@ -2,6 +2,15 @@
 // 兼容层设计：支持API返回参数变化时自动调整
 // 当API返回字段与预期不一致时，使用fallback策略提取数据
 
+function safeGet(obj, paths, defaultValue = '-') {
+  if (!obj) return defaultValue;
+  for (const path of paths) {
+    const value = path.split('.').reduce((o, k) => o?.[k], obj);
+    if (value !== undefined && value !== null && value !== '') return value;
+  }
+  return defaultValue;
+}
+
 function formatNumber(num) {
   if (typeof num === 'string') num = parseInt(num, 10);
   if (isNaN(num)) return '0';

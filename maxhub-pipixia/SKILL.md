@@ -1,7 +1,7 @@
 ---
 name: maxhub-pipixia
 description: 皮皮虾数据采集。当用户提到皮皮虾、pipixia、搞笑等相关需求时激活此Skill。
-version: 1.0.11
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "皮皮虾|pipixia|搞笑|段子"

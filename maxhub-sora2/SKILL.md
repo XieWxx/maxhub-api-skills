@@ -1,7 +1,7 @@
 ---
 name: maxhub-sora2
 description: Sora2内容浏览。当用户提到sora、sora2、ai视频等相关需求时激活此Skill。
-version: 1.1.9
+version: 1.2.1
 author: MaxHub Team
 license: MIT
 trigger: "sora|sora2|ai视频|视频创作者|sora搜索"

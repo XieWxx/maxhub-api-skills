@@ -1,7 +1,7 @@
 ---
 name: maxhub-kuaishou
 description: 快手数据采集与分析。当用户提到快手、kuaishou、快手视频等相关需求时激活此Skill。
-version: 1.0.11
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "快手|kuaishou|快手视频|快手直播|快手电商"

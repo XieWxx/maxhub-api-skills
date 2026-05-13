@@ -1,5 +1,5 @@
 // 技能入口主文件 - 西瓜视频数据采集
-// 统一导出所有模块，供各平台调用
+// 集成智能优化层：价格追踪、缓存、去重、监控、决策
 
 const config = require('./config.json');
 const manifest = require('./manifest.json');
@@ -27,4 +27,56 @@ async function handle(intent, params = {}) {
   }
 }
 
-module.exports = { handle, config, manifest, api, data, utils, router, errorCode };
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、调用链分析、优化建议
+ * @returns {object} 优化报告
+ */
+function getReport() {
+  return api.getOptimizationReport();
+}
+
+/**
+ * 查询API价格
+ * @param {string} apiName - API名称（可选，不传则返回全部）
+ * @returns {object|Array} 价格信息
+ */
+function queryPrice(apiName) {
+  if (apiName) return api.getApiPrice(apiName);
+  return api.getAllPrices();
+}
+
+/**
+ * 智能决策 - 选择最优API方案
+ * @param {string} intentType - 意图类型
+ * @param {object} params - 用户参数
+ * @returns {object} 决策结果
+ */
+function decide(intentType, params = {}) {
+  return router.decideBestApi(intentType, params);
+}
+
+/**
+ * 多方案费用对比
+ * @param {string} intentType - 意图类型
+ * @param {number} callCount - 预估调用次数
+ * @returns {Array} 对比结果
+ */
+function compareCosts(intentType, callCount = 1) {
+  return router.compareCosts(intentType, callCount);
+}
+
+module.exports = {
+  handle,
+  getReport,
+  queryPrice,
+  decide,
+  compareCosts,
+  config,
+  manifest,
+  api,
+  data,
+  utils,
+  router,
+  errorCode,
+};

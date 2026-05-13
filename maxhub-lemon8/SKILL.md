@@ -1,7 +1,7 @@
 ---
 name: maxhub-lemon8
 description: Lemon8数据采集。当用户提到lemon8、生活方式、图文等相关需求时激活此Skill。
-version: 1.0.11
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "lemon8|生活方式|图文|种草|lemon8搜索"

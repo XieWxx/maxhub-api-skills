@@ -1,7 +1,7 @@
 ---
 name: maxhub-temp-mail
 description: 临时邮箱服务。当用户提到临时邮箱、temp mail、隐私邮箱等相关需求时激活此Skill。
-version: 1.1.9
+version: 1.2.1
 author: MaxHub Team
 license: MIT
 trigger: "临时邮箱|temp mail|隐私邮箱|一次性邮箱|临时email"

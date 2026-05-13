@@ -1,7 +1,7 @@
 ---
 name: maxhub-reddit
 description: Reddit数据采集。当用户提到reddit、社区、帖子等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "reddit|社区|帖子|评论|subreddit|reddit搜索"

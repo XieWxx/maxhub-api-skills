@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - kuaishou
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,63 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
- * @param {string} path - API路径
- * @param {object} params - 请求参数
- * @param {string} method - 请求方法 GET/POST
- * @returns {Promise<object>} API响应数据
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格来源：pricing.md
  */
+const API_REGISTRY = {
+  // web
+  fetchOneVideoV2: { path: '/web/fetch_one_video_v2', params: ['photo_id'], price: 0.02 },
+  fetchUserInfo: { path: '/web/fetch_user_info', params: ['user_id'], price: 0.02 },
+  fetchUserPost: { path: '/web/fetch_user_post', params: ['user_id'], price: 0.1 },
+  fetchUserLiveReplay: { path: '/web/fetch_user_live_replay', params: ['user_id'], price: 0.1 },
+  fetchUserCollect: { path: '/web/fetch_user_collect', params: ['user_id'], price: 0.1 },
+  fetchKuaishouHotListV1: { path: '/web/fetch_kuaishou_hot_list_v1', price: 0.01 },
+  fetchKuaishouHotListV2: { path: '/web/fetch_kuaishou_hot_list_v2', price: 0.01 },
+  fetchGetUserId: { path: '/web/fetch_get_user_id', params: ['share_link'], price: 0.01 },
+  fetchOneVideoSubComment: { path: '/web/fetch_one_video_sub_comment', params: ['photo_id', 'root_comment_id'], price: 0.1 },
+  generateShareShortUrl: { path: '/web/generate_share_short_url', params: ['photo_id'], price: 0.01 },
+  // app
+  fetchOneVideo: { path: '/app/fetch_one_video', params: ['photo_id'], price: 0.01 },
+  fetchOneVideoByUrl: { path: '/app/fetch_one_video_by_url', params: ['share_text'], price: 0.01 },
+  fetchOneUserV2: { path: '/app/fetch_one_user_v2', params: ['user_id'], price: 0.1 },
+  fetchUserLiveInfo: { path: '/app/fetch_user_live_info', params: ['user_id'], price: 0.01 },
+  fetchUserHotPost: { path: '/app/fetch_user_hot_post', params: ['user_id'], price: 0.01 },
+  fetchUserPostV2: { path: '/app/fetch_user_post_v2', params: ['user_id'], price: 0.1 },
+  fetchHotBoardCategories: { path: '/app/fetch_hot_board_categories', price: 0.01 },
+  fetchHotBoardDetail: { path: '/app/fetch_hot_board_detail', price: 0.01 },
+  fetchLiveTopList: { path: '/app/fetch_live_top_list', price: 0.01 },
+  fetchShoppingTopList: { path: '/app/fetch_shopping_top_list', price: 0.01 },
+  fetchBrandTopList: { path: '/app/fetch_brand_top_list', price: 0.01 },
+  fetchMagicFaceUsage: { path: '/app/fetch_magic_face_usage', params: ['magic_face_id'], price: 0.025 },
+  fetchMagicFaceHot: { path: '/app/fetch_magic_face_hot', params: ['magic_face_id'], price: 0.05 },
+  fetchOneVideoComment: { path: '/app/fetch_one_video_comment', params: ['photo_id'], price: 0.01 },
+  generateKuaishouShareLink: { path: '/app/generate_kuaishou_share_link', params: ['shareObjectId'], price: 0.01 },
+  fetchVideosBatch: { path: '/app/fetch_videos_batch', params: ['photo_ids'], price: 0.4 },
+  searchComprehensive: { path: '/app/search_comprehensive', params: ['keyword'], price: 0.1 },
+  searchVideoV2: { path: '/app/search_video_v2', params: ['keyword'], price: 0.1 },
+  searchUserV2: { path: '/app/search_user_v2', params: ['keyword'], price: 0.1 },
+  fetchHotSearchPerson: { path: '/app/fetch_hot_search_person', price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
 const REQUEST_TIMEOUT = 30000;
 
-async function request(path, params = {}, method = 'GET') {
+/**
+ * 原始API请求方法（不含优化层）
+ */
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -31,23 +80,29 @@ async function request(path, params = {}, method = 'GET') {
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
   const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-      const query = new URLSearchParams(params).toString();
-      const fullUrl = query ? `${url}?${query}` : url;
-      try {
-        const response = await fetch(fullUrl, options);
-        return await handleResponse(response);
-      } finally {
-        clearTimeout(timeoutId);
-      }
-    }
-  options.body = JSON.stringify(params);
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(fullUrl, options);
       return await handleResponse(response);
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+  options.body = JSON.stringify(params);
+  try {
+    const response = await fetch(url, options);
+    return await handleResponse(response);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
+
+/**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
 
 /**
  * 处理API响应
@@ -61,44 +116,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  fetchOneVideoV2: { path: '/web/fetch_one_video_v2', params: ['photo_id'] },
-  fetchUserInfo: { path: '/web/fetch_user_info', params: ['user_id'] },
-  fetchUserPost: { path: '/web/fetch_user_post', params: ['user_id'] },
-  fetchUserLiveReplay: { path: '/web/fetch_user_live_replay', params: ['user_id'] },
-  fetchUserCollect: { path: '/web/fetch_user_collect', params: ['user_id'] },
-  fetchKuaishouHotListV1: { path: '/web/fetch_kuaishou_hot_list_v1' },
-  fetchKuaishouHotListV2: { path: '/web/fetch_kuaishou_hot_list_v2' },
-  fetchGetUserId: { path: '/web/fetch_get_user_id', params: ['share_link'] },
-  fetchOneVideoSubComment: { path: '/web/fetch_one_video_sub_comment', params: ['photo_id', 'root_comment_id'] },
-  generateShareShortUrl: { path: '/web/generate_share_short_url', params: ['photo_id'] },
-  // app
-  fetchOneVideo: { path: '/app/fetch_one_video', params: ['photo_id'] },
-  fetchOneVideoByUrl: { path: '/app/fetch_one_video_by_url', params: ['share_text'] },
-  fetchOneUserV2: { path: '/app/fetch_one_user_v2', params: ['user_id'] },
-  fetchUserLiveInfo: { path: '/app/fetch_user_live_info', params: ['user_id'] },
-  fetchUserHotPost: { path: '/app/fetch_user_hot_post', params: ['user_id'] },
-  fetchUserPostV2: { path: '/app/fetch_user_post_v2', params: ['user_id'] },
-  fetchHotBoardCategories: { path: '/app/fetch_hot_board_categories' },
-  fetchHotBoardDetail: { path: '/app/fetch_hot_board_detail' },
-  fetchLiveTopList: { path: '/app/fetch_live_top_list' },
-  fetchShoppingTopList: { path: '/app/fetch_shopping_top_list' },
-  fetchBrandTopList: { path: '/app/fetch_brand_top_list' },
-  fetchMagicFaceUsage: { path: '/app/fetch_magic_face_usage', params: ['magic_face_id'] },
-  fetchMagicFaceHot: { path: '/app/fetch_magic_face_hot', params: ['magic_face_id'] },
-  fetchOneVideoComment: { path: '/app/fetch_one_video_comment', params: ['photo_id'] },
-  generateKuaishouShareLink: { path: '/app/generate_kuaishou_share_link', params: ['shareObjectId'] },
-  fetchVideosBatch: { path: '/app/fetch_videos_batch', params: ['photo_ids'] },
-  searchComprehensive: { path: '/app/search_comprehensive', params: ['keyword'] },
-  searchVideoV2: { path: '/app/search_video_v2', params: ['keyword'] },
-  searchUserV2: { path: '/app/search_user_v2', params: ['keyword'] },
-  fetchHotSearchPerson: { path: '/app/fetch_hot_search_person' },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -112,7 +132,6 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -135,10 +154,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   fetchOneVideoV2: api.fetchOneVideoV2,
   fetchUserInfo: api.fetchUserInfo,
   fetchUserPost: api.fetchUserPost,

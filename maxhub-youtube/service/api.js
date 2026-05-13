@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - youtube
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,82 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格规则：
+ *   web端大部分API: 0.01
+ *   web_v2端大部分API: 0.01
+ *   get_video_info(web端): 0.02
+ *   get_general_search/get_shorts_search(web端): 0.02
+ *   get_trending_videos(web_v2端): 0.02
+ *   get_video_captions(web_v2端): 0.02
+ *   get_general_search_v2/get_shorts_search_v2(web_v2端): 0.02
+ *   get_video_streams_v2(web_v2端): 0.03
+ *   get_channel_email: 0.30
+ */
+const API_REGISTRY = {
+  // web端
+  getVideoInfoV2: { path: '/web/get_video_info_v2', params: ['video_id'], price: 0.01 },
+  getVideoInfoV3: { path: '/web/get_video_info_v3', params: ['video_id'], price: 0.01 },
+  getVideoSubtitles: { path: '/web/get_video_subtitles', params: ['subtitle_url'], price: 0.01 },
+  getRelateVideo: { path: '/web/get_relate_video', params: ['video_id'], price: 0.01 },
+  getChannelIdV2: { path: '/web/get_channel_id_v2', params: ['channel_url'], price: 0.01 },
+  getChannelInfo: { path: '/web/get_channel_info', params: ['channel_id'], price: 0.01 },
+  getChannelVideosV2: { path: '/web/get_channel_videos_v2', params: ['channel_id'], price: 0.01 },
+  getChannelVideosV3: { path: '/web/get_channel_videos_v3', params: ['channel_id'], price: 0.01 },
+  getChannelShortVideos: { path: '/web/get_channel_short_videos', params: ['channel_id'], price: 0.01 },
+  getTrendingVideos: { path: '/web/get_trending_videos', price: 0.01 },
+  searchVideo: { path: '/web/search_video', params: ['search_query'], price: 0.01 },
+  searchChannel: { path: '/web/search_channel', params: ['channel_id', 'search_query'], price: 0.01 },
+  getVideoInfo: { path: '/web/get_video_info', params: ['video_id'], price: 0.02 },
+  getGeneralSearch: { path: '/web/get_general_search', params: ['search_query'], price: 0.02 },
+  getShortsSearch: { path: '/web/get_shorts_search', params: ['search_query'], price: 0.02 },
+  getChannelEmail: { path: '/web/get_channel_email', price: 0.30 },
+  // web_v2端
+  getChannelDescription: { path: '/web_v2/get_channel_description', price: 0.01 },
+  getChannelId: { path: '/web_v2/get_channel_id', params: ['channel_url'], price: 0.01 },
+  getChannelUrl: { path: '/web_v2/get_channel_url', params: ['channel_id'], price: 0.01 },
+  getChannelVideos: { path: '/web_v2/get_channel_videos', params: ['channel_id'], price: 0.01 },
+  getVideoStreams: { path: '/web_v2/get_video_streams', price: 0.01 },
+  getVideoStreamsV2: { path: '/web_v2/get_video_streams_v2', price: 0.03 },
+  getSignedStreamUrl: { path: '/web_v2/get_signed_stream_url', params: ['itag'], price: 0.01 },
+  getVideoCaptions: { path: '/web_v2/get_video_captions', price: 0.02 },
+  getRelatedVideos: { path: '/web_v2/get_related_videos', price: 0.01 },
+  getChannelShorts: { path: '/web_v2/get_channel_shorts', price: 0.01 },
+  getChannelCommunityPosts: { path: '/web_v2/get_channel_community_posts', params: ['channel_id'], price: 0.01 },
+  getPostDetail: { path: '/web_v2/get_post_detail', params: ['post_id'], price: 0.01 },
+  getVideoComments: { path: '/web_v2/get_video_comments', params: ['video_id'], price: 0.01 },
+  getVideoCommentReplies: { path: '/web_v2/get_video_comment_replies', params: ['continuation_token'], price: 0.01 },
+  getPostComments: { path: '/web_v2/get_post_comments', price: 0.01 },
+  getPostCommentReplies: { path: '/web_v2/get_post_comment_replies', params: ['continuation_token'], price: 0.01 },
+  getGeneralSearchV2: { path: '/web_v2/get_general_search_v2', price: 0.02 },
+  getShortsSearchV2: { path: '/web_v2/get_shorts_search_v2', price: 0.02 },
+  getSearchSuggestions: { path: '/web_v2/get_search_suggestions', params: ['keyword'], price: 0.01 },
+  searchChannels: { path: '/web_v2/search_channels', price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
+const REQUEST_TIMEOUT = 30000;
+
+/**
+ * 原始API请求方法（不含优化层）
  * @param {string} path - API路径
  * @param {object} params - 请求参数
  * @param {string} method - 请求方法 GET/POST
  * @returns {Promise<object>} API响应数据
  */
-const REQUEST_TIMEOUT = 30000;
-
-async function request(path, params = {}, method = 'GET') {
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -31,23 +99,29 @@ async function request(path, params = {}, method = 'GET') {
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
   const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-      const query = new URLSearchParams(params).toString();
-      const fullUrl = query ? `${url}?${query}` : url;
-      try {
-        const response = await fetch(fullUrl, options);
-        return await handleResponse(response);
-      } finally {
-        clearTimeout(timeoutId);
-      }
-    }
-  options.body = JSON.stringify(params);
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(fullUrl, options);
       return await handleResponse(response);
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+  options.body = JSON.stringify(params);
+  try {
+    const response = await fetch(url, options);
+    return await handleResponse(response);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
+
+/**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
 
 /**
  * 处理API响应
@@ -61,49 +135,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  getVideoInfoV2: { path: '/web/get_video_info_v2', params: ['video_id'] },
-  getVideoInfoV3: { path: '/web/get_video_info_v3', params: ['video_id'] },
-  getVideoSubtitles: { path: '/web/get_video_subtitles', params: ['subtitle_url'] },
-  getRelateVideo: { path: '/web/get_relate_video', params: ['video_id'] },
-  getChannelIdV2: { path: '/web/get_channel_id_v2', params: ['channel_url'] },
-  getChannelInfo: { path: '/web/get_channel_info', params: ['channel_id'] },
-  getChannelVideosV2: { path: '/web/get_channel_videos_v2', params: ['channel_id'] },
-  getChannelVideosV3: { path: '/web/get_channel_videos_v3', params: ['channel_id'] },
-  getChannelShortVideos: { path: '/web/get_channel_short_videos', params: ['channel_id'] },
-  getTrendingVideos: { path: '/web/get_trending_videos' },
-  searchVideo: { path: '/web/search_video', params: ['search_query'] },
-  searchChannel: { path: '/web/search_channel', params: ['channel_id', 'search_query'] },
-  // web_v2
-  getVideoInfo: { path: '/web_v2/get_video_info', params: ['video_id'] },
-  getChannelDescription: { path: '/web_v2/get_channel_description' },
-  getChannelId: { path: '/web_v2/get_channel_id', params: ['channel_url'] },
-  getChannelUrl: { path: '/web_v2/get_channel_url', params: ['channel_id'] },
-  getChannelVideos: { path: '/web_v2/get_channel_videos', params: ['channel_id'] },
-  getVideoStreams: { path: '/web_v2/get_video_streams' },
-  getVideoStreamsV2: { path: '/web_v2/get_video_streams_v2' },
-  getSignedStreamUrl: { path: '/web_v2/get_signed_stream_url', params: ['itag'] },
-  getVideoCaptions: { path: '/web_v2/get_video_captions' },
-  getRelatedVideos: { path: '/web_v2/get_related_videos' },
-  getChannelShorts: { path: '/web_v2/get_channel_shorts' },
-  getChannelCommunityPosts: { path: '/web_v2/get_channel_community_posts', params: ['channel_id'] },
-  getPostDetail: { path: '/web_v2/get_post_detail', params: ['post_id'] },
-  getVideoComments: { path: '/web_v2/get_video_comments', params: ['video_id'] },
-  getVideoCommentReplies: { path: '/web_v2/get_video_comment_replies', params: ['continuation_token'] },
-  getPostComments: { path: '/web_v2/get_post_comments' },
-  getPostCommentReplies: { path: '/web_v2/get_post_comment_replies', params: ['continuation_token'] },
-  getGeneralSearch: { path: '/web_v2/get_general_search', params: ['search_query'] },
-  getGeneralSearchV2: { path: '/web_v2/get_general_search_v2' },
-  getShortsSearch: { path: '/web_v2/get_shorts_search', params: ['search_query'] },
-  getShortsSearchV2: { path: '/web_v2/get_shorts_search_v2' },
-  getSearchSuggestions: { path: '/web_v2/get_search_suggestions', params: ['keyword'] },
-  searchChannels: { path: '/web_v2/search_channels' },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -117,7 +151,6 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -140,10 +173,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   getVideoInfoV2: api.getVideoInfoV2,
   getVideoInfoV3: api.getVideoInfoV3,
   getVideoSubtitles: api.getVideoSubtitles,
@@ -179,4 +254,5 @@ module.exports = {
   getShortsSearchV2: api.getShortsSearchV2,
   getSearchSuggestions: api.getSearchSuggestions,
   searchChannels: api.searchChannels,
+  getChannelEmail: api.getChannelEmail,
 };

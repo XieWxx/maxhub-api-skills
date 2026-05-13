@@ -1,7 +1,7 @@
 ---
 name: maxhub-threads
 description: Threads数据采集。当用户提到threads、meta、帖子等相关需求时激活此Skill。
-version: 1.0.9
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "threads|meta|帖子|threads搜索"

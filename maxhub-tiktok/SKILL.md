@@ -1,7 +1,7 @@
 ---
 name: maxhub-tiktok
 description: TikTok数据采集与分析。当用户提到tiktok、国际版抖音、海外短视频等相关需求时激活此Skill。
-version: 1.0.13
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "tiktok|国际版抖音|海外短视频|tiktok creator|tiktok analytics"

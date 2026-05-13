@@ -1,7 +1,7 @@
 ---
 name: maxhub-douyin
 description: 抖音数据采集与分析。当用户提到抖音、douyin、短视频热搜等相关需求时激活此Skill。
-version: 1.0.15
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "抖音|douyin|短视频热搜|抖音达人|抖音直播|抖音热榜|抖音视频|抖音博主"

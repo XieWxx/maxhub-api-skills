@@ -1,7 +1,7 @@
 ---
 name: maxhub-xigua
 description: 西瓜视频数据采集。当用户提到西瓜视频、xigua、长视频等相关需求时激活此Skill。
-version: 1.1.9
+version: 1.2.1
 author: MaxHub Team
 license: MIT
 trigger: "西瓜视频|xigua|长视频|西瓜搜索"

@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - bilibili
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,75 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格规则：大部分API为 ¥0.01，fetch_one_video_v2 为 ¥0.02
+ */
+const API_REGISTRY = {
+  // web
+  fetchOneVideoV2: { path: '/web/fetch_one_video_v2', params: ['a_id', 'c_id'], price: 0.02 },
+  fetchOneVideoV3: { path: '/web/fetch_one_video_v3', params: ['url'], price: 0.01 },
+  fetchVideoDetail: { path: '/web/fetch_video_detail', params: ['aid'], price: 0.01 },
+  fetchVideoPlayInfo: { path: '/web/fetch_video_play_info', params: ['url'], price: 0.01 },
+  fetchVideoSubtitle: { path: '/web/fetch_video_subtitle', params: ['a_id', 'c_id'], price: 0.01 },
+  fetchVideoPlayurl: { path: '/web/fetch_video_playurl', params: ['bv_id', 'cid'], price: 0.01 },
+  fetchUserPostVideos: { path: '/web/fetch_user_post_videos', params: ['uid'], price: 0.01 },
+  fetchCollectFolders: { path: '/web/fetch_collect_folders', params: ['uid'], price: 0.01 },
+  fetchUserCollectionVideos: { path: '/web/fetch_user_collection_videos', params: ['folder_id'], price: 0.01 },
+  fetchUserProfile: { path: '/web/fetch_user_profile', params: ['uid'], price: 0.01 },
+  fetchComPopular: { path: '/web/fetch_com_popular', price: 0.01 },
+  fetchUserDynamic: { path: '/web/fetch_user_dynamic', params: ['uid'], price: 0.01 },
+  fetchDynamicDetail: { path: '/web/fetch_dynamic_detail', params: ['dynamic_id'], price: 0.01 },
+  fetchDynamicDetailV2: { path: '/web/fetch_dynamic_detail_v2', params: ['dynamic_id'], price: 0.01 },
+  fetchVideoDanmaku: { path: '/web/fetch_video_danmaku', params: ['cid'], price: 0.01 },
+  fetchLiveRoomDetail: { path: '/web/fetch_live_room_detail', params: ['room_id'], price: 0.01 },
+  fetchLiveVideos: { path: '/web/fetch_live_videos', params: ['room_id'], price: 0.01 },
+  fetchLiveStreamers: { path: '/web/fetch_live_streamers', params: ['area_id'], price: 0.01 },
+  fetchAllLiveAreas: { path: '/web/fetch_all_live_areas', price: 0.01 },
+  fetchVideoParts: { path: '/web/fetch_video_parts', params: ['bv_id'], price: 0.01 },
+  fetchUserUpStat: { path: '/web/fetch_user_up_stat', params: ['uid'], price: 0.01 },
+  fetchUserRelationStat: { path: '/web/fetch_user_relation_stat', params: ['uid'], price: 0.01 },
+  fetchHotSearch: { path: '/web/fetch_hot_search', params: ['limit'], price: 0.01 },
+  fetchGeneralSearch: { path: '/web/fetch_general_search', params: ['keyword', 'order', 'page', 'page_size'], price: 0.01 },
+  fetchCommentReply: { path: '/web/fetch_comment_reply', params: ['bv_id', 'rpid'], price: 0.01 },
+  bvToAid: { path: '/web/bv_to_aid', params: ['bv_id'], price: 0.01 },
+  fetchGetUserId: { path: '/web/fetch_get_user_id', params: ['share_link'], price: 0.01 },
+  // app
+  fetchOneVideo: { path: '/app/fetch_one_video', price: 0.01 },
+  fetchUserVideos: { path: '/app/fetch_user_videos', params: ['user_id'], price: 0.01 },
+  fetchUserInfo: { path: '/app/fetch_user_info', params: ['user_id'], price: 0.01 },
+  fetchHomeFeed: { path: '/app/fetch_home_feed', price: 0.01 },
+  fetchPopularFeed: { path: '/app/fetch_popular_feed', price: 0.01 },
+  fetchCinemaTab: { path: '/app/fetch_cinema_tab', price: 0.01 },
+  fetchBangumiTab: { path: '/app/fetch_bangumi_tab', price: 0.01 },
+  fetchSearchAll: { path: '/app/fetch_search_all', params: ['keyword'], price: 0.01 },
+  fetchSearchByType: { path: '/app/fetch_search_by_type', params: ['keyword'], price: 0.01 },
+  fetchVideoComments: { path: '/app/fetch_video_comments', price: 0.01 },
+  fetchReplyDetail: { path: '/app/fetch_reply_detail', params: ['root'], price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
+const REQUEST_TIMEOUT = 30000;
+
+/**
+ * 原始API请求方法（不含优化层）
  * @param {string} path - API路径
  * @param {object} params - 请求参数
  * @param {string} method - 请求方法 GET/POST
  * @returns {Promise<object>} API响应数据
  */
-const REQUEST_TIMEOUT = 30000;
-
-async function request(path, params = {}, method = 'GET') {
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -50,6 +111,12 @@ async function request(path, params = {}, method = 'GET') {
 }
 
 /**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
+
+/**
  * 处理API响应
  */
 async function handleResponse(response) {
@@ -61,52 +128,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  fetchOneVideoV2: { path: '/web/fetch_one_video_v2', params: ['a_id', 'c_id'] },
-  fetchOneVideoV3: { path: '/web/fetch_one_video_v3', params: ['url'] },
-  fetchVideoDetail: { path: '/web/fetch_video_detail', params: ['aid'] },
-  fetchVideoPlayInfo: { path: '/web/fetch_video_play_info', params: ['url'] },
-  fetchVideoSubtitle: { path: '/web/fetch_video_subtitle', params: ['a_id', 'c_id'] },
-  fetchVideoPlayurl: { path: '/web/fetch_video_playurl', params: ['bv_id', 'cid'] },
-  fetchUserPostVideos: { path: '/web/fetch_user_post_videos', params: ['uid'] },
-  fetchCollectFolders: { path: '/web/fetch_collect_folders', params: ['uid'] },
-  fetchUserCollectionVideos: { path: '/web/fetch_user_collection_videos', params: ['folder_id'] },
-  fetchUserProfile: { path: '/web/fetch_user_profile', params: ['uid'] },
-  fetchComPopular: { path: '/web/fetch_com_popular' },
-  fetchUserDynamic: { path: '/web/fetch_user_dynamic', params: ['uid'] },
-  fetchDynamicDetail: { path: '/web/fetch_dynamic_detail', params: ['dynamic_id'] },
-  fetchDynamicDetailV2: { path: '/web/fetch_dynamic_detail_v2', params: ['dynamic_id'] },
-  fetchVideoDanmaku: { path: '/web/fetch_video_danmaku', params: ['cid'] },
-  fetchLiveRoomDetail: { path: '/web/fetch_live_room_detail', params: ['room_id'] },
-  fetchLiveVideos: { path: '/web/fetch_live_videos', params: ['room_id'] },
-  fetchLiveStreamers: { path: '/web/fetch_live_streamers', params: ['area_id'] },
-  fetchAllLiveAreas: { path: '/web/fetch_all_live_areas' },
-  fetchVideoParts: { path: '/web/fetch_video_parts', params: ['bv_id'] },
-  fetchUserUpStat: { path: '/web/fetch_user_up_stat', params: ['uid'] },
-  fetchUserRelationStat: { path: '/web/fetch_user_relation_stat', params: ['uid'] },
-  fetchHotSearch: { path: '/web/fetch_hot_search', params: ['limit'] },
-  fetchGeneralSearch: { path: '/web/fetch_general_search', params: ['keyword', 'order', 'page', 'page_size'] },
-  fetchCommentReply: { path: '/web/fetch_comment_reply', params: ['bv_id', 'rpid'] },
-  bvToAid: { path: '/web/bv_to_aid', params: ['bv_id'] },
-  fetchGetUserId: { path: '/web/fetch_get_user_id', params: ['share_link'] },
-  // app
-  fetchOneVideo: { path: '/app/fetch_one_video' },
-  fetchUserVideos: { path: '/app/fetch_user_videos', params: ['user_id'] },
-  fetchUserInfo: { path: '/app/fetch_user_info', params: ['user_id'] },
-  fetchHomeFeed: { path: '/app/fetch_home_feed' },
-  fetchPopularFeed: { path: '/app/fetch_popular_feed' },
-  fetchCinemaTab: { path: '/app/fetch_cinema_tab' },
-  fetchBangumiTab: { path: '/app/fetch_bangumi_tab' },
-  fetchSearchAll: { path: '/app/fetch_search_all', params: ['keyword'] },
-  fetchSearchByType: { path: '/app/fetch_search_by_type', params: ['keyword'] },
-  fetchVideoComments: { path: '/app/fetch_video_comments' },
-  fetchReplyDetail: { path: '/app/fetch_reply_detail', params: ['root'] },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -120,7 +144,7 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
+
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -143,10 +167,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   fetchOneVideoV2: api.fetchOneVideoV2,
   fetchOneVideoV3: api.fetchOneVideoV3,
   fetchVideoDetail: api.fetchVideoDetail,

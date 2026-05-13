@@ -1,7 +1,7 @@
 ---
 name: maxhub-linkedin
 description: LinkedIn数据采集。当用户提到linkedin、职场、公司等相关需求时激活此Skill。
-version: 1.0.9
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "linkedin|职场|公司|职位|人脉|linkedin搜索"

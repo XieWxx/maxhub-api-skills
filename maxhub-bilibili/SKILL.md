@@ -1,7 +1,7 @@
 ---
 name: maxhub-bilibili
 description: B站数据采集与分析。当用户提到b站、bilibili、弹幕等相关需求时激活此Skill。
-version: 1.0.11
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "b站|bilibili|弹幕|番剧|up主|b站视频|哔哩哔哩"

@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - xiaohongshu
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,106 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格来源：pricing.md
+ */
+const API_REGISTRY = {
+  // web_v3
+  fetchNoteDetail: { path: '/web_v3/fetch_note_detail', params: ['note_id', 'xsec_token'], price: 0.10 },
+  fetchHomefeed: { path: '/web_v3/fetch_homefeed', price: 0.10 },
+  fetchHomefeedCategories: { path: '/web_v3/fetch_homefeed_categories', price: 0.10 },
+  fetchUserNotes: { path: '/web_v3/fetch_user_notes', params: ['user_id'], price: 0.10 },
+  fetchTrending: { path: '/web_v3/fetch_trending', price: 0.10 },
+  fetchSearchSuggest: { path: '/web_v3/fetch_search_suggest', price: 0.10 },
+  // app_v2
+  getImageNoteDetail: { path: '/app_v2/get_image_note_detail', price: 0.10 },
+  getVideoNoteDetail: { path: '/app_v2/get_video_note_detail', price: 0.10 },
+  getUserPostedNotes: { path: '/app_v2/get_user_posted_notes', price: 0.10 },
+  getProductRecommendations: { path: '/app_v2/get_product_recommendations', params: ['sku_id'], price: 0.10 },
+  getTopicInfo: { path: '/app_v2/get_topic_info', params: ['page_id'], price: 0.10 },
+  getTopicFeed: { path: '/app_v2/get_topic_feed', params: ['page_id'], price: 0.10 },
+  getNoteSubComments: { path: '/app_v2/get_note_sub_comments', params: ['comment_id'], price: 0.10 },
+  getUserFavedNotes: { path: '/app_v2/get_user_faved_notes', price: 0.10 },
+  getProductReviewOverview: { path: '/app_v2/get_product_review_overview', params: ['sku_id'], price: 0.10 },
+  getProductReviews: { path: '/app_v2/get_product_reviews', params: ['sku_id'], price: 0.10 },
+  searchImages: { path: '/app_v2/search_images', params: ['keyword'], price: 0.10 },
+  searchGroups: { path: '/app_v2/search_groups', params: ['keyword'], price: 0.10 },
+  getCreatorInspirationFeed: { path: '/app_v2/get_creator_inspiration_feed', price: 0.10 },
+  getCreatorHotInspirationFeed: { path: '/app_v2/get_creator_hot_inspiration_feed', price: 0.10 },
+  // app
+  getNoteInfo: { path: '/app/get_note_info', price: 0.10 },
+  getNotesByTopic: { path: '/app/get_notes_by_topic', params: ['page_id', 'first_load_time'], price: 0.10 },
+  getUserNotes: { path: '/app/get_user_notes', params: ['user_id'], price: 0.10 },
+  getProductDetail: { path: '/app/get_product_detail', params: ['sku_id'], price: 0.10 },
+  getSubComments: { path: '/app/get_sub_comments', params: ['note_id', 'comment_id'], price: 0.10 },
+  searchProducts: { path: '/app/search_products', params: ['keyword', 'page'], price: 0.10 },
+  extractShareInfo: { path: '/app/extract_share_info', params: ['share_link'], price: 0.10 },
+  getUserIdAndXsecToken: { path: '/app/get_user_id_and_xsec_token', params: ['share_link'], price: 0.01 },
+  // web_v2
+  fetchFeedNotes: { path: '/web_v2/fetch_feed_notes', params: ['note_id'], price: 0.10 },
+  fetchFeedNotesV2: { path: '/web_v2/fetch_feed_notes_v2', params: ['note_id'], price: 0.10 },
+  fetchFeedNotesV3: { path: '/web_v2/fetch_feed_notes_v3', params: ['short_url'], price: 0.10 },
+  fetchNoteImage: { path: '/web_v2/fetch_note_image', params: ['note_id'], price: 0.10 },
+  fetchHomeNotes: { path: '/web_v2/fetch_home_notes', params: ['user_id'], price: 0.10 },
+  fetchHomeNotesApp: { path: '/web_v2/fetch_home_notes_app', params: ['user_id'], price: 0.10 },
+  fetchUserInfo: { path: '/web_v2/fetch_user_info', params: ['user_id'], price: 0.10 },
+  fetchUserInfoApp: { path: '/web_v2/fetch_user_info_app', params: ['user_id'], price: 0.10 },
+  fetchProductList: { path: '/web_v2/fetch_product_list', params: ['user_id'], price: 0.10 },
+  fetchHotList: { path: '/web_v2/fetch_hot_list', price: 0.10 },
+  fetchFeedNotesV4: { path: '/web_v2/fetch_feed_notes_v4', params: ['note_id'], price: 0.10 },
+  fetchFeedNotesV5: { path: '/web_v2/fetch_feed_notes_v5', params: ['note_id'], price: 0.10 },
+  fetchNoteComments: { path: '/web_v2/fetch_note_comments', params: ['note_id'], price: 0.10 },
+  fetchSubComments: { path: '/web_v2/fetch_sub_comments', params: ['note_id', 'comment_id'], price: 0.10 },
+  fetchFollowerList: { path: '/web_v2/fetch_follower_list', params: ['user_id'], price: 0.10 },
+  fetchFollowingList: { path: '/web_v2/fetch_following_list', params: ['user_id'], price: 0.10 },
+  fetchSearchNotes: { path: '/web_v2/fetch_search_notes', params: ['keywords'], price: 0.10 },
+  fetchSearchUsers: { path: '/web_v2/fetch_search_users', params: ['keywords'], price: 0.10 },
+  // web
+  getHomeRecommend: { path: '/web/get_home_recommend', method: 'POST', price: 0.10 },
+  getNoteInfoV2: { path: '/web/get_note_info_v2', price: 0.10 },
+  getNoteInfoV4: { path: '/web/get_note_info_v4', price: 0.10 },
+  getNoteInfoV5: { path: '/web/get_note_info_v5', price: 0.01 },
+  getNoteInfoV7: { path: '/web/get_note_info_v7', price: 0.10 },
+  getUserInfo: { path: '/web/get_user_info', params: ['user_id'], price: 0.10 },
+  getUserInfoV2: { path: '/web/get_user_info_v2', price: 0.10 },
+  getUserNotesV2: { path: '/web/get_user_notes_v2', params: ['user_id'], price: 0.10 },
+  getNoteIdAndXsecToken: { path: '/web/get_note_id_and_xsec_token', params: ['share_text'], price: 0.01 },
+  getProductInfo: { path: '/web/get_product_info', price: 0.10 },
+  getNoteComments: { path: '/web/get_note_comments', params: ['note_id'], price: 0.10 },
+  getNoteCommentsV3: { path: '/web/get_note_comments_v3', params: ['note_id'], price: 0.11 },
+  getNoteCommentReplies: { path: '/web/get_note_comment_replies', params: ['note_id', 'comment_id'], price: 0.10 },
+  searchNotes: { path: '/web/search_notes', params: ['keyword'], price: 0.10 },
+  searchNotesV3: { path: '/web/search_notes_v3', params: ['keyword'], price: 0.11 },
+  searchUsers: { path: '/web/search_users', params: ['keyword'], price: 0.10 },
+  // sign接口
+  sign: { path: '/sign', price: 0.01 },
+  // test接口
+  test: { path: '/test', price: 0 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
+const REQUEST_TIMEOUT = 30000;
+
+/**
+ * 原始API请求方法（不含优化层）
  * @param {string} path - API路径
  * @param {object} params - 请求参数
  * @param {string} method - 请求方法 GET/POST
  * @returns {Promise<object>} API响应数据
  */
-const REQUEST_TIMEOUT = 30000;
-
-async function request(path, params = {}, method = 'GET') {
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -31,23 +123,29 @@ async function request(path, params = {}, method = 'GET') {
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
   const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-      const query = new URLSearchParams(params).toString();
-      const fullUrl = query ? `${url}?${query}` : url;
-      try {
-        const response = await fetch(fullUrl, options);
-        return await handleResponse(response);
-      } finally {
-        clearTimeout(timeoutId);
-      }
-    }
-  options.body = JSON.stringify(params);
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(fullUrl, options);
       return await handleResponse(response);
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+  options.body = JSON.stringify(params);
+  try {
+    const response = await fetch(url, options);
+    return await handleResponse(response);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
+
+/**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
 
 /**
  * 处理API响应
@@ -61,77 +159,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web_v3
-  fetchNoteDetail: { path: '/web_v3/fetch_note_detail', params: ['note_id', 'xsec_token'] },
-  fetchHomefeed: { path: '/web_v3/fetch_homefeed' },
-  fetchHomefeedCategories: { path: '/web_v3/fetch_homefeed_categories' },
-  fetchUserNotes: { path: '/web_v3/fetch_user_notes', params: ['user_id'] },
-  fetchTrending: { path: '/web_v3/fetch_trending' },
-  fetchSearchSuggest: { path: '/web_v3/fetch_search_suggest' },
-  // app_v2
-  getImageNoteDetail: { path: '/app_v2/get_image_note_detail' },
-  getVideoNoteDetail: { path: '/app_v2/get_video_note_detail' },
-  getUserPostedNotes: { path: '/app_v2/get_user_posted_notes' },
-  getProductRecommendations: { path: '/app_v2/get_product_recommendations', params: ['sku_id'] },
-  getTopicInfo: { path: '/app_v2/get_topic_info', params: ['page_id'] },
-  getTopicFeed: { path: '/app_v2/get_topic_feed', params: ['page_id'] },
-  getNoteSubComments: { path: '/app_v2/get_note_sub_comments', params: ['comment_id'] },
-  getUserFavedNotes: { path: '/app_v2/get_user_faved_notes' },
-  getProductReviewOverview: { path: '/app_v2/get_product_review_overview', params: ['sku_id'] },
-  getProductReviews: { path: '/app_v2/get_product_reviews', params: ['sku_id'] },
-  searchImages: { path: '/app_v2/search_images', params: ['keyword'] },
-  searchGroups: { path: '/app_v2/search_groups', params: ['keyword'] },
-  getCreatorInspirationFeed: { path: '/app_v2/get_creator_inspiration_feed' },
-  getCreatorHotInspirationFeed: { path: '/app_v2/get_creator_hot_inspiration_feed' },
-  // app
-  getNoteInfo: { path: '/app/get_note_info' },
-  getNotesByTopic: { path: '/app/get_notes_by_topic', params: ['page_id', 'first_load_time'] },
-  getUserNotes: { path: '/app/get_user_notes', params: ['user_id'] },
-  getProductDetail: { path: '/app/get_product_detail', params: ['sku_id'] },
-  getSubComments: { path: '/app/get_sub_comments', params: ['note_id', 'comment_id'] },
-  searchProducts: { path: '/app/search_products', params: ['keyword', 'page'] },
-  extractShareInfo: { path: '/app/extract_share_info', params: ['share_link'] },
-  getUserIdAndXsecToken: { path: '/app/get_user_id_and_xsec_token', params: ['share_link'] },
-  // web_v2
-  fetchFeedNotes: { path: '/web_v2/fetch_feed_notes', params: ['note_id'] },
-  fetchFeedNotesV2: { path: '/web_v2/fetch_feed_notes_v2', params: ['note_id'] },
-  fetchFeedNotesV3: { path: '/web_v2/fetch_feed_notes_v3', params: ['short_url'] },
-  fetchNoteImage: { path: '/web_v2/fetch_note_image', params: ['note_id'] },
-  fetchHomeNotes: { path: '/web_v2/fetch_home_notes', params: ['user_id'] },
-  fetchHomeNotesApp: { path: '/web_v2/fetch_home_notes_app', params: ['user_id'] },
-  fetchUserInfo: { path: '/web_v2/fetch_user_info', params: ['user_id'] },
-  fetchUserInfoApp: { path: '/web_v2/fetch_user_info_app', params: ['user_id'] },
-  fetchProductList: { path: '/web_v2/fetch_product_list', params: ['user_id'] },
-  fetchHotList: { path: '/web_v2/fetch_hot_list' },
-  fetchFeedNotesV4: { path: '/web_v2/fetch_feed_notes_v4', params: ['note_id'] },
-  fetchFeedNotesV5: { path: '/web_v2/fetch_feed_notes_v5', params: ['note_id'] },
-  fetchNoteComments: { path: '/web_v2/fetch_note_comments', params: ['note_id'] },
-  fetchSubComments: { path: '/web_v2/fetch_sub_comments', params: ['note_id', 'comment_id'] },
-  fetchFollowerList: { path: '/web_v2/fetch_follower_list', params: ['user_id'] },
-  fetchFollowingList: { path: '/web_v2/fetch_following_list', params: ['user_id'] },
-  fetchSearchNotes: { path: '/web_v2/fetch_search_notes', params: ['keywords'] },
-  fetchSearchUsers: { path: '/web_v2/fetch_search_users', params: ['keywords'] },
-  // web
-  getHomeRecommend: { path: '/web/get_home_recommend', method: 'POST' },
-  getNoteInfoV2: { path: '/web/get_note_info_v2' },
-  getNoteInfoV4: { path: '/web/get_note_info_v4' },
-  getNoteInfoV7: { path: '/web/get_note_info_v7' },
-  getUserInfo: { path: '/web/get_user_info', params: ['user_id'] },
-  getUserInfoV2: { path: '/web/get_user_info_v2' },
-  getUserNotesV2: { path: '/web/get_user_notes_v2', params: ['user_id'] },
-  getNoteIdAndXsecToken: { path: '/web/get_note_id_and_xsec_token', params: ['share_text'] },
-  getProductInfo: { path: '/web/get_product_info' },
-  getNoteComments: { path: '/web/get_note_comments', params: ['note_id'] },
-  getNoteCommentReplies: { path: '/web/get_note_comment_replies', params: ['note_id', 'comment_id'] },
-  searchNotes: { path: '/web/search_notes', params: ['keyword'] },
-  searchNotesV3: { path: '/web/search_notes_v3', params: ['keyword'] },
-  searchUsers: { path: '/web/search_users', params: ['keyword'] },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -145,7 +175,7 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
+
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -168,10 +198,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   fetchNoteDetail: api.fetchNoteDetail,
   fetchHomefeed: api.fetchHomefeed,
   fetchHomefeedCategories: api.fetchHomefeedCategories,
@@ -199,6 +271,7 @@ module.exports = {
   getHomeRecommend: api.getHomeRecommend,
   getNoteInfoV2: api.getNoteInfoV2,
   getNoteInfoV4: api.getNoteInfoV4,
+  getNoteInfoV5: api.getNoteInfoV5,
   getNoteInfoV7: api.getNoteInfoV7,
   getUserInfo: api.getUserInfo,
   getUserInfoV2: api.getUserInfoV2,
@@ -232,4 +305,6 @@ module.exports = {
   getCreatorHotInspirationFeed: api.getCreatorHotInspirationFeed,
   extractShareInfo: api.extractShareInfo,
   getUserIdAndXsecToken: api.getUserIdAndXsecToken,
+  sign: api.sign,
+  test: api.test,
 };

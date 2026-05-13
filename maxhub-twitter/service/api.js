@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - twitter
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,45 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
- * @param {string} path - API路径
- * @param {object} params - 请求参数
- * @param {string} method - 请求方法 GET/POST
- * @returns {Promise<object>} API响应数据
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格规则：所有web端API均为 ¥0.01
  */
+const API_REGISTRY = {
+  // web
+  fetchTweetDetail: { path: '/web/fetch_tweet_detail', params: ['tweet_id'], price: 0.01 },
+  fetchUserProfile: { path: '/web/fetch_user_profile', price: 0.01 },
+  fetchUserPostTweet: { path: '/web/fetch_user_post_tweet', price: 0.01 },
+  fetchUserTweetReplies: { path: '/web/fetch_user_tweet_replies', params: ['screen_name'], price: 0.01 },
+  fetchUserHighlightsTweets: { path: '/web/fetch_user_highlights_tweets', params: ['userId'], price: 0.01 },
+  fetchUserMedia: { path: '/web/fetch_user_media', params: ['screen_name'], price: 0.01 },
+  fetchRetweetUserList: { path: '/web/fetch_retweet_user_list', params: ['tweet_id'], price: 0.01 },
+  fetchTrending: { path: '/web/fetch_trending', price: 0.01 },
+  fetchSearchTimeline: { path: '/web/fetch_search_timeline', params: ['keyword'], price: 0.01 },
+  fetchPostComments: { path: '/web/fetch_post_comments', params: ['tweet_id'], price: 0.01 },
+  fetchLatestPostComments: { path: '/web/fetch_latest_post_comments', params: ['tweet_id'], price: 0.01 },
+  fetchUserFollowings: { path: '/web/fetch_user_followings', params: ['screen_name'], price: 0.01 },
+  fetchUserFollowers: { path: '/web/fetch_user_followers', params: ['screen_name'], price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
 const REQUEST_TIMEOUT = 30000;
 
-async function request(path, params = {}, method = 'GET') {
+/**
+ * 原始API请求方法（不含优化层）
+ */
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -50,6 +81,12 @@ async function request(path, params = {}, method = 'GET') {
 }
 
 /**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
+
+/**
  * 处理API响应
  */
 async function handleResponse(response) {
@@ -61,26 +98,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  fetchTweetDetail: { path: '/web/fetch_tweet_detail', params: ['tweet_id'] },
-  fetchUserProfile: { path: '/web/fetch_user_profile' },
-  fetchUserPostTweet: { path: '/web/fetch_user_post_tweet' },
-  fetchUserTweetReplies: { path: '/web/fetch_user_tweet_replies', params: ['screen_name'] },
-  fetchUserHighlightsTweets: { path: '/web/fetch_user_highlights_tweets', params: ['userId'] },
-  fetchUserMedia: { path: '/web/fetch_user_media', params: ['screen_name'] },
-  fetchRetweetUserList: { path: '/web/fetch_retweet_user_list', params: ['tweet_id'] },
-  fetchTrending: { path: '/web/fetch_trending' },
-  fetchSearchTimeline: { path: '/web/fetch_search_timeline', params: ['keyword'] },
-  fetchPostComments: { path: '/web/fetch_post_comments', params: ['tweet_id'] },
-  fetchLatestPostComments: { path: '/web/fetch_latest_post_comments', params: ['tweet_id'] },
-  fetchUserFollowings: { path: '/web/fetch_user_followings', params: ['screen_name'] },
-  fetchUserFollowers: { path: '/web/fetch_user_followers', params: ['screen_name'] },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -94,7 +114,7 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
+
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -117,10 +137,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   fetchTweetDetail: api.fetchTweetDetail,
   fetchUserProfile: api.fetchUserProfile,
   fetchUserPostTweet: api.fetchUserPostTweet,

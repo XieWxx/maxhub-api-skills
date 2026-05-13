@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - weibo
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,91 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
- * @param {string} path - API路径
- * @param {object} params - 请求参数
- * @param {string} method - 请求方法 GET/POST
- * @returns {Promise<object>} API响应数据
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格规则：大部分API为 ¥0.01，fetchHotSearchSummary 为 ¥0.015
  */
+const API_REGISTRY = {
+  // web
+  fetchConfigList: { path: '/web/fetch_config_list', price: 0.01 },
+  fetchChannelFeed: { path: '/web/fetch_channel_feed', price: 0.01 },
+  fetchTrendTop: { path: '/web/fetch_trend_top', params: ['containerid'], price: 0.01 },
+  fetchCommentReplies: { path: '/web/fetch_comment_replies', params: ['cid'], price: 0.01 },
+  fetchSearch: { path: '/web/fetch_search', params: ['keyword'], price: 0.01 },
+  fetchSearchTopics: { path: '/web/fetch_search_topics', price: 0.01 },
+  // web_v2
+  fetchPostDetail: { path: '/web_v2/fetch_post_detail', params: ['id'], price: 0.01 },
+  fetchUserBasicInfo: { path: '/web_v2/fetch_user_basic_info', params: ['uid'], price: 0.01 },
+  fetchUserPosts: { path: '/web_v2/fetch_user_posts', params: ['uid'], price: 0.01 },
+  fetchUserOriginalPosts: { path: '/web_v2/fetch_user_original_posts', params: ['uid'], price: 0.01 },
+  fetchUserVideoCollectionList: { path: '/web_v2/fetch_user_video_collection_list', params: ['uid'], price: 0.01 },
+  fetchUserVideoCollectionDetail: { path: '/web_v2/fetch_user_video_collection_detail', params: ['cid'], price: 0.01 },
+  fetchUserVideoList: { path: '/web_v2/fetch_user_video_list', params: ['uid'], price: 0.01 },
+  fetchUserFans: { path: '/web_v2/fetch_user_fans', params: ['uid'], price: 0.01 },
+  fetchAllGroups: { path: '/web_v2/fetch_all_groups', price: 0.01 },
+  fetchUserRecommendTimeline: { path: '/web_v2/fetch_user_recommend_timeline', price: 0.01 },
+  fetchCityList: { path: '/web_v2/fetch_city_list', price: 0.01 },
+  fetchHotRankingTimeline: { path: '/web_v2/fetch_hot_ranking_timeline', params: ['ranking_type'], price: 0.01 },
+  fetchEntertainmentRanking: { path: '/web_v2/fetch_entertainment_ranking', price: 0.01 },
+  fetchLifeRanking: { path: '/web_v2/fetch_life_ranking', price: 0.01 },
+  fetchSocialRanking: { path: '/web_v2/fetch_social_ranking', price: 0.01 },
+  checkAllowCommentWithPic: { path: '/web_v2/check_allow_comment_with_pic', params: ['id'], price: 0.01 },
+  fetchPostComments: { path: '/web_v2/fetch_post_comments', params: ['id'], price: 0.01 },
+  fetchPostSubComments: { path: '/web_v2/fetch_post_sub_comments', params: ['id'], price: 0.01 },
+  fetchUserFollowing: { path: '/web_v2/fetch_user_following', params: ['uid'], price: 0.01 },
+  searchUserPosts: { path: '/web_v2/search_user_posts', params: ['uid'], price: 0.01 },
+  fetchHotSearchIndex: { path: '/web_v2/fetch_hot_search_index', price: 0.01 },
+  fetchHotSearchSummary: { path: '/web_v2/fetch_hot_search_summary', price: 0.015 },
+  fetchSimilarSearch: { path: '/web_v2/fetch_similar_search', params: ['keyword'], price: 0.01 },
+  fetchAiSearch: { path: '/web_v2/fetch_ai_search', params: ['query'], price: 0.01 },
+  fetchAiRelatedSearch: { path: '/web_v2/fetch_ai_related_search', params: ['keyword'], price: 0.01 },
+  fetchAdvancedSearch: { path: '/web_v2/fetch_advanced_search', params: ['q'], price: 0.01 },
+  fetchRealtimeSearch: { path: '/web_v2/fetch_realtime_search', params: ['query'], price: 0.01 },
+  fetchUserSearch: { path: '/web_v2/fetch_user_search', price: 0.01 },
+  fetchVideoSearch: { path: '/web_v2/fetch_video_search', params: ['query'], price: 0.01 },
+  fetchPicSearch: { path: '/web_v2/fetch_pic_search', params: ['query'], price: 0.01 },
+  fetchTopicSearch: { path: '/web_v2/fetch_topic_search', params: ['query'], price: 0.01 },
+  // app
+  fetchUserInfo: { path: '/app/fetch_user_info', params: ['uid'], price: 0.01 },
+  fetchUserInfoDetail: { path: '/app/fetch_user_info_detail', params: ['uid'], price: 0.01 },
+  fetchUserTimeline: { path: '/app/fetch_user_timeline', params: ['uid'], price: 0.01 },
+  fetchUserVideos: { path: '/app/fetch_user_videos', params: ['uid'], price: 0.01 },
+  fetchUserSuperTopics: { path: '/app/fetch_user_super_topics', params: ['uid'], price: 0.01 },
+  fetchUserAlbum: { path: '/app/fetch_user_album', params: ['uid'], price: 0.01 },
+  fetchUserArticles: { path: '/app/fetch_user_articles', params: ['uid'], price: 0.01 },
+  fetchUserAudios: { path: '/app/fetch_user_audios', params: ['uid'], price: 0.01 },
+  fetchUserProfileFeed: { path: '/app/fetch_user_profile_feed', params: ['uid'], price: 0.01 },
+  fetchStatusDetail: { path: '/app/fetch_status_detail', params: ['status_id'], price: 0.01 },
+  fetchStatusReposts: { path: '/app/fetch_status_reposts', params: ['status_id'], price: 0.01 },
+  fetchVideoDetail: { path: '/app/fetch_video_detail', params: ['mid'], price: 0.01 },
+  fetchVideoFeaturedFeed: { path: '/app/fetch_video_featured_feed', price: 0.01 },
+  fetchHomeRecommendFeed: { path: '/app/fetch_home_recommend_feed', price: 0.01 },
+  fetchStatusComments: { path: '/app/fetch_status_comments', params: ['status_id'], price: 0.01 },
+  fetchStatusLikes: { path: '/app/fetch_status_likes', params: ['status_id'], price: 0.01 },
+  fetchSearchAll: { path: '/app/fetch_search_all', params: ['query'], price: 0.01 },
+  fetchAiSmartSearch: { path: '/app/fetch_ai_smart_search', params: ['query'], price: 0.01 },
+  fetchHotSearch: { path: '/app/fetch_hot_search', price: 0.01 },
+  fetchHotSearchCategories: { path: '/app/fetch_hot_search_categories', price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
 const REQUEST_TIMEOUT = 30000;
 
-async function request(path, params = {}, method = 'GET') {
+/**
+ * 原始API请求方法（不含优化层）
+ */
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -31,23 +108,29 @@ async function request(path, params = {}, method = 'GET') {
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
   const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-      const query = new URLSearchParams(params).toString();
-      const fullUrl = query ? `${url}?${query}` : url;
-      try {
-        const response = await fetch(fullUrl, options);
-        return await handleResponse(response);
-      } finally {
-        clearTimeout(timeoutId);
-      }
-    }
-  options.body = JSON.stringify(params);
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(fullUrl, options);
       return await handleResponse(response);
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+  options.body = JSON.stringify(params);
+  try {
+    const response = await fetch(url, options);
+    return await handleResponse(response);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
+
+/**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
 
 /**
  * 处理API响应
@@ -61,72 +144,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  fetchConfigList: { path: '/web/fetch_config_list' },
-  fetchChannelFeed: { path: '/web/fetch_channel_feed' },
-  fetchTrendTop: { path: '/web/fetch_trend_top', params: ['containerid'] },
-  fetchCommentReplies: { path: '/web/fetch_comment_replies', params: ['cid'] },
-  fetchSearch: { path: '/web/fetch_search', params: ['keyword'] },
-  fetchSearchTopics: { path: '/web/fetch_search_topics' },
-  // web_v2
-  fetchPostDetail: { path: '/web_v2/fetch_post_detail', params: ['id'] },
-  fetchUserBasicInfo: { path: '/web_v2/fetch_user_basic_info', params: ['uid'] },
-  fetchUserPosts: { path: '/web_v2/fetch_user_posts', params: ['uid'] },
-  fetchUserOriginalPosts: { path: '/web_v2/fetch_user_original_posts', params: ['uid'] },
-  fetchUserVideoCollectionList: { path: '/web_v2/fetch_user_video_collection_list', params: ['uid'] },
-  fetchUserVideoCollectionDetail: { path: '/web_v2/fetch_user_video_collection_detail', params: ['cid'] },
-  fetchUserVideoList: { path: '/web_v2/fetch_user_video_list', params: ['uid'] },
-  fetchUserFans: { path: '/web_v2/fetch_user_fans', params: ['uid'] },
-  fetchAllGroups: { path: '/web_v2/fetch_all_groups' },
-  fetchUserRecommendTimeline: { path: '/web_v2/fetch_user_recommend_timeline' },
-  fetchCityList: { path: '/web_v2/fetch_city_list' },
-  fetchHotRankingTimeline: { path: '/web_v2/fetch_hot_ranking_timeline', params: ['ranking_type'] },
-  fetchEntertainmentRanking: { path: '/web_v2/fetch_entertainment_ranking' },
-  fetchLifeRanking: { path: '/web_v2/fetch_life_ranking' },
-  fetchSocialRanking: { path: '/web_v2/fetch_social_ranking' },
-  checkAllowCommentWithPic: { path: '/web_v2/check_allow_comment_with_pic', params: ['id'] },
-  fetchPostComments: { path: '/web_v2/fetch_post_comments', params: ['id'] },
-  fetchPostSubComments: { path: '/web_v2/fetch_post_sub_comments', params: ['id'] },
-  fetchUserFollowing: { path: '/web_v2/fetch_user_following', params: ['uid'] },
-  searchUserPosts: { path: '/web_v2/search_user_posts', params: ['uid'] },
-  fetchHotSearchIndex: { path: '/web_v2/fetch_hot_search_index' },
-  fetchHotSearchSummary: { path: '/web_v2/fetch_hot_search_summary' },
-  fetchSimilarSearch: { path: '/web_v2/fetch_similar_search', params: ['keyword'] },
-  fetchAiSearch: { path: '/web_v2/fetch_ai_search', params: ['query'] },
-  fetchAiRelatedSearch: { path: '/web_v2/fetch_ai_related_search', params: ['keyword'] },
-  fetchAdvancedSearch: { path: '/web_v2/fetch_advanced_search', params: ['q'] },
-  fetchRealtimeSearch: { path: '/web_v2/fetch_realtime_search', params: ['query'] },
-  fetchUserSearch: { path: '/web_v2/fetch_user_search' },
-  fetchVideoSearch: { path: '/web_v2/fetch_video_search', params: ['query'] },
-  fetchPicSearch: { path: '/web_v2/fetch_pic_search', params: ['query'] },
-  fetchTopicSearch: { path: '/web_v2/fetch_topic_search', params: ['query'] },
-  // app
-  fetchUserInfo: { path: '/app/fetch_user_info', params: ['uid'] },
-  fetchUserInfoDetail: { path: '/app/fetch_user_info_detail', params: ['uid'] },
-  fetchUserTimeline: { path: '/app/fetch_user_timeline', params: ['uid'] },
-  fetchUserVideos: { path: '/app/fetch_user_videos', params: ['uid'] },
-  fetchUserSuperTopics: { path: '/app/fetch_user_super_topics', params: ['uid'] },
-  fetchUserAlbum: { path: '/app/fetch_user_album', params: ['uid'] },
-  fetchUserArticles: { path: '/app/fetch_user_articles', params: ['uid'] },
-  fetchUserAudios: { path: '/app/fetch_user_audios', params: ['uid'] },
-  fetchUserProfileFeed: { path: '/app/fetch_user_profile_feed', params: ['uid'] },
-  fetchStatusDetail: { path: '/app/fetch_status_detail', params: ['status_id'] },
-  fetchStatusReposts: { path: '/app/fetch_status_reposts', params: ['status_id'] },
-  fetchVideoDetail: { path: '/app/fetch_video_detail', params: ['mid'] },
-  fetchVideoFeaturedFeed: { path: '/app/fetch_video_featured_feed' },
-  fetchHomeRecommendFeed: { path: '/app/fetch_home_recommend_feed' },
-  fetchStatusComments: { path: '/app/fetch_status_comments', params: ['status_id'] },
-  fetchStatusLikes: { path: '/app/fetch_status_likes', params: ['status_id'] },
-  fetchSearchAll: { path: '/app/fetch_search_all', params: ['query'] },
-  fetchAiSmartSearch: { path: '/app/fetch_ai_smart_search', params: ['query'] },
-  fetchHotSearch: { path: '/app/fetch_hot_search' },
-  fetchHotSearchCategories: { path: '/app/fetch_hot_search_categories' },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -140,7 +160,6 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -163,10 +182,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   fetchConfigList: api.fetchConfigList,
   fetchChannelFeed: api.fetchChannelFeed,
   fetchPostDetail: api.fetchPostDetail,

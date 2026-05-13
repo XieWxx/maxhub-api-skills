@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - toutiao
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,37 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
- * @param {string} path - API路径
- * @param {object} params - 请求参数
- * @param {string} method - 请求方法 GET/POST
- * @returns {Promise<object>} API响应数据
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格来源：pricing.md
  */
+const API_REGISTRY = {
+  // app
+  getArticleInfo: { path: '/app/get_article_info', params: ['group_id'], price: 0.01 },
+  getVideoInfo: { path: '/app/get_video_info', params: ['group_id'], price: 0.01 },
+  getUserInfo: { path: '/app/get_user_info', params: ['user_id'], price: 0.01 },
+  getUserId: { path: '/app/get_user_id', params: ['user_profile_url'], price: 0.01 },
+  getComments: { path: '/app/get_comments', params: ['group_id', 'offset'], price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
 const REQUEST_TIMEOUT = 30000;
 
-async function request(path, params = {}, method = 'GET') {
+/**
+ * 原始API请求方法（不含优化层）
+ */
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -50,6 +73,12 @@ async function request(path, params = {}, method = 'GET') {
 }
 
 /**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
+
+/**
  * 处理API响应
  */
 async function handleResponse(response) {
@@ -61,18 +90,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // app
-  getArticleInfo: { path: '/app/get_article_info', params: ['group_id'] },
-  getVideoInfo: { path: '/app/get_video_info', params: ['group_id'] },
-  getUserInfo: { path: '/app/get_user_info', params: ['user_id'] },
-  getUserId: { path: '/app/get_user_id', params: ['user_profile_url'] },
-  getComments: { path: '/app/get_comments', params: ['group_id', 'offset'] },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -86,7 +106,6 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -109,10 +128,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   getArticleInfo: api.getArticleInfo,
   getVideoInfo: api.getVideoInfo,
   getUserInfo: api.getUserInfo,

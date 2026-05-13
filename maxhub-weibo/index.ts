@@ -1,5 +1,6 @@
 // 技能入口主文件 - 微博数据采集与分析
 // 统一导出所有模块，供各平台调用
+// 集成优化层与智能决策，支持报告查询、价格查询、方案决策
 
 const config = require('./config.json');
 const manifest = require('./manifest.json');
@@ -27,4 +28,57 @@ async function handle(intent, params = {}) {
   }
 }
 
-module.exports = { handle, config, manifest, api, data, utils, router, errorCode };
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ * @returns {object} 优化报告
+ */
+function getReport() {
+  return api.getOptimizationReport();
+}
+
+/**
+ * 查询API价格
+ * @param {string} apiName - API名称（可选，不传则返回全部）
+ * @returns {object|Array} 价格信息
+ */
+function queryPrice(apiName) {
+  if (apiName) return api.getApiPrice(apiName);
+  return api.getAllPrices();
+}
+
+/**
+ * 智能决策接口
+ * 根据意图和参数，自动选择最优API方案
+ * @param {string} intentType - 意图类型
+ * @param {object} params - 用户参数
+ * @returns {object} 决策结果，包含选中方案和备选方案
+ */
+function decide(intentType, params = {}) {
+  return router.decideBestApi(intentType, params);
+}
+
+/**
+ * 多方案费用对比
+ * @param {string} intentType - 意图类型
+ * @param {number} callCount - 预估调用次数
+ * @returns {Array} 按费用排序的方案列表
+ */
+function compareCosts(intentType, callCount = 1) {
+  return router.compareCosts(intentType, callCount);
+}
+
+module.exports = {
+  handle,
+  config,
+  manifest,
+  api,
+  data,
+  utils,
+  router,
+  errorCode,
+  getReport,
+  queryPrice,
+  decide,
+  compareCosts,
+};

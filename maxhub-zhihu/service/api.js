@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - zhihu
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,66 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
- * @param {string} path - API路径
- * @param {object} params - 请求参数
- * @param {string} method - 请求方法 GET/POST
- * @returns {Promise<object>} API响应数据
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格来源：pricing.md
  */
+const API_REGISTRY = {
+  // web
+  fetchColumnArticles: { path: '/web/fetch_column_articles', params: ['column_id'], price: 0.01 },
+  fetchColumnArticleDetail: { path: '/web/fetch_column_article_detail', params: ['article_id'], price: 0.01 },
+  fetchColumnRecommend: { path: '/web/fetch_column_recommend', params: ['article_id'], price: 0.01 },
+  fetchColumnRelationship: { path: '/web/fetch_column_relationship', params: ['article_id'], price: 0.01 },
+  fetchHotRecommend: { path: '/web/fetch_hot_recommend', price: 0.01 },
+  fetchHotList: { path: '/web/fetch_hot_list', price: 0.01 },
+  fetchVideoList: { path: '/web/fetch_video_list', price: 0.01 },
+  fetchUserInfo: { path: '/web/fetch_user_info', params: ['user_url_token'], price: 0.01 },
+  fetchUserArticles: { path: '/web/fetch_user_articles', params: ['user_url_token'], price: 0.01 },
+  fetchUserIncludedArticles: { path: '/web/fetch_user_included_articles', params: ['user_url_token'], price: 0.01 },
+  fetchQuestionAnswers: { path: '/web/fetch_question_answers', params: ['question_id'], price: 0.01 },
+  fetchColumnCommentConfig: { path: '/web/fetch_column_comment_config', params: ['article_id'], price: 0.01 },
+  fetchCommentV5: { path: '/web/fetch_comment_v5', params: ['answer_id'], price: 0.01 },
+  fetchSubCommentV5: { path: '/web/fetch_sub_comment_v5', params: ['comment_id'], price: 0.01 },
+  fetchUserFollowees: { path: '/web/fetch_user_followees', params: ['user_url_token'], price: 0.01 },
+  fetchUserFollowers: { path: '/web/fetch_user_followers', params: ['user_url_token'], price: 0.01 },
+  fetchUserFollowColumns: { path: '/web/fetch_user_follow_columns', params: ['user_url_token'], price: 0.01 },
+  fetchUserFollowQuestions: { path: '/web/fetch_user_follow_questions', params: ['user_url_token'], price: 0.01 },
+  fetchUserFollowCollections: { path: '/web/fetch_user_follow_collections', params: ['user_url_token'], price: 0.01 },
+  fetchUserFollowTopics: { path: '/web/fetch_user_follow_topics', params: ['user_url_token'], price: 0.01 },
+  fetchRecommendFollowees: { path: '/web/fetch_recommend_followees', price: 0.01 },
+  fetchArticleSearchV3: { path: '/web/fetch_article_search_v3', params: ['keyword'], price: 0.01 },
+  fetchUserSearchV3: { path: '/web/fetch_user_search_v3', params: ['keyword'], price: 0.01 },
+  fetchTopicSearchV3: { path: '/web/fetch_topic_search_v3', params: ['keyword'], price: 0.01 },
+  fetchScholarSearchV3: { path: '/web/fetch_scholar_search_v3', params: ['keyword'], method: 'POST', price: 0.01 },
+  fetchAiSearch: { path: '/web/fetch_ai_search', params: ['message_content'], price: 0.01 },
+  fetchAiSearchResult: { path: '/web/fetch_ai_search_result', params: ['message_id'], price: 0.01 },
+  fetchVideoSearchV3: { path: '/web/fetch_video_search_v3', params: ['keyword'], price: 0.01 },
+  fetchColumnSearchV3: { path: '/web/fetch_column_search_v3', params: ['keyword'], price: 0.01 },
+  fetchSaltSearchV3: { path: '/web/fetch_salt_search_v3', params: ['keyword'], price: 0.01 },
+  fetchEbookSearchV3: { path: '/web/fetch_ebook_search_v3', params: ['keyword'], price: 0.01 },
+  fetchPresetSearch: { path: '/web/fetch_preset_search', price: 0.01 },
+  fetchSearchRecommend: { path: '/web/fetch_search_recommend', price: 0.01 },
+  fetchSearchSuggest: { path: '/web/fetch_search_suggest', params: ['keyword'], price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
 const REQUEST_TIMEOUT = 30000;
 
-async function request(path, params = {}, method = 'GET') {
+/**
+ * 原始API请求方法（不含优化层）
+ */
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -31,23 +83,29 @@ async function request(path, params = {}, method = 'GET') {
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
   const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-      const query = new URLSearchParams(params).toString();
-      const fullUrl = query ? `${url}?${query}` : url;
-      try {
-        const response = await fetch(fullUrl, options);
-        return await handleResponse(response);
-      } finally {
-        clearTimeout(timeoutId);
-      }
-    }
-  options.body = JSON.stringify(params);
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(fullUrl, options);
       return await handleResponse(response);
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+  options.body = JSON.stringify(params);
+  try {
+    const response = await fetch(url, options);
+    return await handleResponse(response);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
+
+/**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
 
 /**
  * 处理API响应
@@ -61,47 +119,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  fetchColumnArticles: { path: '/web/fetch_column_articles', params: ['column_id'] },
-  fetchColumnArticleDetail: { path: '/web/fetch_column_article_detail', params: ['article_id'] },
-  fetchColumnRecommend: { path: '/web/fetch_column_recommend', params: ['article_id'] },
-  fetchColumnRelationship: { path: '/web/fetch_column_relationship', params: ['article_id'] },
-  fetchHotRecommend: { path: '/web/fetch_hot_recommend' },
-  fetchHotList: { path: '/web/fetch_hot_list' },
-  fetchVideoList: { path: '/web/fetch_video_list' },
-  fetchUserInfo: { path: '/web/fetch_user_info', params: ['user_url_token'] },
-  fetchUserArticles: { path: '/web/fetch_user_articles', params: ['user_url_token'] },
-  fetchUserIncludedArticles: { path: '/web/fetch_user_included_articles', params: ['user_url_token'] },
-  fetchQuestionAnswers: { path: '/web/fetch_question_answers', params: ['question_id'] },
-  fetchColumnCommentConfig: { path: '/web/fetch_column_comment_config', params: ['article_id'] },
-  fetchCommentV5: { path: '/web/fetch_comment_v5', params: ['answer_id'] },
-  fetchSubCommentV5: { path: '/web/fetch_sub_comment_v5', params: ['comment_id'] },
-  fetchUserFollowees: { path: '/web/fetch_user_followees', params: ['user_url_token'] },
-  fetchUserFollowers: { path: '/web/fetch_user_followers', params: ['user_url_token'] },
-  fetchUserFollowColumns: { path: '/web/fetch_user_follow_columns', params: ['user_url_token'] },
-  fetchUserFollowQuestions: { path: '/web/fetch_user_follow_questions', params: ['user_url_token'] },
-  fetchUserFollowCollections: { path: '/web/fetch_user_follow_collections', params: ['user_url_token'] },
-  fetchUserFollowTopics: { path: '/web/fetch_user_follow_topics', params: ['user_url_token'] },
-  fetchRecommendFollowees: { path: '/web/fetch_recommend_followees' },
-  fetchArticleSearchV3: { path: '/web/fetch_article_search_v3', params: ['keyword'] },
-  fetchUserSearchV3: { path: '/web/fetch_user_search_v3', params: ['keyword'] },
-  fetchTopicSearchV3: { path: '/web/fetch_topic_search_v3', params: ['keyword'] },
-  fetchScholarSearchV3: { path: '/web/fetch_scholar_search_v3', params: ['keyword'], method: 'POST' },
-  fetchAiSearch: { path: '/web/fetch_ai_search', params: ['message_content'] },
-  fetchAiSearchResult: { path: '/web/fetch_ai_search_result', params: ['message_id'] },
-  fetchVideoSearchV3: { path: '/web/fetch_video_search_v3', params: ['keyword'] },
-  fetchColumnSearchV3: { path: '/web/fetch_column_search_v3', params: ['keyword'] },
-  fetchSaltSearchV3: { path: '/web/fetch_salt_search_v3', params: ['keyword'] },
-  fetchEbookSearchV3: { path: '/web/fetch_ebook_search_v3', params: ['keyword'] },
-  fetchPresetSearch: { path: '/web/fetch_preset_search' },
-  fetchSearchRecommend: { path: '/web/fetch_search_recommend' },
-  fetchSearchSuggest: { path: '/web/fetch_search_suggest', params: ['keyword'] },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -115,7 +135,6 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -138,10 +157,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   fetchColumnArticles: api.fetchColumnArticles,
   fetchColumnArticleDetail: api.fetchColumnArticleDetail,
   fetchColumnRecommend: api.fetchColumnRecommend,

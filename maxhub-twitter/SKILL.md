@@ -1,7 +1,7 @@
 ---
 name: maxhub-twitter
 description: Twitter/X数据采集与分析。当用户提到twitter、x、推文等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "twitter|x|推文|tweet|话题|twitter搜索"

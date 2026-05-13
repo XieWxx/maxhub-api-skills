@@ -1,7 +1,7 @@
 ---
 name: maxhub-toutiao
 description: 头条数据采集与分析。当用户提到头条、toutiao、新闻等相关需求时激活此Skill。
-version: 1.0.9
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "头条|toutiao|新闻|资讯|今日头条"

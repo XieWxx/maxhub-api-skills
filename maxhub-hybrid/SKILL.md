@@ -1,7 +1,7 @@
 ---
 name: maxhub-hybrid
 description: 混合解析服务。当用户提到混合解析、hybrid、解析等相关需求时激活此Skill。
-version: 1.0.11
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "混合解析|hybrid|解析|聚合|多平台解析|url解析"

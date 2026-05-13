@@ -1,7 +1,8 @@
 // 第三方接口请求封装 - linkedin
-// 基于MaxHub API中转站调用，包含所有API
+// 基于MaxHub API中转站调用，集成价格追踪、缓存优化、智能决策
 
 const config = require('../config.json');
+const { createOptimizationLayer } = require('../shared');
 const BASE_URL = config.apiBase.url;
 const AUTH_HEADER = config.apiBase.authHeader;
 const AUTH_ENV_NAME = config.apiBase.authEnvVar;
@@ -13,15 +14,84 @@ function resolveCredential() {
 }
 
 /**
- * 通用API请求方法
- * @param {string} path - API路径
- * @param {object} params - 请求参数
- * @param {string} method - 请求方法 GET/POST
- * @returns {Promise<object>} API响应数据
+ * API注册表 - 包含价格信息（CNY/次）
+ * 价格来源：pricing.md
  */
+const API_REGISTRY = {
+  // web
+  getUserContact: { path: '/web/get_user_contact', params: ['username'], price: 0.04 },
+  getCompanyPeople: { path: '/web/get_company_people', params: ['company_id'], price: 0.04 },
+  getUserAbout: { path: '/web/get_user_about', params: ['urn'], price: 0.04 },
+  getUserExperience: { path: '/web/get_user_experience', params: ['urn'], price: 0.04 },
+  getUserInterestsGroups: { path: '/web/get_user_interests_groups', params: ['urn'], price: 0.04 },
+  getUserInterestsCompanies: { path: '/web/get_user_interests_companies', params: ['urn'], price: 0.04 },
+  getUserFollowerAndConnection: { path: '/web/get_user_follower_and_connection', params: ['username'], price: 0.04 },
+  searchPeople: { path: '/web/search_people', price: 0.04 },
+  // web_v2
+  getUserProfile: { path: '/web_v2/get_user_profile', params: ['username'], price: 0.01 },
+  getUserPosts: { path: '/web_v2/get_user_posts', params: ['username'], price: 0.01 },
+  getUserContactInfo: { path: '/web_v2/get_user_contact_info', params: ['username'], price: 0.01 },
+  getUserRecommendations: { path: '/web_v2/get_user_recommendations', params: ['username'], price: 0.01 },
+  getUserVideos: { path: '/web_v2/get_user_videos', params: ['username'], price: 0.01 },
+  getUserImages: { path: '/web_v2/get_user_images', params: ['username'], price: 0.01 },
+  getUserBio: { path: '/web_v2/get_user_bio', params: ['username'], price: 0.01 },
+  getUserProfileCards: { path: '/web_v2/get_user_profile_cards', params: ['username'], price: 0.01 },
+  getUserExperiences: { path: '/web_v2/get_user_experiences', params: ['username'], price: 0.01 },
+  getUserSkills: { path: '/web_v2/get_user_skills', params: ['username'], price: 0.01 },
+  getUserEducations: { path: '/web_v2/get_user_educations', params: ['username'], price: 0.01 },
+  getUserPublications: { path: '/web_v2/get_user_publications', params: ['username'], price: 0.01 },
+  getUserCertifications: { path: '/web_v2/get_user_certifications', params: ['username'], price: 0.01 },
+  getUserHonors: { path: '/web_v2/get_user_honors', params: ['username'], price: 0.01 },
+  getUserTopCard: { path: '/web_v2/get_user_top_card', params: ['username'], price: 0.01 },
+  getUserTopCardSupplementary: { path: '/web_v2/get_user_top_card_supplementary', params: ['username'], price: 0.01 },
+  getUserRecentActivity: { path: '/web_v2/get_user_recent_activity', params: ['username'], price: 0.01 },
+  getDiscoveryRelevantToCompany: { path: '/web_v2/get_discovery_relevant_to_company', params: ['universal_name'], price: 0.01 },
+  getDiscoveryRelevantToUser: { path: '/web_v2/get_discovery_relevant_to_user', params: ['username'], price: 0.01 },
+  getCompanyProfile: { path: '/web_v2/get_company_profile', params: ['universal_name'], price: 0.01 },
+  getCompanyEmployees: { path: '/web_v2/get_company_employees', params: ['universal_name'], price: 0.01 },
+  getCompanyPosts: { path: '/web_v2/get_company_posts', params: ['universal_name'], price: 0.01 },
+  getCompanyJobs: { path: '/web_v2/get_company_jobs', params: ['universal_name'], price: 0.01 },
+  getCompanyJobCount: { path: '/web_v2/get_company_job_count', params: ['universal_name'], price: 0.01 },
+  getCompanySimilarCompanies: { path: '/web_v2/get_company_similar_companies', params: ['universal_name'], price: 0.01 },
+  getCompanyCompetitors: { path: '/web_v2/get_company_competitors', params: ['universal_name'], price: 0.01 },
+  getCompanyStockQuote: { path: '/web_v2/get_company_stock_quote', params: ['universal_name'], price: 0.01 },
+  getCompanyCallToActions: { path: '/web_v2/get_company_call_to_actions', params: ['universal_name'], price: 0.01 },
+  getCompanyEmployeeCountRanges: { path: '/web_v2/get_company_employee_count_ranges', params: ['universal_name'], price: 0.01 },
+  getCompanyGroupedLocations: { path: '/web_v2/get_company_grouped_locations', params: ['universal_name'], price: 0.01 },
+  getPostDetail: { path: '/web_v2/get_post_detail', params: ['post_urn'], price: 0.01 },
+  getPostDetailBySlug: { path: '/web_v2/get_post_detail_by_slug', params: ['slug'], price: 0.01 },
+  getPostReactions: { path: '/web_v2/get_post_reactions', params: ['post_urn'], price: 0.01 },
+  getHashtagFeed: { path: '/web_v2/get_hashtag_feed', params: ['hashtag'], price: 0.01 },
+  getJobDetail: { path: '/web_v2/get_job_detail', params: ['job_id'], price: 0.01 },
+  getUserComments: { path: '/web_v2/get_user_comments', params: ['username'], price: 0.01 },
+  getUserFollowerAndConnectionCount: { path: '/web_v2/get_user_follower_and_connection_count', params: ['username'], price: 0.01 },
+  getUserInterestedGroups: { path: '/web_v2/get_user_interested_groups', params: ['username'], price: 0.01 },
+  getUserInterestedCompanies: { path: '/web_v2/get_user_interested_companies', params: ['username'], price: 0.01 },
+  getPostComments: { path: '/web_v2/get_post_comments', params: ['post_urn'], price: 0.01 },
+  getCommentReplies: { path: '/web_v2/get_comment_replies', params: ['comment_urn'], price: 0.01 },
+  searchUsers: { path: '/web_v2/search_users', params: ['keywords'], price: 0.01 },
+  searchJobs: { path: '/web_v2/search_jobs', params: ['keywords'], price: 0.01 },
+};
+
+/**
+ * 初始化优化层
+ * 集成缓存、去重、监控、决策、价格查询
+ */
+const optimization = createOptimizationLayer({
+  registry: API_REGISTRY,
+  apiPrefix: config.apiBase.prefix,
+  cache: { maxSize: 50, defaultTTL: 3 * 60 * 1000 },
+  optimizer: { redundancyWindow: 30000 },
+  monitor: { costAlertThreshold: 0.5 },
+  decision: { costWeight: 0.6, latencyWeight: 0.25, completenessWeight: 0.15 },
+});
+
 const REQUEST_TIMEOUT = 30000;
 
-async function request(path, params = {}, method = 'GET') {
+/**
+ * 原始API请求方法（不含优化层）
+ */
+async function _rawRequest(path, params = {}, method = 'GET') {
   const url = `${BASE_URL}${path}`;
   const headers = {
     [AUTH_HEADER]: resolveCredential(),
@@ -31,23 +101,29 @@ async function request(path, params = {}, method = 'GET') {
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
   const options = { method, headers, signal: controller.signal };
   if (method === 'GET') {
-      const query = new URLSearchParams(params).toString();
-      const fullUrl = query ? `${url}?${query}` : url;
-      try {
-        const response = await fetch(fullUrl, options);
-        return await handleResponse(response);
-      } finally {
-        clearTimeout(timeoutId);
-      }
-    }
-  options.body = JSON.stringify(params);
+    const query = new URLSearchParams(params).toString();
+    const fullUrl = query ? `${url}?${query}` : url;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(fullUrl, options);
       return await handleResponse(response);
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+  options.body = JSON.stringify(params);
+  try {
+    const response = await fetch(url, options);
+    return await handleResponse(response);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
+
+/**
+ * 增强版请求方法
+ * 自动经过缓存→去重→监控链路
+ */
+const request = optimization.enhanceRequest(_rawRequest);
 
 /**
  * 处理API响应
@@ -61,65 +137,9 @@ async function handleResponse(response) {
   return data;
 }
 
-const API_REGISTRY = {
-  // web
-  getUserContact: { path: '/web/get_user_contact', params: ['username'] },
-  getCompanyPeople: { path: '/web/get_company_people', params: ['company_id'] },
-  getUserAbout: { path: '/web/get_user_about', params: ['urn'] },
-  getUserExperience: { path: '/web/get_user_experience', params: ['urn'] },
-  getUserInterestsGroups: { path: '/web/get_user_interests_groups', params: ['urn'] },
-  getUserInterestsCompanies: { path: '/web/get_user_interests_companies', params: ['urn'] },
-  getUserFollowerAndConnection: { path: '/web/get_user_follower_and_connection', params: ['username'] },
-  searchPeople: { path: '/web/search_people' },
-  // web_v2
-  getUserProfile: { path: '/web_v2/get_user_profile', params: ['username'] },
-  getUserPosts: { path: '/web_v2/get_user_posts', params: ['username'] },
-  getUserContactInfo: { path: '/web_v2/get_user_contact_info', params: ['username'] },
-  getUserRecommendations: { path: '/web_v2/get_user_recommendations', params: ['username'] },
-  getUserVideos: { path: '/web_v2/get_user_videos', params: ['username'] },
-  getUserImages: { path: '/web_v2/get_user_images', params: ['username'] },
-  getUserBio: { path: '/web_v2/get_user_bio', params: ['username'] },
-  getUserProfileCards: { path: '/web_v2/get_user_profile_cards', params: ['username'] },
-  getUserExperiences: { path: '/web_v2/get_user_experiences', params: ['username'] },
-  getUserSkills: { path: '/web_v2/get_user_skills', params: ['username'] },
-  getUserEducations: { path: '/web_v2/get_user_educations', params: ['username'] },
-  getUserPublications: { path: '/web_v2/get_user_publications', params: ['username'] },
-  getUserCertifications: { path: '/web_v2/get_user_certifications', params: ['username'] },
-  getUserHonors: { path: '/web_v2/get_user_honors', params: ['username'] },
-  getUserTopCard: { path: '/web_v2/get_user_top_card', params: ['username'] },
-  getUserTopCardSupplementary: { path: '/web_v2/get_user_top_card_supplementary', params: ['username'] },
-  getUserRecentActivity: { path: '/web_v2/get_user_recent_activity', params: ['username'] },
-  getDiscoveryRelevantToCompany: { path: '/web_v2/get_discovery_relevant_to_company', params: ['universal_name'] },
-  getDiscoveryRelevantToUser: { path: '/web_v2/get_discovery_relevant_to_user', params: ['username'] },
-  getCompanyProfile: { path: '/web_v2/get_company_profile', params: ['universal_name'] },
-  getCompanyEmployees: { path: '/web_v2/get_company_employees', params: ['universal_name'] },
-  getCompanyPosts: { path: '/web_v2/get_company_posts', params: ['universal_name'] },
-  getCompanyJobs: { path: '/web_v2/get_company_jobs', params: ['universal_name'] },
-  getCompanyJobCount: { path: '/web_v2/get_company_job_count', params: ['universal_name'] },
-  getCompanySimilarCompanies: { path: '/web_v2/get_company_similar_companies', params: ['universal_name'] },
-  getCompanyCompetitors: { path: '/web_v2/get_company_competitors', params: ['universal_name'] },
-  getCompanyStockQuote: { path: '/web_v2/get_company_stock_quote', params: ['universal_name'] },
-  getCompanyCallToActions: { path: '/web_v2/get_company_call_to_actions', params: ['universal_name'] },
-  getCompanyEmployeeCountRanges: { path: '/web_v2/get_company_employee_count_ranges', params: ['universal_name'] },
-  getCompanyGroupedLocations: { path: '/web_v2/get_company_grouped_locations', params: ['universal_name'] },
-  getPostDetail: { path: '/web_v2/get_post_detail', params: ['post_urn'] },
-  getPostDetailBySlug: { path: '/web_v2/get_post_detail_by_slug', params: ['slug'] },
-  getPostReactions: { path: '/web_v2/get_post_reactions', params: ['post_urn'] },
-  getHashtagFeed: { path: '/web_v2/get_hashtag_feed', params: ['hashtag'] },
-  getJobDetail: { path: '/web_v2/get_job_detail', params: ['job_id'] },
-  getUserComments: { path: '/web_v2/get_user_comments', params: ['username'] },
-  getUserFollowerAndConnectionCount: { path: '/web_v2/get_user_follower_and_connection_count', params: ['username'] },
-  getUserInterestedGroups: { path: '/web_v2/get_user_interested_groups', params: ['username'] },
-  getUserInterestedCompanies: { path: '/web_v2/get_user_interested_companies', params: ['username'] },
-  getPostComments: { path: '/web_v2/get_post_comments', params: ['post_urn'] },
-  getCommentReplies: { path: '/web_v2/get_comment_replies', params: ['comment_urn'] },
-  searchUsers: { path: '/web_v2/search_users', params: ['keywords'] },
-  searchJobs: { path: '/web_v2/search_jobs', params: ['keywords'] },
-};
-
 /**
  * 通用API调用方法
- * 根据API注册表动态调用，替代重复的函数定义
+ * 根据API注册表动态调用，自动记录费用
  * @param {string} apiName - 注册表中的API名称
  * @param {object} params - 请求参数
  * @returns {Promise<object>} API响应数据
@@ -133,7 +153,6 @@ async function callApi(apiName, params = {}) {
       if (params[key] !== undefined) reqParams[key] = params[key];
     }
   }
-  
   return request(def.path, reqParams, def.method || 'GET');
 }
 
@@ -156,10 +175,52 @@ for (const [name, def] of Object.entries(API_REGISTRY)) {
     return request(def.path, params, def.method || 'GET');
   };
 }
+
+/**
+ * 获取优化报告
+ * 包含缓存命中率、费用统计、优化建议等
+ */
+function getOptimizationReport() {
+  return optimization.getReport();
+}
+
+/**
+ * 获取API价格信息
+ * @param {string} apiName - API名称
+ * @returns {object} 价格信息
+ */
+function getApiPrice(apiName) {
+  const def = API_REGISTRY[apiName];
+  if (!def) return null;
+  return {
+    name: apiName,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+    freeQuota: def.freeQuota || false,
+  };
+}
+
+/**
+ * 获取所有API价格列表
+ */
+function getAllPrices() {
+  return Object.entries(API_REGISTRY).map(([name, def]) => ({
+    name,
+    path: `${config.apiBase.prefix}${def.path}`,
+    price: def.price,
+    currency: 'CNY',
+  }));
+}
+
 module.exports = {
   request,
   callApi,
   API_REGISTRY,
+  optimization,
+  getOptimizationReport,
+  getApiPrice,
+  getAllPrices,
   getUserContact: api.getUserContact,
   getCompanyPeople: api.getCompanyPeople,
   getUserAbout: api.getUserAbout,

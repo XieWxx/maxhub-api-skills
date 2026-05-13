@@ -1,7 +1,7 @@
 ---
 name: maxhub-wechat
 description: 微信数据采集与分析。当用户提到微信、wechat、视频号等相关需求时激活此Skill。
-version: 1.0.10
+version: 1.1.1
 author: MaxHub Team
 license: MIT
 trigger: "微信|wechat|视频号|公众号|微信文章"
