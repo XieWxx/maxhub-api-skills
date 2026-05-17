@@ -43,9 +43,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `has_more_tail_child_comments`: 是否有更多子评论
  - `next_min_child_cursor`: 下一页游标
  - `page_info`: 分页信息汇总
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_comment_replies
 
@@ -78,9 +75,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 回复列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_hashtag_posts
 
@@ -108,9 +102,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - end_cursor: 分页游标，首次请求不传
 ### 返回:
 - GraphQL风格响应，包含`data.hashtag.edge_hashtag_to_media`
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_hashtag_posts
 
@@ -143,9 +134,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 帖子列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_highlight_stories
 
@@ -172,9 +160,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - highlight_id: 精选ID（可带或不带"highlight:"前缀）
  ### 返回:
  - `data.items`: 故事列表，包含图片/视频URL、发布时间等
- ### 价格:
- - 0.002 USD/请求
-
 
 ## fetch_location_posts
 
@@ -205,9 +190,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `edges`: 帖子列表
 - `page_info`: 分页信息
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_location_posts
 
@@ -238,9 +220,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 帖子列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_music_posts
 
@@ -272,9 +251,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `items`: 帖子列表
  - `metadata`: 音乐元数据
  - `paging_info`: 分页信息
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_music_posts
 
@@ -305,9 +281,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 帖子列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_post_by_id
 
@@ -333,9 +306,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - post_id: 帖子ID
 ### 返回:
 - 帖子详情对象，包含媒体、点赞数、评论等
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_post_by_url
 
@@ -361,9 +331,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - post_url: 帖子URL
 ### 返回:
 - 帖子详情对象，包含媒体、点赞数、评论等
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_post_by_url_v2
 
@@ -389,9 +356,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - post_url: 帖子URL
  ### 返回:
  - 帖子详情对象，包含媒体、点赞数、评论等
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_post_comments
 
@@ -424,9 +388,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 评论列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_post_comments_v2
 
@@ -470,9 +431,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `next_min_id`: 下一页游标（JSON格式字符串）
  - `has_more_headload_comments`: 是否有更多评论
  - `caption`: 帖子描述信息
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_post_info
 
@@ -499,9 +457,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - code_or_url: 帖子Shortcode或完整URL
 ### 返回:
 - `data`: 帖子详情，包含媒体资源、描述、点赞数、评论数等
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_post_likes
 
@@ -531,9 +486,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 点赞用户列表
 - `end_cursor`: 下一页游标
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_section_posts
 
@@ -567,9 +519,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `subsections`: 子分类列表
 - `max_id`: 下一页游标
 - `more_available`: 是否有更多数据
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_user_posts
 
@@ -601,9 +550,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `items`: 帖子列表
 - `more_available`: 是否有更多数据
 - `next_max_id`: 下一页游标
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_user_posts
 
@@ -635,9 +581,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 帖子列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_user_posts_v2
 
@@ -667,9 +610,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - end_cursor: 分页游标，首次请求不传
 ### 返回:
 - GraphQL风格响应，包含`data.user.edge_owner_to_timeline_media`
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_user_reposts
 
@@ -699,9 +639,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `items`: 转发帖子列表
 - `more_available`: 是否有更多数据
 - `next_max_id`: 下一页游标
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_user_tagged_posts
 
@@ -731,9 +668,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - end_cursor: 分页游标，首次请求不传
 ### 返回:
 - GraphQL风格响应，包含`data.user.edge_user_to_photos_of_you`
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_user_tagged_posts
 
@@ -765,9 +699,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 帖子列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## get_comment_replies
 
@@ -814,9 +745,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 重复步骤 2-3 直到 `data.has_more_tail_child_comments` 为 false
   ### 注意:
  - `min_id` 可能是转义 JSON 字符串（如 `{"key":"val"}`），直接原样传入即可，接口内部会自动反转义处理
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_highlight_stories
 
@@ -861,9 +789,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
         - `image_versions2`: 图片版本列表
         - `video_versions`: 视频版本列表（视频时存在）
         - `user`: 发布者信息
-### 价格:
- - 0.002 USD/请求
-
 
 ## get_post_comments
 
@@ -913,9 +838,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 注意:
  - `min_id` 是接口返回的转义 JSON 字符串（如
 `"{"cached_comments_cursor":"xxx","bifilter_token":"xxx"}"`），直接原样传入即可，接口内部会自动反转义处理
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_post_info
 
@@ -957,9 +879,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `video_versions`: 视频版本列表（视频时存在）
     - `carousel_media`: 合集媒体列表（合集时存在）
     - `taken_at`: 发布时间戳
-### 价格:
- - 0.002 USD/请求
-
 
 ## get_post_info_by_code
 
@@ -999,9 +918,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `video_versions`: 视频版本列表（视频时存在）
     - `carousel_media`: 合集媒体列表（合集时存在）
     - `taken_at`: 发布时间戳
-### 价格:
- - 0.002 USD/请求
-
 
 ## get_post_oembed
 
@@ -1047,9 +963,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `data.thumbnail_url`: 缩略图URL
  - `data.thumbnail_width`: 缩略图宽度
  - `data.thumbnail_height`: 缩略图高度
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_brief
 
@@ -1088,9 +1001,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `data.edge_followed_by.count`: 粉丝数
 - `data.edge_follow.count`: 关注数
 - `data.edge_owner_to_timeline_media`: 最近帖子预览
-### 价格:
-- 0.002 USD/请求
-
 
 ## get_user_posts
 
@@ -1134,9 +1044,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `has_next_page`: 是否有下一页
     - `end_cursor`: 下一页游标
     - `start_cursor`: 上一页游标
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_tagged_posts
 
@@ -1192,9 +1099,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. 获取响应中的 `data.page_info.end_cursor`
  3. 下次请求：传入 `user_id`、`first` 和 `after` (使用上次的end_cursor)
  4. 重复步骤 2-3 直到 `data.page_info.has_next_page` 为 false
- ### 价格:
- - 0.002 USD/请求
-
 
 ## media_id_to_shortcode
 
@@ -1223,9 +1127,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `status`: 转换状态
  - `media_id`: 原始Media ID
  - `shortcode`: 转换后的Shortcode
- ### 价格:
- - 0.002 USD/请求
-
 
 ## shortcode_to_media_id
 
@@ -1254,9 +1155,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `status`: 转换状态
  - `shortcode`: 原始Shortcode
  - `media_id`: 转换后的Media ID
- ### 价格:
- - 0.002 USD/请求
-
 
 ---
 

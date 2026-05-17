@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频aid号
 
-
 ## fetch_com_popular
 
 `GET /api/v1/bilibili/.../fetch_com_popular`
@@ -54,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - pn: 页码
 ### 返回:
 - 综合热门视频信息
-
 
 ## fetch_comment_reply
 
@@ -85,7 +83,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 指定评论的回复数据
 
-
 ## fetch_dynamic_detail
 
 `GET /api/v1/bilibili/.../fetch_dynamic_detail`
@@ -111,7 +108,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 动态详情数据
 
-
 ## fetch_dynamic_detail_v2
 
 `GET /api/v1/bilibili/.../fetch_dynamic_detail_v2`
@@ -136,7 +132,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - dynamic_id: 动态id
 ### 返回:
 - 动态详情数据
-
 
 ## fetch_home_feed
 
@@ -167,7 +162,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 推荐视频流数据
 
-
 ## fetch_live_room_detail
 
 `GET /api/v1/bilibili/.../fetch_live_room_detail`
@@ -193,7 +187,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 指定直播间信息
 
-
 ## fetch_live_videos
 
 `GET /api/v1/bilibili/.../fetch_live_videos`
@@ -218,7 +211,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - room_id: 直播间ID
 ### 返回:
 - 指定直播间视频流
-
 
 ## fetch_one_video
 
@@ -247,7 +239,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频详情信息
 
-
 ## fetch_one_video
 
 `GET /api/v1/bilibili/.../fetch_one_video`
@@ -272,7 +263,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - bv_id: 作品id
 ### 返回:
 - 视频详情信息
-
 
 ## fetch_one_video_v2
 
@@ -301,7 +291,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频详情信息V2
 
-
 ## fetch_one_video_v3
 
 `GET /api/v1/bilibili/.../fetch_one_video_v3`
@@ -326,7 +315,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 视频链接
 ### 返回:
 - 视频详情信息V3
-
 
 ## fetch_reply_detail
 
@@ -361,7 +349,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 二级评论列表数据
 
-
 ## fetch_user_collection_videos
 
 `GET /api/v1/bilibili/.../fetch_user_collection_videos`
@@ -388,7 +375,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - pn: 页码
 ### 返回:
 - 指定收藏夹内视频数据
-
 
 ## fetch_user_post_videos
 
@@ -422,7 +408,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户发布的视频数据
 
-
 ## fetch_user_videos
 
 `GET /api/v1/bilibili/.../fetch_user_videos`
@@ -453,7 +438,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - ps: 每页数量
 ### 返回:
 - 用户投稿视频列表
-
 
 ## fetch_video_comments
 
@@ -486,7 +470,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 评论列表数据
 
-
 ## fetch_video_comments
 
 `GET /api/v1/bilibili/.../fetch_video_comments`
@@ -514,7 +497,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 指定视频的评论数据
 
-
 ## fetch_video_danmaku
 
 `GET /api/v1/bilibili/.../fetch_video_danmaku`
@@ -539,7 +521,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cid: 作品cid
 ### 返回:
 - 视频实时弹幕
-
 
 ## fetch_video_detail
 
@@ -566,7 +547,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频详情
 
-
 ## fetch_video_parts
 
 `GET /api/v1/bilibili/.../fetch_video_parts`
@@ -592,7 +572,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频分p信息
 
-
 ## fetch_video_play_info
 
 `GET /api/v1/bilibili/.../fetch_video_play_info`
@@ -617,7 +596,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 视频链接
 ### 返回:
 - 视频播放信息
-
 
 ## fetch_video_playurl
 
@@ -646,7 +624,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频流地址
 
-
 ## fetch_video_subtitle
 
 `GET /api/v1/bilibili/.../fetch_video_subtitle`
@@ -674,7 +651,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频字幕信息
 
-
 ## fetch_vip_video_playurl
 
 `POST /api/v1/bilibili/.../fetch_vip_video_playurl`
@@ -684,7 +660,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -700,7 +675,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cookie: 大会员用户Cookie
 ### 返回:
 - 大会员清晰度视频流地址
-
 
 ---
 

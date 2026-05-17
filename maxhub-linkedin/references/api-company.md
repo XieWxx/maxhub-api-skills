@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 公司关联页面数据
 
-
 ## get_company_associated_member_insights
 
 `GET /api/v1/linkedin/.../get_company_associated_member_insights`
@@ -54,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - company_id: 公司ID（必填）
  ### 返回:
 - 公司关联成员洞察数据
-
 
 ## get_company_call_to_actions
 
@@ -85,7 +83,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - label: 按钮文案
   - url: 点击后跳转的 URL
   - is_external: 是否站外链接
-
 
 ## get_company_competitors
 
@@ -118,7 +115,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 总部地点 / 简介
   - 与查询公司的相似度评分（如有）
 
-
 ## get_company_employee_count_ranges
 
 `GET /api/v1/linkedin/.../get_company_employee_count_ranges`
@@ -149,7 +145,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.by_seniority: 按资历分组（initial / senior / VP / 高管 等）
  - data.by_business_line: 按业务线分组（如有）
  - 每个维度可能因公司规模较小而无数据
-
 
 ## get_company_employees
 
@@ -189,7 +184,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - location: 地点
   - current_position: 当前职位
 
-
 ## get_company_grouped_locations
 
 `GET /api/v1/linkedin/.../get_company_grouped_locations`
@@ -221,7 +215,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - is_headquarters: 是否总部
   - description: 地点描述（如有，含此办公室主营业务）
 
-
 ## get_company_job_count
 
 `GET /api/v1/linkedin/.../get_company_job_count`
@@ -246,7 +239,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - company_id: 公司ID（必填）
  ### 返回:
 - 公司职位数量数据
-
 
 ## get_company_job_count
 
@@ -273,7 +265,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - universal_name: 公司 URL slug（必填）
   ### 返回:
  - data.job_count: 在招职位总数（整数）
-
 
 ## get_company_jobs
 
@@ -320,7 +311,6 @@ volunteer, internship, other
   ### 返回:
  - 公司职位列表数据
 
-
 ## get_company_jobs
 
 `GET /api/v1/linkedin/.../get_company_jobs`
@@ -358,7 +348,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - applicants_count: 已申请人数
 - data.metadata: 分页信息
 
-
 ## get_company_people
 
 `GET /api/v1/linkedin/.../get_company_people`
@@ -385,7 +374,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - page: 页码（可选），默认为1
  ### 返回:
 - 公司员工列表数据
-
 
 ## get_company_posts
 
@@ -417,7 +405,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - recent: 最新帖子
  ### 返回:
 - 公司帖子列表数据
-
 
 ## get_company_posts
 
@@ -452,7 +439,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 文章分享时含原文标题 / URL / 缩略图
 - data.metadata: 分页信息
 
-
 ## get_company_profile
 
 `GET /api/v1/linkedin/.../get_company_profile`
@@ -481,7 +467,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - company和company_id至少需要提供一个
  ### 返回:
 - 公司资料数据
-
 
 ## get_company_profile
 
@@ -520,7 +505,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.founded_year: 成立年份
  - data.company_type: 公司类型（公开 / 私营 / 非营利等）
 
-
 ## get_company_similar_companies
 
 `GET /api/v1/linkedin/.../get_company_similar_companies`
@@ -547,7 +531,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - universal_name: 公司 URL slug（必填）
   ### 返回:
  - data.elements: 相似公司数组，每条含公司名 / logo / 行业 / 员工数 / 公司主页 URL
-
 
 ## get_company_stock_quote
 
@@ -581,7 +564,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.market_cap: 市值
  - data.currency: 计价货币（USD / EUR 等）
  - data.last_updated: 最后更新时间
-
 
 ## get_discovery_relevant_to_company
 
@@ -617,7 +599,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 每个 profile 含姓名 / 头衔 / 头像 / 当前职位 / 推荐理由
  - 每个 company 含公司名 / logo / 行业 / 员工数 / 推荐理由
 
-
 ## get_group_info
 
 `GET /api/v1/linkedin/.../get_group_info`
@@ -642,7 +623,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - group_id: 群组ID（必填）
  ### 返回:
 - 群组信息数据
-
 
 ## get_group_posts
 
@@ -670,7 +650,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - page: 页码（可选），默认为1
  ### 返回:
 - 群组帖子数据
-
 
 ## get_hashtag_feed
 
@@ -707,7 +686,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 互动统计 / 发布时间
 - data.metadata: 分页信息 + hashtag 元数据（关注此话题的人数等）
 
-
 ## get_job_detail
 
 `GET /api/v1/linkedin/.../get_job_detail`
@@ -734,7 +712,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - include_skills: 包含职位技能要求（可选，额外消耗1次请求）
  ### 返回:
 - 职位详情数据
-
 
 ## get_job_detail
 
@@ -773,7 +750,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.easy_apply: 是否支持一键投递
  - data.apply_url: 申请链接（外部站点投递时）
 
-
 ## get_post_comments
 
 `GET /api/v1/linkedin/.../get_post_comments`
@@ -804,7 +780,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - post_type: 帖子类型（可选），可选值：activity, ugc，默认activity
   ### 返回:
  - 帖子评论数据
-
 
 ## get_post_comments
 
@@ -848,7 +823,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - replies_count: 回复数（>0 时可调 `get_comment_replies`）
 - data.metadata: 分页信息
 
-
 ## get_post_detail
 
 `GET /api/v1/linkedin/.../get_post_detail`
@@ -873,7 +847,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - post_id: 帖子ID（必填）
  ### 返回:
 - 帖子详情数据
-
 
 ## get_post_detail
 
@@ -910,7 +883,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.reshare_chain: 转发链路（若是转发帖子，含原帖完整信息）
  - data.is_edited: 是否被编辑过
 
-
 ## get_post_detail_by_slug
 
 `GET /api/v1/linkedin/.../get_post_detail_by_slug`
@@ -938,7 +910,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 整段从 LinkedIn URL 复制即可
  ### 返回:
  - 同 `get_post_detail`：完整 normalized 帖子数据
-
 
 ## get_post_reactions
 
@@ -969,7 +940,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 interest，默认all
   ### 返回:
  - 帖子反应数据
-
 
 ## get_post_reactions
 
@@ -1015,7 +985,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - reaction_type: 该用户使用的反应类型
 - data.metadata: 分页信息
 
-
 ## get_post_reposts
 
 `GET /api/v1/linkedin/.../get_post_reposts`
@@ -1044,7 +1013,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - pagination_token: 分页令牌（可选）
  ### 返回:
 - 帖子转发数据
-
 
 ## get_user_comments
 
@@ -1077,7 +1045,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.elements: 评论数组，每条含被评论的原帖摘要 / 评论文本 / 时间戳 / 在原帖中的位置
  - data.metadata: 分页信息
 
-
 ## get_user_follower_and_connection_count
 
 `GET /api/v1/linkedin/.../get_user_follower_and_connection_count`
@@ -1103,7 +1070,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - data.follower_count: 关注此用户的人数
  - data.connection_count: 一度好友数量（private profile 隐藏时返回 -1）
-
 
 ## get_user_images
 
@@ -1133,7 +1099,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量（1-50）
   ### 返回:
  - data.elements: 图片帖子数组，每条含图片 URL（多张时为数组）/ 文案 / 互动统计
-
 
 ## get_user_interested_companies
 
@@ -1166,7 +1131,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.elements: 公司数组，每条含公司名称 / logo / 行业 / 员工数 / 公司主页 URL / 简介
  - data.metadata: 分页信息
 
-
 ## get_user_interests_companies
 
 `GET /api/v1/linkedin/.../get_user_interests_companies`
@@ -1193,7 +1157,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户感兴趣的公司列表数据
-
 
 ## get_user_posts
 
@@ -1223,7 +1186,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - pagination_token: 分页令牌（可选）
   ### 返回:
  - 用户帖子列表数据
-
 
 ## get_user_posts
 
@@ -1256,7 +1218,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.elements: 帖子数组，每条含作者信息 / 文本内容 / 媒体附件 / 互动统计（点赞 / 评论 / 转发数）/ 发布时间戳
 / 转发链路
  - data.metadata: 分页元数据（含下一页 paginationToken）
-
 
 ## get_user_profile
 
@@ -1318,7 +1279,6 @@ jack
     - cover: 封面图片
     - 以及根据参数选择的其他信息
 
-
 ## get_user_profile
 
 `GET /api/v1/linkedin/.../get_user_profile`
@@ -1360,7 +1320,6 @@ location / 头像 / 封面）。
  - data.<include_key>：每个 include 对应一个子节数据块
  - data.raw：原始 normalized 响应（调试用）
 
-
 ## get_user_profile_cards
 
 `GET /api/v1/linkedin/.../get_user_profile_cards`
@@ -1392,7 +1351,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 调用方按 `sectionType` 在 `data.included[]` 自取
  - 如只需某 section 精简结果，请用对应专用端点（get_user_experiences / get_user_educations
 等）
-
 
 ## get_user_top_card
 
@@ -1430,7 +1388,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.mutual_connections: 与查询账号的共同好友（如有）
  - data.is_premium / is_open_to_work / is_hiring: 状态标记
 
-
 ## get_user_videos
 
 `GET /api/v1/linkedin/.../get_user_videos`
@@ -1459,7 +1416,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量（1-50）
   ### 返回:
  - data.elements: 视频帖子数组，每条含视频地址 / 缩略图 / 时长 / 文案 / 互动统计
-
 
 ## search_jobs
 
@@ -1512,7 +1468,6 @@ volunteer, internship, other
   ### 返回:
  - 职位搜索结果列表数据
 
-
 ## search_jobs
 
 `GET /api/v1/linkedin/.../search_jobs`
@@ -1552,7 +1507,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - applicants_count: 已申请人数
   - salary_range: 薪资范围（如显示）
 - data.metadata: 分页信息 + 总命中数
-
 
 ## search_people
 
@@ -1601,7 +1555,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 用户搜索结果列表数据
 
-
 ## search_posts
 
 `GET /api/v1/linkedin/.../search_posts`
@@ -1639,7 +1592,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 documents, collaborative_articles
   ### 返回:
  - 帖子搜索结果数据
-
 
 ---
 

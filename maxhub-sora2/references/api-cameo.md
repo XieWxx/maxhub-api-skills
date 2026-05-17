@@ -26,8 +26,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora Cameo 出镜秀达人排行榜
  - 展示在 Cameo 功能中被使用最多的用户
  - 支持分页获取更多排行榜数据
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - cursor: 翻页参数（可选），从上一次响应的 cursor 字段获取，每页返回 10 个用户
@@ -40,7 +38,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - follower_count: 粉丝数
     - cameo_count: 被使用次数
 - cursor: 下一页参数，用于获取更多数据（如果为 null 表示已到末页）
-
 
 ## get_user_cameo_appearances
 
@@ -66,8 +63,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - Cameo 出镜秀指该用户在其他创作者作品中的出镜视频
  - 支持分页加载，每页返回 30 条记录
  - 可用于展示用户的协作作品、出镜记录等
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - user_id: 用户 ID，必填
@@ -86,7 +81,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cursor: 下一页参数（用于获取更多记录，无更多时为 null）
  - has_more: 是否有更多数据
 
-
 ## upload_image
 
 `POST /api/v1/sora2/upload_image`
@@ -96,7 +90,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -108,8 +101,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 上传图片到 Sora 服务器获取 media_id
  - 获取的 media_id 可用于后续的 AI 视频生成功能
  - 支持 PNG、JPG、JPEG 格式的图片文件
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.001 美元 （防止恶意请求）
  - 速率限制：每秒最多请求 1 次（1 request/second）
  - 如果请求过快可能会被限流，建议间隔至少 1 秒
   ### 参数说明:
@@ -129,7 +120,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 建议在获取 media_id 后及时使用
  - 文件名会自动清理特殊字符以确保安全
   ---
-
 
 ---
 

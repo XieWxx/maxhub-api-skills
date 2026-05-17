@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -57,7 +56,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `violation_score`: 当前违规积分数量
  - `creator_status`: 创作者账号状态码（0=正常）
 
-
 ## get_account_insights_overview
 
 `POST /api/v1/tiktok/.../get_account_insights_overview`
@@ -67,7 +65,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -101,7 +98,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `product_click_cnt`: 商品点击次数
     - `alc_pay_sku_order_cnt`: ALC 成交订单数
 - `meta.is_bound_shop`: 是否绑定 TikTok 店铺
-
 
 ## get_ad_interactive_analysis
 
@@ -169,7 +165,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_ad_keyframe_analysis
 
 `GET /api/v1/tiktok/.../get_ad_keyframe_analysis`
@@ -225,7 +220,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ## get_ad_percentile
 
@@ -290,7 +284,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ## get_creative_patterns
 
@@ -362,7 +355,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_creator_filters
 
 `GET /api/v1/tiktok/.../get_creator_filters`
@@ -372,7 +364,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -413,7 +404,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_product_filters
 
 `GET /api/v1/tiktok/.../get_product_filters`
@@ -423,7 +413,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -486,7 +475,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ## get_product_metrics
 
@@ -594,7 +582,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_top_ads_spotlight
 
 `GET /api/v1/tiktok/.../get_top_ads_spotlight`
@@ -692,7 +679,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ---
 

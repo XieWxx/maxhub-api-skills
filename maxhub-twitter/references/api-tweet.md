@@ -31,7 +31,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 推文评论
 
-
 ## fetch_post_comments
 
 `GET /api/v1/twitter/.../fetch_post_comments`
@@ -58,7 +57,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - cursor: 游标，默认为None，用于翻页，后续从上一次请求的返回结果中获取
  ### 返回:
  - 评论
-
 
 ## fetch_retweet_user_list
 
@@ -89,7 +87,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 转推用户列表
 
-
 ## fetch_tweet_detail
 
 `GET /api/v1/twitter/.../fetch_tweet_detail`
@@ -116,7 +113,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 1808168603721650364。
  ### 返回:
  - 推文数据
-
 
 ## fetch_user_followers
 
@@ -147,7 +143,6 @@ elonmusk。
  ### 返回:
  - 用户粉丝
 
-
 ## fetch_user_followings
 
 `GET /api/v1/twitter/.../fetch_user_followings`
@@ -176,7 +171,6 @@ elonmusk。
  - cursor: 游标，默认为None，用于翻页，后续从上一次请求的返回结果中获取
  ### 返回:
  - 用户关注
-
 
 ## fetch_user_media
 
@@ -209,7 +203,6 @@ elonmusk。
  ### 返回:
  - 用户媒体
 
-
 ## fetch_user_post_tweet
 
 `GET /api/v1/twitter/.../fetch_user_post_tweet`
@@ -241,7 +234,6 @@ elonmusk。
  ### 返回:
  - 用户发帖
 
-
 ## fetch_user_profile
 
 `GET /api/v1/twitter/.../fetch_user_profile`
@@ -271,7 +263,6 @@ elonmusk。
  ### 返回:
  - 用户资料
 
-
 ## fetch_user_tweet_replies
 
 `GET /api/v1/twitter/.../fetch_user_tweet_replies`
@@ -300,7 +291,6 @@ elonmusk。
  - cursor: 游标，默认为None，用于翻页，后续从上一次请求的返回结果中获取
  ### 返回:
  - 用户推文回复
-
 
 ---
 

@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户收藏夹信息
 
-
 ## fetch_get_user_id
 
 `GET /api/v1/bilibili/.../fetch_get_user_id`
@@ -54,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - share_link: 用户分享链接
 ### 返回:
 - 用户ID
-
 
 ## fetch_user_dynamic
 
@@ -83,7 +81,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 指定用户动态数据
 
-
 ## fetch_user_info
 
 `GET /api/v1/bilibili/.../fetch_user_info`
@@ -109,7 +106,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户信息（包含粉丝数、关注数、投稿数等）
 
-
 ## fetch_user_profile
 
 `GET /api/v1/bilibili/.../fetch_user_profile`
@@ -134,7 +130,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - uid: 用户UID
 ### 返回:
 - 指定用户的个人信息
-
 
 ## fetch_user_relation_stat
 
@@ -163,7 +158,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - following: 关注数
     - follower: 粉丝数
 
-
 ## fetch_user_up_stat
 
 `GET /api/v1/bilibili/.../fetch_user_up_stat`
@@ -191,7 +185,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - archive: 视频相关统计
         - view: 总播放数
     - likes: 总获赞数
-
 
 ---
 

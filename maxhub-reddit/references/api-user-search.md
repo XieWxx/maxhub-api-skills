@@ -48,7 +48,6 @@ RANDOM
  - 路径示例: $.data.postInfoById.commentForest.trees[*].more.cursor
  - cursor 格式类似: "commenttree:ex:(RjiJd"
 
-
 ## fetch_user_profile
 
 `GET /api/v1/reddit/.../fetch_user_profile`
@@ -82,7 +81,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 是否验证账号
   - 徽章和奖励
   - 关注者数量
-
 
 ---
 

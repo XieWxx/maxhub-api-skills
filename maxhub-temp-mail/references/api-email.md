@@ -47,7 +47,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
-
 ---
 
 ## Common Workflows / 常用工作流

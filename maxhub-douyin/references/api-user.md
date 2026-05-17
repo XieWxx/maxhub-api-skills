@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户信息
 
-
 ## fetch_batch_user_profile_v1
 
 `GET /api/v1/douyin/.../fetch_batch_user_profile_v1`
@@ -55,7 +54,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 批量用户信息
 
-
 ## fetch_batch_user_profile_v2
 
 `GET /api/v1/douyin/.../fetch_batch_user_profile_v2`
@@ -80,7 +78,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - sec_user_ids: 用户sec_user_id列表，用逗号分隔，最多50个
  ### 返回:
  - 批量用户信息
-
 
 ## fetch_daren_compare_users_stable
 
@@ -109,7 +106,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 每个达人在指定天数内的趋势数据对比
 
-
 ## fetch_daren_great_user_fans_info
 
 `POST /api/v1/douyin/.../fetch_daren_great_user_fans_info`
@@ -135,7 +131,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 粉丝性别分布、年龄分布、地域分布、活跃时间等
 
-
 ## fetch_daren_similar_users
 
 `POST /api/v1/douyin/.../fetch_daren_similar_users`
@@ -160,7 +155,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 达人抖音 uid（纯数字，如 "3100268042915212"）
 ### 返回:
 - 相似达人列表
-
 
 ## fetch_daren_sug_great_user_list
 
@@ -188,7 +182,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - total: 返回数量，默认20
  ### 返回:
  - 匹配的达人列表（包含达人ID、昵称、头像、粉丝数等）
-
 
 ## fetch_encrypt_user_id
 
@@ -219,7 +212,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - uid: 原始输入的抖音 uid
  - user_id: 加密后的 user_id
 
-
 ## fetch_get_user_sub_word
 
 `POST /api/v1/douyin/.../fetch_get_user_sub_word`
@@ -229,7 +221,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -241,7 +232,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取当前登录用户在抖音指数中订阅的关键词列表
  ### 返回:
  - 用户已订阅的关键词列表
-
 
 ## fetch_hot_account_fans_interest_account_list
 
@@ -267,7 +257,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - sec_uid: 用户sec_id
 ### 返回:
 - 粉丝兴趣作者 20个用户
-
 
 ## fetch_hot_account_fans_portrait_list
 
@@ -304,7 +293,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 粉丝画像
 
-
 ## fetch_hot_account_search_list
 
 `GET /api/v1/douyin/.../fetch_hot_account_search_list`
@@ -331,7 +319,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cursor: 游标，默认空
 ### 返回:
 - 搜索结果
-
 
 ## fetch_hot_account_trends_list
 
@@ -362,7 +349,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 账号粉丝数据趋势
 
-
 ## fetch_hot_total_high_like_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_high_like_list`
@@ -372,7 +358,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -393,7 +378,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     ]}
 ### 返回:
  - 高点赞率榜
-
 
 ## fetch_live_gift_ranking
 
@@ -422,7 +406,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 排行榜数据
 
-
 ## fetch_live_hot_search_list
 
 `GET /api/v1/douyin/.../fetch_live_hot_search_list`
@@ -432,7 +415,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -445,7 +427,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 直播热搜榜数据
 
-
 ## fetch_live_room_history_list
 
 `POST /api/v1/douyin/.../fetch_live_room_history_list`
@@ -455,7 +436,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -527,7 +507,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_live_room_product_result
 
 `GET /api/v1/douyin/.../fetch_live_room_product_result`
@@ -565,7 +544,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     2. 通过直播间room_id获取直播间信息接口获取author_id字段。
 roon_id不是固定不变的，每次开播都会变化。
 
-
 ## fetch_live_search_v1
 
 `POST /api/v1/douyin/.../fetch_live_search_v1`
@@ -575,7 +553,6 @@ roon_id不是固定不变的，每次开播都会变化。
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -658,7 +635,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `logid`: 请求日志ID
   - `search_request_id`: 搜索请求唯一ID
 
-
 ## fetch_query_user
 
 `POST /api/v1/douyin/.../fetch_query_user`
@@ -668,7 +644,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -683,7 +658,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户基本信息
 
-
 ## fetch_user_collects
 
 `POST /api/v1/douyin/.../fetch_user_collects`
@@ -693,7 +667,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -709,7 +682,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - cookie: 用户网页版抖音Cookie(此接口需要用户提供自己的Cookie)
  ### 返回:
  - 用户收藏夹数据
-
 
 ## fetch_user_fans_list
 
@@ -740,7 +712,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 粉丝列表
 
-
 ## fetch_user_fans_list
 
 `GET /api/v1/douyin/.../fetch_user_fans_list`
@@ -764,7 +735,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取用户粉丝列表
- -
+
 第一次请求时，max_time传`0`，source_type传`2`，然后会返回一个空的粉丝列表，里面包含了max_time，然后再次请求时，max_time传上一次请求返回的max_time，source_type传`1`，即可获取到粉丝列表。
  - 如果不按照上述方式请求，可能会导致返回数据包含重复数据。
   ### 参数:
@@ -774,7 +745,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - source_type: 来源类型，默认为`1`，第一次请求时使用`2`作为来源类型，然后再次请求时使用`1`作为来源类型。
  ### 返回:
  - 粉丝列表
-
 
 ## fetch_user_following_list
 
@@ -799,7 +769,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取用户关注列表
- -
+
 第一次请求时，max_time传`0`，source_type传`2`，然后会返回一个空的粉丝列表，里面包含了max_time，然后再次请求时，max_time传上一次请求返回的max_time，source_type传`1`，即可获取到粉丝列表。
  - 如果不按照上述方式请求，可能会导致返回数据包含重复数据。
  ### 参数:
@@ -809,7 +779,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - source_type: 来源类型，默认为`1`，第一次请求时使用`2`作为来源类型，然后再次请求时使用`1`作为来源类型。
  ### 返回:
  - 关注列表
-
 
 ## fetch_user_live_info_by_uid
 
@@ -836,7 +805,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户开播信息，包含room_id与live_status
 
-
 ## fetch_user_profile_by_short_id
 
 `GET /api/v1/douyin/.../fetch_user_profile_by_short_id`
@@ -862,7 +830,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户信息
 
-
 ## fetch_user_profile_by_uid
 
 `GET /api/v1/douyin/.../fetch_user_profile_by_uid`
@@ -887,7 +854,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - uid: 用户UID
 ### 返回:
 - 用户信息
-
 
 ## fetch_user_search
 
@@ -917,7 +883,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 最多返回20个匹配的用户信息
 - 包含用户基本信息如头像、昵称、抖音号等
 
-
 ## fetch_user_search
 
 `POST /api/v1/douyin/.../fetch_user_search`
@@ -927,7 +892,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -991,7 +955,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `logid`: 请求日志ID
   - `search_request_id`: 搜索请求ID
 
-
 ## fetch_user_search_v2
 
 `POST /api/v1/douyin/.../fetch_user_search_v2`
@@ -1001,7 +964,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1049,7 +1011,6 @@ payload = {
   - `logid`: 请求日志ID
   - `search_request_id`: 搜索请求ID
 
-
 ## get_all_sec_user_id
 
 `POST /api/v1/douyin/.../get_all_sec_user_id`
@@ -1059,7 +1020,6 @@ payload = {
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1074,7 +1034,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 如果链接成功获取到sec_user_id，则返回sec_user_id，否则返回原始的输入链接，后续可以手动校验链接无法获取sec_user_id的原因。
 
-
 ## get_content_trend_guide
 
 `GET /api/v1/douyin/.../get_content_trend_guide`
@@ -1085,7 +1044,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1094,10 +1052,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取内容趋势指南数据（CDN静态JSON，无需Cookie）
-- 价格：0.001$ / 次
 ### 返回:
 - 内容趋势指南数据
-
 
 ## get_sec_user_id
 
@@ -1124,7 +1080,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户sec_user_id
 
-
 ## get_user_profile_qrcode
 
 `GET /api/v1/douyin/.../get_user_profile_qrcode`
@@ -1147,13 +1102,11 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
 - 生成用户主页二维码
 - core_user_id和sec_uid二选一传入即可
-- 价格：0.001$ / 次
 ### 参数:
 - core_user_id: 用户核心ID（与sec_uid二选一）
 - sec_uid: 用户sec_uid（与core_user_id二选一）
 ### 返回:
 - 用户主页二维码数据
-
 
 ## get_xingtu_kolid_by_sec_user_id
 
@@ -1175,7 +1128,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 通过抖音sec_user_id获取游客星图kolid
- - 价格：0.001$ / 次
  ### 参数:
  - sec_user_id: sec_user_id, 可以从接口以下接口获取：
     - `/api/v1/douyin/web/handler_user_profile`
@@ -1184,7 +1136,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/app/v3/handler_user_profile`
 ### 返回:
  - 游客星图kolid
-
 
 ## get_xingtu_kolid_by_uid
 
@@ -1206,7 +1157,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 通过抖音用户ID获取游客星图kolid
-- 价格：0.001$ / 次
 ### 参数:
 - uid: 用户ID, 可以从接口以下接口获取：
     - `/api/v1/douyin/web/fetch_user_profile_by_uid`
@@ -1217,7 +1167,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/app/v3/handler_user_profile`
 ### 返回:
 - 游客星图kolid
-
 
 ## handler_user_profile
 
@@ -1244,7 +1193,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户信息
 
-
 ## handler_user_profile
 
 `GET /api/v1/douyin/.../handler_user_profile`
@@ -1269,7 +1217,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - sec_user_id: 用户sec_user_id
  ### 返回:
  - 用户信息
-
 
 ## handler_user_profile_v2
 
@@ -1296,7 +1243,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户信息
 
-
 ## handler_user_profile_v3
 
 `GET /api/v1/douyin/.../handler_user_profile_v3`
@@ -1321,7 +1267,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - uid: 用户uid，也就是抖音号的short_id
 ### 返回:
 - 用户信息
-
 
 ## handler_user_profile_v4
 
@@ -1351,7 +1296,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 性别：1为男，2为女，0为未知，在live_user字段中。
  - 年龄：在user字段中，-1为未知。
 
-
 ## kol_daily_fans_v1
 
 `GET /api/v1/douyin/.../kol_daily_fans_v1`
@@ -1375,7 +1319,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol粉丝趋势V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -1385,7 +1328,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - endDate: 结束日期，格式为：yyyy-MM-dd
  ### 返回:
  - kol粉丝趋势
-
 
 ## kol_fans_portrait_v1
 
@@ -1409,7 +1351,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol粉丝画像V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -1421,7 +1362,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - _5: 铁粉画像 (Iron Fans Portrait)
 ### 返回:
  - kol粉丝画像
-
 
 ## kol_link_struct_v1
 
@@ -1444,7 +1384,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol连接用户V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -1452,7 +1391,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol连接用户
-
 
 ## kol_touch_distribution_v1
 
@@ -1475,7 +1413,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol连接用户来源V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -1483,7 +1420,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol连接用户来源
-
 
 ## open_douyin_app_to_user_profile
 
@@ -1512,7 +1448,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 注意: 请确保user_id和sec_uid都有值，否则无法跳转到指定用户主页。
   ### 返回:
  - 分享链接
-
 
 ---
 

@@ -33,7 +33,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 搜索结果
 
-
 ## fetch_trending
 
 `GET /api/v1/twitter/.../fetch_trending`
@@ -115,7 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - Estonia
  ### 返回:
  - 趋势
-
 
 ---
 

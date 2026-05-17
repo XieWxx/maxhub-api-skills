@@ -78,9 +78,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 每页通常返回 20 个左右的帖子
  - 帖子附件支持: 图片、多图、视频、投票等类型
  - 部分频道可能没有帖子/社区标签页
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_channel_description
 
@@ -202,7 +199,6 @@ continuation_token
  - 建议两次请求都设置 `need_format=true` 获取清洗后的数据
  - 可以合并两次请求的结果来获得完整的频道信息
 
-
 ## get_channel_id
 
 `GET /api/v1/youtube/.../get_channel_id`
@@ -227,7 +223,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - channel_name: 频道名称。
 ### 返回:
 - 频道ID。
-
 
 ## get_channel_id
 
@@ -257,7 +252,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - channel_url: 标准化的频道URL
  - source: 数据来源（url_parse表示直接从URL解析，page_parse表示从页面解析）
 
-
 ## get_channel_id_v2
 
 `GET /api/v1/youtube/.../get_channel_id_v2`
@@ -285,7 +279,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - channel_id: 频道ID（如：UCeu6U67OzJhV1KwBansH3Dg）
  - channel_url: 标准化的频道URL
  - source: 数据来源（url_parse表示直接从URL解析，page_parse表示从页面解析）
-
 
 ## get_channel_url
 
@@ -320,7 +313,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 当你有频道ID但需要获取@用户名格式的URL时
 - 需要展示用户友好的频道链接时
 
-
 ## get_channel_url
 
 `GET /api/v1/youtube/.../get_channel_url`
@@ -353,7 +345,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 使用场景:
 - 当你有频道ID但需要获取@用户名格式的URL时
 - 需要展示用户友好的频道链接时
-
 
 ## get_post_comment_replies
 
@@ -400,9 +391,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - like_count: 点赞数
   - author: 作者信息
 - continuation_token: 下一页token（如果有更多回复）
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_post_comments
 
@@ -469,9 +457,6 @@ continuation_token）
  2. 获取响应中的 continuation_token
  3. 下次请求：传入 continuation_token 获取更多评论
  4. 每条评论如有回复，可用 reply_continuation_token 调用 get_post_comment_replies
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_shorts_search_v2
 
@@ -508,7 +493,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - shorts: Shorts 列表（video_id、标题、播放量、作者、频道ID、缩略图、URL）
  - continuation_token: 下一页 token
 
-
 ## search_channel
 
 `GET /api/v1/youtube/.../search_channel`
@@ -540,7 +524,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - continuation_token: 用于继续获取搜索结果的令牌。默认为None。
  ### 返回:
  - 搜索结果。
-
 
 ## search_channels
 
@@ -603,9 +586,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 每页通常返回 10-20 个频道
  - 搜索结果只包含频道，不包含视频、播放列表等
  - 搜索结果的顺序和数量由 YouTube 算法决定
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ---
 

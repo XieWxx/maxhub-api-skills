@@ -38,7 +38,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 当前时间戳和状态码，状态码为200时表示成功，否则为失败，可以尝试更换一个作品id再次调用，或者等待一段时间后再次调用。
 
-
 ## douyin_live_room
 
 `GET /api/v1/douyin/.../douyin_live_room`
@@ -60,10 +59,9 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 提取直播间弹幕
- -
+
 该接口已不再提供线上服务，需要自行购买源代码后在本地部署使用，购买源代码请在Discord服务器联系管理员，Discord邀请链接：https://discord.gg/aMEAS8Xsvz
  #### 价格:
- - 每10条数据消耗0.001$，支持阶梯式计费折扣。
  ### 参数:
  - live_room_url: 直播间链接
  - danmaku_type: 消息类型
@@ -91,7 +89,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 弹幕数据的WebSocket连接信息，需要使用WebSocket连接获取弹幕数据，此接口不返回弹幕数据。
 
-
 ## fetch_brand_hot_search_list_detail
 
 `GET /api/v1/douyin/.../fetch_brand_hot_search_list_detail`
@@ -117,7 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 品牌热搜榜具体分类数据
 
-
 ## fetch_brand_hot_videos_time_scope
 
 `POST /api/v1/douyin/.../fetch_brand_hot_videos_time_scope`
@@ -127,7 +123,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -142,7 +137,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 无
  ### 返回:
  - 时间范围信息（起止日期、周期单位等）
-
 
 ## fetch_cartoon_aweme
 
@@ -170,11 +164,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量，默认为16
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
- -
+
 游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 二次元作品数据
-
 
 ## fetch_challenge_posts
 
@@ -185,7 +178,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -205,7 +197,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 话题作品
 
-
 ## fetch_challenge_suggest
 
 `POST /api/v1/douyin/.../fetch_challenge_suggest`
@@ -215,7 +206,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -259,7 +249,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `log_pb`:
   - `impr_id`: 曝光ID（日志追踪用）
 
-
 ## fetch_content_creative_keyword_items
 
 `POST /api/v1/douyin/.../fetch_content_creative_keyword_items`
@@ -294,7 +283,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 与该关键词相关的视频列表
 
-
 ## fetch_creator_activity_detail
 
 `GET /api/v1/douyin/.../fetch_creator_activity_detail`
@@ -319,7 +307,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - activity_id: 活动ID（从活动列表接口获取）
 ### 返回:
 - 创作者活动详情数据
-
 
 ## fetch_creator_hot_music_billboard
 
@@ -349,7 +336,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - time_filter: 时间筛选 (1=24小时, 2=7天, 3=30天)
  ### 返回:
  - 热门音乐榜单数据
-
 
 ## fetch_creator_material_center_billboard
 
@@ -413,7 +399,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 创作者中心热门视频榜单数据
 
-
 ## fetch_creator_material_center_related
 
 `GET /api/v1/douyin/.../fetch_creator_material_center_related`
@@ -452,7 +437,6 @@ query_id 后，再用本接口拉取该条目下的相关视频
  ### 返回:
  - 该 query_id 对应的相关视频列表数据
 
-
 ## fetch_daren_great_user_top_video
 
 `POST /api/v1/douyin/.../fetch_daren_great_user_top_video`
@@ -484,7 +468,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 达人热门视频列表（播放量、点赞数等）
 
-
 ## fetch_douyin_web_guest_cookie
 
 `GET /api/v1/douyin/.../fetch_douyin_web_guest_cookie`
@@ -514,7 +497,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 游客Cookie
 
-
 ## fetch_food_aweme
 
 `GET /api/v1/douyin/.../fetch_food_aweme`
@@ -541,11 +523,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量，默认为16
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
- -
+
 游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 美食作品数据
-
 
 ## fetch_game_aweme
 
@@ -573,11 +554,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量，默认为16
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
- -
+
 游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 游戏作品数据
-
 
 ## fetch_hashtag_detail
 
@@ -603,7 +583,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - ch_id: 话题id
 ### 返回:
 - 话题详情数据
-
 
 ## fetch_hashtag_video_list
 
@@ -636,7 +615,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 话题作品数据
 
-
 ## fetch_home_feed
 
 `GET /api/v1/douyin/.../fetch_home_feed`
@@ -664,7 +642,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - Feed数据
 
-
 ## fetch_hot_account_item_analysis_list
 
 `GET /api/v1/douyin/.../fetch_hot_account_item_analysis_list`
@@ -691,7 +668,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 账号作品分析
 
-
 ## fetch_hot_calendar_detail
 
 `GET /api/v1/douyin/.../fetch_hot_calendar_detail`
@@ -717,7 +693,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 活动日历详情
 
-
 ## fetch_hot_comment_word_list
 
 `GET /api/v1/douyin/.../fetch_hot_comment_word_list`
@@ -742,7 +717,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - aweme_id: 作品id
 ### 返回:
 - 作品评论分析-词云权重
-
 
 ## fetch_hot_item_trends_list
 
@@ -773,7 +747,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 作品数据趋势
 
-
 ## fetch_hot_total_high_play_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_high_play_list`
@@ -783,7 +756,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -804,7 +776,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     ]}
 ### 返回:
  - 高完播率榜
-
 
 ## fetch_hot_total_hot_word_detail_list
 
@@ -835,7 +806,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 内容词详情
 
-
 ## fetch_hot_total_video_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_video_list`
@@ -845,7 +815,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -867,7 +836,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     ]}
 ### 返回:
  - 视频榜
-
 
 ## fetch_hot_user_portrait_list
 
@@ -896,7 +864,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 作品点赞观众画像
 
-
 ## fetch_insight_get_rec
 
 `GET /api/v1/douyin/.../fetch_insight_get_rec`
@@ -924,7 +891,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 相关推荐的报告列表（含 ID、标题、封面、发布时间等）
 
-
 ## fetch_insight_recommend
 
 `GET /api/v1/douyin/.../fetch_insight_recommend`
@@ -934,7 +900,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -947,7 +912,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 推荐报告列表（含报告ID、标题、封面、发布时间等）
 
-
 ## fetch_item_analysis_involved_vertical
 
 `POST /api/v1/douyin/.../fetch_item_analysis_involved_vertical`
@@ -957,7 +921,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -986,7 +949,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_audience_others
 
 `POST /api/v1/douyin/.../fetch_item_audience_others`
@@ -996,7 +958,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1028,7 +989,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_audience_portrait
 
 `POST /api/v1/douyin/.../fetch_item_audience_portrait`
@@ -1038,7 +998,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1116,7 +1075,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_danmaku_analysis
 
 `POST /api/v1/douyin/.../fetch_item_danmaku_analysis`
@@ -1126,7 +1084,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1176,7 +1133,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_filter_options
 
 `GET /api/v1/douyin/.../fetch_item_filter_options`
@@ -1186,7 +1142,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1204,7 +1159,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - label_types:    视频类型列表，每项包含 id / name / name_en，id 用于 label_type 参数
  - date_types:     发布时间列表，每项包含 id / name / name_en，id 用于 date_type 参数
 
-
 ## fetch_item_list
 
 `POST /api/v1/douyin/.../fetch_item_list`
@@ -1214,7 +1168,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1302,7 +1255,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_list_download
 
 `POST /api/v1/douyin/.../fetch_item_list_download`
@@ -1312,7 +1264,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1379,7 +1330,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_overview_data
 
 `POST /api/v1/douyin/.../fetch_item_overview_data`
@@ -1389,7 +1339,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1423,7 +1372,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_play_source
 
 `POST /api/v1/douyin/.../fetch_item_play_source`
@@ -1433,7 +1381,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1470,7 +1417,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  3. 切换到 Network 标签
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
-
 
 ## fetch_item_query
 
@@ -1517,7 +1463,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 视频列表，每项包含：itemId、itemTitle、视频封面、时长、发布时间、
   播放量、点赞数、评论数、分享数、作者ID、作者昵称、作者粉丝数等
 
-
 ## fetch_item_search_keyword
 
 `POST /api/v1/douyin/.../fetch_item_search_keyword`
@@ -1527,7 +1472,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1565,7 +1509,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_sug
 
 `POST /api/v1/douyin/.../fetch_item_sug`
@@ -1591,7 +1534,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 匹配的关键词建议列表
 
-
 ## fetch_item_watch_trend
 
 `POST /api/v1/douyin/.../fetch_item_watch_trend`
@@ -1601,7 +1543,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1656,7 +1597,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_knowledge_aweme
 
 `GET /api/v1/douyin/.../fetch_knowledge_aweme`
@@ -1683,11 +1623,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量，默认为16
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
- -
+
 游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 知识作品数据
-
 
 ## fetch_live_im_fetch
 
@@ -1716,7 +1655,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 弹幕参数数据
 
-
 ## fetch_multi_video
 
 `POST /api/v1/douyin/.../fetch_multi_video`
@@ -1727,7 +1665,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1735,7 +1672,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 批量获取视频信息，支持图文、视频等，一次性最多支持10个视频，此接口收费固定价格为0.001$ * 10 = 0.01$一次。
  ### 参数:
  - aweme_ids: 作品id列表，最多支持10个作品id。
  ### 返回:
@@ -1749,7 +1685,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 10：该内容被标记为部分可见，仅作者选择的部分用户可见
     - 更多状态码请提交给我们的客户支持进行补充。
 
-
 ## fetch_multi_video
 
 `POST /api/v1/douyin/.../fetch_multi_video`
@@ -1760,7 +1695,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1768,13 +1702,11 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频，此接口收费固定价格为0.001$ * 50 = 0.05$一次。
  - 若此接口失效，请使用APP接口替代。
  ### 参数:
  - aweme_ids: 作品id列表，最多支持50个作品id。
  ### 返回:
  - 作品数据
-
 
 ## fetch_multi_video_high_quality_play_url
 
@@ -1786,7 +1718,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1794,7 +1725,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 此接口目前优惠活动价为$0.25，活动结束后恢复原价$0.5。不足50个视频按50个视频收费。
  - 批量获取视频的最高画质(原始上传画质)播放链接
  - 该接口会返回最高画质的播放链接，原始上传画质是指用户上传视频时的画质，通常最高画质视频无压缩码率并且文件头包含元数据。
  - 最高画质的视频链接无法从抖音APP或网页版直接获取，需要通过此接口获取。
@@ -1817,7 +1747,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - error: 错误信息（如果失败）
 ### 备注:
  - 由于数量较多，处理时间可能会稍长，请增加等待时间。
-
 
 ## fetch_multi_video_high_quality_play_url
 
@@ -1829,7 +1758,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1837,7 +1765,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 此接口目前优惠活动价为$0.25，活动结束后恢复原价$0.5。不足50个视频按50个视频收费。
  - 批量获取视频的最高画质(原始上传画质)播放链接
  - 该接口会返回最高画质的播放链接，原始上传画质是指用户上传视频时的画质，通常最高画质视频无压缩码率并且文件头包含元数据。
  - 最高画质的视频链接无法从抖音APP或网页版直接获取，需要通过此接口获取。
@@ -1860,7 +1787,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - error: 错误信息（如果失败）
 ### 备注:
  - 由于数量较多，处理时间可能会稍长，请增加等待时间。
-
 
 ## fetch_multi_video_statistics
 
@@ -1894,7 +1820,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品统计数据
 
-
 ## fetch_multi_video_v2
 
 `POST /api/v1/douyin/.../fetch_multi_video_v2`
@@ -1905,7 +1830,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1913,7 +1837,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频，此接口收费固定价格为0.001$ * 50 = 0.05$一次。
  ### 参数:
  - aweme_ids: 作品id列表，最多支持50个作品id。
  ### 返回:
@@ -1926,7 +1849,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 5：该内容被标记为私人内容，没有公开展示权限
     - 10：该内容被标记为部分可见，仅作者选择的部分用户可见
     - 更多状态码请提交给我们的客户支持进行补充。
-
 
 ## fetch_music_aweme
 
@@ -1954,11 +1876,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 每页数量，默认为16
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
- -
+
 游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 音乐作品数据
-
 
 ## fetch_music_detail
 
@@ -1984,7 +1905,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - music_id: 音乐id
 ### 返回:
 - 音乐详情数据
-
 
 ## fetch_music_hot_search_list
 
@@ -2017,7 +1937,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 音乐热搜榜数据
 
-
 ## fetch_music_search
 
 `POST /api/v1/douyin/.../fetch_music_search`
@@ -2027,7 +1946,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -2101,7 +2019,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `cover_color_hsv`: 封面主色调HSV值
   - `can_background_play`: 是否支持后台播放
 
-
 ## fetch_music_video_list
 
 `GET /api/v1/douyin/.../fetch_music_video_list`
@@ -2130,7 +2047,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 数量，请保持默认，否则会出现BUG。
  ### 返回:
  - 音乐视频列表数据
-
 
 ## fetch_one_video
 
@@ -2165,7 +2081,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 10：该内容被标记为部分可见，仅作者选择的部分用户可见
     - 更多状态码请提交给我们的客户支持进行补充。
 
-
 ## fetch_one_video
 
 `GET /api/v1/douyin/.../fetch_one_video`
@@ -2194,7 +2109,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 如果不需要锚点信息，建议保持默认值False，如果接口报错，可以尝试关闭此参数。
  ### 返回:
  - 作品数据
-
 
 ## fetch_one_video_by_share_url
 
@@ -2229,7 +2143,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 10：该内容被标记为部分可见，仅作者选择的部分用户可见
     - 更多状态码请提交给我们的客户支持进行补充。
 
-
 ## fetch_one_video_by_share_url
 
 `GET /api/v1/douyin/.../fetch_one_video_by_share_url`
@@ -2255,7 +2168,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - share_url: 分享链接
  ### 返回:
  - 作品数据
-
 
 ## fetch_one_video_danmaku
 
@@ -2287,7 +2199,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - start_time: 开始时间
 ### 返回:
 - 视频弹幕数据
-
 
 ## fetch_one_video_v2
 
@@ -2322,7 +2233,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 10：该内容被标记为部分可见，仅作者选择的部分用户可见
     - 更多状态码请提交给我们的客户支持进行补充。
 
-
 ## fetch_one_video_v2
 
 `GET /api/v1/douyin/.../fetch_one_video_v2`
@@ -2347,7 +2257,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - aweme_id: 作品id
  ### 返回:
  - 作品数据
-
 
 ## fetch_one_video_v3
 
@@ -2375,7 +2284,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品数据
 
-
 ## fetch_product_review_score
 
 `GET /api/v1/douyin/.../fetch_product_review_score`
@@ -2392,7 +2300,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
-
 
 ## fetch_related_posts
 
@@ -2423,7 +2330,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品数据
 
-
 ## fetch_report_detail
 
 `GET /api/v1/douyin/.../fetch_report_detail`
@@ -2452,7 +2358,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 报告完整数据：title, cover, publish_time, business, content, images, pdf_url
 等
 
-
 ## fetch_search_suggest
 
 `POST /api/v1/douyin/.../fetch_search_suggest`
@@ -2462,7 +2367,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -2520,7 +2424,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `cache_conf`:
   - `enable`: 是否命中缓存（布尔值）
 
-
 ## fetch_series_aweme
 
 `GET /api/v1/douyin/.../fetch_series_aweme`
@@ -2565,11 +2468,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 119: 逆袭
     - 124: 其他
 - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
- -
+
 游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
  ### 返回:
  - 短剧作品数据
-
 
 ## fetch_series_detail
 
@@ -2603,7 +2505,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 播放量、收藏量等统计数据
     - 付费信息（如有）
 
-
 ## fetch_series_video_list
 
 `GET /api/v1/douyin/.../fetch_series_video_list`
@@ -2635,7 +2536,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 响应中的 aweme_list 包含短剧的各集视频信息
  - has_more 字段表示是否还有更多数据
 
-
 ## fetch_user_collection_videos
 
 `POST /api/v1/douyin/.../fetch_user_collection_videos`
@@ -2645,7 +2545,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -2661,7 +2560,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 最大数量
  ### 返回:
  - 用户作品数据
-
 
 ## fetch_user_collects_videos
 
@@ -2692,7 +2590,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户作品数据
 
-
 ## fetch_user_like_videos
 
 `GET /api/v1/douyin/.../fetch_user_like_videos`
@@ -2722,7 +2619,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户作品数据
 
-
 ## fetch_user_like_videos
 
 `POST /api/v1/douyin/.../fetch_user_like_videos`
@@ -2732,7 +2628,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -2749,7 +2644,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - cookie: 用户网页版抖音Cookie(此接口需要用户提供自己的Cookie)
  ### 返回:
  - 用户作品数据
-
 
 ## fetch_user_live_videos
 
@@ -2780,7 +2674,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 直播流数据
 
-
 ## fetch_user_live_videos_by_room_id_v2
 
 `GET /api/v1/douyin/.../fetch_user_live_videos_by_room_id_v2`
@@ -2808,7 +2701,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 备注:
  modify_time字段是直播间的最后更新时间，也就相当于开播时间，如果下播也不会重置回0，而是一直保持最后的更新时间。
 
-
 ## fetch_user_live_videos_by_sec_uid
 
 `GET /api/v1/douyin/.../fetch_user_live_videos_by_sec_uid`
@@ -2833,7 +2725,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - sec_uid: 用户sec_uid，也叫 sec_user_id，可以在用户主页链接中找到。
  ### 返回:
  - 直播流数据
-
 
 ## fetch_user_mix_videos
 
@@ -2863,7 +2754,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - count: 最大数量
 ### 返回:
 - 用户作品数据
-
 
 ## fetch_user_post_videos
 
@@ -2897,7 +2787,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `1`: 最热排序
 ### 返回:
  - 用户作品数据
-
 
 ## fetch_user_post_videos
 
@@ -2935,7 +2824,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户作品数据
 
-
 ## fetch_user_series_list
 
 `GET /api/v1/douyin/.../fetch_user_series_list`
@@ -2968,7 +2856,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 该接口返回用户发布的所有短剧合集
  - 响应中的 series_id 可用于获取短剧详情和视频列表
 
-
 ## fetch_video_channel_result
 
 `GET /api/v1/douyin/.../fetch_video_channel_result`
@@ -2998,7 +2885,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - refresh_index: 刷新索引
 ### 返回:
 - 视频频道数据
-
 
 ## fetch_video_comment_replies
 
@@ -3031,7 +2917,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 评论回复数据
 
-
 ## fetch_video_comment_replies
 
 `GET /api/v1/douyin/.../fetch_video_comment_replies`
@@ -3063,7 +2948,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 评论回复数据
 
-
 ## fetch_video_comments
 
 `GET /api/v1/douyin/.../fetch_video_comments`
@@ -3093,7 +2977,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 评论数据
 
-
 ## fetch_video_comments
 
 `GET /api/v1/douyin/.../fetch_video_comments`
@@ -3122,7 +3005,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - count: 数量
 ### 返回:
 - 评论数据
-
 
 ## fetch_video_danmaku_list
 
@@ -3157,7 +3039,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品弹幕列表数据
 
-
 ## fetch_video_high_quality_play_url
 
 `GET /api/v1/douyin/.../fetch_video_high_quality_play_url`
@@ -3179,7 +3060,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 价格：0.005$ 一次。
  - 获取视频的最高画质(原始上传画质)播放链接
  - 该接口会返回最高画质的播放链接，原始上传画质是指用户上传视频时的画质，通常最高画质视频无压缩码率并且文件头包含元数据。
  - 最高画质的视频链接无法从抖音APP或网页版直接获取，需要通过此接口获取。
@@ -3197,7 +3077,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - video_id： 作品id
  - original_video_url： 最高画质(原始上传画质)播放链接
  - video_data： 视频数据，包含视频的元数据，如时长、大小等。
-
 
 ## fetch_video_high_quality_play_url
 
@@ -3220,7 +3099,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 价格：0.005$ 一次。
  - 获取视频的最高画质(原始上传画质)播放链接
  - 该接口会返回最高画质的播放链接，原始上传画质是指用户上传视频时的画质，通常最高画质视频无压缩码率并且文件头包含元数据。
  - 最高画质的视频链接无法从抖音APP或网页版直接获取，需要通过此接口获取。
@@ -3238,7 +3116,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - video_id： 作品id
  - original_video_url： 最高画质(原始上传画质)播放链接
  - video_data： 视频数据，包含视频的元数据，如时长、大小等。
-
 
 ## fetch_video_mix_detail
 
@@ -3264,7 +3141,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - mix_id: 合集id
 ### 返回:
 - 视频合集详情数据
-
 
 ## fetch_video_mix_post_list
 
@@ -3295,7 +3171,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 视频合集作品列表数据
 
-
 ## fetch_video_search_v1
 
 `POST /api/v1/douyin/.../fetch_video_search_v1`
@@ -3305,7 +3180,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -3414,7 +3288,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `now`: 当前服务器时间戳（毫秒）
   - `logid`: 日志ID
 
-
 ## fetch_video_search_v2
 
 `POST /api/v1/douyin/.../fetch_video_search_v2`
@@ -3424,7 +3297,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -3535,7 +3407,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `cursor`: 翻页游标（用于下次请求）
  - `has_more`: 是否还有更多数据（1=有，0=无）
 
-
 ## fetch_video_statistics
 
 `GET /api/v1/douyin/.../fetch_video_statistics`
@@ -3567,7 +3438,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品统计数据
 
-
 ## generate_a_bogus
 
 `POST /api/v1/douyin/.../generate_a_bogus`
@@ -3578,7 +3448,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -3586,7 +3455,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- -
+
 使用接口网址生成A-Bogus参数，提交的URL不能带有a_bogus参数，同时a_bogus参数与请求头中的User-Agent有关，需要一起提交和请求。
  ### 参数:
  - url: API链接，请去除url中的原本的a_boogus参数(如有)。
@@ -3597,7 +3466,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - index_2: 加密明文列表的第三个值，无特殊要求，默认为14，不要随意修改。
  ### 返回:
  - A-Bogus参数
-
 
 ## generate_douyin_video_share_qrcode
 
@@ -3624,7 +3492,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 二维码数据
 
-
 ## generate_s_v_web_id
 
 `GET /api/v1/douyin/.../generate_s_v_web_id`
@@ -3634,7 +3501,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -3646,7 +3512,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 生成s_v_web_id
 ### 返回:
 - s_v_web_id
-
 
 ## generate_ttwid
 
@@ -3671,7 +3536,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - ttwid
 
-
 ## generate_verify_fp
 
 `GET /api/v1/douyin/.../generate_verify_fp`
@@ -3681,7 +3545,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -3693,7 +3556,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 生成verify_fp
 ### 返回:
 - verify_fp
-
 
 ## generate_wss_xb_signature
 
@@ -3724,7 +3586,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 弹幕xb签名
 
-
 ## generate_x_bogus
 
 `POST /api/v1/douyin/.../generate_x_bogus`
@@ -3734,7 +3595,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -3747,7 +3607,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 参数:
  - url: 接口网址
 
-
 ## get_all_aweme_id
 
 `POST /api/v1/douyin/.../get_all_aweme_id`
@@ -3757,7 +3616,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -3771,7 +3629,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - url: 作品链接列表
  ### 返回:
  - 作品id列表
-
 
 ## get_author_show_items
 
@@ -3798,7 +3655,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取创作者视频列表
- - 价格：0.001$ / 次
  ### 参数:
  - o_author_id: 创作者ID
  - platform_source: 平台来源，默认1
@@ -3808,7 +3664,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - flow_type: 流量类型，默认0
  ### 返回:
  - 创作者视频列表数据
-
 
 ## get_aweme_id
 
@@ -3835,7 +3690,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 作品id
 
-
 ## get_ip_activity_detail
 
 `GET /api/v1/douyin/.../get_ip_activity_detail`
@@ -3856,12 +3710,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取星图IP日历活动详情
-- 价格：0.001$ / 次
 ### 参数:
 - id: 活动ID，从`get_ip_activity_list`获取
 ### 返回:
 - IP活动详情数据
-
 
 ## get_playlet_actor_rank_catalog
 
@@ -3873,7 +3725,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -3882,10 +3733,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取短剧演员热榜分类列表
-- 价格：0.001$ / 次
 ### 返回:
 - 短剧演员热榜分类数据
-
 
 ## get_playlet_actor_rank_list
 
@@ -3912,7 +3761,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取短剧演员热榜数据
-- 价格：0.001$ / 次
 ### 参数:
 - category: 分类，默认`playlet_actor_list`
 - name: 榜单名称，`playlet_actor_composite_list`=综合榜
@@ -3922,7 +3770,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - limit: 返回数量，默认100
 ### 返回:
 - 短剧演员热榜数据
-
 
 ## get_recommend_for_star_authors
 
@@ -3934,7 +3781,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -3943,7 +3789,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取相似创作者推荐
-- 价格：0.001$ / 次
 ### 参数:
 - author_ids: 创作者ID列表
 - similar_type: 相似类型
@@ -3955,7 +3800,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - limit: 每页数量，默认12
 ### 返回:
 - 相似创作者推荐数据
-
 
 ## kol_convert_video_display_v1
 
@@ -3980,7 +3824,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol转化视频展示V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -3991,7 +3834,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - _2 :相关商品数据(Product Data)
 ### 返回:
  - kol转化视频展示
-
 
 ## kol_rec_videos_v1
 
@@ -4014,7 +3856,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol内容表现V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -4022,7 +3863,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol内容表现
-
 
 ## kol_video_performance_v1
 
@@ -4046,7 +3886,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol视频表现V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -4057,7 +3896,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - true : 只显示来自星图的分配作品。
 ### 返回:
  - kol视频表现
-
 
 ## open_douyin_app_to_send_private_message
 
@@ -4087,7 +3925,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 分享链接
 
-
 ## open_douyin_app_to_video_detail
 
 `GET /api/v1/douyin/.../open_douyin_app_to_video_detail`
@@ -4112,7 +3949,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - aweme_id: 作品id
   ### 返回:
  - 分享链接
-
 
 ## register_device
 
@@ -4139,7 +3975,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 格式: username:password@ip:port
  ### 返回:
  - 设备信息以及设备的Cookie信息。
-
 
 ---
 

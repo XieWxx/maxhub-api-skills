@@ -31,7 +31,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户粉丝列表
 
-
 ## fetch_following_list
 
 `GET /api/v1/xiaohongshu/.../fetch_following_list`
@@ -59,7 +58,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户关注列表
 
-
 ## fetch_search_users
 
 `GET /api/v1/xiaohongshu/.../fetch_search_users`
@@ -86,7 +84,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - page：页码
 ### 返回:
 - 搜索用户
-
 
 ## fetch_search_users
 
@@ -116,7 +113,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码
  ### 返回:
  - 搜索用户结果
-
 
 ## get_user_id_and_xsec_token
 
@@ -148,7 +144,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 支持短链接格式：https://xhslink.com/m/xxxxx
  - 支持长链接格式：https://www.xiaohongshu.com/user/profile/xxxxx
  - 提取的user_id可用于get_user_info接口
-
 
 ## search_users
 
@@ -184,7 +179,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首次请求：只传keyword和page
  - 翻页请求：传入首次搜索返回的 search_id
 
-
 ## search_users
 
 `GET /api/v1/xiaohongshu/.../search_users`
@@ -211,7 +205,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - page: 页码，默认为1
 ### 返回:
 - 用户列表
-
 
 ---
 

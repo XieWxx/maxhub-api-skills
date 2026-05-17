@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 话题详情数据
 
-
 ## fetch_hashtag_post_list
 
 `GET /api/v1/pipixia/.../fetch_hashtag_post_list`
@@ -69,7 +68,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 话题作品列表数据
 
-
 ## fetch_hot_search_board_detail
 
 `GET /api/v1/pipixia/.../fetch_hot_search_board_detail`
@@ -95,7 +93,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 热搜榜单详情数据
 
-
 ## fetch_hot_search_board_list
 
 `GET /api/v1/pipixia/.../fetch_hot_search_board_list`
@@ -105,7 +102,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -117,7 +113,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取热搜榜单列表数据。
 ### 返回:
 - 热搜榜单列表数据
-
 
 ## fetch_increase_post_view_count
 
@@ -145,7 +140,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - cell_type: 作品类型，1为视频，多大数保持默认值即可。
  ### 返回:
  - 执行结果
-
 
 ## fetch_post_comment_list
 
@@ -176,7 +170,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品评论列表
 
-
 ## fetch_post_detail
 
 `GET /api/v1/pipixia/.../fetch_post_detail`
@@ -204,7 +197,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品数据
 
-
 ## fetch_post_statistics
 
 `GET /api/v1/pipixia/.../fetch_post_statistics`
@@ -229,7 +221,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - cell_id: 作品id，可以从分享链接中获取。
  ### 返回:
  - 作品统计数据
-
 
 ## fetch_user_follower_list
 
@@ -258,7 +249,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户粉丝列表
 
-
 ## fetch_user_following_list
 
 `GET /api/v1/pipixia/.../fetch_user_following_list`
@@ -286,7 +276,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户关注列表
 
-
 ## fetch_user_info
 
 `GET /api/v1/pipixia/.../fetch_user_info`
@@ -311,7 +300,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 用户id，可以从分享链接中获取。
 ### 返回:
 - 用户信息
-
 
 ## fetch_user_post_list
 
@@ -341,7 +329,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - feed_count: 翻页数量，默认为0，后续每次翻页加1，比如第一页为0，第二页为1，第三页为2，以此类推。
  ### 返回:
  - 用户作品列表
-
 
 ---
 

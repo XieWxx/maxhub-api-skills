@@ -38,7 +38,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 短链接会自动重定向获取真实链接
 - 提取的note_id可用于get_note_info接口
 
-
 ## fetch_feed_notes_v2
 
 `GET /api/v1/xiaohongshu/.../fetch_feed_notes_v2`
@@ -66,7 +65,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 单一笔记和推荐笔记
 
-
 ## fetch_feed_notes_v3
 
 `GET /api/v1/xiaohongshu/.../fetch_feed_notes_v3`
@@ -92,7 +90,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 单一笔记和推荐笔记
 
-
 ## fetch_feed_notes_v4
 
 `GET /api/v1/xiaohongshu/.../fetch_feed_notes_v4`
@@ -117,7 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - note_id: 笔记ID，可以从小红书的分享链接中获取
  ### 返回:
  - 单一笔记和推荐笔记
-
 
 ## fetch_feed_notes_v5
 
@@ -146,7 +142,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 备注:
  - 互动数据仅有点赞数，没有评论数与收藏数
 
-
 ## fetch_home_notes
 
 `GET /api/v1/xiaohongshu/.../fetch_home_notes`
@@ -174,7 +169,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 主页笔记
 
-
 ## fetch_home_notes_app
 
 `GET /api/v1/xiaohongshu/.../fetch_home_notes_app`
@@ -201,7 +195,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cursor: 游标
 ### 返回:
 - 主页笔记
-
 
 ## fetch_homefeed
 
@@ -236,7 +229,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 推荐笔记列表
 
-
 ## fetch_homefeed_categories
 
 `GET /api/v1/xiaohongshu/.../fetch_homefeed_categories`
@@ -246,7 +238,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -261,7 +252,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 分类列表
 
-
 ## fetch_hot_list
 
 `GET /api/v1/xiaohongshu/.../fetch_hot_list`
@@ -271,7 +261,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -283,7 +272,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取小红书热榜
 ### 返回:
 - 小红书热榜
-
 
 ## fetch_note_comments
 
@@ -311,7 +299,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cursor: 游标
 ### 返回:
 - 笔记评论
-
 
 ## fetch_note_comments
 
@@ -344,7 +331,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 评论列表
 
-
 ## fetch_note_detail
 
 `GET /api/v1/xiaohongshu/.../fetch_note_detail`
@@ -374,7 +360,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 笔记详情数据
 
-
 ## fetch_note_image
 
 `GET /api/v1/xiaohongshu/.../fetch_note_image`
@@ -399,7 +384,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - note_id: 笔记ID，可以从小红书的分享链接中获取
  ### 返回:
  - 小红书笔记图片
-
 
 ## fetch_search_notes
 
@@ -436,7 +420,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 2：图文
 ### 返回:
 - 搜索笔记
-
 
 ## fetch_search_notes
 
@@ -477,7 +460,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 搜索结果
 
-
 ## fetch_sub_comments
 
 `GET /api/v1/xiaohongshu/.../fetch_sub_comments`
@@ -506,7 +488,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cursor: 游标
 ### 返回:
 - 子评论
-
 
 ## fetch_sub_comments
 
@@ -543,7 +524,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 子评论列表
 
-
 ## fetch_user_info
 
 `GET /api/v1/xiaohongshu/.../fetch_user_info`
@@ -568,7 +548,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 用户ID
 ### 返回:
 - 用户信息
-
 
 ## fetch_user_info
 
@@ -597,7 +576,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户信息
 
-
 ## fetch_user_info_app
 
 `GET /api/v1/xiaohongshu/.../fetch_user_info_app`
@@ -622,7 +600,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 用户ID
 ### 返回:
 - 用户信息
-
 
 ## fetch_user_notes
 
@@ -655,7 +632,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户笔记列表
 
-
 ## get_creator_hot_inspiration_feed
 
 `GET /api/v1/xiaohongshu/.../get_creator_hot_inspiration_feed`
@@ -683,7 +659,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求：cursor 留空
  - 翻页请求：传入上一次响应中返回的 cursor 值
-
 
 ## get_creator_inspiration_feed
 
@@ -717,7 +692,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首次请求：cursor 留空
  - 翻页请求：传入上一次响应中返回的 cursor 值
 
-
 ## get_home_recommend
 
 `POST /api/v1/xiaohongshu/.../get_home_recommend`
@@ -727,7 +701,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -759,7 +732,6 @@ http://username:password@IP:port
  ### 返回:
  - 推荐列表
 
-
 ## get_image_note_detail
 
 `GET /api/v1/xiaohongshu/.../get_image_note_detail`
@@ -790,7 +762,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 图文笔记详情数据，包含笔记内容、图片列表、作者信息、互动数据等
 
-
 ## get_note_comment_replies
 
 `GET /api/v1/xiaohongshu/.../get_note_comment_replies`
@@ -819,7 +790,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - lastCursor: 第一次请求时为空，之后请求时使用上一次请求响应中返回的游标
  ### 返回:
  - 笔记评论回复列表
-
 
 ## get_note_comments
 
@@ -873,7 +843,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取下一页时，将上一次返回的cursor作为start参数传入
 - 当has_more为false时，表示没有更多数据
 
-
 ## get_note_comments
 
 `GET /api/v1/xiaohongshu/.../get_note_comments`
@@ -916,7 +885,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首次请求：cursor留空，index传0
  - 翻页请求：传入上一次响应中返回的 cursor 和 index 和 pageArea 值
 
-
 ## get_note_comments
 
 `GET /api/v1/xiaohongshu/.../get_note_comments`
@@ -944,7 +912,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 笔记评论列表
 
-
 ## get_note_id_and_xsec_token
 
 `GET /api/v1/xiaohongshu/.../get_note_id_and_xsec_token`
@@ -969,7 +936,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - share_text: 小红书分享链接（支持APP和Web端分享链接）
  ### 返回:
  - Note ID 和 xsec_token
-
 
 ## get_note_info
 
@@ -1018,7 +984,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - tag_list: 话题标签列表
     - time: 发布时间戳
     - ip_location: IP属地
-
 
 ## get_note_info_v2
 
@@ -1069,7 +1034,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - time: 发布时间戳
     - ip_location: IP属地
 
-
 ## get_note_info_v2
 
 `GET /api/v1/xiaohongshu/.../get_note_info_v2`
@@ -1097,7 +1061,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 优先使用`note_id`，如果没有则使用`share_text`，两个参数二选一，如都携带则以`note_id`为准。
  ### 返回:
  - 笔记信息
-
 
 ## get_note_info_v4
 
@@ -1127,7 +1090,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 笔记信息
 
-
 ## get_note_info_v5
 
 `POST /api/v1/xiaohongshu/.../get_note_info_v5`
@@ -1138,7 +1100,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1147,7 +1108,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取笔记信息V5，用户自行提供Cookie来获取笔记信息
- - 此接口收费0.001$
  ### 参数:
  - note_id: 笔记ID，可以从小红书的分享链接中获取
  - xsec_token: X-Sec-Token，可以从搜索接口中获取，分享链接中也有/X-Sec-Token, can be
@@ -1158,7 +1118,6 @@ http://username:password@IP:port
  - 最好使用代理，避免被封号或其他未知问题。
   ### 返回:
  - 笔记信息
-
 
 ## get_note_info_v7
 
@@ -1187,7 +1146,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 优先使用`note_id`，如果没有则使用`share_text`，两个参数二选一，如都携带则以`note_id`为准。
  ### 返回:
  - 笔记信息
-
 
 ## get_note_sub_comments
 
@@ -1228,7 +1186,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首次请求：cursor留空，index传1
  - 翻页请求：从 `$.data.data.cursor` 中提取 `cursor` 和 `index` 分别传入对应参数
 
-
 ## get_product_detail
 
 `GET /api/v1/xiaohongshu/.../get_product_detail`
@@ -1253,7 +1210,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - sku_id: 商品skuId（必需）
 ### 返回:
 - 商品详情数据
-
 
 ## get_product_detail
 
@@ -1283,7 +1239,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - pre_page: 前置页面，默认 "mall_search"
  ### 返回:
  - 商品详情数据，包含价格、规格、库存、商品描述等
-
 
 ## get_product_info
 
@@ -1316,7 +1271,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 商品信息
 
-
 ## get_product_review_overview
 
 `GET /api/v1/xiaohongshu/.../get_product_review_overview`
@@ -1343,7 +1297,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - tab: 标签类型，默认 2
  ### 返回:
  - 商品评论总览数据，包含评分分布、好评率、评论标签等
-
 
 ## get_product_reviews
 
@@ -1381,7 +1334,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 商品评论列表数据
  ### 翻页说明:
  - page 从 0 开始递增
-
 
 ## get_sub_comments
 
@@ -1426,7 +1378,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求不传start参数
  - 获取更多时，将上一次请求返回的最后一条子评论ID作为start参数
-
 
 ## get_topic_feed
 
@@ -1476,7 +1427,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - last_note_ct ← items[-1].create_time
 - 建议同时回传 session_id 和 first_load_time 保持会话一致
 
-
 ## get_topic_info
 
 `GET /api/v1/xiaohongshu/.../get_topic_info`
@@ -1505,7 +1455,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - note_id: 来源笔记ID，从笔记跳转到话题时传入（可选）
  ### 返回:
  - 话题详情数据，包含 page_info（名称/浏览量/讨论数）、tabs、share_info 等
-
 
 ## get_topic_notes
 
@@ -1558,7 +1507,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 翻页请求：传入上一次返回的 session_id，以及最后一条笔记的
 last_note_ct、last_note_id、cursor_score
 
-
 ## get_user_faved_notes
 
 `GET /api/v1/xiaohongshu/.../get_user_faved_notes`
@@ -1591,7 +1539,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求：cursor留空
  - 翻页请求：传入上一页列表中最后一条笔记的 note_id
-
 
 ## get_user_info
 
@@ -1637,7 +1584,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - collected: 收藏数
     - liked: 点赞数
 
-
 ## get_user_info
 
 `GET /api/v1/xiaohongshu/.../get_user_info`
@@ -1666,7 +1612,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户详细信息，包含昵称、头像、简介、粉丝数、关注数、笔记数等
 
-
 ## get_user_info
 
 `GET /api/v1/xiaohongshu/.../get_user_info`
@@ -1691,7 +1636,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - user_id: 用户ID，可以从小红书的分享链接中获取
  ### 返回:
  - 用户信息
-
 
 ## get_user_info_v2
 
@@ -1720,7 +1664,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 优先使用`user_id`，如果没有则使用`share_text`，两个参数二选一，如都携带则以`user_id`为准。
  ### 返回:
  - 用户信息
-
 
 ## get_user_notes
 
@@ -1767,7 +1710,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 翻页请求：传入上一次返回的cursor
 - 当has_more为false时，表示没有更多笔记
 
-
 ## get_user_notes_v2
 
 `GET /api/v1/xiaohongshu/.../get_user_notes_v2`
@@ -1796,7 +1738,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - JSON Path: $.data.data.notes.[-1].id
 ### 返回:
  - 用户的笔记列表
-
 
 ## get_user_posted_notes
 
@@ -1833,7 +1774,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首次请求：cursor留空
  - 翻页请求：传入上一次响应中返回的 cursor 值
 
-
 ## get_video_note_detail
 
 `GET /api/v1/xiaohongshu/.../get_video_note_detail`
@@ -1862,7 +1802,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 视频笔记详情数据，包含视频播放地址、封面图、作者信息、互动数据等
 
-
 ## get_visitor_cookie
 
 `GET /api/v1/xiaohongshu/.../get_visitor_cookie`
@@ -1888,7 +1827,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 代理格式支持HTTP和SOCKS5，若不需要代理则留空
  ### 返回:
  - 游客Cookie
-
 
 ## search_notes
 
@@ -1959,7 +1897,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 翻页搜索：传入相同keyword，递增page，并携带首次返回的searchId和sessionId
  - 注意：更换关键词时不要复用之前的searchId
 
-
 ## search_notes
 
 `GET /api/v1/xiaohongshu/.../search_notes`
@@ -2018,7 +1955,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首次请求：只传keyword和page
  - 翻页请求：传入首次搜索返回的 search_id 和 search_session_id
 
-
 ## search_notes
 
 `GET /api/v1/xiaohongshu/.../search_notes`
@@ -2064,7 +2000,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 半年内 :半年内
 ### 返回:
 - 笔记列表
-
 
 ## search_notes_v3
 
@@ -2112,7 +2047,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 笔记列表
 
-
 ## sign
 
 `POST /api/v1/xiaohongshu/.../sign`
@@ -2123,7 +2057,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -2133,7 +2066,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
 - 小红书Web签名，用于获取小红书的一些数据。
 - 生成 `X-s`, `X-t`, `X-s-common` 等签名参数。
-- 价格：0.001$/次
 ### 参数:
 - sign_request: 签名请求模型
     - path: 请求接口的路径，例如: `/api/sns/web/v1/homefeed`
@@ -2141,7 +2073,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - cookie: 请求接口的Cookie
 ### 返回:
 - 签名参数(X-s, X-t, X-s-common等)
-
 
 ---
 

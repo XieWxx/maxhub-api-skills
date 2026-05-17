@@ -24,7 +24,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取Threads帖子详情
- - 价格：0.002$ / 次
  ### 参数:
  - post_id: 帖子ID（纯数字），例如：3349029093483693129，可以从其他接口获取，如果是使用URL获取，去调用
 /fetch_post_detail_v2 接口。
@@ -38,7 +37,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - like_count: 点赞数
     - text_post_app_info: 帖子应用信息
     - 等等...
-
 
 ## fetch_post_detail_v2
 
@@ -61,7 +59,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取Threads帖子详情（支持短代码和完整URL）
- - 价格：0.002$ / 次
  ### 参数:
  - post_id:
 帖子短代码（可选），例如：DPVUglOjOUu，可以从帖子URL中提取，例如：https://www.threads.com/@taylorswift/post/DPVUglOjOUu
@@ -80,7 +77,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - repost_count: 转发数
     - timestamp: 发布时间
     - 等等...
-
 
 ## search_profiles
 
@@ -102,7 +98,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 搜索Threads用户档案
-- 价格：0.002$ / 次
 ### 参数:
 - query: 搜索关键词，例如：mark
 ### 返回:
@@ -116,7 +111,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
         - is_verified: 是否认证
         - follower_count: 粉丝数
         - 等等...
-
 
 ---
 

@@ -28,7 +28,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 获取商品优惠券相关信息
 
-
 ## fetch_share_info_by_share_code
 
 `GET /api/v1/douyin/.../fetch_share_info_by_share_code`
@@ -53,7 +52,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - share_code: 分享口令
  ### 返回:
  - 分享信息，包含分享人信息和文章ID等
-
 
 ## generate_douyin_short_url
 
@@ -80,7 +78,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 短链接数据
 
-
 ## generate_real_msToken
 
 `GET /api/v1/douyin/.../generate_real_msToken`
@@ -90,7 +87,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -102,7 +98,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 生成真实msToken
 ### 返回:
 - msToken
-
 
 ## get_xingtu_kolid_by_unique_id
 
@@ -124,7 +119,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 通过抖音号获取游客星图kolid
-- 价格：0.001$ / 次
 ### 参数:
 - unique_id: 抖音号, 可以从接口以下接口获取：
     - `/api/v1/douyin/web/handler_user_profile`
@@ -133,7 +127,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/app/v3/handler_user_profile`
 ### 返回:
 - 游客星图kolid
-
 
 ## kol_base_info_v1
 
@@ -157,7 +150,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol基本信息V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -169,7 +161,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - _10 :抖音直播(Live)
 ### 返回:
  - kol基本信息
-
 
 ## kol_cp_info_v1
 
@@ -192,7 +183,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol性价比能力分析V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -200,7 +190,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol性价比能力分析
-
 
 ## kol_service_price_v1
 
@@ -224,7 +213,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol服务报价V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -236,7 +224,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - _10: 抖音直播(Live)
 ### 返回:
  kol服务报价
-
 
 ---
 

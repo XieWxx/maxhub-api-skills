@@ -30,7 +30,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 作品数据，其中包含视频链接的Base64编码播放地址，需要前端解码后使用，或者使用 /fetch_one_video_play_url
 获取播放链接。
 
-
 ## fetch_one_video_play_url
 
 `GET /api/v1/xigua/.../fetch_one_video_play_url`
@@ -55,7 +54,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - item_id: 作品id
  ### 返回:
  - 作品的播放链接的明文链接。
-
 
 ## fetch_one_video_v2
 
@@ -83,7 +81,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 作品数据，其中包含视频链接的Base64编码播放地址，需要前端解码后使用，或者使用 /fetch_one_video_play_url
 获取播放链接。
 
-
 ## fetch_user_info
 
 `GET /api/v1/xigua/.../fetch_user_info`
@@ -108,7 +105,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 用户id
 ### 返回:
 - 个人信息
-
 
 ## fetch_user_post_list
 
@@ -139,7 +135,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品列表
 
-
 ## fetch_video_comment_list
 
 `GET /api/v1/xigua/.../fetch_video_comment_list`
@@ -168,7 +163,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 数量，默认20，建议保持默认。
  ### 返回:
  - 评论列表
-
 
 ## search_video
 
@@ -204,7 +198,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - max_duration: 最大时长，默认空，单位秒。
  ### 返回:
  - 视频列表
-
 
 ---
 

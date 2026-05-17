@@ -79,7 +79,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## fetch_search_live
 
 `GET /api/v1/tiktok/.../fetch_search_live`
@@ -115,7 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cookie: 用户cookie(如果你需要使用自己的账号搜索，或者遇到接口报错，可以自行提供cookie，默认不需要提供)
  ### 返回:
  - 直播列表
-
 
 ## fetch_search_user
 
@@ -153,7 +151,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 备注:
  - 如果接口响应的 `data` 字段中的 `status_code` 不为0，说明搜索请求未成功，此时请检查响应里的异常，有可能你在搜索
 TikTok 不允许的关键词，或者搜索了敏感内容，请更换关键词重试。
-
 
 ## fetch_user_collect
 
@@ -198,7 +195,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_user_fans
 
 `GET /api/v1/tiktok/.../fetch_user_fans`
@@ -239,7 +235,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_user_follow
 
 `GET /api/v1/tiktok/.../fetch_user_follow`
@@ -279,7 +274,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   2. 在请求该链接时，务必在请求头中添加 `Cookie: tt_chain_token={tt_chain_token}`，其中 `{tt_chain_token}` 为接口返回的 `tt_chain_token` 参数值
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
-
 
 ## fetch_user_like
 
@@ -327,7 +321,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_user_profile
 
 `GET /api/v1/tiktok/.../fetch_user_profile`
@@ -356,7 +349,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户的个人信息
 
-
 ## generate_x_mssdk_info
 
 `POST /api/v1/tiktok/.../generate_x_mssdk_info`
@@ -366,7 +358,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -384,7 +375,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - user_agent: 使用的用户代理字符串
  - version: 签名使用的 webmssdk 版本
 
-
 ## get_creator_account_info
 
 `POST /api/v1/tiktok/.../get_creator_account_info`
@@ -394,7 +384,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -428,7 +417,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `nick_name`: 昵称
  - `live_streamer_menu_experiment`: 直播菜单实验字段（字符串，可能为空）
  - `experiment_variants`: 实验变种配置（对象）
-
 
 ## get_hashtag_creator
 
@@ -518,7 +506,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## get_live_analytics_summary
 
 `POST /api/v1/tiktok/.../get_live_analytics_summary`
@@ -528,7 +515,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -568,7 +554,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 示例格式: `http://username:password@host:port`
  ### 返回:
  - 创作者账号直播数据概览
-
 
 ## get_query_suggestions
 
@@ -619,7 +604,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
 ```
-
 
 ---
 

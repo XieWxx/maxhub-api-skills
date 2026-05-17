@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -30,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 返回的gid和containerid可用于时间轴接口的参数
  - 分组信息变化不频繁，建议缓存
-
 
 ## fetch_channel_feed
 
@@ -63,7 +61,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 如果指定的频道名称不存在，会返回错误信息
  - 可用频道：热门、榜单、同城、社会、科技、明星、电影、音乐、数码、汽车、游戏
 
-
 ## fetch_home_recommend_feed
 
 `GET /api/v1/weibo/.../fetch_home_recommend_feed`
@@ -92,7 +89,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 首页推荐Feed流数据
  ### 注意:
  - 推荐内容基于热门话题和热点事件
-
 
 ## fetch_user_album
 
@@ -124,7 +120,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 如果用户设置了隐私保护，可能无法获取相册
  - 使用游标翻页（since_id），不使用页码翻页
 
-
 ## fetch_user_articles
 
 `GET /api/v1/weibo/.../fetch_user_articles`
@@ -154,7 +149,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 如果用户没有发布过文章，返回空列表
  - 使用游标翻页（since_id），不使用页码翻页
-
 
 ## fetch_user_audios
 
@@ -186,7 +180,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 如果用户没有发布过音频，返回空列表
  - 使用游标翻页（since_id），不使用页码翻页
 
-
 ## fetch_user_basic_info
 
 `GET /api/v1/weibo/.../fetch_user_basic_info`
@@ -214,7 +207,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 与fetch_user_info相比，本接口返回数据更少，响应更快
  - 适合批量用户信息获取和用户卡片展示
-
 
 ## fetch_user_fans
 
@@ -247,7 +239,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page参数从0开始，而不是1
  - 与fetch_user_following的区别：本接口获取谁关注了该用户，fetch_user_following获取用户关注了谁
 
-
 ## fetch_user_following
 
 `GET /api/v1/weibo/.../fetch_user_following`
@@ -279,7 +270,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page参数从0开始，而不是1
  - 与fetch_user_fans的区别：本接口获取用户关注了谁，fetch_user_fans获取谁关注了该用户
 
-
 ## fetch_user_info
 
 `GET /api/v1/weibo/.../fetch_user_info`
@@ -307,7 +297,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 如果用户设置了隐私保护，部分信息可能无法获取
 
-
 ## fetch_user_info
 
 `GET /api/v1/weibo/.../fetch_user_info`
@@ -332,7 +321,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - uid: 用户ID
 ### 返回:
 - 用户信息
-
 
 ## fetch_user_info
 
@@ -365,7 +353,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 如果同时提供，优先使用uid
  - 建议优先使用uid参数
 
-
 ## fetch_user_profile_feed
 
 `GET /api/v1/weibo/.../fetch_user_profile_feed`
@@ -395,7 +382,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 如果用户设置了隐私保护，可能无法获取动态
  - 使用游标翻页（since_id），不使用页码翻页
-
 
 ## fetch_user_search
 
@@ -442,7 +428,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 注意:
 - 筛选参数过多可能导致无结果
 
-
 ## fetch_user_super_topics
 
 `GET /api/v1/weibo/.../fetch_user_super_topics`
@@ -471,7 +456,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 用户参与的超话列表数据
  ### 注意:
  - 如果用户设置了隐私保护，可能无法获取超话列表
-
 
 ## fetch_user_videos
 
@@ -504,7 +488,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 只返回包含视频的微博
  - 使用游标翻页（since_id），不使用页码翻页
 
-
 ## fetch_video_featured_feed
 
 `GET /api/v1/weibo/.../fetch_video_featured_feed`
@@ -531,7 +514,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 短视频精选Feed流数据，包含视频列表等
  ### 注意:
  - 每页返回约20条视频
-
 
 ---
 

@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -26,7 +25,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 番剧推荐数据
 
-
 ## fetch_cinema_tab
 
 `GET /api/v1/bilibili/.../fetch_cinema_tab`
@@ -36,7 +34,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -48,7 +45,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取主页影视推荐
 ### 返回:
 - 影视推荐数据
-
 
 ## fetch_general_search
 
@@ -97,7 +93,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 综合搜索信息
 
-
 ## fetch_hot_search
 
 `GET /api/v1/bilibili/.../fetch_hot_search`
@@ -125,7 +120,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 说明:
 - limit默认为10，上限为50
 
-
 ## fetch_popular_feed
 
 `GET /api/v1/bilibili/.../fetch_popular_feed`
@@ -152,7 +146,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - last_param: 上一页最后一个视频的ID（用于分页）
 ### 返回:
 - 热门推荐视频数据
-
 
 ## fetch_search_all
 
@@ -184,7 +177,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - order: 排序方式（0=综合排序）
  ### 返回:
  - 搜索结果，包含nav（分类导航）、item（搜索结果）、pagination（分页信息）等
-
 
 ## fetch_search_by_type
 
@@ -228,7 +220,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 3: 弹幕数
 ### 返回:
 - 搜索结果
-
 
 ---
 

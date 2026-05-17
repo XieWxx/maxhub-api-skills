@@ -38,7 +38,6 @@ YEAR(一年)
   - 游戏社区讨论
   - 游戏新闻和更新
 
-
 ## fetch_home_feed
 
 `GET /api/v1/reddit/.../fetch_home_feed`
@@ -68,7 +67,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - after: 分页参数，获取下一页时使用
  ### 返回:
  - Reddit APP首页推荐内容的JSON数据
-
 
 ## fetch_news_feed
 
@@ -101,7 +99,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 时事讨论
   - 热点话题
   - 新闻来源和链接
-
 
 ## fetch_popular_feed
 
@@ -140,7 +137,6 @@ YEAR(一年)
   - 帖子详细信息(标题、内容、点赞数、评论数等)
   - 分页信息(after参数用于下一页)
 
-
 ## fetch_subreddit_style
 
 `GET /api/v1/reddit/.../fetch_subreddit_style`
@@ -166,7 +162,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - subreddit_name: 版块名称(不带r/前缀)
 ### 返回:
 - 指定版块的规则和样式信息JSON数据
-
 
 ---
 

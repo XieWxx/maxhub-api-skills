@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 首页推荐数据
 
-
 ## fetch_home_short_drama_feed
 
 `GET /api/v1/pipixia/.../fetch_home_short_drama_feed`
@@ -55,7 +54,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 首页短剧推荐数据
 
-
 ## fetch_hot_search_words
 
 `GET /api/v1/pipixia/.../fetch_hot_search_words`
@@ -65,7 +63,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -77,7 +74,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取热搜词条数据。
 ### 返回:
 - 热搜词条数据
-
 
 ## fetch_search
 
@@ -115,7 +111,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 搜索结果
 
-
 ## fetch_short_url
 
 `GET /api/v1/pipixia/.../fetch_short_url`
@@ -140,7 +135,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - original_url: 原始链接，可以是任意链接。
 ### 返回:
 - 短连接
-
 
 ---
 

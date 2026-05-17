@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -26,7 +25,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 省份和城市的层级结构列表，可用于关键词指数的地区筛选参数
 
-
 ## fetch_author_diagnosis
 
 `POST /api/v1/douyin/.../fetch_author_diagnosis`
@@ -36,7 +34,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -158,7 +155,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_creator_material_center_config
 
 `GET /api/v1/douyin/.../fetch_creator_material_center_config`
@@ -168,7 +164,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -180,7 +175,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取抖音创作者中心配置信息
 ### 返回:
 - 创作者中心配置数据
-
 
 ## fetch_daren_great_item_mile_info
 
@@ -207,7 +201,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 粉丝数、获赞数、作品数、互动率等核心指标
 
-
 ## fetch_industry_category_config
 
 `GET /api/v1/douyin/.../fetch_industry_category_config`
@@ -217,7 +210,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -270,7 +262,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 包含32个一级行业分类和对应的二级行业分类
  - 每个分类包含分类ID(key)和名称(label)
 
-
 ## fetch_item_analysis_item_performance
 
 `POST /api/v1/douyin/.../fetch_item_analysis_item_performance`
@@ -280,7 +271,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -324,7 +314,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
 
-
 ## fetch_item_analysis_overview
 
 `POST /api/v1/douyin/.../fetch_item_analysis_overview`
@@ -334,7 +323,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -372,7 +360,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  3. 切换到 Network 标签
  4. 刷新页面或进行操作
  5. 找到任意请求，复制 Cookie 请求头的值
-
 
 ## fetch_mission_task_list
 
@@ -466,7 +453,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 返回符合条件的商单任务列表
  - 包含任务详情、报酬信息、要求等
 
-
 ## fetch_product_review_list
 
 `GET /api/v1/douyin/.../fetch_product_review_list`
@@ -487,7 +473,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
-
 ## fetch_product_sku_list
 
 `GET /api/v1/douyin/.../fetch_product_sku_list`
@@ -504,7 +489,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
-
 
 ## get_author_base_info
 
@@ -531,7 +515,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取创作者基本信息
-- 价格：0.001$ / 次
 ### 参数:
 - o_author_id: 创作者ID
 - platform_source: 平台来源，默认1
@@ -541,7 +524,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - need_linkage_info: 是否返回联动信息，默认True
 ### 返回:
 - 创作者基本信息数据
-
 
 ## get_author_business_card_info
 
@@ -563,12 +545,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取创作者商业卡片信息
-- 价格：0.001$ / 次
 ### 参数:
 - o_author_id: 创作者ID
 ### 返回:
 - 创作者商业卡片信息数据
-
 
 ## get_author_local_info
 
@@ -593,7 +573,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取创作者位置信息
-- 价格：0.001$ / 次
 ### 参数:
 - o_author_id: 创作者ID
 - platform_source: 平台来源，默认1
@@ -601,7 +580,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - time_range: 时间范围(天)，默认30
 ### 返回:
 - 创作者位置信息数据
-
 
 ## get_author_spread_info
 
@@ -629,7 +607,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取创作者商业能力的传播价值信息
-- 价格：0.001$ / 次
 ### 参数:
 - o_author_id: 创作者ID
 - platform_source: 平台来源，默认1
@@ -640,7 +617,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - range: 时间范围，2=近30天，3=近90天
 ### 返回:
 - 创作者传播价值数据
-
 
 ## get_excellent_case_category_list
 
@@ -662,12 +638,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取连接用户漏斗中的优秀行业分类列表
-- 价格：0.001$ / 次
 ### 参数:
 - platform_source: 平台来源，默认1
 ### 返回:
 - 优秀行业分类列表数据
-
 
 ## get_resource_list
 
@@ -689,12 +663,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取营销活动案例列表
-- 价格：0.001$ / 次
 ### 参数:
 - resource_id: 资源ID
 ### 返回:
 - 营销活动案例数据
-
 
 ## kol_audience_portrait_v1
 
@@ -717,7 +689,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol观众画像V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -725,7 +696,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol观众画像
-
 
 ## kol_conversion_ability_analysis_v1
 
@@ -749,7 +719,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol转化能力分析V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -761,7 +730,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - _3 :90天(last 90 days)
 ### 返回:
  - kol转化能力分析
-
 
 ## kol_data_overview_v1
 
@@ -788,7 +756,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol数据概览V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -808,7 +775,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - true : 仅指派数据
 ### 返回:
  - kol数据概览
-
 
 ---
 

@@ -34,7 +34,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - containerid 示例: 102803_ctg1_8999_-_ctg1_8999_home
  - 可通过 fetch_config_list 获取所有可用的 containerid
 
-
 ---
 
 See SKILL.md for cross-group orchestration patterns.

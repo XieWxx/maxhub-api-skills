@@ -31,7 +31,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 返回的编码格式为 custom:省代码:市代码，如 custom:11:1
 
-
 ## fetch_config_list
 
 `GET /api/v1/weibo/.../fetch_config_list`
@@ -41,7 +40,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -55,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 频道列表，包含频道名称和 containerid
  ### 说明:
  - 返回的 containerid 可用于 fetch_trend_top 接口获取对应频道的热门内容
-
 
 ---
 

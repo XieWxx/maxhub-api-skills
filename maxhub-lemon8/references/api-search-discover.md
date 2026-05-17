@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -26,7 +25,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - Banner列表
 
-
 ## fetch_discover_tab
 
 `GET /api/v1/lemon8/.../fetch_discover_tab`
@@ -36,7 +34,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -49,7 +46,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 主体内容
 
-
 ## fetch_hot_search_keywords
 
 `GET /api/v1/lemon8/.../fetch_hot_search_keywords`
@@ -59,7 +55,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -71,7 +66,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取热搜关键词
 ### 返回:
 - 热搜关键词列表
-
 
 ## fetch_search
 
@@ -116,7 +110,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - article：APP中显示为 `Posts`（搜索文章）
 ### 返回:
  - 搜索结果
-
 
 ---
 

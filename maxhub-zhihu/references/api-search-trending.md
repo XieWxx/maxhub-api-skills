@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎AI搜索消息ID，用于请求搜索结果
 
-
 ## fetch_ai_search_result
 
 `GET /api/v1/zhihu/.../fetch_ai_search_result`
@@ -54,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - message_id: 消息ID
 ### 返回:
 - 知乎AI搜索结果
-
 
 ## fetch_ebook_search_v3
 
@@ -87,7 +85,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎电子书搜索V3
 
-
 ## fetch_hot_recommend
 
 `GET /api/v1/zhihu/.../fetch_hot_recommend`
@@ -117,7 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎首页推荐
 
-
 ## fetch_preset_search
 
 `GET /api/v1/zhihu/.../fetch_preset_search`
@@ -127,7 +123,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -141,7 +136,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 无
 ### 返回:
 - 知乎搜索预设词
-
 
 ## fetch_salt_search_v3
 
@@ -174,7 +168,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎盐选内容搜索V3
 
-
 ## fetch_scholar_search_v3
 
 `POST /api/v1/zhihu/.../fetch_scholar_search_v3`
@@ -205,7 +198,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎论文搜索V3
 
-
 ## fetch_search_recommend
 
 `GET /api/v1/zhihu/.../fetch_search_recommend`
@@ -215,7 +207,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -229,7 +220,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 无
 ### 返回:
 - 知乎搜索发现
-
 
 ## fetch_search_suggest
 
@@ -255,7 +245,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键词
 ### 返回:
 - 知乎搜索预测词
-
 
 ## fetch_topic_search_v3
 
@@ -286,7 +275,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎话题搜索V3
 
-
 ## fetch_video_list
 
 `GET /api/v1/zhihu/.../fetch_video_list`
@@ -313,7 +301,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - limit: 每页视频数量
 ### 返回:
 - 知乎首页视频榜
-
 
 ## fetch_video_search_v3
 
@@ -345,7 +332,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - search_hash_id: 搜索哈希ID
 ### 返回:
 - 知乎视频搜索V3
-
 
 ---
 

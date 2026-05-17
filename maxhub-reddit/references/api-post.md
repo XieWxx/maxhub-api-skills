@@ -37,7 +37,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - **APP接口的ID格式与Web接口不同，需要添加类型前缀**
  - 版块ID前缀: t5_ (例如: t5_2qh0u)
 
-
 ## fetch_post_comments
 
 `GET /api/v1/reddit/.../fetch_post_comments`
@@ -72,7 +71,6 @@ RANDOM
  ### 注意:
  - **APP接口的ID格式与Web接口不同，需要添加类型前缀**
  - 帖子ID前缀: t3_ (例如: t3_1ojnvca)
-
 
 ## fetch_post_details
 
@@ -115,7 +113,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 帖子ID前缀: t3_ (例如: t3_1ojnh50)
  - 评论ID前缀: t1_ (例如: t1_abcd123)
   ---
-
 
 ## fetch_post_details_batch
 
@@ -161,7 +158,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 帖子ID前缀: t3_ (例如: t3_1ojnh50)
  - 评论ID前缀: t1_ (例如: t1_abcd123)
   ---
-
 
 ## fetch_post_details_batch_large
 
@@ -209,7 +205,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 评论ID前缀: t1_ (例如: t1_abcd123)
   ---
 
-
 ## fetch_subreddit_post_channels
 
 `GET /api/v1/reddit/.../fetch_subreddit_post_channels`
@@ -239,7 +234,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - range: 时间范围，支持HOUR, DAY, WEEK, MONTH, YEAR, ALL
 ### 返回:
 - 指定版块的帖子频道信息JSON数据
-
 
 ---
 

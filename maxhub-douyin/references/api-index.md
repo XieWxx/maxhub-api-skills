@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -25,7 +24,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取抖音指数各类型数据的最新有效日期
  ### 返回:
  - 包含关键词、品牌、话题等维度的日/周/月最新可用日期
-
 
 ## fetch_brand_cycles
 
@@ -57,7 +55,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 品牌周期性热度数据
 
-
 ## fetch_brand_radar_chart
 
 `POST /api/v1/douyin/.../fetch_brand_radar_chart`
@@ -88,7 +85,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 品牌多维度评分雷达图数据
 
-
 ## fetch_brand_valid_info
 
 `POST /api/v1/douyin/.../fetch_brand_valid_info`
@@ -113,7 +109,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword_list: 品牌名称列表，逗号分隔
 ### 返回:
 - 品牌指数、可用日期范围等
-
 
 ## fetch_portrait
 
@@ -146,7 +141,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 性别分布、年龄分布、地域分布、兴趣分布等人群画像数据
 
-
 ## fetch_valid_date_for_relation
 
 `GET /api/v1/douyin/.../fetch_valid_date_for_relation`
@@ -156,7 +150,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -168,7 +161,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取抖音指数关联分析功能的有效日期范围
 ### 返回:
 - 关联分析的起止可用日期
-
 
 ## get_author_market_fields
 
@@ -190,12 +182,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取达人广场所有筛选字段选项
-- 价格：0.001$ / 次
 ### 参数:
 - market_scene: 市场场景，1=默认场景
 ### 返回:
 - 达人广场筛选字段数据
-
 
 ## kol_xingtu_index_v1
 
@@ -218,7 +208,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol星图指数V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -226,7 +215,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol星图指数
-
 
 ---
 

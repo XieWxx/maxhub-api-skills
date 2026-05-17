@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户ID
 
-
 ## fetch_kuaishou_hot_list_v1
 
 `GET /api/v1/kuaishou/.../fetch_kuaishou_hot_list_v1`
@@ -39,7 +38,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -53,7 +51,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 无
 ### 返回:
 - 快手热榜 V1 列表
-
 
 ## fetch_kuaishou_hot_list_v2
 
@@ -86,7 +83,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 快手热榜 V2 列表
 
-
 ## fetch_user_info
 
 `GET /api/v1/kuaishou/.../fetch_user_info`
@@ -108,7 +104,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
     - 获取用户信息
     - 备注：
-    - 此接口在请求时请将超时时间设置为30秒以上，否则可能会导致客户端未及时收到请求响应并且导致计费。
+    - 此接口在请求时请将超时时间设置为30秒以上，否则可能会导致客户端未及时收到请求响应。
     - 此接口由于风控的特殊性，我们尽可能保持稳定，但仍然无法保证100%稳定，如果遇到请求失败，请稍后重试。
     - 推荐一直重复请求，直到成功为止，并且超时时间设置为30秒以上。
     ### 参数:
@@ -117,7 +113,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 备注：不支持使用uid也就是纯数字的用户ID查询
     ### 返回:
     - 用户信息，包括昵称、头像、粉丝数、关注数、获赞数、性别等
-
 
 ---
 

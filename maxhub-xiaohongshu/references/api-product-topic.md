@@ -31,7 +31,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 小红书商品列表
 
-
 ## get_product_recommendations
 
 `GET /api/v1/xiaohongshu/.../get_product_recommendations`
@@ -63,7 +62,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求：cursor_score 留空
  - 翻页请求：传入上一次响应中返回的 cursor_score 值
-
 
 ---
 

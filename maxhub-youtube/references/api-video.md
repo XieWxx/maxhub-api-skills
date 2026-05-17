@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 频道信息。
 
-
 ## get_channel_short_videos
 
 `GET /api/v1/youtube/.../get_channel_short_videos`
@@ -56,7 +55,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - continuation_token: 用于继续获取频道短视频的令牌。默认为None。
  ### 返回:
  - 频道短视频。
-
 
 ## get_channel_shorts
 
@@ -116,9 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 注意事项:
  - 每页通常返回 30 个左右的短视频
  - ⚠️ 目前暂不支持 @username 格式，请使用频道ID（UCxxxx 格式）
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_channel_videos
 
@@ -218,7 +213,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `playback_url`: 视频播放初始化URL（googlevideo.com，可能为空）
  - `continuation_token`: 下一页的分页token
 
-
 ## get_channel_videos_v2
 
 `GET /api/v1/youtube/.../get_channel_videos_v2`
@@ -259,7 +253,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 如果获取第二页，则nextToken参数为第一页请求返回的nextToken。
  ### 返回:
  - 频道视频列表，包含视频ID、标题、缩略图、观看次数、点赞次数、评论数、视频时长等信息。
-
 
 ## get_general_search
 
@@ -334,7 +327,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 包含过滤条件的搜索结果
 
-
 ## get_post_detail
 
 `GET /api/v1/youtube/.../get_post_detail`
@@ -391,9 +383,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 注意事项:
  - post_id 以 "Ugk" 开头
  - 帖子附件支持: 图片、多图、视频、投票等类型
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_relate_video
 
@@ -422,7 +411,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - continuation_token: 用于继续获取推荐视频的令牌。默认为None。
  ### 返回:
  - 推荐视频数据。
-
 
 ## get_related_videos
 
@@ -483,9 +471,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 每个视频的推荐内容由 YouTube 算法生成，可能会变化
  - 推荐列表通常包含 20-30 个视频
  - ⚠️ **此接口不支持分页**，一次性返回所有推荐视频
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_search_suggestions
 
@@ -531,9 +516,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 推荐词会根据语言和地区有所不同
 - 通常返回 10-20 个推荐词
 - 响应速度非常快（< 1秒）
- ### 价格:
-- $0.0001 USD / 请求
-
 
 ## get_shorts_search
 
@@ -744,7 +726,6 @@ Shorts 内容
   ### 返回:
  - 专门针对Shorts的搜索结果，包含视频列表和翻页token
 
-
 ## get_signed_stream_url
 
 `GET /api/v1/youtube/.../get_signed_stream_url`
@@ -781,7 +762,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - URL 长度较长（约1000-2000字符）
  - 某些视频可能受地区限制
 
-
 ## get_trending_videos
 
 `GET /api/v1/youtube/.../get_trending_videos`
@@ -810,7 +790,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - section: 类型，默认为Now，可选值为Music, Gaming, Movies。
  ### 返回:
  - 趋势视频。
-
 
 ## get_video_captions
 
@@ -879,9 +858,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - kind 为 "asr" 表示自动生成的字幕
  - 并非所有视频都有字幕
  - video_id 和 video_url 至少提供一个
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_video_captions_v2
 
@@ -925,9 +901,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 并非所有视频都有字幕
  - video_id 和 video_url 至少提供一个
  - 若 `get_video_captions` 返回空字幕列表，可改用本接口重试
-  ### 价格:
- - $0.001 USD / 请求
-
 
 ## get_video_comment_replies
 
@@ -1008,7 +981,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `reply_level`: 回复层级（1表示二级评论/回复）
  - `is_creator`: 是否为视频创作者（如果是创作者回复会标记为true）
  - 其他字段与一级评论相同
-
 
 ## get_video_comments
 
@@ -1119,7 +1091,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `is_artist`: 是否为音乐人
 - `creator_thumbnail_url`: 视频创作者头像URL
 
-
 ## get_video_info
 
 `GET /api/v1/youtube/.../get_video_info`
@@ -1146,8 +1117,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取视频元数据及下载信息
- - 此接口收费: 0.002$/次
- - 如果需要节省成本，可以使用V2版本，V2版本是0.001$/次，但不保证稳定性。
  ### 详细参数:
  - url_access:
     - normal: 包含音视频直链
@@ -1159,7 +1128,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - false: 不包含该类型数据
 ### 返回:
  - 视频元数据 + 请求参数对应的资源信息
-
 
 ## get_video_info
 
@@ -1236,7 +1204,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `videoPrimaryInfoRenderer`: 主要信息（标题、观看次数、点赞数等）
   - `videoSecondaryInfoRenderer`: 次要信息（频道信息、描述等）
 
-
 ## get_video_info_v2
 
 `GET /api/v1/youtube/.../get_video_info_v2`
@@ -1257,13 +1224,11 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取视频元数据及下载信息
- - 此接口收费: 0.001$/次
  ### 参数:
  - video_id:
 视频ID，从URL中获取，例如：https://www.youtube.com/watch?v=LuIL5JATZsc，这里的video_id就是LuIL5JATZsc。
  ### 返回:
  - 视频元数据 + 请求参数对应的资源信息
-
 
 ## get_video_streams
 
@@ -1312,9 +1277,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - YouTube 视频播放地址需要签名解密，原始 API 返回的 URL 字段为 null 是正常现象
  - 播放地址必须通过 get_signed_stream_url 接口单独获取
  - 高清视频（720p+）通常需要分别下载音视频流并合并
-  ### 价格:
- - $0.001 USD/请求
-
 
 ## get_video_streams_v2
 
@@ -1364,9 +1326,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 播放地址有时效性（约6小时），建议获取后尽快使用
  - 高清视频（720p+）通常需要分别下载音视频流并合并
  - 响应时间较长（约10秒），因为需要为所有格式解密 URL
-  ### 价格:
- - $0.003 USD/请求
-
 
 ## get_video_subtitles
 
@@ -1396,7 +1355,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. 使用该URL作为本接口参数
  ### 参数说明:
  - fix_overlap: 特别适用于自动生成的字幕，会自动分割重叠的时间段
-
 
 ## search_video
 
@@ -1431,7 +1389,6 @@ last_hour, today。
  - continuation_token: 用于继续获取搜索结果的令牌。默认为None。
  ### 返回:
  - 搜索结果。
-
 
 ---
 

@@ -33,7 +33,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 此接口为AI增强搜索，返回结果经过AI处理
 
-
 ## fetch_hot_search
 
 `GET /api/v1/weibo/.../fetch_hot_search`
@@ -76,7 +75,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 热搜榜实时更新
 
-
 ## fetch_hot_search
 
 `GET /api/v1/weibo/.../fetch_hot_search`
@@ -86,7 +84,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -105,7 +102,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 每个热搜包含：排名、话题名、热度值、标签（如：新、热、沸）等
  - 与 `fetch_search_topics` 不同，此接口返回的是完整的热搜排行榜
 
-
 ## fetch_hot_search_categories
 
 `GET /api/v1/weibo/.../fetch_hot_search_categories`
@@ -115,7 +111,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -132,7 +127,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 返回的分类可用于 fetch_hot_search 接口的 category 参数
 
-
 ## fetch_hot_search_summary
 
 `GET /api/v1/weibo/.../fetch_hot_search_summary`
@@ -142,7 +136,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -160,7 +153,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 与fetch_hot_search_index的区别：本接口返回50条，fetch_hot_search_index返回10条
  - rank为0表示置顶内容
  - 建议缓存5-10分钟
-
 
 ## fetch_realtime_search
 
@@ -191,7 +183,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - 视频播放需设置请求头 Referer=https://weibo.com/
  - 返回结构与高级搜索一致
-
 
 ## fetch_search_all
 
@@ -237,7 +228,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 搜索结果按相关度排序
  - 仅使用 page 参数进行翻页
 
-
 ## fetch_search_topics
 
 `GET /api/v1/weibo/.../fetch_search_topics`
@@ -247,7 +237,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -263,7 +252,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 这是搜索页面展示的热门搜索词
  - 通常用于搜索框下方的热门推荐
  - 与 `fetch_hot_search` 不同，此接口返回的是搜索建议词
-
 
 ## fetch_topic_search
 
@@ -293,7 +281,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 话题列表，包含话题名、封面图、讨论数、阅读数
  ### 注意:
  - 数量单位（万/亿）已转换为整数
-
 
 ## fetch_video_search
 
@@ -325,7 +312,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 视频列表，包含微博ID、作者、内容、视频链接、互动数据
 ### 注意:
 - 播放视频需设置Referer=https://weibo.com/
-
 
 ---
 

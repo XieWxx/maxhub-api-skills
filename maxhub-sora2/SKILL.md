@@ -163,8 +163,6 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
-8. **Cost awareness** — Note costs for expensive APIs.
-
 ## Error Handling
 
 | Error | Response |

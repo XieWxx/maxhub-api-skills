@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 地理位置搜索结果数据
 
-
 ## search_schools
 
 `GET /api/v1/linkedin/.../search_schools`
@@ -57,7 +56,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 学校搜索结果数据
 
-
 ## search_suggestion_industry
 
 `GET /api/v1/linkedin/.../search_suggestion_industry`
@@ -82,7 +80,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键词（必填）
  ### 返回:
 - 行业建议搜索结果数据
-
 
 ---
 

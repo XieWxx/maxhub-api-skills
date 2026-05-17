@@ -36,7 +36,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - data.elements: 推荐人员数组，每个 profile 含姓名 / 头衔 / 头像 / 当前职位 / 推荐理由
 
-
 ## get_user_about
 
 `GET /api/v1/linkedin/.../get_user_about`
@@ -61,7 +60,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - urn: 用户URN（必填），可通过get_user_profile接口获取
   ### 返回:
  - 用户简介数据
-
 
 ## get_user_bio
 
@@ -92,7 +90,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.industry: 行业
  - data.location: 地理位置
 
-
 ## get_user_certifications
 
 `GET /api/v1/linkedin/.../get_user_certifications`
@@ -119,7 +116,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户认证列表数据
-
 
 ## get_user_certifications
 
@@ -153,7 +149,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - credential_id: 凭证编号
   - credential_url: 凭证查验链接
 
-
 ## get_user_comments
 
 `GET /api/v1/linkedin/.../get_user_comments`
@@ -183,7 +178,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 用户评论列表数据
 
-
 ## get_user_contact
 
 `GET /api/v1/linkedin/.../get_user_contact`
@@ -208,7 +202,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - username: LinkedIn用户名（必填）
  ### 返回:
 - 用户联系信息数据
-
 
 ## get_user_contact_info
 
@@ -244,7 +237,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.connectedAt: 与查询账号的连接时间（如有）
  - 字段未公开时对应值为 null
 
-
 ## get_user_educations
 
 `GET /api/v1/linkedin/.../get_user_educations`
@@ -271,7 +263,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户教育背景列表数据
-
 
 ## get_user_educations
 
@@ -305,7 +296,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - grade: 成绩 / GPA（如填写）
   - description: 在校描述（项目 / 活动等）
 
-
 ## get_user_experience
 
 `GET /api/v1/linkedin/.../get_user_experience`
@@ -332,7 +322,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户工作经历列表数据
-
 
 ## get_user_experiences
 
@@ -364,7 +353,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - 工作描述 / 地点
   - 关联技能（如有）
 
-
 ## get_user_follower_and_connection
 
 `GET /api/v1/linkedin/.../get_user_follower_and_connection`
@@ -389,7 +377,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - username: LinkedIn用户名（必填）
  ### 返回:
 - 用户粉丝和连接数数据
-
 
 ## get_user_honors
 
@@ -417,7 +404,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户荣誉奖项列表数据
-
 
 ## get_user_honors
 
@@ -449,7 +435,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - description: 奖项描述
   - associated_with: 关联的工作经历或教育（如有）
 
-
 ## get_user_images
 
 `GET /api/v1/linkedin/.../get_user_images`
@@ -478,7 +463,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - pagination_token: 分页令牌（可选）
   ### 返回:
  - 用户图片列表数据
-
 
 ## get_user_interested_groups
 
@@ -511,7 +495,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.elements: 群组数组，每条含群组名称 / logo / 成员数 / 群组 URL / 简介
  - data.metadata: 分页信息
 
-
 ## get_user_interests_groups
 
 `GET /api/v1/linkedin/.../get_user_interests_groups`
@@ -539,7 +522,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 用户感兴趣的群组列表数据
 
-
 ## get_user_publications
 
 `GET /api/v1/linkedin/.../get_user_publications`
@@ -566,7 +548,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户出版物列表数据
-
 
 ## get_user_publications
 
@@ -599,7 +580,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - description: 摘要 / 简介
   - co_authors: 合著者列表
 
-
 ## get_user_reactions
 
 `GET /api/v1/linkedin/.../get_user_reactions`
@@ -628,7 +608,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - pagination_token: 分页令牌（可选）
   ### 返回:
  - 用户点赞/反应数据
-
 
 ## get_user_recent_activity
 
@@ -663,7 +642,6 @@ get_user_comments）。
   - target_post: 被评论 / 被点赞的原帖（comments / reactions 类型才有）
 - data.total_count: 用户公开活动总数
 
-
 ## get_user_recommendations
 
 `GET /api/v1/linkedin/.../get_user_recommendations`
@@ -697,7 +675,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 用户推荐信列表数据
 
-
 ## get_user_recommendations
 
 `GET /api/v1/linkedin/.../get_user_recommendations`
@@ -726,7 +703,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.elements: 推荐信数组，每条含推荐人姓名 / 头像 / 头衔 / 推荐文本 / 推荐时间 / 与被推荐者的关系
  - 响应包含 received 与 given 两组数据，调用方按 direction 字段筛选
 
-
 ## get_user_skills
 
 `GET /api/v1/linkedin/.../get_user_skills`
@@ -753,7 +729,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户技能列表数据
-
 
 ## get_user_skills
 
@@ -782,7 +757,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - name: 技能名称（如 "Python", "Cloud Computing"）
   - endorsement_count: 其他用户对此技能的认可数
   - top_endorsers: 顶部认可者列表（部分技能有）
-
 
 ## get_user_top_card_supplementary
 
@@ -814,7 +788,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.influencer: LinkedIn Influencer 标记（顶级用户）
  - data.verification: 是否已验证
 
-
 ## get_user_videos
 
 `GET /api/v1/linkedin/.../get_user_videos`
@@ -844,7 +817,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 用户视频列表数据
 
-
 ## get_user_volunteers
 
 `GET /api/v1/linkedin/.../get_user_volunteers`
@@ -871,7 +843,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - page: 页码（可选），默认为1
   ### 返回:
  - 用户志愿者经历数据
-
 
 ## search_users
 
@@ -915,7 +886,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - location: 地点
   - current_position: 当前职位（公司 + 标题）
 - data.metadata: 分页信息 + 总命中数
-
 
 ---
 

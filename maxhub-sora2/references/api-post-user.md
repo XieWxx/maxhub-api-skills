@@ -27,8 +27,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取一级评论的回复列表（二级评论）
  - 支持分页加载，每页返回 10 条回复
  - 用于展示评论的完整对话树
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - comment_id: 一级评论的 ID，必填（可从 get_post_comments 接口的返回中获取）
@@ -47,7 +45,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
             - profile_picture_url: 头像链接
     - cursor: 下一页参数（用于获取更多回复，无更多时为 null）
     - has_more: 是否有更多数据
-
 
 ## get_feed
 
@@ -73,8 +70,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 默认返回过去 7 天的热门视频
  - 支持分页加载，每页返回约 15 条视频
  - 可通过 eager_views 参数提供观看记录来获得个性化推荐
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - cursor: 翻页参数（可选），首次请求留空，后续请求使用上一次响应中的 cursor 值
@@ -95,7 +90,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - profile: 作者信息
 - cursor: 下一页参数（用于获取更多视频，无更多时为 null）
  - has_more: 是否有更多数据
-
 
 ## get_post_comments
 
@@ -120,8 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 作品的一级评论列表（顶层评论）
  - 支持分页加载，每页返回 10 条评论
  - 可用于评论展示、数据分析等场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - post_id: 作品 ID，必填
@@ -141,7 +133,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
             - profile_picture_url: 头像链接
     - cursor: 下一页参数（用于获取更多评论，无更多时为 null）
     - has_more: 是否有更多数据
-
 
 ## get_post_detail
 
@@ -166,8 +157,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 作品的完整详情信息，包括视频信息、作者信息、统计数据等
  - 支持通过作品 ID 或作品链接查询
  - 可用于数据分析、无水印视频下载等场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - post_id: 作品 ID（可选），格式如 `s_68e853d2ad448191b3c81e830f53c3a2`
@@ -197,7 +186,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - profile_picture_url: 头像链接
     - follower_count: 粉丝数
 
-
 ## get_post_remix_list
 
 `GET /api/v1/sora2/get_post_remix_list`
@@ -222,8 +210,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 作品的 Remix 列表
  - 支持通过作品 ID 或作品链接查询
  - 支持分页获取更多 Remix 作品
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - post_id: 作品 ID（可选），格式如 `s_68e466aa780c8191b`
@@ -243,7 +229,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - shared_by: 作者用户 ID
     - posted_at: 发布时间戳
 - cursor: 下一页参数，用于获取更多数据（如果为 null 表示已到末页）
-
 
 ## get_user_followers
 
@@ -268,8 +253,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 用户的粉丝列表
  - 支持分页加载，每页返回 50 个粉丝
  - 可用于粉丝关系分析、社交网络研究等场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - user_id: 用户 ID，必填
@@ -286,7 +269,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - is_verified: 是否认证用户
 - cursor: 下一页参数（用于获取更多粉丝，无更多时为 null）
  - has_more: 是否有更多数据
-
 
 ## get_user_following
 
@@ -311,8 +293,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 用户的关注列表（用户关注的其他人）
  - 支持分页加载，每页返回 50 个关注对象
  - 可用于关注关系分析、推荐算法等场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - user_id: 用户 ID，必填
@@ -329,7 +309,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - is_verified: 是否认证用户
 - cursor: 下一页参数（用于获取更多关注，无更多时为 null）
  - has_more: 是否有更多数据
-
 
 ## get_user_posts
 
@@ -354,8 +333,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 用户发布的作品列表
  - 支持分页加载，每页返回 30 条作品
  - 可用于用户主页展示、作品数据采集等场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - user_id: 用户 ID，必填
@@ -373,7 +350,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - profile: 作者信息
 - cursor: 下一页参数（用于获取更多作品，无更多时为 null）
  - has_more: 是否有更多数据
-
 
 ## get_user_profile
 
@@ -397,8 +373,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 用户的个人信息档案
  - 包含用户基本信息、统计数据、社交关系等
  - 可用于用户资料展示、数据分析等场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - user_id: 用户 ID，必填，格式如 `user-xiCyLclE6KJcdTXyvVq3Ontc`
@@ -418,7 +392,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - is_verified: 是否认证用户
     - created_at: 账号创建时间戳
     - social_links: 社交媒体链接（如有）
-
 
 ## get_video_download_info
 
@@ -443,8 +416,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取 Sora 作品的简化下载信息，专为视频下载场景优化
  - 直接返回无水印视频链接和关键信息，无需解析复杂的完整数据
  - 适合需要快速下载视频的场景
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - post_id: 作品 ID（可选），格式如 `s_68e853d2ad448191b3c81e830f53c3a2`
@@ -475,7 +446,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - permalink: 作品永久链接
  - created_at: 创建时间戳
 
-
 ## search_users
 
 `GET /api/v1/sora2/search_users`
@@ -499,8 +469,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 根据用户名关键词搜索匹配的用户
  - 返回用户信息和提及 Token（用于在评论中 @ 用户）
  - 注意：实际返回结果可能超过 20 个，比预期的更多
-  ### 收费说明:
- - 本接口请求价格为 1 次调用消耗 0.05 美元
  - 本接口支持使用免费额度，每天可通过在用户后台签到获取免费调用次数。
   ### 参数:
  - username: 搜索关键词，必填，支持部分匹配
@@ -518,7 +486,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - token: 提及 Token（用于 @ 提及功能）
         - 格式：`<@user-xxxxxxxx>`
         - 在评论中使用此 Token 可以提及该用户
-
 
 ---
 

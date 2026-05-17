@@ -25,7 +25,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol热词分析内容V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -33,7 +32,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol热词分析内容
-
 
 ## fetch_brand_hot_search_list
 
@@ -45,7 +43,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -56,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取抖音品牌热榜分类数据
 ### 返回:
 - 品牌热搜榜分类数据
-
 
 ## fetch_brand_suggest
 
@@ -83,7 +79,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 匹配的品牌列表（品牌名称、分类ID等）
 
-
 ## fetch_challenge_search_v1
 
 `POST /api/v1/douyin/.../fetch_challenge_search_v1`
@@ -93,7 +88,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -173,7 +167,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `now`: 当前服务器时间戳（毫秒）
   - `search_request_id`: 搜索请求唯一ID
 
-
 ## fetch_challenge_search_v2
 
 `POST /api/v1/douyin/.../fetch_challenge_search_v2`
@@ -183,7 +176,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -257,7 +249,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
       - `share_title`: 分享标题
       - `share_desc`: 分享描述
 
-
 ## fetch_content_creative_keywords
 
 `POST /api/v1/douyin/.../fetch_content_creative_keywords`
@@ -288,7 +279,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - end_date: 结束日期（YYYYMMDD）。**仅当 period=7 时必须为周日**，period=1/3 时可为任意日期
  ### 返回:
  - 该垂类下热门关键词列表
-
 
 ## fetch_content_creative_topic
 
@@ -322,7 +312,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - rank_type: 排序类型，"index"=指数, "rise"=飙升
  ### 返回:
  - 该垂类下热门话题列表
-
 
 ## fetch_creator_hot_topic_billboard
 
@@ -386,7 +375,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 创作者热门话题榜单数据
 
-
 ## fetch_discuss_search
 
 `POST /api/v1/douyin/.../fetch_discuss_search`
@@ -396,7 +384,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -491,7 +478,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
       - `allow_comment`: 是否允许评论
     - `share_url`: 视频外部分享链接
 
-
 ## fetch_experience_search
 
 `POST /api/v1/douyin/.../fetch_experience_search`
@@ -501,7 +487,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -584,7 +569,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
         - is_private: 是否私密
       - share_url: 视频外部分享链接
 
-
 ## fetch_general_search_v1
 
 `POST /api/v1/douyin/.../fetch_general_search_v1`
@@ -594,7 +578,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -692,7 +675,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `allow_comment`: 是否允许评论
 - `share_url`: 视频外部分享链接
 
-
 ## fetch_general_search_v2
 
 `POST /api/v1/douyin/.../fetch_general_search_v2`
@@ -702,7 +684,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -801,7 +782,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `allow_comment`: 是否允许评论
 - `share_url`: 视频外部分享链接
 
-
 ## fetch_hot_account_fans_interest_search_list
 
 `GET /api/v1/douyin/.../fetch_hot_account_fans_interest_search_list`
@@ -826,7 +806,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - sec_uid: 用户sec_id
 ### 返回:
 - 粉丝近3天搜索词 10个搜索词
-
 
 ## fetch_hot_search_list
 
@@ -867,7 +846,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 热搜榜数据
 
-
 ## fetch_hot_search_result
 
 `GET /api/v1/douyin/.../fetch_hot_search_result`
@@ -877,7 +855,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -890,7 +867,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 热榜数据
 
-
 ## fetch_hot_total_high_search_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_high_search_list`
@@ -900,7 +876,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -918,7 +893,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 热度飙升的搜索榜
 
-
 ## fetch_hot_total_high_topic_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_high_topic_list`
@@ -928,7 +902,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -950,7 +923,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 热度飙升的话题榜
 
-
 ## fetch_hot_total_search_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_search_list`
@@ -960,7 +932,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -978,7 +949,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 搜索榜
 
-
 ## fetch_hot_total_topic_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_topic_list`
@@ -988,7 +958,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1009,7 +978,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     ]}
 ### 返回:
  - 话题榜
-
 
 ## fetch_hot_words
 
@@ -1036,7 +1004,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 关键词名称、搜索指数、增长率等
 
-
 ## fetch_image_search
 
 `POST /api/v1/douyin/.../fetch_image_search`
@@ -1046,7 +1013,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1124,7 +1090,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `logid`: 请求日志ID
   - `search_request_id`: 搜索请求ID
 
-
 ## fetch_image_search_v3
 
 `POST /api/v1/douyin/.../fetch_image_search_v3`
@@ -1134,7 +1099,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1192,7 +1156,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `logid`: 请求日志ID
  ---
 
-
 ## fetch_keyword_valid_date
 
 `POST /api/v1/douyin/.../fetch_keyword_valid_date`
@@ -1217,7 +1180,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword_list: 关键词列表，多个关键词用逗号分隔，如 "美食,旅游"
 ### 返回:
 - 各关键词可查询的起止日期
-
 
 ## fetch_multi_keyword_hot_trend
 
@@ -1253,7 +1215,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 每日热度趋势数据
 
-
 ## fetch_multi_keyword_interpretation
 
 `POST /api/v1/douyin/.../fetch_multi_keyword_interpretation`
@@ -1288,7 +1249,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 关键词综合指数、搜索指数、内容指数解读
 
-
 ## fetch_multi_search
 
 `POST /api/v1/douyin/.../fetch_multi_search`
@@ -1298,7 +1258,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1409,7 +1368,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - `now`: 当前服务器时间戳
   - `logid`: 请求日志ID
 
-
 ## fetch_report_search
 
 `POST /api/v1/douyin/.../fetch_report_search`
@@ -1448,7 +1406,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 报告列表（标题、封面、发布时间、产品标签、报告ID 等）
 
-
 ## fetch_school_search
 
 `POST /api/v1/douyin/.../fetch_school_search`
@@ -1458,7 +1415,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1493,7 +1449,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `status_code`: 状态码（0=成功）
  - `status_msg`: 状态信息（通常为空）
 
-
 ## fetch_topic_query
 
 `POST /api/v1/douyin/.../fetch_topic_query`
@@ -1525,7 +1480,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 话题详情、话题热度、相关视频数等
 
-
 ## fetch_topic_suggest
 
 `POST /api/v1/douyin/.../fetch_topic_suggest`
@@ -1553,7 +1507,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 匹配的话题列表
 
-
 ## fetch_vision_search
 
 `POST /api/v1/douyin/.../fetch_vision_search`
@@ -1563,7 +1516,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1630,7 +1582,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `video`: 视频播放信息
     - `statistics`: 互动统计
 
-
 ## get_all_webcast_id
 
 `POST /api/v1/douyin/.../get_all_webcast_id`
@@ -1640,7 +1591,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1654,7 +1604,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 直播间链接列表（最多支持20个链接）
 ### 返回:
 - 直播间号列表
-
 
 ## get_author_content_hot_keywords
 
@@ -1677,13 +1626,11 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取创作者内容热词
-- 价格：0.001$ / 次
 ### 参数:
 - author_id: 创作者ID
 - keyword_type: 热词类型，默认0
 ### 返回:
 - 创作者内容热词数据
-
 
 ## get_demander_mcn_list
 
@@ -1708,7 +1655,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 搜索MCN机构列表
-- 价格：0.001$ / 次
 ### 参数:
 - mcn_name: MCN机构名称，支持模糊搜索
 - page: 页码，默认1
@@ -1716,7 +1662,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - order_by: 排序方式，`platform_scores`=平台评分
 ### 返回:
 - MCN机构列表数据
-
 
 ## get_sign_image
 
@@ -1740,7 +1685,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 解析星图加密图片，获取可访问的图片URL
-- 价格：0.001$ / 次
 ### 参数:
 - uri: 图片的uri，通常从其他星图接口返回的数据中获取
     - 例如：`tos-cn-i-0813c000-ce/oMKzDA3A9QGAuebfsDIAwlDoAfCFEEzSEw8FQZ`
@@ -1748,7 +1692,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - format: 图片格式，默认webp，支持：webp、jpg、png等
 ### 返回:
 - 解析后的图片数据，包含可访问的图片URL
-
 
 ## get_webcast_id
 
@@ -1775,7 +1718,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 直播间号
 
-
 ## open_douyin_app_to_keyword_search
 
 `GET /api/v1/douyin/.../open_douyin_app_to_keyword_search`
@@ -1801,7 +1743,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 分享链接
 
-
 ## search_kol_v1
 
 `GET /api/v1/douyin/.../search_kol_v1`
@@ -1825,7 +1766,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 关键词搜索kol V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - keyword: 关键词
  - platformSource:
@@ -1836,7 +1776,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - page: 页码，从1开始
  ### 返回:
  - kol列表
-
 
 ## search_kol_v2
 
@@ -1861,7 +1800,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 高级搜索kol V2，支持粉丝范围和内容标签筛选
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - keyword: 关键词
  - followerRange (可选): 粉丝范围，格式：最小值-最大值
@@ -1874,7 +1812,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 不传递此参数则不限制内容标签
 ### 返回:
  - kol列表（支持高级筛选）
-
 
 ## webcast_id_2_room_id
 
@@ -1900,7 +1837,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - webcast_id: 直播间号
 ### 返回:
 - 房间号
-
 
 ---
 

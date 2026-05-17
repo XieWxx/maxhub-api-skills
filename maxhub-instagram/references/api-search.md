@@ -32,9 +32,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `country_info`: 国家信息
 - `city_list`: 城市列表
 - `next_page`: 下一页页码
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_explore_sections
 
@@ -46,7 +43,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -57,9 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取Instagram探索页面的所有分类和子分类
  ### 返回:
  - `sections`: 分类列表，包含分类名称、子分类和推荐内容
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_locations
 
@@ -90,9 +83,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `city_info`: 城市信息
 - `location_list`: 地点列表
 - `next_page`: 下一页页码
-### 价格:
-- 0.001 USD/请求
-
 
 ## general_search
 
@@ -122,9 +112,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - `data.items`: 综合搜索结果列表，包含用户、帖子、Reels等
  - `pagination_token`: 下一页token
- ### 价格:
- - 0.002 USD/请求
-
 
 ## general_search
 
@@ -174,9 +161,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. 获取响应中的 `next_max_id` 和 `rank_token`
  3. 下次请求：传入 `query`、`next_max_id` 和 `rank_token`
  4. 重复步骤 2-3 直到 `has_more` 为 false
- ### 价格:
- - 0.002 USD/请求
-
 
 ## search_by_coordinates
 
@@ -204,9 +188,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - longitude: 经度
  ### 返回:
  - `data.items`: 附近地点列表，包含名称、地址、分类等
- ### 价格:
- - 0.002 USD/请求
-
 
 ## search_hashtags
 
@@ -232,9 +213,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键词
 ### 返回:
 - `data.items`: 话题标签列表，包含名称、帖子数量等
-### 价格:
-- 0.002 USD/请求
-
 
 ## search_hashtags
 
@@ -266,9 +244,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `data.rank_token`: 排序token
 - `data.see_more`: 更多信息
 - `data.inform_module`: 提示模块
-### 价格:
-- 0.002 USD/请求
-
 
 ## search_locations
 
@@ -294,9 +269,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键词（地点名称、城市等）
 ### 返回:
 - `data.items`: 地点列表，包含名称、地址、坐标等
-### 价格:
-- 0.002 USD/请求
-
 
 ## search_music
 
@@ -322,9 +294,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - keyword: 搜索关键词
  ### 返回:
  - `data.items`: 音乐列表，包含标题、艺术家、时长、音频ID等
- ### 价格:
- - 0.002 USD/请求
-
 
 ---
 

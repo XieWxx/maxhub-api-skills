@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -25,7 +24,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取发现页（搜索页下方的推荐内容 - Editor's Picks）
 ### 返回:
 - 推荐内容
-
 
 ## fetch_post_comment_list
 
@@ -59,7 +57,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 评论列表
 
-
 ## fetch_post_detail
 
 `GET /api/v1/lemon8/.../fetch_post_detail`
@@ -84,7 +81,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - item_id: 作品ID，可以从接口`/lemon8/app/get_item_id`获取
  ### 返回:
  - 作品信息
-
 
 ## fetch_topic_info
 
@@ -113,7 +109,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 通过接口搜索 Hashtag：`/lemon8/app/fetch_search?search_tab=hashtag&keyword=lemon8`
 ### 返回:
 - 话题信息
-
 
 ## fetch_topic_post_list
 
@@ -149,7 +144,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品列表
 
-
 ## fetch_user_follower_list
 
 `GET /api/v1/lemon8/.../fetch_user_follower_list`
@@ -176,7 +170,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - cursor: 翻页参数，可以从上一次请求的返回结果中获取，第一次请求为空，后续请求使用上一次请求返回的cursor进行翻页。
  ### 返回:
  - 粉丝列表
-
 
 ## fetch_user_following_list
 
@@ -205,7 +198,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 关注列表
 
-
 ## fetch_user_profile
 
 `GET /api/v1/lemon8/.../fetch_user_profile`
@@ -230,7 +222,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - user_id: 用户ID，可以从接口`/lemon8/app/get_user_id`获取
  ### 返回:
  - 用户信息
-
 
 ## get_item_id
 
@@ -257,7 +248,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品ID
 
-
 ## get_item_ids
 
 `POST /api/v1/lemon8/.../get_item_ids`
@@ -267,7 +257,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -281,7 +270,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - share_texts: 分享链接列表，支持长链接和短链接，可以从网页端以及APP中的分享按钮获取并复制。
  ### 返回:
  - 作品ID列表
-
 
 ## get_user_id
 
@@ -308,7 +296,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户ID
 
-
 ## get_user_ids
 
 `POST /api/v1/lemon8/.../get_user_ids`
@@ -318,7 +305,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -332,7 +318,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - share_texts: 分享链接列表，支持长链接和短链接，可以从网页端以及APP中的分享按钮获取并复制。
  ### 返回:
  - 用户ID列表
-
 
 ---
 

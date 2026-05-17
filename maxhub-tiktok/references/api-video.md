@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -34,7 +33,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - device_info: 设备信息，可选参数，如果不填写则使用默认设备信息，设备信息会修改传入的URL中的参数。
   ### 返回:
  - 加密参数列表
-
 
 ## add_video_play_count
 
@@ -64,7 +62,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 当前时间戳和状态码，状态码为200时表示成功，否则为失败，可以尝试更换一个作品id再次调用，或者等待一段时间后再次调用。
 
-
 ## check_live_room_online
 
 `GET /api/v1/tiktok/.../check_live_room_online`
@@ -91,7 +88,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 是否在线
 
-
 ## check_live_room_online_batch
 
 `POST /api/v1/tiktok/.../check_live_room_online_batch`
@@ -101,7 +97,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -116,7 +111,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - room_ids: 多个直播间 ID 的数组
  ### 返回:
  - 每个直播间的在线状态
-
 
 ## decrypt_strData
 
@@ -143,7 +137,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 解密后的原始指纹数据，包含浏览器指纹信息和环境信息等。
 
-
 ## detect_fake_views
 
 `GET /api/v1/tiktok/.../detect_fake_views`
@@ -153,7 +146,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -348,7 +340,6 @@ https://www.tiktok.com/@tiktok/video/7460937381265411370
 }
 ```
 
-
 ## device_register
 
 `GET /api/v1/tiktok/.../device_register`
@@ -358,7 +349,6 @@ https://www.tiktok.com/@tiktok/video/7460937381265411370
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -373,7 +363,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 设备注册信息，包括设备ID和游客Cookie
 
-
 ## encrypt_decrypt_login_request
 
 `POST /api/v1/tiktok/.../encrypt_decrypt_login_request`
@@ -383,7 +372,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -401,7 +389,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `decrypt`: 解密
 ### 返回:
  - 加密/解密后的请求体
-
 
 ## encrypt_strData
 
@@ -427,7 +414,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data: 原始指纹数据字符串（请先将JSON格式然后转换成字符串进行请求）
  ### 返回:
  - 加密后的strData
-
 
 ## fetch_batch_check_live_alive
 
@@ -455,11 +441,9 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - room_ids: 直播间ID列表，用英文逗号分隔，如：7530611486784277278,7530633767468288782
  ### 返回:
  - 批量直播间开播状态列表
- ### 价格:
  - 定价0.025$，请尽量达到50个直播间查询，避免浪费API调用次数。
  ### 说明:
  - 同一个room_id不会重复返回开播状态。
-
 
 ## fetch_check_live_alive
 
@@ -486,7 +470,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - room_id: 直播间ID
  ### 返回:
  - 直播间开播状态
-
 
 ## fetch_comment_keywords
 
@@ -573,7 +556,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_content_translate
 
 `POST /api/v1/tiktok/.../fetch_content_translate`
@@ -583,7 +565,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -624,7 +605,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 内容翻译数据
 
-
 ## fetch_creator_info
 
 `GET /api/v1/tiktok/.../fetch_creator_info`
@@ -649,7 +629,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - creator_uid: 创作者uid
  ### 返回:
  - 创作者信息
-
 
 ## fetch_creator_search_insights
 
@@ -698,7 +677,6 @@ Science, Food, Sports
  ### 返回:
  - 创作者搜索洞察数据
 
-
 ## fetch_creator_search_insights_detail
 
 `GET /api/v1/tiktok/.../fetch_creator_search_insights_detail`
@@ -737,7 +715,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 搜索洞察详情数据，包含搜索趋势、用户画像等
 
-
 ## fetch_creator_search_insights_trend
 
 `GET /api/v1/tiktok/.../fetch_creator_search_insights_trend`
@@ -766,7 +743,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - query_analysis_required: 是否需要查询分析，默认 True
  ### 返回:
  - 搜索趋势数据，包含地区热度、时间趋势等
-
 
 ## fetch_creator_search_insights_videos
 
@@ -798,7 +774,6 @@ fetch_creator_search_insights_trend 接口获取
  ### 返回:
  - 相关热门视频列表
 
-
 ## fetch_creator_showcase_product_list
 
 `GET /api/v1/tiktok/.../fetch_creator_showcase_product_list`
@@ -827,7 +802,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - next_scroll_param: 翻页参数，第一页为空字符串，后续请求使用上一次请求返回的next_scroll_param值。
  ### 返回:
  - 创作者橱窗商品列表
-
 
 ## fetch_explore_post
 
@@ -886,7 +860,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_general_search
 
 `GET /api/v1/tiktok/.../fetch_general_search`
@@ -930,7 +903,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_general_search_result
 
 `GET /api/v1/tiktok/.../fetch_general_search_result`
@@ -964,7 +936,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 综合搜索结果
 
-
 ## fetch_hashtag_detail
 
 `GET /api/v1/tiktok/.../fetch_hashtag_detail`
@@ -989,7 +960,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - ch_id: 话题id
 ### 返回:
 - 话题详情数据
-
 
 ## fetch_hashtag_search_result
 
@@ -1020,7 +990,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 话题搜索结果
 
-
 ## fetch_hashtag_video_list
 
 `GET /api/v1/tiktok/.../fetch_hashtag_video_list`
@@ -1050,7 +1019,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 话题作品数据
 
-
 ## fetch_home_feed
 
 `POST /api/v1/tiktok/.../fetch_home_feed`
@@ -1060,7 +1028,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1075,7 +1042,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 视频推荐数据
 
-
 ## fetch_home_feed
 
 `POST /api/v1/tiktok/.../fetch_home_feed`
@@ -1085,7 +1051,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1109,7 +1074,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   2. 在请求该链接时，务必在请求头中添加 `Cookie: tt_chain_token={tt_chain_token}`，其中 `{tt_chain_token}` 为接口返回的 `tt_chain_token` 参数值
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
-
 
 ## fetch_hot_selling_products_list
 
@@ -1156,7 +1120,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     }
 }
 ```
-
 
 ## fetch_live_daily_rank
 
@@ -1219,7 +1182,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 直播每日榜单数据
 
-
 ## fetch_live_gift_list
 
 `GET /api/v1/tiktok/.../fetch_live_gift_list`
@@ -1255,7 +1217,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_live_im_fetch
 
 `GET /api/v1/tiktok/.../fetch_live_im_fetch`
@@ -1285,7 +1246,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 弹幕参数数据
 
-
 ## fetch_live_ranking_list
 
 `GET /api/v1/tiktok/.../fetch_live_ranking_list`
@@ -1312,7 +1272,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - anchor_id: 主播id
 ### 返回:
 - 排行榜数据
-
 
 ## fetch_live_recommend
 
@@ -1348,7 +1307,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_live_room_info
 
 `GET /api/v1/tiktok/.../fetch_live_room_info`
@@ -1373,7 +1331,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - room_id: 直播间id
 ### 返回:
 - 直播间数据
-
 
 ## fetch_live_room_product_list
 
@@ -1408,15 +1365,14 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - region: 地区，可选参数，默认为`US`，如果使用其他地区，如：`VN`，请自行携带Cookie，否则无法获取数据。
  - cookie: 用户自己的cookie，可选参数，用于爬取除`US`以外的地区数据。
  ### 参数获取:
- -
+
 第一步：使用接口`f"{maxhub_Domain}/api/v1/tiktok/web/get_live_room_id"`接口获取直播间id（room_id）。
- -
+
 第二步：使用接口`f"{maxhub_Domain}/api/v1/tiktok/app/v3/fetch_live_room_info"`接口获取直播间信息。
- -
+
 第三步：使用第二步返回的JSON数据中使用JSONPATH获取`$.data.data.owner.id_str`字段的值作为主播id（author_id）。
  ### 返回:
  - 直播间商品列表数据
-
 
 ## fetch_live_room_product_list_v2
 
@@ -1451,15 +1407,14 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - region: 地区，可选参数，默认为`US`，如果使用其他地区，如：`VN`，请自行携带Cookie，否则无法获取数据。
  - cookie: 用户自己的cookie，可选参数，用于爬取除`US`以外的地区数据。
  ### 参数获取:
- -
+
 第一步：使用接口`f"{maxhub_Domain}/api/v1/tiktok/web/get_live_room_id"`接口获取直播间id（room_id）。
- -
+
 第二步：使用接口`f"{maxhub_Domain}/api/v1/tiktok/app/v3/fetch_live_room_info"`接口获取直播间信息。
- -
+
 第三步：使用第二步返回的JSON数据中使用JSONPATH获取`$.data.data.owner.id_str`字段的值作为主播id（author_id）。
  ### 返回:
  - 直播间商品列表数据
-
 
 ## fetch_live_search_result
 
@@ -1492,7 +1447,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 直播搜索结果
 
-
 ## fetch_location_search
 
 `GET /api/v1/tiktok/.../fetch_location_search`
@@ -1522,7 +1476,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 地点搜索结果
 
-
 ## fetch_multi_video
 
 `POST /api/v1/tiktok/.../fetch_multi_video`
@@ -1533,7 +1486,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1541,13 +1493,11 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 批量获取视频信息，支持图文、视频等，一次性最多支持10个视频，此接口收费固定价格为0.001$ * 10 = 0.01$一次。
  - 如果本接口报错，请使用 fetch_multi_video_v3 接口。
  ### 参数:
  - aweme_ids: 作品id列表，最多支持10个作品id。
  ### 返回:
  - 作品数据
-
 
 ## fetch_multi_video_v2
 
@@ -1559,7 +1509,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1567,14 +1516,12 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 批量获取视频信息，支持图文、视频等，一次性最多支持25个视频，此接口收费固定价格为0.001$ * 25 = 0.025$一次。
  - 注意：此接口为V2版本，支持更多功能和更高效的数据获取，一秒可以获取25个视频数据。
  - 如果本接口报错，请使用 fetch_multi_video_v3 接口。
  ### 参数:
  - aweme_ids: 作品id列表，最多支持25个作品id。
  ### 返回:
  - 作品数据
-
 
 ## fetch_music_chart_list
 
@@ -1607,7 +1554,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 音乐排行榜数据，包含歌曲信息、排名变化等
 
-
 ## fetch_music_detail
 
 `GET /api/v1/tiktok/.../fetch_music_detail`
@@ -1632,7 +1578,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - music_id: 音乐id
 ### 返回:
 - 音乐详情数据
-
 
 ## fetch_music_search_result
 
@@ -1669,7 +1614,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 音乐搜索结果
 
-
 ## fetch_music_video_list
 
 `GET /api/v1/tiktok/.../fetch_music_video_list`
@@ -1699,7 +1643,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 音乐视频列表数据
 
-
 ## fetch_one_video
 
 `GET /api/v1/tiktok/.../fetch_one_video`
@@ -1724,7 +1667,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - aweme_id: 作品id
 ### 返回:
 - 作品数据
-
 
 ## fetch_one_video_by_share_url_v2
 
@@ -1751,7 +1693,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 作品数据
 
-
 ## fetch_one_video_v2
 
 `GET /api/v1/tiktok/.../fetch_one_video_v2`
@@ -1776,7 +1717,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - aweme_id: 作品id
 ### 返回:
 - 作品数据
-
 
 ## fetch_one_video_v3
 
@@ -1805,7 +1745,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 备注：某些视频可能在特定国家/地区不可用，设置region参数可以尝试获取该国家/地区的视频数据。
  ### 返回:
  - 作品数据
-
 
 ## fetch_post_comment
 
@@ -1837,7 +1776,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - current_region: 当前地区，默认为空。
 ### 返回:
 - 作品的评论列表
-
 
 ## fetch_post_comment_reply
 
@@ -1871,7 +1809,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - current_region: 当前地区，默认为空。
 ### 返回:
 - 作品的评论回复列表
-
 
 ## fetch_post_detail
 
@@ -1907,7 +1844,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_post_detail_v2
 
 `GET /api/v1/tiktok/.../fetch_post_detail_v2`
@@ -1942,7 +1878,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_product_detail
 
 `GET /api/v1/tiktok/.../fetch_product_detail`
@@ -1968,7 +1903,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - product_id: 商品id，有时候需要从product_id_str字段中获取。
  ### 返回:
  - 商品详情数据
-
 
 ## fetch_product_detail
 
@@ -2019,7 +1953,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## fetch_product_detail_v2
 
 `GET /api/v1/tiktok/.../fetch_product_detail_v2`
@@ -2044,7 +1977,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - product_id: 商品id，有时候需要从product_id_str字段中获取。
  ### 返回:
  - 商品详情数据V2
-
 
 ## fetch_product_detail_v2
 
@@ -2092,7 +2024,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## fetch_product_detail_v3
 
 `GET /api/v1/tiktok/.../fetch_product_detail_v3`
@@ -2128,7 +2059,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   VN（越南）
  ### 返回:
  - 商品详情数据V3
-
 
 ## fetch_product_detail_v3
 
@@ -2183,7 +2113,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## fetch_product_detail_v4
 
 `GET /api/v1/tiktok/.../fetch_product_detail_v4`
@@ -2220,7 +2149,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 商品详情数据V4
 
-
 ## fetch_product_id_by_share_link
 
 `GET /api/v1/tiktok/.../fetch_product_id_by_share_link`
@@ -2245,7 +2173,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - share_link: 分享链接
  ### 返回:
  - 商品ID
-
 
 ## fetch_product_review
 
@@ -2289,7 +2216,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 2: 从新到旧
 ### 返回:
  - 商品评价数据
-
 
 ## fetch_product_reviews_v2
 
@@ -2384,7 +2310,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_product_search
 
 `GET /api/v1/tiktok/.../fetch_product_search`
@@ -2428,7 +2353,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - max_price: 最高价格
  ### 返回:
  - 商品搜索结果
-
 
 ## fetch_products_by_category_id
 
@@ -2482,7 +2406,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## fetch_products_category_list
 
 `GET /api/v1/tiktok/.../fetch_products_category_list`
@@ -2530,7 +2453,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ```
 - 总共约28个主分类
 
-
 ## fetch_search_keyword_suggest
 
 `GET /api/v1/tiktok/.../fetch_search_keyword_suggest`
@@ -2555,7 +2477,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键词
 ### 返回:
 - 关键字推荐列表
-
 
 ## fetch_search_products_list
 
@@ -2618,7 +2539,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_search_products_list_v2
 
 `GET /api/v1/tiktok/.../fetch_search_products_list_v2`
@@ -2661,7 +2581,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_search_video
 
 `GET /api/v1/tiktok/.../fetch_search_video`
@@ -2697,7 +2616,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - cookie: 用户cookie(如果你需要使用自己的账号搜索，或者遇到接口报错，可以自行提供cookie，默认不需要提供)
  ### 返回:
  - 视频列表
-
 
 ## fetch_search_word_suggestion_v2
 
@@ -2741,7 +2659,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     ]
 }
 ```
-
 
 ## fetch_seller_products_list
 
@@ -2797,7 +2714,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_seller_products_list_v2
 
 `GET /api/v1/tiktok/.../fetch_seller_products_list_v2`
@@ -2841,7 +2757,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_share_qr_code
 
 `GET /api/v1/tiktok/.../fetch_share_qr_code`
@@ -2868,7 +2783,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 二维码图片
 
-
 ## fetch_share_short_link
 
 `GET /api/v1/tiktok/.../fetch_share_short_link`
@@ -2893,7 +2807,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 长链接或想要转换的链接
 ### 返回:
 - 短链接
-
 
 ## fetch_shop_home
 
@@ -2922,7 +2835,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 商家主页数据
 
-
 ## fetch_shop_home_page_list
 
 `GET /api/v1/tiktok/.../fetch_shop_home_page_list`
@@ -2947,7 +2859,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - seller_id: 商家id,店铺id
  ### 返回:
  - 商家主页Page列表数据
-
 
 ## fetch_shop_id_by_share_link
 
@@ -2974,7 +2885,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 店铺ID
 
-
 ## fetch_shop_info
 
 `GET /api/v1/tiktok/.../fetch_shop_info`
@@ -3000,7 +2910,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 商家信息数据
 
-
 ## fetch_shop_product_category
 
 `GET /api/v1/tiktok/.../fetch_shop_product_category`
@@ -3025,7 +2934,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - seller_id: 商家id,店铺id
 ### 返回:
 - 商家产品分类数据
-
 
 ## fetch_shop_product_list
 
@@ -3067,7 +2975,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 商家商品列表数据
 
-
 ## fetch_shop_product_list_v2
 
 `GET /api/v1/tiktok/.../fetch_shop_product_list_v2`
@@ -3108,7 +3015,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 商家商品列表数据
 
-
 ## fetch_shop_product_recommend
 
 `GET /api/v1/tiktok/.../fetch_shop_product_recommend`
@@ -3138,7 +3044,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 商家商品推荐数据
 
-
 ## fetch_similar_user_recommendations
 
 `GET /api/v1/tiktok/.../fetch_similar_user_recommendations`
@@ -3166,7 +3071,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 类似用户推荐
 
-
 ## fetch_tag_detail
 
 `GET /api/v1/tiktok/.../fetch_tag_detail`
@@ -3191,7 +3095,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - tag_name: Tag名称
 ### 返回:
 - Tag详情
-
 
 ## fetch_tag_post
 
@@ -3231,7 +3134,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_tiktok_live_data
 
 `GET /api/v1/tiktok/.../fetch_tiktok_live_data`
@@ -3257,7 +3159,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - live_room_url: 直播间链接
 ### 返回:
 - 直播间信息
-
 
 ## fetch_tiktok_web_guest_cookie
 
@@ -3288,7 +3189,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 游客Cookie
 
-
 ## fetch_user_country_by_username
 
 `GET /api/v1/tiktok/.../fetch_user_country_by_username`
@@ -3314,7 +3214,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 用户名，可以从用户主页链接中获取，例如：https://www.tiktok.com/@tiktok，用户名即为tiktok。
  ### 返回:
  - 用户账号国家地区
-
 
 ## fetch_user_follower_list
 
@@ -3351,7 +3250,6 @@ user_id and sec_user_id)
  ### 返回:
  - 粉丝列表数据
 
-
 ## fetch_user_following_list
 
 `GET /api/v1/tiktok/.../fetch_user_following_list`
@@ -3387,7 +3285,6 @@ user_id and sec_user_id)
  ### 返回:
  - 关注列表数据
 
-
 ## fetch_user_like_videos
 
 `GET /api/v1/tiktok/.../fetch_user_like_videos`
@@ -3416,7 +3313,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 最大数量
  ### 返回:
  - 用户作品数据
-
 
 ## fetch_user_live_detail
 
@@ -3451,7 +3347,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   2. 在请求该链接时，务必在请求头中添加 `Cookie: tt_chain_token={tt_chain_token}`，其中 `{tt_chain_token}` 为接口返回的 `tt_chain_token` 参数值
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
-
 
 ## fetch_user_mix
 
@@ -3491,7 +3386,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_user_music_list
 
 `GET /api/v1/tiktok/.../fetch_user_music_list`
@@ -3520,7 +3414,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 数量
  ### 返回:
  - 用户音乐列表数据
-
 
 ## fetch_user_play_list
 
@@ -3559,7 +3452,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   2. 在请求该链接时，务必在请求头中添加 `Cookie: tt_chain_token={tt_chain_token}`，其中 `{tt_chain_token}` 为接口返回的 `tt_chain_token` 参数值
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
-
 
 ## fetch_user_post
 
@@ -3606,7 +3498,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_user_post_videos
 
 `GET /api/v1/tiktok/.../fetch_user_post_videos`
@@ -3643,7 +3534,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 unique_id，优先级越高速度越快，并且建议只使用sec_user_id获取用户数据。
  ### 返回:
  - 用户作品数据
-
 
 ## fetch_user_post_videos_v2
 
@@ -3682,7 +3572,6 @@ unique_id，优先级越高速度越快，并且建议只使用sec_user_id获取
  ### 返回:
  - 用户作品数据
 
-
 ## fetch_user_post_videos_v3
 
 `GET /api/v1/tiktok/.../fetch_user_post_videos_v3`
@@ -3719,7 +3608,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 unique_id，优先级越高速度越快，并且建议只使用sec_user_id获取用户数据。
  ### 返回:
  - 用户作品数据
-
 
 ## fetch_user_repost
 
@@ -3761,7 +3649,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   3. 示例请求头: `Cookie: tt_chain_token=xxx`
 - 如果需要绕过此限制获取可以直接访问的无水印视频CDN链接，请使用 TikTok APP V3 目录下的接口。
 
-
 ## fetch_user_repost_videos
 
 `GET /api/v1/tiktok/.../fetch_user_repost_videos`
@@ -3790,7 +3677,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 数量
  ### 返回:
  - 用户转发作品数据
-
 
 ## fetch_user_search_result
 
@@ -3835,7 +3721,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户搜索结果
 
-
 ## fetch_video_comment_replies
 
 `GET /api/v1/tiktok/.../fetch_video_comment_replies`
@@ -3867,7 +3752,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 评论回复数据
 
-
 ## fetch_video_comments
 
 `GET /api/v1/tiktok/.../fetch_video_comments`
@@ -3896,7 +3780,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - count: 数量
  ### 返回:
  - 评论数据
-
 
 ## fetch_video_metrics
 
@@ -3972,7 +3855,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## fetch_video_search_result
 
 `GET /api/v1/tiktok/.../fetch_video_search_result`
@@ -4008,7 +3890,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 视频搜索结果
 
-
 ## fetch_webcast_user_info
 
 `GET /api/v1/tiktok/.../fetch_webcast_user_info`
@@ -4036,7 +3917,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 以上参数必须至少填写一个，优先级为sec_user_id > user_id，优先级越高速度越快。
  ### 返回:
  - 用户信息
-
 
 ## generate_fingerprint
 
@@ -4068,7 +3948,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 浏览器指纹数据
 
-
 ## generate_hashed_id
 
 `GET /api/v1/tiktok/.../generate_hashed_id`
@@ -4093,7 +3972,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - email: 邮箱地址
 ### 返回:
 - 生成的哈希ID字符串
-
 
 ## generate_real_msToken
 
@@ -4127,7 +4005,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 真实msToken
 
-
 ## generate_ttwid
 
 `GET /api/v1/tiktok/.../generate_ttwid`
@@ -4152,7 +4029,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 无
 ### 返回:
 - ttwid
-
 
 ## generate_webid
 
@@ -4191,7 +4067,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - e: 错误码 (0 表示成功)
  - ssid: 会话 ID
 
-
 ## generate_wss_xb_signature
 
 `GET /api/v1/tiktok/.../generate_wss_xb_signature`
@@ -4217,7 +4092,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - x_bogus: WSS X-Bogus签名字符串
 
-
 ## generate_xbogus
 
 `POST /api/v1/tiktok/.../generate_xbogus`
@@ -4227,7 +4101,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4243,7 +4116,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - xbogus
 
-
 ## generate_xgnarly
 
 `POST /api/v1/tiktok/.../generate_xgnarly`
@@ -4253,7 +4125,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4272,7 +4143,6 @@ User-Agent
  ### 返回:
  - X-Gnarly 加密字符串 + 随机浏览器的 User-Agent
 
-
 ## generate_xgnarly_and_xbogus
 
 `POST /api/v1/tiktok/.../generate_xgnarly_and_xbogus`
@@ -4282,7 +4152,6 @@ User-Agent
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4294,14 +4163,12 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 生成 XGnarly 和 XBogus 加密，用于 TikTok Web API 请求
  - 用这个接口可以生成最新版本的加密参数 X-Bogus 和 X-Gnarly，不可自定义 User-Agent，会自动生成一个常见浏览器的
 User-Agent
- - 此接口为完美还原算法，无视除验证码外的一切风控，可以用于爬取商品，价格：0.005 美金/次
  - 本接口生成的 X-Bogus 和 X-Gnarly 均为最新版本（V5.2.0，截至2026年3月）
  ### 参数:
  - url (str): 不携带签名（X-Bogus 或 X-Gnarly）并且包含域名的请求URL，不需要进行URL编码
  - body (str): 请求的API参数，适用于POST请求，如果是GET请求则不需要提供
  ### 返回:
  - 最新版本的 X-Gnarly 加密 + 最新版本的 X-Bogus 加密 + 随机浏览器的 User-Agent
-
 
 ## get_account_violation_list
 
@@ -4312,7 +4179,6 @@ User-Agent
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4353,7 +4219,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `start_time`: 查询起始时间
  - `end_time`: 查询结束时间
  - `creator_status`: 创作者账号状态码（如 0=正常）
-
 
 ## get_ads_detail
 
@@ -4476,7 +4341,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_all_aweme_id
 
 `POST /api/v1/tiktok/.../get_all_aweme_id`
@@ -4486,7 +4350,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4501,7 +4364,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 作品id
 
-
 ## get_all_sec_user_id
 
 `POST /api/v1/tiktok/.../get_all_sec_user_id`
@@ -4511,7 +4373,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4524,9 +4385,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 参数:
  - url: 用户主页链接（最多支持10个链接）、
  ### 返回:
- -
-如果链接成功获取到sec_user_id，则返回sec_user_id，否则返回原始的输入链接，后续可以手动校验链接无法获取sec_user_id的原因。
 
+如果链接成功获取到sec_user_id，则返回sec_user_id，否则返回原始的输入链接，后续可以手动校验链接无法获取sec_user_id的原因。
 
 ## get_all_unique_id
 
@@ -4537,7 +4397,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -4551,7 +4410,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 用户主页链接 (最多支持20个链接)
 ### 返回:
 - unique_id
-
 
 ## get_aweme_id
 
@@ -4577,7 +4435,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 作品链接
 ### 返回:
 - 作品id
-
 
 ## get_creator_list
 
@@ -4690,7 +4547,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ## get_hashtag_list
 
@@ -4836,7 +4692,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_keyword_details
 
 `GET /api/v1/tiktok/.../get_keyword_details`
@@ -4945,7 +4800,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_keyword_list
 
 `GET /api/v1/tiktok/.../get_keyword_list`
@@ -5015,7 +4869,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_live_room_id
 
 `GET /api/v1/tiktok/.../get_live_room_id`
@@ -5042,7 +4895,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - live_room_url: 直播间链接
 ### 返回:
 - 直播间Room ID
-
 
 ## get_popular_trends
 
@@ -5144,7 +4996,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## get_product_analytics_list
 
 `POST /api/v1/tiktok/.../get_product_analytics_list`
@@ -5154,7 +5005,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -5192,7 +5042,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 示例格式: `http://username:password@host:port`
  ### 返回:
  - 创作者账号商品列表及商品销售分析数据
-
 
 ## get_product_detail
 
@@ -5329,7 +5178,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_product_related_videos
 
 `POST /api/v1/tiktok/.../get_product_related_videos`
@@ -5339,7 +5187,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -5391,7 +5238,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   "product_id": "1731050202505515549"
 }
  ```
-
 
 ## get_recommended_ads
 
@@ -5492,7 +5338,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_sec_user_id
 
 `GET /api/v1/tiktok/.../get_sec_user_id`
@@ -5518,7 +5363,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户id
 
-
 ## get_showcase_product_list
 
 `POST /api/v1/tiktok/.../get_showcase_product_list`
@@ -5528,7 +5372,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -5614,7 +5457,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ]
 }
  ```
-
 
 ## get_sound_detail
 
@@ -5720,7 +5562,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ## get_sound_rank_list
 
@@ -5852,7 +5693,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_sound_recommendations
 
 `GET /api/v1/tiktok/.../get_sound_recommendations`
@@ -5919,7 +5759,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
 ```
-
 
 ## get_top_products
 
@@ -6071,7 +5910,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_unique_id
 
 `GET /api/v1/tiktok/.../get_unique_id`
@@ -6096,7 +5934,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - url: 用户主页链接
 ### 返回:
 - unique_id
-
 
 ## get_user_id
 
@@ -6123,7 +5960,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户id
 
-
 ## get_user_id_and_sec_user_id_by_username
 
 `GET /api/v1/tiktok/.../get_user_id_and_sec_user_id_by_username`
@@ -6149,7 +5985,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 用户 user_id 和 sec_user_id
 
-
 ## get_video_analytics_summary
 
 `POST /api/v1/tiktok/.../get_video_analytics_summary`
@@ -6159,7 +5994,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -6191,7 +6025,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 创作者账号视频表现概览
 
-
 ## get_video_associated_product_list
 
 `POST /api/v1/tiktok/.../get_video_associated_product_list`
@@ -6201,7 +6034,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -6247,7 +6079,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_video_audience_stats
 
 `POST /api/v1/tiktok/.../get_video_audience_stats`
@@ -6257,7 +6088,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -6305,7 +6135,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_video_detailed_stats
 
 `POST /api/v1/tiktok/.../get_video_detailed_stats`
@@ -6315,7 +6144,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -6362,7 +6190,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_video_list_analytics
 
 `POST /api/v1/tiktok/.../get_video_list_analytics`
@@ -6372,7 +6199,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -6426,7 +6252,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 创作者账号视频列表及详细分析数据
 
-
 ## get_video_to_product_stats
 
 `POST /api/v1/tiktok/.../get_video_to_product_stats`
@@ -6436,7 +6261,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -6485,7 +6309,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## handler_user_profile
 
 `GET /api/v1/tiktok/.../handler_user_profile`
@@ -6517,7 +6340,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 用户信息
 
-
 ## open_tiktok_app_to_keyword_search
 
 `GET /api/v1/tiktok/.../open_tiktok_app_to_keyword_search`
@@ -6543,7 +6365,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 注意: 如果未能跳转，请确保APP已经在后台运行。
   ### 返回:
  - 分享链接
-
 
 ## open_tiktok_app_to_send_private_message
 
@@ -6571,7 +6392,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 分享链接
 
-
 ## open_tiktok_app_to_user_profile
 
 `GET /api/v1/tiktok/.../open_tiktok_app_to_user_profile`
@@ -6598,7 +6418,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 分享链接
 
-
 ## open_tiktok_app_to_video_detail
 
 `GET /api/v1/tiktok/.../open_tiktok_app_to_video_detail`
@@ -6624,7 +6443,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 注意: 如果未能跳转，请确保APP已经在后台运行。
   ### 返回:
  - 分享链接
-
 
 ## search_follower_list
 
@@ -6653,7 +6471,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 搜索结果列表
 
-
 ## search_following_list
 
 `GET /api/v1/tiktok/.../search_following_list`
@@ -6681,7 +6498,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 搜索结果列表
 
-
 ## tiktok_live_room
 
 `GET /api/v1/tiktok/.../tiktok_live_room`
@@ -6703,10 +6519,9 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 提取直播间弹幕
- -
+
 该接口已不再提供线上服务，需要自行购买源代码后在本地部署使用，购买源代码请在Discord服务器联系管理员，Discord邀请链接：https://discord.gg/aMEAS8Xsvz
  #### 价格:
- - 每10条数据消耗0.001$，支持阶梯式计费折扣。
  ### 参数:
  - live_room_url: 直播间链接
  - danmaku_type: 消息类型
@@ -6720,7 +6535,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - WebcastLinkMicMethod: 连麦方法
 ### 返回:
  - 弹幕数据的WebSocket连接信息，需要使用WebSocket连接获取弹幕数据，此接口不返回弹幕数据。
-
 
 ---
 

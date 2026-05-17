@@ -31,7 +31,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 联想词列表
 
-
 ## fetch_trending
 
 `GET /api/v1/xiaohongshu/.../fetch_trending`
@@ -41,7 +40,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -55,7 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 小红书接口推荐优先级: `App V2` > `App` > `Web V3（本接口）` > `Web V2` > `Web`
  ### 返回:
  - 热搜词列表
-
 
 ## search_groups
 
@@ -92,7 +89,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求：search_id 留空（自动生成），page_no 传 0
  - 翻页请求：传入首次搜索返回的 search_id，page_no 递增
-
 
 ## search_images
 
@@ -131,7 +127,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求：只传keyword和page
  - 翻页请求：传入首次搜索返回的 search_id、search_session_id 和 word_request_id
-
 
 ## search_products
 
@@ -190,7 +185,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 翻页搜索：传入相同keyword，递增page，并携带首次返回的searchId和sessionId
  - 注意：更换关键词时不要复用之前的searchId
 
-
 ## search_products
 
 `GET /api/v1/xiaohongshu/.../search_products`
@@ -224,7 +218,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 翻页说明:
  - 首次请求：只传keyword和page
  - 翻页请求：传入首次搜索返回的 search_id
-
 
 ---
 

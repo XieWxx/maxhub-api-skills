@@ -40,7 +40,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 视频列表
 
-
 ## fetch_search_word_suggestion
 
 `GET /api/v1/tiktok/.../fetch_search_word_suggestion`
@@ -85,7 +84,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## fetch_trending_searchwords
 
 `GET /api/v1/tiktok/.../fetch_trending_searchwords`
@@ -95,7 +93,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -108,7 +105,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 趋势搜索关键词
 
-
 ## get_hashtag_filters
 
 `GET /api/v1/tiktok/.../get_hashtag_filters`
@@ -118,7 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -158,7 +153,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_keyword_filters
 
 `GET /api/v1/tiktok/.../get_keyword_filters`
@@ -168,7 +162,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -212,7 +205,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
  ```
-
 
 ## get_keyword_insights
 
@@ -347,7 +339,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## get_related_keywords
 
 `GET /api/v1/tiktok/.../get_related_keywords`
@@ -418,7 +409,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## get_sound_filters
 
 `GET /api/v1/tiktok/.../get_sound_filters`
@@ -476,7 +466,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
 ```
-
 
 ## search_ads
 
@@ -596,7 +585,6 @@ https://github.com/maxhub/TikTok-Ads-Industry-Code
 }
  ```
 
-
 ## search_creators
 
 `GET /api/v1/tiktok/.../search_creators`
@@ -704,7 +692,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
 ```
 
-
 ## search_sound
 
 `GET /api/v1/tiktok/.../search_sound`
@@ -787,7 +774,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 }
  ```
 
-
 ## search_sound_hint
 
 `GET /api/v1/tiktok/.../search_sound_hint`
@@ -859,7 +845,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   }
 }
 ```
-
 
 ---
 

@@ -30,7 +30,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 视频数据
 
-
 ## fetch_one_video_by_url
 
 `GET /api/v1/kuaishou/.../fetch_one_video_by_url`
@@ -50,12 +49,10 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Description
 
 ### 用途:
- - 根据链接获取单个作品数据，此接口默认使用价格更便宜的V1接口进行请求。
  ### 参数:
  - share_text: 作品链接或分享文本
  ### 返回:
  - 视频数据
-
 
 ## fetch_one_video_comment
 
@@ -85,7 +82,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 评论数据
 
-
 ## fetch_videos_batch
 
 `GET /api/v1/kuaishou/.../fetch_videos_batch`
@@ -106,14 +102,11 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 批量获取多个作品数据，单次请求最多支持40个视频ID。
- - 如果此接口连续请求失败，可以尝试使用价格更昂贵的V2接口进行冗余请求。
- - 此接口收费标准默认为：40 * 0.001 = 0.04 美元/次。
  ### 参数:
  - photo_ids: 作品ID列表，多个ID用英文逗号分隔，单次最多40个
     - 格式备注：支持纯数字版本的ID，也支持短字符串版本（eID）的ID，两种ID可以混合使用。
 ### 返回:
  - 视频数据列表
-
 
 ## search_comprehensive
 
@@ -161,7 +154,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - all: 全部（默认）
 ### 返回:
  - 搜索结果数据
-
 
 ---
 

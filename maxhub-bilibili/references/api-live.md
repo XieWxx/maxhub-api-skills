@@ -14,7 +14,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -26,7 +25,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 参数:
 ### 返回:
 - 所有直播分区列表
-
 
 ## fetch_live_streamers
 
@@ -54,7 +52,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - pn: 页码
 ### 返回:
 - 指定分区正在直播的主播
-
 
 ---
 

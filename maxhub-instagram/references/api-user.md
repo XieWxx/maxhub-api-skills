@@ -28,9 +28,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - location_id: 地点ID
  ### 返回:
  - `location_info`: 地点信息，包含名称、地址、坐标等
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_related_profiles
 
@@ -56,9 +53,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: Instagram用户ID
 ### 返回:
 - GraphQL风格响应，包含`data.user.edge_related_profiles`
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_search
 
@@ -92,9 +86,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `users`: 用户列表
 - `hashtags`: 话题列表
 - `places`: 地点列表
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_similar_users
 
@@ -123,9 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 用户ID（与username二选一）
 ### 返回:
 - `data.items`: 相似用户列表
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_user_followers
 
@@ -157,9 +145,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 粉丝列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_user_following
 
@@ -191,9 +176,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: 关注列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_user_highlights
 
@@ -222,9 +204,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_id: 用户ID（与username二选一）
 ### 返回:
 - `data.items`: 精选列表，包含精选ID、标题、封面等
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_user_info
 
@@ -254,9 +233,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - `data`: 用户信息，包含用户名、头像、简介、粉丝数、关注数、帖子数等
  - 此接口会返回用户的关于信息，包括国家，加入时间，是否认证等信息。
- ### 价格:
- - 0.002 USD/请求
-
 
 ## fetch_user_info_by_id
 
@@ -282,9 +258,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - user_id: Instagram用户ID
  ### 返回:
  - 用户信息对象，包含时间线媒体、高清头像等完整数据
- ### 价格:
- - 0.001 USD/请求
-
 
 ## fetch_user_reels
 
@@ -315,9 +288,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `items`: Reels列表
 - `paging_info`: 分页信息
-### 价格:
-- 0.001 USD/请求
-
 
 ## fetch_user_reels
 
@@ -349,9 +319,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: Reels列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## fetch_user_stories
 
@@ -380,9 +347,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - user_id: 用户ID（与username二选一）
  ### 返回:
  - `data.items`: 故事列表，包含图片/视频URL、发布时间等
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_recommended_reels
 
@@ -429,9 +393,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. 获取响应中的 `data.page_info.end_cursor`
  3. 下次请求：传入 `first` 和 `after` (使用上次的end_cursor)
  4. 重复步骤 2-3 直到 `data.page_info.has_next_page` 为 false
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_about
 
@@ -463,9 +424,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 账户所在地区/国家
  - 曾用名历史
  - 其他账户相关信息
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_former_usernames
 
@@ -493,11 +451,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - username: Instagram用户名（与user_id二选一，传入后会自动转换为user_id）
  ### 返回:
  - 曾用用户名列表及更改时间
- ### 价格:
- - 0.002 USD/请求
  ### 注意:
  - 如果用户没有曾用名，也会正常返回空数据并扣费
-
 
 ## get_user_highlights
 
@@ -548,9 +503,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. 获取响应中的 `data.page_info.end_cursor`
  3. 下次请求：传入 `user_id`、`first` 和 `after` (使用上次的end_cursor)
  4. 重复步骤 2-3 直到 `data.page_info.has_next_page` 为 false
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_id_by_username
 
@@ -577,9 +529,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - username: Instagram用户名
  ### 返回:
  - `data.user_id`: 用户ID
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_profile
 
@@ -620,9 +569,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - `data.user.edge_follow.count`: 关注数
  - `data.user.edge_owner_to_timeline_media.count`: 帖子总数
  - `data.user.edge_felix_video_timeline.count`: Reels/视频数
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_reels
 
@@ -679,9 +625,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. 获取响应中的 `data.page_info.end_cursor`
  3. 下次请求：传入 `user_id`、`first` 和 `after` (使用上次的end_cursor)
  4. 重复步骤 2-3 直到 `data.page_info.has_next_page` 为 false
- ### 价格:
- - 0.002 USD/请求
-
 
 ## get_user_stories
 
@@ -727,9 +670,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 注意:
  - Stories有24小时有效期，过期后无法获取
  - 私密账号的Stories需要关注后才能查看
- ### 价格:
- - 0.002 USD/请求
-
 
 ## search_reels
 
@@ -759,9 +699,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - `data.items`: Reels列表
 - `pagination_token`: 下一页token
-### 价格:
-- 0.002 USD/请求
-
 
 ## search_users
 
@@ -787,9 +724,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键词
 ### 返回:
 - `data.items`: 用户列表
-### 价格:
-- 0.002 USD/请求
-
 
 ## search_users
 
@@ -821,9 +755,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `data.rank_token`: 排序token
 - `data.see_more`: 更多信息
 - `data.inform_module`: 提示模块
-### 价格:
-- 0.002 USD/请求
-
 
 ## user_id_to_username
 
@@ -859,9 +790,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - `follower_count`: 粉丝数
 - `following_count`: 关注数
 - `media_count`: 帖子数
-### 价格:
-- 0.002 USD/请求
-
 
 ---
 

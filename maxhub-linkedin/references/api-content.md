@@ -29,7 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
 - 广告详情数据
 
-
 ## get_comment_replies
 
 `GET /api/v1/linkedin/.../get_comment_replies`
@@ -65,7 +64,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - data.elements: 回复数组，每条含回复者信息 / 文本 / 时间 / 点赞数 / 是否被作者赞过
  - data.metadata.paginationToken: 下一页游标（无下一页时为 null）
 
-
 ## get_comments_replies
 
 `GET /api/v1/linkedin/.../get_comments_replies`
@@ -94,7 +92,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - previous_replies_token: 前一组回复的令牌（必填）
  ### 返回:
 - 评论回复数据
-
 
 ## search_ads
 
@@ -128,7 +125,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - pagination_token: 分页令牌（可选）
   ### 返回:
  - 广告搜索结果数据
-
 
 ---
 

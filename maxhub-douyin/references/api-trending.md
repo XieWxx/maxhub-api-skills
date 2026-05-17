@@ -25,7 +25,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取kol热词分析评论V1
  - 该接口数据使用企业账号进行请求，收费较贵。
- - 价格：0.02$ / 次
  ### 参数:
  - kolId: 用户的kolId, 可以从接口以下接口获取：
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
@@ -33,7 +32,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `/api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 ### 返回:
  - kol热词分析评论
-
 
 ## fetch_brand_initiative_rank_weekly
 
@@ -65,7 +63,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 品牌在该周的主动排行数据
 
-
 ## fetch_brand_lines
 
 `POST /api/v1/douyin/.../fetch_brand_lines`
@@ -96,7 +93,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 品牌热度趋势线数据
 
-
 ## fetch_city_list
 
 `GET /api/v1/douyin/.../fetch_city_list`
@@ -106,7 +102,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -120,7 +115,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 无
 ### 返回:
 - 中国城市列表
-
 
 ## fetch_content_author_portrait
 
@@ -154,7 +148,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 创作者画像数据：性别分布、年龄段分布、地域分布、设备分布、活跃时段等
 
-
 ## fetch_content_consume_trend
 
 `POST /api/v1/douyin/.../fetch_content_consume_trend`
@@ -185,7 +178,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - end_date: 结束日期 YYYYMMDD（含）
  ### 返回:
  - 按日聚合的消费数据：每日播放总量、观看时长、独立观看人数等
-
 
 ## fetch_content_consumer_portrait
 
@@ -219,7 +211,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 消费者画像数据：性别分布、年龄段分布、地域分布、兴趣偏好、设备分布等
 
-
 ## fetch_content_creative_duration
 
 `POST /api/v1/douyin/.../fetch_content_creative_duration`
@@ -250,7 +241,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - end_date: 结束日期 YYYYMMDD，需与 period 对齐
  ### 返回:
  - 各时长区间（如 0-15 秒/15-60 秒/60-180 秒/大于 180 秒）的视频数量与占比
-
 
 ## fetch_content_interact_trend
 
@@ -283,7 +273,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 按日聚合的互动数据：每日点赞总数、评论总数、分享总数、收藏总数等
 
-
 ## fetch_content_publish_trend
 
 `GET /api/v1/douyin/.../fetch_content_publish_trend`
@@ -315,7 +304,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 按日聚合的发布量数据（日期 + 当日发布作品数）
 
-
 ## fetch_content_tag
 
 `GET /api/v1/douyin/.../fetch_content_tag`
@@ -325,7 +313,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -347,7 +334,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   如果需要多个子垂类标签，所有的美食子垂类标签为
 `{"value":628,"children":[{"value":62808},{"value":62804},{"value":62806},{"value":62803},{"value":62802},{"value":62801},{"value":62811},{"value":62807},{"value":62805},{"value":62810}]}`
 
-
 ## fetch_content_valid_date
 
 `GET /api/v1/douyin/.../fetch_content_valid_date`
@@ -357,7 +343,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -369,7 +354,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取创作指南各类型数据的有效日期范围
 ### 返回:
 - 创作指南可查询的起止日期
-
 
 ## fetch_creator_activity_list
 
@@ -398,7 +382,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 创作者活动列表数据
 
-
 ## fetch_creator_content_category
 
 `GET /api/v1/douyin/.../fetch_creator_content_category`
@@ -408,7 +391,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -422,7 +404,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 无需额外参数
 ### 返回:
 - 内容创作合集分类数据
-
 
 ## fetch_creator_content_course
 
@@ -461,7 +442,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 指定分类的内容创作课程数据
 
-
 ## fetch_creator_hot_challenge_billboard
 
 `GET /api/v1/douyin/.../fetch_creator_hot_challenge_billboard`
@@ -471,7 +451,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -483,7 +462,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取抖音创作者平台热门挑战榜单数据
  ### 返回:
  - 热门挑战榜单数据
-
 
 ## fetch_creator_hot_course
 
@@ -523,7 +501,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 6980288219548011776: 通用
 ### 返回:
  - 热门课程数据或精选专题课程数据
-
 
 ## fetch_creator_hot_props_billboard
 
@@ -587,7 +564,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 创作者热门道具榜单数据
 
-
 ## fetch_creator_hot_spot_billboard
 
 `GET /api/v1/douyin/.../fetch_creator_hot_spot_billboard`
@@ -644,7 +620,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 创作者热点榜单数据
 
-
 ## fetch_current_hot_topic
 
 `GET /api/v1/douyin/.../fetch_current_hot_topic`
@@ -654,7 +629,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -666,7 +640,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - 获取抖音实时热点和飙升热点排行榜
 ### 返回:
 - 热点名称、热点指数、排名变化等信息
-
 
 ## fetch_hot_account_fans_interest_topic_list
 
@@ -693,7 +666,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 粉丝近3天感兴趣的话题 10个话题
 
-
 ## fetch_hot_account_list
 
 `POST /api/v1/douyin/.../fetch_hot_account_list`
@@ -703,7 +675,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -725,7 +696,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 热门账号
 
-
 ## fetch_hot_calendar_list
 
 `POST /api/v1/douyin/.../fetch_hot_calendar_list`
@@ -735,7 +705,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -752,7 +721,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - start_date: 快照开始时间 格式10位时间戳
  ### 返回:
  - 活动日历
-
 
 ## fetch_hot_category_list
 
@@ -791,7 +759,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 热点榜分类
 
-
 ## fetch_hot_challenge_list
 
 `GET /api/v1/douyin/.../fetch_hot_challenge_list`
@@ -820,7 +787,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 热点搜索词
 ### 返回:
 - 挑战榜
-
 
 ## fetch_hot_city_list
 
@@ -859,7 +825,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 同城热点榜
 
-
 ## fetch_hot_rise_list
 
 `GET /api/v1/douyin/.../fetch_hot_rise_list`
@@ -895,7 +860,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 上升热点榜
 
-
 ## fetch_hot_total_high_fan_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_high_fan_list`
@@ -905,7 +869,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -927,7 +890,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
  - 高涨粉率榜
 
-
 ## fetch_hot_total_hot_word_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_hot_word_list`
@@ -937,7 +899,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -954,7 +915,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - keyword: 搜索关键字
 ### 返回:
 - 全部内容词
-
 
 ## fetch_hot_total_list
 
@@ -996,7 +956,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 热点总榜
 
-
 ## fetch_hot_total_low_fan_list
 
 `POST /api/v1/douyin/.../fetch_hot_total_low_fan_list`
@@ -1006,7 +965,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### Parameters
 
 No parameters required.
-
 
 ### Response
 
@@ -1027,7 +985,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     ]}
 ### 返回:
  - 低粉爆款榜
-
 
 ## fetch_relation_word
 
@@ -1064,7 +1021,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  ### 返回:
  - 搜索关联词列表、内容关联词列表、关联词图谱数据
 
-
 ## get_author_hot_comment_tokens
 
 `GET /api/v1/douyin/.../get_author_hot_comment_tokens`
@@ -1087,14 +1043,12 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取创作者评论热词
-- 价格：0.001$ / 次
 ### 参数:
 - author_id: 创作者ID
 - num: 返回热词数量，默认10
 - without_emoji: 是否排除emoji，默认True
 ### 返回:
 - 创作者评论热词数据
-
 
 ## get_ip_activity_industry_list
 
@@ -1106,7 +1060,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1115,10 +1068,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
 - 获取星图IP日历的行业列表
-- 价格：0.001$ / 次
 ### 返回:
 - 行业列表数据
-
 
 ## get_ip_activity_list
 
@@ -1130,7 +1081,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 No parameters required.
 
-
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1139,7 +1089,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取星图IP日历活动列表
- - 价格：0.001$ / 次
  ### 参数:
  - query_start_time: 查询开始时间戳，如`1767196800`
  - query_end_time: 查询结束时间戳，如`1774972799`
@@ -1151,7 +1100,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 40=筹备中, 50=招商中, 30=资源上线, 20=已结束
 ### 返回:
  - IP日历活动列表数据
-
 
 ## get_ranking_list_catalog
 
@@ -1174,7 +1122,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ### 用途:
  - 获取星图热榜分类列表，返回qualifier_id等分类信息
- - 价格：0.001$ / 次
  ### 参数:
  - codes: 分类代码，默认为空字符串
  - biz_scene: 业务场景
@@ -1182,7 +1129,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - `douyin_flow_split_live_author_ranks`: 直播达人热榜
 ### 返回:
  - 热榜分类数据
-
 
 ## get_ranking_list_data
 
@@ -1210,7 +1156,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 获取星图达人商业榜数据
  - qualifier可以从`get_ranking_list_catalog`接口获取
- - 价格：0.001$ / 次
  ### 参数:
  - code: 榜单类型代码
     - 短视频-达人商业榜: 1=品牌优选榜, 2=A3种草榜, 3=看后搜榜, 4=带货榜, 5=投流榜, 6=高潜榜
@@ -1224,7 +1169,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - limit: 返回数量，默认100
  ### 返回:
  - 达人商业榜数据
-
 
 ---
 

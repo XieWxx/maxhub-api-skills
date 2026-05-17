@@ -33,7 +33,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎用户关注的收藏
 
-
 ## fetch_user_follow_questions
 
 `GET /api/v1/zhihu/.../fetch_user_follow_questions`
@@ -62,7 +61,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - limit: 每页问题数量
 ### 返回:
 - 知乎用户关注的问题
-
 
 ## fetch_user_follow_topics
 
@@ -93,7 +91,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎用户关注的话题
 
-
 ## fetch_user_followees
 
 `GET /api/v1/zhihu/.../fetch_user_followees`
@@ -122,7 +119,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - limit: 每页用户数量
 ### 返回:
 - 知乎用户关注列表
-
 
 ## fetch_user_followers
 
@@ -153,7 +149,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 知乎用户粉丝列表
 
-
 ## fetch_user_info
 
 `GET /api/v1/zhihu/.../fetch_user_info`
@@ -178,7 +173,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - user_url_token: 用户ID
 ### 返回:
 - 知乎用户信息
-
 
 ## fetch_user_search_v3
 
@@ -208,7 +202,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 - limit: 每页用户数量
 ### 返回:
 - 知乎用户搜索V3
-
 
 ---
 
