@@ -1,133 +1,189 @@
 ---
 name: maxhub-xiaohongshu
-description: 小红书数据采集与分析。当用户提到小红书、xiaohongshu、red等相关需求时激活此Skill。
-version: 1.1.1
-author: MaxHub Team
-license: MIT
-trigger: "小红书|xiaohongshu|red|种草|笔记|小红书搜索"
-categories:
-  - social-media
-  - data-collection
-  - content-analysis
-tools:
-  - http
+description: "小红书全场景数据查询助手。支持App和Web多版本API，覆盖笔记详情、用户数据、搜索、商品、评论、话题等全功能。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "1.0.0"
   openclaw:
+    emoji: "📕"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "📕"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - 小红书
-    - xiaohongshu
-    - red
-    - 种草
-    - 笔记
-    - 小红书搜索
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["\u5c0f\u7ea2\u4e66", "\u7b14\u8bb0", "\u79cd\u8349", "\u641c\u7d22", "\u5546\u54c1"]
+    category: productivity
 ---
 
-# 📕 小红书数据采集与分析
+# 小红书数据助手
 
-唯一标识：`maxhub-xiaohongshu`
-版本：v1.0.11
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a Xiaohongshu Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-小红书数据采集与分析——小红书、xiaohongshu、red等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 76 active endpoints (1 deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 77 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：小红书、xiaohongshu、red、种草、笔记
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：在小红书搜索平价护肤笔记 → 返回笔记列表，包含标题、作者、点赞数、收藏数
-2. 示例：这个小红书博主的粉丝数 → 返回用户信息，包含粉丝数、获赞数、笔记数
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/xiaohongshu/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/xiaohongshu/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**Xiaohongshu Web**（16个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `web/sign` | POST | - | 小红书Web签名，用于获取小红书的一些数据。 |
-| `web/search_users` | GET | - | 搜索用户 |
-| `web/search_notes_v3` | GET | - | 搜索笔记 V3 |
-| `web/search_notes` | GET | - | 搜索笔记 |
-| `web/get_product_info` | GET | - | 通过分享链接获取小红书的商品信息 |
-| `web/get_user_info` | GET | - | 获取用户信息 V1 |
-| `web/get_user_info_v2` | GET | - | 获取用户信息 V2 |
-| `web/get_user_notes_v2` | GET | - | 获取用户的笔记 |
-| `web/get_note_info_v2` | GET | - | 获取笔记信息 V2 |
-| ... | | | 还有 6 个API |
+### Step 1: Check API Key
 
-**Xiaohongshu App**（11个API）
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `app/get_user_id_and_xsec_token` | GET | - | 从用户分享链接中提取用户ID和xsec_token |
-| `app/extract_share_info` | GET | - | 从分享链接中提取笔记ID和xsec_token |
-| `app/search_products` | GET | - | 搜索小红书商品 |
-| `app/search_notes` | GET | - | 搜索小红书笔记 |
-| `app/get_product_detail` | GET | - | 获取小红书商品详情信息 |
-| `app/get_sub_comments` | GET | - | 获取评论的子评论（回复）列表 |
-| `app/get_user_notes` | GET | - | 获取用户发布的笔记列表 |
-| `app/get_user_info` | GET | - | 获取用户详情信息 |
-| `app/get_note_info` | GET | - | 获取笔记信息 V1 |
-| `app/get_note_info_v2` | GET | - | 获取笔记信息 V2 |
-| ... | | | 还有 1 个API |
+#### If missing — show setup guide
 
-## 注意事项
+Chinese user:
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-xiaohongshu.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
+English user:
 
-## 数据隐私说明
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-xiaohongshu.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+### Step 1.5: Complexity Classification
 
-v1.0.8 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+
+### Step 2: Route — Classify Intent & Load Reference
+
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **Note Data** | 笔记, 详情, 评论, 图片, note, detail, comment, image | `references/api-note.md` | fetch_note_info, fetch_note_detail, fetch_note_comments, fetch_note_sub_comments, fetch_note_image, fetch_one_note_feed |
+| **User Data** | 用户, 资料, 粉丝, 关注, 收藏, user, profile, follower, following, collection | `references/api-user.md` | fetch_user_info, fetch_user_notes, fetch_user_faved_notes, fetch_user_following, fetch_user_followers, extract_user_id_from_link |
+| **Search** | 搜索, 搜, 找, 笔记, 用户, 商品, search, find, note, user, product | `references/api-search.md` | search_notes, search_users, search_products, fetch_search_suggestions, fetch_trending_keywords, fetch_home_feed |
+| **Product & Topic** | 商品, 话题, 热榜, 推荐, product, topic, hot, recommend | `references/api-product-topic.md` | fetch_product_detail, fetch_product_reviews, fetch_product_review_overview, fetch_product_list, fetch_topic_info, fetch_topic_feed, fetch_hot_list |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+
+**Rules:**
+- If uncertain, default to **Note Data**.
+- For **Deep Dive**, read reference files incrementally.
+
+### Step 3: Classify Action Mode
+
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+
+### Step 4: Plan & Execute
+
+#### Pattern A: "分析小红书博主"
+
+1. 搜索用户 → search_users → 找到目标用户
+2. 获取资料 → fetch_user_info → 用户信息
+3. 获取笔记 → fetch_user_notes → 笔记列表
+
+#### Pattern B: "分析笔记数据"
+
+1. 获取详情 → fetch_note_info → 笔记详情
+2. 获取评论 → fetch_note_comments → 评论列表
+3. 获取推荐 → fetch_one_note_feed → 推荐笔记
+
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
+
+### Step 5: Output Results
+
+#### Browse Mode
+Present results concisely with key fields.
+
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

@@ -1,249 +1,192 @@
 ---
 name: maxhub-douyin
-description: 抖音数据采集与分析。当用户提到抖音、douyin、短视频热搜等相关需求时激活此Skill。
-version: 1.1.1
-author: MaxHub Team
-license: MIT
-trigger: "抖音|douyin|短视频热搜|抖音达人|抖音直播|抖音热榜|抖音视频|抖音博主"
-categories:
-  - social-media
-  - data-collection
-  - content-analysis
-tools:
-  - http
+description: "抖音全场景数据查询助手。覆盖视频详情、用户数据、搜索、热榜、创作者工具、星图达人、内容指数等7大模块。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "1.0.0"
   openclaw:
+    emoji: "🎵"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "🎵"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - 抖音
-    - douyin
-    - 短视频热搜
-    - 抖音达人
-    - 抖音直播
-    - 抖音热榜
-    - 抖音视频
-    - 抖音博主
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["douyin", "\u6296\u97f3", "\u77ed\u89c6\u9891", "\u521b\u4f5c\u8005", "\u661f\u56fe", "\u70ed\u699c"]
+    category: productivity
 ---
 
-# 🎵 抖音数据采集与分析
+# 抖音数据助手
 
-唯一标识：`maxhub-douyin`
-版本：v1.0.15
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a Douyin Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-抖音数据采集与分析——抖音、douyin、短视频热搜等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 274 active endpoints (12 deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 285 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：抖音、douyin、短视频热搜、抖音达人、抖音直播
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：抖音热搜 → 返回当前热搜榜单，包含排名、话题、热度值
-2. 示例：搜索抖音上关于AI绘画的热门视频 → 返回视频列表，包含标题、作者、播放量、点赞数
-3. 示例：分析抖音博主@某某某的数据 → 返回博主信息，包含粉丝数、获赞数、作品数、IP属地
-4. 示例：这个抖音视频的数据 https://v.douyin.com/xxx → 返回视频详情，包含播放量、点赞、评论、分享、收藏数据
-5. 示例：这个抖音直播间有多少人在线 → 返回直播间信息，包含观看人数、点赞数、直播状态
-6. 示例：这个视频的评论数据 → 返回评论列表，包含评论内容、点赞数、IP属地
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/douyin/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/douyin/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**Douyin Web**（71个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `web/fetch_cartoon_aweme` | GET | - | 二次元作品 |
-| `web/fetch_user_profile_by_short_id` | GET | - | 使用Short ID获取用户信息 |
-| `web/fetch_user_profile_by_uid` | GET | - | 使用UID获取用户信息 |
-| `web/fetch_user_live_info_by_uid` | GET | - | 使用UID获取用户开播信息 |
-| `web/handler_user_profile` | GET | - | 获取指定用户的信息 |
-| `web/handler_user_profile_v2` | GET | - | 根据抖音号获取指定用户的信息 |
-| `web/generate_a_bogus` | POST | - | 使用接口网址生成A-Bogus参数，提交的URL不能带有a_bogus参数，同时a_bogus参数与请求头中的User-Agent有关，需要一起提交和请求。 |
-| `web/generate_x_bogus` | POST | - | 使用接口网址生成X-Bogus参数 |
-| `web/encrypt_uid_to_sec_user_id` | GET | - | 加密用户uid到sec_user_id |
-| `web/fetch_multi_video` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频 |
-| ... | | | 还有 61 个API |
+### Step 1: Check API Key
 
-**Douyin App V3**（44个API）
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `app/v3` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持10个视频 |
-| `app/v3` | POST | - | 批量获取视频信息，支持图文、视频等，一次性最多支持50个视频 |
-| `app/v3` | POST | - | 批量获取视频信息 |
-| `app/v3` | GET | - | 根据分享口令获取分享信息，比如抖音文章的分享口令提取分享人信息和文章ID等然后再去请求单一作品数据接口获取文章内容。 |
-| `app/v3` | GET | - | 根据分享链接获取单个作品数据 |
-| `app/v3` | GET | - | 根据视频ID获取作品的统计数据，支持多个视频id，一次性最多支持50个视频。 |
-| `app/v3` | GET | - | 根据视频ID获取作品的统计数据 |
-| ... | | | 还有 38 个API |
+#### If missing — show setup guide
 
-**Douyin Search**（19个API）
+Chinese user:
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `search/fetch_vision_search` | POST | - | 抖音APP图像识别搜索（以图搜图/视觉搜索）。 |
-| `search/fetch_image_search_v3` | POST | - | 获取抖音 App 中图文内容搜索的结果。 |
-| `search/fetch_image_search` | POST | - | 获取抖音 App 中图片内容搜索的结果。 |
-| `search/fetch_multi_search` | POST | - | 获取抖音 App 中多种类型（视频、用户、音乐、话题等）的综合搜索结果。 |
-| `search/fetch_school_search` | POST | - | 获取抖音 App 中学校信息的搜索结果。 |
-| `search/fetch_search_suggest` | POST | - | 获取抖音 App 中搜索关键词的联想推荐结果。 |
-| `search/fetch_user_search_v2` | POST | - | 获取抖音 App 中根据关键词搜索到的用户列表。 |
-| `search/fetch_user_search` | POST | - | 获取抖音 App 中根据关键词搜索到的用户列表。 |
-| `search/fetch_live_search_v1` | POST | - | 获取抖音 App 中直播搜索结果。 |
-| `search/fetch_experience_search` | POST | - | 获取抖音 App 中经验（知识/教程）内容的搜索结果。 |
-| ... | | | 还有 9 个API |
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-douyin.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
-**Douyin Billboard**（31个API）
+English user:
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `billboard/fetch_hot_account_search_list` | GET | - | 获取搜索用户名或抖音号 |
-| `billboard/fetch_hot_rise_list` | GET | - | 获取上升热点榜 |
-| `billboard/fetch_city_list` | GET | - | 获取城市列表 |
-| `billboard/fetch_hot_total_low_fan_list` | POST | - | 获取低粉爆款榜 |
-| `billboard/fetch_hot_item_trends_list` | GET | - | 获取作品数据趋势 |
-| `billboard/fetch_hot_user_portrait_list` | GET | - | 获取作品点赞观众画像 |
-| `billboard/fetch_hot_comment_word_list` | GET | - | 获取作品评论分析-词云权重 |
-| `billboard/fetch_hot_total_hot_word_list` | POST | - | 获取全部内容词 |
-| `billboard/fetch_hot_total_hot_word_detail_list` | GET | - | 获取内容词详情 |
-| `billboard/fetch_hot_city_list` | GET | - | 获取同城热点榜 |
-| ... | | | 还有 21 个API |
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-douyin.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
 
-**Douyin Creator**（17个API）
+### Step 1.5: Complexity Classification
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `creator/fetch_user_search` | GET | - | 搜索抖音用户，支持抖音号和抖音昵称搜索 |
-| `creator/fetch_video_danmaku_list` | GET | - | 获取指定作品的弹幕列表，支持管理和筛选弹幕 |
-| `creator/fetch_creator_hot_spot_billboard` | GET | - | 获取抖音创作者热点榜单数据 |
-| `creator/fetch_creator_material_center_billboard` | GET | - | 获取抖音创作者中心热门视频榜单数据 |
-| `creator/fetch_creator_material_center_config` | GET | - | 获取抖音创作者中心配置信息 |
-| `creator/fetch_creator_content_category` | GET | - | 获取抖音创作者平台内容创作的合集分类列表 |
-| `creator/fetch_creator_content_course` | GET | - | 获取抖音创作者平台指定分类的内容创作课程 |
-| `creator/fetch_creator_activity_list` | GET | - | 获取抖音创作者活动列表数据 |
-| `creator/fetch_creator_activity_detail` | GET | - | 获取抖音创作者活动详情数据 |
-| `creator/fetch_creator_hot_challenge_billboard` | GET | - | 获取抖音创作者平台热门挑战榜单数据 |
-| ... | | | 还有 7 个API |
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
 
-**Douyin Creator V2**（14个API）
+### Step 2: Route — Classify Intent & Load Reference
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `creator_v2/fetch_item_list_download` | POST | - | 导出指定时间范围内前1000条投稿作品的详细数据 |
-| `creator_v2/fetch_item_analysis_involved_vertical` | POST | - | 获取指定时间段内投稿作品涉及的垂类标签 |
-| `creator_v2/fetch_item_danmaku_analysis` | POST | - | 获取抖音作品的弹幕分析数据 |
-| `creator_v2/fetch_item_overview_data` | POST | - | 获取抖音作品总览数据，包括流量指标、审核状态、播放信息等 |
-| `creator_v2/fetch_item_search_keyword` | POST | - | 获取抖音作品的搜索关键词统计数据 |
-| `creator_v2/fetch_item_play_source` | POST | - | 获取抖音作品的流量来源统计数据 |
-| `creator_v2/fetch_item_audience_others` | POST | - | 获取抖音作品的观众其他数据分析，包括受众分布和受众关注词 |
-| `creator_v2/fetch_item_audience_portrait` | POST | - | 获取抖音作品的观众数据分析 |
-| `creator_v2/fetch_item_watch_trend` | POST | - | 获取抖音作品的观看趋势分析数据 |
-| `creator_v2/fetch_author_diagnosis` | POST | - | 获取抖音创作者账号的诊断数据和优化建议 |
-| ... | | | 还有 4 个API |
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **Video & Content** | 视频, 作品, 详情, 播放, 下载, video, content, detail, play | `references/api-video.md` | fetch_one_video, fetch_one_video_v2, fetch_video_comments, fetch_video_comment_replies, fetch_user_post_videos, fetch_user_like_videos, fetch_video_danmaku, fetch_related_videos, batch_fetch_video_info |
+| **User Data** | 用户, 达人, 粉丝, 关注, 信息, user, profile, follower, following | `references/api-user.md` | fetch_user_info, fetch_user_followers, fetch_user_following, fetch_user_profile, batch_fetch_user_info |
+| **Search** | 搜索, 搜, 找, 综合, 视频, 用户, 话题, search, find, general, hashtag, music | `references/api-search.md` | fetch_general_search_v2, fetch_video_search, fetch_user_search, fetch_hashtag_search, fetch_music_search, fetch_live_search, fetch_keyword_suggestions |
+| **Trending & Billboard** | 热榜, 热搜, 趋势, 排行, 榜单, trending, hot, billboard, rank | `references/api-trending.md` | fetch_hot_search, fetch_hot_total_list, fetch_video_hot_list, fetch_topic_hot_list, fetch_rising_hot_list, fetch_city_hot_list, fetch_hot_list_category |
+| **Creator Tools** | 创作者, 投稿, 诊断, 分析, 创作热点, creator, post, diagnosis, analysis | `references/api-creator.md` | fetch_creator_hotspot, fetch_item_list, fetch_item_overview, fetch_item_audience, fetch_author_diagnosis, fetch_live_history, fetch_item_analysis_overview |
+| **Xingtu KOL** | 星图, KOL, 达人, 报价, 粉丝画像, 性价比, xingtu, kol, pricing, portrait | `references/api-xingtu.md` | search_kol, fetch_kol_base_info, fetch_kol_data_overview, fetch_kol_service_price, fetch_kol_fans_portrait, fetch_kol_audience_portrait, fetch_kol_video_performance, fetch_kol_xingtu_index |
+| **Content Index** | 指数, 品牌, 关键词, 达人, 趋势, 报告, index, brand, keyword, daren, trend, report | `references/api-index.md` | fetch_brand_index, fetch_hot_words, fetch_keyword_trend, fetch_daren_metrics, fetch_daren_fans, fetch_content_trend, fetch_search_trend, fetch_brand_trend_lines |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
-**Douyin Index**（44个API）
+**Rules:**
+- If uncertain, default to **Video & Content**.
+- For **Deep Dive**, read reference files incrementally.
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `index/fetch_content_interact_trend` | POST | - | 获取指定垂类的互动数据（点赞/评论/分享/收藏等）随时间变化趋势 |
-| `index/fetch_content_creative_keyword_items` | POST | - | 获取指定垂类下、指定热门关键词的相关视频列表 |
-| `index/fetch_content_publish_trend` | GET | - | 获取指定垂类的视频发布数量随时间变化趋势 |
-| `index/fetch_content_valid_date` | GET | - | 获取创作指南各类型数据的有效日期范围 |
-| `index/fetch_content_creative_duration` | POST | - | 获取指定垂类下视频时长分布数据 |
-| `index/fetch_content_creative_keywords` | POST | - | 获取指定垂类下创作热门关键词 |
-| `index/fetch_content_creative_topic` | POST | - | 获取指定垂类下创作热门话题 |
-| `index/fetch_content_author_portrait` | POST | - | 获取指定垂类下**创作者**人群画像（即"发布该垂类视频的作者"画像） |
-| `index/fetch_brand_suggest` | POST | - | 获取品牌搜索的自动补全建议列表 |
-| `index/fetch_encrypt_user_id` | GET | - | 将抖音 uid（纯数字）转换为抖音指数 API 内部使用的加密 user_id |
-| ... | | | 还有 34 个API |
+### Step 3: Classify Action Mode
 
-**Douyin Xingtu**（22个API）
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `xingtu/search_kol_v1` | GET | - | 关键词搜索kol V1 |
-| `xingtu/get_xingtu_kolid_by_sec_user_id` | GET | - | 通过抖音sec_user_id获取游客星图kolid |
-| `xingtu/get_xingtu_kolid_by_unique_id` | GET | - | 通过抖音号获取游客星图kolid |
-| `xingtu/get_xingtu_kolid_by_uid` | GET | - | 通过抖音用户ID获取游客星图kolid |
-| `xingtu/kol_rec_videos_v1` | GET | - | 获取kol内容表现V1 |
-| `xingtu/kol_base_info_v1` | GET | - | 获取kol基本信息V1 |
-| `xingtu/kol_cp_info_v1` | GET | - | 获取kol性价比能力分析V1 |
-| `xingtu/kol_data_overview_v1` | GET | - | 获取kol数据概览V1 |
-| `xingtu/kol_xingtu_index_v1` | GET | - | 获取kol星图指数V1 |
-| `xingtu/kol_service_price_v1` | GET | - | 获取kol服务报价V1 |
-| ... | | | 还有 12 个API |
+### Step 4: Plan & Execute
 
-**Douyin Xingtu V2**（21个API）
+#### Pattern A: "分析抖音达人"
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `xingtu_v2/get_demander_mcn_list` | GET | - | 搜索MCN机构列表 |
-| `xingtu_v2/get_excellent_case_category_list` | GET | - | 获取连接用户漏斗中的优秀行业分类列表 |
-| `xingtu_v2/get_content_trend_guide` | GET | - | 获取内容趋势指南数据（CDN静态JSON，无需Cookie） |
-| `xingtu_v2/get_author_spread_info` | GET | - | 获取创作者商业能力的传播价值信息 |
-| `xingtu_v2/get_author_local_info` | GET | - | 获取创作者位置信息 |
-| `xingtu_v2/get_author_content_hot_keywords` | GET | - | 获取创作者内容热词 |
-| `xingtu_v2/get_author_business_card_info` | GET | - | 获取创作者商业卡片信息 |
-| `xingtu_v2/get_author_base_info` | GET | - | 获取创作者基本信息 |
-| `xingtu_v2/get_author_show_items` | GET | - | 获取创作者视频列表 |
-| `xingtu_v2/get_author_hot_comment_tokens` | GET | - | 获取创作者评论热词 |
-| ... | | | 还有 11 个API |
+1. 搜索用户 → fetch_user_info → 获取基本信息
+2. 获取作品 → fetch_user_post_videos → 获取视频列表
+3. 星图数据 → fetch_kol_base_info → 星图达人信息
 
-## 注意事项
+#### Pattern B: "抖音热榜分析"
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+1. 热搜榜 → fetch_hot_search → 热搜数据
+2. 视频热榜 → fetch_video_hot_list → 视频排行
+3. 话题热榜 → fetch_topic_hot_list → 话题排行
 
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
 
-## 数据隐私说明
+### Step 5: Output Results
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+#### Browse Mode
+Present results concisely with key fields.
 
-v1.0.11 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.0.10 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

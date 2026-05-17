@@ -1,109 +1,176 @@
 ---
 name: maxhub-temp-mail
-description: 临时邮箱服务。当用户提到临时邮箱、temp mail、隐私邮箱等相关需求时激活此Skill。
-version: 1.2.1
-author: MaxHub Team
-license: MIT
-trigger: "临时邮箱|temp mail|隐私邮箱|一次性邮箱|临时email"
-categories:
-  - tools
-  - privacy
-  - email
-tools:
-  - http
+description: "临时邮箱服务助手。支持生成临时邮箱、获取邮件列表和邮件详情。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "1.0.0"
   openclaw:
+    emoji: "📧"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "📧"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - 临时邮箱
-    - temp mail
-    - 隐私邮箱
-    - 一次性邮箱
-    - 临时email
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["\u4e34\u65f6\u90ae\u7bb1", "\u90ae\u4ef6", "\u9690\u79c1", "temp mail", "email"]
+    category: productivity
 ---
 
-# 📧 临时邮箱服务
+# 临时邮箱助手
 
-唯一标识：`maxhub-temp-mail`
-版本：v1.1.9
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a Temp Mail Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-临时邮箱服务——临时邮箱、temp mail、隐私邮箱等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 3 active endpoints (0 deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 3 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：临时邮箱、temp mail、隐私邮箱、一次性邮箱、临时email
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：帮我创建一个临时邮箱 → 返回邮箱地址和Token，可用于接收邮件
-2. 示例：查看我的临时邮箱有没有收到邮件 → 返回邮件列表，包含发件人、主题、内容
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/temp-mail/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/temp-mail/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**Temp Mail**（3个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `/api/v1/temp_mail/v1/get_email_by_id` | GET | - | 通过邮件ID获取邮件数据 |
-| `/api/v1/temp_mail/v1/get_emails_inbox` | GET | - | 获取邮件列表 |
-| `/api/v1/temp_mail/v1/get_temp_email_address` | GET | - | 获取一个临时邮箱地址 |
+### Step 1: Check API Key
 
-## 注意事项
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+#### If missing — show setup guide
 
+Chinese user:
 
-## 数据隐私说明
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-temp-mail.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+English user:
 
-v1.1.7 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.1.6 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-temp-mail.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
+
+### Step 1.5: Complexity Classification
+
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+
+### Step 2: Route — Classify Intent & Load Reference
+
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **Email Operations** | 邮箱, 邮件, 临时, 获取, email, mail, temp, get | `references/api-email.md` | get_temp_email, get_emails, get_email_by_id |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+
+**Rules:**
+- If uncertain, default to **Email Operations**.
+- For **Deep Dive**, read reference files incrementally.
+
+### Step 3: Classify Action Mode
+
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+
+### Step 4: Plan & Execute
+
+No predefined patterns. Chain endpoints as needed based on user query.
+
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
+
+### Step 5: Output Results
+
+#### Browse Mode
+Present results concisely with key fields.
+
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

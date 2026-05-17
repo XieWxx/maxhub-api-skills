@@ -1,134 +1,193 @@
 ---
 name: maxhub-weibo
-description: 微博数据采集与分析。当用户提到微博、weibo、热搜等相关需求时激活此Skill。
-version: 1.1.1
-author: MaxHub Team
-license: MIT
-trigger: "微博|weibo|热搜|超话|话题|微博搜索"
-categories:
-  - social-media
-  - data-collection
-  - trending
-tools:
-  - http
+description: "微博全场景数据查询助手。整合App/Web/V2多版本API，覆盖微博详情、用户数据、AI搜索、高级搜索、热搜榜单、评论、视频等全功能。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "2.0.0"
   openclaw:
+    emoji: "🐦"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "🔥"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - 微博
-    - weibo
-    - 热搜
-    - 超话
-    - 话题
-    - 微博搜索
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["微博", "热搜", "AI搜索", "高级搜索", "评论", "用户", "搜索", "视频"]
+    category: productivity
 ---
 
-# 🔥 微博数据采集与分析
+# 微博数据助手
 
-唯一标识：`maxhub-weibo`
-版本：v1.0.10
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a Weibo Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-微博数据采集与分析——微博、weibo、热搜等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 97 active endpoints across App/Web/V2 APIs (deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 64 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：微博、weibo、热搜、超话、话题
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：微博热搜 → 返回热搜榜单，包含排名、话题、热度值
-2. 示例：搜索微博上关于科技的话题 → 返回话题列表，包含阅读量、讨论量
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/weibo/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/weibo/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**Weibo Web**（11个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `web/fetch_search` | GET | - | 搜索微博内容 |
-| `web/fetch_channel_feed` | GET | - | 根据频道名称获取热门内容（便捷接口） |
-| `web/fetch_post_comments` | GET | - | 获取微博的评论列表（热门评论流） |
-| `web/fetch_post_detail` | GET | - | 获取单条微博的详情 |
-| `web/fetch_search_topics` | GET | - | 获取搜索页的热搜词列表（搜索建议/热门话题） |
-| `web/fetch_hot_search` | GET | - | 获取微博实时热搜榜（Top 50）和实时上升热点 |
-| `web/fetch_user_info` | GET | - | 获取微博用户信息 |
-| `web/fetch_user_posts` | GET | - | 获取微博用户的微博列表 |
-| `web/fetch_comment_replies` | GET | - | 获取评论的子评论（回复） |
-| `web/fetch_trend_top` | GET | - | 获取指定频道的热门趋势内容 |
-| ... | | | 还有 1 个API |
+### Step 1: Check API Key
 
-**Weibo App**（20个API）
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `app/fetch_ai_smart_search` | GET | - | 使用微博AI智搜功能进行搜索，返回AI增强的搜索结果。 |
-| `app/fetch_search_all` | GET | - | 在微博中进行综合搜索，返回相关内容。支持多种搜索类型。 |
-| `app/fetch_status_likes` | GET | - | 获取指定微博的点赞列表（也适用于视频点赞）。 |
-| `app/fetch_status_comments` | GET | - | 获取指定微博的一级评论列表（也适用于视频评论）。 |
-| `app/fetch_status_detail` | GET | - | 获取指定微博的详细信息。 |
-| `app/fetch_status_reposts` | GET | - | 获取指定微博的转发列表（也适用于视频转发）。 |
-| `app/fetch_hot_search_categories` | GET | - | 获取微博热搜榜的所有可用分类列表。 |
-| `app/fetch_hot_search` | GET | - | 获取微博热搜榜，支持多个分类。 |
-| `app/fetch_user_profile_feed` | GET | - | 获取指定用户主页的动态流。 |
-| `app/fetch_user_info` | GET | - | 获取微博用户的基本信息，包括昵称、头像、简介、关注数、粉丝数等。 |
-| ... | | | 还有 10 个API |
+#### If missing — show setup guide
 
-## 注意事项
+Chinese user:
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-weibo.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
+English user:
 
-## 数据隐私说明
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-weibo.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+### Step 1.5: Complexity Classification
 
-v1.0.8 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+
+### Step 2: Route — Classify Intent & Load Reference
+
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **Post & Comment** | 微博, 详情, 评论, 转发, 点赞, 子评论, post, detail, comment, repost, like, sub-comment | `references/api-post.md` | fetch_post_detail, fetch_post_comments, fetch_post_reposts, fetch_post_likes, fetch_sub_comments, fetch_single_post_data, fetch_comments |
+| **User Data** | 用户, 资料, 粉丝, 关注, 微博, 原创微博, 视频, 文章, user, profile, follower, following, timeline | `references/api-user.md` | fetch_user_info, fetch_user_detail, fetch_user_basic_info, fetch_user_timeline, fetch_user_original_posts, fetch_user_articles, fetch_user_videos, fetch_user_all_videos, fetch_user_following, fetch_user_followers, fetch_user_super_topics, user_search |
+| **Search** | 搜索, AI搜索, 高级搜索, 实时, 图片, 视频, 话题, 搜索建议, search, AI, advanced, realtime, image, video, topic, suggest | `references/api-search.md` | comprehensive_search, search_weibo, ai_search, ai_search_extension, advanced_search, realtime_search, picture_search, video_search, topic_search, search_user_posts, user_search, fetch_similar_search, fetch_search_suggestions |
+| **Trending & Hot** | 热搜, 榜单, 趋势, 文娱, 社会, 生活, trending, hot, ranking, entertainment | `references/api-trending.md` | fetch_hot_search, fetch_hot_search_ranking, fetch_hot_search_complete, fetch_entertainment_ranking, fetch_social_ranking, fetch_life_ranking, fetch_hot_ranking_timeline |
+| **Video & Feed** | 视频, 推荐, 频道, Feed, 收藏夹, 分组, video, feed, channel, recommend, collection, group | `references/api-video-feed.md` | fetch_video_detail, fetch_video_featured_feed, fetch_home_recommend_feed, fetch_channel_feed, fetch_channel_trend, fetch_channel_config, fetch_video_collection_list, fetch_video_collection_detail, fetch_all_groups, check_image_comment_allowed |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+
+**Rules:**
+- If uncertain, default to **Search**.
+- For **Deep Dive**, read reference files incrementally.
+
+### Step 3: Classify Action Mode
+
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+
+### Step 4: Plan & Execute
+
+#### Pattern A: "分析微博用户"
+
+1. 搜索用户 → user_search → 找到目标用户
+2. 获取资料 → fetch_user_info → 用户信息
+3. 获取微博 → fetch_user_timeline → 微博列表
+4. 获取原创 → fetch_user_original_posts → 原创微博数据
+
+#### Pattern B: "微博热搜分析"
+
+1. 获取热搜 → fetch_hot_search_ranking → 热搜榜单
+2. 获取文娱 → fetch_entertainment_ranking → 文娱榜
+3. 获取社会 → fetch_social_ranking → 社会榜
+4. 获取趋势 → fetch_hot_ranking_timeline → 热搜时间线
+
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
+
+### Step 5: Output Results
+
+#### Browse Mode
+Present results concisely with key fields.
+
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+| "AI搜索" / "AI search" | Route to ai_search endpoint |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

@@ -1,148 +1,189 @@
 ---
 name: maxhub-instagram
-description: Instagram数据采集。当用户提到instagram、ins、图片等相关需求时激活此Skill。
-version: 1.1.1
-author: MaxHub Team
-license: MIT
-trigger: "instagram|ins|图片|reel|story|ins搜索"
-categories:
-  - social-media
-  - data-collection
-tools:
-  - http
+description: "Instagram 全场景数据查询助手。支持V1/V2/V3三个版本API，覆盖用户信息、帖子、Reels、Stories、评论、搜索、话题、地点等全功能。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "1.0.0"
   openclaw:
+    emoji: "📸"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "📸"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - instagram
-    - ins
-    - 图片
-    - reel
-    - story
-    - ins搜索
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["instagram", "\u5e16\u5b50", "Reels", "Stories", "\u7528\u6237", "\u641c\u7d22"]
+    category: productivity
 ---
 
-# 📸 Instagram数据采集
+# Instagram 数据助手
 
-唯一标识：`maxhub-instagram`
-版本：v1.0.11
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a Instagram Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-Instagram数据采集——instagram、ins、图片等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 88 active endpoints (0 deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 88 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：instagram、ins、图片、reel、story
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：Search Instagram user @xxx → 返回用户信息，包含粉丝数、帖子数、认证状态
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/instagram/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/instagram/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**Instagram V1**（29个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `v1/media_id_to_shortcode` | GET | - | 将Instagram帖子的Media ID转换为Shortcode |
-| `v1/shortcode_to_media_id` | GET | - | 将Instagram帖子的Shortcode转换为Media ID |
-| `v1/fetch_search` | GET | - | 根据关键词搜索Instagram上的用户、话题标签或地点 |
-| `v1/fetch_user_info_by_id_v2` | GET | - | 根据Instagram用户ID获取用户数据，返回更详细的信息 |
-| `v1/fetch_user_info_by_id` | GET | - | 根据Instagram用户ID获取用户数据 |
-| `v1/fetch_user_info_by_username_v2` | GET | - | 根据Instagram用户名获取用户数据 |
-| `v1/fetch_user_info_by_username_v3` | GET | - | 根据Instagram用户名获取用户数据，返回更详细的信息 |
-| `v1/fetch_user_info_by_username` | GET | - | 根据Instagram用户名获取用户数据 |
-| `v1/user_id_to_username` | GET | - | 通过Instagram用户ID获取用户信息 |
-| `v1/fetch_music_posts` | GET | - | 获取使用指定音乐/音频的Reels和帖子列表 |
-| ... | | | 还有 19 个API |
+### Step 1: Check API Key
 
-**Instagram V2**（27个API）
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `v2/media_id_to_shortcode` | GET | - | 将Instagram帖子的Media ID转换为Shortcode |
-| `v2/shortcode_to_media_id` | GET | - | 将Instagram帖子的Shortcode转换为Media ID |
-| `v2/search_reels` | GET | - | 根据关键词搜索Instagram Reels短视频 |
-| `v2/search_locations` | GET | - | 根据关键词搜索Instagram地点 |
-| `v2/search_users` | GET | - | 根据关键词搜索Instagram用户 |
-| `v2/search_hashtags` | GET | - | 根据关键词搜索Instagram话题标签 |
-| `v2/search_music` | GET | - | 根据关键词搜索Instagram上可用的音乐 |
-| `v2/search_by_coordinates` | GET | - | 根据GPS坐标搜索附近的Instagram地点 |
-| `v2/user_id_to_username` | GET | - | 通过Instagram用户ID获取用户信息 |
-| `v2/general_search` | GET | - | 根据关键词进行Instagram综合搜索 |
-| ... | | | 还有 17 个API |
+#### If missing — show setup guide
 
-**Instagram V3**（32个API）
+Chinese user:
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `v3/extract_shortcode` | GET | - | 从完整的Instagram帖子URL中提取短码 |
-| `v3/media_id_to_shortcode` | GET | - | 将数字媒体ID（media_id）转换为帖子短码（shortcode） |
-| `v3/bulk_translate_comments` | GET | - | 批量翻译Instagram评论 |
-| `v3/search_places` | GET | - | Instagram地点搜索接口 |
-| `v3/search_users` | GET | - | Instagram用户搜索接口 |
-| `v3/search_hashtags` | GET | - | Instagram话题标签搜索接口 |
-| `v3/shortcode_to_media_id` | GET | - | 将帖子短码（shortcode）转换为数字媒体ID（media_id） |
-| `v3/general_search` | GET | - | Instagram综合搜索接口（支持分页） |
-| `v3/translate_comment` | GET | - | 翻译Instagram帖子文本（caption） |
-| `v3/get_highlight_stories` | GET | - | 获取Instagram Highlight精选的详细故事/帖子内容 |
-| ... | | | 还有 22 个API |
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-instagram.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
-## 注意事项
+English user:
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-instagram.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
 
+### Step 1.5: Complexity Classification
 
-## 数据隐私说明
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+### Step 2: Route — Classify Intent & Load Reference
 
-v1.0.9 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.0.8 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **User Data** | 用户, 资料, 粉丝, 关注, 帖子, user, profile, follower, following, posts | `references/api-user.md` | fetch_user_info, fetch_user_posts, fetch_user_followers, fetch_user_following, fetch_user_stories, fetch_user_reels, fetch_user_highlights, fetch_user_tagged_posts, fetch_user_about, fetch_user_brief_info, fetch_user_former_usernames |
+| **Post & Media** | 帖子, 帖文, 图片, 视频, Reels, 详情, post, media, reels, detail | `references/api-post.md` | fetch_post_info, fetch_post_comments, fetch_comment_replies, fetch_post_likes, fetch_highlight_stories, fetch_post_oembed |
+| **Search & Explore** | 搜索, 搜, 找, 话题, 地点, 探索, search, find, hashtag, location, explore | `references/api-search.md` | search_users, search_hashtags, search_locations, general_search, fetch_explore_feed, fetch_hashtag_posts, fetch_location_posts, fetch_location_info, fetch_nearby_content |
+| **Content Tools** | 翻译, 短码, ID转换, oEmbed, translate, shortcode, media_id, oembed | `references/api-tools.md` | convert_media_id_shortcode, extract_shortcode, translate_comment, bulk_translate_comments, fetch_reels_feed, fetch_user_id_by_username |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+
+**Rules:**
+- If uncertain, default to **User Data**.
+- For **Deep Dive**, read reference files incrementally.
+
+### Step 3: Classify Action Mode
+
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+
+### Step 4: Plan & Execute
+
+#### Pattern A: "分析Instagram用户"
+
+1. 搜索用户 → search_users → 找到目标用户
+2. 获取资料 → fetch_user_info → 用户详细信息
+3. 获取帖子 → fetch_user_posts → 帖子列表
+
+#### Pattern B: "分析帖子互动"
+
+1. 获取详情 → fetch_post_info → 帖子详情
+2. 获取评论 → fetch_post_comments → 评论列表
+3. 获取点赞 → fetch_post_likes → 点赞列表
+
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
+
+### Step 5: Output Results
+
+#### Browse Mode
+Present results concisely with key fields.
+
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

@@ -1,132 +1,183 @@
 ---
 name: maxhub-kuaishou
-description: 快手数据采集与分析。当用户提到快手、kuaishou、快手视频等相关需求时激活此Skill。
-version: 1.1.1
-author: MaxHub Team
-license: MIT
-trigger: "快手|kuaishou|快手视频|快手直播|快手电商"
-categories:
-  - social-media
-  - data-collection
-  - e-commerce
-tools:
-  - http
+description: "快手全场景数据查询助手。支持App和Web双端API，覆盖视频详情、用户数据、搜索、热榜、直播、评论等全功能。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "1.0.0"
   openclaw:
+    emoji: "🎬"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "🎬"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - 快手
-    - kuaishou
-    - 快手视频
-    - 快手直播
-    - 快手电商
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["kuaishou", "\u5feb\u624b", "\u77ed\u89c6\u9891", "\u76f4\u64ad", "\u70ed\u699c"]
+    category: productivity
 ---
 
-# 🎬 快手数据采集与分析
+# 快手数据助手
 
-唯一标识：`maxhub-kuaishou`
-版本：v1.0.11
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a Kuaishou Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-快手数据采集与分析——快手、kuaishou、快手视频等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 33 active endpoints (0 deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 33 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：快手、kuaishou、快手视频、快手直播、快手电商
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：搜索快手上的美食视频 → 返回视频列表，包含标题、作者、播放量
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/kuaishou/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/kuaishou/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**Kuaishou App**（20个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `app/fetch_brand_top_list` | GET | - | 快手品牌榜单 |
-| `app/fetch_videos_batch` | GET | - | 批量获取多个作品数据，单次请求最多支持40个视频ID。 |
-| `app/fetch_hot_search_person` | GET | - | 快手热搜人物榜单 |
-| `app/fetch_hot_board_categories` | GET | - | 快手热榜分类 |
-| `app/fetch_hot_board_detail` | GET | - | 快手热榜详情 |
-| `app/fetch_live_top_list` | GET | - | 快手直播榜单 |
-| `app/fetch_shopping_top_list` | GET | - | 快手购物榜单 |
-| `app/search_user_v2` | GET | - | 搜索用户 V2 |
-| `app/search_video_v2` | GET | - | 搜索视频 V2 |
-| `app/fetch_one_video_by_url` | GET | - | 根据链接获取单个作品数据 |
-| ... | | | 还有 10 个API |
+### Step 1: Check API Key
 
-**Kuaishou Web**（13个API）
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `web/generate_share_short_url` | GET | - | 生成分享短连接 |
-| `web/fetch_one_video_comment` | GET | - | 获取单个作品评论数据 |
-| `web/fetch_one_video_sub_comment` | GET | - | 获取单个作品二级评论数据 |
-| `web/fetch_one_video` | GET | - | 获取单个作品数据，此接口不支持图文作品。 |
-| `web/fetch_one_video_v2` | GET | - | 快手单一视频查询接口V2 |
-| `web/fetch_kuaishou_hot_list_v1` | GET | - | 获取快手热榜 V1 |
-| `web/fetch_kuaishou_hot_list_v2` | GET | - | 获取快手热榜 V2 |
-| `web/fetch_get_user_id` | GET | - | 通过用户分享链接获取用户ID |
-| `web/fetch_user_info` | GET | - | 获取用户信息 |
-| `web/fetch_user_post` | GET | - | 获取用户作品列表 |
-| ... | | | 还有 3 个API |
+#### If missing — show setup guide
 
-## 注意事项
+Chinese user:
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-kuaishou.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
+English user:
 
-## 数据隐私说明
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-kuaishou.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+### Step 1.5: Complexity Classification
 
-v1.0.9 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.0.8 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+
+### Step 2: Route — Classify Intent & Load Reference
+
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **Video Data** | 视频, 作品, 详情, 评论, video, detail, comment | `references/api-video.md` | fetch_one_video, fetch_one_video_v2, fetch_video_comments, fetch_video_sub_comments, fetch_user_videos, fetch_user_hot_posts, fetch_video_by_url |
+| **User Data** | 用户, 资料, 粉丝, 关注, user, profile, follower, info | `references/api-user.md` | fetch_user_info, fetch_user_id, search_user, fetch_user_collect, fetch_user_live_info |
+| **Search & Trending** | 搜索, 热榜, 榜单, 排行, search, trending, hot, rank | `references/api-trending.md` | comprehensive_search, search_video, fetch_hot_list, fetch_hot_categories, fetch_brand_top_list, fetch_live_top_list, fetch_shopping_top_list |
+| **Live & Tools** | 直播, 分享, 链接, live, share, link, URL | `references/api-live-tools.md` | fetch_user_live_replay, generate_share_link, generate_share_short_url |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+
+**Rules:**
+- If uncertain, default to **Video Data**.
+- For **Deep Dive**, read reference files incrementally.
+
+### Step 3: Classify Action Mode
+
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+
+### Step 4: Plan & Execute
+
+#### Pattern A: "分析快手用户"
+
+1. 搜索用户 → search_user → 找到目标用户
+2. 获取资料 → fetch_user_info → 用户详细信息
+3. 获取作品 → fetch_user_videos → 视频列表
+
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
+
+### Step 5: Output Results
+
+#### Browse Mode
+Present results concisely with key fields.
+
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

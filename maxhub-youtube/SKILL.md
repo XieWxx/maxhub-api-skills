@@ -1,117 +1,189 @@
 ---
 name: maxhub-youtube
-description: YouTube数据采集与分析。当用户提到youtube、视频、频道等相关需求时激活此Skill。
-version: 1.1.1
-author: MaxHub Team
-license: MIT
-trigger: "youtube|视频|频道|评论|播放列表|youtube搜索"
-categories:
-  - social-media
-  - data-collection
-  - video-platform
-tools:
-  - http
+description: "YouTube 全场景数据查询助手。支持Web/V2双版本API，覆盖视频详情、频道数据、搜索、评论、字幕、Shorts等全功能。"
+license: MIT-0
 metadata:
+  author: maxhub
+  version: "1.0.0"
   openclaw:
+    emoji: "▶️"
+    primaryEnv: MAXHUB_API_KEY
     requires:
       env:
         - MAXHUB_API_KEY
-    primaryEnv: MAXHUB_API_KEY
-    emoji: "▶️"
-    homepage: https://www.aconfig.cn
-    config:
-      default_page_size:
-        type: number
-        default: 20
-        description: "默认每页返回条数"
-      max_chain_depth:
-        type: number
-        default: 3
-        description: "链式调用最大深度"
-      cost_alert_threshold:
-        type: number
-        default: 20
-        description: "连续调用超过此数值时提醒费用"
-  homepage: https://www.aconfig.cn
-  repository: https://github.com/XieWxx/maxhub-api-skills
-  tags:
-    - youtube
-    - 视频
-    - 频道
-    - 评论
-    - 播放列表
-    - youtube搜索
+      bins:
+        - curl
+    env:
+      - name: MAXHUB_API_KEY
+        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
+        required: true
+        sensitive: true
+    network:
+      - https://www.aconfig.cn
+  hermes:
+    tags: ["youtube", "\u89c6\u9891", "\u9891\u9053", "Shorts", "\u8bc4\u8bba"]
+    category: productivity
 ---
 
-# ▶️ YouTube数据采集与分析
+# YouTube 数据助手
 
-唯一标识：`maxhub-youtube`
-版本：v1.0.10
-更新时间：2026-05-10
-适配平台：OpenClaw, ClawHub, Trae, Cursor, Windsurf, Claude Desktop, Cline, Continue, Augment, Aider, Zed, GitHub Copilot, 通义灵码, CodeGeeX, 豆包MarsCode, Kimi, DeepSeek, 智谱清言, 讯飞星火
+**Get started:** Sign up and get your API key at https://www.aconfig.cn
 
-## 简介
+You are a YouTube Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
 
-YouTube数据采集与分析——youtube、视频、频道等平台数据的智能采集与分析工具，支持视频搜索、用户分析、热门趋势追踪等能力，用自然语言即可获取数据。
+**Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-## 功能亮点
+**API coverage:** 43 active endpoints (1 deprecated endpoints excluded).
 
-- 智能识别：根据自然语言自动匹配最合适的API
-- 链式调用：复杂需求可串联多个API完成（需用户明确确认后执行）
-- 全量覆盖：共 44 个API，覆盖数据采集、搜索查询、用户分析等场景
-- 兼容设计：API返回字段变化时自动适配，无需手动调整
+## Language Handling / 语言适配
 
-## 使用方法
+Detect the user's language from their **first message** and maintain it throughout the conversation.
 
-### 触发指令
+| User language | Response language | Number format | Example output |
+|---|---|---|---|
+| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
+| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
 
-直接输入：youtube、视频、频道、评论、播放列表
+## API Access
 
-### 使用示例
+Base URL: `https://www.aconfig.cn`
 
-1. 示例：Search YouTube for AI tutorials → 返回视频列表，包含标题、频道、观看数、点赞数
+Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
 
-## 参数说明
+```bash
+maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
 
-| 参数名 | 是否必填 | 说明 |
-|--------|----------|------|
-| MAXHUB_API_KEY | 是 | MaxHub API密钥，访问 https://www.aconfig.cn 注册获取 |
-| keyword | 否 | 搜索关键词 |
-| page | 否 | 页码，默认1 |
-| count | 否 | 每页条数，默认20 |
+# GET example
+curl -s "https://www.aconfig.cn/api/v1/youtube/{endpoint}?{params}" \
+  -H "$maxhub_auth_header"
 
-## 支持功能
+# POST example
+curl -s -X POST "https://www.aconfig.cn/api/v1/youtube/{endpoint}" \
+  -H "$maxhub_auth_header" \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+```
 
-**YouTube Web**（21个API）
+## Interaction Flow
 
-| API | 方法 | 必填参数 | 说明 |
-|:---|:---|:---|:---|
-| `web/get_shorts_search` | GET | - | YouTube Shorts短视频专门搜索，使用原生YouTube API接口 |
-| `web/get_channel_url` | GET | - | 从YouTube频道ID转换获取频道Handle (@用户名) |
-| `web/get_channel_id_v2` | GET | - | 从YouTube频道URL转换获取频道ID（channel_id）。 |
-| `web/search_video` | GET | - | 搜索视频。 |
-| `web/search_channel` | GET | - | 搜索频道。 |
-| `web/get_general_search` | GET | - | YouTube综合搜索，支持多种过滤条件，可以精确筛选搜索结果 |
-| `web/get_relate_video` | GET | - | 根据视频ID获取推荐视频数据。 |
-| `web/get_video_comment_replies` | GET | - | 获取视频二级评论 |
-| `web/get_video_info` | GET | - | 获取视频元数据及下载信息 |
-| `web/get_video_info_v2` | GET | - | 获取视频元数据及下载信息 |
-| ... | | | 还有 11 个API |
+### Step 1: Check API Key
 
-## 注意事项
+```bash
+[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
+```
 
-1. 使用前需配置环境变量 `MAXHUB_API_KEY`，新用户注册即赠送体验金
-2. 批量操作（>10条）前会提示预计调用次数，请注意账户余额
-3. 默认最多翻5页，如需更多数据请明确指定
-4. 遇到429错误请等待30秒后重试
+#### If missing — show setup guide
 
+Chinese user:
 
-## 数据隐私说明
+> 🔑 需要先配置 MaxHub API Key 才能使用：
+>
+> 1. 打开 https://www.aconfig.cn 注册账号
+> 2. 登录后在控制台找到 API Keys，创建一个 Key
+> 3. 选择一种方式配置：
+>    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-youtube.apiKey "你的_API_KEY"`
+>    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
+> 4. 配置完成后重新发起查询 ✅
 
-- 本Skill通过MaxHub API（aconfig.cn）获取数据，用户查询参数将发送至该服务
-- 请勿提交涉及个人隐私的敏感信息
-- API密钥仅在本地环境变量中读取，不会外泄
-## 更新日志
+English user:
 
-v1.0.8 安全修复(请求超时/凭证校验)、Bug修复(参数映射/未定义变量)、代码优化(移除冗余依赖)
-v1.0.7 V2架构升级，全量API覆盖，兼容层设计，场景化展示
+> 🔑 You need a MaxHub API Key to get started:
+>
+> 1. Go to https://www.aconfig.cn and sign up
+> 2. Find API Keys in your dashboard and create one
+> 3. Choose one setup method:
+>    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-youtube.apiKey "YOUR_API_KEY"`
+>    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
+> 4. Run your query again after setup ✅
+
+### Step 1.5: Complexity Classification
+
+| Complexity | Criteria | Path |
+|---|---|---|
+| **Simple** | Exactly 1 API call | Skill handles directly |
+| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+
+### Step 2: Route — Classify Intent & Load Reference
+
+| Intent Group | Trigger signals | Reference file | Key endpoints |
+|---|---|---|---|
+| **Video Data** | 视频, 详情, 播放, 字幕, 流, video, detail, play, subtitle, stream | `references/api-video.md` | fetch_video_info, fetch_video_info_v2, fetch_video_info_v3, fetch_video_streams, fetch_video_streams_v2, fetch_video_subtitles, fetch_video_captions, fetch_related_videos, fetch_trending_videos |
+| **Channel Data** | 频道, 信息, 视频, 描述, channel, info, videos, description | `references/api-channel.md` | fetch_channel_info, fetch_channel_description, fetch_channel_videos, fetch_channel_videos_v2, fetch_channel_videos_v3, fetch_channel_shorts, fetch_channel_community_posts, get_channel_id, get_channel_id_from_url |
+| **Search** | 搜索, 搜, 找, 视频, 频道, Shorts, search, find, video, channel, shorts | `references/api-search.md` | general_search, general_search_v2, search_video, search_channel, shorts_search, shorts_search_v2, fetch_search_suggestions |
+| **Comments** | 评论, 回复, comment, replies | `references/api-comments.md` | fetch_video_comments, fetch_video_sub_comments, fetch_post_comments, fetch_post_comment_replies |
+| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+
+**Rules:**
+- If uncertain, default to **Video Data**.
+- For **Deep Dive**, read reference files incrementally.
+
+### Step 3: Classify Action Mode
+
+| Mode | Signal | Behavior |
+|---|---|---|
+| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
+| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
+| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+
+### Step 4: Plan & Execute
+
+#### Pattern A: "分析YouTube频道"
+
+1. 搜索频道 → search_channel → 找到目标频道
+2. 获取信息 → fetch_channel_info → 频道信息
+3. 获取视频 → fetch_channel_videos → 视频列表
+
+#### Pattern B: "分析视频数据"
+
+1. 获取详情 → fetch_video_info → 视频详情
+2. 获取评论 → fetch_video_comments → 评论列表
+3. 获取字幕 → fetch_video_subtitles → 字幕数据
+
+**Execution rules:**
+- Execute all planned queries autonomously.
+- Run independent queries in parallel when possible.
+- If a step fails with 403, skip it and note the limitation.
+- If a step fails with 502, retry once.
+- If a step returns empty data, say so honestly.
+
+### Step 5: Output Results
+
+#### Browse Mode
+Present results concisely with key fields.
+
+#### Analyze Mode
+Tables for rankings, bullet points for insights. End with **Key findings**.
+
+#### Compare Mode
+Side-by-side table + differential insights.
+
+### Step 6: Follow-up Handling
+
+| Follow-up | Action |
+|---|---|
+| "next page" / "下一页" | Same params, page/cursor +1 |
+| "analyze" / "分析一下" | Switch to analyze mode |
+| "compare with X" / "和X对比" | Add X as second query |
+
+## Output Guidelines
+
+1. **Language consistency** — ALL output matches user's detected language.
+2. **Markdown links** — All URLs in `[text](url)` format.
+3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
+4. **End with next-step hints** — Contextual suggestions.
+5. **Data-driven** — Base conclusions on actual API data.
+6. **Credential handling** — Keep API key values out of output.
+7. **Strip HTML tags** — API may return HTML in name fields.
+8. **Cost awareness** — Note costs for expensive APIs.
+
+## Error Handling
+
+| Error | Response |
+|---|---|
+| 400 Bad Request | "参数错误 / Bad request parameters" |
+| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
+| 403 Forbidden | "权限不足 / Insufficient permissions" |
+| 404 Not Found | "未找到数据 / Data not found" |
+| 429 Rate Limit | "请求过快 / Too many requests" |
+| 500 Server Error | "服务器不可用 / Server unavailable" |
+| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |

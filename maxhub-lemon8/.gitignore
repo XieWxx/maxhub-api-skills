@@ -1,5 +1,0 @@
-node_modules/
-.env
-.clawhub/
-*.log
-.DS_Store
