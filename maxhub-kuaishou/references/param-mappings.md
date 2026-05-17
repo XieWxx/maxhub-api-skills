@@ -1,29 +1,43 @@
-# Parameter Mapping Reference / 参数映射参考表
+# Parameter Mappings / 参数映射
 
-## Common API Parameters / 通用API参数
+Platform: `kuaishou` | Base URL: `https://www.aconfig.cn`
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| page | int | 1 | Page number (≥1) |
-| page_size / count | int | 20 | Results per page (1-100) |
-| cursor / max_cursor | int/string | 0 | Pagination cursor |
-| sort_type / order_by | string | "" | Sort field |
-| keyword / query | string | "" | Search keyword |
+---
 
-## Response Code / 响应码
+## fetch_get_user_id
 
-| Code | Meaning | Description |
-|---|---|---|
-| 200 | Success | 请求成功 |
-| 400 | Bad Request | 参数错误 |
-| 401 | Unauthorized | API Key 无效 |
-| 403 | Forbidden | 权限不足 |
-| 404 | Not Found | 数据不存在 |
-| 422 | Validation Error | 参数验证失败 |
-| 429 | Rate Limit | 请求过快 |
-| 500 | Server Error | 服务器错误 |
+- `share_link` (string, required): '' — e.g. `https://v.kuaishou.com/KcdKDwFp`
 
-## Cache / 缓存
+## fetch_kuaishou_hot_list_v2
 
-- 成功响应包含 `cache_url`，有效期 24 小时
-- 访问缓存结果不产生额外费用
+- `board_type` (string, optional): '' — e.g. `1`
+
+## fetch_one_video
+
+- `photo_id` (string, required): '' — e.g. `3xhpk3xcf6e4iac`
+
+## fetch_one_video_by_url
+
+- `share_text` (string, required): '' — e.g. `https://v.kuaishou.com/cNYP0Z`
+
+## fetch_one_video_comment
+
+- `photo_id` (string, required): '' — e.g. `3x7gxp2zhgjv832`
+- `pcursor` (string, optional): ''
+
+## fetch_user_info
+
+- `user_id` (string, required): '' — e.g. `3xz63mn6fngqtiq`
+
+## fetch_videos_batch
+
+- `photo_ids` (string, required): >- — e.g. `5228960823332207296,5196309727975443273,5222486898325987583`
+
+## search_comprehensive
+
+- `keyword` (string, required): '' — e.g. `汽车之家`
+- `pcursor` (string, optional): ''
+- `sort_type` (string, optional): '可选值: all(综合排序), newest(最新发布), most_likes(最多点赞)'
+- `publish_time` (string, optional): '可选值: all(全部), one_day(近一日), one_week(近一周), one_month(近一月)'
+- `duration` (string, optional): >-
+- `search_scope` (string, optional): '可选值: all(全部)'

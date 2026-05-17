@@ -107,9 +107,9 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Post & User** | 作品, 用户, 详情, 评论, 粉丝, post, user, detail, comment, follower | `references/api-post-user.md` | fetch_single_video, fetch_post_statistics, fetch_post_comments, fetch_user_info, fetch_user_posts, fetch_user_following, fetch_user_followers |
-| **Search & Trending** | 搜索, 热搜, 话题, 推荐, search, trending, hot, topic, recommend | `references/api-search-trending.md` | fetch_search, fetch_hot_search_board_list, fetch_hot_search_board_detail, fetch_hot_search_words, fetch_hashtag_detail, fetch_hashtag_posts, fetch_home_feed, fetch_home_short_drama |
-| **Tools** | 短链接, 浏览, short URL, view | `references/api-tools.md` | generate_short_url, increase_post_view_count |
+| **Post & User** | 帖子, 用户, 详情, 评论, 粉丝, 关注, 话题, 作品, post, user, detail, comment, follower, following, topic, list, profile, video | `references/api-post-user.md` | fetch_increase_post_view_count, fetch_post_statistics, fetch_post_comment_list, fetch_post_detail, fetch_hot_search_board_list, fetch_hot_search_board_detail, fetch_user_post_list, fetch_user_info, fetch_user_following_list, fetch_user_follower_list, fetch_hashtag_post_list, fetch_hashtag_detail |
+| **Search & Trending** | 搜索, 热门, 话题, 短剧, 推荐, search, hot, trending, topic, drama, recommend, feed, home, short | `references/api-search-trending.md` | fetch_search, fetch_short_url, fetch_hot_search_words, fetch_home_feed, fetch_home_short_drama_feed |
+| **Tools** | 短链接, 浏览数, 分享, share, view, url, short, increase, count, post | `references/api-tools.md` |  |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

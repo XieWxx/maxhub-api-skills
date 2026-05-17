@@ -107,7 +107,7 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Video & User** | 视频, 用户, 详情, 评论, 播放, video, user, detail, comment, play | `references/api-video-user.md` | fetch_single_video, fetch_single_video_v2, fetch_video_play_url, fetch_video_comments, fetch_user_info, fetch_user_posts, search_video |
+| **Video & User** | 视频, 用户, 详情, 评论, 播放, 作品, video, user, detail, comment, play, post, list, url | `references/api-video-user.md` | fetch_user_info, search_video, fetch_user_post_list, fetch_one_video_v2, fetch_one_video, fetch_one_video_play_url, fetch_video_comment_list |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

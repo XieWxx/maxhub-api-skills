@@ -107,9 +107,9 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Tweet Data** | 推文, 详情, 评论, 转推, tweet, detail, comment, retweet | `references/api-tweet.md` | fetch_single_tweet, fetch_tweet_comments, fetch_comments, fetch_retweet_users |
-| **User Data** | 用户, 资料, 粉丝, 关注, 推文, user, profile, follower, following, posts | `references/api-user.md` | fetch_user_profile, fetch_user_posts, fetch_user_media, fetch_user_replies, fetch_user_highlights, fetch_user_followings, fetch_user_followers |
-| **Search & Trending** | 搜索, 趋势, 热门, search, trending | `references/api-search-trending.md` | search, fetch_trending |
+| **Tweet Data** | 推文, 详情, 评论, 转推, 回复, 发帖, 最新, tweet, detail, comment, retweet, reply, post, latest, replies, list, user | `references/api-tweet.md` | fetch_user_followings, fetch_user_followers, fetch_tweet_detail, fetch_latest_post_comments, fetch_user_post_tweet, fetch_user_media, fetch_user_tweet_replies, fetch_user_profile, fetch_post_comments, fetch_retweet_user_list |
+| **User Data** | 用户, 资料, 帖子, 回复, 推荐, following, user, profile, post, reply, recommend, follow, blue_verified | `references/api-user.md` |  |
+| **Search & Trending** | 搜索, 热门, 趋势, 时间线, search, trending, timeline | `references/api-search-trending.md` | fetch_search_timeline, fetch_trending |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

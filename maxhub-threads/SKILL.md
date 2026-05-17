@@ -107,8 +107,8 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Post & User** | 帖子, 用户, 详情, 评论, 转发, post, user, detail, comment, repost | `references/api-post-user.md` | fetch_post_detail, fetch_post_detail_v2, fetch_post_comments, fetch_user_info, fetch_user_info_by_id, fetch_user_posts, fetch_user_replies, fetch_user_reposts |
-| **Search** | 搜索, 搜, 找, 最新, 热门, search, find, recent, top | `references/api-search.md` | search_recent, search_top, search_profiles |
+| **Post & User** | 帖子, 用户, 详情, 评论, 回复, 转发, 搜索, post, user, detail, comment, reply, repost, search, recent, top, info | `references/api-post-user.md` | search_profiles, fetch_post_detail_v2, fetch_post_detail |
+| **Search** | 搜索, recent, top, search | `references/api-search.md` |  |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

@@ -107,8 +107,8 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Channels** | 视频号, 视频, 直播, 搜索, channels, video, live, search | `references/api-channels.md` | fetch_channels_home, search_channels, search_channels_latest, fetch_channels_hot_topics, fetch_channels_user_search, fetch_channels_user_search_v2, fetch_channels_live_history, fetch_channels_comprehensive_search, fetch_channels_video_detail, fetch_channels_comments, fetch_channels_default_search |
-| **Official Accounts** | 公众号, 文章, 搜索, 评论, official account, article, search, comment | `references/api-mp.md` | search_mp_account, search_mp_article, fetch_mp_article_list, fetch_mp_article_detail_html, fetch_mp_article_detail_json, fetch_mp_article_url, fetch_mp_article_comments, fetch_mp_article_comment_replies, fetch_mp_article_ad, fetch_mp_related_articles, fetch_mp_article_read_count, fetch_mp_long_url_to_short |
+| **Channels** | 视频号, 搜索, 详情, 直播, 热门, 主页, 分享, 评论, channels, search, detail, live, hot, home, share, comment, video, user, latest, ordinary, comprehensive | `references/api-channels.md` | fetch_home_page, fetch_video_by_share_url, fetch_search_channels, fetch_search_latest, fetch_hot_words, fetch_user_search_v2, fetch_user_search, fetch_live_history, fetch_search_ordinary, fetch_video_detail, fetch_comments, fetch_default_search, fetch_search_official_account, fetch_search_article, fetch_mp_article_comment_list, fetch_mp_article_comment_reply_list, fetch_mp_article_detail_html, fetch_mp_article_detail_json |
+| **Media Platform** | 公众号, 文章, 搜索, mp, article, search, detail, json, official, account | `references/api-mp.md` | fetch_mp_related_articles, fetch_mp_article_ad, fetch_mp_article_list, fetch_mp_article_url, fetch_mp_article_read_count, fetch_mp_article_url_conversion |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

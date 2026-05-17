@@ -1,29 +1,40 @@
-# Parameter Mapping Reference / 参数映射参考表
+# Parameter Mappings / 参数映射
 
-## Common API Parameters / 通用API参数
+Platform: `xigua` | Base URL: `https://www.aconfig.cn`
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| page | int | 1 | Page number (≥1) |
-| page_size / count | int | 20 | Results per page (1-100) |
-| cursor / max_cursor | int/string | 0 | Pagination cursor |
-| sort_type / order_by | string | "" | Sort field |
-| keyword / query | string | "" | Search keyword |
+---
 
-## Response Code / 响应码
+## fetch_one_video
 
-| Code | Meaning | Description |
-|---|---|---|
-| 200 | Success | 请求成功 |
-| 400 | Bad Request | 参数错误 |
-| 401 | Unauthorized | API Key 无效 |
-| 403 | Forbidden | 权限不足 |
-| 404 | Not Found | 数据不存在 |
-| 422 | Validation Error | 参数验证失败 |
-| 429 | Rate Limit | 请求过快 |
-| 500 | Server Error | 服务器错误 |
+- `item_id` (string, required): 作品id/Video id — e.g. `7354954305222377999`
 
-## Cache / 缓存
+## fetch_one_video_play_url
 
-- 成功响应包含 `cache_url`，有效期 24 小时
-- 访问缓存结果不产生额外费用
+- `item_id` (string, required): 作品id/Video id — e.g. `7354954305222377999`
+
+## fetch_one_video_v2
+
+- `item_id` (string, required): 作品id/Video id — e.g. `7354954305222377999`
+
+## fetch_user_info
+
+- `user_id` (string, required): 用户id/User id — e.g. `52712347586`
+
+## fetch_user_post_list
+
+- `user_id` (string, required): 用户id/User id — e.g. `1922379661976311`
+- `max_behot_time` (string, optional): 最大行为时间/Maximum behavior time
+
+## fetch_video_comment_list
+
+- `item_id` (string, required): 作品id/Video id — e.g. `7354954305222377999`
+- `offset` (integer, optional): 偏移量/Offset
+- `count` (integer, optional): 数量/Count
+
+## search_video
+
+- `keyword` (string, required): 关键词/Keyword — e.g. `抖音`
+- `offset` (integer, optional): 偏移量/Offset
+- `order_type` (string, optional): 排序方式/Order type
+- `min_duration` (integer, optional): 最小时长/Minimum duration
+- `max_duration` (integer, optional): 最大时长/Maximum duration

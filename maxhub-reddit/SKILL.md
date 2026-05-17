@@ -107,9 +107,9 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Post Data** | 帖子, 详情, 评论, 回复, post, detail, comment, reply | `references/api-post.md` | fetch_single_post, fetch_batch_posts, fetch_large_batch_posts, fetch_post_comments, fetch_comment_replies |
-| **Subreddit** | 版块, 社区, 规则, 频道, subreddit, community, rules, channel | `references/api-subreddit.md` | fetch_subreddit_info, fetch_subreddit_feed, fetch_subreddit_rules, fetch_subreddit_settings, fetch_subreddit_channels, fetch_community_highlights, check_subreddit_muted |
-| **User & Search** | 用户, 搜索, 推荐, 热门, user, search, trending, feed, popular | `references/api-user-search.md` | fetch_user_profile, fetch_user_posts, fetch_user_comments, fetch_user_active_subreddits, fetch_user_trophies, fetch_trending_searches, fetch_dynamic_search, fetch_search_typeahead, fetch_home_feed, fetch_popular_feed, fetch_news_feed, fetch_games_feed |
+| **Post Data** | 帖子, 详情, 批量, post, detail, batch, large, single | `references/api-post.md` | fetch_post_details_batch_large, fetch_post_details_batch, fetch_post_comments, fetch_subreddit_post_channels, fetch_community_highlights, fetch_post_details |
+| **Subreddit** | 版块, 规则, 样式, 频道, subreddit, rules, style, channel, info, feed, hot, new, rising, top | `references/api-subreddit.md` | fetch_popular_feed, fetch_games_feed, fetch_subreddit_style, fetch_news_feed, fetch_home_feed |
+| **User & Search** | 用户, 搜索, user, search, overview, comments, submissions | `references/api-user-search.md` | fetch_user_profile, fetch_comment_replies |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

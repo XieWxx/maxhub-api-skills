@@ -107,10 +107,10 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Video Data** | 视频, 作品, 详情, 评论, video, detail, comment | `references/api-video.md` | fetch_one_video, fetch_one_video_v2, fetch_video_comments, fetch_video_sub_comments, fetch_user_videos, fetch_user_hot_posts, fetch_video_by_url |
-| **User Data** | 用户, 资料, 粉丝, 关注, user, profile, follower, info | `references/api-user.md` | fetch_user_info, fetch_user_id, search_user, fetch_user_collect, fetch_user_live_info |
-| **Search & Trending** | 搜索, 热榜, 榜单, 排行, search, trending, hot, rank | `references/api-trending.md` | comprehensive_search, search_video, fetch_hot_list, fetch_hot_categories, fetch_brand_top_list, fetch_live_top_list, fetch_shopping_top_list |
-| **Live & Tools** | 直播, 分享, 链接, live, share, link, URL | `references/api-live-tools.md` | fetch_user_live_replay, generate_share_link, generate_share_short_url |
+| **Video & Content** | 视频, 作品, 详情, 评论, 子评论, 批量, video, detail, comment, sub_comment, batch, url | `references/api-video.md` | fetch_videos_batch, fetch_one_video_by_url, search_comprehensive, fetch_one_video_comment, fetch_one_video |
+| **User Data** | 用户, 粉丝, 关注, 作品, 收藏, 直播, 回放, 热门, user, follower, following, posts, collect, live, replay, hot, id, info | `references/api-user.md` | fetch_kuaishou_hot_list_v1, fetch_kuaishou_hot_list_v2, fetch_get_user_id, fetch_user_info |
+| **Trending & Hot** | 热搜, 热榜, 品牌, 直播, 购物, 人物, 分类, hot, trending, brand, live, shopping, person, categories, board, detail, list | `references/api-trending.md` |  |
+| **Live & Tools** | 直播, 分享, 魔法表情, 短链接, live, share, magic, link | `references/api-live-tools.md` |  |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

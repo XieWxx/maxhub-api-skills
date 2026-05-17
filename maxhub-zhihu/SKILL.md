@@ -107,9 +107,9 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **User Data** | 用户, 资料, 粉丝, 关注, 文章, user, profile, follower, following, articles | `references/api-user.md` | fetch_user_info, fetch_user_following, fetch_user_followers, fetch_user_articles, fetch_user_included_articles, fetch_user_columns, fetch_user_follow_topics, fetch_user_follow_questions, fetch_user_follow_collections, fetch_recommend_followees |
-| **Search & Trending** | 搜索, 热榜, 趋势, 推荐, search, trending, hot, recommend | `references/api-search-trending.md` | fetch_search_suggest, fetch_search_recommend, fetch_preset_search, fetch_ai_search, fetch_article_search, fetch_user_search, fetch_topic_search, fetch_video_search, fetch_column_search, fetch_hot_list, fetch_hot_recommend, fetch_video_list |
-| **Content & Q&A** | 文章, 专栏, 问题, 回答, 评论, article, column, question, answer, comment | `references/api-content.md` | fetch_column_articles, fetch_column_article_detail, fetch_article_relationship, fetch_comment_config, fetch_comment_v5, fetch_sub_comment_v5, fetch_question_answers |
+| **User Data** | 用户, 资料, 关注, 专栏, 订阅, user, profile, following, columns, followees | `references/api-user.md` | fetch_user_info, fetch_user_followees, fetch_user_follow_collections, fetch_user_follow_topics, fetch_user_follow_questions, fetch_user_search_v3, fetch_user_followers |
+| **Search & Trending** | 搜索, 热门, AI搜索, 话题, 视频, 专栏, 用户, 电子书, 盐选, 论文, 推荐, search, trending, AI, topic, video, column, user, ebook, salt, scholar, recommend, similar | `references/api-search-trending.md` | fetch_search_suggest, fetch_ai_search, fetch_ai_search_result, fetch_search_recommend, fetch_preset_search, fetch_ebook_search_v3, fetch_salt_search_v3, fetch_video_search_v3, fetch_scholar_search_v3, fetch_topic_search_v3, fetch_hot_recommend, fetch_video_list |
+| **Content** | 回答, 文章, 专栏, 评论, 互动, 关系, 配置, answer, article, column, comment, relationship, config | `references/api-content.md` | fetch_column_search_v3, fetch_column_relationship, fetch_column_articles, fetch_column_article_detail, fetch_column_comment_config, fetch_sub_comment_v5, fetch_user_articles, fetch_user_included_articles, fetch_user_follow_columns, fetch_column_recommend, fetch_comment_v5, fetch_hot_list |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

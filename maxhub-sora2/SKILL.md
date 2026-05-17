@@ -107,9 +107,9 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Post & User** | 作品, 用户, 详情, 评论, Feed, post, user, detail, comment, feed | `references/api-post-user.md` | fetch_single_post, fetch_post_comments, fetch_comment_replies, fetch_post_remix_list, fetch_none_watermark_download, fetch_user_profile, fetch_user_posts, fetch_user_following, fetch_user_followers, fetch_feed, search_users |
-| **Cameo** | Cameo, 出镜秀, 排行榜, cameo, leaderboard | `references/api-cameo.md` | fetch_cameo_leaderboard, fetch_user_cameo_list |
-| **Tools** | 上传, 图片, media_id, upload, image | `references/api-tools.md` | upload_image |
+| **Post & User** | 帖子, 用户, 详情, 评论, 下载, Remix, post, user, detail, comment, download, remix, profile, following, feed | `references/api-post-user.md` | search_users, get_feed, get_post_comments, get_post_remix_list, get_post_detail, get_video_download_info, get_user_profile, get_user_following, get_user_posts, get_user_followers, get_comment_replies |
+| **Cameo** | Cameo, 出镜, 排行, leaderboard, appearance | `references/api-cameo.md` | upload_image, get_cameo_leaderboard, get_user_cameo_appearances |
+| **Tools** | Feed, 推荐, feed, recommend, video, watermark, none | `references/api-tools.md` |  |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

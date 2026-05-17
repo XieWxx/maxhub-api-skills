@@ -107,11 +107,11 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Video Data** | 视频, 详情, 播放, 弹幕, 字幕, video, detail, play, danmaku, subtitle | `references/api-video.md` | fetch_one_video, fetch_video_detail, fetch_video_playurl, fetch_video_comments, fetch_video_danmaku, fetch_video_subtitle, fetch_video_play_info, generate_aid_by_bvid, fetch_video_parts_by_bvid, fetch_vip_video_playurl |
-| **User Data** | 用户, UP主, 粉丝, 关注, 投稿, user, UP, follower, following, posts | `references/api-user.md` | fetch_user_info, fetch_user_profile, fetch_user_videos, fetch_user_followers, fetch_user_following, fetch_up_stat, fetch_user_relation_stat, extract_user_id, fetch_user_dynamic, fetch_user_collection_folders, fetch_collection_folder_data |
-| **Search** | 搜索, 搜, 找, 热搜, search, find, hot search | `references/api-search.md` | fetch_general_search, fetch_hot_search, search_by_type |
-| **Comments & Interaction** | 评论, 回复, 动态, comment, reply, dynamic | `references/api-comment.md` | fetch_video_comments, fetch_comment_replies, fetch_dynamic_detail, fetch_dynamic_detail_v2 |
-| **Live & Feed** | 直播, 推荐, 热门, 番剧, 影视, live, feed, popular, bangumi, cinema | `references/api-live-feed.md` | fetch_live_info, fetch_live_areas, fetch_live_streamers, fetch_live_video_data, fetch_home_feed, fetch_popular_feed, fetch_bangumi_tab, fetch_cinema_tab, fetch_comprehensive_popular |
+| **Video Data** | 视频, 详情, 播放, 弹幕, 字幕, video, detail, play, danmaku, subtitle, aid, bvid, vip | `references/api-video.md` | fetch_home_feed, fetch_reply_detail, fetch_one_video, fetch_user_videos, fetch_video_comments, fetch_dynamic_detail, fetch_dynamic_detail_v2, fetch_video_play_info, fetch_video_detail, fetch_one_video_v2, fetch_one_video_v3, fetch_one_video, fetch_vip_video_playurl, fetch_user_collection_videos, fetch_live_room_detail, fetch_video_comments, fetch_user_post_videos, fetch_live_videos, fetch_com_popular, fetch_comment_reply, fetch_video_subtitle, fetch_video_danmaku, fetch_video_playurl, bv_to_aid, fetch_video_parts |
+| **User Data** | 用户, UP主, 粉丝, 关注, 收藏夹, user, up, follower, following, stat, collection | `references/api-user.md` | fetch_user_info, fetch_get_user_id, fetch_user_up_stat, fetch_user_dynamic, fetch_user_profile, fetch_user_relation_stat, fetch_collect_folders |
+| **Search & Feed** | 搜索, 热门, 推荐, 动态, search, hot, popular, recommend, feed, dynamic | `references/api-search.md` | fetch_search_by_type, fetch_search_all, fetch_cinema_tab, fetch_popular_feed, fetch_bangumi_tab, fetch_hot_search, fetch_general_search |
+| **Comments** | 评论, 回复, comment, reply | `references/api-comment.md` |  |
+| **Live & Feed** | 直播, 收藏夹, 动态, live, collection, dynamic, feed | `references/api-live-feed.md` | fetch_all_live_areas, fetch_live_streamers |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

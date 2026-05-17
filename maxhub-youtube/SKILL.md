@@ -107,10 +107,10 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Video Data** | 视频, 详情, 播放, 字幕, 流, video, detail, play, subtitle, stream | `references/api-video.md` | fetch_video_info, fetch_video_info_v2, fetch_video_info_v3, fetch_video_streams, fetch_video_streams_v2, fetch_video_subtitles, fetch_video_captions, fetch_related_videos, fetch_trending_videos |
-| **Channel Data** | 频道, 信息, 视频, 描述, channel, info, videos, description | `references/api-channel.md` | fetch_channel_info, fetch_channel_description, fetch_channel_videos, fetch_channel_videos_v2, fetch_channel_videos_v3, fetch_channel_shorts, fetch_channel_community_posts, get_channel_id, get_channel_id_from_url |
-| **Search** | 搜索, 搜, 找, 视频, 频道, Shorts, search, find, video, channel, shorts | `references/api-search.md` | general_search, general_search_v2, search_video, search_channel, shorts_search, shorts_search_v2, fetch_search_suggestions |
-| **Comments** | 评论, 回复, comment, replies | `references/api-comments.md` | fetch_video_comments, fetch_video_sub_comments, fetch_post_comments, fetch_post_comment_replies |
+| **Video Data** | 视频, 详情, 字幕, 下载, 流, 推荐, 趋势, 相关, video, detail, subtitle, stream, download, related, trending, info, captions | `references/api-video.md` | search_video, get_relate_video, get_video_info, get_video_info_v2, get_video_subtitles, get_trending_videos, get_channel_info, get_channel_short_videos, get_channel_videos_v2, get_shorts_search, get_general_search, get_signed_stream_url, get_post_detail, get_search_suggestions, get_video_comment_replies, get_video_captions_v2, get_video_captions, get_video_streams_v2, get_video_streams, get_related_videos, get_video_comments, get_video_info, get_channel_shorts, get_channel_videos |
+| **Channel Data** | 频道, 信息, 视频, 短视频, 帖子, 社区, 描述, channel, info, videos, shorts, community, posts, description, url, id | `references/api-channel.md` | get_channel_url, get_channel_id_v2, search_channel, get_channel_id, get_shorts_search_v2, get_channel_url, get_channel_id, search_channels, get_post_comments, get_post_comment_replies, get_channel_community_posts, get_channel_description |
+| **Search & Comments** | 搜索, 建议, 频道, 评论, 子评论, search, suggest, channel, comment, reply, sub_comment | `references/api-search.md` | get_general_search_v2 |
+| **Comments** | 评论, 子评论, comment, reply, sub-comment | `references/api-comments.md` |  |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

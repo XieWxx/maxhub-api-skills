@@ -107,9 +107,9 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Search & Discover** | 搜索, 发现, 热搜, 推荐, search, discover, trending, banner | `references/api-search-discover.md` | fetch_search, fetch_discover_content, fetch_discover_banners, fetch_hot_search_keywords, fetch_editor_picks |
-| **Post & User** | 帖子, 用户, 评论, 话题, 粉丝, post, user, comment, topic, follower | `references/api-post-user.md` | fetch_post_info, fetch_post_comments, fetch_user_info, fetch_user_following, fetch_user_fans, fetch_topic_info, fetch_topic_posts |
-| **Link Tools** | 分享, 链接, ID, share, link, extract | `references/api-tools.md` | fetch_post_id_by_link, fetch_user_id_by_link, fetch_post_ids_batch, fetch_user_ids_batch |
+| **Search & Discover** | 搜索, 发现, Banner, 热搜, 关键词, search, discover, banner, hot, keyword, main, content, tab, editor, picks, information | `references/api-search-discover.md` | fetch_search, fetch_discover_banners, fetch_discover_tab, fetch_hot_search_keywords |
+| **Post & User** | 帖子, 用户, 详情, 评论, 粉丝, 关注, 话题, post, user, detail, comment, follower, following, topic, information, list, profile, ids, item | `references/api-post-user.md` | fetch_discover_tab_information_tabs, fetch_post_detail, fetch_post_comment_list, fetch_user_profile, fetch_user_following_list, fetch_user_follower_list, fetch_topic_post_list, fetch_topic_info, get_item_ids, get_user_ids, get_item_id, get_user_id |
+| **Tools** | 分享链接, ID提取, share, id, extract | `references/api-tools.md` |  |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**
