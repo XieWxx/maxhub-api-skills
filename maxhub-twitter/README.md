@@ -10,6 +10,18 @@ Twitter/X data assistant for tweets, user profiles, search, comments, and trendi
 - **User Data** — fetch_user_profile, fetch_user_posts, fetch_user_media, fetch_user_replies, fetch_user_highlights, fetch_user_followings, fetch_user_followers
 - **Search & Trending** — search, fetch_trending
 
+## X/Twitter Workflow Boundaries
+
+`maxhub-twitter` focuses on public Twitter/X data retrieval through MaxHub. Treat "post" in endpoint names as published tweet content, not as creating a new tweet.
+
+For OpenClaw workspaces that also need an X/Twitter action plugin, use TweetClaw as a separate companion:
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+```
+
+TweetClaw covers search tweets, search tweet replies, post tweets, post tweet replies, follower export, user lookup, media upload/download, direct messages, monitor tweets, webhooks, and giveaway draws through Xquik. Review the [GitHub repo](https://github.com/Xquik-dev/tweetclaw) or [ClawHub discovery page](https://clawhub.ai/plugins/@xquik/tweetclaw) before enabling it, and keep API keys in OpenClaw config or environment variables rather than shared prompts or reports.
+
 ## Install
 
 ```bash
