@@ -1,6 +1,8 @@
 {
   "ownerId": "maxhub-skills",
   "slug": "maxhub-wechat",
-  "version": "2.0.0",
-  "publishedAt": 0
+  "version": "3.2.0",
+  "publishedAt": 0,
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://www.aconfig.cn/docs"
 }

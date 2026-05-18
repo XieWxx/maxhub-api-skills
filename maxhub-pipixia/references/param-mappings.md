@@ -28,9 +28,6 @@ Platform: `pipixia` | Base URL: `https://www.aconfig.cn`
 
 - `block_type` (integer, required): 榜单类型/Board type — e.g. `12`
 
-## fetch_increase_post_view_count
-
-- `cell_id` (string, required): 作品id/Video id — e.g. `7411193113223371043`
 - `cell_type` (integer, optional): 作品类型/Video type — e.g. `1`
 
 ## fetch_post_comment_list

@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_ai_search
 
-`GET /api/v1/zhihu/.../fetch_ai_search`
+`GET /api/v1/zhihu/web/fetch_ai_search`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_ai_search -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_ai_search_result
 
-`GET /api/v1/zhihu/.../fetch_ai_search_result`
+`GET /api/v1/zhihu/web/fetch_ai_search_result`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_ai_search_result -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_ebook_search_v3
 
-`GET /api/v1/zhihu/.../fetch_ebook_search_v3`
+`GET /api/v1/zhihu/web/fetch_ebook_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_ebook_search_v3 -->
 
@@ -87,7 +87,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_recommend
 
-`GET /api/v1/zhihu/.../fetch_hot_recommend`
+`GET /api/v1/zhihu/web/fetch_hot_recommend`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_hot_recommend -->
 
@@ -116,7 +116,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_preset_search
 
-`GET /api/v1/zhihu/.../fetch_preset_search`
+`GET /api/v1/zhihu/web/fetch_preset_search`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_preset_search -->
 
@@ -139,7 +139,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_salt_search_v3
 
-`GET /api/v1/zhihu/.../fetch_salt_search_v3`
+`GET /api/v1/zhihu/web/fetch_salt_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_salt_search_v3 -->
 
@@ -170,7 +170,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_scholar_search_v3
 
-`POST /api/v1/zhihu/.../fetch_scholar_search_v3`
+`POST /api/v1/zhihu/web/fetch_scholar_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_scholar_search_v3 -->
 
@@ -200,7 +200,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_recommend
 
-`GET /api/v1/zhihu/.../fetch_search_recommend`
+`GET /api/v1/zhihu/web/fetch_search_recommend`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_search_recommend -->
 
@@ -223,7 +223,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_suggest
 
-`GET /api/v1/zhihu/.../fetch_search_suggest`
+`GET /api/v1/zhihu/web/fetch_search_suggest`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_search_suggest -->
 
@@ -248,7 +248,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_topic_search_v3
 
-`GET /api/v1/zhihu/.../fetch_topic_search_v3`
+`GET /api/v1/zhihu/web/fetch_topic_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_topic_search_v3 -->
 
@@ -277,7 +277,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_list
 
-`GET /api/v1/zhihu/.../fetch_video_list`
+`GET /api/v1/zhihu/web/fetch_video_list`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_video_list -->
 
@@ -304,7 +304,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_search_v3
 
-`GET /api/v1/zhihu/.../fetch_video_search_v3`
+`GET /api/v1/zhihu/web/fetch_video_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_video_search_v3 -->
 

@@ -4,9 +4,6 @@ Platform: `tiktok` | Base URL: `https://www.aconfig.cn`
 
 ---
 
-## add_video_play_count
-
-- `aweme_type` (integer, required): 作品类型/Video type — e.g. `0`
 - `item_id` (string, required): 作品id/Video id — e.g. `7419966340443819295`
 
 ## check_live_room_online

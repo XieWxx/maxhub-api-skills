@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_collect_folders
 
-`GET /api/v1/bilibili/.../fetch_collect_folders`
+`GET /api/v1/bilibili/web/fetch_collect_folders`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_collect_folders -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_get_user_id
 
-`GET /api/v1/bilibili/.../fetch_get_user_id`
+`GET /api/v1/bilibili/web/fetch_get_user_id`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_get_user_id -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_dynamic
 
-`GET /api/v1/bilibili/.../fetch_user_dynamic`
+`GET /api/v1/bilibili/web/fetch_user_dynamic`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_user_dynamic -->
 
@@ -83,7 +83,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/bilibili/.../fetch_user_info`
+`GET /api/v1/bilibili/app/fetch_user_info`
 
 <!-- Full path: /api/v1/bilibili/app/fetch_user_info -->
 
@@ -108,7 +108,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_profile
 
-`GET /api/v1/bilibili/.../fetch_user_profile`
+`GET /api/v1/bilibili/web/fetch_user_profile`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_user_profile -->
 
@@ -133,7 +133,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_relation_stat
 
-`GET /api/v1/bilibili/.../fetch_user_relation_stat`
+`GET /api/v1/bilibili/web/fetch_user_relation_stat`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_user_relation_stat -->
 
@@ -160,7 +160,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_up_stat
 
-`GET /api/v1/bilibili/.../fetch_user_up_stat`
+`GET /api/v1/bilibili/web/fetch_user_up_stat`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_user_up_stat -->
 

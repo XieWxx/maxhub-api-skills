@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_user_follow_collections
 
-`GET /api/v1/zhihu/.../fetch_user_follow_collections`
+`GET /api/v1/zhihu/web/fetch_user_follow_collections`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_follow_collections -->
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_follow_questions
 
-`GET /api/v1/zhihu/.../fetch_user_follow_questions`
+`GET /api/v1/zhihu/web/fetch_user_follow_questions`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_follow_questions -->
 
@@ -64,7 +64,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_follow_topics
 
-`GET /api/v1/zhihu/.../fetch_user_follow_topics`
+`GET /api/v1/zhihu/web/fetch_user_follow_topics`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_follow_topics -->
 
@@ -93,7 +93,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_followees
 
-`GET /api/v1/zhihu/.../fetch_user_followees`
+`GET /api/v1/zhihu/web/fetch_user_followees`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_followees -->
 
@@ -122,7 +122,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_followers
 
-`GET /api/v1/zhihu/.../fetch_user_followers`
+`GET /api/v1/zhihu/web/fetch_user_followers`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_followers -->
 
@@ -151,7 +151,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/zhihu/.../fetch_user_info`
+`GET /api/v1/zhihu/web/fetch_user_info`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_info -->
 
@@ -176,7 +176,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_search_v3
 
-`GET /api/v1/zhihu/.../fetch_user_search_v3`
+`GET /api/v1/zhihu/web/fetch_user_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_search_v3 -->
 

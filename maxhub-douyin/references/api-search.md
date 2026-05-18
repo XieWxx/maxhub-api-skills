@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## author_content_hot_comment_keywords_v1
 
-`GET /api/v1/douyin/.../author_content_hot_comment_keywords_v1`
+`GET /api/v1/douyin/xingtu/author_content_hot_comment_keywords_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/author_content_hot_comment_keywords_v1 -->
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_brand_hot_search_list
 
-`GET /api/v1/douyin/.../fetch_brand_hot_search_list`
+`GET /api/v1/douyin/app/v3/fetch_brand_hot_search_list`
 
 <!-- Full path: /api/v1/douyin/app/v3/fetch_brand_hot_search_list -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_brand_suggest
 
-`POST /api/v1/douyin/.../fetch_brand_suggest`
+`POST /api/v1/douyin/index/fetch_brand_suggest`
 
 <!-- Full path: /api/v1/douyin/index/fetch_brand_suggest -->
 
@@ -81,7 +81,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_challenge_search_v1
 
-`POST /api/v1/douyin/.../fetch_challenge_search_v1`
+`POST /api/v1/douyin/search/fetch_challenge_search_v1`
 
 <!-- Full path: /api/v1/douyin/search/fetch_challenge_search_v1 -->
 
@@ -169,7 +169,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_challenge_search_v2
 
-`POST /api/v1/douyin/.../fetch_challenge_search_v2`
+`POST /api/v1/douyin/search/fetch_challenge_search_v2`
 
 <!-- Full path: /api/v1/douyin/search/fetch_challenge_search_v2 -->
 
@@ -251,7 +251,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_content_creative_keywords
 
-`POST /api/v1/douyin/.../fetch_content_creative_keywords`
+`POST /api/v1/douyin/index/fetch_content_creative_keywords`
 
 <!-- Full path: /api/v1/douyin/index/fetch_content_creative_keywords -->
 
@@ -282,7 +282,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_content_creative_topic
 
-`POST /api/v1/douyin/.../fetch_content_creative_topic`
+`POST /api/v1/douyin/index/fetch_content_creative_topic`
 
 <!-- Full path: /api/v1/douyin/index/fetch_content_creative_topic -->
 
@@ -315,7 +315,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_creator_hot_topic_billboard
 
-`GET /api/v1/douyin/.../fetch_creator_hot_topic_billboard`
+`GET /api/v1/douyin/creator/fetch_creator_hot_topic_billboard`
 
 <!-- Full path: /api/v1/douyin/creator/fetch_creator_hot_topic_billboard -->
 
@@ -377,7 +377,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_discuss_search
 
-`POST /api/v1/douyin/.../fetch_discuss_search`
+`POST /api/v1/douyin/search/fetch_discuss_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_discuss_search -->
 
@@ -480,7 +480,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_experience_search
 
-`POST /api/v1/douyin/.../fetch_experience_search`
+`POST /api/v1/douyin/search/fetch_experience_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_experience_search -->
 
@@ -571,7 +571,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_general_search_v1
 
-`POST /api/v1/douyin/.../fetch_general_search_v1`
+`POST /api/v1/douyin/search/fetch_general_search_v1`
 
 <!-- Full path: /api/v1/douyin/search/fetch_general_search_v1 -->
 
@@ -677,7 +677,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_general_search_v2
 
-`POST /api/v1/douyin/.../fetch_general_search_v2`
+`POST /api/v1/douyin/search/fetch_general_search_v2`
 
 <!-- Full path: /api/v1/douyin/search/fetch_general_search_v2 -->
 
@@ -784,7 +784,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_account_fans_interest_search_list
 
-`GET /api/v1/douyin/.../fetch_hot_account_fans_interest_search_list`
+`GET /api/v1/douyin/billboard/fetch_hot_account_fans_interest_search_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_fans_interest_search_list -->
 
@@ -809,7 +809,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_search_list
 
-`GET /api/v1/douyin/.../fetch_hot_search_list`
+`GET /api/v1/douyin/app/v3/fetch_hot_search_list`
 
 <!-- Full path: /api/v1/douyin/app/v3/fetch_hot_search_list -->
 
@@ -848,7 +848,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_search_result
 
-`GET /api/v1/douyin/.../fetch_hot_search_result`
+`GET /api/v1/douyin/web/fetch_hot_search_result`
 
 <!-- Full path: /api/v1/douyin/web/fetch_hot_search_result -->
 
@@ -869,7 +869,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_total_high_search_list
 
-`POST /api/v1/douyin/.../fetch_hot_total_high_search_list`
+`POST /api/v1/douyin/billboard/fetch_hot_total_high_search_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_high_search_list -->
 
@@ -895,7 +895,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_total_high_topic_list
 
-`POST /api/v1/douyin/.../fetch_hot_total_high_topic_list`
+`POST /api/v1/douyin/billboard/fetch_hot_total_high_topic_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_high_topic_list -->
 
@@ -925,7 +925,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_total_search_list
 
-`POST /api/v1/douyin/.../fetch_hot_total_search_list`
+`POST /api/v1/douyin/billboard/fetch_hot_total_search_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_search_list -->
 
@@ -951,7 +951,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_total_topic_list
 
-`POST /api/v1/douyin/.../fetch_hot_total_topic_list`
+`POST /api/v1/douyin/billboard/fetch_hot_total_topic_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_topic_list -->
 
@@ -981,7 +981,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_words
 
-`GET /api/v1/douyin/.../fetch_hot_words`
+`GET /api/v1/douyin/index/fetch_hot_words`
 
 <!-- Full path: /api/v1/douyin/index/fetch_hot_words -->
 
@@ -1006,7 +1006,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_image_search
 
-`POST /api/v1/douyin/.../fetch_image_search`
+`POST /api/v1/douyin/search/fetch_image_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_image_search -->
 
@@ -1092,7 +1092,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_image_search_v3
 
-`POST /api/v1/douyin/.../fetch_image_search_v3`
+`POST /api/v1/douyin/search/fetch_image_search_v3`
 
 <!-- Full path: /api/v1/douyin/search/fetch_image_search_v3 -->
 
@@ -1158,7 +1158,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_keyword_valid_date
 
-`POST /api/v1/douyin/.../fetch_keyword_valid_date`
+`POST /api/v1/douyin/index/fetch_keyword_valid_date`
 
 <!-- Full path: /api/v1/douyin/index/fetch_keyword_valid_date -->
 
@@ -1183,7 +1183,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_multi_keyword_hot_trend
 
-`POST /api/v1/douyin/.../fetch_multi_keyword_hot_trend`
+`POST /api/v1/douyin/index/fetch_multi_keyword_hot_trend`
 
 <!-- Full path: /api/v1/douyin/index/fetch_multi_keyword_hot_trend -->
 
@@ -1217,7 +1217,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_multi_keyword_interpretation
 
-`POST /api/v1/douyin/.../fetch_multi_keyword_interpretation`
+`POST /api/v1/douyin/index/fetch_multi_keyword_interpretation`
 
 <!-- Full path: /api/v1/douyin/index/fetch_multi_keyword_interpretation -->
 
@@ -1251,7 +1251,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_multi_search
 
-`POST /api/v1/douyin/.../fetch_multi_search`
+`POST /api/v1/douyin/search/fetch_multi_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_multi_search -->
 
@@ -1370,7 +1370,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_report_search
 
-`POST /api/v1/douyin/.../fetch_report_search`
+`POST /api/v1/douyin/index/fetch_report_search`
 
 <!-- Full path: /api/v1/douyin/index/fetch_report_search -->
 
@@ -1408,7 +1408,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_school_search
 
-`POST /api/v1/douyin/.../fetch_school_search`
+`POST /api/v1/douyin/search/fetch_school_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_school_search -->
 
@@ -1451,7 +1451,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_topic_query
 
-`POST /api/v1/douyin/.../fetch_topic_query`
+`POST /api/v1/douyin/index/fetch_topic_query`
 
 <!-- Full path: /api/v1/douyin/index/fetch_topic_query -->
 
@@ -1482,7 +1482,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_topic_suggest
 
-`POST /api/v1/douyin/.../fetch_topic_suggest`
+`POST /api/v1/douyin/index/fetch_topic_suggest`
 
 <!-- Full path: /api/v1/douyin/index/fetch_topic_suggest -->
 
@@ -1509,7 +1509,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_vision_search
 
-`POST /api/v1/douyin/.../fetch_vision_search`
+`POST /api/v1/douyin/search/fetch_vision_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_vision_search -->
 
@@ -1584,7 +1584,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_all_webcast_id
 
-`POST /api/v1/douyin/.../get_all_webcast_id`
+`POST /api/v1/douyin/web/get_all_webcast_id`
 
 <!-- Full path: /api/v1/douyin/web/get_all_webcast_id -->
 
@@ -1607,7 +1607,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_author_content_hot_keywords
 
-`GET /api/v1/douyin/.../get_author_content_hot_keywords`
+`GET /api/v1/douyin/xingtu_v2/get_author_content_hot_keywords`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_author_content_hot_keywords -->
 
@@ -1634,7 +1634,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_demander_mcn_list
 
-`GET /api/v1/douyin/.../get_demander_mcn_list`
+`GET /api/v1/douyin/xingtu_v2/get_demander_mcn_list`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_demander_mcn_list -->
 
@@ -1665,7 +1665,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_sign_image
 
-`GET /api/v1/douyin/.../get_sign_image`
+`GET /api/v1/douyin/xingtu/get_sign_image`
 
 <!-- Full path: /api/v1/douyin/xingtu/get_sign_image -->
 
@@ -1695,7 +1695,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_webcast_id
 
-`GET /api/v1/douyin/.../get_webcast_id`
+`GET /api/v1/douyin/web/get_webcast_id`
 
 <!-- Full path: /api/v1/douyin/web/get_webcast_id -->
 
@@ -1720,7 +1720,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## open_douyin_app_to_keyword_search
 
-`GET /api/v1/douyin/.../open_douyin_app_to_keyword_search`
+`GET /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search`
 
 <!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search -->
 
@@ -1745,7 +1745,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_kol_v1
 
-`GET /api/v1/douyin/.../search_kol_v1`
+`GET /api/v1/douyin/xingtu/search_kol_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/search_kol_v1 -->
 
@@ -1779,7 +1779,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_kol_v2
 
-`GET /api/v1/douyin/.../search_kol_v2`
+`GET /api/v1/douyin/xingtu/search_kol_v2`
 
 <!-- Full path: /api/v1/douyin/xingtu/search_kol_v2 -->
 
@@ -1815,7 +1815,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## webcast_id_2_room_id
 
-`GET /api/v1/douyin/.../webcast_id_2_room_id`
+`GET /api/v1/douyin/web/webcast_id_2_room_id`
 
 <!-- Full path: /api/v1/douyin/web/webcast_id_2_room_id -->
 

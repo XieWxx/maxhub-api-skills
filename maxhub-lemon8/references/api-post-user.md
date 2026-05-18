@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_discover_tab_information_tabs
 
-`GET /api/v1/lemon8/.../fetch_discover_tab_information_tabs`
+`GET /api/v1/lemon8/app/fetch_discover_tab_information_tabs`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_discover_tab_information_tabs -->
 
@@ -27,7 +27,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_comment_list
 
-`GET /api/v1/lemon8/.../fetch_post_comment_list`
+`GET /api/v1/lemon8/app/fetch_post_comment_list`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_post_comment_list -->
 
@@ -59,7 +59,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_detail
 
-`GET /api/v1/lemon8/.../fetch_post_detail`
+`GET /api/v1/lemon8/app/fetch_post_detail`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_post_detail -->
 
@@ -84,7 +84,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_topic_info
 
-`GET /api/v1/lemon8/.../fetch_topic_info`
+`GET /api/v1/lemon8/app/fetch_topic_info`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_topic_info -->
 
@@ -112,7 +112,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_topic_post_list
 
-`GET /api/v1/lemon8/.../fetch_topic_post_list`
+`GET /api/v1/lemon8/app/fetch_topic_post_list`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_topic_post_list -->
 
@@ -146,7 +146,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_follower_list
 
-`GET /api/v1/lemon8/.../fetch_user_follower_list`
+`GET /api/v1/lemon8/app/fetch_user_follower_list`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_user_follower_list -->
 
@@ -173,7 +173,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_following_list
 
-`GET /api/v1/lemon8/.../fetch_user_following_list`
+`GET /api/v1/lemon8/app/fetch_user_following_list`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_user_following_list -->
 
@@ -200,7 +200,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_profile
 
-`GET /api/v1/lemon8/.../fetch_user_profile`
+`GET /api/v1/lemon8/app/fetch_user_profile`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_user_profile -->
 
@@ -225,7 +225,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_item_id
 
-`GET /api/v1/lemon8/.../get_item_id`
+`GET /api/v1/lemon8/app/get_item_id`
 
 <!-- Full path: /api/v1/lemon8/app/get_item_id -->
 
@@ -250,7 +250,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_item_ids
 
-`POST /api/v1/lemon8/.../get_item_ids`
+`POST /api/v1/lemon8/app/get_item_ids`
 
 <!-- Full path: /api/v1/lemon8/app/get_item_ids -->
 
@@ -273,7 +273,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_id
 
-`GET /api/v1/lemon8/.../get_user_id`
+`GET /api/v1/lemon8/app/get_user_id`
 
 <!-- Full path: /api/v1/lemon8/app/get_user_id -->
 
@@ -298,7 +298,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_ids
 
-`POST /api/v1/lemon8/.../get_user_ids`
+`POST /api/v1/lemon8/app/get_user_ids`
 
 <!-- Full path: /api/v1/lemon8/app/get_user_ids -->
 

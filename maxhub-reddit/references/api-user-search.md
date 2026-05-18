@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_comment_replies
 
-`GET /api/v1/reddit/.../fetch_comment_replies`
+`GET /api/v1/reddit/app/fetch_comment_replies`
 
 <!-- Full path: /api/v1/reddit/app/fetch_comment_replies -->
 
@@ -50,7 +50,7 @@ RANDOM
 
 ## fetch_user_profile
 
-`GET /api/v1/reddit/.../fetch_user_profile`
+`GET /api/v1/reddit/app/fetch_user_profile`
 
 <!-- Full path: /api/v1/reddit/app/fetch_user_profile -->
 

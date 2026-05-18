@@ -64,6 +64,27 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/xiaohongshu/{endpoint}" \
   -d '{...}'
 ```
 
+
+## Security & Privacy / 安全与隐私
+
+> ⚠️ **Credential Handling / 凭据处理**
+> - Some endpoints require platform session cookies. Only provide cookies if you fully trust the service provider.
+> - Prefer scoped OAuth/API tokens over full browser cookies. Use separate test accounts when possible.
+> - Rotate or revoke cookies after use.
+> - 部分端点需要平台会话 Cookie。仅在完全信任服务提供商时提供。
+> - 优先使用范围限定的 OAuth/API 令牌。尽可能使用独立测试账号。
+> - 使用后轮换或撤销 Cookie。
+
+> 📋 **Data Transmission / 数据传输**
+> - All API requests are sent to `https://www.aconfig.cn`. Your credentials are transmitted to this third-party service.
+> - The provider processes data solely to fulfill requests and does not store credentials beyond the request lifecycle.
+> - 所有 API 请求发送至 `https://www.aconfig.cn`。您的凭据将传输至该第三方服务。
+> - 服务提供商仅处理数据以完成请求，不会在请求生命周期之外存储凭据。
+
+> 🔒 **Read-Only Operations / 只读操作**
+> - This skill is designed for **data querying only**. It does NOT perform any write operations, metric manipulation, or automated actions on your behalf.
+> - 本技能仅用于**数据查询**，不会执行任何写入操作、指标操纵或自动操作。
+
 ## Interaction Flow
 
 ### Step 1: Check API Key

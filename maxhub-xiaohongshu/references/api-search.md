@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_search_suggest
 
-`GET /api/v1/xiaohongshu/.../fetch_search_suggest`
+`GET /api/v1/xiaohongshu/web_v3/fetch_search_suggest`
 
 <!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_search_suggest -->
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_trending
 
-`GET /api/v1/xiaohongshu/.../fetch_trending`
+`GET /api/v1/xiaohongshu/web_v3/fetch_trending`
 
 <!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_trending -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_groups
 
-`GET /api/v1/xiaohongshu/.../search_groups`
+`GET /api/v1/xiaohongshu/app_v2/search_groups`
 
 <!-- Full path: /api/v1/xiaohongshu/app_v2/search_groups -->
 
@@ -92,7 +92,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_images
 
-`GET /api/v1/xiaohongshu/.../search_images`
+`GET /api/v1/xiaohongshu/app_v2/search_images`
 
 <!-- Full path: /api/v1/xiaohongshu/app_v2/search_images -->
 
@@ -130,7 +130,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_products
 
-`GET /api/v1/xiaohongshu/.../search_products`
+`GET /api/v1/xiaohongshu/app/search_products`
 
 <!-- Full path: /api/v1/xiaohongshu/app/search_products -->
 
@@ -187,7 +187,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_products
 
-`GET /api/v1/xiaohongshu/.../search_products`
+`GET /api/v1/xiaohongshu/app/search_products`
 
 <!-- Full path: /api/v1/xiaohongshu/app_v2/search_products -->
 

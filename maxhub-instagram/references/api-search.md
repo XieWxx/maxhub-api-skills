@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_cities
 
-`GET /api/v1/instagram/.../fetch_cities`
+`GET /api/v1/instagram/v1/fetch_cities`
 
 <!-- Full path: /api/v1/instagram/v1/fetch_cities -->
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_explore_sections
 
-`GET /api/v1/instagram/.../fetch_explore_sections`
+`GET /api/v1/instagram/v1/fetch_explore_sections`
 
 <!-- Full path: /api/v1/instagram/v1/fetch_explore_sections -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_locations
 
-`GET /api/v1/instagram/.../fetch_locations`
+`GET /api/v1/instagram/v1/fetch_locations`
 
 <!-- Full path: /api/v1/instagram/v1/fetch_locations -->
 
@@ -86,7 +86,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## general_search
 
-`GET /api/v1/instagram/.../general_search`
+`GET /api/v1/instagram/v2/general_search`
 
 <!-- Full path: /api/v1/instagram/v2/general_search -->
 
@@ -115,7 +115,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## general_search
 
-`GET /api/v1/instagram/.../general_search`
+`GET /api/v1/instagram/v2/general_search`
 
 <!-- Full path: /api/v1/instagram/v3/general_search -->
 
@@ -164,7 +164,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_by_coordinates
 
-`GET /api/v1/instagram/.../search_by_coordinates`
+`GET /api/v1/instagram/v2/search_by_coordinates`
 
 <!-- Full path: /api/v1/instagram/v2/search_by_coordinates -->
 
@@ -191,7 +191,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_hashtags
 
-`GET /api/v1/instagram/.../search_hashtags`
+`GET /api/v1/instagram/v2/search_hashtags`
 
 <!-- Full path: /api/v1/instagram/v2/search_hashtags -->
 
@@ -216,7 +216,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_hashtags
 
-`GET /api/v1/instagram/.../search_hashtags`
+`GET /api/v1/instagram/v2/search_hashtags`
 
 <!-- Full path: /api/v1/instagram/v3/search_hashtags -->
 
@@ -247,7 +247,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_locations
 
-`GET /api/v1/instagram/.../search_locations`
+`GET /api/v1/instagram/v2/search_locations`
 
 <!-- Full path: /api/v1/instagram/v2/search_locations -->
 
@@ -272,7 +272,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_music
 
-`GET /api/v1/instagram/.../search_music`
+`GET /api/v1/instagram/v2/search_music`
 
 <!-- Full path: /api/v1/instagram/v2/search_music -->
 

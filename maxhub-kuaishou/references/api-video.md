@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_one_video
 
-`GET /api/v1/kuaishou/.../fetch_one_video`
+`GET /api/v1/kuaishou/app/fetch_one_video`
 
 <!-- Full path: /api/v1/kuaishou/app/fetch_one_video -->
 
@@ -32,7 +32,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_by_url
 
-`GET /api/v1/kuaishou/.../fetch_one_video_by_url`
+`GET /api/v1/kuaishou/app/fetch_one_video_by_url`
 
 <!-- Full path: /api/v1/kuaishou/app/fetch_one_video_by_url -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_comment
 
-`GET /api/v1/kuaishou/.../fetch_one_video_comment`
+`GET /api/v1/kuaishou/app/fetch_one_video_comment`
 
 <!-- Full path: /api/v1/kuaishou/app/fetch_one_video_comment -->
 
@@ -84,7 +84,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_videos_batch
 
-`GET /api/v1/kuaishou/.../fetch_videos_batch`
+`GET /api/v1/kuaishou/app/fetch_videos_batch`
 
 <!-- Full path: /api/v1/kuaishou/app/fetch_videos_batch -->
 
@@ -110,7 +110,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_comprehensive
 
-`GET /api/v1/kuaishou/.../search_comprehensive`
+`GET /api/v1/kuaishou/app/search_comprehensive`
 
 <!-- Full path: /api/v1/kuaishou/app/search_comprehensive -->
 

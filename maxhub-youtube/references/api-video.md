@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## get_channel_info
 
-`GET /api/v1/youtube/.../get_channel_info`
+`GET /api/v1/youtube/web/get_channel_info`
 
 <!-- Full path: /api/v1/youtube/web/get_channel_info -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_short_videos
 
-`GET /api/v1/youtube/.../get_channel_short_videos`
+`GET /api/v1/youtube/web/get_channel_short_videos`
 
 <!-- Full path: /api/v1/youtube/web/get_channel_short_videos -->
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_shorts
 
-`GET /api/v1/youtube/.../get_channel_shorts`
+`GET /api/v1/youtube/web_v2/get_channel_shorts`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_channel_shorts -->
 
@@ -117,7 +117,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_videos
 
-`GET /api/v1/youtube/.../get_channel_videos`
+`GET /api/v1/youtube/web_v2/get_channel_videos`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_channel_videos -->
 
@@ -215,7 +215,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_videos_v2
 
-`GET /api/v1/youtube/.../get_channel_videos_v2`
+`GET /api/v1/youtube/web/get_channel_videos_v2`
 
 <!-- Full path: /api/v1/youtube/web/get_channel_videos_v2 -->
 
@@ -256,7 +256,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_general_search
 
-`GET /api/v1/youtube/.../get_general_search`
+`GET /api/v1/youtube/web_v2/get_general_search`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_general_search -->
 
@@ -329,7 +329,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_detail
 
-`GET /api/v1/youtube/.../get_post_detail`
+`GET /api/v1/youtube/web_v2/get_post_detail`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_post_detail -->
 
@@ -386,7 +386,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_relate_video
 
-`GET /api/v1/youtube/.../get_relate_video`
+`GET /api/v1/youtube/web/get_relate_video`
 
 <!-- Full path: /api/v1/youtube/web/get_relate_video -->
 
@@ -414,7 +414,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_related_videos
 
-`GET /api/v1/youtube/.../get_related_videos`
+`GET /api/v1/youtube/web_v2/get_related_videos`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_related_videos -->
 
@@ -474,7 +474,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_search_suggestions
 
-`GET /api/v1/youtube/.../get_search_suggestions`
+`GET /api/v1/youtube/web_v2/get_search_suggestions`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_search_suggestions -->
 
@@ -519,7 +519,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_shorts_search
 
-`GET /api/v1/youtube/.../get_shorts_search`
+`GET /api/v1/youtube/web_v2/get_shorts_search`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_shorts_search -->
 
@@ -728,7 +728,7 @@ Shorts 内容
 
 ## get_signed_stream_url
 
-`GET /api/v1/youtube/.../get_signed_stream_url`
+`GET /api/v1/youtube/web_v2/get_signed_stream_url`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_signed_stream_url -->
 
@@ -764,7 +764,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_trending_videos
 
-`GET /api/v1/youtube/.../get_trending_videos`
+`GET /api/v1/youtube/web/get_trending_videos`
 
 <!-- Full path: /api/v1/youtube/web/get_trending_videos -->
 
@@ -793,7 +793,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_captions
 
-`GET /api/v1/youtube/.../get_video_captions`
+`GET /api/v1/youtube/web_v2/get_video_captions`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_captions -->
 
@@ -861,7 +861,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_captions_v2
 
-`GET /api/v1/youtube/.../get_video_captions_v2`
+`GET /api/v1/youtube/web_v2/get_video_captions_v2`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_captions_v2 -->
 
@@ -904,7 +904,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_comment_replies
 
-`GET /api/v1/youtube/.../get_video_comment_replies`
+`GET /api/v1/youtube/web_v2/get_video_comment_replies`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_comment_replies -->
 
@@ -984,7 +984,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_comments
 
-`GET /api/v1/youtube/.../get_video_comments`
+`GET /api/v1/youtube/web_v2/get_video_comments`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_comments -->
 
@@ -1093,7 +1093,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_info
 
-`GET /api/v1/youtube/.../get_video_info`
+`GET /api/v1/youtube/web/get_video_info`
 
 <!-- Full path: /api/v1/youtube/web/get_video_info -->
 
@@ -1131,7 +1131,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_info
 
-`GET /api/v1/youtube/.../get_video_info`
+`GET /api/v1/youtube/web/get_video_info`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_info -->
 
@@ -1206,7 +1206,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_info_v2
 
-`GET /api/v1/youtube/.../get_video_info_v2`
+`GET /api/v1/youtube/web/get_video_info_v2`
 
 <!-- Full path: /api/v1/youtube/web/get_video_info_v2 -->
 
@@ -1232,7 +1232,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_streams
 
-`GET /api/v1/youtube/.../get_video_streams`
+`GET /api/v1/youtube/web_v2/get_video_streams`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_streams -->
 
@@ -1280,7 +1280,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_streams_v2
 
-`GET /api/v1/youtube/.../get_video_streams_v2`
+`GET /api/v1/youtube/web_v2/get_video_streams_v2`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_video_streams_v2 -->
 
@@ -1329,7 +1329,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_subtitles
 
-`GET /api/v1/youtube/.../get_video_subtitles`
+`GET /api/v1/youtube/web/get_video_subtitles`
 
 <!-- Full path: /api/v1/youtube/web/get_video_subtitles -->
 
@@ -1358,7 +1358,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_video
 
-`GET /api/v1/youtube/.../search_video`
+`GET /api/v1/youtube/web/search_video`
 
 <!-- Full path: /api/v1/youtube/web/search_video -->
 

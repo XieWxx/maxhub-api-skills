@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_one_video
 
-`GET /api/v1/xigua/.../fetch_one_video`
+`GET /api/v1/xigua/app/v2/fetch_one_video`
 
 <!-- Full path: /api/v1/xigua/app/v2/fetch_one_video -->
 
@@ -32,7 +32,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_play_url
 
-`GET /api/v1/xigua/.../fetch_one_video_play_url`
+`GET /api/v1/xigua/app/v2/fetch_one_video_play_url`
 
 <!-- Full path: /api/v1/xigua/app/v2/fetch_one_video_play_url -->
 
@@ -57,7 +57,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_v2
 
-`GET /api/v1/xigua/.../fetch_one_video_v2`
+`GET /api/v1/xigua/app/v2/fetch_one_video_v2`
 
 <!-- Full path: /api/v1/xigua/app/v2/fetch_one_video_v2 -->
 
@@ -83,7 +83,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/xigua/.../fetch_user_info`
+`GET /api/v1/xigua/app/v2/fetch_user_info`
 
 <!-- Full path: /api/v1/xigua/app/v2/fetch_user_info -->
 
@@ -108,7 +108,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_post_list
 
-`GET /api/v1/xigua/.../fetch_user_post_list`
+`GET /api/v1/xigua/app/v2/fetch_user_post_list`
 
 <!-- Full path: /api/v1/xigua/app/v2/fetch_user_post_list -->
 
@@ -137,7 +137,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_comment_list
 
-`GET /api/v1/xigua/.../fetch_video_comment_list`
+`GET /api/v1/xigua/app/v2/fetch_video_comment_list`
 
 <!-- Full path: /api/v1/xigua/app/v2/fetch_video_comment_list -->
 
@@ -166,7 +166,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_video
 
-`GET /api/v1/xigua/.../search_video`
+`GET /api/v1/xigua/app/v2/search_video`
 
 <!-- Full path: /api/v1/xigua/app/v2/search_video -->
 

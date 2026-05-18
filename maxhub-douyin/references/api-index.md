@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_all_valid_date
 
-`GET /api/v1/douyin/.../fetch_all_valid_date`
+`GET /api/v1/douyin/index/fetch_all_valid_date`
 
 <!-- Full path: /api/v1/douyin/index/fetch_all_valid_date -->
 
@@ -27,7 +27,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_brand_cycles
 
-`POST /api/v1/douyin/.../fetch_brand_cycles`
+`POST /api/v1/douyin/index/fetch_brand_cycles`
 
 <!-- Full path: /api/v1/douyin/index/fetch_brand_cycles -->
 
@@ -57,7 +57,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_brand_radar_chart
 
-`POST /api/v1/douyin/.../fetch_brand_radar_chart`
+`POST /api/v1/douyin/index/fetch_brand_radar_chart`
 
 <!-- Full path: /api/v1/douyin/index/fetch_brand_radar_chart -->
 
@@ -87,7 +87,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_brand_valid_info
 
-`POST /api/v1/douyin/.../fetch_brand_valid_info`
+`POST /api/v1/douyin/index/fetch_brand_valid_info`
 
 <!-- Full path: /api/v1/douyin/index/fetch_brand_valid_info -->
 
@@ -112,7 +112,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_portrait
 
-`POST /api/v1/douyin/.../fetch_portrait`
+`POST /api/v1/douyin/index/fetch_portrait`
 
 <!-- Full path: /api/v1/douyin/index/fetch_portrait -->
 
@@ -143,7 +143,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_valid_date_for_relation
 
-`GET /api/v1/douyin/.../fetch_valid_date_for_relation`
+`GET /api/v1/douyin/index/fetch_valid_date_for_relation`
 
 <!-- Full path: /api/v1/douyin/index/fetch_valid_date_for_relation -->
 
@@ -164,7 +164,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_author_market_fields
 
-`GET /api/v1/douyin/.../get_author_market_fields`
+`GET /api/v1/douyin/xingtu_v2/get_author_market_fields`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_author_market_fields -->
 
@@ -189,7 +189,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_xingtu_index_v1
 
-`GET /api/v1/douyin/.../kol_xingtu_index_v1`
+`GET /api/v1/douyin/xingtu/kol_xingtu_index_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_xingtu_index_v1 -->
 

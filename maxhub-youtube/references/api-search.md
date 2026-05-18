@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## get_general_search_v2
 
-`GET /api/v1/youtube/.../get_general_search_v2`
+`GET /api/v1/youtube/web_v2/get_general_search_v2`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_general_search_v2 -->
 

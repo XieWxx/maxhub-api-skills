@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_discover_banners
 
-`GET /api/v1/lemon8/.../fetch_discover_banners`
+`GET /api/v1/lemon8/app/fetch_discover_banners`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_discover_banners -->
 
@@ -27,7 +27,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_discover_tab
 
-`GET /api/v1/lemon8/.../fetch_discover_tab`
+`GET /api/v1/lemon8/app/fetch_discover_tab`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_discover_tab -->
 
@@ -48,7 +48,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_search_keywords
 
-`GET /api/v1/lemon8/.../fetch_hot_search_keywords`
+`GET /api/v1/lemon8/app/fetch_hot_search_keywords`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_hot_search_keywords -->
 
@@ -69,7 +69,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search
 
-`GET /api/v1/lemon8/.../fetch_search`
+`GET /api/v1/lemon8/app/fetch_search`
 
 <!-- Full path: /api/v1/lemon8/app/fetch_search -->
 

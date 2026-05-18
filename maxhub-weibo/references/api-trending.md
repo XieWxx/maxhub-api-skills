@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_trend_top
 
-`GET /api/v1/weibo/.../fetch_trend_top`
+`GET /api/v1/weibo/web/fetch_trend_top`
 
 <!-- Full path: /api/v1/weibo/web/fetch_trend_top -->
 

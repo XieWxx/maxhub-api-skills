@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## get_article_info
 
-`GET /api/v1/toutiao/.../get_article_info`
+`GET /api/v1/toutiao/app/get_article_info`
 
 <!-- Full path: /api/v1/toutiao/app/get_article_info -->
 
@@ -32,7 +32,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_article_info
 
-`GET /api/v1/toutiao/.../get_article_info`
+`GET /api/v1/toutiao/app/get_article_info`
 
 <!-- Full path: /api/v1/toutiao/web/get_article_info -->
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_comments
 
-`GET /api/v1/toutiao/.../get_comments`
+`GET /api/v1/toutiao/app/get_comments`
 
 <!-- Full path: /api/v1/toutiao/app/get_comments -->
 
@@ -86,7 +86,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_id
 
-`GET /api/v1/toutiao/.../get_user_id`
+`GET /api/v1/toutiao/app/get_user_id`
 
 <!-- Full path: /api/v1/toutiao/app/get_user_id -->
 
@@ -112,7 +112,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_info
 
-`GET /api/v1/toutiao/.../get_user_info`
+`GET /api/v1/toutiao/app/get_user_info`
 
 <!-- Full path: /api/v1/toutiao/app/get_user_info -->
 
@@ -138,7 +138,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_info
 
-`GET /api/v1/toutiao/.../get_video_info`
+`GET /api/v1/toutiao/app/get_video_info`
 
 <!-- Full path: /api/v1/toutiao/app/get_video_info -->
 
@@ -164,7 +164,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_info
 
-`GET /api/v1/toutiao/.../get_video_info`
+`GET /api/v1/toutiao/app/get_video_info`
 
 <!-- Full path: /api/v1/toutiao/web/get_video_info -->
 

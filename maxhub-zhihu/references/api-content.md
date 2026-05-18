@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_column_article_detail
 
-`GET /api/v1/zhihu/.../fetch_column_article_detail`
+`GET /api/v1/zhihu/web/fetch_column_article_detail`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_column_article_detail -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_column_articles
 
-`GET /api/v1/zhihu/.../fetch_column_articles`
+`GET /api/v1/zhihu/web/fetch_column_articles`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_column_articles -->
 
@@ -60,7 +60,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_column_comment_config
 
-`GET /api/v1/zhihu/.../fetch_column_comment_config`
+`GET /api/v1/zhihu/web/fetch_column_comment_config`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_column_comment_config -->
 
@@ -85,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_column_recommend
 
-`GET /api/v1/zhihu/.../fetch_column_recommend`
+`GET /api/v1/zhihu/web/fetch_column_recommend`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_column_recommend -->
 
@@ -114,7 +114,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_column_relationship
 
-`GET /api/v1/zhihu/.../fetch_column_relationship`
+`GET /api/v1/zhihu/web/fetch_column_relationship`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_column_relationship -->
 
@@ -139,7 +139,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_column_search_v3
 
-`GET /api/v1/zhihu/.../fetch_column_search_v3`
+`GET /api/v1/zhihu/web/fetch_column_search_v3`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_column_search_v3 -->
 
@@ -170,7 +170,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_comment_v5
 
-`GET /api/v1/zhihu/.../fetch_comment_v5`
+`GET /api/v1/zhihu/web/fetch_comment_v5`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_comment_v5 -->
 
@@ -203,7 +203,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_list
 
-`GET /api/v1/zhihu/.../fetch_hot_list`
+`GET /api/v1/zhihu/web/fetch_hot_list`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_hot_list -->
 
@@ -230,7 +230,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_sub_comment_v5
 
-`GET /api/v1/zhihu/.../fetch_sub_comment_v5`
+`GET /api/v1/zhihu/web/fetch_sub_comment_v5`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_sub_comment_v5 -->
 
@@ -263,7 +263,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_articles
 
-`GET /api/v1/zhihu/.../fetch_user_articles`
+`GET /api/v1/zhihu/web/fetch_user_articles`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_articles -->
 
@@ -296,7 +296,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_follow_columns
 
-`GET /api/v1/zhihu/.../fetch_user_follow_columns`
+`GET /api/v1/zhihu/web/fetch_user_follow_columns`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_follow_columns -->
 
@@ -325,7 +325,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_included_articles
 
-`GET /api/v1/zhihu/.../fetch_user_included_articles`
+`GET /api/v1/zhihu/web/fetch_user_included_articles`
 
 <!-- Full path: /api/v1/zhihu/web/fetch_user_included_articles -->
 

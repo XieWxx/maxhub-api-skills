@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## bv_to_aid
 
-`GET /api/v1/bilibili/.../bv_to_aid`
+`GET /api/v1/bilibili/web/bv_to_aid`
 
 <!-- Full path: /api/v1/bilibili/web/bv_to_aid -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_com_popular
 
-`GET /api/v1/bilibili/.../fetch_com_popular`
+`GET /api/v1/bilibili/web/fetch_com_popular`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_com_popular -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_comment_reply
 
-`GET /api/v1/bilibili/.../fetch_comment_reply`
+`GET /api/v1/bilibili/web/fetch_comment_reply`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_comment_reply -->
 
@@ -85,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_dynamic_detail
 
-`GET /api/v1/bilibili/.../fetch_dynamic_detail`
+`GET /api/v1/bilibili/web/fetch_dynamic_detail`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_dynamic_detail -->
 
@@ -110,7 +110,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_dynamic_detail_v2
 
-`GET /api/v1/bilibili/.../fetch_dynamic_detail_v2`
+`GET /api/v1/bilibili/web/fetch_dynamic_detail_v2`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_dynamic_detail_v2 -->
 
@@ -135,7 +135,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_home_feed
 
-`GET /api/v1/bilibili/.../fetch_home_feed`
+`GET /api/v1/bilibili/app/fetch_home_feed`
 
 <!-- Full path: /api/v1/bilibili/app/fetch_home_feed -->
 
@@ -164,7 +164,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_room_detail
 
-`GET /api/v1/bilibili/.../fetch_live_room_detail`
+`GET /api/v1/bilibili/web/fetch_live_room_detail`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_live_room_detail -->
 
@@ -189,7 +189,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_videos
 
-`GET /api/v1/bilibili/.../fetch_live_videos`
+`GET /api/v1/bilibili/web/fetch_live_videos`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_live_videos -->
 
@@ -214,7 +214,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video
 
-`GET /api/v1/bilibili/.../fetch_one_video`
+`GET /api/v1/bilibili/app/fetch_one_video`
 
 <!-- Full path: /api/v1/bilibili/app/fetch_one_video -->
 
@@ -241,7 +241,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video
 
-`GET /api/v1/bilibili/.../fetch_one_video`
+`GET /api/v1/bilibili/app/fetch_one_video`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_one_video -->
 
@@ -266,7 +266,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_v2
 
-`GET /api/v1/bilibili/.../fetch_one_video_v2`
+`GET /api/v1/bilibili/web/fetch_one_video_v2`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_one_video_v2 -->
 
@@ -293,7 +293,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_v3
 
-`GET /api/v1/bilibili/.../fetch_one_video_v3`
+`GET /api/v1/bilibili/web/fetch_one_video_v3`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_one_video_v3 -->
 
@@ -318,7 +318,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_reply_detail
 
-`GET /api/v1/bilibili/.../fetch_reply_detail`
+`GET /api/v1/bilibili/app/fetch_reply_detail`
 
 <!-- Full path: /api/v1/bilibili/app/fetch_reply_detail -->
 
@@ -351,7 +351,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_collection_videos
 
-`GET /api/v1/bilibili/.../fetch_user_collection_videos`
+`GET /api/v1/bilibili/web/fetch_user_collection_videos`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_user_collection_videos -->
 
@@ -378,7 +378,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_post_videos
 
-`GET /api/v1/bilibili/.../fetch_user_post_videos`
+`GET /api/v1/bilibili/web/fetch_user_post_videos`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_user_post_videos -->
 
@@ -410,7 +410,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_videos
 
-`GET /api/v1/bilibili/.../fetch_user_videos`
+`GET /api/v1/bilibili/app/fetch_user_videos`
 
 <!-- Full path: /api/v1/bilibili/app/fetch_user_videos -->
 
@@ -441,7 +441,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_comments
 
-`GET /api/v1/bilibili/.../fetch_video_comments`
+`GET /api/v1/bilibili/app/fetch_video_comments`
 
 <!-- Full path: /api/v1/bilibili/app/fetch_video_comments -->
 
@@ -472,7 +472,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_comments
 
-`GET /api/v1/bilibili/.../fetch_video_comments`
+`GET /api/v1/bilibili/app/fetch_video_comments`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_comments -->
 
@@ -499,7 +499,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_danmaku
 
-`GET /api/v1/bilibili/.../fetch_video_danmaku`
+`GET /api/v1/bilibili/web/fetch_video_danmaku`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_danmaku -->
 
@@ -524,7 +524,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_detail
 
-`GET /api/v1/bilibili/.../fetch_video_detail`
+`GET /api/v1/bilibili/web/fetch_video_detail`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_detail -->
 
@@ -549,7 +549,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_parts
 
-`GET /api/v1/bilibili/.../fetch_video_parts`
+`GET /api/v1/bilibili/web/fetch_video_parts`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_parts -->
 
@@ -574,7 +574,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_play_info
 
-`GET /api/v1/bilibili/.../fetch_video_play_info`
+`GET /api/v1/bilibili/web/fetch_video_play_info`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_play_info -->
 
@@ -599,7 +599,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_playurl
 
-`GET /api/v1/bilibili/.../fetch_video_playurl`
+`GET /api/v1/bilibili/web/fetch_video_playurl`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_playurl -->
 
@@ -626,7 +626,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_subtitle
 
-`GET /api/v1/bilibili/.../fetch_video_subtitle`
+`GET /api/v1/bilibili/web/fetch_video_subtitle`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_video_subtitle -->
 
@@ -653,7 +653,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_vip_video_playurl
 
-`POST /api/v1/bilibili/.../fetch_vip_video_playurl`
+`POST /api/v1/bilibili/web/fetch_vip_video_playurl`
 
 <!-- Full path: /api/v1/bilibili/web/fetch_vip_video_playurl -->
 

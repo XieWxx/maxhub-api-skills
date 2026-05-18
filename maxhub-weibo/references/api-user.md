@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_all_groups
 
-`GET /api/v1/weibo/.../fetch_all_groups`
+`GET /api/v1/weibo/web_v2/fetch_all_groups`
 
 <!-- Full path: /api/v1/weibo/web_v2/fetch_all_groups -->
 
@@ -32,7 +32,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_channel_feed
 
-`GET /api/v1/weibo/.../fetch_channel_feed`
+`GET /api/v1/weibo/web/fetch_channel_feed`
 
 <!-- Full path: /api/v1/weibo/web/fetch_channel_feed -->
 
@@ -63,7 +63,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_home_recommend_feed
 
-`GET /api/v1/weibo/.../fetch_home_recommend_feed`
+`GET /api/v1/weibo/app/fetch_home_recommend_feed`
 
 <!-- Full path: /api/v1/weibo/app/fetch_home_recommend_feed -->
 
@@ -92,7 +92,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_album
 
-`GET /api/v1/weibo/.../fetch_user_album`
+`GET /api/v1/weibo/app/fetch_user_album`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_album -->
 
@@ -122,7 +122,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_articles
 
-`GET /api/v1/weibo/.../fetch_user_articles`
+`GET /api/v1/weibo/app/fetch_user_articles`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_articles -->
 
@@ -152,7 +152,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_audios
 
-`GET /api/v1/weibo/.../fetch_user_audios`
+`GET /api/v1/weibo/app/fetch_user_audios`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_audios -->
 
@@ -182,7 +182,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_basic_info
 
-`GET /api/v1/weibo/.../fetch_user_basic_info`
+`GET /api/v1/weibo/web_v2/fetch_user_basic_info`
 
 <!-- Full path: /api/v1/weibo/web_v2/fetch_user_basic_info -->
 
@@ -210,7 +210,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_fans
 
-`GET /api/v1/weibo/.../fetch_user_fans`
+`GET /api/v1/weibo/web_v2/fetch_user_fans`
 
 <!-- Full path: /api/v1/weibo/web_v2/fetch_user_fans -->
 
@@ -241,7 +241,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_following
 
-`GET /api/v1/weibo/.../fetch_user_following`
+`GET /api/v1/weibo/web_v2/fetch_user_following`
 
 <!-- Full path: /api/v1/weibo/web_v2/fetch_user_following -->
 
@@ -272,7 +272,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/weibo/.../fetch_user_info`
+`GET /api/v1/weibo/app/fetch_user_info`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_info -->
 
@@ -299,7 +299,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/weibo/.../fetch_user_info`
+`GET /api/v1/weibo/app/fetch_user_info`
 
 <!-- Full path: /api/v1/weibo/web/fetch_user_info -->
 
@@ -324,7 +324,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/weibo/.../fetch_user_info`
+`GET /api/v1/weibo/app/fetch_user_info`
 
 <!-- Full path: /api/v1/weibo/web_v2/fetch_user_info -->
 
@@ -355,7 +355,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_profile_feed
 
-`GET /api/v1/weibo/.../fetch_user_profile_feed`
+`GET /api/v1/weibo/app/fetch_user_profile_feed`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_profile_feed -->
 
@@ -385,7 +385,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_search
 
-`GET /api/v1/weibo/.../fetch_user_search`
+`GET /api/v1/weibo/web_v2/fetch_user_search`
 
 <!-- Full path: /api/v1/weibo/web_v2/fetch_user_search -->
 
@@ -430,7 +430,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_super_topics
 
-`GET /api/v1/weibo/.../fetch_user_super_topics`
+`GET /api/v1/weibo/app/fetch_user_super_topics`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_super_topics -->
 
@@ -459,7 +459,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_videos
 
-`GET /api/v1/weibo/.../fetch_user_videos`
+`GET /api/v1/weibo/app/fetch_user_videos`
 
 <!-- Full path: /api/v1/weibo/app/fetch_user_videos -->
 
@@ -490,7 +490,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_featured_feed
 
-`GET /api/v1/weibo/.../fetch_video_featured_feed`
+`GET /api/v1/weibo/app/fetch_video_featured_feed`
 
 <!-- Full path: /api/v1/weibo/app/fetch_video_featured_feed -->
 

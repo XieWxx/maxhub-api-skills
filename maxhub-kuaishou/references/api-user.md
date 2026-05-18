@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_get_user_id
 
-`GET /api/v1/kuaishou/.../fetch_get_user_id`
+`GET /api/v1/kuaishou/web/fetch_get_user_id`
 
 <!-- Full path: /api/v1/kuaishou/web/fetch_get_user_id -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_kuaishou_hot_list_v1
 
-`GET /api/v1/kuaishou/.../fetch_kuaishou_hot_list_v1`
+`GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1`
 
 <!-- Full path: /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1 -->
 
@@ -54,7 +54,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_kuaishou_hot_list_v2
 
-`GET /api/v1/kuaishou/.../fetch_kuaishou_hot_list_v2`
+`GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2`
 
 <!-- Full path: /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2 -->
 
@@ -85,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/kuaishou/.../fetch_user_info`
+`GET /api/v1/kuaishou/web/fetch_user_info`
 
 <!-- Full path: /api/v1/kuaishou/web/fetch_user_info -->
 

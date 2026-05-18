@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_hashtag_detail
 
-`GET /api/v1/pipixia/.../fetch_hashtag_detail`
+`GET /api/v1/pipixia/app/fetch_hashtag_detail`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_hashtag_detail -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hashtag_post_list
 
-`GET /api/v1/pipixia/.../fetch_hashtag_post_list`
+`GET /api/v1/pipixia/app/fetch_hashtag_post_list`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_hashtag_post_list -->
 
@@ -70,7 +70,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_search_board_detail
 
-`GET /api/v1/pipixia/.../fetch_hot_search_board_detail`
+`GET /api/v1/pipixia/app/fetch_hot_search_board_detail`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_hot_search_board_detail -->
 
@@ -95,7 +95,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_search_board_list
 
-`GET /api/v1/pipixia/.../fetch_hot_search_board_list`
+`GET /api/v1/pipixia/app/fetch_hot_search_board_list`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_hot_search_board_list -->
 
@@ -114,11 +114,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 返回:
 - 热搜榜单列表数据
 
-## fetch_increase_post_view_count
-
-`GET /api/v1/pipixia/.../fetch_increase_post_view_count`
-
-<!-- Full path: /api/v1/pipixia/app/fetch_increase_post_view_count -->
 
 ### Parameters
 
@@ -143,7 +138,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_comment_list
 
-`GET /api/v1/pipixia/.../fetch_post_comment_list`
+`GET /api/v1/pipixia/app/fetch_post_comment_list`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_post_comment_list -->
 
@@ -172,7 +167,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_detail
 
-`GET /api/v1/pipixia/.../fetch_post_detail`
+`GET /api/v1/pipixia/app/fetch_post_detail`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_post_detail -->
 
@@ -199,7 +194,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_statistics
 
-`GET /api/v1/pipixia/.../fetch_post_statistics`
+`GET /api/v1/pipixia/app/fetch_post_statistics`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_post_statistics -->
 
@@ -224,7 +219,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_follower_list
 
-`GET /api/v1/pipixia/.../fetch_user_follower_list`
+`GET /api/v1/pipixia/app/fetch_user_follower_list`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_user_follower_list -->
 
@@ -251,7 +246,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_following_list
 
-`GET /api/v1/pipixia/.../fetch_user_following_list`
+`GET /api/v1/pipixia/app/fetch_user_following_list`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_user_following_list -->
 
@@ -278,7 +273,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_info
 
-`GET /api/v1/pipixia/.../fetch_user_info`
+`GET /api/v1/pipixia/app/fetch_user_info`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_user_info -->
 
@@ -303,7 +298,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_post_list
 
-`GET /api/v1/pipixia/.../fetch_user_post_list`
+`GET /api/v1/pipixia/app/fetch_user_post_list`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_user_post_list -->
 

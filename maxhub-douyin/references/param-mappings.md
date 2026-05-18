@@ -4,9 +4,6 @@ Platform: `douyin` | Base URL: `https://www.aconfig.cn`
 
 ---
 
-## add_video_play_count
-
-- `aweme_type` (integer, required): 作品类型/Video type — e.g. `0`
 - `item_id` (string, required): 作品id/Video id — e.g. `7197598285882789120`
 - `cookie` (string, optional): 可选，默认使用游客Cookie/Optional, use guest Cookie by default
 

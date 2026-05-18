@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_follower_list
 
-`GET /api/v1/xiaohongshu/.../fetch_follower_list`
+`GET /api/v1/xiaohongshu/web_v2/fetch_follower_list`
 
 <!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_follower_list -->
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_following_list
 
-`GET /api/v1/xiaohongshu/.../fetch_following_list`
+`GET /api/v1/xiaohongshu/web_v2/fetch_following_list`
 
 <!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_following_list -->
 
@@ -60,7 +60,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_users
 
-`GET /api/v1/xiaohongshu/.../fetch_search_users`
+`GET /api/v1/xiaohongshu/web_v2/fetch_search_users`
 
 <!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_search_users -->
 
@@ -87,7 +87,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_users
 
-`GET /api/v1/xiaohongshu/.../fetch_search_users`
+`GET /api/v1/xiaohongshu/web_v2/fetch_search_users`
 
 <!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_search_users -->
 
@@ -116,7 +116,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_id_and_xsec_token
 
-`GET /api/v1/xiaohongshu/.../get_user_id_and_xsec_token`
+`GET /api/v1/xiaohongshu/app/get_user_id_and_xsec_token`
 
 <!-- Full path: /api/v1/xiaohongshu/app/get_user_id_and_xsec_token -->
 
@@ -147,7 +147,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_users
 
-`GET /api/v1/xiaohongshu/.../search_users`
+`GET /api/v1/xiaohongshu/app_v2/search_users`
 
 <!-- Full path: /api/v1/xiaohongshu/app_v2/search_users -->
 
@@ -181,7 +181,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_users
 
-`GET /api/v1/xiaohongshu/.../search_users`
+`GET /api/v1/xiaohongshu/app_v2/search_users`
 
 <!-- Full path: /api/v1/xiaohongshu/web/search_users -->
 

@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## TTencrypt_algorithm
 
-`POST /api/v1/tiktok/.../TTencrypt_algorithm`
+`POST /api/v1/tiktok/app/v3/TTencrypt_algorithm`
 
 <!-- Full path: /api/v1/tiktok/app/v3/TTencrypt_algorithm -->
 
@@ -34,11 +34,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   ### 返回:
  - 加密参数列表
 
-## add_video_play_count
-
-`GET /api/v1/tiktok/.../add_video_play_count`
-
-<!-- Full path: /api/v1/tiktok/app/v3/add_video_play_count -->
 
 ### Parameters
 
@@ -64,7 +59,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## check_live_room_online
 
-`GET /api/v1/tiktok/.../check_live_room_online`
+`GET /api/v1/tiktok/app/v3/check_live_room_online`
 
 <!-- Full path: /api/v1/tiktok/app/v3/check_live_room_online -->
 
@@ -90,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## check_live_room_online_batch
 
-`POST /api/v1/tiktok/.../check_live_room_online_batch`
+`POST /api/v1/tiktok/app/v3/check_live_room_online_batch`
 
 <!-- Full path: /api/v1/tiktok/app/v3/check_live_room_online_batch -->
 
@@ -114,7 +109,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## decrypt_strData
 
-`GET /api/v1/tiktok/.../decrypt_strData`
+`GET /api/v1/tiktok/web/decrypt_strData`
 
 <!-- Full path: /api/v1/tiktok/web/decrypt_strData -->
 
@@ -139,7 +134,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## detect_fake_views
 
-`GET /api/v1/tiktok/.../detect_fake_views`
+`GET /api/v1/tiktok/analytics/detect_fake_views`
 
 <!-- Full path: /api/v1/tiktok/analytics/detect_fake_views -->
 
@@ -342,7 +337,7 @@ https://www.tiktok.com/@tiktok/video/7460937381265411370
 
 ## device_register
 
-`GET /api/v1/tiktok/.../device_register`
+`GET /api/v1/tiktok/web/device_register`
 
 <!-- Full path: /api/v1/tiktok/web/device_register -->
 
@@ -365,7 +360,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## encrypt_decrypt_login_request
 
-`POST /api/v1/tiktok/.../encrypt_decrypt_login_request`
+`POST /api/v1/tiktok/app/v3/encrypt_decrypt_login_request`
 
 <!-- Full path: /api/v1/tiktok/app/v3/encrypt_decrypt_login_request -->
 
@@ -392,7 +387,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## encrypt_strData
 
-`GET /api/v1/tiktok/.../encrypt_strData`
+`GET /api/v1/tiktok/web/encrypt_strData`
 
 <!-- Full path: /api/v1/tiktok/web/encrypt_strData -->
 
@@ -417,7 +412,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_batch_check_live_alive
 
-`GET /api/v1/tiktok/.../fetch_batch_check_live_alive`
+`GET /api/v1/tiktok/web/fetch_batch_check_live_alive`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_batch_check_live_alive -->
 
@@ -447,7 +442,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_check_live_alive
 
-`GET /api/v1/tiktok/.../fetch_check_live_alive`
+`GET /api/v1/tiktok/web/fetch_check_live_alive`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_check_live_alive -->
 
@@ -473,7 +468,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_comment_keywords
 
-`GET /api/v1/tiktok/.../fetch_comment_keywords`
+`GET /api/v1/tiktok/analytics/fetch_comment_keywords`
 
 <!-- Full path: /api/v1/tiktok/analytics/fetch_comment_keywords -->
 
@@ -558,7 +553,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_content_translate
 
-`POST /api/v1/tiktok/.../fetch_content_translate`
+`POST /api/v1/tiktok/app/v3/fetch_content_translate`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_content_translate -->
 
@@ -607,7 +602,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_creator_info
 
-`GET /api/v1/tiktok/.../fetch_creator_info`
+`GET /api/v1/tiktok/app/v3/fetch_creator_info`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_creator_info -->
 
@@ -632,7 +627,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_creator_search_insights
 
-`GET /api/v1/tiktok/.../fetch_creator_search_insights`
+`GET /api/v1/tiktok/app/v3/fetch_creator_search_insights`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_creator_search_insights -->
 
@@ -679,7 +674,7 @@ Science, Food, Sports
 
 ## fetch_creator_search_insights_detail
 
-`GET /api/v1/tiktok/.../fetch_creator_search_insights_detail`
+`GET /api/v1/tiktok/app/v3/fetch_creator_search_insights_detail`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_creator_search_insights_detail -->
 
@@ -717,7 +712,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_creator_search_insights_trend
 
-`GET /api/v1/tiktok/.../fetch_creator_search_insights_trend`
+`GET /api/v1/tiktok/app/v3/fetch_creator_search_insights_trend`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_creator_search_insights_trend -->
 
@@ -746,7 +741,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_creator_search_insights_videos
 
-`GET /api/v1/tiktok/.../fetch_creator_search_insights_videos`
+`GET /api/v1/tiktok/app/v3/fetch_creator_search_insights_videos`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_creator_search_insights_videos -->
 
@@ -776,7 +771,7 @@ fetch_creator_search_insights_trend 接口获取
 
 ## fetch_creator_showcase_product_list
 
-`GET /api/v1/tiktok/.../fetch_creator_showcase_product_list`
+`GET /api/v1/tiktok/app/v3/fetch_creator_showcase_product_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_creator_showcase_product_list -->
 
@@ -805,7 +800,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_explore_post
 
-`GET /api/v1/tiktok/.../fetch_explore_post`
+`GET /api/v1/tiktok/web/fetch_explore_post`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_explore_post -->
 
@@ -862,7 +857,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_general_search
 
-`GET /api/v1/tiktok/.../fetch_general_search`
+`GET /api/v1/tiktok/web/fetch_general_search`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_general_search -->
 
@@ -905,7 +900,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_general_search_result
 
-`GET /api/v1/tiktok/.../fetch_general_search_result`
+`GET /api/v1/tiktok/app/v3/fetch_general_search_result`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_general_search_result -->
 
@@ -938,7 +933,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hashtag_detail
 
-`GET /api/v1/tiktok/.../fetch_hashtag_detail`
+`GET /api/v1/tiktok/app/v3/fetch_hashtag_detail`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_hashtag_detail -->
 
@@ -963,7 +958,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hashtag_search_result
 
-`GET /api/v1/tiktok/.../fetch_hashtag_search_result`
+`GET /api/v1/tiktok/app/v3/fetch_hashtag_search_result`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_hashtag_search_result -->
 
@@ -992,7 +987,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hashtag_video_list
 
-`GET /api/v1/tiktok/.../fetch_hashtag_video_list`
+`GET /api/v1/tiktok/app/v3/fetch_hashtag_video_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_hashtag_video_list -->
 
@@ -1021,7 +1016,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_home_feed
 
-`POST /api/v1/tiktok/.../fetch_home_feed`
+`POST /api/v1/tiktok/app/v3/fetch_home_feed`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_home_feed -->
 
@@ -1044,7 +1039,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_home_feed
 
-`POST /api/v1/tiktok/.../fetch_home_feed`
+`POST /api/v1/tiktok/app/v3/fetch_home_feed`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_home_feed -->
 
@@ -1077,7 +1072,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_selling_products_list
 
-`GET /api/v1/tiktok/.../fetch_hot_selling_products_list`
+`GET /api/v1/tiktok/shop/web/fetch_hot_selling_products_list`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_hot_selling_products_list -->
 
@@ -1123,7 +1118,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_daily_rank
 
-`GET /api/v1/tiktok/.../fetch_live_daily_rank`
+`GET /api/v1/tiktok/app/v3/fetch_live_daily_rank`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_live_daily_rank -->
 
@@ -1184,7 +1179,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_gift_list
 
-`GET /api/v1/tiktok/.../fetch_live_gift_list`
+`GET /api/v1/tiktok/web/fetch_live_gift_list`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_live_gift_list -->
 
@@ -1219,7 +1214,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_im_fetch
 
-`GET /api/v1/tiktok/.../fetch_live_im_fetch`
+`GET /api/v1/tiktok/web/fetch_live_im_fetch`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_live_im_fetch -->
 
@@ -1248,7 +1243,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_ranking_list
 
-`GET /api/v1/tiktok/.../fetch_live_ranking_list`
+`GET /api/v1/tiktok/app/v3/fetch_live_ranking_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_live_ranking_list -->
 
@@ -1275,7 +1270,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_recommend
 
-`GET /api/v1/tiktok/.../fetch_live_recommend`
+`GET /api/v1/tiktok/web/fetch_live_recommend`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_live_recommend -->
 
@@ -1309,7 +1304,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_room_info
 
-`GET /api/v1/tiktok/.../fetch_live_room_info`
+`GET /api/v1/tiktok/app/v3/fetch_live_room_info`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_live_room_info -->
 
@@ -1334,7 +1329,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_room_product_list
 
-`GET /api/v1/tiktok/.../fetch_live_room_product_list`
+`GET /api/v1/tiktok/app/v3/fetch_live_room_product_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_live_room_product_list -->
 
@@ -1376,7 +1371,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_room_product_list_v2
 
-`GET /api/v1/tiktok/.../fetch_live_room_product_list_v2`
+`GET /api/v1/tiktok/app/v3/fetch_live_room_product_list_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_live_room_product_list_v2 -->
 
@@ -1418,7 +1413,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_search_result
 
-`GET /api/v1/tiktok/.../fetch_live_search_result`
+`GET /api/v1/tiktok/app/v3/fetch_live_search_result`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_live_search_result -->
 
@@ -1449,7 +1444,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_location_search
 
-`GET /api/v1/tiktok/.../fetch_location_search`
+`GET /api/v1/tiktok/app/v3/fetch_location_search`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_location_search -->
 
@@ -1478,7 +1473,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_multi_video
 
-`POST /api/v1/tiktok/.../fetch_multi_video`
+`POST /api/v1/tiktok/app/v3/fetch_multi_video`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_multi_video -->
 
@@ -1501,7 +1496,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_multi_video_v2
 
-`POST /api/v1/tiktok/.../fetch_multi_video_v2`
+`POST /api/v1/tiktok/app/v3/fetch_multi_video_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_multi_video_v2 -->
 
@@ -1525,7 +1520,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_music_chart_list
 
-`GET /api/v1/tiktok/.../fetch_music_chart_list`
+`GET /api/v1/tiktok/app/v3/fetch_music_chart_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_music_chart_list -->
 
@@ -1556,7 +1551,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_music_detail
 
-`GET /api/v1/tiktok/.../fetch_music_detail`
+`GET /api/v1/tiktok/app/v3/fetch_music_detail`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_music_detail -->
 
@@ -1581,7 +1576,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_music_search_result
 
-`GET /api/v1/tiktok/.../fetch_music_search_result`
+`GET /api/v1/tiktok/app/v3/fetch_music_search_result`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_music_search_result -->
 
@@ -1616,7 +1611,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_music_video_list
 
-`GET /api/v1/tiktok/.../fetch_music_video_list`
+`GET /api/v1/tiktok/app/v3/fetch_music_video_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_music_video_list -->
 
@@ -1645,7 +1640,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video
 
-`GET /api/v1/tiktok/.../fetch_one_video`
+`GET /api/v1/tiktok/app/v3/fetch_one_video`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_one_video -->
 
@@ -1670,7 +1665,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_by_share_url_v2
 
-`GET /api/v1/tiktok/.../fetch_one_video_by_share_url_v2`
+`GET /api/v1/tiktok/app/v3/fetch_one_video_by_share_url_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_one_video_by_share_url_v2 -->
 
@@ -1695,7 +1690,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_v2
 
-`GET /api/v1/tiktok/.../fetch_one_video_v2`
+`GET /api/v1/tiktok/app/v3/fetch_one_video_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_one_video_v2 -->
 
@@ -1720,7 +1715,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_one_video_v3
 
-`GET /api/v1/tiktok/.../fetch_one_video_v3`
+`GET /api/v1/tiktok/app/v3/fetch_one_video_v3`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_one_video_v3 -->
 
@@ -1748,7 +1743,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_comment
 
-`GET /api/v1/tiktok/.../fetch_post_comment`
+`GET /api/v1/tiktok/web/fetch_post_comment`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_post_comment -->
 
@@ -1779,7 +1774,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_comment_reply
 
-`GET /api/v1/tiktok/.../fetch_post_comment_reply`
+`GET /api/v1/tiktok/web/fetch_post_comment_reply`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_post_comment_reply -->
 
@@ -1812,7 +1807,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_detail
 
-`GET /api/v1/tiktok/.../fetch_post_detail`
+`GET /api/v1/tiktok/web/fetch_post_detail`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_post_detail -->
 
@@ -1846,7 +1841,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_detail_v2
 
-`GET /api/v1/tiktok/.../fetch_post_detail_v2`
+`GET /api/v1/tiktok/web/fetch_post_detail_v2`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_post_detail_v2 -->
 
@@ -1880,7 +1875,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail
 
-`GET /api/v1/tiktok/.../fetch_product_detail`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_detail -->
 
@@ -1906,7 +1901,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail
 
-`GET /api/v1/tiktok/.../fetch_product_detail`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_product_detail -->
 
@@ -1955,7 +1950,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail_v2
 
-`GET /api/v1/tiktok/.../fetch_product_detail_v2`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_detail_v2 -->
 
@@ -1980,7 +1975,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail_v2
 
-`GET /api/v1/tiktok/.../fetch_product_detail_v2`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail_v2`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_product_detail_v2 -->
 
@@ -2026,7 +2021,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail_v3
 
-`GET /api/v1/tiktok/.../fetch_product_detail_v3`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail_v3`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_detail_v3 -->
 
@@ -2062,7 +2057,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail_v3
 
-`GET /api/v1/tiktok/.../fetch_product_detail_v3`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail_v3`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_product_detail_v3 -->
 
@@ -2115,7 +2110,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_detail_v4
 
-`GET /api/v1/tiktok/.../fetch_product_detail_v4`
+`GET /api/v1/tiktok/app/v3/fetch_product_detail_v4`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_detail_v4 -->
 
@@ -2151,7 +2146,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_id_by_share_link
 
-`GET /api/v1/tiktok/.../fetch_product_id_by_share_link`
+`GET /api/v1/tiktok/app/v3/fetch_product_id_by_share_link`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_id_by_share_link -->
 
@@ -2176,7 +2171,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_review
 
-`GET /api/v1/tiktok/.../fetch_product_review`
+`GET /api/v1/tiktok/app/v3/fetch_product_review`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_review -->
 
@@ -2219,7 +2214,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_reviews_v2
 
-`GET /api/v1/tiktok/.../fetch_product_reviews_v2`
+`GET /api/v1/tiktok/shop/web/fetch_product_reviews_v2`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_product_reviews_v2 -->
 
@@ -2312,7 +2307,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_search
 
-`GET /api/v1/tiktok/.../fetch_product_search`
+`GET /api/v1/tiktok/app/v3/fetch_product_search`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_product_search -->
 
@@ -2356,7 +2351,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_products_by_category_id
 
-`GET /api/v1/tiktok/.../fetch_products_by_category_id`
+`GET /api/v1/tiktok/shop/web/fetch_products_by_category_id`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_products_by_category_id -->
 
@@ -2408,7 +2403,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_products_category_list
 
-`GET /api/v1/tiktok/.../fetch_products_category_list`
+`GET /api/v1/tiktok/shop/web/fetch_products_category_list`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_products_category_list -->
 
@@ -2455,7 +2450,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_keyword_suggest
 
-`GET /api/v1/tiktok/.../fetch_search_keyword_suggest`
+`GET /api/v1/tiktok/web/fetch_search_keyword_suggest`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_search_keyword_suggest -->
 
@@ -2480,7 +2475,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_products_list
 
-`GET /api/v1/tiktok/.../fetch_search_products_list`
+`GET /api/v1/tiktok/shop/web/fetch_search_products_list`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_search_products_list -->
 
@@ -2541,7 +2536,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_products_list_v2
 
-`GET /api/v1/tiktok/.../fetch_search_products_list_v2`
+`GET /api/v1/tiktok/shop/web/fetch_search_products_list_v2`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_search_products_list_v2 -->
 
@@ -2583,7 +2578,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_video
 
-`GET /api/v1/tiktok/.../fetch_search_video`
+`GET /api/v1/tiktok/web/fetch_search_video`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_search_video -->
 
@@ -2619,7 +2614,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search_word_suggestion_v2
 
-`GET /api/v1/tiktok/.../fetch_search_word_suggestion_v2`
+`GET /api/v1/tiktok/shop/web/fetch_search_word_suggestion_v2`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_search_word_suggestion_v2 -->
 
@@ -2662,7 +2657,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_seller_products_list
 
-`GET /api/v1/tiktok/.../fetch_seller_products_list`
+`GET /api/v1/tiktok/shop/web/fetch_seller_products_list`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_seller_products_list -->
 
@@ -2716,7 +2711,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_seller_products_list_v2
 
-`GET /api/v1/tiktok/.../fetch_seller_products_list_v2`
+`GET /api/v1/tiktok/shop/web/fetch_seller_products_list_v2`
 
 <!-- Full path: /api/v1/tiktok/shop/web/fetch_seller_products_list_v2 -->
 
@@ -2759,7 +2754,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_share_qr_code
 
-`GET /api/v1/tiktok/.../fetch_share_qr_code`
+`GET /api/v1/tiktok/app/v3/fetch_share_qr_code`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_share_qr_code -->
 
@@ -2785,7 +2780,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_share_short_link
 
-`GET /api/v1/tiktok/.../fetch_share_short_link`
+`GET /api/v1/tiktok/app/v3/fetch_share_short_link`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_share_short_link -->
 
@@ -2810,7 +2805,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_home
 
-`GET /api/v1/tiktok/.../fetch_shop_home`
+`GET /api/v1/tiktok/app/v3/fetch_shop_home`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_home -->
 
@@ -2837,7 +2832,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_home_page_list
 
-`GET /api/v1/tiktok/.../fetch_shop_home_page_list`
+`GET /api/v1/tiktok/app/v3/fetch_shop_home_page_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_home_page_list -->
 
@@ -2862,7 +2857,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_id_by_share_link
 
-`GET /api/v1/tiktok/.../fetch_shop_id_by_share_link`
+`GET /api/v1/tiktok/app/v3/fetch_shop_id_by_share_link`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_id_by_share_link -->
 
@@ -2887,7 +2882,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_info
 
-`GET /api/v1/tiktok/.../fetch_shop_info`
+`GET /api/v1/tiktok/app/v3/fetch_shop_info`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_info -->
 
@@ -2912,7 +2907,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_product_category
 
-`GET /api/v1/tiktok/.../fetch_shop_product_category`
+`GET /api/v1/tiktok/app/v3/fetch_shop_product_category`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_product_category -->
 
@@ -2937,7 +2932,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_product_list
 
-`GET /api/v1/tiktok/.../fetch_shop_product_list`
+`GET /api/v1/tiktok/app/v3/fetch_shop_product_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_product_list -->
 
@@ -2977,7 +2972,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_product_list_v2
 
-`GET /api/v1/tiktok/.../fetch_shop_product_list_v2`
+`GET /api/v1/tiktok/app/v3/fetch_shop_product_list_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_product_list_v2 -->
 
@@ -3017,7 +3012,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_shop_product_recommend
 
-`GET /api/v1/tiktok/.../fetch_shop_product_recommend`
+`GET /api/v1/tiktok/app/v3/fetch_shop_product_recommend`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_shop_product_recommend -->
 
@@ -3046,7 +3041,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_similar_user_recommendations
 
-`GET /api/v1/tiktok/.../fetch_similar_user_recommendations`
+`GET /api/v1/tiktok/app/v3/fetch_similar_user_recommendations`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_similar_user_recommendations -->
 
@@ -3073,7 +3068,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_tag_detail
 
-`GET /api/v1/tiktok/.../fetch_tag_detail`
+`GET /api/v1/tiktok/web/fetch_tag_detail`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_tag_detail -->
 
@@ -3098,7 +3093,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_tag_post
 
-`GET /api/v1/tiktok/.../fetch_tag_post`
+`GET /api/v1/tiktok/web/fetch_tag_post`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_tag_post -->
 
@@ -3136,7 +3131,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_tiktok_live_data
 
-`GET /api/v1/tiktok/.../fetch_tiktok_live_data`
+`GET /api/v1/tiktok/web/fetch_tiktok_live_data`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_tiktok_live_data -->
 
@@ -3162,7 +3157,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_tiktok_web_guest_cookie
 
-`GET /api/v1/tiktok/.../fetch_tiktok_web_guest_cookie`
+`GET /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie -->
 
@@ -3191,7 +3186,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_country_by_username
 
-`GET /api/v1/tiktok/.../fetch_user_country_by_username`
+`GET /api/v1/tiktok/app/v3/fetch_user_country_by_username`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_country_by_username -->
 
@@ -3217,7 +3212,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_follower_list
 
-`GET /api/v1/tiktok/.../fetch_user_follower_list`
+`GET /api/v1/tiktok/app/v3/fetch_user_follower_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_follower_list -->
 
@@ -3252,7 +3247,7 @@ user_id and sec_user_id)
 
 ## fetch_user_following_list
 
-`GET /api/v1/tiktok/.../fetch_user_following_list`
+`GET /api/v1/tiktok/app/v3/fetch_user_following_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_following_list -->
 
@@ -3287,7 +3282,7 @@ user_id and sec_user_id)
 
 ## fetch_user_like_videos
 
-`GET /api/v1/tiktok/.../fetch_user_like_videos`
+`GET /api/v1/tiktok/app/v3/fetch_user_like_videos`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_like_videos -->
 
@@ -3316,7 +3311,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_live_detail
 
-`GET /api/v1/tiktok/.../fetch_user_live_detail`
+`GET /api/v1/tiktok/web/fetch_user_live_detail`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_user_live_detail -->
 
@@ -3350,7 +3345,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_mix
 
-`GET /api/v1/tiktok/.../fetch_user_mix`
+`GET /api/v1/tiktok/web/fetch_user_mix`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_user_mix -->
 
@@ -3388,7 +3383,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_music_list
 
-`GET /api/v1/tiktok/.../fetch_user_music_list`
+`GET /api/v1/tiktok/app/v3/fetch_user_music_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_music_list -->
 
@@ -3417,7 +3412,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_play_list
 
-`GET /api/v1/tiktok/.../fetch_user_play_list`
+`GET /api/v1/tiktok/web/fetch_user_play_list`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_user_play_list -->
 
@@ -3455,7 +3450,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_post
 
-`GET /api/v1/tiktok/.../fetch_user_post`
+`GET /api/v1/tiktok/web/fetch_user_post`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_user_post -->
 
@@ -3500,7 +3495,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_post_videos
 
-`GET /api/v1/tiktok/.../fetch_user_post_videos`
+`GET /api/v1/tiktok/app/v3/fetch_user_post_videos`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_post_videos -->
 
@@ -3537,7 +3532,7 @@ unique_id，优先级越高速度越快，并且建议只使用sec_user_id获取
 
 ## fetch_user_post_videos_v2
 
-`GET /api/v1/tiktok/.../fetch_user_post_videos_v2`
+`GET /api/v1/tiktok/app/v3/fetch_user_post_videos_v2`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_post_videos_v2 -->
 
@@ -3574,7 +3569,7 @@ unique_id，优先级越高速度越快，并且建议只使用sec_user_id获取
 
 ## fetch_user_post_videos_v3
 
-`GET /api/v1/tiktok/.../fetch_user_post_videos_v3`
+`GET /api/v1/tiktok/app/v3/fetch_user_post_videos_v3`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_post_videos_v3 -->
 
@@ -3611,7 +3606,7 @@ unique_id，优先级越高速度越快，并且建议只使用sec_user_id获取
 
 ## fetch_user_repost
 
-`GET /api/v1/tiktok/.../fetch_user_repost`
+`GET /api/v1/tiktok/web/fetch_user_repost`
 
 <!-- Full path: /api/v1/tiktok/web/fetch_user_repost -->
 
@@ -3651,7 +3646,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_repost_videos
 
-`GET /api/v1/tiktok/.../fetch_user_repost_videos`
+`GET /api/v1/tiktok/app/v3/fetch_user_repost_videos`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_repost_videos -->
 
@@ -3680,7 +3675,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_search_result
 
-`GET /api/v1/tiktok/.../fetch_user_search_result`
+`GET /api/v1/tiktok/app/v3/fetch_user_search_result`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_user_search_result -->
 
@@ -3723,7 +3718,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_comment_replies
 
-`GET /api/v1/tiktok/.../fetch_video_comment_replies`
+`GET /api/v1/tiktok/app/v3/fetch_video_comment_replies`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_video_comment_replies -->
 
@@ -3754,7 +3749,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_comments
 
-`GET /api/v1/tiktok/.../fetch_video_comments`
+`GET /api/v1/tiktok/app/v3/fetch_video_comments`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_video_comments -->
 
@@ -3783,7 +3778,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_metrics
 
-`GET /api/v1/tiktok/.../fetch_video_metrics`
+`GET /api/v1/tiktok/analytics/fetch_video_metrics`
 
 <!-- Full path: /api/v1/tiktok/analytics/fetch_video_metrics -->
 
@@ -3857,7 +3852,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_video_search_result
 
-`GET /api/v1/tiktok/.../fetch_video_search_result`
+`GET /api/v1/tiktok/app/v3/fetch_video_search_result`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_video_search_result -->
 
@@ -3892,7 +3887,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_webcast_user_info
 
-`GET /api/v1/tiktok/.../fetch_webcast_user_info`
+`GET /api/v1/tiktok/app/v3/fetch_webcast_user_info`
 
 <!-- Full path: /api/v1/tiktok/app/v3/fetch_webcast_user_info -->
 
@@ -3920,7 +3915,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_fingerprint
 
-`GET /api/v1/tiktok/.../generate_fingerprint`
+`GET /api/v1/tiktok/web/generate_fingerprint`
 
 <!-- Full path: /api/v1/tiktok/web/generate_fingerprint -->
 
@@ -3950,7 +3945,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_hashed_id
 
-`GET /api/v1/tiktok/.../generate_hashed_id`
+`GET /api/v1/tiktok/web/generate_hashed_id`
 
 <!-- Full path: /api/v1/tiktok/web/generate_hashed_id -->
 
@@ -3975,7 +3970,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_real_msToken
 
-`GET /api/v1/tiktok/.../generate_real_msToken`
+`GET /api/v1/tiktok/web/generate_real_msToken`
 
 <!-- Full path: /api/v1/tiktok/web/generate_real_msToken -->
 
@@ -4007,7 +4002,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_ttwid
 
-`GET /api/v1/tiktok/.../generate_ttwid`
+`GET /api/v1/tiktok/web/generate_ttwid`
 
 <!-- Full path: /api/v1/tiktok/web/generate_ttwid -->
 
@@ -4032,7 +4027,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_webid
 
-`GET /api/v1/tiktok/.../generate_webid`
+`GET /api/v1/tiktok/web/generate_webid`
 
 <!-- Full path: /api/v1/tiktok/web/generate_webid -->
 
@@ -4069,7 +4064,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_wss_xb_signature
 
-`GET /api/v1/tiktok/.../generate_wss_xb_signature`
+`GET /api/v1/tiktok/web/generate_wss_xb_signature`
 
 <!-- Full path: /api/v1/tiktok/web/generate_wss_xb_signature -->
 
@@ -4094,7 +4089,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_xbogus
 
-`POST /api/v1/tiktok/.../generate_xbogus`
+`POST /api/v1/tiktok/web/generate_xbogus`
 
 <!-- Full path: /api/v1/tiktok/web/generate_xbogus -->
 
@@ -4118,7 +4113,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## generate_xgnarly
 
-`POST /api/v1/tiktok/.../generate_xgnarly`
+`POST /api/v1/tiktok/web/generate_xgnarly`
 
 <!-- Full path: /api/v1/tiktok/web/generate_xgnarly -->
 
@@ -4145,7 +4140,7 @@ User-Agent
 
 ## generate_xgnarly_and_xbogus
 
-`POST /api/v1/tiktok/.../generate_xgnarly_and_xbogus`
+`POST /api/v1/tiktok/web/generate_xgnarly_and_xbogus`
 
 <!-- Full path: /api/v1/tiktok/web/generate_xgnarly_and_xbogus -->
 
@@ -4172,7 +4167,7 @@ User-Agent
 
 ## get_account_violation_list
 
-`POST /api/v1/tiktok/.../get_account_violation_list`
+`POST /api/v1/tiktok/creator/get_account_violation_list`
 
 <!-- Full path: /api/v1/tiktok/creator/get_account_violation_list -->
 
@@ -4222,7 +4217,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_ads_detail
 
-`GET /api/v1/tiktok/.../get_ads_detail`
+`GET /api/v1/tiktok/ads/get_ads_detail`
 
 <!-- Full path: /api/v1/tiktok/ads/get_ads_detail -->
 
@@ -4343,7 +4338,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_all_aweme_id
 
-`POST /api/v1/tiktok/.../get_all_aweme_id`
+`POST /api/v1/tiktok/web/get_all_aweme_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_all_aweme_id -->
 
@@ -4366,7 +4361,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_all_sec_user_id
 
-`POST /api/v1/tiktok/.../get_all_sec_user_id`
+`POST /api/v1/tiktok/web/get_all_sec_user_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_all_sec_user_id -->
 
@@ -4390,7 +4385,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_all_unique_id
 
-`POST /api/v1/tiktok/.../get_all_unique_id`
+`POST /api/v1/tiktok/web/get_all_unique_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_all_unique_id -->
 
@@ -4413,7 +4408,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_aweme_id
 
-`GET /api/v1/tiktok/.../get_aweme_id`
+`GET /api/v1/tiktok/web/get_aweme_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_aweme_id -->
 
@@ -4438,7 +4433,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_creator_list
 
-`GET /api/v1/tiktok/.../get_creator_list`
+`GET /api/v1/tiktok/ads/get_creator_list`
 
 <!-- Full path: /api/v1/tiktok/ads/get_creator_list -->
 
@@ -4550,7 +4545,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_hashtag_list
 
-`GET /api/v1/tiktok/.../get_hashtag_list`
+`GET /api/v1/tiktok/ads/get_hashtag_list`
 
 <!-- Full path: /api/v1/tiktok/ads/get_hashtag_list -->
 
@@ -4694,7 +4689,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_keyword_details
 
-`GET /api/v1/tiktok/.../get_keyword_details`
+`GET /api/v1/tiktok/ads/get_keyword_details`
 
 <!-- Full path: /api/v1/tiktok/ads/get_keyword_details -->
 
@@ -4802,7 +4797,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_keyword_list
 
-`GET /api/v1/tiktok/.../get_keyword_list`
+`GET /api/v1/tiktok/ads/get_keyword_list`
 
 <!-- Full path: /api/v1/tiktok/ads/get_keyword_list -->
 
@@ -4871,7 +4866,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_live_room_id
 
-`GET /api/v1/tiktok/.../get_live_room_id`
+`GET /api/v1/tiktok/web/get_live_room_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_live_room_id -->
 
@@ -4898,7 +4893,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_popular_trends
 
-`GET /api/v1/tiktok/.../get_popular_trends`
+`GET /api/v1/tiktok/ads/get_popular_trends`
 
 <!-- Full path: /api/v1/tiktok/ads/get_popular_trends -->
 
@@ -4998,7 +4993,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_product_analytics_list
 
-`POST /api/v1/tiktok/.../get_product_analytics_list`
+`POST /api/v1/tiktok/creator/get_product_analytics_list`
 
 <!-- Full path: /api/v1/tiktok/creator/get_product_analytics_list -->
 
@@ -5045,7 +5040,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_product_detail
 
-`GET /api/v1/tiktok/.../get_product_detail`
+`GET /api/v1/tiktok/ads/get_product_detail`
 
 <!-- Full path: /api/v1/tiktok/ads/get_product_detail -->
 
@@ -5180,7 +5175,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_product_related_videos
 
-`POST /api/v1/tiktok/.../get_product_related_videos`
+`POST /api/v1/tiktok/creator/get_product_related_videos`
 
 <!-- Full path: /api/v1/tiktok/creator/get_product_related_videos -->
 
@@ -5241,7 +5236,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_recommended_ads
 
-`GET /api/v1/tiktok/.../get_recommended_ads`
+`GET /api/v1/tiktok/ads/get_recommended_ads`
 
 <!-- Full path: /api/v1/tiktok/ads/get_recommended_ads -->
 
@@ -5340,7 +5335,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_sec_user_id
 
-`GET /api/v1/tiktok/.../get_sec_user_id`
+`GET /api/v1/tiktok/web/get_sec_user_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_sec_user_id -->
 
@@ -5365,7 +5360,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_showcase_product_list
 
-`POST /api/v1/tiktok/.../get_showcase_product_list`
+`POST /api/v1/tiktok/creator/get_showcase_product_list`
 
 <!-- Full path: /api/v1/tiktok/creator/get_showcase_product_list -->
 
@@ -5460,7 +5455,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_sound_detail
 
-`GET /api/v1/tiktok/.../get_sound_detail`
+`GET /api/v1/tiktok/ads/get_sound_detail`
 
 <!-- Full path: /api/v1/tiktok/ads/get_sound_detail -->
 
@@ -5565,7 +5560,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_sound_rank_list
 
-`GET /api/v1/tiktok/.../get_sound_rank_list`
+`GET /api/v1/tiktok/ads/get_sound_rank_list`
 
 <!-- Full path: /api/v1/tiktok/ads/get_sound_rank_list -->
 
@@ -5695,7 +5690,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_sound_recommendations
 
-`GET /api/v1/tiktok/.../get_sound_recommendations`
+`GET /api/v1/tiktok/ads/get_sound_recommendations`
 
 <!-- Full path: /api/v1/tiktok/ads/get_sound_recommendations -->
 
@@ -5762,7 +5757,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_top_products
 
-`GET /api/v1/tiktok/.../get_top_products`
+`GET /api/v1/tiktok/ads/get_top_products`
 
 <!-- Full path: /api/v1/tiktok/ads/get_top_products -->
 
@@ -5912,7 +5907,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_unique_id
 
-`GET /api/v1/tiktok/.../get_unique_id`
+`GET /api/v1/tiktok/web/get_unique_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_unique_id -->
 
@@ -5937,7 +5932,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_id
 
-`GET /api/v1/tiktok/.../get_user_id`
+`GET /api/v1/tiktok/web/get_user_id`
 
 <!-- Full path: /api/v1/tiktok/web/get_user_id -->
 
@@ -5962,7 +5957,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_id_and_sec_user_id_by_username
 
-`GET /api/v1/tiktok/.../get_user_id_and_sec_user_id_by_username`
+`GET /api/v1/tiktok/app/v3/get_user_id_and_sec_user_id_by_username`
 
 <!-- Full path: /api/v1/tiktok/app/v3/get_user_id_and_sec_user_id_by_username -->
 
@@ -5987,7 +5982,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_analytics_summary
 
-`POST /api/v1/tiktok/.../get_video_analytics_summary`
+`POST /api/v1/tiktok/creator/get_video_analytics_summary`
 
 <!-- Full path: /api/v1/tiktok/creator/get_video_analytics_summary -->
 
@@ -6027,7 +6022,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_associated_product_list
 
-`POST /api/v1/tiktok/.../get_video_associated_product_list`
+`POST /api/v1/tiktok/creator/get_video_associated_product_list`
 
 <!-- Full path: /api/v1/tiktok/creator/get_video_associated_product_list -->
 
@@ -6081,7 +6076,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_audience_stats
 
-`POST /api/v1/tiktok/.../get_video_audience_stats`
+`POST /api/v1/tiktok/creator/get_video_audience_stats`
 
 <!-- Full path: /api/v1/tiktok/creator/get_video_audience_stats -->
 
@@ -6137,7 +6132,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_detailed_stats
 
-`POST /api/v1/tiktok/.../get_video_detailed_stats`
+`POST /api/v1/tiktok/creator/get_video_detailed_stats`
 
 <!-- Full path: /api/v1/tiktok/creator/get_video_detailed_stats -->
 
@@ -6192,7 +6187,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_list_analytics
 
-`POST /api/v1/tiktok/.../get_video_list_analytics`
+`POST /api/v1/tiktok/creator/get_video_list_analytics`
 
 <!-- Full path: /api/v1/tiktok/creator/get_video_list_analytics -->
 
@@ -6254,7 +6249,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_video_to_product_stats
 
-`POST /api/v1/tiktok/.../get_video_to_product_stats`
+`POST /api/v1/tiktok/creator/get_video_to_product_stats`
 
 <!-- Full path: /api/v1/tiktok/creator/get_video_to_product_stats -->
 
@@ -6311,7 +6306,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## handler_user_profile
 
-`GET /api/v1/tiktok/.../handler_user_profile`
+`GET /api/v1/tiktok/app/v3/handler_user_profile`
 
 <!-- Full path: /api/v1/tiktok/app/v3/handler_user_profile -->
 
@@ -6342,7 +6337,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## open_tiktok_app_to_keyword_search
 
-`GET /api/v1/tiktok/.../open_tiktok_app_to_keyword_search`
+`GET /api/v1/tiktok/app/v3/open_tiktok_app_to_keyword_search`
 
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_keyword_search -->
 
@@ -6368,7 +6363,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## open_tiktok_app_to_send_private_message
 
-`GET /api/v1/tiktok/.../open_tiktok_app_to_send_private_message`
+`GET /api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message`
 
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message -->
 
@@ -6394,7 +6389,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## open_tiktok_app_to_user_profile
 
-`GET /api/v1/tiktok/.../open_tiktok_app_to_user_profile`
+`GET /api/v1/tiktok/app/v3/open_tiktok_app_to_user_profile`
 
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_user_profile -->
 
@@ -6420,7 +6415,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## open_tiktok_app_to_video_detail
 
-`GET /api/v1/tiktok/.../open_tiktok_app_to_video_detail`
+`GET /api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail`
 
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail -->
 
@@ -6446,7 +6441,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_follower_list
 
-`GET /api/v1/tiktok/.../search_follower_list`
+`GET /api/v1/tiktok/app/v3/search_follower_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/search_follower_list -->
 
@@ -6473,7 +6468,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_following_list
 
-`GET /api/v1/tiktok/.../search_following_list`
+`GET /api/v1/tiktok/app/v3/search_following_list`
 
 <!-- Full path: /api/v1/tiktok/app/v3/search_following_list -->
 
@@ -6500,7 +6495,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## tiktok_live_room
 
-`GET /api/v1/tiktok/.../tiktok_live_room`
+`GET /api/v1/tiktok/web/tiktok_live_room`
 
 <!-- Full path: /api/v1/tiktok/web/tiktok_live_room -->
 

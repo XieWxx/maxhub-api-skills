@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## search_location
 
-`GET /api/v1/linkedin/.../search_location`
+`GET /api/v1/linkedin/web/search_location`
 
 <!-- Full path: /api/v1/linkedin/web/search_location -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_schools
 
-`GET /api/v1/linkedin/.../search_schools`
+`GET /api/v1/linkedin/web/search_schools`
 
 <!-- Full path: /api/v1/linkedin/web/search_schools -->
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_suggestion_industry
 
-`GET /api/v1/linkedin/.../search_suggestion_industry`
+`GET /api/v1/linkedin/web/search_suggestion_industry`
 
 <!-- Full path: /api/v1/linkedin/web/search_suggestion_industry -->
 

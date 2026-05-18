@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## get_company_affiliated_pages
 
-`GET /api/v1/linkedin/.../get_company_affiliated_pages`
+`GET /api/v1/linkedin/web/get_company_affiliated_pages`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_affiliated_pages -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_associated_member_insights
 
-`GET /api/v1/linkedin/.../get_company_associated_member_insights`
+`GET /api/v1/linkedin/web/get_company_associated_member_insights`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_associated_member_insights -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_call_to_actions
 
-`GET /api/v1/linkedin/.../get_company_call_to_actions`
+`GET /api/v1/linkedin/web_v2/get_company_call_to_actions`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_call_to_actions -->
 
@@ -86,7 +86,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_competitors
 
-`GET /api/v1/linkedin/.../get_company_competitors`
+`GET /api/v1/linkedin/web_v2/get_company_competitors`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_competitors -->
 
@@ -117,7 +117,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_employee_count_ranges
 
-`GET /api/v1/linkedin/.../get_company_employee_count_ranges`
+`GET /api/v1/linkedin/web_v2/get_company_employee_count_ranges`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_employee_count_ranges -->
 
@@ -148,7 +148,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_employees
 
-`GET /api/v1/linkedin/.../get_company_employees`
+`GET /api/v1/linkedin/web_v2/get_company_employees`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_employees -->
 
@@ -186,7 +186,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_grouped_locations
 
-`GET /api/v1/linkedin/.../get_company_grouped_locations`
+`GET /api/v1/linkedin/web_v2/get_company_grouped_locations`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_grouped_locations -->
 
@@ -217,7 +217,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_job_count
 
-`GET /api/v1/linkedin/.../get_company_job_count`
+`GET /api/v1/linkedin/web/get_company_job_count`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_job_count -->
 
@@ -242,7 +242,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_job_count
 
-`GET /api/v1/linkedin/.../get_company_job_count`
+`GET /api/v1/linkedin/web/get_company_job_count`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_job_count -->
 
@@ -268,7 +268,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_jobs
 
-`GET /api/v1/linkedin/.../get_company_jobs`
+`GET /api/v1/linkedin/web/get_company_jobs`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_jobs -->
 
@@ -313,7 +313,7 @@ volunteer, internship, other
 
 ## get_company_jobs
 
-`GET /api/v1/linkedin/.../get_company_jobs`
+`GET /api/v1/linkedin/web/get_company_jobs`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_jobs -->
 
@@ -350,7 +350,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_people
 
-`GET /api/v1/linkedin/.../get_company_people`
+`GET /api/v1/linkedin/web/get_company_people`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_people -->
 
@@ -377,7 +377,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_posts
 
-`GET /api/v1/linkedin/.../get_company_posts`
+`GET /api/v1/linkedin/web/get_company_posts`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_posts -->
 
@@ -408,7 +408,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_posts
 
-`GET /api/v1/linkedin/.../get_company_posts`
+`GET /api/v1/linkedin/web/get_company_posts`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_posts -->
 
@@ -441,7 +441,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_profile
 
-`GET /api/v1/linkedin/.../get_company_profile`
+`GET /api/v1/linkedin/web/get_company_profile`
 
 <!-- Full path: /api/v1/linkedin/web/get_company_profile -->
 
@@ -470,7 +470,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_profile
 
-`GET /api/v1/linkedin/.../get_company_profile`
+`GET /api/v1/linkedin/web/get_company_profile`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_profile -->
 
@@ -507,7 +507,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_similar_companies
 
-`GET /api/v1/linkedin/.../get_company_similar_companies`
+`GET /api/v1/linkedin/web_v2/get_company_similar_companies`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_similar_companies -->
 
@@ -534,7 +534,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_company_stock_quote
 
-`GET /api/v1/linkedin/.../get_company_stock_quote`
+`GET /api/v1/linkedin/web_v2/get_company_stock_quote`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_company_stock_quote -->
 
@@ -567,7 +567,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_discovery_relevant_to_company
 
-`GET /api/v1/linkedin/.../get_discovery_relevant_to_company`
+`GET /api/v1/linkedin/web_v2/get_discovery_relevant_to_company`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_discovery_relevant_to_company -->
 
@@ -601,7 +601,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_group_info
 
-`GET /api/v1/linkedin/.../get_group_info`
+`GET /api/v1/linkedin/web/get_group_info`
 
 <!-- Full path: /api/v1/linkedin/web/get_group_info -->
 
@@ -626,7 +626,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_group_posts
 
-`GET /api/v1/linkedin/.../get_group_posts`
+`GET /api/v1/linkedin/web/get_group_posts`
 
 <!-- Full path: /api/v1/linkedin/web/get_group_posts -->
 
@@ -653,7 +653,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_hashtag_feed
 
-`GET /api/v1/linkedin/.../get_hashtag_feed`
+`GET /api/v1/linkedin/web_v2/get_hashtag_feed`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_hashtag_feed -->
 
@@ -688,7 +688,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_job_detail
 
-`GET /api/v1/linkedin/.../get_job_detail`
+`GET /api/v1/linkedin/web/get_job_detail`
 
 <!-- Full path: /api/v1/linkedin/web/get_job_detail -->
 
@@ -715,7 +715,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_job_detail
 
-`GET /api/v1/linkedin/.../get_job_detail`
+`GET /api/v1/linkedin/web/get_job_detail`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_job_detail -->
 
@@ -752,7 +752,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_comments
 
-`GET /api/v1/linkedin/.../get_post_comments`
+`GET /api/v1/linkedin/web/get_post_comments`
 
 <!-- Full path: /api/v1/linkedin/web/get_post_comments -->
 
@@ -783,7 +783,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_comments
 
-`GET /api/v1/linkedin/.../get_post_comments`
+`GET /api/v1/linkedin/web/get_post_comments`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_post_comments -->
 
@@ -825,7 +825,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_detail
 
-`GET /api/v1/linkedin/.../get_post_detail`
+`GET /api/v1/linkedin/web/get_post_detail`
 
 <!-- Full path: /api/v1/linkedin/web/get_post_detail -->
 
@@ -850,7 +850,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_detail
 
-`GET /api/v1/linkedin/.../get_post_detail`
+`GET /api/v1/linkedin/web/get_post_detail`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_post_detail -->
 
@@ -885,7 +885,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_detail_by_slug
 
-`GET /api/v1/linkedin/.../get_post_detail_by_slug`
+`GET /api/v1/linkedin/web_v2/get_post_detail_by_slug`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_post_detail_by_slug -->
 
@@ -913,7 +913,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_reactions
 
-`GET /api/v1/linkedin/.../get_post_reactions`
+`GET /api/v1/linkedin/web/get_post_reactions`
 
 <!-- Full path: /api/v1/linkedin/web/get_post_reactions -->
 
@@ -943,7 +943,7 @@ interest，默认all
 
 ## get_post_reactions
 
-`GET /api/v1/linkedin/.../get_post_reactions`
+`GET /api/v1/linkedin/web/get_post_reactions`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_post_reactions -->
 
@@ -987,7 +987,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_reposts
 
-`GET /api/v1/linkedin/.../get_post_reposts`
+`GET /api/v1/linkedin/web/get_post_reposts`
 
 <!-- Full path: /api/v1/linkedin/web/get_post_reposts -->
 
@@ -1016,7 +1016,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_comments
 
-`GET /api/v1/linkedin/.../get_user_comments`
+`GET /api/v1/linkedin/web/get_user_comments`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_comments -->
 
@@ -1047,7 +1047,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_follower_and_connection_count
 
-`GET /api/v1/linkedin/.../get_user_follower_and_connection_count`
+`GET /api/v1/linkedin/web_v2/get_user_follower_and_connection_count`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_follower_and_connection_count -->
 
@@ -1073,7 +1073,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_images
 
-`GET /api/v1/linkedin/.../get_user_images`
+`GET /api/v1/linkedin/web/get_user_images`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_images -->
 
@@ -1102,7 +1102,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_interested_companies
 
-`GET /api/v1/linkedin/.../get_user_interested_companies`
+`GET /api/v1/linkedin/web_v2/get_user_interested_companies`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_interested_companies -->
 
@@ -1133,7 +1133,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_interests_companies
 
-`GET /api/v1/linkedin/.../get_user_interests_companies`
+`GET /api/v1/linkedin/web/get_user_interests_companies`
 
 <!-- Full path: /api/v1/linkedin/web/get_user_interests_companies -->
 
@@ -1160,7 +1160,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_posts
 
-`GET /api/v1/linkedin/.../get_user_posts`
+`GET /api/v1/linkedin/web/get_user_posts`
 
 <!-- Full path: /api/v1/linkedin/web/get_user_posts -->
 
@@ -1189,7 +1189,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_posts
 
-`GET /api/v1/linkedin/.../get_user_posts`
+`GET /api/v1/linkedin/web/get_user_posts`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_posts -->
 
@@ -1221,7 +1221,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_profile
 
-`GET /api/v1/linkedin/.../get_user_profile`
+`GET /api/v1/linkedin/web/get_user_profile`
 
 <!-- Full path: /api/v1/linkedin/web/get_user_profile -->
 
@@ -1281,7 +1281,7 @@ jack
 
 ## get_user_profile
 
-`GET /api/v1/linkedin/.../get_user_profile`
+`GET /api/v1/linkedin/web/get_user_profile`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_profile -->
 
@@ -1322,7 +1322,7 @@ location / 头像 / 封面）。
 
 ## get_user_profile_cards
 
-`GET /api/v1/linkedin/.../get_user_profile_cards`
+`GET /api/v1/linkedin/web_v2/get_user_profile_cards`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_profile_cards -->
 
@@ -1354,7 +1354,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_top_card
 
-`GET /api/v1/linkedin/.../get_user_top_card`
+`GET /api/v1/linkedin/web_v2/get_user_top_card`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_top_card -->
 
@@ -1390,7 +1390,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_videos
 
-`GET /api/v1/linkedin/.../get_user_videos`
+`GET /api/v1/linkedin/web/get_user_videos`
 
 <!-- Full path: /api/v1/linkedin/web_v2/get_user_videos -->
 
@@ -1419,7 +1419,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_jobs
 
-`GET /api/v1/linkedin/.../search_jobs`
+`GET /api/v1/linkedin/web/search_jobs`
 
 <!-- Full path: /api/v1/linkedin/web/search_jobs -->
 
@@ -1470,7 +1470,7 @@ volunteer, internship, other
 
 ## search_jobs
 
-`GET /api/v1/linkedin/.../search_jobs`
+`GET /api/v1/linkedin/web/search_jobs`
 
 <!-- Full path: /api/v1/linkedin/web_v2/search_jobs -->
 
@@ -1510,7 +1510,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_people
 
-`GET /api/v1/linkedin/.../search_people`
+`GET /api/v1/linkedin/web/search_people`
 
 <!-- Full path: /api/v1/linkedin/web/search_people -->
 
@@ -1557,7 +1557,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_posts
 
-`GET /api/v1/linkedin/.../search_posts`
+`GET /api/v1/linkedin/web/search_posts`
 
 <!-- Full path: /api/v1/linkedin/web/search_posts -->
 

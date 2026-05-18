@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_search_timeline
 
-`GET /api/v1/twitter/.../fetch_search_timeline`
+`GET /api/v1/twitter/web/fetch_search_timeline`
 
 <!-- Full path: /api/v1/twitter/web/fetch_search_timeline -->
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_trending
 
-`GET /api/v1/twitter/.../fetch_trending`
+`GET /api/v1/twitter/web/fetch_trending`
 
 <!-- Full path: /api/v1/twitter/web/fetch_trending -->
 

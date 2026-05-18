@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_all_area
 
-`GET /api/v1/douyin/.../fetch_all_area`
+`GET /api/v1/douyin/index/fetch_all_area`
 
 <!-- Full path: /api/v1/douyin/index/fetch_all_area -->
 
@@ -27,7 +27,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_author_diagnosis
 
-`POST /api/v1/douyin/.../fetch_author_diagnosis`
+`POST /api/v1/douyin/creator_v2/fetch_author_diagnosis`
 
 <!-- Full path: /api/v1/douyin/creator_v2/fetch_author_diagnosis -->
 
@@ -47,10 +47,35 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 提供完播率、互动指数等关键指标的评估和改进建议
  - 帮助创作者了解账号健康度，优化内容策略
  - **此接口需要用户提供有效的抖音创作者平台Cookie**
+> ⚠️ **Security Notice / 安全提示**
+> - This endpoint requires your platform session Cookie, which is a sensitive credential equivalent to a login session.
+> - **Only provide your Cookie if you fully trust the service provider.**
+> - Prefer using scoped OAuth/API tokens over full browser cookies when available.
+> - Use a separate test account rather than your primary account.
+> - Rotate or revoke your Cookie after use if possible.
+> - 此端点需要您的平台会话 Cookie，这是等同于登录会话的敏感凭据。
+> - **仅在完全信任服务提供商的情况下提供 Cookie。**
+> - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
+> - 使用独立的测试账号而非主账号。
+> - 使用后尽可能轮换或撤销 Cookie。
  - **使用 POST 方法，Cookie 在请求体中传输，更安全**
  - **无需指定时间范围，系统自动获取最近7天数据**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
   ### 数据更新时间:
  - **更新周期**: 次日12点更新昨日作品数据
  - **示例**: 2025年10月10日的作品数据会在2025年10月11日12点更新
@@ -157,7 +182,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_creator_material_center_config
 
-`GET /api/v1/douyin/.../fetch_creator_material_center_config`
+`GET /api/v1/douyin/creator/fetch_creator_material_center_config`
 
 <!-- Full path: /api/v1/douyin/creator/fetch_creator_material_center_config -->
 
@@ -178,7 +203,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_daren_great_item_mile_info
 
-`POST /api/v1/douyin/.../fetch_daren_great_item_mile_info`
+`POST /api/v1/douyin/index/fetch_daren_great_item_mile_info`
 
 <!-- Full path: /api/v1/douyin/index/fetch_daren_great_item_mile_info -->
 
@@ -203,7 +228,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_industry_category_config
 
-`GET /api/v1/douyin/.../fetch_industry_category_config`
+`GET /api/v1/douyin/creator/fetch_industry_category_config`
 
 <!-- Full path: /api/v1/douyin/creator/fetch_industry_category_config -->
 
@@ -264,7 +289,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_item_analysis_item_performance
 
-`POST /api/v1/douyin/.../fetch_item_analysis_item_performance`
+`POST /api/v1/douyin/creator_v2/fetch_item_analysis_item_performance`
 
 <!-- Full path: /api/v1/douyin/creator_v2/fetch_item_analysis_item_performance -->
 
@@ -282,10 +307,35 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取投稿作品的表现数据，包括播放量、点赞量、评论量、分享量等指标
  - 分析不同体裁和垂类的内容表现
  - **此接口需要用户提供有效的抖音创作者平台Cookie**
+> ⚠️ **Security Notice / 安全提示**
+> - This endpoint requires your platform session Cookie, which is a sensitive credential equivalent to a login session.
+> - **Only provide your Cookie if you fully trust the service provider.**
+> - Prefer using scoped OAuth/API tokens over full browser cookies when available.
+> - Use a separate test account rather than your primary account.
+> - Rotate or revoke your Cookie after use if possible.
+> - 此端点需要您的平台会话 Cookie，这是等同于登录会话的敏感凭据。
+> - **仅在完全信任服务提供商的情况下提供 Cookie。**
+> - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
+> - 使用独立的测试账号而非主账号。
+> - 使用后尽可能轮换或撤销 Cookie。
  - **使用 POST 方法，Cookie 在请求体中传输，更安全**
  - **建议先调用 fetch_item_analysis_involved_vertical 接口获取垂类标签**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
  - start_date: 开始日期，格式YYYYMMDD（必填）
  - end_date: 结束日期，格式YYYYMMDD（必填）
  - genres: 体裁类型列表（可选，默认包含所有体裁）
@@ -316,7 +366,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_item_analysis_overview
 
-`POST /api/v1/douyin/.../fetch_item_analysis_overview`
+`POST /api/v1/douyin/creator_v2/fetch_item_analysis_overview`
 
 <!-- Full path: /api/v1/douyin/creator_v2/fetch_item_analysis_overview -->
 
@@ -334,10 +384,35 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 获取账号投稿作品的综合分析数据
  - 包括不同体裁、垂类的投稿表现统计
  - **此接口需要用户提供有效的抖音创作者平台Cookie**
+> ⚠️ **Security Notice / 安全提示**
+> - This endpoint requires your platform session Cookie, which is a sensitive credential equivalent to a login session.
+> - **Only provide your Cookie if you fully trust the service provider.**
+> - Prefer using scoped OAuth/API tokens over full browser cookies when available.
+> - Use a separate test account rather than your primary account.
+> - Rotate or revoke your Cookie after use if possible.
+> - 此端点需要您的平台会话 Cookie，这是等同于登录会话的敏感凭据。
+> - **仅在完全信任服务提供商的情况下提供 Cookie。**
+> - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
+> - 使用独立的测试账号而非主账号。
+> - 使用后尽可能轮换或撤销 Cookie。
  - **使用 POST 方法，Cookie 在请求体中传输，更安全**
  - **建议先调用 fetch_item_analysis_involved_vertical 接口获取垂类标签**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
  - start_date: 开始日期，格式YYYYMMDD（必填）
  - end_date: 结束日期，格式YYYYMMDD（必填）
  - genres: 体裁类型列表（可选，默认包含所有体裁）
@@ -363,7 +438,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_mission_task_list
 
-`GET /api/v1/douyin/.../fetch_mission_task_list`
+`GET /api/v1/douyin/creator/fetch_mission_task_list`
 
 <!-- Full path: /api/v1/douyin/creator/fetch_mission_task_list -->
 
@@ -455,7 +530,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_review_list
 
-`GET /api/v1/douyin/.../fetch_product_review_list`
+`GET /api/v1/douyin/web/fetch_product_review_list`
 
 <!-- Full path: /api/v1/douyin/web/fetch_product_review_list -->
 
@@ -475,7 +550,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_product_sku_list
 
-`GET /api/v1/douyin/.../fetch_product_sku_list`
+`GET /api/v1/douyin/web/fetch_product_sku_list`
 
 <!-- Full path: /api/v1/douyin/web/fetch_product_sku_list -->
 
@@ -492,7 +567,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_author_base_info
 
-`GET /api/v1/douyin/.../get_author_base_info`
+`GET /api/v1/douyin/xingtu_v2/get_author_base_info`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_author_base_info -->
 
@@ -527,7 +602,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_author_business_card_info
 
-`GET /api/v1/douyin/.../get_author_business_card_info`
+`GET /api/v1/douyin/xingtu_v2/get_author_business_card_info`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_author_business_card_info -->
 
@@ -552,7 +627,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_author_local_info
 
-`GET /api/v1/douyin/.../get_author_local_info`
+`GET /api/v1/douyin/xingtu_v2/get_author_local_info`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_author_local_info -->
 
@@ -583,7 +658,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_author_spread_info
 
-`GET /api/v1/douyin/.../get_author_spread_info`
+`GET /api/v1/douyin/xingtu_v2/get_author_spread_info`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_author_spread_info -->
 
@@ -620,7 +695,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_excellent_case_category_list
 
-`GET /api/v1/douyin/.../get_excellent_case_category_list`
+`GET /api/v1/douyin/xingtu_v2/get_excellent_case_category_list`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_excellent_case_category_list -->
 
@@ -645,7 +720,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_resource_list
 
-`GET /api/v1/douyin/.../get_resource_list`
+`GET /api/v1/douyin/xingtu_v2/get_resource_list`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_resource_list -->
 
@@ -670,7 +745,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_audience_portrait_v1
 
-`GET /api/v1/douyin/.../kol_audience_portrait_v1`
+`GET /api/v1/douyin/xingtu/kol_audience_portrait_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_audience_portrait_v1 -->
 
@@ -699,7 +774,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_conversion_ability_analysis_v1
 
-`GET /api/v1/douyin/.../kol_conversion_ability_analysis_v1`
+`GET /api/v1/douyin/xingtu/kol_conversion_ability_analysis_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_conversion_ability_analysis_v1 -->
 
@@ -733,7 +808,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_data_overview_v1
 
-`GET /api/v1/douyin/.../kol_data_overview_v1`
+`GET /api/v1/douyin/xingtu/kol_data_overview_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_data_overview_v1 -->
 

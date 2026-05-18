@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## get_channel_community_posts
 
-`GET /api/v1/youtube/.../get_channel_community_posts`
+`GET /api/v1/youtube/web_v2/get_channel_community_posts`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_channel_community_posts -->
 
@@ -81,7 +81,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_description
 
-`GET /api/v1/youtube/.../get_channel_description`
+`GET /api/v1/youtube/web_v2/get_channel_description`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_channel_description -->
 
@@ -201,7 +201,7 @@ continuation_token
 
 ## get_channel_id
 
-`GET /api/v1/youtube/.../get_channel_id`
+`GET /api/v1/youtube/web/get_channel_id`
 
 <!-- Full path: /api/v1/youtube/web/get_channel_id -->
 
@@ -226,7 +226,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_id
 
-`GET /api/v1/youtube/.../get_channel_id`
+`GET /api/v1/youtube/web/get_channel_id`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_channel_id -->
 
@@ -254,7 +254,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_id_v2
 
-`GET /api/v1/youtube/.../get_channel_id_v2`
+`GET /api/v1/youtube/web/get_channel_id_v2`
 
 <!-- Full path: /api/v1/youtube/web/get_channel_id_v2 -->
 
@@ -282,7 +282,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_url
 
-`GET /api/v1/youtube/.../get_channel_url`
+`GET /api/v1/youtube/web/get_channel_url`
 
 <!-- Full path: /api/v1/youtube/web/get_channel_url -->
 
@@ -315,7 +315,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_channel_url
 
-`GET /api/v1/youtube/.../get_channel_url`
+`GET /api/v1/youtube/web/get_channel_url`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_channel_url -->
 
@@ -348,7 +348,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_comment_replies
 
-`GET /api/v1/youtube/.../get_post_comment_replies`
+`GET /api/v1/youtube/web_v2/get_post_comment_replies`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_post_comment_replies -->
 
@@ -394,7 +394,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_post_comments
 
-`GET /api/v1/youtube/.../get_post_comments`
+`GET /api/v1/youtube/web_v2/get_post_comments`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_post_comments -->
 
@@ -460,7 +460,7 @@ continuation_token）
 
 ## get_shorts_search_v2
 
-`GET /api/v1/youtube/.../get_shorts_search_v2`
+`GET /api/v1/youtube/web_v2/get_shorts_search_v2`
 
 <!-- Full path: /api/v1/youtube/web_v2/get_shorts_search_v2 -->
 
@@ -495,7 +495,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_channel
 
-`GET /api/v1/youtube/.../search_channel`
+`GET /api/v1/youtube/web/search_channel`
 
 <!-- Full path: /api/v1/youtube/web/search_channel -->
 
@@ -527,7 +527,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_channels
 
-`GET /api/v1/youtube/.../search_channels`
+`GET /api/v1/youtube/web_v2/search_channels`
 
 <!-- Full path: /api/v1/youtube/web_v2/search_channels -->
 

@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_home_feed
 
-`GET /api/v1/pipixia/.../fetch_home_feed`
+`GET /api/v1/pipixia/app/fetch_home_feed`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_home_feed -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_home_short_drama_feed
 
-`GET /api/v1/pipixia/.../fetch_home_short_drama_feed`
+`GET /api/v1/pipixia/app/fetch_home_short_drama_feed`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_home_short_drama_feed -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_search_words
 
-`GET /api/v1/pipixia/.../fetch_hot_search_words`
+`GET /api/v1/pipixia/app/fetch_hot_search_words`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_hot_search_words -->
 
@@ -77,7 +77,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_search
 
-`GET /api/v1/pipixia/.../fetch_search`
+`GET /api/v1/pipixia/app/fetch_search`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_search -->
 
@@ -113,7 +113,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_short_url
 
-`GET /api/v1/pipixia/.../fetch_short_url`
+`GET /api/v1/pipixia/app/fetch_short_url`
 
 <!-- Full path: /api/v1/pipixia/app/fetch_short_url -->
 

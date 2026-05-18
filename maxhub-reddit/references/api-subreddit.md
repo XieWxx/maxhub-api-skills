@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_games_feed
 
-`GET /api/v1/reddit/.../fetch_games_feed`
+`GET /api/v1/reddit/app/fetch_games_feed`
 
 <!-- Full path: /api/v1/reddit/app/fetch_games_feed -->
 
@@ -40,7 +40,7 @@ YEAR(一年)
 
 ## fetch_home_feed
 
-`GET /api/v1/reddit/.../fetch_home_feed`
+`GET /api/v1/reddit/app/fetch_home_feed`
 
 <!-- Full path: /api/v1/reddit/app/fetch_home_feed -->
 
@@ -70,7 +70,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_news_feed
 
-`GET /api/v1/reddit/.../fetch_news_feed`
+`GET /api/v1/reddit/app/fetch_news_feed`
 
 <!-- Full path: /api/v1/reddit/app/fetch_news_feed -->
 
@@ -102,7 +102,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_popular_feed
 
-`GET /api/v1/reddit/.../fetch_popular_feed`
+`GET /api/v1/reddit/app/fetch_popular_feed`
 
 <!-- Full path: /api/v1/reddit/app/fetch_popular_feed -->
 
@@ -139,7 +139,7 @@ YEAR(一年)
 
 ## fetch_subreddit_style
 
-`GET /api/v1/reddit/.../fetch_subreddit_style`
+`GET /api/v1/reddit/app/fetch_subreddit_style`
 
 <!-- Full path: /api/v1/reddit/app/fetch_subreddit_style -->
 

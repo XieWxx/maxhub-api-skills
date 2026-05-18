@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## encrypt_uid_to_sec_user_id
 
-`GET /api/v1/douyin/.../encrypt_uid_to_sec_user_id`
+`GET /api/v1/douyin/web/encrypt_uid_to_sec_user_id`
 
 <!-- Full path: /api/v1/douyin/web/encrypt_uid_to_sec_user_id -->
 
@@ -31,7 +31,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_batch_user_profile_v1
 
-`GET /api/v1/douyin/.../fetch_batch_user_profile_v1`
+`GET /api/v1/douyin/web/fetch_batch_user_profile_v1`
 
 <!-- Full path: /api/v1/douyin/web/fetch_batch_user_profile_v1 -->
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_batch_user_profile_v2
 
-`GET /api/v1/douyin/.../fetch_batch_user_profile_v2`
+`GET /api/v1/douyin/web/fetch_batch_user_profile_v2`
 
 <!-- Full path: /api/v1/douyin/web/fetch_batch_user_profile_v2 -->
 
@@ -81,7 +81,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_daren_compare_users_stable
 
-`POST /api/v1/douyin/.../fetch_daren_compare_users_stable`
+`POST /api/v1/douyin/index/fetch_daren_compare_users_stable`
 
 <!-- Full path: /api/v1/douyin/index/fetch_daren_compare_users_stable -->
 
@@ -108,7 +108,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_daren_great_user_fans_info
 
-`POST /api/v1/douyin/.../fetch_daren_great_user_fans_info`
+`POST /api/v1/douyin/index/fetch_daren_great_user_fans_info`
 
 <!-- Full path: /api/v1/douyin/index/fetch_daren_great_user_fans_info -->
 
@@ -133,7 +133,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_daren_similar_users
 
-`POST /api/v1/douyin/.../fetch_daren_similar_users`
+`POST /api/v1/douyin/index/fetch_daren_similar_users`
 
 <!-- Full path: /api/v1/douyin/index/fetch_daren_similar_users -->
 
@@ -158,7 +158,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_daren_sug_great_user_list
 
-`POST /api/v1/douyin/.../fetch_daren_sug_great_user_list`
+`POST /api/v1/douyin/index/fetch_daren_sug_great_user_list`
 
 <!-- Full path: /api/v1/douyin/index/fetch_daren_sug_great_user_list -->
 
@@ -185,7 +185,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_encrypt_user_id
 
-`GET /api/v1/douyin/.../fetch_encrypt_user_id`
+`GET /api/v1/douyin/index/fetch_encrypt_user_id`
 
 <!-- Full path: /api/v1/douyin/index/fetch_encrypt_user_id -->
 
@@ -214,7 +214,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_get_user_sub_word
 
-`POST /api/v1/douyin/.../fetch_get_user_sub_word`
+`POST /api/v1/douyin/index/fetch_get_user_sub_word`
 
 <!-- Full path: /api/v1/douyin/index/fetch_get_user_sub_word -->
 
@@ -235,7 +235,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_account_fans_interest_account_list
 
-`GET /api/v1/douyin/.../fetch_hot_account_fans_interest_account_list`
+`GET /api/v1/douyin/billboard/fetch_hot_account_fans_interest_account_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_fans_interest_account_list -->
 
@@ -260,7 +260,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_account_fans_portrait_list
 
-`GET /api/v1/douyin/.../fetch_hot_account_fans_portrait_list`
+`GET /api/v1/douyin/billboard/fetch_hot_account_fans_portrait_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_fans_portrait_list -->
 
@@ -295,7 +295,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_account_search_list
 
-`GET /api/v1/douyin/.../fetch_hot_account_search_list`
+`GET /api/v1/douyin/billboard/fetch_hot_account_search_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_search_list -->
 
@@ -322,7 +322,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_account_trends_list
 
-`GET /api/v1/douyin/.../fetch_hot_account_trends_list`
+`GET /api/v1/douyin/billboard/fetch_hot_account_trends_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_trends_list -->
 
@@ -351,7 +351,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_hot_total_high_like_list
 
-`POST /api/v1/douyin/.../fetch_hot_total_high_like_list`
+`POST /api/v1/douyin/billboard/fetch_hot_total_high_like_list`
 
 <!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_high_like_list -->
 
@@ -381,7 +381,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_gift_ranking
 
-`GET /api/v1/douyin/.../fetch_live_gift_ranking`
+`GET /api/v1/douyin/web/fetch_live_gift_ranking`
 
 <!-- Full path: /api/v1/douyin/web/fetch_live_gift_ranking -->
 
@@ -408,7 +408,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_hot_search_list
 
-`GET /api/v1/douyin/.../fetch_live_hot_search_list`
+`GET /api/v1/douyin/app/v3/fetch_live_hot_search_list`
 
 <!-- Full path: /api/v1/douyin/app/v3/fetch_live_hot_search_list -->
 
@@ -429,7 +429,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_room_history_list
 
-`POST /api/v1/douyin/.../fetch_live_room_history_list`
+`POST /api/v1/douyin/creator_v2/fetch_live_room_history_list`
 
 <!-- Full path: /api/v1/douyin/creator_v2/fetch_live_room_history_list -->
 
@@ -448,9 +448,34 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 查看指定时间范围内的所有直播场次数据
  - 支持查询正在进行的直播和历史直播记录
  - **此接口需要用户提供有效的抖音创作者平台Cookie**
+> ⚠️ **Security Notice / 安全提示**
+> - This endpoint requires your platform session Cookie, which is a sensitive credential equivalent to a login session.
+> - **Only provide your Cookie if you fully trust the service provider.**
+> - Prefer using scoped OAuth/API tokens over full browser cookies when available.
+> - Use a separate test account rather than your primary account.
+> - Rotate or revoke your Cookie after use if possible.
+> - 此端点需要您的平台会话 Cookie，这是等同于登录会话的敏感凭据。
+> - **仅在完全信任服务提供商的情况下提供 Cookie。**
+> - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
+> - 使用独立的测试账号而非主账号。
+> - 使用后尽可能轮换或撤销 Cookie。
  - **使用 POST 方法，Cookie 在请求体中传输，更安全**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
+> 📋 **Data Handling Disclosure / 数据处理披露**
+> - Your Cookie/session data will be transmitted to a third-party API service (`https://www.aconfig.cn`) for processing.
+> - The service provider processes your data solely to fulfill the API request and does not store your credentials beyond the request lifecycle.
+> - For details, refer to the service provider's privacy policy and terms of service.
+> - 您的 Cookie/会话数据将传输至第三方 API 服务进行处理。
+> - 服务提供商仅处理您的数据以完成 API 请求，不会在请求生命周期之外存储您的凭据。
+> - 详见服务提供商的隐私政策和服务条款。
  - start_date: 开始日期，格式为 YYYY-MM-DD（必填，例如: "2025-09-11"）
  - end_date: 结束日期，格式为 YYYY-MM-DD（必填，例如: "2025-10-11"）
  - limit: 每页数量限制，默认400，最多400条
@@ -509,7 +534,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_live_room_product_result
 
-`GET /api/v1/douyin/.../fetch_live_room_product_result`
+`GET /api/v1/douyin/web/fetch_live_room_product_result`
 
 <!-- Full path: /api/v1/douyin/web/fetch_live_room_product_result -->
 
@@ -546,7 +571,7 @@ roon_id不是固定不变的，每次开播都会变化。
 
 ## fetch_live_search_v1
 
-`POST /api/v1/douyin/.../fetch_live_search_v1`
+`POST /api/v1/douyin/search/fetch_live_search_v1`
 
 <!-- Full path: /api/v1/douyin/search/fetch_live_search_v1 -->
 
@@ -637,7 +662,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_query_user
 
-`POST /api/v1/douyin/.../fetch_query_user`
+`POST /api/v1/douyin/web/fetch_query_user`
 
 <!-- Full path: /api/v1/douyin/web/fetch_query_user -->
 
@@ -660,7 +685,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_collects
 
-`POST /api/v1/douyin/.../fetch_user_collects`
+`POST /api/v1/douyin/web/fetch_user_collects`
 
 <!-- Full path: /api/v1/douyin/web/fetch_user_collects -->
 
@@ -685,7 +710,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_fans_list
 
-`GET /api/v1/douyin/.../fetch_user_fans_list`
+`GET /api/v1/douyin/app/v3/fetch_user_fans_list`
 
 <!-- Full path: /api/v1/douyin/app/v3/fetch_user_fans_list -->
 
@@ -714,7 +739,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_fans_list
 
-`GET /api/v1/douyin/.../fetch_user_fans_list`
+`GET /api/v1/douyin/app/v3/fetch_user_fans_list`
 
 <!-- Full path: /api/v1/douyin/web/fetch_user_fans_list -->
 
@@ -748,7 +773,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_following_list
 
-`GET /api/v1/douyin/.../fetch_user_following_list`
+`GET /api/v1/douyin/web/fetch_user_following_list`
 
 <!-- Full path: /api/v1/douyin/web/fetch_user_following_list -->
 
@@ -782,7 +807,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_live_info_by_uid
 
-`GET /api/v1/douyin/.../fetch_user_live_info_by_uid`
+`GET /api/v1/douyin/web/fetch_user_live_info_by_uid`
 
 <!-- Full path: /api/v1/douyin/web/fetch_user_live_info_by_uid -->
 
@@ -807,7 +832,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_profile_by_short_id
 
-`GET /api/v1/douyin/.../fetch_user_profile_by_short_id`
+`GET /api/v1/douyin/web/fetch_user_profile_by_short_id`
 
 <!-- Full path: /api/v1/douyin/web/fetch_user_profile_by_short_id -->
 
@@ -832,7 +857,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_profile_by_uid
 
-`GET /api/v1/douyin/.../fetch_user_profile_by_uid`
+`GET /api/v1/douyin/web/fetch_user_profile_by_uid`
 
 <!-- Full path: /api/v1/douyin/web/fetch_user_profile_by_uid -->
 
@@ -857,7 +882,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_search
 
-`GET /api/v1/douyin/.../fetch_user_search`
+`GET /api/v1/douyin/creator/fetch_user_search`
 
 <!-- Full path: /api/v1/douyin/creator/fetch_user_search -->
 
@@ -885,7 +910,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_search
 
-`POST /api/v1/douyin/.../fetch_user_search`
+`POST /api/v1/douyin/creator/fetch_user_search`
 
 <!-- Full path: /api/v1/douyin/search/fetch_user_search -->
 
@@ -957,7 +982,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_user_search_v2
 
-`POST /api/v1/douyin/.../fetch_user_search_v2`
+`POST /api/v1/douyin/search/fetch_user_search_v2`
 
 <!-- Full path: /api/v1/douyin/search/fetch_user_search_v2 -->
 
@@ -1013,7 +1038,7 @@ payload = {
 
 ## get_all_sec_user_id
 
-`POST /api/v1/douyin/.../get_all_sec_user_id`
+`POST /api/v1/douyin/web/get_all_sec_user_id`
 
 <!-- Full path: /api/v1/douyin/web/get_all_sec_user_id -->
 
@@ -1036,7 +1061,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_content_trend_guide
 
-`GET /api/v1/douyin/.../get_content_trend_guide`
+`GET /api/v1/douyin/xingtu_v2/get_content_trend_guide`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_content_trend_guide -->
 
@@ -1057,7 +1082,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_sec_user_id
 
-`GET /api/v1/douyin/.../get_sec_user_id`
+`GET /api/v1/douyin/web/get_sec_user_id`
 
 <!-- Full path: /api/v1/douyin/web/get_sec_user_id -->
 
@@ -1082,7 +1107,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_user_profile_qrcode
 
-`GET /api/v1/douyin/.../get_user_profile_qrcode`
+`GET /api/v1/douyin/xingtu_v2/get_user_profile_qrcode`
 
 <!-- Full path: /api/v1/douyin/xingtu_v2/get_user_profile_qrcode -->
 
@@ -1110,7 +1135,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_xingtu_kolid_by_sec_user_id
 
-`GET /api/v1/douyin/.../get_xingtu_kolid_by_sec_user_id`
+`GET /api/v1/douyin/xingtu/get_xingtu_kolid_by_sec_user_id`
 
 <!-- Full path: /api/v1/douyin/xingtu/get_xingtu_kolid_by_sec_user_id -->
 
@@ -1139,7 +1164,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## get_xingtu_kolid_by_uid
 
-`GET /api/v1/douyin/.../get_xingtu_kolid_by_uid`
+`GET /api/v1/douyin/xingtu/get_xingtu_kolid_by_uid`
 
 <!-- Full path: /api/v1/douyin/xingtu/get_xingtu_kolid_by_uid -->
 
@@ -1170,7 +1195,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## handler_user_profile
 
-`GET /api/v1/douyin/.../handler_user_profile`
+`GET /api/v1/douyin/app/v3/handler_user_profile`
 
 <!-- Full path: /api/v1/douyin/app/v3/handler_user_profile -->
 
@@ -1195,7 +1220,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## handler_user_profile
 
-`GET /api/v1/douyin/.../handler_user_profile`
+`GET /api/v1/douyin/app/v3/handler_user_profile`
 
 <!-- Full path: /api/v1/douyin/web/handler_user_profile -->
 
@@ -1220,7 +1245,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## handler_user_profile_v2
 
-`GET /api/v1/douyin/.../handler_user_profile_v2`
+`GET /api/v1/douyin/web/handler_user_profile_v2`
 
 <!-- Full path: /api/v1/douyin/web/handler_user_profile_v2 -->
 
@@ -1245,7 +1270,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## handler_user_profile_v3
 
-`GET /api/v1/douyin/.../handler_user_profile_v3`
+`GET /api/v1/douyin/web/handler_user_profile_v3`
 
 <!-- Full path: /api/v1/douyin/web/handler_user_profile_v3 -->
 
@@ -1270,7 +1295,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## handler_user_profile_v4
 
-`GET /api/v1/douyin/.../handler_user_profile_v4`
+`GET /api/v1/douyin/web/handler_user_profile_v4`
 
 <!-- Full path: /api/v1/douyin/web/handler_user_profile_v4 -->
 
@@ -1298,7 +1323,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_daily_fans_v1
 
-`GET /api/v1/douyin/.../kol_daily_fans_v1`
+`GET /api/v1/douyin/xingtu/kol_daily_fans_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_daily_fans_v1 -->
 
@@ -1331,7 +1356,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_fans_portrait_v1
 
-`GET /api/v1/douyin/.../kol_fans_portrait_v1`
+`GET /api/v1/douyin/xingtu/kol_fans_portrait_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_fans_portrait_v1 -->
 
@@ -1365,7 +1390,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_link_struct_v1
 
-`GET /api/v1/douyin/.../kol_link_struct_v1`
+`GET /api/v1/douyin/xingtu/kol_link_struct_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_link_struct_v1 -->
 
@@ -1394,7 +1419,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## kol_touch_distribution_v1
 
-`GET /api/v1/douyin/.../kol_touch_distribution_v1`
+`GET /api/v1/douyin/xingtu/kol_touch_distribution_v1`
 
 <!-- Full path: /api/v1/douyin/xingtu/kol_touch_distribution_v1 -->
 
@@ -1423,7 +1448,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## open_douyin_app_to_user_profile
 
-`GET /api/v1/douyin/.../open_douyin_app_to_user_profile`
+`GET /api/v1/douyin/app/v3/open_douyin_app_to_user_profile`
 
 <!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_user_profile -->
 

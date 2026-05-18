@@ -6,7 +6,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 ## fetch_post_detail
 
-`GET /api/v1/threads/.../fetch_post_detail`
+`GET /api/v1/threads/web/fetch_post_detail`
 
 <!-- Full path: /api/v1/threads/web/fetch_post_detail -->
 
@@ -40,7 +40,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## fetch_post_detail_v2
 
-`GET /api/v1/threads/.../fetch_post_detail_v2`
+`GET /api/v1/threads/web/fetch_post_detail_v2`
 
 <!-- Full path: /api/v1/threads/web/fetch_post_detail_v2 -->
 
@@ -80,7 +80,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 ## search_profiles
 
-`GET /api/v1/threads/.../search_profiles`
+`GET /api/v1/threads/web/search_profiles`
 
 <!-- Full path: /api/v1/threads/web/search_profiles -->
 
