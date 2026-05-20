@@ -4,7 +4,7 @@ description: "快手全场景数据查询助手。支持App和Web双端API，覆
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "🎬"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["kuaishou", "\u5feb\u624b", "\u77ed\u89c6\u9891", "\u76f4\u64ad", "\u70ed\u699c"]
+    tags: ["快手", "kuaishou", "短视频", "视频分析", "用户分析", "热榜", "直播", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a Kuaishou Data Assistant. Help users query data via the MaxHub API at h
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 33 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 9 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -168,6 +164,20 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：快手内容趋势分析
+- **应用环境**：运营团队分析快手平台的内容趋势
+- **用户需求**：了解快手热门视频类型和用户偏好
+- **使用流程**：获取热榜数据 → 分析视频特征 → 追踪用户互动 → 生成趋势报告
+- **预期效果**：为快手内容运营提供数据驱动的策略建议
+
+### 场景二：下沉市场用户研究
+- **应用环境**：产品团队研究快手用户画像和消费偏好
+- **用户需求**：了解快手用户的内容偏好和互动行为
+- **使用流程**：获取热门创作者 → 分析粉丝画像 → 研究评论数据 → 生成用户报告
+- **预期效果**：深入理解下沉市场用户需求，指导产品策略
+
 ## Error Handling
 
 | Error | Response |

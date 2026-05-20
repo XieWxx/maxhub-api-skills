@@ -4,7 +4,7 @@ description: "Instagram 全场景数据查询助手。支持V1/V2/V3三个版本
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "📸"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["instagram", "\u5e16\u5b50", "Reels", "Stories", "\u7528\u6237", "\u641c\u7d22"]
+    tags: ["instagram", "ins", "帖子", "用户分析", "图片社交", "关键词搜索", "评论采集", "故事", "网红分析", "品牌营销", "视觉内容", "海外社媒", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a Instagram Data Assistant. Help users query data via the MaxHub API at 
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 88 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 68 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -174,6 +170,26 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：品牌社媒监测
+- **应用环境**：品牌方监控Instagram上的品牌提及和用户内容
+- **用户需求**：追踪品牌标签下的用户生成内容和互动数据
+- **使用流程**：搜索品牌标签 → 获取相关帖子 → 分析互动数据 → 评估传播效果
+- **预期效果**：实时掌握品牌在Instagram上的声量和用户反馈
+
+### 场景二：网红营销分析
+- **应用环境**：营销团队评估Instagram网红的合作价值
+- **用户需求**：分析网红粉丝质量、内容表现和商业合作历史
+- **使用流程**：搜索目标网红 → 获取用户详情 → 分析帖子数据 → 评估互动率
+- **预期效果**：筛选出高ROI的网红合作对象
+
+### 场景三：视觉内容灵感
+- **应用环境**：内容创作者寻找Instagram上的创意灵感
+- **用户需求**：发现热门视觉内容和创作趋势
+- **使用流程**：搜索目标主题 → 获取高互动帖子 → 分析内容特征 → 提取创意元素
+- **预期效果**：为内容创作提供数据驱动的灵感参考
+
 ## Error Handling
 
 | Error | Response |

@@ -4,7 +4,7 @@ description: "皮皮虾数据查询助手。覆盖作品详情、用户数据、
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "🦐"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["\u76ae\u76ae\u867e", "\u641e\u7b11", "\u641c\u7d22", "\u70ed\u641c"]
+    tags: ["皮皮虾", "pipixia", "搞笑", "帖子分析", "用户分析", "热门", "搜索", "评论采集", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a PiPiXia Data Assistant. Help users query data via the MaxHub API at ht
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 17 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 16 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -163,6 +159,20 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：搞笑内容趋势分析
+- **应用环境**：内容团队分析皮皮虾上的搞笑内容趋势
+- **用户需求**：了解热门段子、梗图和用户偏好的内容类型
+- **使用流程**：获取热门帖子 → 分析内容标签 → 追踪搜索趋势 → 生成趋势报告
+- **预期效果**：为搞笑内容创作提供热点参考
+
+### 场景二：社区文化研究
+- **应用环境**：运营团队研究皮皮虾社区的用户文化和互动模式
+- **用户需求**：了解社区热门话题、用户画像和互动特征
+- **使用流程**：获取热门内容 → 分析评论数据 → 提取用户偏好 → 生成研究报告
+- **预期效果**：深入理解社区文化，指导内容运营策略
+
 ## Error Handling
 
 | Error | Response |

@@ -4,7 +4,7 @@ description: "今日头条数据查询助手。覆盖文章、视频、用户、
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "📰"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["\u5934\u6761", "\u6587\u7ae0", "\u89c6\u9891", "\u8bc4\u8bba"]
+    tags: ["今日头条", "toutiao", "内容分析", "用户分析", "资讯", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a Toutiao Data Assistant. Help users query data via the MaxHub API at ht
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 7 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 7 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -161,6 +157,14 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：资讯内容监测
+- **应用环境**：媒体团队监测今日头条的热门资讯动态
+- **用户需求**：了解热门内容类型和用户关注焦点
+- **使用流程**：获取内容数据 → 分析热门趋势 → 追踪用户偏好 → 生成监测报告
+- **预期效果**：快速把握资讯热点，辅助内容选题决策
+
 ## Error Handling
 
 | Error | Response |

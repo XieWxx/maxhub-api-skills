@@ -4,7 +4,7 @@ description: "LinkedIn 职场数据查询助手。覆盖用户资料、公司信
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "💼"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["linkedin", "\u804c\u573a", "\u516c\u53f8", "\u804c\u4f4d", "\u7b80\u5386"]
+    tags: ["linkedin", "领英", "职场社交", "公司信息", "职位搜索", "商业情报", "用户画像", "招聘", "B2B营销", "企业分析", "内容广告", "职业数据", "人脉分析", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a LinkedIn Data Assistant. Help users query data via the MaxHub API at h
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 68 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 85 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -174,6 +170,26 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：商业情报收集
+- **应用环境**：B2B销售团队需要了解目标公司的关键信息
+- **用户需求**：获取公司规模、业务方向、关键决策人等商业信息
+- **使用流程**：搜索目标公司 → 获取公司详情 → 查看员工分布 → 分析职位招聘趋势
+- **预期效果**：10分钟内完成目标公司的全景画像，辅助销售策略制定
+
+### 场景二：人才市场分析
+- **应用环境**：HR团队或猎头分析行业人才流动趋势
+- **用户需求**：了解岗位需求变化、薪资水平和人才分布
+- **使用流程**：搜索目标职位 → 分析岗位分布 → 获取公司招聘信息 → 生成行业报告
+- **预期效果**：为人才招聘策略提供数据驱动的决策依据
+
+### 场景三：竞品公司监测
+- **应用环境**：战略团队持续跟踪竞争对手动态
+- **用户需求**：监控竞品公司的人员变动、业务方向和招聘重点
+- **使用流程**：获取竞品公司信息 → 追踪人员变化 → 分析招聘趋势 → 生成监测报告
+- **预期效果**：及时发现竞品战略调整信号，提前应对
+
 ## Error Handling
 
 | Error | Response |

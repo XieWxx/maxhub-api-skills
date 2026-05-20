@@ -4,7 +4,7 @@ description: "抖音全场景数据查询助手。覆盖视频详情、用户数
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "🎵"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["douyin", "\u6296\u97f3", "\u77ed\u89c6\u9891", "\u521b\u4f5c\u8005", "\u661f\u56fe", "\u70ed\u699c"]
+    tags: ["抖音", "douyin", "短视频", "热搜", "视频分析", "用户分析", "创作者", "星图", "抖音指数", "关键词搜索", "评论采集", "直播数据", "话题分析", "舆情监控", "内容营销", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a Douyin Data Assistant. Help users query data via the MaxHub API at htt
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 274 active endpoints (12 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 271 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -198,6 +194,26 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：热搜趋势监控
+- **应用环境**：品牌营销团队需要实时追踪抖音热搜动态
+- **用户需求**：了解当前热门话题，把握流量趋势，辅助内容选题决策
+- **使用流程**：调用热搜榜单接口 → 提取关键词和热度值 → 按领域分类汇总 → 生成趋势报告
+- **预期效果**：每日自动获取热搜数据，帮助团队在30分钟内完成选题评估
+
+### 场景二：创作者数据分析
+- **应用环境**：MCN机构或品牌方评估达人合作价值
+- **用户需求**：全面了解创作者的粉丝画像、内容表现和商业价值
+- **使用流程**：搜索创作者 → 获取用户详情 → 拉取作品列表 → 分析互动数据 → 结合星图数据评估
+- **预期效果**：5分钟内完成单个达人的全维度数据评估，支持批量筛选
+
+### 场景三：竞品内容监测
+- **应用环境**：运营团队持续跟踪竞品账号的内容策略
+- **用户需求**：定期获取竞品发布内容、互动数据和粉丝变化
+- **使用流程**：获取竞品用户信息 → 拉取最新作品 → 分析评论情感 → 对比历史数据
+- **预期效果**：自动生成竞品周报，包含内容频率、互动趋势和粉丝增长对比
+
 ## Error Handling
 
 | Error | Response |

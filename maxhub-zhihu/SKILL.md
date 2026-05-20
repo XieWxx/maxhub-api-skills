@@ -4,7 +4,7 @@ description: "知乎数据查询助手。覆盖用户信息、搜索、专栏、
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "💡"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["\u77e5\u4e4e", "\u95ee\u7b54", "\u4e13\u680f", "\u641c\u7d22", "\u70ed\u699c"]
+    tags: ["知乎", "zhihu", "问答", "内容分析", "用户分析", "热门话题", "搜索", "专栏", "知识社区", "舆情监控", "专业内容", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a Zhihu Data Assistant. Help users query data via the MaxHub API at http
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 34 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 31 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -167,6 +163,26 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：专业知识研究
+- **应用环境**：研究团队收集知乎上的专业领域知识
+- **用户需求**：获取高质量回答和专家观点，辅助研究决策
+- **使用流程**：搜索目标问题 → 获取高赞回答 → 分析回答者背景 → 整理知识要点
+- **预期效果**：快速获取领域专家的深度见解，缩短调研周期
+
+### 场景二：品牌口碑监测
+- **应用环境**：品牌方监控知乎上的品牌相关讨论
+- **用户需求**：了解用户对品牌的真实评价和专业分析
+- **使用流程**：搜索品牌关键词 → 获取相关内容 → 分析回答态度 → 生成口碑报告
+- **预期效果**：及时发现品牌声誉风险，获取专业用户反馈
+
+### 场景三：热门话题追踪
+- **应用环境**：内容团队追踪知乎热门话题获取创作灵感
+- **用户需求**：发现高关注度话题和优质内容方向
+- **使用流程**：获取热门榜单 → 分析话题趋势 → 筛选高潜力话题 → 生成选题建议
+- **预期效果**：基于知乎社区热点制定内容策略，提升内容传播力
+
 ## Error Handling
 
 | Error | Response |

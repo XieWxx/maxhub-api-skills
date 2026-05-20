@@ -4,7 +4,7 @@ description: "微信数据查询助手。覆盖视频号和公众号两大模块
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "💬"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["\u5fae\u4fe1", "\u89c6\u9891\u53f7", "\u516c\u4f17\u53f7", "\u6587\u7ae0", "\u641c\u7d22"]
+    tags: ["微信", "wechat", "视频号", "公众号", "文章", "用户分析", "内容分析", "社交媒体", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a WeChat Data Assistant. Help users query data via the MaxHub API at htt
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 23 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 24 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -172,6 +168,26 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：公众号内容监测
+- **应用环境**：运营团队监控竞品公众号的内容策略
+- **用户需求**：追踪竞品发布频率、内容主题和阅读表现
+- **使用流程**：获取公众号信息 → 拉取最新文章 → 分析内容特征 → 生成监测报告
+- **预期效果**：持续掌握竞品动态，优化自身内容策略
+
+### 场景二：视频号数据分析
+- **应用环境**：品牌方评估微信视频号的传播效果
+- **用户需求**：分析视频号的播放量、互动数据和粉丝增长
+- **使用流程**：获取视频号信息 → 分析视频数据 → 评估互动指标 → 生成效果报告
+- **预期效果**：量化视频号运营效果，指导内容优化方向
+
+### 场景三：私域流量研究
+- **应用环境**：营销团队研究微信公众号的私域运营策略
+- **用户需求**：了解优质公众号的内容运营和用户互动模式
+- **使用流程**：搜索目标公众号 → 分析文章数据 → 评估用户互动 → 提炼运营策略
+- **预期效果**：借鉴优质账号的运营经验，提升私域运营效率
+
 ## Error Handling
 
 | Error | Response |

@@ -4,7 +4,7 @@ description: "Sora2 视频平台数据查询助手。覆盖作品详情、用户
 license: MIT-0
 metadata:
   author: maxhub
-  version: "1.0.0"
+  version: "3.2.0"
   openclaw:
     emoji: "🎥"
     primaryEnv: MAXHUB_API_KEY
@@ -21,7 +21,7 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["sora2", "\u89c6\u9891", "Cameo", "Remix"]
+    tags: ["sora2", "AI视频", "出镜秀", "帖子分析", "用户分析", "AI生成", "视频创作", "数据采集"]
     category: productivity
 ---
 
@@ -33,11 +33,7 @@ You are a Sora2 Data Assistant. Help users query data via the MaxHub API at http
 
 **Data disclaimer:** Data obtained through third-party APIs is for reference only.
 
-**API coverage:** 14 active endpoints (0 deprecated endpoints excluded).
-
-## Language Handling / 语言适配
-
-Detect the user's language from their **first message** and maintain it throughout the conversation.
+**API coverage:** 14 active endpoints **first message** and maintain it throughout the conversation.
 
 | User language | Response language | Number format | Example output |
 |---|---|---|---|
@@ -163,6 +159,20 @@ Side-by-side table + differential insights.
 5. **Data-driven** — Base conclusions on actual API data.
 6. **Credential handling** — Keep API key values out of output.
 7. **Strip HTML tags** — API may return HTML in name fields.
+## 🎯 适配场景
+
+### 场景一：AI视频创作研究
+- **应用环境**：AI技术团队研究Sora2平台的视频创作趋势
+- **用户需求**：了解AI视频的创作模式、风格特点和用户反馈
+- **使用流程**：获取热门帖子 → 分析视频特征 → 追踪用户评价 → 生成研究报告
+- **预期效果**：掌握AI视频创作的最新趋势和技术方向
+
+### 场景二：AI视频平台监测
+- **应用环境**：产品团队监测Sora2平台的内容生态
+- **用户需求**：了解平台热门内容、用户活跃度和创作趋势
+- **使用流程**：获取平台数据 → 分析内容分布 → 追踪用户行为 → 生成监测报告
+- **预期效果**：为AI视频产品策略提供数据支撑
+
 ## Error Handling
 
 | Error | Response |
