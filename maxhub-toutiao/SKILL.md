@@ -4,7 +4,7 @@ description: "今日头条数据查询助手。覆盖文章、视频、用户、
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.2.0"
+  version: "3.3.0"
   openclaw:
     emoji: "📰"
     primaryEnv: MAXHUB_API_KEY

@@ -4,7 +4,7 @@ description: "LinkedIn 职场数据查询助手。覆盖用户资料、公司信
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.2.0"
+  version: "3.3.0"
   openclaw:
     emoji: "💼"
     primaryEnv: MAXHUB_API_KEY
