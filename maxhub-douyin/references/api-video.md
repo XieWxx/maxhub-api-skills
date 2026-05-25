@@ -2055,7 +2055,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 根据视频ID获取作品的统计数据，支持多个视频id，一次性最多支持50个视频。
  - 抖音大多数接口已经不再返回作品的播放数，只能通过此接口获取。
- - 价格为：0.025$一次。
  - 可以获取到的统计有：
     - 点赞数（digg_count）
     - 下载数（download_count）

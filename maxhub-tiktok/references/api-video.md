@@ -436,7 +436,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - room_ids: 直播间ID列表，用英文逗号分隔，如：7530611486784277278,7530633767468288782
  ### 返回:
  - 批量直播间开播状态列表
- - 定价0.025$，请尽量达到50个直播间查询，避免浪费API调用次数。
  ### 说明:
  - 同一个room_id不会重复返回开播状态。
 
