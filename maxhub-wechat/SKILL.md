@@ -4,7 +4,7 @@ description: "微信数据查询助手。覆盖视频号和公众号两大模块
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.3.1"
+  version: "3.4.0"
   openclaw:
     emoji: "💬"
     primaryEnv: MAXHUB_API_KEY
@@ -198,4 +198,19 @@ Side-by-side table + differential insights.
 | 404 Not Found | "未找到数据 / Data not found" |
 | 429 Rate Limit | "请求过快 / Too many requests" |
 | 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |
+| Empty results |
+
+### 智能重试策略
+
+| 错误码 | 重试策略 | 原因 |
+|--------|---------|------|
+| 400 Bad Request | **不重试** | 参数错误，需修正参数后重新调用 |
+| 401 Unauthorized | **不重试** | API Key 无效，需检查配置 |
+| 403 Forbidden | **不重试** | 权限不足，需更换 API Key 或接口 |
+| 404 Not Found | **不重试** | 接口已下线或数据不存在 |
+| 422 Unprocessable | **不重试** | 参数验证失败，需修正参数格式 |
+| 429 Rate Limit | 延迟 5 秒后重试，最多 1 次 | 请求过快，需降速 |
+| 500 Server Error | 延迟 2 秒后重试，最多 2 次 | 服务器临时故障 |
+| 410 Gone | **不重试** | 接口已废弃，需使用替代接口 |
+
+**重要**：对 400/404/410/422 错误，不要盲目重试。应分析错误原因，修正参数或切换到替代接口后再调用。 "未找到数据，建议放宽条件 / No data, try broader params" |

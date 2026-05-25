@@ -33,6 +33,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_batch_user_profile_v1`
 
+> ⚠️ **参数校验提示**：`sec_user_ids` 为必填参数，多个 ID 以逗号分隔，最多 20 个。ID 格式须为 `MS4wLjABAAAA...` 形式。
+
 <!-- Full path: /api/v1/douyin/web/fetch_batch_user_profile_v1 -->
 
 ### Parameters

@@ -795,6 +795,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_note_comments`
 
+> ⚠️ **参数校验提示**：`note_id` 为必填参数，格式为 24 位十六进制字符串（如 `65a1b2c3d4e5f6a7b8c9d0e1`）。
+
 <!-- Full path: /api/v1/xiaohongshu/app/get_note_comments -->
 
 ### Parameters
@@ -1831,6 +1833,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## search_notes
 
 `GET /api/v1/xiaohongshu/app/search_notes`
+
+> ⛔ **已废弃**：上游接口已下线（返回 404）。替代接口：`/api/v1/xiaohongshu/web_v3/fetch_search_notes`。请勿使用此接口。
 
 <!-- Full path: /api/v1/xiaohongshu/app/search_notes -->
 

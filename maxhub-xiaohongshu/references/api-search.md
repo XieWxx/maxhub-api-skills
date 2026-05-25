@@ -35,6 +35,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v3/fetch_trending`
 
+> ⚠️ **参数校验提示**：该接口响应较慢（平均 7 秒+），建议设置较长超时时间。`page` 参数范围 1-50。
+
 <!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_trending -->
 
 ### Parameters

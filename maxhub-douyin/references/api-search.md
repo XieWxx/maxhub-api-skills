@@ -253,6 +253,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_content_creative_keywords`
 
+> ⚠️ **参数校验提示**：`keyword` 为必填参数，长度 1-50 字符。空关键词或特殊字符将返回 422。
+
 <!-- Full path: /api/v1/douyin/index/fetch_content_creative_keywords -->
 
 ### Parameters
@@ -573,6 +575,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_general_search_v1`
 
+> ⚠️ **参数校验提示**：`keyword` 为必填参数，长度 1-100 字符，不支持特殊符号。`sort_type` 仅接受 0-7 的整数值。请确保参数格式正确，否则返回 400/422。
+
 <!-- Full path: /api/v1/douyin/search/fetch_general_search_v1 -->
 
 ### Parameters
@@ -678,6 +682,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## fetch_general_search_v2
 
 `POST /api/v1/douyin/search/fetch_general_search_v2`
+
+> ⚠️ **参数校验提示**：`keyword` 为必填参数，`sort_type` 和 `filter_duration` 需使用指定枚举值。参数格式错误将返回 422。
 
 <!-- Full path: /api/v1/douyin/search/fetch_general_search_v2 -->
 
@@ -810,6 +816,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## fetch_hot_search_list
 
 `GET /api/v1/douyin/app/v3/fetch_hot_search_list`
+
+> ⛔ **已废弃**：上游接口参数不兼容（返回 400）。替代接口：`使用 fetch_hot_search_list 的 web 版本`。请勿使用此接口。
 
 <!-- Full path: /api/v1/douyin/app/v3/fetch_hot_search_list -->
 

@@ -3197,6 +3197,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_comments`
 
+> ⛔ **已废弃**：上游接口已下线（返回 404）。替代接口：`/api/v1/douyin/web/fetch_video_comments`。请勿使用此接口。
+
 <!-- Full path: /api/v1/douyin/app/v3/fetch_video_comments -->
 
 ### Parameters

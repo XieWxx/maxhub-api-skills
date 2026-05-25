@@ -655,6 +655,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/linkedin/web_v2/get_hashtag_feed`
 
+> ⛔ **已废弃**：上游接口参数不兼容（返回 400）。替代接口：`暂无替代接口`。请勿使用此接口。
+
 <!-- Full path: /api/v1/linkedin/web_v2/get_hashtag_feed -->
 
 ### Parameters
