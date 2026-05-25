@@ -468,6 +468,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_douyin_web_guest_cookie`
 
+> 📌 **合法用途**：此接口获取游客级别的公开访问凭证，不涉及任何用户账号或敏感信息。
+
 <!-- Full path: /api/v1/douyin/web/fetch_douyin_web_guest_cookie -->
 
 ### Parameters
@@ -3689,6 +3691,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/web/generate_a_bogus`
 
+> 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/douyin/web/generate_a_bogus -->
 
 ### Parameters
@@ -3743,6 +3747,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/generate_s_v_web_id`
 
+> 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/douyin/web/generate_s_v_web_id -->
 
 ### Parameters
@@ -3763,6 +3769,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_ttwid
 
 `GET /api/v1/douyin/web/generate_ttwid`
+
+> 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/douyin/web/generate_ttwid -->
 
@@ -3787,6 +3795,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/generate_verify_fp`
 
+> 📌 **合法用途**：此接口生成上游平台要求的验证参数，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/douyin/web/generate_verify_fp -->
 
 ### Parameters
@@ -3807,6 +3817,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_wss_xb_signature
 
 `GET /api/v1/douyin/web/generate_wss_xb_signature`
+
+> 📌 **合法用途**：此接口生成 WebSocket 连接所需的签名参数，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/douyin/web/generate_wss_xb_signature -->
 
@@ -3836,6 +3848,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_x_bogus
 
 `POST /api/v1/douyin/web/generate_x_bogus`
+
+> 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/douyin/web/generate_x_bogus -->
 

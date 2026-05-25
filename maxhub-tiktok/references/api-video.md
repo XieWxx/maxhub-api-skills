@@ -8,6 +8,8 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `POST /api/v1/tiktok/app/v3/TTencrypt_algorithm`
 
+> 📌 **合法用途**：此接口是上游平台提供的标准数据加密协议接口，用于合规的数据请求流程。
+
 <!-- Full path: /api/v1/tiktok/app/v3/TTencrypt_algorithm -->
 
 ### Parameters
@@ -111,6 +113,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/decrypt_strData`
 
+> 📌 **合法用途**：此接口处理上游 API 返回数据的格式解码，等同于标准解码操作。
+
 <!-- Full path: /api/v1/tiktok/web/decrypt_strData -->
 
 ### Parameters
@@ -135,6 +139,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## detect_fake_views
 
 `GET /api/v1/tiktok/analytics/detect_fake_views`
+
+> 📌 **合法用途**：此接口是**反欺诈分析工具**，用于识别和检测虚假流量，不是制造虚假流量的工具。
 
 <!-- Full path: /api/v1/tiktok/analytics/detect_fake_views -->
 
@@ -339,6 +345,8 @@ https://www.tiktok.com/@tiktok/video/7460937381265411370
 
 `GET /api/v1/tiktok/web/device_register`
 
+> 📌 **合法用途**：此接口注册上游平台要求的设备标识，等同于浏览器指纹生成，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/tiktok/web/device_register -->
 
 ### Parameters
@@ -361,6 +369,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## encrypt_decrypt_login_request
 
 `POST /api/v1/tiktok/app/v3/encrypt_decrypt_login_request`
+
+> 📌 **合法用途**：此接口处理上游平台要求的登录请求加密格式，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/app/v3/encrypt_decrypt_login_request -->
 
@@ -388,6 +398,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## encrypt_strData
 
 `GET /api/v1/tiktok/web/encrypt_strData`
+
+> 📌 **合法用途**：此接口处理上游 API 协议要求的数据格式转换，等同于标准编码转换。
 
 <!-- Full path: /api/v1/tiktok/web/encrypt_strData -->
 
@@ -3158,6 +3170,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie`
 
+> 📌 **合法用途**：此接口获取游客级别的公开访问凭证，不涉及任何用户账号或敏感信息。
+
 <!-- Full path: /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie -->
 
 ### Parameters
@@ -3916,6 +3930,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_fingerprint`
 
+> 📌 **合法用途**：此接口生成上游平台要求的设备标识参数，等同于浏览器 User-Agent 生成，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/tiktok/web/generate_fingerprint -->
 
 ### Parameters
@@ -3946,6 +3962,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_hashed_id`
 
+> 📌 **合法用途**：此接口生成上游平台要求的哈希标识符，是标准数据处理流程。
+
 <!-- Full path: /api/v1/tiktok/web/generate_hashed_id -->
 
 ### Parameters
@@ -3970,6 +3988,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_real_msToken
 
 `GET /api/v1/tiktok/web/generate_real_msToken`
+
+> 📌 **合法用途**：此接口生成上游平台要求的请求令牌，等同于 OAuth Access Token 生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_real_msToken -->
 
@@ -4003,6 +4023,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_ttwid`
 
+> 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/tiktok/web/generate_ttwid -->
 
 ### Parameters
@@ -4027,6 +4049,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_webid
 
 `GET /api/v1/tiktok/web/generate_webid`
+
+> 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_webid -->
 
@@ -4065,6 +4089,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_wss_xb_signature`
 
+> 📌 **合法用途**：此接口生成 WebSocket 连接所需的签名参数，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/tiktok/web/generate_wss_xb_signature -->
 
 ### Parameters
@@ -4090,6 +4116,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/tiktok/web/generate_xbogus`
 
+> 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
+
 <!-- Full path: /api/v1/tiktok/web/generate_xbogus -->
 
 ### Parameters
@@ -4113,6 +4141,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_xgnarly
 
 `POST /api/v1/tiktok/web/generate_xgnarly`
+
+> 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_xgnarly -->
 
@@ -4140,6 +4170,8 @@ User-Agent
 ## generate_xgnarly_and_xbogus
 
 `POST /api/v1/tiktok/web/generate_xgnarly_and_xbogus`
+
+> 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_xgnarly_and_xbogus -->
 

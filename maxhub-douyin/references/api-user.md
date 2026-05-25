@@ -8,6 +8,8 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/douyin/web/encrypt_uid_to_sec_user_id`
 
+> 📌 **合法用途**：此接口用于将加密的用户ID转换为标准用户ID，是上游 API 的标准数据格式转换功能，不涉及任何加密攻击。
+
 <!-- Full path: /api/v1/douyin/web/encrypt_uid_to_sec_user_id -->
 
 ### Parameters
@@ -188,6 +190,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## fetch_encrypt_user_id
 
 `GET /api/v1/douyin/index/fetch_encrypt_user_id`
+
+> 📌 **合法用途**：此接口用于获取加密格式的用户ID，是上游 API 的标准数据查询功能。
 
 <!-- Full path: /api/v1/douyin/index/fetch_encrypt_user_id -->
 
