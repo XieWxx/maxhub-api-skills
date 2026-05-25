@@ -4,7 +4,7 @@ description: "今日头条数据查询助手。覆盖文章、视频、用户、
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.3.0"
+  version: "3.5.0"
   openclaw:
     emoji: "📰"
     primaryEnv: MAXHUB_API_KEY
@@ -172,7 +172,63 @@ Side-by-side table + differential insights.
 | 400 Bad Request | "参数错误 / Bad request parameters" |
 | 401 Unauthorized | "API Key 无效 / API Key is invalid" |
 | 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "未找到数据 / Data not found" |
+| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
 | 429 Rate Limit | "请求过快 / Too many requests" |
 | 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results | "未找到数据，建议放宽条件 / No data, try broader params" |
+| Empty results |
+
+### 404 错误专项处理
+
+当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+
+1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `<!-- Full path: -->` 标注的路径**完全一致**
+2. **常见 404 原因**：
+   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
+   - ❌ 使用了已废弃/下线的接口路径
+   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
+3. **处理方式**：
+   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
+   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
+   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+
+### 接口降级与自动切换策略
+
+当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
+
+#### 降级触发条件
+
+| 错误码 | 是否触发降级 | 说明 |
+|--------|-------------|------|
+| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
+| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
+| 403 Forbidden | ❌ 不降级 | 权限不足 |
+| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
+| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
+| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
+| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
+| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
+
+#### 降级执行流程
+
+```
+1. 调用接口 A（最高优先级版本）
+   ↓ 失败（404/500/410）
+2. 查找功能相同的替代接口 B（下一优先级版本）
+   ↓ 按替代接口的参数格式重新构造请求
+3. 调用接口 B
+   ↓ 成功 → 返回结果
+   ↓ 失败 → 继续降级到接口 C
+4. 所有替代接口均失败 → 向用户报告：
+   "该功能当前不可用，已尝试 X 个替代接口均失败。
+    最后一次错误：[错误信息]。
+    建议：[替代方案或稍后重试]"
+```
+
+#### 降级注意事项
+
+- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
+- 降级调用前，先读取替代接口的 references 文档确认参数
+- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
+- 降级调用成功后，在响应中标注实际使用的接口版本
+
+ "未找到数据，建议放宽条件 / No data, try broader params" |

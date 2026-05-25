@@ -4,7 +4,7 @@ description: "小红书全场景数据查询助手。支持App和Web多版本API
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.4.0"
+  version: "3.5.0"
   openclaw:
     emoji: "📕"
     primaryEnv: MAXHUB_API_KEY
@@ -120,6 +120,38 @@ English user:
 | **Simple** | Exactly 1 API call | Skill handles directly |
 | **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
 
+
+### 接口版本优先级 / API Version Priority
+
+当同一功能存在多个版本的接口时，**必须**按以下优先级顺序选择和调用：
+
+| 优先级 | 版本路径 | 示例 | 说明 |
+|--------|---------|------|------|
+| 🥇 1（最高） | `app_v2` | `/api/v1/xiaohongshu/app_v2/get_note_comments` | App V2 版本，数据最完整、最稳定 |
+| 🥈 2 | `app` | `/api/v1/xiaohongshu/app/get_note_comments` | App 版本，数据较完整 |
+| 🥉 3 | `web_v3` | `/api/v1/xiaohongshu/web_v3/fetch_note_comments` | Web V3 版本，功能较新 |
+| 4 | `web_v2` | `/api/v1/xiaohongshu/web_v2/fetch_note_comments` | Web V2 版本，基础功能 |
+| 5（最低） | `web` | `/api/v1/xiaohongshu/web/get_note_comments` | Web 版本，兜底方案 |
+
+**调用规则：**
+1. 优先使用最高优先级版本的接口
+2. 如果高优先级接口调用失败（非参数错误），自动降级到下一优先级版本
+3. 降级调用时，需注意不同版本的参数名称可能不同，须按对应版本的文档传参
+4. 所有接口地址必须严格按照 references 文档中 `<!-- Full path: -->` 标注的真实路径调用
+
+**常见功能的多版本接口对照：**
+
+| 功能 | App V2 | App | Web V3 | Web V2 | Web |
+|------|--------|-----|--------|--------|-----|
+| 获取笔记评论 | `app_v2/get_note_comments` | `app/get_note_comments` | `web_v3/fetch_note_comments` | `web_v2/fetch_note_comments` | `web/get_note_comments` |
+| 获取笔记详情 | `app_v2/get_image_note_detail` | `app/get_note_info` | `web_v3/fetch_note_detail` | — | `web/get_note_info_v2`~`v7` |
+| 获取子评论 | `app_v2/get_note_sub_comments` | `app/get_sub_comments` | `web_v3/fetch_sub_comments` | `web_v2/fetch_sub_comments` | `web/get_note_comment_replies` |
+| 搜索笔记 | — | — | `web_v3/fetch_search_notes` | `web_v2/fetch_search_notes` | `web/search_notes_v3` |
+| 获取用户信息 | — | — | `web_v3/fetch_user_info` | `web_v2/fetch_user_info` | — |
+| 搜索商品 | — | `app/search_products` | — | — | — |
+| 搜索图片 | `app_v2/search_images` | — | — | — | — |
+| 商品详情 | `app_v2/get_product_detail` | `app/get_product_detail` | — | — | `web/get_product_info` |
+
 ### Step 2: Route — Classify Intent & Load Reference
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
@@ -218,7 +250,7 @@ Side-by-side table + differential insights.
 | 400 Bad Request | "参数错误 / Bad request parameters" |
 | 401 Unauthorized | "API Key 无效 / API Key is invalid" |
 | 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "未找到数据 / Data not found" |
+| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
 | 429 Rate Limit | "请求过快 / Too many requests" |
 | 500 Server Error | "服务器不可用 / Server unavailable" |
 | Empty results |
@@ -230,10 +262,66 @@ Side-by-side table + differential insights.
 | 400 Bad Request | **不重试** | 参数错误，需修正参数后重新调用 |
 | 401 Unauthorized | **不重试** | API Key 无效，需检查配置 |
 | 403 Forbidden | **不重试** | 权限不足，需更换 API Key 或接口 |
-| 404 Not Found | **不重试** | 接口已下线或数据不存在 |
+| 404 Not Found | **触发降级** | 接口可能已下线，按降级策略切换替代版本 |
 | 422 Unprocessable | **不重试** | 参数验证失败，需修正参数格式 |
 | 429 Rate Limit | 延迟 5 秒后重试，最多 1 次 | 请求过快，需降速 |
-| 500 Server Error | 延迟 2 秒后重试，最多 2 次 | 服务器临时故障 |
-| 410 Gone | **不重试** | 接口已废弃，需使用替代接口 |
+| 500 Server Error | 先重试 1 次，仍失败则**触发降级** | 服务器故障，重试无效则切换替代版本 |
+| 410 Gone | **触发降级** | 接口已废弃，按降级策略切换替代版本 |
 
-**重要**：对 400/404/410/422 错误，不要盲目重试。应分析错误原因，修正参数或切换到替代接口后再调用。 "未找到数据，建议放宽条件 / No data, try broader params" |
+**重要**：对 400/404/410/422 错误，不要盲目重试。应分析错误原因，修正参数或切换到替代接口后再调用。
+
+### 404 错误专项处理
+
+当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+
+1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `<!-- Full path: -->` 标注的路径**完全一致**
+2. **常见 404 原因**：
+   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
+   - ❌ 使用了已废弃/下线的接口路径
+   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
+3. **处理方式**：
+   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
+   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
+   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+
+### 接口降级与自动切换策略
+
+当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
+
+#### 降级触发条件
+
+| 错误码 | 是否触发降级 | 说明 |
+|--------|-------------|------|
+| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
+| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
+| 403 Forbidden | ❌ 不降级 | 权限不足 |
+| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
+| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
+| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
+| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
+| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
+
+#### 降级执行流程
+
+```
+1. 调用接口 A（最高优先级版本）
+   ↓ 失败（404/500/410）
+2. 查找功能相同的替代接口 B（下一优先级版本）
+   ↓ 按替代接口的参数格式重新构造请求
+3. 调用接口 B
+   ↓ 成功 → 返回结果
+   ↓ 失败 → 继续降级到接口 C
+4. 所有替代接口均失败 → 向用户报告：
+   "该功能当前不可用，已尝试 X 个替代接口均失败。
+    最后一次错误：[错误信息]。
+    建议：[替代方案或稍后重试]"
+```
+
+#### 降级注意事项
+
+- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
+- 降级调用前，先读取替代接口的 references 文档确认参数
+- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
+- 降级调用成功后，在响应中标注实际使用的接口版本
+
+ "未找到数据，建议放宽条件 / No data, try broader params" |
