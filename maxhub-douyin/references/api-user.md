@@ -465,7 +465,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -531,13 +531,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. **正在直播**: 设置need_living=1可以查看当前正在进行的直播
  5. **Cookie有效性**: 确保Cookie未过期，否则无法获取数据
  6. **日期格式**: 必须使用YYYY-MM-DD格式，如2025-09-11
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_live_room_product_result
 
 `GET /api/v1/douyin/web/fetch_live_room_product_result`
@@ -1455,6 +1448,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## open_douyin_app_to_user_profile
 
 `GET /api/v1/douyin/app/v3/open_douyin_app_to_user_profile`
+
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可打开抖音用户主页。
 
 <!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_user_profile -->
 

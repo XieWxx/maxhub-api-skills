@@ -1,10 +1,10 @@
 ---
 name: maxhub-tiktok
-description: "TikTok 全场景数据查询助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商、互动等7大模块，支持App和Web双端API。"
+description: "TikTok 数据查询与工具助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商等模块。含部分交互触发和协议工具接口（已标注）。"
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.5.1"
+  version: "3.6.0"
   openclaw:
     emoji: "🎶"
     primaryEnv: MAXHUB_API_KEY
@@ -64,12 +64,14 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/tiktok/{endpoint}" \
 ## Security & Privacy / 安全与隐私
 
 > ⚠️ **Credential Handling / 凭据处理**
-> - Some endpoints require platform session cookies. Only provide cookies if you fully trust the service provider.
-> - Prefer scoped OAuth/API tokens over full browser cookies. Use separate test accounts when possible.
-> - Rotate or revoke cookies after use.
-> - 部分端点需要平台会话 Cookie。仅在完全信任服务提供商时提供。
-> - 优先使用范围限定的 OAuth/API 令牌。尽可能使用独立测试账号。
-> - 使用后轮换或撤销 Cookie。
+> - ⚠️ **Session cookies are login-equivalent credentials.** Providing your cookie to any third-party service grants that service full access to your account until the session expires.
+> - Only provide cookies if you fully trust the service provider. Use a **separate test account** — never your primary account.
+> - Cookies may be logged, cached, or forwarded by intermediary systems. Rotate or revoke cookies immediately after use.
+> - Do not store cookies in prompts, code samples, or client-side contexts where they may be exposed.
+> - ⚠️ **会话 Cookie 等同于登录凭据。** 向任何第三方服务提供 Cookie 即授予该服务对您账号的完全访问权限，直到会话过期。
+> - 仅在完全信任服务提供商时提供 Cookie。务必使用**独立测试账号**——切勿使用主账号。
+> - Cookie 可能被中间系统记录、缓存或转发。使用后立即轮换或撤销 Cookie。
+> - 不要将 Cookie 存储在提示词、代码示例或客户端上下文中，以免泄露。
 
 > 📋 **Data Transmission / 数据传输**
 > - All API requests are sent to `https://www.aconfig.cn`. Your credentials are transmitted to this third-party service.
@@ -78,22 +80,32 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/tiktok/{endpoint}" \
 > - 服务提供商仅处理数据以完成请求，不会在请求生命周期之外存储凭据。
 
 > 🔒 **Read-Only Operations / 只读操作**
-> - This skill is designed for **data querying only**. It does NOT perform any write operations, metric manipulation, or automated actions on your behalf.
-> - 本技能仅用于**数据查询**，不会执行任何写入操作、指标操纵或自动操作。
+> - **Most endpoints** in this skill are read-only data queries. However, a small number of endpoints can trigger app actions (e.g., open app to send message) or provide protocol utilities (e.g., signature generation). These are clearly marked with ⚠️ warnings in the documentation.
+> - 本技能**大部分端点**为只读数据查询。少数端点可触发应用操作（如打开应用发私信）或提供协议工具（如签名生成），这些端点在文档中已用 ⚠️ 明确标注。
 
 > 🛡️ **Interface Purpose Declaration / 接口用途声明**
 > - All endpoints in this skill are **legitimate data analysis APIs** provided by the upstream service (aconfig.cn).
 > - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol. They are NOT hacking, exploitation, or attack tools.
-> - `generate_*` endpoints produce protocol-compliant request signatures for API authentication — equivalent to OAuth token generation in any standard API.
-> - `encrypt_*`/`decrypt_*` endpoints handle data format conversion required by the upstream API protocol — equivalent to Base64 encoding/decoding.
+> - `generate_*` endpoints produce platform-specific request signatures. These are protocol utilities for API compatibility, **not** standard OAuth. Use with awareness of platform ToS.
+> - `encrypt_*`/`decrypt_*` endpoints handle data format conversion for the upstream API protocol. These are technical utilities, use only as needed.
 > - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
 > - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
 > - 本技能所有接口均为上游服务提供的**合法数据分析 API**。
 > - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准 API 认证和数据处理工具**，不是黑客工具。
-> - `generate_*` 接口生成符合协议的请求签名用于 API 认证——等同于任何标准 API 的 OAuth 令牌生成。
-> - `encrypt_*`/`decrypt_*` 接口处理上游 API 协议要求数据格式转换——等同于 Base64 编解码。
+> - `generate_*` 接口生成平台特定的请求签名。这些是 API 兼容性协议工具，**不是**标准 OAuth。使用时需注意平台服务条款。
+> - `encrypt_*`/`decrypt_*` 接口处理上游 API 协议的数据格式转换。这些是技术工具，按需使用。
 > - `detect_fake_views` 是**反欺诈分析工具**，用于识别虚假互动，不是制造虚假互动的工具。
 > - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+
+> ⚠️ **Capability Classification / 能力分类**
+> - **Read-only data queries** (majority): Video details, user profiles, search, trending, analytics — these only retrieve data.
+> - **App interaction triggers** ⚠️: `open_*_app_to_*` — these generate deep links that open the platform app. They do NOT directly send messages or perform actions; they only produce URLs the user can choose to open.
+> - **Protocol utilities** ⚠️: `generate_*`, `encrypt_*`, `decrypt_*`, `register_device` — these are API compatibility tools for request construction. They do NOT bypass security controls independently.
+> - **Cookie-required endpoints** ⚠️: Some endpoints need a user session cookie for personalized data. See Cookie warnings below.
+> - **只读数据查询**（大多数）：视频详情、用户画像、搜索、热榜、分析——仅获取数据。
+> - **应用交互触发** ⚠️：`open_*_app_to_*`——生成打开平台应用的深度链接，不会直接发送消息或执行操作，仅生成用户可选择打开的 URL。
+> - **协议工具** ⚠️：`generate_*`、`encrypt_*`、`decrypt_*`、`register_device`——用于请求构造的 API 兼容性工具，不会独立绕过安全控制。
+> - **需要 Cookie 的端点** ⚠️：部分端点需要用户会话 Cookie 获取个性化数据。参见下方 Cookie 警告。
 
 ## Interaction Flow
 
@@ -138,13 +150,13 @@ English user:
 
 | Intent Group | Trigger signals | Reference file | Key endpoints |
 |---|---|---|---|
-| **Video & Content** | 视频, 作品, 详情, 播放, 弹幕, 推荐, 首页, 频道, 分享, 短链接, 注册, video, detail, play, danmaku, recommend, feed, channel, share, short, link, register, device, msToken, ttwid, verify_fp, s_v_web_id, xb, barrage, signature, encrypt, algorithm, TTencrypt, webcast, room, id, extract, list, single, batch, v2, v3, app | `references/api-video.md` | get_product_detail, get_keyword_list, get_keyword_details, get_creator_list, get_ads_detail, get_recommended_ads, get_popular_trends, get_top_products, get_hashtag_list, get_sound_rank_list, get_sound_recommendations, get_sound_detail, detect_fake_views, fetch_video_metrics, fetch_comment_keywords, TTencrypt_algorithm, get_user_id_and_sec_user_id_by_username, fetch_creator_search_insights, fetch_creator_search_insights_videos, fetch_creator_search_insights_detail, fetch_creator_search_insights_trend, encrypt_decrypt_login_request, check_live_room_online_batch, fetch_multi_video_v2, fetch_multi_video, search_following_list, search_follower_list, fetch_one_video_by_share_url_v2, check_live_room_online, open_tiktok_app_to_send_private_message, open_tiktok_app_to_video_detail, open_tiktok_app_to_keyword_search, open_tiktok_app_to_user_profile, fetch_home_feed, fetch_content_translate, fetch_share_qr_code, fetch_share_short_link, fetch_creator_showcase_product_list, fetch_one_video_v2, fetch_one_video_v3, fetch_one_video, fetch_video_comments, fetch_product_search, fetch_product_review, fetch_product_detail_v2, fetch_product_detail_v3, fetch_product_detail_v4, fetch_product_detail, fetch_shop_home_page_list, fetch_shop_home, fetch_shop_product_category, fetch_shop_info, fetch_shop_product_list_v2, fetch_shop_product_list, fetch_shop_product_recommend, fetch_location_search, fetch_creator_info, fetch_webcast_user_info, fetch_user_search_result, fetch_live_search_result, fetch_general_search_result, fetch_video_search_result, fetch_hashtag_search_result, fetch_music_search_result, handler_user_profile, fetch_user_following_list, fetch_user_follower_list, fetch_live_room_info, fetch_video_comment_replies, fetch_hashtag_video_list, fetch_hashtag_detail, fetch_music_video_list, fetch_music_detail, fetch_user_post_videos, fetch_user_post_videos_v2, fetch_user_post_videos_v3, fetch_user_like_videos, fetch_user_repost_videos, fetch_user_music_list, fetch_live_daily_rank, fetch_live_room_product_list_v2, fetch_live_room_product_list, fetch_live_ranking_list, fetch_similar_user_recommendations, fetch_product_id_by_share_link, fetch_shop_id_by_share_link, fetch_user_country_by_username, fetch_music_chart_list, get_product_analytics_list, get_video_list_analytics, get_video_analytics_summary, get_account_violation_list, get_product_related_videos, get_showcase_product_list, get_video_to_product_stats, get_video_associated_product_list, get_video_audience_stats, get_video_detailed_stats, fetch_search_products_list, fetch_search_products_list_v2, fetch_products_by_category_id, fetch_products_category_list, fetch_product_reviews_v2, fetch_product_detail, fetch_product_detail_v2, fetch_product_detail_v3, fetch_seller_products_list, fetch_seller_products_list_v2, fetch_search_word_suggestion_v2, fetch_hot_selling_products_list, fetch_tag_post, fetch_tag_detail, fetch_live_im_fetch, encrypt_strData, fetch_batch_check_live_alive, get_all_aweme_id, get_all_sec_user_id, get_aweme_id, get_sec_user_id, get_user_id, tiktok_live_room, fetch_search_keyword_suggest, fetch_search_video, get_live_room_id, generate_xbogus, generate_xgnarly, generate_xgnarly_and_xbogus, generate_wss_xb_signature, generate_ttwid, generate_webid, generate_hashed_id, generate_fingerprint, generate_real_msToken, fetch_check_live_alive, fetch_post_comment, fetch_post_comment_reply, get_all_unique_id, fetch_post_detail_v2, fetch_post_detail, fetch_explore_post, fetch_tiktok_web_guest_cookie, get_unique_id, fetch_user_post, fetch_user_mix, fetch_user_play_list, fetch_user_live_detail, fetch_user_repost, fetch_live_gift_list, fetch_live_recommend, fetch_general_search, decrypt_strData, device_register, fetch_tiktok_live_data, fetch_home_feed |
+| **Video & Content** | TikTok视频, TikTok作品, TikTok详情, TikTok播放, TikTok推荐, tiktok video, tiktok detail, tiktok play, tiktok recommend, tiktok feed, tiktok share | `references/api-video.md` | get_product_detail, get_keyword_list, get_keyword_details, get_creator_list, get_ads_detail, get_recommended_ads, get_popular_trends, get_top_products, get_hashtag_list, get_sound_rank_list, get_sound_recommendations, get_sound_detail, detect_fake_views, fetch_video_metrics, fetch_comment_keywords, TTencrypt_algorithm, get_user_id_and_sec_user_id_by_username, fetch_creator_search_insights, fetch_creator_search_insights_videos, fetch_creator_search_insights_detail, fetch_creator_search_insights_trend, encrypt_decrypt_login_request, check_live_room_online_batch, fetch_multi_video_v2, fetch_multi_video, search_following_list, search_follower_list, fetch_one_video_by_share_url_v2, check_live_room_online, open_tiktok_app_to_send_private_message, open_tiktok_app_to_video_detail, open_tiktok_app_to_keyword_search, open_tiktok_app_to_user_profile, fetch_home_feed, fetch_content_translate, fetch_share_qr_code, fetch_share_short_link, fetch_creator_showcase_product_list, fetch_one_video_v2, fetch_one_video_v3, fetch_one_video, fetch_video_comments, fetch_product_search, fetch_product_review, fetch_product_detail_v2, fetch_product_detail_v3, fetch_product_detail_v4, fetch_product_detail, fetch_shop_home_page_list, fetch_shop_home, fetch_shop_product_category, fetch_shop_info, fetch_shop_product_list_v2, fetch_shop_product_list, fetch_shop_product_recommend, fetch_location_search, fetch_creator_info, fetch_webcast_user_info, fetch_user_search_result, fetch_live_search_result, fetch_general_search_result, fetch_video_search_result, fetch_hashtag_search_result, fetch_music_search_result, handler_user_profile, fetch_user_following_list, fetch_user_follower_list, fetch_live_room_info, fetch_video_comment_replies, fetch_hashtag_video_list, fetch_hashtag_detail, fetch_music_video_list, fetch_music_detail, fetch_user_post_videos, fetch_user_post_videos_v2, fetch_user_post_videos_v3, fetch_user_like_videos, fetch_user_repost_videos, fetch_user_music_list, fetch_live_daily_rank, fetch_live_room_product_list_v2, fetch_live_room_product_list, fetch_live_ranking_list, fetch_similar_user_recommendations, fetch_product_id_by_share_link, fetch_shop_id_by_share_link, fetch_user_country_by_username, fetch_music_chart_list, get_product_analytics_list, get_video_list_analytics, get_video_analytics_summary, get_account_violation_list, get_product_related_videos, get_showcase_product_list, get_video_to_product_stats, get_video_associated_product_list, get_video_audience_stats, get_video_detailed_stats, fetch_search_products_list, fetch_search_products_list_v2, fetch_products_by_category_id, fetch_products_category_list, fetch_product_reviews_v2, fetch_product_detail, fetch_product_detail_v2, fetch_product_detail_v3, fetch_seller_products_list, fetch_seller_products_list_v2, fetch_search_word_suggestion_v2, fetch_hot_selling_products_list, fetch_tag_post, fetch_tag_detail, fetch_live_im_fetch, encrypt_strData, fetch_batch_check_live_alive, get_all_aweme_id, get_all_sec_user_id, get_aweme_id, get_sec_user_id, get_user_id, tiktok_live_room, fetch_search_keyword_suggest, fetch_search_video, get_live_room_id, generate_xbogus, generate_xgnarly, generate_xgnarly_and_xbogus, generate_wss_xb_signature, generate_ttwid, generate_webid, generate_hashed_id, generate_fingerprint, generate_real_msToken, fetch_check_live_alive, fetch_post_comment, fetch_post_comment_reply, get_all_unique_id, fetch_post_detail_v2, fetch_post_detail, fetch_explore_post, fetch_tiktok_web_guest_cookie, get_unique_id, fetch_user_post, fetch_user_mix, fetch_user_play_list, fetch_user_live_detail, fetch_user_repost, fetch_live_gift_list, fetch_live_recommend, fetch_general_search, decrypt_strData, device_register, fetch_tiktok_live_data, fetch_home_feed |
 | **User Data** | 用户, 粉丝, 关注, 帖子, 喜欢, 收藏, 合辑, 直播, user, follower, following, posts, like, collection, mix, live, info, profile, handler, basic, query, uid | `references/api-user.md` | get_query_suggestions, get_hashtag_creator, fetch_creator_info_and_milestones, get_live_analytics_summary, get_creator_account_info, fetch_search_user, fetch_search_live, generate_x_mssdk_info, fetch_user_profile, fetch_user_follow, fetch_user_collect, fetch_user_like, fetch_user_fans |
 | **Search** | 搜索, 综合, 图片, 话题, 音乐, 经验, 讨论, 学校, 直播, 关键词, search, general, image, hashtag, music, experience, discussion, school, live, keyword, suggest | `references/api-search.md` | search_creators, search_ads, search_sound, search_sound_hint, get_keyword_insights, get_keyword_filters, get_hashtag_filters, get_related_keywords, get_sound_filters, fetch_search_word_suggestion, fetch_search_photo, fetch_trending_searchwords |
-| **Ads & Analytics** | 广告, 关键词, 产品, 创作者, 分析, 指标, 虚假, 检测, ads, keyword, product, creator, analytics, metrics, fake, detect, views, sound, hint, insight, detail, filters, list | `references/api-ads-analytics.md` | get_product_metrics, get_product_filters, get_creator_filters, get_creative_patterns, get_ad_interactive_analysis, get_ad_keyframe_analysis, get_ad_percentile, get_top_ads_spotlight, get_account_health_status, get_account_insights_overview |
+| **Ads & Analytics** | TikTok广告, TikTok关键词, TikTok产品, TikTok创作者, TikTok分析, tiktok ads, tiktok keyword, tiktok product, tiktok creator, tiktok analytics | `references/api-ads-analytics.md` | get_product_metrics, get_product_filters, get_creator_filters, get_creative_patterns, get_ad_interactive_analysis, get_ad_keyframe_analysis, get_ad_percentile, get_top_ads_spotlight, get_account_health_status, get_account_insights_overview |
 | **Creator & Shop** | 创作者, 店铺, 商品, 热卖, 账号, 视频, 概览, creator, shop, product, hot, selling, account, video, overview, analytics, summary, info | `references/api-creator-shop.md` |  |
 | **Interaction** | 评论, 点赞, 收藏, 转发, comment, like, bookmark, repost | `references/api-interaction.md` |  |
-| **Crypto & Tools** | 签名, 加密, XBogus, msToken, 设备, sign, encrypt, token, device | `references/api-tools.md` | generate_xbogus, generate_ttwid, generate_msToken, generate_web_id, register_device, encrypt_strdata, decrypt_strdata, fetch_guest_cookie |
+| **Crypto & Tools** ⚠️ | TikTok签名工具, TikTok加密, TikTok设备注册, tiktok sign, tiktok encrypt, tiktok device | `references/api-tools.md` | generate_xbogus, generate_ttwid, generate_msToken, generate_web_id, register_device, encrypt_strdata, decrypt_strdata, fetch_guest_cookie |
 | **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
 
 **Rules:**

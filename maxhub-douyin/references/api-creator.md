@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
  - **无需指定时间范围，系统自动获取最近7天数据**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
@@ -173,13 +173,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - **AuthorRank**: 与自己过去比较，数值越高说明当前状态越好
  - **SimilarRank**: 与同行比较，数值越高说明在同类创作者中排名越靠前
  - **建议**: AuthorRank和SimilarRank都低于0.5时需要重点优化该项指标
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_creator_material_center_config
 
 `GET /api/v1/douyin/creator/fetch_creator_material_center_config`
@@ -318,7 +311,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
  - **建议先调用 fetch_item_analysis_involved_vertical 接口获取垂类标签**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
@@ -357,13 +350,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 包含所选指标在不同体裁和垂类下的表现数据
  - 趋势分析、对比数据等
  - 帮助了解内容在各个维度的表现
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_analysis_overview
 
 `POST /api/v1/douyin/creator_v2/fetch_item_analysis_overview`
@@ -395,7 +381,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
  - **建议先调用 fetch_item_analysis_involved_vertical 接口获取垂类标签**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
@@ -429,13 +415,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - 包含不同体裁和垂类的投稿数据分析
  - 播放量、点赞量、评论量、分享量等指标
  - 不同体裁的内容表现对比
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_mission_task_list
 
 `GET /api/v1/douyin/creator/fetch_mission_task_list`

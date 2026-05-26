@@ -1730,6 +1730,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search`
 
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可打开抖音搜索页。
+
 <!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search -->
 
 ### Parameters

@@ -8,6 +8,8 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `POST /api/v1/tiktok/app/v3/TTencrypt_algorithm`
 
+> ⚠️ **协议工具**：此接口处理平台数据加密协议，用于合规的数据请求流程。
+
 > 📌 **合法用途**：此接口是上游平台提供的标准数据加密协议接口，用于合规的数据请求流程。
 
 <!-- Full path: /api/v1/tiktok/app/v3/TTencrypt_algorithm -->
@@ -112,6 +114,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## decrypt_strData
 
 `GET /api/v1/tiktok/web/decrypt_strData`
+
+> ⚠️ **协议工具**：此接口处理数据格式解码，用于 API 响应解析。
 
 > 📌 **合法用途**：此接口处理上游 API 返回数据的格式解码，等同于标准解码操作。
 
@@ -345,6 +349,8 @@ https://www.tiktok.com/@tiktok/video/7460937381265411370
 
 `GET /api/v1/tiktok/web/device_register`
 
+> ⚠️ **协议工具**：此接口注册设备标识，用于 API 请求构造。
+
 > 📌 **合法用途**：此接口注册上游平台要求的设备标识，等同于浏览器指纹生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/device_register -->
@@ -369,6 +375,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## encrypt_decrypt_login_request
 
 `POST /api/v1/tiktok/app/v3/encrypt_decrypt_login_request`
+
+> ⚠️ **协议工具**：此接口处理平台登录请求的加密格式，用于合规的认证流程。
 
 > 📌 **合法用途**：此接口处理上游平台要求的登录请求加密格式，是标准 API 认证流程。
 
@@ -398,6 +406,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## encrypt_strData
 
 `GET /api/v1/tiktok/web/encrypt_strData`
+
+> ⚠️ **协议工具**：此接口处理数据格式转换，用于 API 请求构造。
 
 > 📌 **合法用途**：此接口处理上游 API 协议要求的数据格式转换，等同于标准编码转换。
 
@@ -881,6 +891,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | search_id | string |  | 搜索id，翻页时需要提供/Search id, need to provide when paging (default: '') |  |
 | cookie | string |  | 用户cookie(按需提供)/User cookie(if needed) |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1144,6 +1156,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | gap_interval | integer |  | 时间间隔/Time interval (default: 0) |  |
 | cookie | string |  | 用户自己的cookie/User's own cookie (default: '') |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1355,6 +1369,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | region | string |  | 地区/Region (default: US) |  |
 | cookie | string |  | 用户自己的cookie/User's own cookie (default: '') |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -1396,6 +1412,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | offset | integer |  | 数量/Number (default: 0) |  |
 | region | string |  | 地区/Region (default: US) |  |
 | cookie | string |  | 用户自己的cookie/User's own cookie (default: '') |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -1756,6 +1774,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_post_comment`
 
+> ⚠️ **非只读接口**：此接口可发布评论，属于写入操作。请谨慎使用，遵守平台规则。
+
 <!-- Full path: /api/v1/tiktok/web/fetch_post_comment -->
 
 ### Parameters
@@ -1786,6 +1806,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## fetch_post_comment_reply
 
 `GET /api/v1/tiktok/web/fetch_post_comment_reply`
+
+> ⚠️ **非只读接口**：此接口可发布评论回复，属于写入操作。请谨慎使用，遵守平台规则。
 
 <!-- Full path: /api/v1/tiktok/web/fetch_post_comment_reply -->
 
@@ -2603,6 +2625,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | search_id | string |  | 搜索id，翻页时需要提供/Search id, need to provide when paging (default: '') |  |
 | cookie | string |  | 用户cookie(按需提供)/User cookie(if needed) |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -3169,6 +3193,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## fetch_tiktok_web_guest_cookie
 
 `GET /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie`
+
+> ⚠️ **协议工具**：此接口获取游客级别的公开访问凭证，数据访问范围有限。
 
 > 📌 **合法用途**：此接口获取游客级别的公开访问凭证，不涉及任何用户账号或敏感信息。
 
@@ -3930,6 +3956,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_fingerprint`
 
+> ⚠️ **协议工具**：此接口生成设备标识参数，用于 API 请求构造。
+
 > 📌 **合法用途**：此接口生成上游平台要求的设备标识参数，等同于浏览器 User-Agent 生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_fingerprint -->
@@ -3962,6 +3990,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_hashed_id`
 
+> ⚠️ **协议工具**：此接口生成哈希标识符，用于特定数据查询场景。
+
 > 📌 **合法用途**：此接口生成上游平台要求的哈希标识符，是标准数据处理流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_hashed_id -->
@@ -3988,6 +4018,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_real_msToken
 
 `GET /api/v1/tiktok/web/generate_real_msToken`
+
+> ⚠️ **协议工具**：此接口生成平台请求令牌，用于 API 请求构造。
 
 > 📌 **合法用途**：此接口生成上游平台要求的请求令牌，等同于 OAuth Access Token 生成，是标准 API 认证流程。
 
@@ -4023,6 +4055,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_ttwid`
 
+> ⚠️ **协议工具**：此接口生成平台会话标识符。
+
 > 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_ttwid -->
@@ -4050,6 +4084,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/generate_webid`
 
+> ⚠️ **协议工具**：此接口生成平台会话标识符。
+
 > 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_webid -->
@@ -4064,6 +4100,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | referer | string |  | '' (default: '') |  |
 | user_unique_id | string |  | '' (default: '') |  |
 | app_id | integer |  | '' (default: 1988) |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -4088,6 +4126,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_wss_xb_signature
 
 `GET /api/v1/tiktok/web/generate_wss_xb_signature`
+
+> ⚠️ **协议工具**：此接口生成 WebSocket 连接签名参数。
 
 > 📌 **合法用途**：此接口生成 WebSocket 连接所需的签名参数，是标准 API 认证流程。
 
@@ -4116,6 +4156,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/tiktok/web/generate_xbogus`
 
+> ⚠️ **协议工具**：此接口生成平台特定的请求签名参数。非标准 OAuth，使用需注意平台服务条款。
+
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/tiktok/web/generate_xbogus -->
@@ -4141,6 +4183,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_xgnarly
 
 `POST /api/v1/tiktok/web/generate_xgnarly`
+
+> ⚠️ **协议工具**：此接口生成平台特定的请求签名参数。非标准 OAuth，使用需注意平台服务条款。
 
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
@@ -4170,6 +4214,8 @@ User-Agent
 ## generate_xgnarly_and_xbogus
 
 `POST /api/v1/tiktok/web/generate_xgnarly_and_xbogus`
+
+> ⚠️ **协议工具**：此接口生成平台特定的请求签名参数。非标准 OAuth，使用需注意平台服务条款。
 
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
@@ -6370,6 +6416,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/app/v3/open_tiktok_app_to_keyword_search`
 
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可打开 TikTok 搜索页。
+
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_keyword_search -->
 
 ### Parameters
@@ -6395,6 +6443,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## open_tiktok_app_to_send_private_message
 
 `GET /api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message`
+
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可触发 TikTok 私信界面。仅生成 URL，不直接发送消息。
 
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message -->
 
@@ -6422,6 +6472,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/app/v3/open_tiktok_app_to_user_profile`
 
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可打开 TikTok 用户主页。
+
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_user_profile -->
 
 ### Parameters
@@ -6447,6 +6499,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## open_tiktok_app_to_video_detail
 
 `GET /api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail`
+
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可打开 TikTok 视频详情页。
 
 <!-- Full path: /api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail -->
 

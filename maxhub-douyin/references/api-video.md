@@ -6,33 +6,6 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 ---
 
 
-### Parameters
-
-| Parameter | Type | Required | Description | Example |
-|---|---|---|---|---|
-| aweme_type | integer | ✅ | 作品类型/Video type | 0 |
-| item_id | string | ✅ | 作品id/Video id | 7197598285882789120 |
-| cookie | string |  | 可选，默认使用游客Cookie/Optional, use guest Cookie by default |  |
-
-### Response
-
-Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
-
-### Description
-
-### 用途:
- - 根据视频ID来增加作品的播放数
- - 该接口默认使用游客Cookie，如果需要使用登录用户的Cookie，请在参数中传入。
- - 单一作品每次调用增加1次播放数，请求约 `1000` 次后会被抖音限制，需要等待一段时间（如：2小时后）后再继续调用。
- - 该限制是针对作品的，不是针对接口的，在未登录的情况下，使用不同IP的浏览器或在APP中浏览作品，该作品的播放数也不会增加。
- - 可以携带抖音网页端的Cookie来请求此接口，但是不保证一定有效，需要自行测试。
- - 上述的限制是根据测试结果得出的，具体限制可能会有所不同，仅供参考。
- ### 参数:
- - aweme_type: 作品类型，0:视频 1:图文，可以从单一作品数据接口中获取。
- - item_id: 作品id，别名为aweme_id
- - cookie: 可选，默认使用游客Cookie
- ### 返回:
- - 当前时间戳和状态码，状态码为200时表示成功，否则为失败，可以尝试更换一个作品id再次调用，或者等待一段时间后再次调用。
 
 ## douyin_live_room
 
@@ -147,6 +120,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | count | integer | ✅ | 每页数量/Number per page | 16 |
 | refresh_index | integer |  | 翻页索引/Paging index (default: 1) |  |
 | cookie | string |  | 用户自行提供的Cookie/User provided Cookie |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -468,6 +443,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_douyin_web_guest_cookie`
 
+> ⚠️ **协议工具**：此接口获取游客级别的公开访问凭证，数据访问范围有限。
+
 > 📌 **合法用途**：此接口获取游客级别的公开访问凭证，不涉及任何用户账号或敏感信息。
 
 <!-- Full path: /api/v1/douyin/web/fetch_douyin_web_guest_cookie -->
@@ -509,6 +486,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | refresh_index | integer |  | 翻页索引/Paging index (default: 1) |  |
 | cookie | string |  | 用户自行提供的Cookie/User provided Cookie |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -539,6 +518,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | count | integer | ✅ | 每页数量/Number per page | 16 |
 | refresh_index | integer |  | 翻页索引/Paging index (default: 1) |  |
 | cookie | string |  | 用户自行提供的Cookie/User provided Cookie |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -941,7 +922,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -965,13 +946,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - primary_verticals: 垂类标签列表
   - 返回该账号在指定时间段内发布的作品涉及的垂类
   - 例如：["动物", "美食", "旅游"]
- ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_audience_others
 
 `POST /api/v1/douyin/creator_v2/fetch_item_audience_others`
@@ -1003,7 +977,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1030,13 +1004,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
   - keyword_list: 观众关注的话题/关键词列表
     - keyword: 关键词内容
     - value: 该关键词的关注度占比
- ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_audience_portrait
 
 `POST /api/v1/douyin/creator_v2/fetch_item_audience_portrait`
@@ -1070,7 +1037,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1141,13 +1108,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  4. **年龄策略**: 根据年龄分布调整内容复杂度和话题
  5. **性别营销**: 平衡或侧重特定性别受众的内容设计
  6. **受众拓展**: 识别潜力受众群体，扩大影响力
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_danmaku_analysis
 
 `POST /api/v1/douyin/creator_v2/fetch_item_danmaku_analysis`
@@ -1180,7 +1140,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1224,13 +1184,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  2. **节奏调整**: 弹幕密集的时间点说明内容吸引人，可以延长类似内容时长
  3. **情感把控**: 通过弹幕情感分析了解观众真实反应
  4. **互动设计**: 在弹幕高峰处设计互动环节，提升参与度
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_filter_options
 
 `GET /api/v1/douyin/index/fetch_item_filter_options`
@@ -1291,7 +1244,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1371,13 +1324,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - JavaScript: `new Date('2025-07-01').getTime()` -> 1719763200000
  - Python: `int(datetime(2025, 7, 1).timestamp() * 1000)` ->
 1719763200000
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_list_download
 
 `POST /api/v1/douyin/creator_v2/fetch_item_list_download`
@@ -1411,7 +1357,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1471,13 +1417,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - JavaScript: `new Date('2025-07-01').getTime()` -> 1719763200000
  - Python: `int(datetime(2025, 7, 1).timestamp() * 1000)` ->
 1719763200000
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_overview_data
 
 `POST /api/v1/douyin/creator_v2/fetch_item_overview_data`
@@ -1508,7 +1447,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1538,13 +1477,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - content_analysis: 内容分析数据
  ### 返回:
  - 作品总览数据，根据 fields 参数返回对应的字段内容
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_play_source
 
 `POST /api/v1/douyin/creator_v2/fetch_item_play_source`
@@ -1578,7 +1510,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1609,13 +1541,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - **homepage**: 个人主页（访问主页观看）
  - **message**: 消息页（通过消息入口）
  - **other**: 其他（其他途径）
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_query
 
 `POST /api/v1/douyin/index/fetch_item_query`
@@ -1693,7 +1618,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1725,13 +1650,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - **优化标签**: 添加相关的热门搜索词作为标签
  - **内容策划**: 了解用户兴趣点，制作更符合需求的内容
  - **SEO优化**: 提升作品在搜索结果中的排名
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_item_sug
 
 `POST /api/v1/douyin/index/fetch_item_sug`
@@ -1789,7 +1707,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 > - 尽可能使用范围限定的 OAuth/API 令牌而非完整浏览器 Cookie。
 > - 使用独立的测试账号而非主账号。
 > - 使用后尽可能轮换或撤销 Cookie。
- - **使用 POST 方法，Cookie 在请求体中传输，更安全**
+ - **使用 POST 方法传输 Cookie（POST Body 比 URL 参数更不易被日志记录，但向第三方传输会话 Cookie 仍有账号泄露风险）**
   ### 请求体参数:
  - cookie: 用户的抖音创作者平台Cookie（必填，在请求体中传输）
 > 📋 **Data Handling Disclosure / 数据处理披露**
@@ -1838,13 +1756,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - **节奏调整**: 优化视频的起承转合节奏
  - **对比分析**: 与同类作者对比，找出差距和优势
  - **A/B测试**: 测试不同版本的内容效果
-  ### Cookie 获取方式:
- 1. 登录抖音创作者平台 (https://creator.douyin.com)
- 2. 打开浏览器开发者工具（F12）
- 3. 切换到 Network 标签
- 4. 刷新页面或进行操作
- 5. 找到任意请求，复制 Cookie 请求头的值
-
 ## fetch_knowledge_aweme
 
 `GET /api/v1/douyin/web/fetch_knowledge_aweme`
@@ -1858,6 +1769,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | count | integer | ✅ | 每页数量/Number per page | 16 |
 | refresh_index | integer |  | 翻页索引/Paging index (default: 1) |  |
 | cookie | string |  | 用户自行提供的Cookie/User provided Cookie |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -2110,6 +2023,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | count | integer | ✅ | 每页数量/Number per page | 16 |
 | refresh_index | integer |  | 翻页索引/Paging index (default: 1) |  |
 | cookie | string |  | 用户自行提供的Cookie/User provided Cookie |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -2686,6 +2601,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | content_type | integer | ✅ | 短剧类型/Subtype | 0 |
 | cookie | string |  | 用户自行提供的Cookie/User provided Cookie |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
@@ -3050,6 +2967,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 | count | integer |  | 每页数量/Number per page (default: 20) |  |
 | filter_type | string |  | 过滤类型/Filter type (default: '0') |  |
 | cookie | string |  | 用户网页版抖音Cookie/Your web version of Douyin Cookie |  |
+
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
 
 ### Response
 
@@ -3691,6 +3610,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/web/generate_a_bogus`
 
+> ⚠️ **协议工具**：此接口生成平台特定的请求签名参数，用于 API 请求构造。非标准 OAuth，使用需注意平台服务条款。
+
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/douyin/web/generate_a_bogus -->
@@ -3747,6 +3668,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/generate_s_v_web_id`
 
+> ⚠️ **协议工具**：此接口生成平台会话标识符。
+
 > 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/douyin/web/generate_s_v_web_id -->
@@ -3769,6 +3692,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_ttwid
 
 `GET /api/v1/douyin/web/generate_ttwid`
+
+> ⚠️ **协议工具**：此接口生成平台会话标识符。
 
 > 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
@@ -3795,6 +3720,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/generate_verify_fp`
 
+> ⚠️ **协议工具**：此接口生成平台验证参数。
+
 > 📌 **合法用途**：此接口生成上游平台要求的验证参数，是标准 API 认证流程。
 
 <!-- Full path: /api/v1/douyin/web/generate_verify_fp -->
@@ -3817,6 +3744,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_wss_xb_signature
 
 `GET /api/v1/douyin/web/generate_wss_xb_signature`
+
+> ⚠️ **协议工具**：此接口生成 WebSocket 连接签名参数。
 
 > 📌 **合法用途**：此接口生成 WebSocket 连接所需的签名参数，是标准 API 认证流程。
 
@@ -3848,6 +3777,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## generate_x_bogus
 
 `POST /api/v1/douyin/web/generate_x_bogus`
+
+> ⚠️ **协议工具**：此接口生成平台特定的请求签名参数，用于 API 请求构造。非标准 OAuth，使用需注意平台服务条款。
 
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
@@ -4162,6 +4093,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/open_douyin_app_to_send_private_message`
 
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可触发抖音私信界面。仅生成 URL，不直接发送消息。
+
 <!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_send_private_message -->
 
 ### Parameters
@@ -4190,6 +4123,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/open_douyin_app_to_video_detail`
 
+> ⚠️ **非只读接口**：此接口生成应用深度链接，可打开抖音视频详情页。
+
 <!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_video_detail -->
 
 ### Parameters
@@ -4214,6 +4149,8 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ## register_device
 
 `GET /api/v1/douyin/app/v3/register_device`
+
+> ⚠️ **协议工具**：此接口注册设备标识，用于 API 请求构造。
 
 <!-- Full path: /api/v1/douyin/app/v3/register_device -->
 

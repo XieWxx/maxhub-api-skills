@@ -20,6 +20,8 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 | search_id | string |  | 搜索id，翻页时需要提供/Search id, need to provide when paging (default: '') |  |
 | cookie | string |  | 用户cookie(按需提供)/User cookie(if needed) |  |
 
+> ⚠️ **Cookie 安全警告**：会话 Cookie 等同于登录凭据。向第三方服务传输 Cookie 存在账号泄露风险。请使用独立测试账号，使用后立即撤销 Cookie。
+
 ### Response
 
 Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
