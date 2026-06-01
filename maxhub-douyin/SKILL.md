@@ -4,7 +4,7 @@ description: "抖音数据查询与工具助手。覆盖视频详情、用户数
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.0"
   openclaw:
     emoji: "🎵"
     primaryEnv: MAXHUB_API_KEY

@@ -4,7 +4,7 @@ description: "临时邮箱服务助手。支持生成临时邮箱、获取邮件
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.5.0"
+  version: "3.6.0"
   openclaw:
     emoji: "📧"
     primaryEnv: MAXHUB_API_KEY

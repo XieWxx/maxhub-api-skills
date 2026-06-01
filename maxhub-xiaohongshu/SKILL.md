@@ -4,7 +4,7 @@ description: "小红书全场景数据查询助手。支持App和Web多版本API
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.5.0"
+  version: "3.6.0"
   openclaw:
     emoji: "📕"
     primaryEnv: MAXHUB_API_KEY
