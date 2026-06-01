@@ -4,7 +4,7 @@ description: "知乎数据查询助手。覆盖用户信息、搜索、专栏、
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.0"
+  version: "3.6.1"
   openclaw:
     emoji: "💡"
     primaryEnv: MAXHUB_API_KEY

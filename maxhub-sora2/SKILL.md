@@ -4,7 +4,7 @@ description: "Sora2 视频平台数据查询助手。覆盖作品详情、用户
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.0"
+  version: "3.6.1"
   openclaw:
     emoji: "🎥"
     primaryEnv: MAXHUB_API_KEY

@@ -4,7 +4,7 @@ description: "快手全场景数据查询助手。支持App和Web双端API，覆
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.0"
+  version: "3.6.1"
   openclaw:
     emoji: "🎬"
     primaryEnv: MAXHUB_API_KEY

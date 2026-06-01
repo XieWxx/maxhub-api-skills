@@ -4,7 +4,7 @@ description: "西瓜视频数据查询助手。覆盖视频详情、用户数据
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.0"
+  version: "3.6.1"
   openclaw:
     emoji: "🍉"
     primaryEnv: MAXHUB_API_KEY
