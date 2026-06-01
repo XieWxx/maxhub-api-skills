@@ -817,7 +817,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_hot_search_list`
 
-> ⛔ **已废弃**：上游接口参数不兼容（返回 400）。替代接口：`使用 fetch_hot_search_list 的 web 版本`。请勿使用此接口。
+> ⛔ **已废弃**（返回 400）。替代端点: `fetch_hot_search_result`，路径: `GET /api/v1/douyin/web/fetch_hot_search_result`。请勿使用此接口。
 
 <!-- Full path: /api/v1/douyin/app/v3/fetch_hot_search_list -->
 

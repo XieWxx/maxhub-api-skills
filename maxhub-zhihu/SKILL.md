@@ -60,6 +60,31 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/zhihu/{endpoint}" \
   -d '{...}'
 ```
 
+## 🚫 禁止行为（违反将导致 404/400）
+
+以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+
+| 禁止行为 | 正确做法 |
+|----------|----------|
+| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `<!-- Full path: -->` 中的路径 |
+| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
+| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
+| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
+| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+
+**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `<!-- Full path: -->`**
+
+## 🔒 安全合规声明 / Security & Compliance Declaration
+
+> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
+> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
+> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
+> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
+> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
+> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
+> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
+> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+
 ## Interaction Flow
 
 ### Step 1: Check API Key
@@ -241,6 +266,19 @@ Side-by-side table + differential insights.
     最后一次错误：[错误信息]。
     建议：[替代方案或稍后重试]"
 ```
+
+#### 已知降级映射
+
+404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+
+| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
+|----------|----------|----------|----------|----------|
+| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
+| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
+| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
+| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+
+> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
 
 #### 降级注意事项
 

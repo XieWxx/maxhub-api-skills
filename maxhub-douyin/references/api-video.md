@@ -29,8 +29,6 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 ### 用途:
  - 提取直播间弹幕
 
-该接口已不再提供线上服务，需要自行购买源代码后在本地部署使用，购买源代码请在Discord服务器联系管理员，Discord邀请链接：https://discord.gg/aMEAS8Xsvz
- #### 价格:
  ### 参数:
  - live_room_url: 直播间链接
  - danmaku_type: 消息类型

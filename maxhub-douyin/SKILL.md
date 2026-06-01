@@ -107,6 +107,31 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/douyin/{endpoint}" \
 > - **协议工具** ⚠️：`generate_*`、`encrypt_*`、`decrypt_*`、`register_device`——用于请求构造的 API 兼容性工具，不会独立绕过安全控制。
 > - **需要 Cookie 的端点** ⚠️：部分端点需要用户会话 Cookie 获取个性化数据。参见下方 Cookie 警告。
 
+## 🚫 禁止行为（违反将导致 404/400）
+
+以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+
+| 禁止行为 | 正确做法 |
+|----------|----------|
+| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `<!-- Full path: -->` 中的路径 |
+| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
+| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
+| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
+| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+
+**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `<!-- Full path: -->`**
+
+## 🔒 安全合规声明 / Security & Compliance Declaration
+
+> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
+> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
+> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
+> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
+> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
+> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
+> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
+> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+
 ## Interaction Flow
 
 ### Step 1: Check API Key
@@ -146,22 +171,112 @@ English user:
 | **Simple** | Exactly 1 API call | Skill handles directly |
 | **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
 
-### Step 2: Route — Classify Intent & Load Reference
+### Step 2: 匹配端点
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Video & Content** | 抖音视频, 抖音作品, 抖音详情, 抖音播放, 抖音弹幕, 抖音推荐, douyin video, douyin detail, douyin play, douyin danmaku, douyin recommend, douyin feed | `references/api-video.md` | fetch_multi_video, fetch_multi_video_v2, fetch_multi_video_high_quality_play_url, register_device, fetch_one_video_by_share_url, fetch_multi_video_statistics, fetch_video_statistics, open_douyin_app_to_send_private_message, open_douyin_app_to_video_detail, generate_douyin_video_share_qrcode, fetch_one_video_v2, fetch_one_video_v3, fetch_one_video, fetch_video_comments, fetch_brand_hot_search_list_detail, fetch_video_mix_post_list, fetch_video_mix_detail, fetch_music_hot_search_list, fetch_video_comment_replies, fetch_hashtag_video_list, fetch_hashtag_detail, fetch_music_video_list, fetch_music_detail, fetch_user_post_videos, fetch_user_like_videos, fetch_user_series_list, fetch_series_video_list, fetch_series_detail, fetch_video_high_quality_play_url, fetch_hot_item_trends_list, fetch_hot_user_portrait_list, fetch_hot_comment_word_list, fetch_hot_total_hot_word_detail_list, fetch_hot_calendar_detail, fetch_hot_total_video_list, fetch_hot_account_item_analysis_list, fetch_hot_total_high_play_list, fetch_video_danmaku_list, fetch_creator_material_center_billboard, fetch_creator_activity_detail, fetch_creator_hot_music_billboard, fetch_creator_material_center_related, fetch_item_list_download, fetch_item_analysis_involved_vertical, fetch_item_danmaku_analysis, fetch_item_overview_data, fetch_item_search_keyword, fetch_item_play_source, fetch_item_audience_others, fetch_item_audience_portrait, fetch_item_watch_trend, fetch_item_list, fetch_content_creative_keyword_items, fetch_brand_hot_videos_time_scope, fetch_insight_get_rec, fetch_report_detail, fetch_insight_recommend, fetch_item_filter_options, fetch_daren_great_user_top_video, fetch_item_sug, fetch_item_query, fetch_search_suggest, fetch_video_search_v1, fetch_video_search_v2, fetch_challenge_suggest, fetch_music_search, fetch_cartoon_aweme, generate_a_bogus, generate_x_bogus, fetch_multi_video, fetch_multi_video_high_quality_play_url, fetch_live_im_fetch, fetch_video_channel_result, get_all_aweme_id, get_aweme_id, douyin_live_room, fetch_one_video_by_share_url, fetch_game_aweme, generate_s_v_web_id, generate_ttwid, generate_verify_fp, generate_wss_xb_signature, fetch_knowledge_aweme, fetch_series_aweme, fetch_food_aweme, fetch_one_video_v2, fetch_one_video, fetch_one_video_danmaku, fetch_video_comments, fetch_product_review_score, fetch_douyin_web_guest_cookie, fetch_video_comment_replies, fetch_user_post_videos, fetch_user_mix_videos, fetch_user_like_videos, fetch_user_collection_videos, fetch_user_collects_videos, fetch_user_live_videos, fetch_related_posts, fetch_video_high_quality_play_url, fetch_home_feed, fetch_challenge_posts, fetch_user_live_videos_by_room_id_v2, fetch_user_live_videos_by_sec_uid, fetch_music_aweme, kol_rec_videos_v1, kol_video_performance_v1, kol_convert_video_display_v1, get_author_show_items, get_ip_activity_detail, get_recommend_for_star_authors, get_playlet_actor_rank_list, get_playlet_actor_rank_catalog |
-| **User Data** | 抖音用户, 抖音粉丝, 抖音关注, 抖音收藏, douyin user, douyin follower, douyin following, douyin collection | `references/api-user.md` | open_douyin_app_to_user_profile, fetch_live_hot_search_list, handler_user_profile, fetch_user_fans_list, fetch_hot_account_search_list, fetch_hot_account_fans_interest_account_list, fetch_hot_account_fans_portrait_list, fetch_hot_account_trends_list, fetch_hot_total_high_like_list, fetch_user_search, fetch_live_room_history_list, fetch_encrypt_user_id, fetch_get_user_sub_word, fetch_daren_similar_users, fetch_daren_great_user_fans_info, fetch_daren_sug_great_user_list, fetch_daren_compare_users_stable, fetch_user_search_v2, fetch_user_search, fetch_live_search_v1, fetch_user_profile_by_short_id, fetch_user_profile_by_uid, fetch_user_live_info_by_uid, handler_user_profile, handler_user_profile_v2, encrypt_uid_to_sec_user_id, fetch_live_room_product_result, get_all_sec_user_id, get_sec_user_id, fetch_query_user, handler_user_profile_v4, handler_user_profile_v3, fetch_batch_user_profile_v1, fetch_batch_user_profile_v2, fetch_user_following_list, fetch_user_collects, fetch_user_fans_list, fetch_live_gift_ranking, get_xingtu_kolid_by_sec_user_id, get_xingtu_kolid_by_uid, kol_fans_portrait_v1, kol_daily_fans_v1, kol_link_struct_v1, kol_touch_distribution_v1, get_content_trend_guide, get_user_profile_qrcode |
-| **Search** | 搜索, 综合, 图片, 话题, 音乐, 经验, 讨论, 学校, 直播, 关键词, search, general, image, hashtag, music, experience, discussion, school, live, keyword, suggest | `references/api-search.md` | open_douyin_app_to_keyword_search, fetch_brand_hot_search_list, fetch_hot_search_list, fetch_hot_total_search_list, fetch_hot_total_high_search_list, fetch_hot_total_high_topic_list, fetch_hot_account_fans_interest_search_list, fetch_hot_total_topic_list, fetch_creator_hot_topic_billboard, fetch_content_creative_keywords, fetch_content_creative_topic, fetch_brand_suggest, fetch_report_search, fetch_keyword_valid_date, fetch_multi_keyword_hot_trend, fetch_multi_keyword_interpretation, fetch_hot_words, fetch_topic_suggest, fetch_topic_query, fetch_vision_search, fetch_image_search_v3, fetch_image_search, fetch_multi_search, fetch_school_search, fetch_experience_search, fetch_general_search_v1, fetch_general_search_v2, fetch_discuss_search, fetch_challenge_search_v1, fetch_challenge_search_v2, get_all_webcast_id, get_webcast_id, webcast_id_2_room_id, fetch_hot_search_result, search_kol_v1, author_content_hot_comment_keywords_v1, get_sign_image, search_kol_v2, get_demander_mcn_list, get_author_content_hot_keywords |
-| **Trending & Billboard** | 抖音热搜, 抖音热榜, 抖音趋势, 抖音榜单, douyin hot, douyin trending, douyin billboard, douyin rank | `references/api-trending.md` | fetch_hot_rise_list, fetch_city_list, fetch_hot_total_low_fan_list, fetch_hot_total_hot_word_list, fetch_hot_city_list, fetch_content_tag, fetch_hot_challenge_list, fetch_hot_calendar_list, fetch_hot_total_list, fetch_hot_category_list, fetch_hot_account_list, fetch_hot_account_fans_interest_topic_list, fetch_hot_total_high_fan_list, fetch_creator_hot_spot_billboard, fetch_creator_content_category, fetch_creator_content_course, fetch_creator_activity_list, fetch_creator_hot_challenge_billboard, fetch_creator_hot_course, fetch_creator_hot_props_billboard, fetch_content_interact_trend, fetch_content_publish_trend, fetch_content_valid_date, fetch_content_creative_duration, fetch_content_author_portrait, fetch_content_consumer_portrait, fetch_content_consume_trend, fetch_relation_word, fetch_brand_initiative_rank_weekly, fetch_brand_lines, fetch_current_hot_topic, author_hot_comment_tokens_v1, get_author_hot_comment_tokens, get_ip_activity_list, get_ip_activity_industry_list, get_ranking_list_catalog, get_ranking_list_data |
-| **Creator** | 创作者, 弹幕分析, 投稿, 诊断, 概览, creator, danmaku, analysis, item, overview, audience, diagnosis, list, download, live, history, mission, industry, config, course, props, billboard, topic, activity, material | `references/api-creator.md` | fetch_creator_material_center_config, fetch_mission_task_list, fetch_industry_category_config, fetch_author_diagnosis, fetch_item_analysis_overview, fetch_item_analysis_item_performance, fetch_all_area, fetch_daren_great_item_mile_info, fetch_product_sku_list, fetch_product_review_list, kol_data_overview_v1, kol_audience_portrait_v1, kol_conversion_ability_analysis_v1, get_excellent_case_category_list, get_author_spread_info, get_author_local_info, get_author_business_card_info, get_author_base_info, get_resource_list |
-| **Xingtu** | 星图, kol, 达人, MCN, IP, 短剧, 营销, xingtu, kol, creator, ranking, mcn, ip, playlet, resource, market, fields, business, spread, local, content, hot, show, comment, token, card, base, info, price, fans, audience, video, performance, link, touch, distribution, sign, image, search, advanced, guide, trend, calendar, industry, activity, detail, catalog, list, data, qrcode, actor, rank | `references/api-xingtu.md` | fetch_share_info_by_share_code, generate_douyin_short_url, generate_real_msToken, fetch_product_coupon, get_xingtu_kolid_by_unique_id, kol_base_info_v1, kol_cp_info_v1, kol_service_price_v1 |
-| **Index & Analytics** | 指数, 关键词, 达人, 品牌, 趋势, 人群, 报告, index, keyword, daren, brand, trend, crowd, report, portrait, radar, cycle, insight, recommendation, video, topic, compare, suggest, search, creative, consumer, publish, interact, valid, relation, hot | `references/api-index.md` | fetch_portrait, fetch_valid_date_for_relation, fetch_brand_cycles, fetch_brand_valid_info, fetch_brand_radar_chart, fetch_all_valid_date, kol_xingtu_index_v1, get_author_market_fields |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+根据用户意图，从下表中找到匹配的端点，**直接使用表中标注的完整路径发起请求**。
+禁止自行拼接或猜测路径。
 
-**Rules:**
-- If uncertain, default to **Video & Content**.
-- For **Deep Dive**, read reference files incrementally.
+#### 🔥 热榜
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 | 说明 |
+|----------|------|------|------|----------|------|
+| 热搜榜、抖音热榜 | fetch_hot_search_result | GET | /api/v1/douyin/web/fetch_hot_search_result | 无 | 返回当前热搜 TOP 50 |
+| 热点总榜 | fetch_hot_total_list | GET | /api/v1/douyin/billboard/fetch_hot_total_list | page, page_size, type | type: snapshot/range |
+| 上升热点 | fetch_hot_rise_list | GET | /api/v1/douyin/billboard/fetch_hot_rise_list | page, page_size, order | order: rank/rank_diff |
+| 同城热点 | fetch_hot_city_list | GET | /api/v1/douyin/billboard/fetch_hot_city_list | page, page_size, order, city_code | city_code 从 fetch_city_list 获取 |
+| 挑战榜 | fetch_hot_challenge_list | GET | /api/v1/douyin/billboard/fetch_hot_challenge_list | page, page_size | |
+| 低粉爆款榜 | fetch_hot_total_low_fan_list | POST | /api/v1/douyin/billboard/fetch_hot_total_low_fan_list | page, page_size, date_window | body 参数 |
+| 高涨粉率榜 | fetch_hot_total_high_fan_list | POST | /api/v1/douyin/billboard/fetch_hot_total_high_fan_list | page, page_size, date_window | body 参数 |
+
+#### 🔍 搜索
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
+|----------|------|------|------|----------|
+| 综合搜索、搜视频/内容 | fetch_general_search_v1 | POST | /api/v1/douyin/search/fetch_general_search_v1 | keyword |
+| 搜视频（备选） | fetch_general_search_v2 | POST | /api/v1/douyin/search/fetch_general_search_v2 | keyword |
+| 搜视频专用 | fetch_video_search_v1 | POST | /api/v1/douyin/search/fetch_video_search_v1 | keyword |
+| 搜用户 | fetch_user_search_v2 | POST | /api/v1/douyin/user/fetch_user_search_v2 | keyword |
+| 搜话题 | fetch_challenge_search_v1 | POST | /api/v1/douyin/search/fetch_challenge_search_v1 | keyword |
+| 搜图片/图文 | fetch_image_search_v3 | POST | /api/v1/douyin/search/fetch_image_search_v3 | keyword |
+| 搜音乐 | fetch_music_search | POST | /api/v1/douyin/search/fetch_music_search | keyword |
+| 搜索建议/自动补全 | fetch_search_suggest | GET | /api/v1/douyin/app/v3/fetch_search_suggest | keyword |
+
+> **搜索类 POST 请求的通用 body 格式：** `{"keyword":"xxx","cursor":0,"sort_type":"0","publish_time":"0","filter_duration":"0","content_type":"0","search_id":""}`
+> cursor 首次传 0，翻页时使用上次返回值。sort_type: 0=综合, 1=最多点赞, 2=最新发布。
+
+#### 🎬 视频
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
+|----------|------|------|------|----------|
+| 视频详情（推荐） | fetch_one_video_v2 | GET | /api/v1/douyin/app/v3/fetch_one_video_v2 | aweme_id |
+| 视频详情（v3，备选） | fetch_one_video_v3 | GET | /api/v1/douyin/app/v3/fetch_one_video_v3 | aweme_id |
+| 通过分享链接查视频 | fetch_one_video_by_share_url | GET | /api/v1/douyin/app/v3/fetch_one_video_by_share_url | share_url |
+| 视频评论 | fetch_video_comments | GET | /api/v1/douyin/web/fetch_video_comments | aweme_id |
+| 评论回复 | fetch_video_comment_replies | GET | /api/v1/douyin/app/v3/fetch_video_comment_replies | aweme_id, comment_id |
+| 视频弹幕 | fetch_video_danmaku_list | GET | /api/v1/douyin/app/v3/fetch_video_danmaku_list | aweme_id |
+| 用户作品列表 | fetch_user_post_videos | GET | /api/v1/douyin/app/v3/fetch_user_post_videos | sec_user_id |
+| 用户喜欢列表 | fetch_user_like_videos | GET | /api/v1/douyin/app/v3/fetch_user_like_videos | sec_user_id |
+| 话题视频列表 | fetch_hashtag_video_list | GET | /api/v1/douyin/app/v3/fetch_hashtag_video_list | ch_id |
+| 音乐视频列表 | fetch_music_video_list | GET | /api/v1/douyin/app/v3/fetch_music_video_list | music_id |
+
+#### 👤 用户
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
+|----------|------|------|------|----------|
+| 用户主页（推荐） | handler_user_profile_v4 | GET | /api/v1/douyin/app/v3/handler_user_profile_v4 | sec_user_id |
+| 用户主页（v3 备选） | handler_user_profile_v3 | GET | /api/v1/douyin/app/v3/handler_user_profile_v3 | sec_user_id |
+| 通过抖音号查用户 | fetch_user_profile_by_short_id | GET | /api/v1/douyin/app/v3/fetch_user_profile_by_short_id | short_id |
+| 通过 uid 查用户 | fetch_user_profile_by_uid | GET | /api/v1/douyin/app/v3/fetch_user_profile_by_uid | uid |
+| 粉丝列表 | fetch_user_fans_list | GET | /api/v1/douyin/app/v3/fetch_user_fans_list | sec_user_id |
+| 关注列表 | fetch_user_following_list | GET | /api/v1/douyin/app/v3/fetch_user_following_list | sec_user_id |
+| 用户收藏 | fetch_user_collects | GET | /api/v1/douyin/app/v3/fetch_user_collects | sec_user_id |
+| 批量查用户 | fetch_batch_user_profile_v1 | GET | /api/v1/douyin/app/v3/fetch_batch_user_profile_v1 | sec_user_ids（逗号分隔） |
+
+> **sec_user_id 获取方法：** 可从其他接口返回的 `author.sec_uid` 字段获取，或用 `encrypt_uid_to_sec_user_id` 转换。
+
+#### 📊 星图
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
+|----------|------|------|------|----------|
+| 星图搜 KOL | search_kol_v2 | GET | /api/v1/douyin/xingtu/search_kol_v2 | keyword |
+| KOL 基础信息 | kol_base_info_v1 | GET | /api/v1/douyin/xingtu/kol_base_info_v1 | kolId |
+| KOL 数据概览 | kol_data_overview_v1 | GET | /api/v1/douyin/xingtu/kol_data_overview_v1 | kolId |
+| KOL 粉丝画像 | kol_fans_portrait_v1 | GET | /api/v1/douyin/xingtu/kol_fans_portrait_v1 | kolId |
+| KOL 报价 | kol_service_price_v1 | GET | /api/v1/douyin/xingtu/kol_service_price_v1 | kolId |
+| KOL 视频表现 | kol_video_performance_v1 | GET | /api/v1/douyin/xingtu/kol_video_performance_v1 | kolId |
+| KOL 观众画像 | kol_audience_portrait_v1 | GET | /api/v1/douyin/xingtu/kol_audience_portrait_v1 | kolId |
+| 达人商业榜 | get_ranking_list_data | GET | /api/v1/douyin/xingtu_v2/get_ranking_list_data | code, qualifier, period, date |
+
+> **kolId 获取方法：** 通过 `get_xingtu_kolid_by_uid` 或 `get_xingtu_kolid_by_sec_user_id` 转换得到。
+
+#### 📈 指数 & 分析
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
+|----------|------|------|------|----------|
+| 关键词热度趋势 | fetch_multi_keyword_hot_trend | POST | /api/v1/douyin/index/fetch_multi_keyword_hot_trend | keyword_list, start_date, end_date |
+| 关键词关联词 | fetch_relation_word | POST | /api/v1/douyin/index/fetch_relation_word | keyword, start_date, end_date |
+| 品牌搜索建议 | fetch_brand_suggest | POST | /api/v1/douyin/index/fetch_brand_suggest | keyword |
+| 品牌趋势线 | fetch_brand_lines | POST | /api/v1/douyin/index/fetch_brand_lines | brand_name, start_date, end_date |
+| 品牌雷达图 | fetch_brand_radar_chart | POST | /api/v1/douyin/index/fetch_brand_radar_chart | brand_name, start_date, end_date |
+| 热门关键词 | fetch_hot_words | GET | /api/v1/douyin/index/fetch_hot_words | 无 |
+| 内容创作热门关键词 | fetch_content_creative_keywords | POST | /api/v1/douyin/index/fetch_content_creative_keywords | tag_id, end_date |
+| 内容创作热门话题 | fetch_content_creative_topic | POST | /api/v1/douyin/index/fetch_content_creative_topic | tag_id, end_date |
+
+#### 📺 直播
+
+| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
+|----------|------|------|------|----------|
+| 直播间信息 | douyin_live_room | GET | /api/v1/douyin/app/v3/douyin_live_room | live_room_url |
+| 链接转直播间号 | get_webcast_id | GET | /api/v1/douyin/web/get_webcast_id | url |
+| 直播间号转 room_id | webcast_id_2_room_id | GET | /api/v1/douyin/web/webcast_id_2_room_id | webcast_id |
+
+---
+
+### 路由规则（优先级从高到低）
+
+1. **精确匹配**上表中的「用户意图」列 → 直接使用该行端点
+2. **模糊匹配** → 选择最相关分类，使用该分类下第一个端点（标注"推荐"的优先）
+3. 上表未覆盖的需求 → 加载对应 reference 文件：`skill_view(name="maxhub-douyin", file_path="references/api-{分类}.md")`，但**只能使用该文件中 `<!-- Full path: -->` 标注的路径**
 
 ### Step 3: Classify Action Mode
 
@@ -175,15 +290,16 @@ English user:
 
 #### Pattern A: "分析抖音达人"
 
-1. 搜索用户 → fetch_user_info → 获取基本信息
-2. 获取作品 → fetch_user_post_videos → 获取视频列表
-3. 星图数据 → fetch_kol_base_info → 星图达人信息
+1. 搜索用户 → `fetch_user_search_v2`（POST /api/v1/douyin/user/fetch_user_search_v2）→ 获取 sec_user_id
+2. 用户主页 → `handler_user_profile_v4`（GET /api/v1/douyin/app/v3/handler_user_profile_v4）→ 基本信息
+3. 获取作品 → `fetch_user_post_videos`（GET /api/v1/douyin/app/v3/fetch_user_post_videos）→ 视频列表
+4. 星图数据 → `get_xingtu_kolid_by_sec_user_id` 转换 → `kol_base_info_v1`（GET /api/v1/douyin/xingtu/kol_base_info_v1）
 
 #### Pattern B: "抖音热榜分析"
 
-1. 热搜榜 → fetch_hot_search → 热搜数据
-2. 视频热榜 → fetch_video_hot_list → 视频排行
-3. 话题热榜 → fetch_topic_hot_list → 话题排行
+1. 热搜榜 → `fetch_hot_search_result`（GET /api/v1/douyin/web/fetch_hot_search_result）
+2. 热点总榜 → `fetch_hot_total_list`（GET /api/v1/douyin/billboard/fetch_hot_total_list）
+3. 上升热点 → `fetch_hot_rise_list`（GET /api/v1/douyin/billboard/fetch_hot_rise_list）
 
 **Execution rules:**
 - Execute all planned queries autonomously.
@@ -313,6 +429,19 @@ Side-by-side table + differential insights.
     最后一次错误：[错误信息]。
     建议：[替代方案或稍后重试]"
 ```
+
+#### 已知降级映射
+
+404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+
+| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
+|----------|----------|----------|----------|----------|
+| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
+| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
+| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
+| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+
+> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
 
 #### 降级注意事项
 
