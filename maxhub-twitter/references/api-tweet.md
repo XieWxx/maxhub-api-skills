@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/twitter/web/fetch_latest_post_comments`
 
-<!-- Full path: /api/v1/twitter/web/fetch_latest_post_comments -->
+**Full path:** /api/v1/twitter/web/fetch_latest_post_comments
 
 ### Parameters
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/twitter/web/fetch_post_comments`
 
-<!-- Full path: /api/v1/twitter/web/fetch_post_comments -->
+**Full path:** /api/v1/twitter/web/fetch_post_comments
 
 ### Parameters
 
@@ -62,7 +62,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/twitter/web/fetch_retweet_user_list`
 
-<!-- Full path: /api/v1/twitter/web/fetch_retweet_user_list -->
+**Full path:** /api/v1/twitter/web/fetch_retweet_user_list
 
 ### Parameters
 
@@ -91,7 +91,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/twitter/web/fetch_tweet_detail`
 
-<!-- Full path: /api/v1/twitter/web/fetch_tweet_detail -->
+**Full path:** /api/v1/twitter/web/fetch_tweet_detail
 
 ### Parameters
 
@@ -118,7 +118,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/twitter/web/fetch_user_followers`
 
-<!-- Full path: /api/v1/twitter/web/fetch_user_followers -->
+**Full path:** /api/v1/twitter/web/fetch_user_followers
 
 ### Parameters
 
@@ -147,7 +147,7 @@ elonmusk。
 
 `GET /api/v1/twitter/web/fetch_user_followings`
 
-<!-- Full path: /api/v1/twitter/web/fetch_user_followings -->
+**Full path:** /api/v1/twitter/web/fetch_user_followings
 
 ### Parameters
 
@@ -176,7 +176,7 @@ elonmusk。
 
 `GET /api/v1/twitter/web/fetch_user_media`
 
-<!-- Full path: /api/v1/twitter/web/fetch_user_media -->
+**Full path:** /api/v1/twitter/web/fetch_user_media
 
 ### Parameters
 
@@ -207,7 +207,7 @@ elonmusk。
 
 `GET /api/v1/twitter/web/fetch_user_post_tweet`
 
-<!-- Full path: /api/v1/twitter/web/fetch_user_post_tweet -->
+**Full path:** /api/v1/twitter/web/fetch_user_post_tweet
 
 ### Parameters
 
@@ -238,7 +238,7 @@ elonmusk。
 
 `GET /api/v1/twitter/web/fetch_user_profile`
 
-<!-- Full path: /api/v1/twitter/web/fetch_user_profile -->
+**Full path:** /api/v1/twitter/web/fetch_user_profile
 
 ### Parameters
 
@@ -267,7 +267,7 @@ elonmusk。
 
 `GET /api/v1/twitter/web/fetch_user_tweet_replies`
 
-<!-- Full path: /api/v1/twitter/web/fetch_user_tweet_replies -->
+**Full path:** /api/v1/twitter/web/fetch_user_tweet_replies
 
 ### Parameters
 

@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/weibo/web_v2/fetch_city_list`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_city_list -->
+**Full path:** /api/v1/weibo/web_v2/fetch_city_list
 
 ### Parameters
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_config_list`
 
-<!-- Full path: /api/v1/weibo/web/fetch_config_list -->
+**Full path:** /api/v1/weibo/web/fetch_config_list
 
 ### Parameters
 

@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/bilibili/web/bv_to_aid`
 
-<!-- Full path: /api/v1/bilibili/web/bv_to_aid -->
+**Full path:** /api/v1/bilibili/web/bv_to_aid
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_com_popular`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_com_popular -->
+**Full path:** /api/v1/bilibili/web/fetch_com_popular
 
 ### Parameters
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_comment_reply`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_comment_reply -->
+**Full path:** /api/v1/bilibili/web/fetch_comment_reply
 
 ### Parameters
 
@@ -87,7 +87,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_dynamic_detail`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_dynamic_detail -->
+**Full path:** /api/v1/bilibili/web/fetch_dynamic_detail
 
 ### Parameters
 
@@ -112,7 +112,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_dynamic_detail_v2`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_dynamic_detail_v2 -->
+**Full path:** /api/v1/bilibili/web/fetch_dynamic_detail_v2
 
 ### Parameters
 
@@ -137,7 +137,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_home_feed`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_home_feed -->
+**Full path:** /api/v1/bilibili/app/fetch_home_feed
 
 ### Parameters
 
@@ -166,7 +166,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_live_room_detail`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_live_room_detail -->
+**Full path:** /api/v1/bilibili/web/fetch_live_room_detail
 
 ### Parameters
 
@@ -191,7 +191,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_live_videos`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_live_videos -->
+**Full path:** /api/v1/bilibili/web/fetch_live_videos
 
 ### Parameters
 
@@ -216,7 +216,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_one_video`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_one_video -->
+**Full path:** /api/v1/bilibili/app/fetch_one_video
 
 ### Parameters
 
@@ -243,7 +243,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_one_video`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_one_video -->
+**Full path:** /api/v1/bilibili/web/fetch_one_video
 
 ### Parameters
 
@@ -268,7 +268,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_one_video_v2`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_one_video_v2 -->
+**Full path:** /api/v1/bilibili/web/fetch_one_video_v2
 
 ### Parameters
 
@@ -295,7 +295,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_one_video_v3`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_one_video_v3 -->
+**Full path:** /api/v1/bilibili/web/fetch_one_video_v3
 
 ### Parameters
 
@@ -320,7 +320,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_reply_detail`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_reply_detail -->
+**Full path:** /api/v1/bilibili/app/fetch_reply_detail
 
 ### Parameters
 
@@ -353,7 +353,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_user_collection_videos`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_user_collection_videos -->
+**Full path:** /api/v1/bilibili/web/fetch_user_collection_videos
 
 ### Parameters
 
@@ -380,7 +380,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_user_post_videos`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_user_post_videos -->
+**Full path:** /api/v1/bilibili/web/fetch_user_post_videos
 
 ### Parameters
 
@@ -412,7 +412,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_user_videos`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_user_videos -->
+**Full path:** /api/v1/bilibili/app/fetch_user_videos
 
 ### Parameters
 
@@ -443,7 +443,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_video_comments`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_video_comments -->
+**Full path:** /api/v1/bilibili/app/fetch_video_comments
 
 ### Parameters
 
@@ -474,7 +474,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_video_comments`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_comments -->
+**Full path:** /api/v1/bilibili/web/fetch_video_comments
 
 ### Parameters
 
@@ -501,7 +501,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_video_danmaku`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_danmaku -->
+**Full path:** /api/v1/bilibili/web/fetch_video_danmaku
 
 ### Parameters
 
@@ -526,7 +526,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_video_detail`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_detail -->
+**Full path:** /api/v1/bilibili/web/fetch_video_detail
 
 ### Parameters
 
@@ -551,7 +551,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_video_parts`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_parts -->
+**Full path:** /api/v1/bilibili/web/fetch_video_parts
 
 ### Parameters
 
@@ -576,7 +576,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_video_play_info`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_play_info -->
+**Full path:** /api/v1/bilibili/web/fetch_video_play_info
 
 ### Parameters
 
@@ -601,7 +601,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_video_playurl`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_playurl -->
+**Full path:** /api/v1/bilibili/web/fetch_video_playurl
 
 ### Parameters
 
@@ -628,7 +628,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_video_subtitle`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_video_subtitle -->
+**Full path:** /api/v1/bilibili/web/fetch_video_subtitle
 
 ### Parameters
 
@@ -655,7 +655,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/bilibili/web/fetch_vip_video_playurl`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_vip_video_playurl -->
+**Full path:** /api/v1/bilibili/web/fetch_vip_video_playurl
 
 ### Parameters
 

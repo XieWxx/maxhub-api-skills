@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/douyin/xingtu/author_content_hot_comment_keywords_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/author_content_hot_comment_keywords_v1 -->
+**Full path:** /api/v1/douyin/xingtu/author_content_hot_comment_keywords_v1
 
 ### Parameters
 
@@ -37,7 +37,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_brand_hot_search_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_brand_hot_search_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_brand_hot_search_list
 
 ### Parameters
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_brand_suggest`
 
-<!-- Full path: /api/v1/douyin/index/fetch_brand_suggest -->
+**Full path:** /api/v1/douyin/index/fetch_brand_suggest
 
 ### Parameters
 
@@ -83,7 +83,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_challenge_search_v1`
 
-<!-- Full path: /api/v1/douyin/search/fetch_challenge_search_v1 -->
+**Full path:** /api/v1/douyin/search/fetch_challenge_search_v1
 
 ### Parameters
 
@@ -171,7 +171,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_challenge_search_v2`
 
-<!-- Full path: /api/v1/douyin/search/fetch_challenge_search_v2 -->
+**Full path:** /api/v1/douyin/search/fetch_challenge_search_v2
 
 ### Parameters
 
@@ -255,7 +255,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **参数校验提示**：`keyword` 为必填参数，长度 1-50 字符。空关键词或特殊字符将返回 422。
 
-<!-- Full path: /api/v1/douyin/index/fetch_content_creative_keywords -->
+**Full path:** /api/v1/douyin/index/fetch_content_creative_keywords
 
 ### Parameters
 
@@ -286,7 +286,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_content_creative_topic`
 
-<!-- Full path: /api/v1/douyin/index/fetch_content_creative_topic -->
+**Full path:** /api/v1/douyin/index/fetch_content_creative_topic
 
 ### Parameters
 
@@ -319,7 +319,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_creator_hot_topic_billboard`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_creator_hot_topic_billboard -->
+**Full path:** /api/v1/douyin/creator/fetch_creator_hot_topic_billboard
 
 ### Parameters
 
@@ -381,7 +381,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_discuss_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_discuss_search -->
+**Full path:** /api/v1/douyin/search/fetch_discuss_search
 
 ### Parameters
 
@@ -484,7 +484,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_experience_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_experience_search -->
+**Full path:** /api/v1/douyin/search/fetch_experience_search
 
 ### Parameters
 
@@ -577,7 +577,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **参数校验提示**：`keyword` 为必填参数，长度 1-100 字符，不支持特殊符号。`sort_type` 仅接受 0-7 的整数值。请确保参数格式正确，否则返回 400/422。
 
-<!-- Full path: /api/v1/douyin/search/fetch_general_search_v1 -->
+**Full path:** /api/v1/douyin/search/fetch_general_search_v1
 
 ### Parameters
 
@@ -685,7 +685,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **参数校验提示**：`keyword` 为必填参数，`sort_type` 和 `filter_duration` 需使用指定枚举值。参数格式错误将返回 422。
 
-<!-- Full path: /api/v1/douyin/search/fetch_general_search_v2 -->
+**Full path:** /api/v1/douyin/search/fetch_general_search_v2
 
 ### Parameters
 
@@ -792,7 +792,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_account_fans_interest_search_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_fans_interest_search_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_account_fans_interest_search_list
 
 ### Parameters
 
@@ -819,7 +819,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⛔ **已废弃**（返回 400）。替代端点: `fetch_hot_search_result`，路径: `GET /api/v1/douyin/web/fetch_hot_search_result`。请勿使用此接口。
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_hot_search_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_hot_search_list
 
 ### Parameters
 
@@ -858,7 +858,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_hot_search_result`
 
-<!-- Full path: /api/v1/douyin/web/fetch_hot_search_result -->
+**Full path:** /api/v1/douyin/web/fetch_hot_search_result
 
 ### Parameters
 
@@ -879,7 +879,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/billboard/fetch_hot_total_high_search_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_high_search_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_high_search_list
 
 ### Parameters
 
@@ -905,7 +905,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/billboard/fetch_hot_total_high_topic_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_high_topic_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_high_topic_list
 
 ### Parameters
 
@@ -935,7 +935,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/billboard/fetch_hot_total_search_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_search_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_search_list
 
 ### Parameters
 
@@ -961,7 +961,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/billboard/fetch_hot_total_topic_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_topic_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_topic_list
 
 ### Parameters
 
@@ -991,7 +991,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/index/fetch_hot_words`
 
-<!-- Full path: /api/v1/douyin/index/fetch_hot_words -->
+**Full path:** /api/v1/douyin/index/fetch_hot_words
 
 ### Parameters
 
@@ -1016,7 +1016,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_image_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_image_search -->
+**Full path:** /api/v1/douyin/search/fetch_image_search
 
 ### Parameters
 
@@ -1102,7 +1102,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_image_search_v3`
 
-<!-- Full path: /api/v1/douyin/search/fetch_image_search_v3 -->
+**Full path:** /api/v1/douyin/search/fetch_image_search_v3
 
 ### Parameters
 
@@ -1168,7 +1168,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_keyword_valid_date`
 
-<!-- Full path: /api/v1/douyin/index/fetch_keyword_valid_date -->
+**Full path:** /api/v1/douyin/index/fetch_keyword_valid_date
 
 ### Parameters
 
@@ -1193,7 +1193,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_multi_keyword_hot_trend`
 
-<!-- Full path: /api/v1/douyin/index/fetch_multi_keyword_hot_trend -->
+**Full path:** /api/v1/douyin/index/fetch_multi_keyword_hot_trend
 
 ### Parameters
 
@@ -1227,7 +1227,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_multi_keyword_interpretation`
 
-<!-- Full path: /api/v1/douyin/index/fetch_multi_keyword_interpretation -->
+**Full path:** /api/v1/douyin/index/fetch_multi_keyword_interpretation
 
 ### Parameters
 
@@ -1261,7 +1261,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_multi_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_multi_search -->
+**Full path:** /api/v1/douyin/search/fetch_multi_search
 
 ### Parameters
 
@@ -1380,7 +1380,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_report_search`
 
-<!-- Full path: /api/v1/douyin/index/fetch_report_search -->
+**Full path:** /api/v1/douyin/index/fetch_report_search
 
 ### Parameters
 
@@ -1418,7 +1418,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_school_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_school_search -->
+**Full path:** /api/v1/douyin/search/fetch_school_search
 
 ### Parameters
 
@@ -1461,7 +1461,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_topic_query`
 
-<!-- Full path: /api/v1/douyin/index/fetch_topic_query -->
+**Full path:** /api/v1/douyin/index/fetch_topic_query
 
 ### Parameters
 
@@ -1492,7 +1492,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_topic_suggest`
 
-<!-- Full path: /api/v1/douyin/index/fetch_topic_suggest -->
+**Full path:** /api/v1/douyin/index/fetch_topic_suggest
 
 ### Parameters
 
@@ -1519,7 +1519,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_vision_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_vision_search -->
+**Full path:** /api/v1/douyin/search/fetch_vision_search
 
 ### Parameters
 
@@ -1594,7 +1594,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/web/get_all_webcast_id`
 
-<!-- Full path: /api/v1/douyin/web/get_all_webcast_id -->
+**Full path:** /api/v1/douyin/web/get_all_webcast_id
 
 ### Parameters
 
@@ -1617,7 +1617,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_author_content_hot_keywords`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_author_content_hot_keywords -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_author_content_hot_keywords
 
 ### Parameters
 
@@ -1644,7 +1644,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_demander_mcn_list`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_demander_mcn_list -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_demander_mcn_list
 
 ### Parameters
 
@@ -1675,7 +1675,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/get_sign_image`
 
-<!-- Full path: /api/v1/douyin/xingtu/get_sign_image -->
+**Full path:** /api/v1/douyin/xingtu/get_sign_image
 
 ### Parameters
 
@@ -1705,7 +1705,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/get_webcast_id`
 
-<!-- Full path: /api/v1/douyin/web/get_webcast_id -->
+**Full path:** /api/v1/douyin/web/get_webcast_id
 
 ### Parameters
 
@@ -1732,7 +1732,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **非只读接口**：此接口生成应用深度链接，可打开抖音搜索页。
 
-<!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search -->
+**Full path:** /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search
 
 ### Parameters
 
@@ -1757,7 +1757,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/search_kol_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/search_kol_v1 -->
+**Full path:** /api/v1/douyin/xingtu/search_kol_v1
 
 ### Parameters
 
@@ -1791,7 +1791,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/search_kol_v2`
 
-<!-- Full path: /api/v1/douyin/xingtu/search_kol_v2 -->
+**Full path:** /api/v1/douyin/xingtu/search_kol_v2
 
 ### Parameters
 
@@ -1827,7 +1827,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/webcast_id_2_room_id`
 
-<!-- Full path: /api/v1/douyin/web/webcast_id_2_room_id -->
+**Full path:** /api/v1/douyin/web/webcast_id_2_room_id
 
 ### Parameters
 

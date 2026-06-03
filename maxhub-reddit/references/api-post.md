@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/reddit/app/fetch_community_highlights`
 
-<!-- Full path: /api/v1/reddit/app/fetch_community_highlights -->
+**Full path:** /api/v1/reddit/app/fetch_community_highlights
 
 ### Parameters
 
@@ -41,7 +41,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/reddit/app/fetch_post_comments`
 
-<!-- Full path: /api/v1/reddit/app/fetch_post_comments -->
+**Full path:** /api/v1/reddit/app/fetch_post_comments
 
 ### Parameters
 
@@ -76,7 +76,7 @@ RANDOM
 
 `GET /api/v1/reddit/app/fetch_post_details`
 
-<!-- Full path: /api/v1/reddit/app/fetch_post_details -->
+**Full path:** /api/v1/reddit/app/fetch_post_details
 
 ### Parameters
 
@@ -118,7 +118,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/reddit/app/fetch_post_details_batch`
 
-<!-- Full path: /api/v1/reddit/app/fetch_post_details_batch -->
+**Full path:** /api/v1/reddit/app/fetch_post_details_batch
 
 ### Parameters
 
@@ -163,7 +163,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/reddit/app/fetch_post_details_batch_large`
 
-<!-- Full path: /api/v1/reddit/app/fetch_post_details_batch_large -->
+**Full path:** /api/v1/reddit/app/fetch_post_details_batch_large
 
 ### Parameters
 
@@ -209,7 +209,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/reddit/app/fetch_subreddit_post_channels`
 
-<!-- Full path: /api/v1/reddit/app/fetch_subreddit_post_channels -->
+**Full path:** /api/v1/reddit/app/fetch_subreddit_post_channels
 
 ### Parameters
 

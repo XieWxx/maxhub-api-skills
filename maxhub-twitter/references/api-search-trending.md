@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/twitter/web/fetch_search_timeline`
 
-<!-- Full path: /api/v1/twitter/web/fetch_search_timeline -->
+**Full path:** /api/v1/twitter/web/fetch_search_timeline
 
 ### Parameters
 
@@ -37,7 +37,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/twitter/web/fetch_trending`
 
-<!-- Full path: /api/v1/twitter/web/fetch_trending -->
+**Full path:** /api/v1/twitter/web/fetch_trending
 
 ### Parameters
 

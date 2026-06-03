@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/xigua/app/v2/fetch_one_video`
 
-<!-- Full path: /api/v1/xigua/app/v2/fetch_one_video -->
+**Full path:** /api/v1/xigua/app/v2/fetch_one_video
 
 ### Parameters
 
@@ -34,7 +34,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xigua/app/v2/fetch_one_video_play_url`
 
-<!-- Full path: /api/v1/xigua/app/v2/fetch_one_video_play_url -->
+**Full path:** /api/v1/xigua/app/v2/fetch_one_video_play_url
 
 ### Parameters
 
@@ -59,7 +59,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xigua/app/v2/fetch_one_video_v2`
 
-<!-- Full path: /api/v1/xigua/app/v2/fetch_one_video_v2 -->
+**Full path:** /api/v1/xigua/app/v2/fetch_one_video_v2
 
 ### Parameters
 
@@ -85,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xigua/app/v2/fetch_user_info`
 
-<!-- Full path: /api/v1/xigua/app/v2/fetch_user_info -->
+**Full path:** /api/v1/xigua/app/v2/fetch_user_info
 
 ### Parameters
 
@@ -110,7 +110,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xigua/app/v2/fetch_user_post_list`
 
-<!-- Full path: /api/v1/xigua/app/v2/fetch_user_post_list -->
+**Full path:** /api/v1/xigua/app/v2/fetch_user_post_list
 
 ### Parameters
 
@@ -139,7 +139,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xigua/app/v2/fetch_video_comment_list`
 
-<!-- Full path: /api/v1/xigua/app/v2/fetch_video_comment_list -->
+**Full path:** /api/v1/xigua/app/v2/fetch_video_comment_list
 
 ### Parameters
 
@@ -168,7 +168,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xigua/app/v2/search_video`
 
-<!-- Full path: /api/v1/xigua/app/v2/search_video -->
+**Full path:** /api/v1/xigua/app/v2/search_video
 
 ### Parameters
 

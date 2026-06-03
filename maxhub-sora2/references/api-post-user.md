@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/sora2/get_comment_replies`
 
-<!-- Full path: /api/v1/sora2/get_comment_replies -->
+**Full path:** /api/v1/sora2/get_comment_replies
 
 ### Parameters
 
@@ -50,7 +50,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_feed`
 
-<!-- Full path: /api/v1/sora2/get_feed -->
+**Full path:** /api/v1/sora2/get_feed
 
 ### Parameters
 
@@ -95,7 +95,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_post_comments`
 
-<!-- Full path: /api/v1/sora2/get_post_comments -->
+**Full path:** /api/v1/sora2/get_post_comments
 
 ### Parameters
 
@@ -138,7 +138,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_post_detail`
 
-<!-- Full path: /api/v1/sora2/get_post_detail -->
+**Full path:** /api/v1/sora2/get_post_detail
 
 ### Parameters
 
@@ -190,7 +190,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_post_remix_list`
 
-<!-- Full path: /api/v1/sora2/get_post_remix_list -->
+**Full path:** /api/v1/sora2/get_post_remix_list
 
 ### Parameters
 
@@ -234,7 +234,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_user_followers`
 
-<!-- Full path: /api/v1/sora2/get_user_followers -->
+**Full path:** /api/v1/sora2/get_user_followers
 
 ### Parameters
 
@@ -274,7 +274,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_user_following`
 
-<!-- Full path: /api/v1/sora2/get_user_following -->
+**Full path:** /api/v1/sora2/get_user_following
 
 ### Parameters
 
@@ -314,7 +314,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_user_posts`
 
-<!-- Full path: /api/v1/sora2/get_user_posts -->
+**Full path:** /api/v1/sora2/get_user_posts
 
 ### Parameters
 
@@ -355,7 +355,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_user_profile`
 
-<!-- Full path: /api/v1/sora2/get_user_profile -->
+**Full path:** /api/v1/sora2/get_user_profile
 
 ### Parameters
 
@@ -397,7 +397,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_video_download_info`
 
-<!-- Full path: /api/v1/sora2/get_video_download_info -->
+**Full path:** /api/v1/sora2/get_video_download_info
 
 ### Parameters
 
@@ -450,7 +450,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/search_users`
 
-<!-- Full path: /api/v1/sora2/search_users -->
+**Full path:** /api/v1/sora2/search_users
 
 ### Parameters
 

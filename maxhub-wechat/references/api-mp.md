@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/wechat_mp/web/fetch_mp_article_ad`
 
-<!-- Full path: /api/v1/wechat_mp/web/fetch_mp_article_ad -->
+**Full path:** /api/v1/wechat_mp/web/fetch_mp_article_ad
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/wechat_mp/web/fetch_mp_article_list`
 
-<!-- Full path: /api/v1/wechat_mp/web/fetch_mp_article_list -->
+**Full path:** /api/v1/wechat_mp/web/fetch_mp_article_list
 
 ### Parameters
 
@@ -60,7 +60,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/wechat_mp/web/fetch_mp_article_read_count`
 
-<!-- Full path: /api/v1/wechat_mp/web/fetch_mp_article_read_count -->
+**Full path:** /api/v1/wechat_mp/web/fetch_mp_article_read_count
 
 ### Parameters
 
@@ -87,7 +87,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/wechat_mp/web/fetch_mp_article_url`
 
-<!-- Full path: /api/v1/wechat_mp/web/fetch_mp_article_url -->
+**Full path:** /api/v1/wechat_mp/web/fetch_mp_article_url
 
 ### Parameters
 
@@ -112,7 +112,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/wechat_mp/web/fetch_mp_article_url_conversion`
 
-<!-- Full path: /api/v1/wechat_mp/web/fetch_mp_article_url_conversion -->
+**Full path:** /api/v1/wechat_mp/web/fetch_mp_article_url_conversion
 
 ### Parameters
 
@@ -137,7 +137,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/wechat_mp/web/fetch_mp_related_articles`
 
-<!-- Full path: /api/v1/wechat_mp/web/fetch_mp_related_articles -->
+**Full path:** /api/v1/wechat_mp/web/fetch_mp_related_articles
 
 ### Parameters
 

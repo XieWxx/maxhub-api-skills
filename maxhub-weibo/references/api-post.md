@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/weibo/web_v2/check_allow_comment_with_pic`
 
-<!-- Full path: /api/v1/weibo/web_v2/check_allow_comment_with_pic -->
+**Full path:** /api/v1/weibo/web_v2/check_allow_comment_with_pic
 
 ### Parameters
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_advanced_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_advanced_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_advanced_search
 
 ### Parameters
 
@@ -71,7 +71,7 @@ custom:2025-09-01-0:2025-09-08-23）
 
 `GET /api/v1/weibo/web_v2/fetch_ai_related_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_ai_related_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_ai_related_search
 
 ### Parameters
 
@@ -99,7 +99,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_ai_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_ai_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_ai_search
 
 ### Parameters
 
@@ -126,7 +126,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_comment_replies`
 
-<!-- Full path: /api/v1/weibo/web/fetch_comment_replies -->
+**Full path:** /api/v1/weibo/web/fetch_comment_replies
 
 ### Parameters
 
@@ -153,7 +153,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_entertainment_ranking`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_entertainment_ranking -->
+**Full path:** /api/v1/weibo/web_v2/fetch_entertainment_ranking
 
 ### Parameters
 
@@ -178,7 +178,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_hot_ranking_timeline`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_hot_ranking_timeline -->
+**Full path:** /api/v1/weibo/web_v2/fetch_hot_ranking_timeline
 
 ### Parameters
 
@@ -216,7 +216,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_hot_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_hot_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_hot_search
 
 ### Parameters
 
@@ -241,7 +241,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_hot_search_index`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_hot_search_index -->
+**Full path:** /api/v1/weibo/web_v2/fetch_hot_search_index
 
 ### Parameters
 
@@ -268,7 +268,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_life_ranking`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_life_ranking -->
+**Full path:** /api/v1/weibo/web_v2/fetch_life_ranking
 
 ### Parameters
 
@@ -293,7 +293,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_pic_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_pic_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_pic_search
 
 ### Parameters
 
@@ -322,7 +322,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_post_comments`
 
-<!-- Full path: /api/v1/weibo/web/fetch_post_comments -->
+**Full path:** /api/v1/weibo/web/fetch_post_comments
 
 ### Parameters
 
@@ -353,7 +353,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_post_comments`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_post_comments -->
+**Full path:** /api/v1/weibo/web_v2/fetch_post_comments
 
 ### Parameters
 
@@ -385,7 +385,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_post_detail`
 
-<!-- Full path: /api/v1/weibo/web/fetch_post_detail -->
+**Full path:** /api/v1/weibo/web/fetch_post_detail
 
 ### Parameters
 
@@ -410,7 +410,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_post_detail`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_post_detail -->
+**Full path:** /api/v1/weibo/web_v2/fetch_post_detail
 
 ### Parameters
 
@@ -437,7 +437,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_post_sub_comments`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_post_sub_comments -->
+**Full path:** /api/v1/weibo/web_v2/fetch_post_sub_comments
 
 ### Parameters
 
@@ -469,7 +469,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_search`
 
-<!-- Full path: /api/v1/weibo/web/fetch_search -->
+**Full path:** /api/v1/weibo/web/fetch_search
 
 ### Parameters
 
@@ -520,7 +520,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_similar_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_similar_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_similar_search
 
 ### Parameters
 
@@ -547,7 +547,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_social_ranking`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_social_ranking -->
+**Full path:** /api/v1/weibo/web_v2/fetch_social_ranking
 
 ### Parameters
 
@@ -572,7 +572,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_status_comments`
 
-<!-- Full path: /api/v1/weibo/app/fetch_status_comments -->
+**Full path:** /api/v1/weibo/app/fetch_status_comments
 
 ### Parameters
 
@@ -608,7 +608,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_status_detail`
 
-<!-- Full path: /api/v1/weibo/app/fetch_status_detail -->
+**Full path:** /api/v1/weibo/app/fetch_status_detail
 
 ### Parameters
 
@@ -635,7 +635,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_status_likes`
 
-<!-- Full path: /api/v1/weibo/app/fetch_status_likes -->
+**Full path:** /api/v1/weibo/app/fetch_status_likes
 
 ### Parameters
 
@@ -672,7 +672,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_status_reposts`
 
-<!-- Full path: /api/v1/weibo/app/fetch_status_reposts -->
+**Full path:** /api/v1/weibo/app/fetch_status_reposts
 
 ### Parameters
 
@@ -703,7 +703,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_user_info_detail`
 
-<!-- Full path: /api/v1/weibo/app/fetch_user_info_detail -->
+**Full path:** /api/v1/weibo/app/fetch_user_info_detail
 
 ### Parameters
 
@@ -730,7 +730,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_user_original_posts`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_user_original_posts -->
+**Full path:** /api/v1/weibo/web_v2/fetch_user_original_posts
 
 ### Parameters
 
@@ -762,7 +762,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_user_posts`
 
-<!-- Full path: /api/v1/weibo/web/fetch_user_posts -->
+**Full path:** /api/v1/weibo/web/fetch_user_posts
 
 ### Parameters
 
@@ -791,7 +791,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_user_posts`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_user_posts -->
+**Full path:** /api/v1/weibo/web_v2/fetch_user_posts
 
 ### Parameters
 
@@ -829,7 +829,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_user_recommend_timeline`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_user_recommend_timeline -->
+**Full path:** /api/v1/weibo/web_v2/fetch_user_recommend_timeline
 
 ### Parameters
 
@@ -867,7 +867,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_user_timeline`
 
-<!-- Full path: /api/v1/weibo/app/fetch_user_timeline -->
+**Full path:** /api/v1/weibo/app/fetch_user_timeline
 
 ### Parameters
 
@@ -909,7 +909,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_user_video_collection_detail`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_user_video_collection_detail -->
+**Full path:** /api/v1/weibo/web_v2/fetch_user_video_collection_detail
 
 ### Parameters
 
@@ -941,7 +941,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_user_video_collection_list`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_user_video_collection_list -->
+**Full path:** /api/v1/weibo/web_v2/fetch_user_video_collection_list
 
 ### Parameters
 
@@ -969,7 +969,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_user_video_list`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_user_video_list -->
+**Full path:** /api/v1/weibo/web_v2/fetch_user_video_list
 
 ### Parameters
 
@@ -999,7 +999,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_video_detail`
 
-<!-- Full path: /api/v1/weibo/app/fetch_video_detail -->
+**Full path:** /api/v1/weibo/app/fetch_video_detail
 
 ### Parameters
 
@@ -1032,7 +1032,7 @@ https://weibo.com/tv/show/1034:5232127105761312）获取真实视频ID的必需�
 
 `GET /api/v1/weibo/web_v2/search_user_posts`
 
-<!-- Full path: /api/v1/weibo/web_v2/search_user_posts -->
+**Full path:** /api/v1/weibo/web_v2/search_user_posts
 
 ### Parameters
 

@@ -100,7 +100,7 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/tiktok/{endpoint}" \
 > ⚠️ **Capability Classification / 能力分类**
 > - **Read-only data queries** (majority): Video details, user profiles, search, trending, analytics — these only retrieve data.
 > - **App interaction triggers** ⚠️: `open_*_app_to_*` — these generate deep links that open the platform app. They do NOT directly send messages or perform actions; they only produce URLs the user can choose to open.
-> - **Protocol utilities** ⚠️: `generate_*`, `encrypt_*`, `decrypt_*`, `register_device` — these are API compatibility tools for request construction. They do NOT bypass security controls independently.
+> - **Protocol utilities** ⚠️: `generate_*`, `encrypt_*`, `decrypt_*`, `register_device` — these are API compatibility tools for request construction. They do NOT circumvent security controls independently.
 > - **Cookie-required endpoints** ⚠️: Some endpoints need a user session cookie for personalized data. See Cookie warnings below.
 > - **只读数据查询**（大多数）：视频详情、用户画像、搜索、热榜、分析——仅获取数据。
 > - **应用交互触发** ⚠️：`open_*_app_to_*`——生成打开平台应用的深度链接，不会直接发送消息或执行操作，仅生成用户可选择打开的 URL。
@@ -113,13 +113,13 @@ curl -s -X POST "https://www.aconfig.cn/api/v1/tiktok/{endpoint}" \
 
 | 禁止行为 | 正确做法 |
 |----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `<!-- Full path: -->` 中的路径 |
+| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
 | ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
 | ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
 | ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
 | ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `<!-- Full path: -->`**
+**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
 
 ## 🔒 安全合规声明 / Security & Compliance Declaration
 
@@ -237,8 +237,7 @@ Side-by-side table + differential insights.
 | "analyze" / "分析一下" | Switch to analyze mode |
 | "compare with X" / "和X对比" | Add X as second query |
 
-## Output Guidelines
-
+## Response Guidelines
 1. **Language consistency** — ALL output matches user's detected language.
 2. **Markdown links** — All URLs in `[text](url)` format.
 3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
@@ -282,7 +281,7 @@ Side-by-side table + differential insights.
 
 当 API 调用返回 **404 Not Found** 时，按以下流程处理：
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `<!-- Full path: -->` 标注的路径**完全一致**
+1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
 2. **常见 404 原因**：
    - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
    - ❌ 使用了已废弃/下线的接口路径

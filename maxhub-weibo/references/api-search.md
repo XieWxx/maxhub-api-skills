@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/weibo/app/fetch_ai_smart_search`
 
-<!-- Full path: /api/v1/weibo/app/fetch_ai_smart_search -->
+**Full path:** /api/v1/weibo/app/fetch_ai_smart_search
 
 ### Parameters
 
@@ -37,7 +37,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_hot_search`
 
-<!-- Full path: /api/v1/weibo/app/fetch_hot_search -->
+**Full path:** /api/v1/weibo/app/fetch_hot_search
 
 ### Parameters
 
@@ -79,7 +79,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_hot_search`
 
-<!-- Full path: /api/v1/weibo/web/fetch_hot_search -->
+**Full path:** /api/v1/weibo/web/fetch_hot_search
 
 ### Parameters
 
@@ -106,7 +106,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_hot_search_categories`
 
-<!-- Full path: /api/v1/weibo/app/fetch_hot_search_categories -->
+**Full path:** /api/v1/weibo/app/fetch_hot_search_categories
 
 ### Parameters
 
@@ -131,7 +131,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_hot_search_summary`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_hot_search_summary -->
+**Full path:** /api/v1/weibo/web_v2/fetch_hot_search_summary
 
 ### Parameters
 
@@ -158,7 +158,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_realtime_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_realtime_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_realtime_search
 
 ### Parameters
 
@@ -188,7 +188,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/app/fetch_search_all`
 
-<!-- Full path: /api/v1/weibo/app/fetch_search_all -->
+**Full path:** /api/v1/weibo/app/fetch_search_all
 
 ### Parameters
 
@@ -232,7 +232,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web/fetch_search_topics`
 
-<!-- Full path: /api/v1/weibo/web/fetch_search_topics -->
+**Full path:** /api/v1/weibo/web/fetch_search_topics
 
 ### Parameters
 
@@ -257,7 +257,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_topic_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_topic_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_topic_search
 
 ### Parameters
 
@@ -286,7 +286,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/weibo/web_v2/fetch_video_search`
 
-<!-- Full path: /api/v1/weibo/web_v2/fetch_video_search -->
+**Full path:** /api/v1/weibo/web_v2/fetch_video_search
 
 ### Parameters
 

@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/douyin/web/fetch_product_coupon`
 
-<!-- Full path: /api/v1/douyin/web/fetch_product_coupon -->
+**Full path:** /api/v1/douyin/web/fetch_product_coupon
 
 ### Parameters
 
@@ -32,7 +32,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_share_info_by_share_code`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_share_info_by_share_code -->
+**Full path:** /api/v1/douyin/app/v3/fetch_share_info_by_share_code
 
 ### Parameters
 
@@ -57,7 +57,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/generate_douyin_short_url`
 
-<!-- Full path: /api/v1/douyin/app/v3/generate_douyin_short_url -->
+**Full path:** /api/v1/douyin/app/v3/generate_douyin_short_url
 
 ### Parameters
 
@@ -82,7 +82,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/generate_real_msToken`
 
-<!-- Full path: /api/v1/douyin/web/generate_real_msToken -->
+**Full path:** /api/v1/douyin/web/generate_real_msToken
 
 ### Parameters
 
@@ -103,7 +103,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id`
 
-<!-- Full path: /api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id -->
+**Full path:** /api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id
 
 ### Parameters
 
@@ -132,7 +132,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_base_info_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_base_info_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_base_info_v1
 
 ### Parameters
 
@@ -166,7 +166,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_cp_info_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_cp_info_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_cp_info_v1
 
 ### Parameters
 
@@ -195,7 +195,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_service_price_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_service_price_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_service_price_v1
 
 ### Parameters
 

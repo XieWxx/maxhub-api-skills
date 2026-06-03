@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/pipixia/app/fetch_hashtag_detail`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_hashtag_detail -->
+**Full path:** /api/v1/pipixia/app/fetch_hashtag_detail
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_hashtag_post_list`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_hashtag_post_list -->
+**Full path:** /api/v1/pipixia/app/fetch_hashtag_post_list
 
 ### Parameters
 
@@ -72,7 +72,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_hot_search_board_detail`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_hot_search_board_detail -->
+**Full path:** /api/v1/pipixia/app/fetch_hot_search_board_detail
 
 ### Parameters
 
@@ -97,7 +97,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_hot_search_board_list`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_hot_search_board_list -->
+**Full path:** /api/v1/pipixia/app/fetch_hot_search_board_list
 
 ### Parameters
 
@@ -140,7 +140,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_post_comment_list`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_post_comment_list -->
+**Full path:** /api/v1/pipixia/app/fetch_post_comment_list
 
 ### Parameters
 
@@ -169,7 +169,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_post_detail`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_post_detail -->
+**Full path:** /api/v1/pipixia/app/fetch_post_detail
 
 ### Parameters
 
@@ -196,7 +196,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_post_statistics`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_post_statistics -->
+**Full path:** /api/v1/pipixia/app/fetch_post_statistics
 
 ### Parameters
 
@@ -221,7 +221,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_user_follower_list`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_user_follower_list -->
+**Full path:** /api/v1/pipixia/app/fetch_user_follower_list
 
 ### Parameters
 
@@ -248,7 +248,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_user_following_list`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_user_following_list -->
+**Full path:** /api/v1/pipixia/app/fetch_user_following_list
 
 ### Parameters
 
@@ -275,7 +275,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_user_info`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_user_info -->
+**Full path:** /api/v1/pipixia/app/fetch_user_info
 
 ### Parameters
 
@@ -300,7 +300,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/pipixia/app/fetch_user_post_list`
 
-<!-- Full path: /api/v1/pipixia/app/fetch_user_post_list -->
+**Full path:** /api/v1/pipixia/app/fetch_user_post_list
 
 ### Parameters
 

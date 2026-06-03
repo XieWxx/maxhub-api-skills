@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/xiaohongshu/web_v3/fetch_search_suggest`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_search_suggest -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_search_suggest
 
 ### Parameters
 
@@ -37,7 +37,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **参数校验提示**：该接口响应较慢（平均 7 秒+），建议设置较长超时时间。`page` 参数范围 1-50。
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_trending -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_trending
 
 ### Parameters
 
@@ -60,7 +60,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/search_groups`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/search_groups -->
+**Full path:** /api/v1/xiaohongshu/app_v2/search_groups
 
 ### Parameters
 
@@ -96,7 +96,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/search_images`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/search_images -->
+**Full path:** /api/v1/xiaohongshu/app_v2/search_images
 
 ### Parameters
 
@@ -134,7 +134,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/search_products`
 
-<!-- Full path: /api/v1/xiaohongshu/app/search_products -->
+**Full path:** /api/v1/xiaohongshu/app/search_products
 
 ### Parameters
 
@@ -191,7 +191,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/search_products`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/search_products -->
+**Full path:** /api/v1/xiaohongshu/app_v2/search_products
 
 ### Parameters
 

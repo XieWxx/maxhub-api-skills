@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/linkedin/web/get_ad_detail`
 
-<!-- Full path: /api/v1/linkedin/web/get_ad_detail -->
+**Full path:** /api/v1/linkedin/web/get_ad_detail
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/linkedin/web_v2/get_comment_replies`
 
-<!-- Full path: /api/v1/linkedin/web_v2/get_comment_replies -->
+**Full path:** /api/v1/linkedin/web_v2/get_comment_replies
 
 ### Parameters
 
@@ -68,7 +68,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/linkedin/web/get_comments_replies`
 
-<!-- Full path: /api/v1/linkedin/web/get_comments_replies -->
+**Full path:** /api/v1/linkedin/web/get_comments_replies
 
 ### Parameters
 
@@ -97,7 +97,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/linkedin/web/search_ads`
 
-<!-- Full path: /api/v1/linkedin/web/search_ads -->
+**Full path:** /api/v1/linkedin/web/search_ads
 
 ### Parameters
 

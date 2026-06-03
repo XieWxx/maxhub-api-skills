@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/reddit/app/fetch_comment_replies`
 
-<!-- Full path: /api/v1/reddit/app/fetch_comment_replies -->
+**Full path:** /api/v1/reddit/app/fetch_comment_replies
 
 ### Parameters
 
@@ -52,7 +52,7 @@ RANDOM
 
 `GET /api/v1/reddit/app/fetch_user_profile`
 
-<!-- Full path: /api/v1/reddit/app/fetch_user_profile -->
+**Full path:** /api/v1/reddit/app/fetch_user_profile
 
 ### Parameters
 

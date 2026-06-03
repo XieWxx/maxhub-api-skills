@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/sora2/get_cameo_leaderboard`
 
-<!-- Full path: /api/v1/sora2/get_cameo_leaderboard -->
+**Full path:** /api/v1/sora2/get_cameo_leaderboard
 
 ### Parameters
 
@@ -43,7 +43,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/sora2/get_user_cameo_appearances`
 
-<!-- Full path: /api/v1/sora2/get_user_cameo_appearances -->
+**Full path:** /api/v1/sora2/get_user_cameo_appearances
 
 ### Parameters
 
@@ -85,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/sora2/upload_image`
 
-<!-- Full path: /api/v1/sora2/upload_image -->
+**Full path:** /api/v1/sora2/upload_image
 
 ### Parameters
 

@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_product_list`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_product_list -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_product_list
 
 ### Parameters
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_product_recommendations`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_product_recommendations -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_product_recommendations
 
 ### Parameters
 

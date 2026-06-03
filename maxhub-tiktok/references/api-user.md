@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/tiktok/analytics/fetch_creator_info_and_milestones`
 
-<!-- Full path: /api/v1/tiktok/analytics/fetch_creator_info_and_milestones -->
+**Full path:** /api/v1/tiktok/analytics/fetch_creator_info_and_milestones
 
 ### Parameters
 
@@ -83,7 +83,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_search_live`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_search_live -->
+**Full path:** /api/v1/tiktok/web/fetch_search_live
 
 ### Parameters
 
@@ -121,7 +121,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_search_user`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_search_user -->
+**Full path:** /api/v1/tiktok/web/fetch_search_user
 
 ### Parameters
 
@@ -160,7 +160,7 @@ TikTok 不允许的关键词，或者搜索了敏感内容，请更换关键词�
 
 `GET /api/v1/tiktok/web/fetch_user_collect`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_user_collect -->
+**Full path:** /api/v1/tiktok/web/fetch_user_collect
 
 ### Parameters
 
@@ -205,7 +205,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_user_fans`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_user_fans -->
+**Full path:** /api/v1/tiktok/web/fetch_user_fans
 
 ### Parameters
 
@@ -245,7 +245,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_user_follow`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_user_follow -->
+**Full path:** /api/v1/tiktok/web/fetch_user_follow
 
 ### Parameters
 
@@ -285,7 +285,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_user_like`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_user_like -->
+**Full path:** /api/v1/tiktok/web/fetch_user_like
 
 ### Parameters
 
@@ -331,7 +331,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_user_profile`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_user_profile -->
+**Full path:** /api/v1/tiktok/web/fetch_user_profile
 
 ### Parameters
 
@@ -359,7 +359,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/tiktok/web/generate_x_mssdk_info`
 
-<!-- Full path: /api/v1/tiktok/web/generate_x_mssdk_info -->
+**Full path:** /api/v1/tiktok/web/generate_x_mssdk_info
 
 ### Parameters
 
@@ -385,7 +385,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/tiktok/creator/get_creator_account_info`
 
-<!-- Full path: /api/v1/tiktok/creator/get_creator_account_info -->
+**Full path:** /api/v1/tiktok/creator/get_creator_account_info
 
 ### Parameters
 
@@ -428,7 +428,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_hashtag_creator`
 
-<!-- Full path: /api/v1/tiktok/ads/get_hashtag_creator -->
+**Full path:** /api/v1/tiktok/ads/get_hashtag_creator
 
 ### Parameters
 
@@ -516,7 +516,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/tiktok/creator/get_live_analytics_summary`
 
-<!-- Full path: /api/v1/tiktok/creator/get_live_analytics_summary -->
+**Full path:** /api/v1/tiktok/creator/get_live_analytics_summary
 
 ### Parameters
 
@@ -565,7 +565,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_query_suggestions`
 
-<!-- Full path: /api/v1/tiktok/ads/get_query_suggestions -->
+**Full path:** /api/v1/tiktok/ads/get_query_suggestions
 
 ### Parameters
 

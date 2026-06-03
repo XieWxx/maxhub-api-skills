@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/instagram/v1/fetch_location_info`
 
-<!-- Full path: /api/v1/instagram/v1/fetch_location_info -->
+**Full path:** /api/v1/instagram/v1/fetch_location_info
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v1/fetch_related_profiles`
 
-<!-- Full path: /api/v1/instagram/v1/fetch_related_profiles -->
+**Full path:** /api/v1/instagram/v1/fetch_related_profiles
 
 ### Parameters
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v1/fetch_search`
 
-<!-- Full path: /api/v1/instagram/v1/fetch_search -->
+**Full path:** /api/v1/instagram/v1/fetch_search
 
 ### Parameters
 
@@ -91,7 +91,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/fetch_similar_users`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_similar_users -->
+**Full path:** /api/v1/instagram/v2/fetch_similar_users
 
 ### Parameters
 
@@ -119,7 +119,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/fetch_user_followers`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_user_followers -->
+**Full path:** /api/v1/instagram/v2/fetch_user_followers
 
 ### Parameters
 
@@ -150,7 +150,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/fetch_user_following`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_user_following -->
+**Full path:** /api/v1/instagram/v2/fetch_user_following
 
 ### Parameters
 
@@ -181,7 +181,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/fetch_user_highlights`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_user_highlights -->
+**Full path:** /api/v1/instagram/v2/fetch_user_highlights
 
 ### Parameters
 
@@ -209,7 +209,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/fetch_user_info`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_user_info -->
+**Full path:** /api/v1/instagram/v2/fetch_user_info
 
 ### Parameters
 
@@ -238,7 +238,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v1/fetch_user_info_by_id`
 
-<!-- Full path: /api/v1/instagram/v1/fetch_user_info_by_id -->
+**Full path:** /api/v1/instagram/v1/fetch_user_info_by_id
 
 ### Parameters
 
@@ -263,7 +263,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v1/fetch_user_reels`
 
-<!-- Full path: /api/v1/instagram/v1/fetch_user_reels -->
+**Full path:** /api/v1/instagram/v1/fetch_user_reels
 
 ### Parameters
 
@@ -293,7 +293,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v1/fetch_user_reels`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_user_reels -->
+**Full path:** /api/v1/instagram/v2/fetch_user_reels
 
 ### Parameters
 
@@ -324,7 +324,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/fetch_user_stories`
 
-<!-- Full path: /api/v1/instagram/v2/fetch_user_stories -->
+**Full path:** /api/v1/instagram/v2/fetch_user_stories
 
 ### Parameters
 
@@ -352,7 +352,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_recommended_reels`
 
-<!-- Full path: /api/v1/instagram/v3/get_recommended_reels -->
+**Full path:** /api/v1/instagram/v3/get_recommended_reels
 
 ### Parameters
 
@@ -398,7 +398,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_about`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_about -->
+**Full path:** /api/v1/instagram/v3/get_user_about
 
 ### Parameters
 
@@ -429,7 +429,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_former_usernames`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_former_usernames -->
+**Full path:** /api/v1/instagram/v3/get_user_former_usernames
 
 ### Parameters
 
@@ -458,7 +458,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_highlights`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_highlights -->
+**Full path:** /api/v1/instagram/v3/get_user_highlights
 
 ### Parameters
 
@@ -508,7 +508,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_id_by_username`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_id_by_username -->
+**Full path:** /api/v1/instagram/v3/get_user_id_by_username
 
 ### Parameters
 
@@ -534,7 +534,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_profile`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_profile -->
+**Full path:** /api/v1/instagram/v3/get_user_profile
 
 ### Parameters
 
@@ -574,7 +574,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_reels`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_reels -->
+**Full path:** /api/v1/instagram/v3/get_user_reels
 
 ### Parameters
 
@@ -630,7 +630,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v3/get_user_stories`
 
-<!-- Full path: /api/v1/instagram/v3/get_user_stories -->
+**Full path:** /api/v1/instagram/v3/get_user_stories
 
 ### Parameters
 
@@ -675,7 +675,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/search_reels`
 
-<!-- Full path: /api/v1/instagram/v2/search_reels -->
+**Full path:** /api/v1/instagram/v2/search_reels
 
 ### Parameters
 
@@ -704,7 +704,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/search_users`
 
-<!-- Full path: /api/v1/instagram/v2/search_users -->
+**Full path:** /api/v1/instagram/v2/search_users
 
 ### Parameters
 
@@ -729,7 +729,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/search_users`
 
-<!-- Full path: /api/v1/instagram/v3/search_users -->
+**Full path:** /api/v1/instagram/v3/search_users
 
 ### Parameters
 
@@ -760,7 +760,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/instagram/v2/user_id_to_username`
 
-<!-- Full path: /api/v1/instagram/v2/user_id_to_username -->
+**Full path:** /api/v1/instagram/v2/user_id_to_username
 
 ### Parameters
 

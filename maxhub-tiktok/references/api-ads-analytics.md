@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `POST /api/v1/tiktok/creator/get_account_health_status`
 
-<!-- Full path: /api/v1/tiktok/creator/get_account_health_status -->
+**Full path:** /api/v1/tiktok/creator/get_account_health_status
 
 ### Parameters
 
@@ -60,7 +60,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/tiktok/creator/get_account_insights_overview`
 
-<!-- Full path: /api/v1/tiktok/creator/get_account_insights_overview -->
+**Full path:** /api/v1/tiktok/creator/get_account_insights_overview
 
 ### Parameters
 
@@ -103,7 +103,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_ad_interactive_analysis`
 
-<!-- Full path: /api/v1/tiktok/ads/get_ad_interactive_analysis -->
+**Full path:** /api/v1/tiktok/ads/get_ad_interactive_analysis
 
 ### Parameters
 
@@ -169,7 +169,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_ad_keyframe_analysis`
 
-<!-- Full path: /api/v1/tiktok/ads/get_ad_keyframe_analysis -->
+**Full path:** /api/v1/tiktok/ads/get_ad_keyframe_analysis
 
 ### Parameters
 
@@ -225,7 +225,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_ad_percentile`
 
-<!-- Full path: /api/v1/tiktok/ads/get_ad_percentile -->
+**Full path:** /api/v1/tiktok/ads/get_ad_percentile
 
 ### Parameters
 
@@ -289,7 +289,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_creative_patterns`
 
-<!-- Full path: /api/v1/tiktok/ads/get_creative_patterns -->
+**Full path:** /api/v1/tiktok/ads/get_creative_patterns
 
 ### Parameters
 
@@ -359,7 +359,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_creator_filters`
 
-<!-- Full path: /api/v1/tiktok/ads/get_creator_filters -->
+**Full path:** /api/v1/tiktok/ads/get_creator_filters
 
 ### Parameters
 
@@ -408,7 +408,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_product_filters`
 
-<!-- Full path: /api/v1/tiktok/ads/get_product_filters -->
+**Full path:** /api/v1/tiktok/ads/get_product_filters
 
 ### Parameters
 
@@ -480,7 +480,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_product_metrics`
 
-<!-- Full path: /api/v1/tiktok/ads/get_product_metrics -->
+**Full path:** /api/v1/tiktok/ads/get_product_metrics
 
 ### Parameters
 
@@ -586,7 +586,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_top_ads_spotlight`
 
-<!-- Full path: /api/v1/tiktok/ads/get_top_ads_spotlight -->
+**Full path:** /api/v1/tiktok/ads/get_top_ads_spotlight
 
 ### Parameters
 

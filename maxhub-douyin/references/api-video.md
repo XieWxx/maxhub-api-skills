@@ -11,7 +11,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/douyin/web/douyin_live_room`
 
-<!-- Full path: /api/v1/douyin/web/douyin_live_room -->
+**Full path:** /api/v1/douyin/web/douyin_live_room
 
 ### Parameters
 
@@ -60,7 +60,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_brand_hot_search_list_detail`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_brand_hot_search_list_detail -->
+**Full path:** /api/v1/douyin/app/v3/fetch_brand_hot_search_list_detail
 
 ### Parameters
 
@@ -85,7 +85,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_brand_hot_videos_time_scope`
 
-<!-- Full path: /api/v1/douyin/index/fetch_brand_hot_videos_time_scope -->
+**Full path:** /api/v1/douyin/index/fetch_brand_hot_videos_time_scope
 
 ### Parameters
 
@@ -109,7 +109,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_cartoon_aweme`
 
-<!-- Full path: /api/v1/douyin/web/fetch_cartoon_aweme -->
+**Full path:** /api/v1/douyin/web/fetch_cartoon_aweme
 
 ### Parameters
 
@@ -134,7 +134,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
 
-游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
+游客cookie获取接口：https://www.aconfig.cn/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 二次元作品数据
 
@@ -142,7 +142,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/web/fetch_challenge_posts`
 
-<!-- Full path: /api/v1/douyin/web/fetch_challenge_posts -->
+**Full path:** /api/v1/douyin/web/fetch_challenge_posts
 
 ### Parameters
 
@@ -170,7 +170,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_challenge_suggest`
 
-<!-- Full path: /api/v1/douyin/search/fetch_challenge_suggest -->
+**Full path:** /api/v1/douyin/search/fetch_challenge_suggest
 
 ### Parameters
 
@@ -222,7 +222,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_content_creative_keyword_items`
 
-<!-- Full path: /api/v1/douyin/index/fetch_content_creative_keyword_items -->
+**Full path:** /api/v1/douyin/index/fetch_content_creative_keyword_items
 
 ### Parameters
 
@@ -256,7 +256,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_creator_activity_detail`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_creator_activity_detail -->
+**Full path:** /api/v1/douyin/creator/fetch_creator_activity_detail
 
 ### Parameters
 
@@ -281,7 +281,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_creator_hot_music_billboard`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_creator_hot_music_billboard -->
+**Full path:** /api/v1/douyin/creator/fetch_creator_hot_music_billboard
 
 ### Parameters
 
@@ -310,7 +310,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_creator_material_center_billboard`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_creator_material_center_billboard -->
+**Full path:** /api/v1/douyin/creator/fetch_creator_material_center_billboard
 
 ### Parameters
 
@@ -372,7 +372,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_creator_material_center_related`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_creator_material_center_related -->
+**Full path:** /api/v1/douyin/creator/fetch_creator_material_center_related
 
 ### Parameters
 
@@ -410,7 +410,7 @@ query_id 后，再用本接口拉取该条目下的相关视频
 
 `POST /api/v1/douyin/index/fetch_daren_great_user_top_video`
 
-<!-- Full path: /api/v1/douyin/index/fetch_daren_great_user_top_video -->
+**Full path:** /api/v1/douyin/index/fetch_daren_great_user_top_video
 
 ### Parameters
 
@@ -445,7 +445,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口获取游客级别的公开访问凭证，不涉及任何用户账号或敏感信息。
 
-<!-- Full path: /api/v1/douyin/web/fetch_douyin_web_guest_cookie -->
+**Full path:** /api/v1/douyin/web/fetch_douyin_web_guest_cookie
 
 ### Parameters
 
@@ -474,7 +474,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_food_aweme`
 
-<!-- Full path: /api/v1/douyin/web/fetch_food_aweme -->
+**Full path:** /api/v1/douyin/web/fetch_food_aweme
 
 ### Parameters
 
@@ -499,7 +499,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
 
-游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
+游客cookie获取接口：https://www.aconfig.cn/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 美食作品数据
 
@@ -507,7 +507,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_game_aweme`
 
-<!-- Full path: /api/v1/douyin/web/fetch_game_aweme -->
+**Full path:** /api/v1/douyin/web/fetch_game_aweme
 
 ### Parameters
 
@@ -532,7 +532,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
 
-游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
+游客cookie获取接口：https://www.aconfig.cn/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 游戏作品数据
 
@@ -540,7 +540,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_hashtag_detail`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_hashtag_detail -->
+**Full path:** /api/v1/douyin/app/v3/fetch_hashtag_detail
 
 ### Parameters
 
@@ -565,7 +565,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_hashtag_video_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_hashtag_video_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_hashtag_video_list
 
 ### Parameters
 
@@ -596,7 +596,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_home_feed`
 
-<!-- Full path: /api/v1/douyin/web/fetch_home_feed -->
+**Full path:** /api/v1/douyin/web/fetch_home_feed
 
 ### Parameters
 
@@ -623,7 +623,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_account_item_analysis_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_account_item_analysis_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_account_item_analysis_list
 
 ### Parameters
 
@@ -649,7 +649,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_calendar_detail`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_calendar_detail -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_calendar_detail
 
 ### Parameters
 
@@ -674,7 +674,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_comment_word_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_comment_word_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_comment_word_list
 
 ### Parameters
 
@@ -699,7 +699,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_item_trends_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_item_trends_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_item_trends_list
 
 ### Parameters
 
@@ -728,7 +728,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/billboard/fetch_hot_total_high_play_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_high_play_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_high_play_list
 
 ### Parameters
 
@@ -758,7 +758,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_total_hot_word_detail_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_hot_word_detail_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_hot_word_detail_list
 
 ### Parameters
 
@@ -787,7 +787,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/billboard/fetch_hot_total_video_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_total_video_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_total_video_list
 
 ### Parameters
 
@@ -818,7 +818,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/billboard/fetch_hot_user_portrait_list`
 
-<!-- Full path: /api/v1/douyin/billboard/fetch_hot_user_portrait_list -->
+**Full path:** /api/v1/douyin/billboard/fetch_hot_user_portrait_list
 
 ### Parameters
 
@@ -845,7 +845,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/index/fetch_insight_get_rec`
 
-<!-- Full path: /api/v1/douyin/index/fetch_insight_get_rec -->
+**Full path:** /api/v1/douyin/index/fetch_insight_get_rec
 
 ### Parameters
 
@@ -872,7 +872,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/index/fetch_insight_recommend`
 
-<!-- Full path: /api/v1/douyin/index/fetch_insight_recommend -->
+**Full path:** /api/v1/douyin/index/fetch_insight_recommend
 
 ### Parameters
 
@@ -893,7 +893,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_analysis_involved_vertical`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_analysis_involved_vertical -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_analysis_involved_vertical
 
 ### Parameters
 
@@ -948,7 +948,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_audience_others`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_audience_others -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_audience_others
 
 ### Parameters
 
@@ -1006,7 +1006,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_audience_portrait`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_audience_portrait -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_audience_portrait
 
 ### Parameters
 
@@ -1110,7 +1110,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_danmaku_analysis`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_danmaku_analysis -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_danmaku_analysis
 
 ### Parameters
 
@@ -1186,7 +1186,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/index/fetch_item_filter_options`
 
-<!-- Full path: /api/v1/douyin/index/fetch_item_filter_options -->
+**Full path:** /api/v1/douyin/index/fetch_item_filter_options
 
 ### Parameters
 
@@ -1212,7 +1212,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_list`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_list -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_list
 
 ### Parameters
 
@@ -1326,7 +1326,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_list_download`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_list_download -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_list_download
 
 ### Parameters
 
@@ -1419,7 +1419,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_overview_data`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_overview_data -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_overview_data
 
 ### Parameters
 
@@ -1479,7 +1479,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_play_source`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_play_source -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_play_source
 
 ### Parameters
 
@@ -1543,7 +1543,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_item_query`
 
-<!-- Full path: /api/v1/douyin/index/fetch_item_query -->
+**Full path:** /api/v1/douyin/index/fetch_item_query
 
 ### Parameters
 
@@ -1588,7 +1588,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_search_keyword`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_search_keyword -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_search_keyword
 
 ### Parameters
 
@@ -1652,7 +1652,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_item_sug`
 
-<!-- Full path: /api/v1/douyin/index/fetch_item_sug -->
+**Full path:** /api/v1/douyin/index/fetch_item_sug
 
 ### Parameters
 
@@ -1677,7 +1677,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_watch_trend`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_watch_trend -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_watch_trend
 
 ### Parameters
 
@@ -1758,7 +1758,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_knowledge_aweme`
 
-<!-- Full path: /api/v1/douyin/web/fetch_knowledge_aweme -->
+**Full path:** /api/v1/douyin/web/fetch_knowledge_aweme
 
 ### Parameters
 
@@ -1783,7 +1783,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
 
-游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
+游客cookie获取接口：https://www.aconfig.cn/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 知识作品数据
 
@@ -1791,7 +1791,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_live_im_fetch`
 
-<!-- Full path: /api/v1/douyin/web/fetch_live_im_fetch -->
+**Full path:** /api/v1/douyin/web/fetch_live_im_fetch
 
 ### Parameters
 
@@ -1818,7 +1818,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/app/v3/fetch_multi_video`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_multi_video -->
+**Full path:** /api/v1/douyin/app/v3/fetch_multi_video
 
 ### Parameters
 
@@ -1848,7 +1848,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/app/v3/fetch_multi_video`
 
-<!-- Full path: /api/v1/douyin/web/fetch_multi_video -->
+**Full path:** /api/v1/douyin/web/fetch_multi_video
 
 ### Parameters
 
@@ -1871,7 +1871,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/app/v3/fetch_multi_video_high_quality_play_url`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_multi_video_high_quality_play_url -->
+**Full path:** /api/v1/douyin/app/v3/fetch_multi_video_high_quality_play_url
 
 ### Parameters
 
@@ -1911,7 +1911,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/app/v3/fetch_multi_video_high_quality_play_url`
 
-<!-- Full path: /api/v1/douyin/web/fetch_multi_video_high_quality_play_url -->
+**Full path:** /api/v1/douyin/web/fetch_multi_video_high_quality_play_url
 
 ### Parameters
 
@@ -1951,7 +1951,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_multi_video_statistics`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_multi_video_statistics -->
+**Full path:** /api/v1/douyin/app/v3/fetch_multi_video_statistics
 
 ### Parameters
 
@@ -1982,7 +1982,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/app/v3/fetch_multi_video_v2`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_multi_video_v2 -->
+**Full path:** /api/v1/douyin/app/v3/fetch_multi_video_v2
 
 ### Parameters
 
@@ -2012,7 +2012,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_music_aweme`
 
-<!-- Full path: /api/v1/douyin/web/fetch_music_aweme -->
+**Full path:** /api/v1/douyin/web/fetch_music_aweme
 
 ### Parameters
 
@@ -2037,7 +2037,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
  - refresh_index: 翻页索引，默认为1
  - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
 
-游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
+游客cookie获取接口：https://www.aconfig.cn/api/v1/douyin/web/fetch_douyin_web_guest_cookie
   ### 返回:
  - 音乐作品数据
 
@@ -2045,7 +2045,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_music_detail`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_music_detail -->
+**Full path:** /api/v1/douyin/app/v3/fetch_music_detail
 
 ### Parameters
 
@@ -2070,7 +2070,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_music_hot_search_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_music_hot_search_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_music_hot_search_list
 
 ### Parameters
 
@@ -2101,7 +2101,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_music_search`
 
-<!-- Full path: /api/v1/douyin/search/fetch_music_search -->
+**Full path:** /api/v1/douyin/search/fetch_music_search
 
 ### Parameters
 
@@ -2183,7 +2183,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_music_video_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_music_video_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_music_video_list
 
 ### Parameters
 
@@ -2212,7 +2212,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_one_video -->
+**Full path:** /api/v1/douyin/app/v3/fetch_one_video
 
 ### Parameters
 
@@ -2245,7 +2245,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video`
 
-<!-- Full path: /api/v1/douyin/web/fetch_one_video -->
+**Full path:** /api/v1/douyin/web/fetch_one_video
 
 ### Parameters
 
@@ -2274,7 +2274,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video_by_share_url`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_one_video_by_share_url -->
+**Full path:** /api/v1/douyin/app/v3/fetch_one_video_by_share_url
 
 ### Parameters
 
@@ -2307,7 +2307,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video_by_share_url`
 
-<!-- Full path: /api/v1/douyin/web/fetch_one_video_by_share_url -->
+**Full path:** /api/v1/douyin/web/fetch_one_video_by_share_url
 
 ### Parameters
 
@@ -2333,7 +2333,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_one_video_danmaku`
 
-<!-- Full path: /api/v1/douyin/web/fetch_one_video_danmaku -->
+**Full path:** /api/v1/douyin/web/fetch_one_video_danmaku
 
 ### Parameters
 
@@ -2364,7 +2364,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video_v2`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_one_video_v2 -->
+**Full path:** /api/v1/douyin/app/v3/fetch_one_video_v2
 
 ### Parameters
 
@@ -2397,7 +2397,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video_v2`
 
-<!-- Full path: /api/v1/douyin/web/fetch_one_video_v2 -->
+**Full path:** /api/v1/douyin/web/fetch_one_video_v2
 
 ### Parameters
 
@@ -2422,7 +2422,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_one_video_v3`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_one_video_v3 -->
+**Full path:** /api/v1/douyin/app/v3/fetch_one_video_v3
 
 ### Parameters
 
@@ -2448,7 +2448,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_product_review_score`
 
-<!-- Full path: /api/v1/douyin/web/fetch_product_review_score -->
+**Full path:** /api/v1/douyin/web/fetch_product_review_score
 
 ### Parameters
 
@@ -2465,7 +2465,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_related_posts`
 
-<!-- Full path: /api/v1/douyin/web/fetch_related_posts -->
+**Full path:** /api/v1/douyin/web/fetch_related_posts
 
 ### Parameters
 
@@ -2494,7 +2494,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/index/fetch_report_detail`
 
-<!-- Full path: /api/v1/douyin/index/fetch_report_detail -->
+**Full path:** /api/v1/douyin/index/fetch_report_detail
 
 ### Parameters
 
@@ -2522,7 +2522,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_search_suggest`
 
-<!-- Full path: /api/v1/douyin/search/fetch_search_suggest -->
+**Full path:** /api/v1/douyin/search/fetch_search_suggest
 
 ### Parameters
 
@@ -2588,7 +2588,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_series_aweme`
 
-<!-- Full path: /api/v1/douyin/web/fetch_series_aweme -->
+**Full path:** /api/v1/douyin/web/fetch_series_aweme
 
 ### Parameters
 
@@ -2631,7 +2631,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
     - 124: 其他
 - cookie: 用户自行提供的Cookie，推荐使用自己的抖音Cookie，否则在翻页时可能会出现数据重复的问题
 
-游客cookie获取接口：https://api.maxhub.io/api/v1/douyin/web/fetch_douyin_web_guest_cookie
+游客cookie获取接口：https://www.aconfig.cn/api/v1/douyin/web/fetch_douyin_web_guest_cookie
  ### 返回:
  - 短剧作品数据
 
@@ -2639,7 +2639,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_series_detail`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_series_detail -->
+**Full path:** /api/v1/douyin/app/v3/fetch_series_detail
 
 ### Parameters
 
@@ -2671,7 +2671,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_series_video_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_series_video_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_series_video_list
 
 ### Parameters
 
@@ -2702,7 +2702,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/web/fetch_user_collection_videos`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_collection_videos -->
+**Full path:** /api/v1/douyin/web/fetch_user_collection_videos
 
 ### Parameters
 
@@ -2727,7 +2727,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_user_collects_videos`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_collects_videos -->
+**Full path:** /api/v1/douyin/web/fetch_user_collects_videos
 
 ### Parameters
 
@@ -2756,7 +2756,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_user_like_videos`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_user_like_videos -->
+**Full path:** /api/v1/douyin/app/v3/fetch_user_like_videos
 
 ### Parameters
 
@@ -2785,7 +2785,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/app/v3/fetch_user_like_videos`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_like_videos -->
+**Full path:** /api/v1/douyin/web/fetch_user_like_videos
 
 ### Parameters
 
@@ -2811,7 +2811,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_user_live_videos`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_live_videos -->
+**Full path:** /api/v1/douyin/web/fetch_user_live_videos
 
 ### Parameters
 
@@ -2840,7 +2840,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_user_live_videos_by_room_id_v2`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_live_videos_by_room_id_v2 -->
+**Full path:** /api/v1/douyin/web/fetch_user_live_videos_by_room_id_v2
 
 ### Parameters
 
@@ -2867,7 +2867,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_user_live_videos_by_sec_uid`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_live_videos_by_sec_uid -->
+**Full path:** /api/v1/douyin/web/fetch_user_live_videos_by_sec_uid
 
 ### Parameters
 
@@ -2892,7 +2892,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_user_mix_videos`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_mix_videos -->
+**Full path:** /api/v1/douyin/web/fetch_user_mix_videos
 
 ### Parameters
 
@@ -2921,7 +2921,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_user_post_videos`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_user_post_videos -->
+**Full path:** /api/v1/douyin/app/v3/fetch_user_post_videos
 
 ### Parameters
 
@@ -2954,7 +2954,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_user_post_videos`
 
-<!-- Full path: /api/v1/douyin/web/fetch_user_post_videos -->
+**Full path:** /api/v1/douyin/web/fetch_user_post_videos
 
 ### Parameters
 
@@ -2992,7 +2992,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_user_series_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_user_series_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_user_series_list
 
 ### Parameters
 
@@ -3024,7 +3024,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_video_channel_result`
 
-<!-- Full path: /api/v1/douyin/web/fetch_video_channel_result -->
+**Full path:** /api/v1/douyin/web/fetch_video_channel_result
 
 ### Parameters
 
@@ -3054,7 +3054,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_comment_replies`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_video_comment_replies -->
+**Full path:** /api/v1/douyin/app/v3/fetch_video_comment_replies
 
 ### Parameters
 
@@ -3085,7 +3085,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_comment_replies`
 
-<!-- Full path: /api/v1/douyin/web/fetch_video_comment_replies -->
+**Full path:** /api/v1/douyin/web/fetch_video_comment_replies
 
 ### Parameters
 
@@ -3118,7 +3118,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⛔ **已废弃**：上游接口已下线（返回 404）。替代接口：`/api/v1/douyin/web/fetch_video_comments`。请勿使用此接口。
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_video_comments -->
+**Full path:** /api/v1/douyin/app/v3/fetch_video_comments
 
 ### Parameters
 
@@ -3147,7 +3147,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_comments`
 
-<!-- Full path: /api/v1/douyin/web/fetch_video_comments -->
+**Full path:** /api/v1/douyin/web/fetch_video_comments
 
 ### Parameters
 
@@ -3176,7 +3176,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_video_danmaku_list`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_video_danmaku_list -->
+**Full path:** /api/v1/douyin/creator/fetch_video_danmaku_list
 
 ### Parameters
 
@@ -3209,7 +3209,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_high_quality_play_url`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_video_high_quality_play_url -->
+**Full path:** /api/v1/douyin/app/v3/fetch_video_high_quality_play_url
 
 ### Parameters
 
@@ -3248,7 +3248,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_high_quality_play_url`
 
-<!-- Full path: /api/v1/douyin/web/fetch_video_high_quality_play_url -->
+**Full path:** /api/v1/douyin/web/fetch_video_high_quality_play_url
 
 ### Parameters
 
@@ -3287,7 +3287,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_mix_detail`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_video_mix_detail -->
+**Full path:** /api/v1/douyin/app/v3/fetch_video_mix_detail
 
 ### Parameters
 
@@ -3312,7 +3312,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_mix_post_list`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_video_mix_post_list -->
+**Full path:** /api/v1/douyin/app/v3/fetch_video_mix_post_list
 
 ### Parameters
 
@@ -3341,7 +3341,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_video_search_v1`
 
-<!-- Full path: /api/v1/douyin/search/fetch_video_search_v1 -->
+**Full path:** /api/v1/douyin/search/fetch_video_search_v1
 
 ### Parameters
 
@@ -3458,7 +3458,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/search/fetch_video_search_v2`
 
-<!-- Full path: /api/v1/douyin/search/fetch_video_search_v2 -->
+**Full path:** /api/v1/douyin/search/fetch_video_search_v2
 
 ### Parameters
 
@@ -3577,7 +3577,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/fetch_video_statistics`
 
-<!-- Full path: /api/v1/douyin/app/v3/fetch_video_statistics -->
+**Full path:** /api/v1/douyin/app/v3/fetch_video_statistics
 
 ### Parameters
 
@@ -3612,7 +3612,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
-<!-- Full path: /api/v1/douyin/web/generate_a_bogus -->
+**Full path:** /api/v1/douyin/web/generate_a_bogus
 
 ### Parameters
 
@@ -3641,7 +3641,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/app/v3/generate_douyin_video_share_qrcode`
 
-<!-- Full path: /api/v1/douyin/app/v3/generate_douyin_video_share_qrcode -->
+**Full path:** /api/v1/douyin/app/v3/generate_douyin_video_share_qrcode
 
 ### Parameters
 
@@ -3670,7 +3670,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
-<!-- Full path: /api/v1/douyin/web/generate_s_v_web_id -->
+**Full path:** /api/v1/douyin/web/generate_s_v_web_id
 
 ### Parameters
 
@@ -3695,7 +3695,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口生成上游平台要求的会话标识符，是标准 API 认证流程。
 
-<!-- Full path: /api/v1/douyin/web/generate_ttwid -->
+**Full path:** /api/v1/douyin/web/generate_ttwid
 
 ### Parameters
 
@@ -3722,7 +3722,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口生成上游平台要求的验证参数，是标准 API 认证流程。
 
-<!-- Full path: /api/v1/douyin/web/generate_verify_fp -->
+**Full path:** /api/v1/douyin/web/generate_verify_fp
 
 ### Parameters
 
@@ -3747,7 +3747,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口生成 WebSocket 连接所需的签名参数，是标准 API 认证流程。
 
-<!-- Full path: /api/v1/douyin/web/generate_wss_xb_signature -->
+**Full path:** /api/v1/douyin/web/generate_wss_xb_signature
 
 ### Parameters
 
@@ -3780,7 +3780,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > 📌 **合法用途**：此接口生成上游平台要求的请求签名参数，等同于 OAuth 签名生成，是标准 API 认证流程。
 
-<!-- Full path: /api/v1/douyin/web/generate_x_bogus -->
+**Full path:** /api/v1/douyin/web/generate_x_bogus
 
 ### Parameters
 
@@ -3801,7 +3801,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/web/get_all_aweme_id`
 
-<!-- Full path: /api/v1/douyin/web/get_all_aweme_id -->
+**Full path:** /api/v1/douyin/web/get_all_aweme_id
 
 ### Parameters
 
@@ -3824,7 +3824,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_author_show_items`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_author_show_items -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_author_show_items
 
 ### Parameters
 
@@ -3859,7 +3859,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/get_aweme_id`
 
-<!-- Full path: /api/v1/douyin/web/get_aweme_id -->
+**Full path:** /api/v1/douyin/web/get_aweme_id
 
 ### Parameters
 
@@ -3884,7 +3884,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_ip_activity_detail`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_ip_activity_detail -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_ip_activity_detail
 
 ### Parameters
 
@@ -3909,7 +3909,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_catalog`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_catalog -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_catalog
 
 ### Parameters
 
@@ -3930,7 +3930,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_list`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_list -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_list
 
 ### Parameters
 
@@ -3965,7 +3965,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/xingtu_v2/get_recommend_for_star_authors`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_recommend_for_star_authors -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_recommend_for_star_authors
 
 ### Parameters
 
@@ -3995,7 +3995,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_convert_video_display_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_convert_video_display_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_convert_video_display_v1
 
 ### Parameters
 
@@ -4029,7 +4029,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_rec_videos_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_rec_videos_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_rec_videos_v1
 
 ### Parameters
 
@@ -4058,7 +4058,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_video_performance_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_video_performance_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_video_performance_v1
 
 ### Parameters
 
@@ -4093,7 +4093,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **非只读接口**：此接口生成应用深度链接，可触发抖音私信界面。仅生成 URL，不直接发送消息。
 
-<!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_send_private_message -->
+**Full path:** /api/v1/douyin/app/v3/open_douyin_app_to_send_private_message
 
 ### Parameters
 
@@ -4123,7 +4123,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **非只读接口**：此接口生成应用深度链接，可打开抖音视频详情页。
 
-<!-- Full path: /api/v1/douyin/app/v3/open_douyin_app_to_video_detail -->
+**Full path:** /api/v1/douyin/app/v3/open_douyin_app_to_video_detail
 
 ### Parameters
 
@@ -4150,7 +4150,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **协议工具**：此接口注册设备标识，用于 API 请求构造。
 
-<!-- Full path: /api/v1/douyin/app/v3/register_device -->
+**Full path:** /api/v1/douyin/app/v3/register_device
 
 ### Parameters
 

@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/youtube/web_v2/get_general_search_v2`
 
-<!-- Full path: /api/v1/youtube/web_v2/get_general_search_v2 -->
+**Full path:** /api/v1/youtube/web_v2/get_general_search_v2
 
 ### Parameters
 

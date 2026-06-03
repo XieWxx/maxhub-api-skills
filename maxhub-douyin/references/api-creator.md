@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/douyin/index/fetch_all_area`
 
-<!-- Full path: /api/v1/douyin/index/fetch_all_area -->
+**Full path:** /api/v1/douyin/index/fetch_all_area
 
 ### Parameters
 
@@ -29,7 +29,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_author_diagnosis`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_author_diagnosis -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_author_diagnosis
 
 ### Parameters
 
@@ -177,7 +177,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_creator_material_center_config`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_creator_material_center_config -->
+**Full path:** /api/v1/douyin/creator/fetch_creator_material_center_config
 
 ### Parameters
 
@@ -198,7 +198,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/index/fetch_daren_great_item_mile_info`
 
-<!-- Full path: /api/v1/douyin/index/fetch_daren_great_item_mile_info -->
+**Full path:** /api/v1/douyin/index/fetch_daren_great_item_mile_info
 
 ### Parameters
 
@@ -223,7 +223,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_industry_category_config`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_industry_category_config -->
+**Full path:** /api/v1/douyin/creator/fetch_industry_category_config
 
 ### Parameters
 
@@ -284,7 +284,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_analysis_item_performance`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_analysis_item_performance -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_analysis_item_performance
 
 ### Parameters
 
@@ -354,7 +354,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/douyin/creator_v2/fetch_item_analysis_overview`
 
-<!-- Full path: /api/v1/douyin/creator_v2/fetch_item_analysis_overview -->
+**Full path:** /api/v1/douyin/creator_v2/fetch_item_analysis_overview
 
 ### Parameters
 
@@ -419,7 +419,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/creator/fetch_mission_task_list`
 
-<!-- Full path: /api/v1/douyin/creator/fetch_mission_task_list -->
+**Full path:** /api/v1/douyin/creator/fetch_mission_task_list
 
 ### Parameters
 
@@ -511,7 +511,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_product_review_list`
 
-<!-- Full path: /api/v1/douyin/web/fetch_product_review_list -->
+**Full path:** /api/v1/douyin/web/fetch_product_review_list
 
 ### Parameters
 
@@ -531,7 +531,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/web/fetch_product_sku_list`
 
-<!-- Full path: /api/v1/douyin/web/fetch_product_sku_list -->
+**Full path:** /api/v1/douyin/web/fetch_product_sku_list
 
 ### Parameters
 
@@ -548,7 +548,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_author_base_info`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_author_base_info -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_author_base_info
 
 ### Parameters
 
@@ -583,7 +583,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_author_business_card_info`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_author_business_card_info -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_author_business_card_info
 
 ### Parameters
 
@@ -608,7 +608,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_author_local_info`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_author_local_info -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_author_local_info
 
 ### Parameters
 
@@ -639,7 +639,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_author_spread_info`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_author_spread_info -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_author_spread_info
 
 ### Parameters
 
@@ -676,7 +676,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_excellent_case_category_list`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_excellent_case_category_list -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_excellent_case_category_list
 
 ### Parameters
 
@@ -701,7 +701,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu_v2/get_resource_list`
 
-<!-- Full path: /api/v1/douyin/xingtu_v2/get_resource_list -->
+**Full path:** /api/v1/douyin/xingtu_v2/get_resource_list
 
 ### Parameters
 
@@ -726,7 +726,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_audience_portrait_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_audience_portrait_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_audience_portrait_v1
 
 ### Parameters
 
@@ -755,7 +755,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_conversion_ability_analysis_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_conversion_ability_analysis_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_conversion_ability_analysis_v1
 
 ### Parameters
 
@@ -789,7 +789,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/douyin/xingtu/kol_data_overview_v1`
 
-<!-- Full path: /api/v1/douyin/xingtu/kol_data_overview_v1 -->
+**Full path:** /api/v1/douyin/xingtu/kol_data_overview_v1
 
 ### Parameters
 

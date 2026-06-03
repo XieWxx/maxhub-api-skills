@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/bilibili/app/fetch_bangumi_tab`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_bangumi_tab -->
+**Full path:** /api/v1/bilibili/app/fetch_bangumi_tab
 
 ### Parameters
 
@@ -29,7 +29,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_cinema_tab`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_cinema_tab -->
+**Full path:** /api/v1/bilibili/app/fetch_cinema_tab
 
 ### Parameters
 
@@ -50,7 +50,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_general_search`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_general_search -->
+**Full path:** /api/v1/bilibili/web/fetch_general_search
 
 ### Parameters
 
@@ -97,7 +97,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/web/fetch_hot_search`
 
-<!-- Full path: /api/v1/bilibili/web/fetch_hot_search -->
+**Full path:** /api/v1/bilibili/web/fetch_hot_search
 
 ### Parameters
 
@@ -124,7 +124,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_popular_feed`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_popular_feed -->
+**Full path:** /api/v1/bilibili/app/fetch_popular_feed
 
 ### Parameters
 
@@ -151,7 +151,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_search_all`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_search_all -->
+**Full path:** /api/v1/bilibili/app/fetch_search_all
 
 ### Parameters
 
@@ -182,7 +182,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/bilibili/app/fetch_search_by_type`
 
-<!-- Full path: /api/v1/bilibili/app/fetch_search_by_type -->
+**Full path:** /api/v1/bilibili/app/fetch_search_by_type
 
 ### Parameters
 

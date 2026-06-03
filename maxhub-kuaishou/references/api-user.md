@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/kuaishou/web/fetch_get_user_id`
 
-<!-- Full path: /api/v1/kuaishou/web/fetch_get_user_id -->
+**Full path:** /api/v1/kuaishou/web/fetch_get_user_id
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1`
 
-<!-- Full path: /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1 -->
+**Full path:** /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1
 
 ### Parameters
 
@@ -56,7 +56,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2`
 
-<!-- Full path: /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2 -->
+**Full path:** /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2
 
 ### Parameters
 
@@ -87,7 +87,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/kuaishou/web/fetch_user_info`
 
-<!-- Full path: /api/v1/kuaishou/web/fetch_user_info -->
+**Full path:** /api/v1/kuaishou/web/fetch_user_info
 
 ### Parameters
 

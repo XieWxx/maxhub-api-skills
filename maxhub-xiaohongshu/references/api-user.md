@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_follower_list`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_follower_list -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_follower_list
 
 ### Parameters
 
@@ -35,7 +35,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_following_list`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_following_list -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_following_list
 
 ### Parameters
 
@@ -62,7 +62,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_search_users`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_search_users -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_search_users
 
 ### Parameters
 
@@ -89,7 +89,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_search_users`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_search_users -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_search_users
 
 ### Parameters
 
@@ -118,7 +118,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_user_id_and_xsec_token`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_user_id_and_xsec_token -->
+**Full path:** /api/v1/xiaohongshu/app/get_user_id_and_xsec_token
 
 ### Parameters
 
@@ -149,7 +149,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/search_users`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/search_users -->
+**Full path:** /api/v1/xiaohongshu/app_v2/search_users
 
 ### Parameters
 
@@ -183,7 +183,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/search_users`
 
-<!-- Full path: /api/v1/xiaohongshu/web/search_users -->
+**Full path:** /api/v1/xiaohongshu/web/search_users
 
 ### Parameters
 

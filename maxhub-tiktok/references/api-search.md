@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/tiktok/web/fetch_search_photo`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_search_photo -->
+**Full path:** /api/v1/tiktok/web/fetch_search_photo
 
 ### Parameters
 
@@ -46,7 +46,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/shop/web/fetch_search_word_suggestion`
 
-<!-- Full path: /api/v1/tiktok/shop/web/fetch_search_word_suggestion -->
+**Full path:** /api/v1/tiktok/shop/web/fetch_search_word_suggestion
 
 ### Parameters
 
@@ -90,7 +90,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/web/fetch_trending_searchwords`
 
-<!-- Full path: /api/v1/tiktok/web/fetch_trending_searchwords -->
+**Full path:** /api/v1/tiktok/web/fetch_trending_searchwords
 
 ### Parameters
 
@@ -111,7 +111,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_hashtag_filters`
 
-<!-- Full path: /api/v1/tiktok/ads/get_hashtag_filters -->
+**Full path:** /api/v1/tiktok/ads/get_hashtag_filters
 
 ### Parameters
 
@@ -159,7 +159,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_keyword_filters`
 
-<!-- Full path: /api/v1/tiktok/ads/get_keyword_filters -->
+**Full path:** /api/v1/tiktok/ads/get_keyword_filters
 
 ### Parameters
 
@@ -212,7 +212,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_keyword_insights`
 
-<!-- Full path: /api/v1/tiktok/ads/get_keyword_insights -->
+**Full path:** /api/v1/tiktok/ads/get_keyword_insights
 
 ### Parameters
 
@@ -345,7 +345,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_related_keywords`
 
-<!-- Full path: /api/v1/tiktok/ads/get_related_keywords -->
+**Full path:** /api/v1/tiktok/ads/get_related_keywords
 
 ### Parameters
 
@@ -415,7 +415,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/get_sound_filters`
 
-<!-- Full path: /api/v1/tiktok/ads/get_sound_filters -->
+**Full path:** /api/v1/tiktok/ads/get_sound_filters
 
 ### Parameters
 
@@ -473,7 +473,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/search_ads`
 
-<!-- Full path: /api/v1/tiktok/ads/search_ads -->
+**Full path:** /api/v1/tiktok/ads/search_ads
 
 ### Parameters
 
@@ -591,7 +591,7 @@ https://github.com/maxhub/TikTok-Ads-Industry-Code
 
 `GET /api/v1/tiktok/ads/search_creators`
 
-<!-- Full path: /api/v1/tiktok/ads/search_creators -->
+**Full path:** /api/v1/tiktok/ads/search_creators
 
 ### Parameters
 
@@ -698,7 +698,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/search_sound`
 
-<!-- Full path: /api/v1/tiktok/ads/search_sound -->
+**Full path:** /api/v1/tiktok/ads/search_sound
 
 ### Parameters
 
@@ -780,7 +780,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/tiktok/ads/search_sound_hint`
 
-<!-- Full path: /api/v1/tiktok/ads/search_sound_hint -->
+**Full path:** /api/v1/tiktok/ads/search_sound_hint
 
 ### Parameters
 

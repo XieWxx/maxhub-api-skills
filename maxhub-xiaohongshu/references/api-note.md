@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/xiaohongshu/app/extract_share_info`
 
-<!-- Full path: /api/v1/xiaohongshu/app/extract_share_info -->
+**Full path:** /api/v1/xiaohongshu/app/extract_share_info
 
 ### Parameters
 
@@ -42,7 +42,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v2`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v2 -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v2
 
 ### Parameters
 
@@ -69,7 +69,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v3`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v3 -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v3
 
 ### Parameters
 
@@ -94,7 +94,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v4`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v4 -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v4
 
 ### Parameters
 
@@ -119,7 +119,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v5`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v5 -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v5
 
 ### Parameters
 
@@ -146,7 +146,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_home_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_home_notes -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_home_notes
 
 ### Parameters
 
@@ -173,7 +173,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_home_notes_app`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_home_notes_app -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_home_notes_app
 
 ### Parameters
 
@@ -200,7 +200,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v3/fetch_homefeed`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_homefeed -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_homefeed
 
 ### Parameters
 
@@ -233,7 +233,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v3/fetch_homefeed_categories`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_homefeed_categories -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_homefeed_categories
 
 ### Parameters
 
@@ -256,7 +256,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_hot_list`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_hot_list -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_hot_list
 
 ### Parameters
 
@@ -277,7 +277,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_note_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_note_comments -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_note_comments
 
 ### Parameters
 
@@ -304,7 +304,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_note_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_note_comments -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_note_comments
 
 ### Parameters
 
@@ -335,7 +335,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v3/fetch_note_detail`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_note_detail -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_note_detail
 
 ### Parameters
 
@@ -364,7 +364,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_note_image`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_note_image -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_note_image
 
 ### Parameters
 
@@ -389,7 +389,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_search_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_search_notes -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_search_notes
 
 ### Parameters
 
@@ -425,7 +425,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_search_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_search_notes -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_search_notes
 
 ### Parameters
 
@@ -464,7 +464,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_sub_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_sub_comments -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_sub_comments
 
 ### Parameters
 
@@ -493,7 +493,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_sub_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_sub_comments -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_sub_comments
 
 ### Parameters
 
@@ -528,7 +528,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_user_info`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_user_info -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_user_info
 
 ### Parameters
 
@@ -553,7 +553,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_user_info`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_user_info -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_user_info
 
 ### Parameters
 
@@ -580,7 +580,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v2/fetch_user_info_app`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v2/fetch_user_info_app -->
+**Full path:** /api/v1/xiaohongshu/web_v2/fetch_user_info_app
 
 ### Parameters
 
@@ -605,7 +605,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web_v3/fetch_user_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/web_v3/fetch_user_notes -->
+**Full path:** /api/v1/xiaohongshu/web_v3/fetch_user_notes
 
 ### Parameters
 
@@ -636,7 +636,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_creator_hot_inspiration_feed`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_creator_hot_inspiration_feed -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_creator_hot_inspiration_feed
 
 ### Parameters
 
@@ -664,7 +664,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_creator_inspiration_feed`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_creator_inspiration_feed -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_creator_inspiration_feed
 
 ### Parameters
 
@@ -696,7 +696,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/xiaohongshu/web/get_home_recommend`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_home_recommend -->
+**Full path:** /api/v1/xiaohongshu/web/get_home_recommend
 
 ### Parameters
 
@@ -736,7 +736,7 @@ http://username:password@IP:port
 
 `GET /api/v1/xiaohongshu/app_v2/get_image_note_detail`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_image_note_detail -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_image_note_detail
 
 ### Parameters
 
@@ -766,7 +766,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_note_comment_replies`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_comment_replies -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_comment_replies
 
 ### Parameters
 
@@ -797,7 +797,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⚠️ **参数校验提示**：`note_id` 为必填参数，格式为 24 位十六进制字符串（如 `65a1b2c3d4e5f6a7b8c9d0e1`）。
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_note_comments -->
+**Full path:** /api/v1/xiaohongshu/app/get_note_comments
 
 ### Parameters
 
@@ -849,7 +849,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_note_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_note_comments -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_note_comments
 
 ### Parameters
 
@@ -891,7 +891,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_note_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_comments -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_comments
 
 ### Parameters
 
@@ -918,7 +918,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_note_id_and_xsec_token`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_id_and_xsec_token -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_id_and_xsec_token
 
 ### Parameters
 
@@ -943,7 +943,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_note_info`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_note_info -->
+**Full path:** /api/v1/xiaohongshu/app/get_note_info
 
 ### Parameters
 
@@ -991,7 +991,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_note_info_v2`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_note_info_v2 -->
+**Full path:** /api/v1/xiaohongshu/app/get_note_info_v2
 
 ### Parameters
 
@@ -1040,7 +1040,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_note_info_v2`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_info_v2 -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_info_v2
 
 ### Parameters
 
@@ -1068,7 +1068,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_note_info_v4`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_info_v4 -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_info_v4
 
 ### Parameters
 
@@ -1096,7 +1096,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/xiaohongshu/web/get_note_info_v5`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_info_v5 -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_info_v5
 
 ### Parameters
 
@@ -1125,7 +1125,7 @@ http://username:password@IP:port
 
 `GET /api/v1/xiaohongshu/web/get_note_info_v7`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_note_info_v7 -->
+**Full path:** /api/v1/xiaohongshu/web/get_note_info_v7
 
 ### Parameters
 
@@ -1153,7 +1153,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_note_sub_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_note_sub_comments -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_note_sub_comments
 
 ### Parameters
 
@@ -1192,7 +1192,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_product_detail`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_product_detail -->
+**Full path:** /api/v1/xiaohongshu/app/get_product_detail
 
 ### Parameters
 
@@ -1217,7 +1217,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_product_detail`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_product_detail -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_product_detail
 
 ### Parameters
 
@@ -1246,7 +1246,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_product_info`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_product_info -->
+**Full path:** /api/v1/xiaohongshu/web/get_product_info
 
 ### Parameters
 
@@ -1277,7 +1277,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_product_review_overview`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_product_review_overview -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_product_review_overview
 
 ### Parameters
 
@@ -1304,7 +1304,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_product_reviews`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_product_reviews -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_product_reviews
 
 ### Parameters
 
@@ -1341,7 +1341,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_sub_comments`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_sub_comments -->
+**Full path:** /api/v1/xiaohongshu/app/get_sub_comments
 
 ### Parameters
 
@@ -1385,7 +1385,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_topic_feed`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_topic_feed -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_topic_feed
 
 ### Parameters
 
@@ -1433,7 +1433,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_topic_info`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_topic_info -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_topic_info
 
 ### Parameters
 
@@ -1462,7 +1462,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_topic_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_topic_notes -->
+**Full path:** /api/v1/xiaohongshu/app/get_topic_notes
 
 ### Parameters
 
@@ -1513,7 +1513,7 @@ last_note_ct、last_note_id、cursor_score
 
 `GET /api/v1/xiaohongshu/app_v2/get_user_faved_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_user_faved_notes -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_user_faved_notes
 
 ### Parameters
 
@@ -1546,7 +1546,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_user_info`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_user_info -->
+**Full path:** /api/v1/xiaohongshu/app/get_user_info
 
 ### Parameters
 
@@ -1590,7 +1590,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_user_info`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_user_info -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_user_info
 
 ### Parameters
 
@@ -1618,7 +1618,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_user_info`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_user_info -->
+**Full path:** /api/v1/xiaohongshu/web/get_user_info
 
 ### Parameters
 
@@ -1643,7 +1643,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_user_info_v2`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_user_info_v2 -->
+**Full path:** /api/v1/xiaohongshu/web/get_user_info_v2
 
 ### Parameters
 
@@ -1671,7 +1671,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/get_user_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/app/get_user_notes -->
+**Full path:** /api/v1/xiaohongshu/app/get_user_notes
 
 ### Parameters
 
@@ -1716,7 +1716,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_user_notes_v2`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_user_notes_v2 -->
+**Full path:** /api/v1/xiaohongshu/web/get_user_notes_v2
 
 ### Parameters
 
@@ -1745,7 +1745,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_user_posted_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_user_posted_notes -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_user_posted_notes
 
 ### Parameters
 
@@ -1780,7 +1780,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app_v2/get_video_note_detail`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/get_video_note_detail -->
+**Full path:** /api/v1/xiaohongshu/app_v2/get_video_note_detail
 
 ### Parameters
 
@@ -1808,7 +1808,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/get_visitor_cookie`
 
-<!-- Full path: /api/v1/xiaohongshu/web/get_visitor_cookie -->
+**Full path:** /api/v1/xiaohongshu/web/get_visitor_cookie
 
 ### Parameters
 
@@ -1836,7 +1836,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 > ⛔ **已废弃**：上游接口已下线（返回 404）。替代接口：`/api/v1/xiaohongshu/web_v3/fetch_search_notes`。请勿使用此接口。
 
-<!-- Full path: /api/v1/xiaohongshu/app/search_notes -->
+**Full path:** /api/v1/xiaohongshu/app/search_notes
 
 ### Parameters
 
@@ -1905,7 +1905,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/search_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/app_v2/search_notes -->
+**Full path:** /api/v1/xiaohongshu/app_v2/search_notes
 
 ### Parameters
 
@@ -1963,7 +1963,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/app/search_notes`
 
-<!-- Full path: /api/v1/xiaohongshu/web/search_notes -->
+**Full path:** /api/v1/xiaohongshu/web/search_notes
 
 ### Parameters
 
@@ -2009,7 +2009,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/xiaohongshu/web/search_notes_v3`
 
-<!-- Full path: /api/v1/xiaohongshu/web/search_notes_v3 -->
+**Full path:** /api/v1/xiaohongshu/web/search_notes_v3
 
 ### Parameters
 
@@ -2055,7 +2055,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/xiaohongshu/web/sign`
 
-<!-- Full path: /api/v1/xiaohongshu/web/sign -->
+**Full path:** /api/v1/xiaohongshu/web/sign
 
 ### Parameters
 

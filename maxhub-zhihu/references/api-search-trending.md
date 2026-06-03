@@ -8,7 +8,7 @@ Auth: `Authorization: Bearer $MAXHUB_API_KEY`
 
 `GET /api/v1/zhihu/web/fetch_ai_search`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_ai_search -->
+**Full path:** /api/v1/zhihu/web/fetch_ai_search
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_ai_search_result`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_ai_search_result -->
+**Full path:** /api/v1/zhihu/web/fetch_ai_search_result
 
 ### Parameters
 
@@ -58,7 +58,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_ebook_search_v3`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_ebook_search_v3 -->
+**Full path:** /api/v1/zhihu/web/fetch_ebook_search_v3
 
 ### Parameters
 
@@ -89,7 +89,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_hot_recommend`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_hot_recommend -->
+**Full path:** /api/v1/zhihu/web/fetch_hot_recommend
 
 ### Parameters
 
@@ -118,7 +118,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_preset_search`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_preset_search -->
+**Full path:** /api/v1/zhihu/web/fetch_preset_search
 
 ### Parameters
 
@@ -141,7 +141,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_salt_search_v3`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_salt_search_v3 -->
+**Full path:** /api/v1/zhihu/web/fetch_salt_search_v3
 
 ### Parameters
 
@@ -172,7 +172,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `POST /api/v1/zhihu/web/fetch_scholar_search_v3`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_scholar_search_v3 -->
+**Full path:** /api/v1/zhihu/web/fetch_scholar_search_v3
 
 ### Parameters
 
@@ -202,7 +202,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_search_recommend`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_search_recommend -->
+**Full path:** /api/v1/zhihu/web/fetch_search_recommend
 
 ### Parameters
 
@@ -225,7 +225,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_search_suggest`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_search_suggest -->
+**Full path:** /api/v1/zhihu/web/fetch_search_suggest
 
 ### Parameters
 
@@ -250,7 +250,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_topic_search_v3`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_topic_search_v3 -->
+**Full path:** /api/v1/zhihu/web/fetch_topic_search_v3
 
 ### Parameters
 
@@ -279,7 +279,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_video_list`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_video_list -->
+**Full path:** /api/v1/zhihu/web/fetch_video_list
 
 ### Parameters
 
@@ -306,7 +306,7 @@ Standard MaxHub response: `{code, message, message_zh, data, cache_url}`
 
 `GET /api/v1/zhihu/web/fetch_video_search_v3`
 
-<!-- Full path: /api/v1/zhihu/web/fetch_video_search_v3 -->
+**Full path:** /api/v1/zhihu/web/fetch_video_search_v3
 
 ### Parameters
 
