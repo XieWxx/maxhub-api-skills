@@ -273,7 +273,7 @@ AI: [自动提取博主 ID，调用粉丝分析 API]
 ## 📚 文档资源
 
 - **GitHub 仓库**: https://github.com/XieWxx/maxhub-api-skills
-- **API 文档**: https://www.aconfig.cn/docs
+- **API 文档**: https://www.aconfig.cn
 - **问题反馈**: https://github.com/XieWxx/maxhub-api-skills/issues
 
 ---

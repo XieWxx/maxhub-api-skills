@@ -153,14 +153,14 @@ Skill: `maxhub-pipixia` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2
 |--------|-------|------|------|---------------|
 | **400** | 参数错（读端点） | **先做 §3.1 防臆造自检 (B)** → 修正参数后重试 1 次；仍失败 STOP | ≤1 次 | 查端点 reference IN 表 |
 | **400** | 参数错（**写端点 ⚠️**） | **先做 §3.1 防臆造自检 (B)** → 让用户重新确认参数，**禁止静默重试** | 0 | 查 post.md fetch_increase_post_view_count IN 表 |
-| **401** | API 令牌无效 / 缺失 / 过期 | **STOP**，提示用户检查或更换 API Key | 0 | https://www.aconfig.cn/console |
-| **402** | 余额不足 | **STOP**，告知用户充值 | 0 | https://www.aconfig.cn/billing |
-| **403** | 缺少路由访问权限 / 账户已禁用 | **STOP**，提示用户当前 Token 无该端点权限 | 0 | https://www.aconfig.cn/console |
+| **401** | API 令牌无效 / 缺失 / 过期 | **STOP**，提示用户检查或更换 API Key | 0 | https://www.aconfig.cn |
+| **402** | 余额不足 | **STOP**，告知用户充值 | 0 | https://www.aconfig.cn |
+| **403** | 缺少路由访问权限 / 账户已禁用 | **STOP**，提示用户当前 Token 无该端点权限 | 0 | https://www.aconfig.cn |
 | **404** | 路径不在白名单（疑似 Agent 臆造） | **先做 §3.1 防臆造自检 (A)** → 自检失败则 STOP | 0 | 查 [`endpoints_whitelist.yaml`](./endpoints_whitelist.yaml) |
 | **404** | 资源不存在（cell_id/user_id 等） | **先做 §3.1 防臆造自检 (A)** → 通过后告知用户资源已删除或不存在 | 0 | — |
 | **410** | 上游已下线 | **先做 §3.1 防臆造自检 (A)** → 通过后 STOP，提示用户更新 SKILL | 0 | 查 [`endpoints_whitelist.yaml`](./endpoints_whitelist.yaml) + [`update.md`](./update.md) |
 | **422** | 参数校验失败 | **先做 §3.1 防臆造自检 (B)** → 修正后重试 1 次 | ≤1 次 | 查端点 reference IN 表 |
-| **429** | 限流 | 读 `Retry-After` 头退避；最多重试 2 次 | ≤2 次 | https://www.aconfig.cn/billing |
+| **429** | 限流 | 读 `Retry-After` 头退避；最多重试 2 次 | ≤2 次 | https://www.aconfig.cn |
 | **500/502/503/504** | 上游故障（读端点） | 等 3 秒重试 1 次；仍失败走"端点替换矩阵" | ≤1 次 | — |
 | **500/502/503/504** | 上游故障（**写端点 ⚠️**） | 等 3 秒重试 1 次封顶 | ≤1 次 | — |
 | **网络超时 / DNS 失败** | 网络异常 | **STOP**，向用户报告网络问题 | 0 | — |

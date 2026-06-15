@@ -49,10 +49,10 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 - **第 2 步：自检通过后**才能修正参数重试 → 最多重试 1 次 → 仍失败 STOP
 
 ### 鉴权错误（401）
-- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn/console）
+- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn）
 
 ### 余额 / 付费（402）
-- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn/billing）
+- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn）
 
 ### 权限错误（403）
 - **行动**：**STOP**，按子场景告知用户处理

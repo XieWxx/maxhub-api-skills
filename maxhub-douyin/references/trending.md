@@ -153,10 +153,10 @@ App V3 热搜榜（热点/直播/音乐/品牌）、Web 热搜结果与视频频
 - **禁止**：❌ 切换端点 ❌ 在 IN 表外凭空加参数
 
 ### 鉴权错误（401）
-- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn/console）
+- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn）
 
 ### 余额 / 付费（402）
-- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn/billing）；不要自行重试
+- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn）；不要自行重试
 
 ### 权限错误（403）
 - **行动**：**STOP**，按子场景告知用户去控制台处理

@@ -72,8 +72,8 @@ cd ~/.openclaw/skills/maxhub-xigua && git pull origin main
 
 ## 6. 不可恢复的版本错配
 
-- HTTP 401/403 → API Key 问题，去 https://www.aconfig.cn/console
-- HTTP 402 → 余额不足，去 https://www.aconfig.cn/billing
+- HTTP 401/403 → API Key 问题，去 https://www.aconfig.cn
+- HTTP 402 → 余额不足，去 https://www.aconfig.cn
 - 网络/DNS → 与版本无关
 
 > ⚠️ 仅 404/410 + 自检通过时才推荐更新。

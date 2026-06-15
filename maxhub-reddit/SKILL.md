@@ -190,7 +190,7 @@ export MAXHUB_API_KEY="ak_xxxx..."
 | 合法路径持续 404 / 410 | `skillhub upgrade maxhub-reddit`（国内）或 `clawhub upgrade maxhub-reddit`（国际） |
 | 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-reddit |
 | 多端点连续 410 | `skillhub upgrade maxhub-reddit --force` |
-| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn 处理 |
 
 ### 常用命令速查表
 

@@ -148,9 +148,9 @@ Skill: `maxhub-zhihu` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 | HTTP 码 | 子场景 | 行动 | 重试 | 修复链接 |
 |--------|-------|------|------|---------|
 | **400** | 参数错 | **先做 §3.1(B)** → 修正后重试 1 次 | ≤1 次 | 查端点 IN 表 |
-| **401** | 令牌无效 | **STOP**，提示用户检查 API Key | 0 | https://www.aconfig.cn/console |
-| **402** | 余额不足 | **STOP**，告知用户充值 | 0 | https://www.aconfig.cn/billing |
-| **403** | 权限不足 | **STOP** | 0 | https://www.aconfig.cn/console |
+| **401** | 令牌无效 | **STOP**，提示用户检查 API Key | 0 | https://www.aconfig.cn |
+| **402** | 余额不足 | **STOP**，告知用户充值 | 0 | https://www.aconfig.cn |
+| **403** | 权限不足 | **STOP** | 0 | https://www.aconfig.cn |
 | **404** | 路径臆造 | **先做 §3.1(A)** → STOP | 0 | 查 [`endpoints_whitelist.yaml`](./endpoints_whitelist.yaml) |
 | **404** | 资源不存在 | **先做 §3.1(A)** → 告知用户 | 0 | — |
 | **410** | 上游下线 | **先做 §3.1(A)** → STOP，建议更新 | 0 | [`update.md`](./update.md) |

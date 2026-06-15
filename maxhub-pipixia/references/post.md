@@ -54,8 +54,8 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 - **第 1 步：必须先做防臆造自检**（详见 [`param-mappings.md` § 3.1 (B)](./param-mappings.md#b-收到-400--422-时的自检清单-️-防参数与传参方式臆造)）
 - **第 2 步：自检通过后**才能修正参数重试 → 最多重试 1 次 → 仍失败 STOP
 
-### 鉴权错误（401）→ **STOP**，提示用户检查 API Key（https://www.aconfig.cn/console）
-### 余额 / 付费（402）→ **STOP**，告知用户充值（https://www.aconfig.cn/billing）
+### 鉴权错误（401）→ **STOP**，提示用户检查 API Key（https://www.aconfig.cn）
+### 余额 / 付费（402）→ **STOP**，告知用户充值（https://www.aconfig.cn）
 ### 权限错误（403）→ **STOP**，按子场景告知用户去控制台处理
 ### 限流（429）→ 读 `Retry-After` 头退避；最多重试 2 次
 ### 上游故障（500/502/503/504）→ 等 3 秒重试 1 次 → 仍失败走端点级"降级/替换"

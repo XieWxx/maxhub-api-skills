@@ -61,10 +61,10 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 - **禁止**：切换端点、在 IN 表外凭空加参数
 
 ### 鉴权错误（401）
-- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn/console）
+- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn）
 
 ### 余额 / 付费（402）
-- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn/billing）
+- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn）
 
 ### 权限错误（403）
 - **行动**：**STOP**，按子场景告知用户去控制台处理

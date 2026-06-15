@@ -114,8 +114,8 @@ git pull origin main
 
 ## 6. 不可恢复的版本错配
 
-- **HTTP 401 / 403**：API Key 失效或权限不足 → https://www.aconfig.cn/console
-- **HTTP 402**：余额不足 → https://www.aconfig.cn/billing
+- **HTTP 401 / 403**：API Key 失效或权限不足 → https://www.aconfig.cn
+- **HTTP 402**：余额不足 → https://www.aconfig.cn
 - **网络 / DNS 问题**：与 SKILL 版本无关
 
 > ⚠️ Agent **不应**因为 401/402/403/网络错就建议用户更新 SKILL。**仅 404/410 + 自检通过**时才推荐更新。

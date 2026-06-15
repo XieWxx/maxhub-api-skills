@@ -50,11 +50,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### 鉴权错误（401）
 - **子场景**：API 令牌无效 / 缺失 / 过期 / 未激活 / 用户不存在
-- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn/console）
+- **行动**：**STOP**，提示用户检查或更换 API Key（https://www.aconfig.cn）
 
 ### 余额 / 付费（402）
 - **子场景**：余额不足（允许免费额度 / 不接受免费额度）
-- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn/billing）
+- **行动**：**STOP**，告知用户充值（https://www.aconfig.cn）
 
 ### 权限错误（403）
 - **子场景**：缺少路由访问权限 / 账户已禁用 / 邮箱未验证 / API Token 权限不足

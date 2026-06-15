@@ -158,8 +158,8 @@ cd ~/.openclaw/skills && rm -rf maxhub-pipixia \
 
 以下情况无法通过更新解决，必须人工干预：
 
-- **HTTP 401 / 403**：API Key 失效或权限不足，**不是 SKILL 版本问题**，去 https://www.aconfig.cn/console 处理
-- **HTTP 402**：余额不足，**不是 SKILL 版本问题**，去 https://www.aconfig.cn/billing 处理
+- **HTTP 401 / 403**：API Key 失效或权限不足，**不是 SKILL 版本问题**，去 https://www.aconfig.cn 处理
+- **HTTP 402**：余额不足，**不是 SKILL 版本问题**，去 https://www.aconfig.cn 处理
 - **网络 / DNS 问题**：与 SKILL 版本无关
 - **用户对自有数据的请求**（如查询一个不存在的 user_id）：与 SKILL 版本无关
 
