@@ -2,14 +2,19 @@
 
 [中文文档](README_CN.md)
 
-Kuaishou data assistant with App and Web API support for video, user, search, trending, live, and comments.
+Kuaishou video, user, search, trending, comment, and live data assistant via MaxHub API. 38 active endpoints across 5 functional areas.
 
 ## Features
 
-- **Video Data** — fetch_one_video, fetch_one_video_v2, fetch_video_comments, fetch_video_sub_comments, fetch_user_videos, fetch_user_hot_posts, fetch_video_by_url
-- **User Data** — fetch_user_info, fetch_user_id, search_user, fetch_user_collect, fetch_user_live_info
-- **Search & Trending** — comprehensive_search, search_video, fetch_hot_list, fetch_hot_categories, fetch_brand_top_list, fetch_live_top_list, fetch_shopping_top_list
-- **Live & Tools** — fetch_user_live_replay, generate_share_link, generate_share_short_url
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| Video | `references/video.md` | Video detail, batch query, URL fetch, share links | 8 |
+| User | `references/user.md` | User profiles, stats, posts, hot posts, collections, ID extraction | 6 |
+| Search | `references/search.md` | Comprehensive search, hot lists, feeds, tags | 14 |
+| Comments | `references/comments.md` | Video comments, sub-comment replies | 4 |
+| Live | `references/live.md` | Live info, live rankings, shopping/brand/music rankings, replays | 6 |
+
+Supports both App and Web API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -26,10 +31,11 @@ npx clawhub install maxhub-kuaishou
 
 | Category | Example prompts |
 |----------|----------------|
-| Video Data | 视频, 作品 |
-| User Data | 用户, 资料 |
-| Search & Trending | 搜索, 热榜 |
-| Live & Tools | 直播, 分享 |
+| Video | 查快手视频详情 photo_id..., get Kuaishou video info for... |
+| User | 查快手用户粉丝数, get Kuaishou user stats for... |
+| Search | 查快手热搜/在快手搜索原神, search Kuaishou for... |
+| Comments | 查快手视频评论, get Kuaishou video comments |
+| Live | 查快手直播间榜单, get Kuaishou live rankings |
 
 Supports both **English** and **Chinese**.
 

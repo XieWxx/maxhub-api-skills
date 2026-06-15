@@ -1,12 +1,16 @@
 ---
 name: maxhub-twitter
-description: "Twitter/X 数据查询助手。覆盖推文详情、用户资料、搜索、评论、趋势等全功能。"
+description: >-
+  Query Twitter/X data via MaxHub API — tweets, user profiles, search,
+  trending, followers, and media. Use when user asks about Twitter, X
+  (formerly Twitter), tweets, twitter users, twitter search, or trending
+  topics. Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
-    emoji: "𝕏"
+    emoji: "🐦"
     primaryEnv: MAXHUB_API_KEY
     requires:
       env:
@@ -21,269 +25,253 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["twitter", "X", "推文", "用户分析", "热搜", "关键词搜索", "评论采集", "舆情监控", "海外社媒", "数据采集"]
+    tags: ["twitter", "X", "推特", "推文分析", "用户分析", "趋势", "搜索", "数据采集"]
     category: productivity
 ---
 
 # Twitter/X 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a Twitter/X Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+Twitter/X 数据查询与海外舆情研究工具，通过 MaxHub API 接入 Twitter / X（twitter.com / x.com）平台，覆盖推文详情、评论（最新/热门）、转推用户列表、搜索时间线、趋势话题、用户资料、用户推文 / 回复 / 媒体、关注 / 粉丝、用户精选推文等全部能力。专注服务于海外舆情监控、Twitter KOL 影响力分析、推文爆款研究、趋势话题追踪等场景，帮助用户快速采集 X 平台全域数据，构建跨语种海外社媒洞察。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 12 active endpoints **first message** and maintain it throughout the conversation.
+- 🐦 **推文全维度查询** — 单端点 `fetch_tweet_detail` 拉取推文完整详情，含作者、互动数据、媒体附件、引用链路
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 💬 **评论双轨拉取** — `fetch_post_comments`（热门排序） + `fetch_latest_post_comments`（最新排序）双端点，覆盖不同分析口径
 
-## API Access
+- 🔄 **转推用户追踪** — `fetch_retweet_user_list` 拉取任意推文的转推用户列表，识别传播链路与扩散节点
 
-Base URL: `https://www.aconfig.cn`
+- 🔍 **搜索时间线** — `fetch_search_timeline` 支持关键词搜索 + `search_type` 切换（最新 / 热门 / 用户 / 媒体），cursor 翻页
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 🌍 **趋势话题** — `fetch_trending` 按 `country` 拉取地域趋势榜，支撑跨地区热点对比
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 👤 **用户全景画像** — 用户资料、推文、回复、媒体、关注、粉丝、精选推文七端点联动，支持 `screen_name` 或 `rest_id` 入参
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/twitter/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🆔 **screen_name ↔ rest_id 互通** — `fetch_user_profile` 与 `fetch_user_post_tweet` 支持 oneOf 入参，账号改名后可用 rest_id 继续追踪
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/twitter/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 13 个端点的字段流字典 + Chain Recipes，明确 tweet_id / screen_name / rest_id / userId / cursor 在端点间的传递路径
+
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，明确 cursor 翻页边界
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户 / 发推 / 关注操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号、加路径段** |
+| 🆔 入参互转规则 | `screen_name`（用户名）与 `rest_id`（数字 ID）按端点要求严格区分，部分端点支持 oneOf，部分仅接受其一 |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-twitter.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查推文详情 / 评论 / 搜索 / 趋势 / 转推 | `references/content.md` | 推文详情、热门/最新评论、转推用户、搜索时间线、趋势（6 端点） |
+| 查用户 / 推文 / 关注 / 粉丝 / 媒体 / 精选 | `references/user.md` | 用户资料、推文、回复、媒体、关注、粉丝、精选推文（7 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 13 个端点的硬白名单 + Pre-call 4 步自检协议 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-twitter.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 评论端点二选一（热门 vs 最新），按用户分析意图选择
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → screen_name/rest_id 来源）
+- 收到 **404** → 必须先做防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做防参数臆造自检（6 步），重点检查 `screen_name` 是否带 `@`、`rest_id` 是否为纯数字
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Tweet Data** | 推文, 详情, 评论, 转推, 回复, 发帖, 最新, tweet, detail, comment, retweet, reply, post, latest, replies, list, user | `references/api-tweet.md` | fetch_user_followings, fetch_user_followers, fetch_tweet_detail, fetch_latest_post_comments, fetch_user_post_tweet, fetch_user_media, fetch_user_tweet_replies, fetch_user_profile, fetch_post_comments, fetch_retweet_user_list |
-| **User Data** | 用户, 资料, 帖子, 回复, 推荐, following, user, profile, post, reply, recommend, follow, blue_verified | `references/api-user.md` |  |
-| **Search & Trending** | 搜索, 热门, 趋势, 时间线, search, trending, timeline | `references/api-search-trending.md` | fetch_search_timeline, fetch_trending |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Tweet Data**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 查推文 + 评论 | `fetch_tweet_detail` → `fetch_post_comments` / `fetch_latest_post_comments` | `tweet_id` 复用 |
+| 查用户 → 推文 | `fetch_user_profile` → `fetch_user_post_tweet` | `screen_name` / `rest_id` 复用 |
+| screen_name → rest_id | `fetch_user_profile`（screen_name 入参） → 取 `rest_id` → 后续端点 | `screen_name` → `rest_id` |
+| 查搜索 → 推文详情 | `fetch_search_timeline` → 取 `tweet_id` → `fetch_tweet_detail` | `keyword` → `tweet_id` |
+| 查转推用户 → 用户画像 | `fetch_retweet_user_list` → 取 `screen_name` → `fetch_user_profile` | `tweet_id` → `screen_name` |
+| 查用户全面分析 | `fetch_user_profile` + `fetch_user_post_tweet` + `fetch_user_media` + `fetch_user_followers` + `fetch_user_followings` | `screen_name` 复用 |
+| 趋势 → 搜索 → 详情 | `fetch_trending` → 取趋势词 → `fetch_search_timeline` → `fetch_tweet_detail` | trend → `keyword` → `tweet_id` |
+| 用户精选推文 | `fetch_user_profile` → 取 `rest_id`（作为 `userId`） → `fetch_user_highlights_tweets` | `rest_id` → `userId` |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+#### 防臆造自检清单（强制前置步骤）
 
-### Step 4: Plan & Execute
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对（全部为 GET）→ 不等 STOP
+3. 参数键名比对（注意 `userId` 仅用于 `fetch_user_highlights_tweets`，其它端点用 `screen_name` / `rest_id`）→ 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定"上游资源不存在"
 
-#### Pattern A: "分析Twitter用户"
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（`screen_name` 不带 `@`，`rest_id` 必须纯数字）
+2. 必填项齐全 + oneOf 二选一逻辑（`fetch_user_profile` 接受 screen_name 或 rest_id）
+3. `cursor` 翻页参数是否上接前次响应的 cursor，禁止编造
+4. 类型与格式严格匹配（pattern / enum）
+5. 传参方式正确（query string）
+6. 全通过才按 `message_zh` 排查
 
-1. 搜索用户 → search → 找到目标用户
-2. 获取资料 → fetch_user_profile → 用户信息
-3. 获取推文 → fetch_user_posts → 推文列表
+#### Cursor 翻页最佳实践
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
+- **首次调用不传 cursor**：取出响应中的 `next_cursor`
+- **后续调用接力**：用上一轮的 `next_cursor` 作为本轮 cursor 入参
+- **终止条件**：响应未返回新 cursor 或返回空数组
+- **禁止编造 cursor 字符串**：cursor 是平台签发的不透明字段，不可猜测
 
-### Step 5: Output Results
+#### SKILL 版本更新
 
-#### Browse Mode
-Present results concisely with key fields.
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-twitter`（国内）或 `clawhub upgrade maxhub-twitter`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-twitter |
+| 多端点连续 410 | `skillhub upgrade maxhub-twitter --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
+### 常用命令速查表
 
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查推文详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/twitter/web/fetch_tweet_detail?tweet_id=xxx"` |
+| 查推文热门评论 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/twitter/web/fetch_post_comments?tweet_id=xxx"` |
+| 查用户资料 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/twitter/web/fetch_user_profile?screen_name=elonmusk"` |
+| 查用户推文 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/twitter/web/fetch_user_post_tweet?screen_name=elonmusk"` |
+| 搜索时间线 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/twitter/web/fetch_search_timeline?keyword=AI"` |
+| 趋势话题（美国） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/twitter/web/fetch_trending?country=US"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-twitter` 或 `clawhub info maxhub-twitter` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：海外舆情监控
-- **应用环境**：公关团队实时监控Twitter/X上的品牌舆情
-- **用户需求**：追踪品牌提及、用户态度和舆论传播路径
-- **使用流程**：搜索品牌关键词 → 获取相关推文 → 分析互动数据 → 生成舆情报告
-- **预期效果**：快速响应海外舆情事件，降低品牌风险
+### 场景一：海外舆情分析师跨地区监控
 
-### 场景二：热点话题追踪
-- **应用环境**：媒体团队追踪Twitter/X上的全球热点
-- **用户需求**：了解全球热门话题的讨论趋势和关键观点
-- **使用流程**：获取热搜榜单 → 分析话题详情 → 追踪讨论趋势 → 生成分析报告
-- **预期效果**：第一时间把握全球舆论动态
+- **角色**：海外公关 / 跨境品牌
+- **需求**：监控品牌关键词在美国 / 日本 / 欧洲的实时讨论与情感倾向
+- **使用方式**：`fetch_trending`（按 country 切换）+ `fetch_search_timeline`（search_type=Latest）双端点联动 → 命中关键词后链式调 `fetch_tweet_detail` + `fetch_post_comments` 还原舆情上下文 → 取 `screen_name` → `fetch_user_profile` 识别影响力账号
+- **预期收益**：实时跨地区舆情雷达 + 情感聚类，识别高影响力扩散节点
 
-### 场景三：KOL影响力分析
-- **应用环境**：营销团队评估Twitter/X大V的传播价值
-- **用户需求**：分析大V的粉丝质量、互动率和内容影响力
-- **使用流程**：获取用户详情 → 分析推文数据 → 评估互动指标 → 生成评估报告
-- **预期效果**：为海外社媒营销投放提供数据支撑
+### 场景二：Twitter KOL 投放评估
 
-## Error Handling
+- **角色**：跨境营销 / KOL 投放代理
+- **需求**：评估候选 X KOL 的真实活跃度、粉丝健康度、互动质量
+- **使用方式**：`fetch_user_profile` 拉资料 → `fetch_user_post_tweet` 拉近期推文 → `fetch_user_followers` 抽样粉丝 → `fetch_user_media` 拉媒体推文判断内容形态
+- **预期收益**：完整 KOL 健康度评估，识别僵尸粉 / 真实粉丝比例与互动健康度
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：内容团队推文爆款研究
 
-### 404 错误专项处理
+- **角色**：海外内容运营 / 翻译号策划
+- **需求**：追踪某垂类（科技 / 加密货币 / AI）近期高互动爆款推文，提炼标题与开头模板
+- **使用方式**：`fetch_search_timeline`（search_type=Top） → 取爆款 `tweet_id` → `fetch_tweet_detail` 取全文 → `fetch_retweet_user_list` 看转推扩散链 → 输出爆款样本集
+- **预期收益**：海外垂类爆款语料库 + 翻译选题池，提升翻译号 / 资讯号 CTR
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+### 场景四：研究员追踪趋势话题生命周期
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+- **角色**：社媒研究员 / 趋势分析师
+- **需求**：跟踪某趋势词从出现 → 爆发 → 衰退的完整生命周期与参与人群
+- **使用方式**：定时抓取 `fetch_trending` → 命中目标趋势词 → `fetch_search_timeline` 全量拉推文 → 取 `screen_name` 集合 → 抽样 `fetch_user_profile` 构建参与者画像
+- **预期收益**：趋势话题完整生命周期图谱，识别话题首发账号 + 扩散节点 + 长尾参与者
 
-### 接口降级与自动切换策略
+## 6. 项目架构
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-twitter/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 13 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理）
+    ├── content.md                      # 推文域：详情/评论/搜索/趋势/转推（6 端点）
+    └── user.md                         # 用户域：资料/推文/回复/媒体/关注/粉丝/精选（7 端点）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET 请求，参数通过 query string 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/twitter/web/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 13 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ 重试策略矩阵 |
+| 翻页机制 | Cursor 不透明令牌 | 平台签发，禁止编造，按响应 next_cursor 接力 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 推文内容（Content） | 6 | `content.md` |
+| 用户（Users） | 7 | `user.md` |
+| **合计** | **13** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **screen_name / rest_id 双轨**：账号改名场景下使用 rest_id 持续追踪，oneOf 端点支持灵活切换
+- **Cursor 不可编造**：cursor 是平台签发的不透明字段，必须按响应接力，禁止猜测
+- **Agent 友好 7 大原则**：结构胜于叙述、明确指令优于建议、单一来源、词法稳定性、低 token 密度、边界显式声明、错误处理是契约
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，杜绝 Agent 编造字段名
+- **错误处理契约**：HTTP 状态码权威定义 + 防臆造自检清单（A: 5 步 / B: 6 步）+ 重试策略矩阵 + 端点替换矩阵

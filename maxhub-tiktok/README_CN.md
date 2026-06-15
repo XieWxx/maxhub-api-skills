@@ -2,17 +2,19 @@
 
 [English](README.md)
 
-TikTok 全场景数据查询助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商、互动等7大模块，支持App和Web双端API。
+TikTok 全场景数据查询助手。覆盖视频详情、用户数据、搜索、评论、直播、广告、创作者工具、电商、数据分析、加密工具等9大模块，支持App和Web双端API。
 
 ## 功能
 
-- **视频与内容** — fetch_one_video, fetch_one_video_v2, fetch_one_video_v3, fetch_video_comments, fetch_video_comment_replies, fetch_user_posts, fetch_user_likes, fetch_user_reposts, fetch_user_favorites, fetch_explore_videos, fetch_daily_trending, fetch_home_feed, batch_fetch_video_info
-- **用户数据** — fetch_user_info, fetch_user_profile, fetch_user_followers, fetch_user_following, fetch_user_live_details, get_user_id_by_username, fetch_similar_users
-- **搜索** — fetch_general_search, search_video, search_user, search_live, search_keyword_suggest, fetch_trending_search_words
-- **广告与分析** — search_ads, search_creators, fetch_ad_detail, fetch_ad_analysis, fetch_product_detail, fetch_product_metrics, fetch_keyword_insights, fetch_popular_hashtags, fetch_popular_sounds, fetch_creator_analytics, detect_fake_views, fetch_comment_keywords
-- **创作者与电商** — fetch_creator_account_info, fetch_creator_video_overview, fetch_showcase_products, fetch_shop_info, fetch_shop_products, fetch_product_detail, fetch_product_reviews, search_products, fetch_live_room_data, fetch_live_products
-- **互动操作** — like, follow, post_comment, reply_comment, collect, forward
-- **签名与工具** — generate_xbogus, generate_ttwid, generate_msToken, generate_web_id, register_device, encrypt_strdata, decrypt_strdata, fetch_guest_cookie
+- **视频与内容** — 视频详情、批量视频、分享链接解析、探索流、首页推荐、Tag视频、合辑、视频ID提取 (19 端点)
+- **用户数据** — 用户信息、粉丝/关注、作品/点赞/转发列表、收藏、播放列表、音乐列表、创作者信息、用户ID提取 (34 端点)
+- **搜索与发现** — 综合搜索、分类搜索（视频/用户/音乐/话题/直播/地点/图片）、热搜关键词、话题/音乐详情、创作者搜索洞察、商品搜索 (29 端点)
+- **评论与直播** — 视频评论、评论回复、直播间信息/状态/排行榜、直播商品、弹幕/聊天、礼物 (21 端点)
+- **广告** — 广告搜索、广告详情、热门广告聚光灯、关键帧/百分位/互动分析、推荐广告、热门话题 (12 端点)
+- **创作者工具** — 账号健康、违规记录、收益概览、直播/视频/商品分析、橱窗商品、受众画像 (14 端点)
+- **电商** — 商品详情/评论、商家商品、搜索建议、商品搜索、分类浏览、热卖商品、店铺信息 (26 端点)
+- **数据分析** — 视频指标、虚假流量检测、评论关键词、创作者里程碑 (4 端点)
+- **加密与工具** — msToken、ttwid、web_id、XBogus/XGnarly签名、strData加解密、设备注册、游客Cookie (15 端点)
 
 ## 安装
 
@@ -29,13 +31,15 @@ npx clawhub install maxhub-tiktok
 
 | 分类 | 示例指令 |
 |------|----------|
-| 视频与内容 | 视频，作品 |
-| 用户数据 | 用户，达人 |
-| 搜索 | 搜索，搜 |
-| 广告与分析 | 广告，分析 |
-| 创作者与电商 | 创作者，电商 |
-| 互动操作 | 点赞，关注 |
-| 签名与工具 | 签名，加密 |
+| 视频与内容 | 查TikTok视频 + 视频链接, 批量获取视频数据, 解析TikTok分享链接 |
+| 用户数据 | 查TikTok用户 + @用户名, 获取粉丝列表, 查看用户作品 |
+| 搜索与发现 | 在TikTok搜索 + 关键词, TikTok热榜, 搜索TikTok话题 |
+| 评论与直播 | 查TikTok视频评论, 直播间状态, 获取直播弹幕 |
+| 广告 | 搜索TikTok广告, 广告详情分析, TikTok热门广告 |
+| 创作者工具 | TikTok创作者数据分析, 账号健康状态, 直播收益概览 |
+| 电商 | 查TikTok Shop商品, 搜索商品, 热卖商品列表 |
+| 数据分析 | TikTok视频数据分析, 虚假流量检测, 评论关键词分析 |
+| 加密与工具 | 生成TikTok XBogus签名, 获取游客Cookie, 设备注册 |
 
 支持 **中文** 和 **英文** 双语。
 

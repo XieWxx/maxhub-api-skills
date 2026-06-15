@@ -1,347 +1,290 @@
 ---
 name: maxhub-tiktok
-description: "TikTok 数据查询与工具助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商等模块。含部分交互触发和协议工具接口（已标注）。"
+description: >-
+  Query TikTok data via MaxHub API — video details, user profiles,
+  search, trending, comments, live streams, ads analytics, creator tools,
+  shop/ecommerce, and crypto/encryption utilities.
+  Use when user asks about TikTok content, 视频, 用户, 搜索, 广告, 创作者, 商店, 直播, 评论.
+  Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.7.1"
+  version: "3.7.2"
   openclaw:
     emoji: "🎶"
     primaryEnv: MAXHUB_API_KEY
     requires:
-      env:
-        - MAXHUB_API_KEY
-      bins:
-        - curl
+      env: [MAXHUB_API_KEY]
+      bins: [curl]
     env:
       - name: MAXHUB_API_KEY
         description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
         required: true
         sensitive: true
-    network:
-      - https://www.aconfig.cn
+    network: ["https://www.aconfig.cn"]
   hermes:
-    tags: ["tiktok", "海外短视频", "视频分析", "用户分析", "广告分析", "创作者", "店铺商品", "跨境营销", "多地区", "评论采集", "直播数据", "搜索", "数据分析", "海外社媒", "数据采集", "合规", "只读", "数据分析", "合法API"]
+    tags: ["tiktok", "TikTok", "短视频", "视频分析", "用户分析", "搜索", "广告分析", "创作者工具", "电商", "直播", "评论", "加密工具"]
     category: productivity
 ---
 
 # TikTok 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a TikTok Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+TikTok 海外短视频数据查询与分析工具，通过 MaxHub API 接入 TikTok 全平台公开数据，覆盖视频详情、用户画像、搜索趋势、评论直播、广告分析、创作者后台、TikTok Shop 电商、虚假流量分析、签名加密工具等九大领域共 174 个端点。专注服务于 TikTok 出海创作者、跨境电商运营、海外营销广告优化师与数据分析团队，帮助用户高效采集 TikTok 全球数据、洞察广告投放与电商选品策略。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 189 active endpoints **first message** and maintain it throughout the conversation.
+- 🎬 **视频全维度查询** — 支持 aweme_id / 分享链接 / Tag 多入口查询，覆盖详情、批量、探索流、首页推荐、合辑、ID 提取（19 端点）
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 👤 **用户全景画像** — 用户信息、粉丝 / 关注、作品 / 点赞 / 转发列表、收藏、播放列表、直播详情、用户 ID 提取（34 端点）
 
-## API Access
+- 🔍 **多模态搜索矩阵** — 综合 / 视频 / 用户 / 音乐 / 话题 / 直播 / 地点 / 商品搜索 + 热搜关键词 + 创作者洞察 + 音乐排行（29 端点）
 
-Base URL: `https://www.aconfig.cn`
+- 💬 **评论与直播实时数据** — 视频评论、回复、直播间信息 / 状态 / 排行榜、直播商品、弹幕 / 聊天、礼物（21 端点）
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 📢 **广告分析全链路** — 广告搜索、详情、热门广告、关键帧分析、百分位分析、互动分析、推荐广告（12 端点）
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 📊 **创作者后台数据** — 账号健康、违规记录、收益概览、直播 / 视频 / 商品分析、橱窗商品、受众画像（14 端点）
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/tiktok/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🛒 **TikTok Shop 电商** — 商品详情 / 评论、商家商品、搜索建议、商品搜索、分类浏览、热卖商品、店铺信息（26 端点）
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/tiktok/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🔬 **数据质量分析** — 视频指标、虚假流量检测、评论关键词、创作者里程碑（4 端点）
+
+- 🛠️ **签名与加密工具** — msToken、ttwid、web_id、XBogus / XGnarly 签名、strData 加解密、设备注册、游客 Cookie（15 端点）
+
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404 / 400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 跨 9 个领域的字段流字典 + Chain Recipes，明确 aweme_id / sec_user_id / room_id / product_id / material_id 在端点间的传递路径
+
+- 📋 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，写入端点 5xx 重试 ≤ 1 次避免重复扣配额
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404 / 410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
+**方案 2：终端环境变量**
 
-## Security & Privacy / 安全与隐私
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-> ⚠️ **Credential Handling / 凭据处理**
-> - ⚠️ **Session cookies are login-equivalent credentials.** Providing your cookie to any third-party service grants that service full access to your account until the session expires.
-> - Only provide cookies if you fully trust the service provider. Use a **separate test account** — never your primary account.
-> - Cookies may be logged, cached, or forwarded by intermediary systems. Rotate or revoke cookies immediately after use.
-> - Do not store cookies in prompts, code samples, or client-side contexts where they may be exposed.
-> - ⚠️ **会话 Cookie 等同于登录凭据。** 向任何第三方服务提供 Cookie 即授予该服务对您账号的完全访问权限，直到会话过期。
-> - 仅在完全信任服务提供商时提供 Cookie。务必使用**独立测试账号**——切勿使用主账号。
-> - Cookie 可能被中间系统记录、缓存或转发。使用后立即轮换或撤销 Cookie。
-> - 不要将 Cookie 存储在提示词、代码示例或客户端上下文中，以免泄露。
+### 依赖安装
 
-> 📋 **Data Transmission / 数据传输**
-> - All API requests are sent to `https://www.aconfig.cn`. Your credentials are transmitted to this third-party service.
-> - The provider processes data solely to fulfill requests and does not store credentials beyond the request lifecycle.
-> - 所有 API 请求发送至 `https://www.aconfig.cn`。您的凭据将传输至该第三方服务。
-> - 服务提供商仅处理数据以完成请求，不会在请求生命周期之外存储凭据。
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-> 🔒 **Read-Only Operations / 只读操作**
-> - **Most endpoints** in this skill are read-only data queries. However, a small number of endpoints can trigger app actions (e.g., open app to send message) or provide protocol utilities (e.g., signature generation). These are clearly marked with ⚠️ warnings in the documentation.
-> - 本技能**大部分端点**为只读数据查询。少数端点可触发应用操作（如打开应用发私信）或提供协议工具（如签名生成），这些端点在文档中已用 ⚠️ 明确标注。
+### 环境变量配置
 
-> 🛡️ **Interface Purpose Declaration / 接口用途声明**
-> - All endpoints in this skill are **legitimate data analysis APIs** provided by the upstream service (aconfig.cn).
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol. They are NOT hacking, exploitation, or attack tools.
-> - `generate_*` endpoints produce platform-specific request signatures. These are protocol utilities for API compatibility, **not** standard OAuth. Use with awareness of platform ToS.
-> - `encrypt_*`/`decrypt_*` endpoints handle data format conversion for the upstream API protocol. These are technical utilities, use only as needed.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法数据分析 API**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准 API 认证和数据处理工具**，不是黑客工具。
-> - `generate_*` 接口生成平台特定的请求签名。这些是 API 兼容性协议工具，**不是**标准 OAuth。使用时需注意平台服务条款。
-> - `encrypt_*`/`decrypt_*` 接口处理上游 API 协议的数据格式转换。这些是技术工具，按需使用。
-> - `detect_fake_views` 是**反欺诈分析工具**，用于识别虚假互动，不是制造虚假互动的工具。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-> ⚠️ **Capability Classification / 能力分类**
-> - **Read-only data queries** (majority): Video details, user profiles, search, trending, analytics — these only retrieve data.
-> - **App interaction triggers** ⚠️: `open_*_app_to_*` — these generate deep links that open the platform app. They do NOT directly send messages or perform actions; they only produce URLs the user can choose to open.
-> - **Protocol utilities** ⚠️: `generate_*`, `encrypt_*`, `decrypt_*`, `register_device` — these are API compatibility tools for request construction. They do NOT circumvent security controls independently.
-> - **Cookie-required endpoints** ⚠️: Some endpoints need a user session cookie for personalized data. See Cookie warnings below.
-> - **只读数据查询**（大多数）：视频详情、用户画像、搜索、热榜、分析——仅获取数据。
-> - **应用交互触发** ⚠️：`open_*_app_to_*`——生成打开平台应用的深度链接，不会直接发送消息或执行操作，仅生成用户可选择打开的 URL。
-> - **协议工具** ⚠️：`generate_*`、`encrypt_*`、`decrypt_*`、`register_device`——用于请求构造的 API 兼容性工具，不会独立绕过安全控制。
-> - **需要 Cookie 的端点** ⚠️：部分端点需要用户会话 Cookie 获取个性化数据。参见下方 Cookie 警告。
+## 4. 使用指南
 
-## 🚫 禁止行为（违反将导致 404/400）
+### 核心约束（强制遵守）
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户 / 发布操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号、加路径段** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+| ⚠️ 加密工具调用谨慎 | `tools.md` 中签名 / 加解密接口仅用于合规研究，**不得用于绕过平台风控** |
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 基础使用（4 步完成调用）
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
-
-## 🔒 安全合规声明 / Security & Compliance Declaration
-
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
-
-## Interaction Flow
-
-### Step 1: Check API Key
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-tiktok.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查视频详情 / 播放 / 批量 / 探索 | `references/video.md` | 视频详情、批量视频、分享链接解析、探索流、首页推荐、Tag 视频、合辑、视频 ID 提取（19 端点） |
+| 查用户 / 粉丝 / 关注 / 作品 | `references/user.md` | 用户信息、粉丝 / 关注、作品 / 点赞 / 转发、收藏、播放列表、直播详情、用户 ID 提取（34 端点） |
+| 搜索 / 热榜 / 发现 / 趋势 | `references/search.md` | 综合 / 视频 / 用户 / 音乐 / 话题 / 直播 / 地点搜索、热搜关键词、创作者搜索洞察、音乐排行榜、商品搜索（29 端点） |
+| 查评论 / 回复 / 直播 | `references/comments.md` | 视频评论、评论回复、直播间信息 / 状态 / 排行榜、直播商品、弹幕 / 聊天、礼物（21 端点） |
+| 查广告 / 广告分析 | `references/ads.md` | 广告搜索、详情、热门广告、关键帧分析、百分位分析、互动分析、推荐广告（12 端点） |
+| 创作者后台 / 账号分析 | `references/creator.md` | 账号健康、违规记录、收益概览、直播 / 视频 / 商品分析、橱窗商品、受众画像（14 端点） |
+| 查商品 / 店铺 / 电商 | `references/shop.md` | 商品详情 / 评论、商家商品、搜索建议、商品搜索、分类浏览、热卖商品、店铺信息（26 端点） |
+| 数据分析 / 虚假流量 | `references/analytics.md` | 视频指标、虚假流量检测、评论关键词、创作者里程碑（4 端点） |
+| 加密签名 / 指纹 / 工具 | `references/tools.md` | msToken、ttwid、web_id、XBogus / XGnarly 签名、strData 加解密、设备注册、游客 Cookie（15 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 + 替换矩阵 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 174 个端点的硬白名单 + Pre-call 4 步自检协议 |
+| SKILL 版本检查与升级 | `references/update.md` | SkillHub / ClawHub / GitHub 三通道更新 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-tiktok.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 加密 / 签名工具调用前**必须**说明用途，避免合规风险
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做 §3.1 (A) 防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做 §3.1 (B) 防参数臆造自检（6 步）
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Video & Content** | TikTok视频, TikTok作品, TikTok详情, TikTok播放, TikTok推荐, tiktok video, tiktok detail, tiktok play, tiktok recommend, tiktok feed, tiktok share | `references/api-video.md` | get_product_detail, get_keyword_list, get_keyword_details, get_creator_list, get_ads_detail, get_recommended_ads, get_popular_trends, get_top_products, get_hashtag_list, get_sound_rank_list, get_sound_recommendations, get_sound_detail, detect_fake_views, fetch_video_metrics, fetch_comment_keywords, TTencrypt_algorithm, get_user_id_and_sec_user_id_by_username, fetch_creator_search_insights, fetch_creator_search_insights_videos, fetch_creator_search_insights_detail, fetch_creator_search_insights_trend, encrypt_decrypt_login_request, check_live_room_online_batch, fetch_multi_video_v2, fetch_multi_video, search_following_list, search_follower_list, fetch_one_video_by_share_url_v2, check_live_room_online, open_tiktok_app_to_send_private_message, open_tiktok_app_to_video_detail, open_tiktok_app_to_keyword_search, open_tiktok_app_to_user_profile, fetch_home_feed, fetch_content_translate, fetch_share_qr_code, fetch_share_short_link, fetch_creator_showcase_product_list, fetch_one_video_v2, fetch_one_video_v3, fetch_one_video, fetch_video_comments, fetch_product_search, fetch_product_review, fetch_product_detail_v2, fetch_product_detail_v3, fetch_product_detail_v4, fetch_product_detail, fetch_shop_home_page_list, fetch_shop_home, fetch_shop_product_category, fetch_shop_info, fetch_shop_product_list_v2, fetch_shop_product_list, fetch_shop_product_recommend, fetch_location_search, fetch_creator_info, fetch_webcast_user_info, fetch_user_search_result, fetch_live_search_result, fetch_general_search_result, fetch_video_search_result, fetch_hashtag_search_result, fetch_music_search_result, handler_user_profile, fetch_user_following_list, fetch_user_follower_list, fetch_live_room_info, fetch_video_comment_replies, fetch_hashtag_video_list, fetch_hashtag_detail, fetch_music_video_list, fetch_music_detail, fetch_user_post_videos, fetch_user_post_videos_v2, fetch_user_post_videos_v3, fetch_user_like_videos, fetch_user_repost_videos, fetch_user_music_list, fetch_live_daily_rank, fetch_live_room_product_list_v2, fetch_live_room_product_list, fetch_live_ranking_list, fetch_similar_user_recommendations, fetch_product_id_by_share_link, fetch_shop_id_by_share_link, fetch_user_country_by_username, fetch_music_chart_list, get_product_analytics_list, get_video_list_analytics, get_video_analytics_summary, get_account_violation_list, get_product_related_videos, get_showcase_product_list, get_video_to_product_stats, get_video_associated_product_list, get_video_audience_stats, get_video_detailed_stats, fetch_search_products_list, fetch_search_products_list_v2, fetch_products_by_category_id, fetch_products_category_list, fetch_product_reviews_v2, fetch_product_detail, fetch_product_detail_v2, fetch_product_detail_v3, fetch_seller_products_list, fetch_seller_products_list_v2, fetch_search_word_suggestion_v2, fetch_hot_selling_products_list, fetch_tag_post, fetch_tag_detail, fetch_live_im_fetch, encrypt_strData, fetch_batch_check_live_alive, get_all_aweme_id, get_all_sec_user_id, get_aweme_id, get_sec_user_id, get_user_id, tiktok_live_room, fetch_search_keyword_suggest, fetch_search_video, get_live_room_id, generate_xbogus, generate_xgnarly, generate_xgnarly_and_xbogus, generate_wss_xb_signature, generate_ttwid, generate_webid, generate_hashed_id, generate_fingerprint, generate_real_msToken, fetch_check_live_alive, fetch_post_comment, fetch_post_comment_reply, get_all_unique_id, fetch_post_detail_v2, fetch_post_detail, fetch_explore_post, fetch_tiktok_web_guest_cookie, get_unique_id, fetch_user_post, fetch_user_mix, fetch_user_play_list, fetch_user_live_detail, fetch_user_repost, fetch_live_gift_list, fetch_live_recommend, fetch_general_search, decrypt_strData, device_register, fetch_tiktok_live_data, fetch_home_feed |
-| **User Data** | 用户, 粉丝, 关注, 帖子, 喜欢, 收藏, 合辑, 直播, user, follower, following, posts, like, collection, mix, live, info, profile, handler, basic, query, uid | `references/api-user.md` | get_query_suggestions, get_hashtag_creator, fetch_creator_info_and_milestones, get_live_analytics_summary, get_creator_account_info, fetch_search_user, fetch_search_live, generate_x_mssdk_info, fetch_user_profile, fetch_user_follow, fetch_user_collect, fetch_user_like, fetch_user_fans |
-| **Search** | 搜索, 综合, 图片, 话题, 音乐, 经验, 讨论, 学校, 直播, 关键词, search, general, image, hashtag, music, experience, discussion, school, live, keyword, suggest | `references/api-search.md` | search_creators, search_ads, search_sound, search_sound_hint, get_keyword_insights, get_keyword_filters, get_hashtag_filters, get_related_keywords, get_sound_filters, fetch_search_word_suggestion, fetch_search_photo, fetch_trending_searchwords |
-| **Ads & Analytics** | TikTok广告, TikTok关键词, TikTok产品, TikTok创作者, TikTok分析, tiktok ads, tiktok keyword, tiktok product, tiktok creator, tiktok analytics | `references/api-ads-analytics.md` | get_product_metrics, get_product_filters, get_creator_filters, get_creative_patterns, get_ad_interactive_analysis, get_ad_keyframe_analysis, get_ad_percentile, get_top_ads_spotlight, get_account_health_status, get_account_insights_overview |
-| **Creator & Shop** | 创作者, 店铺, 商品, 热卖, 账号, 视频, 概览, creator, shop, product, hot, selling, account, video, overview, analytics, summary, info | `references/api-creator-shop.md` |  |
-| **Interaction** | 评论, 点赞, 收藏, 转发, comment, like, bookmark, repost | `references/api-interaction.md` |  |
-| **Crypto & Tools** ⚠️ | TikTok签名工具, TikTok加密, TikTok设备注册, tiktok sign, tiktok encrypt, tiktok device | `references/api-tools.md` | generate_xbogus, generate_ttwid, generate_msToken, generate_web_id, register_device, encrypt_strdata, decrypt_strdata, fetch_guest_cookie |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Video & Content**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 查视频 + 评论 | `video.md` → `comments.md` | `aweme_id` 接力 |
+| 搜索 → 视频详情 | `search.md` → `video.md` | `aweme_id` 接力 |
+| 查用户 → 作品 | `user.md` → `user.md` (posts) | `sec_user_id` 接力 |
+| 查广告 → 分析 | `ads.md` → `ads.md` (keyframe / percentile) | `material_id` 接力 |
+| 查商品 → 评论 | `shop.md` → `shop.md` (product detail) | `product_id` 接力 |
+| 查创作者 → 分析 | `creator.md` → `analytics.md` | `sec_user_id` 接力 |
+| 直播 + 数据 | `comments.md` → `comments.md` (live room info / ranking) | `room_id` 接力 |
+| 创作者 → 商品 | `creator.md` → `shop.md` | `product_id` 接力 |
+| 用户全面分析 | `user.md` → `user.md` (posts+followers) → `analytics.md` | `sec_user_id` 复用 |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+#### 防臆造自检清单（强制前置步骤）
 
-### Step 4: Plan & Execute
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对 → 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定 "上游资源不存在"
 
-#### Pattern A: "分析TikTok创作者"
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（大小写 / 缩写 / 复数）
+2. 必填项齐全 + oneOf 二选一逻辑
+3. 类型与格式严格匹配（pattern / enum）
+4. 传参方式正确（query vs body）
+5. 没有 IN 表外的臆造参数
+6. 全通过才按 `message_zh` 排查
 
-1. 搜索用户 → search_user → 找到目标用户
-2. 获取资料 → fetch_user_info → 用户信息
-3. 获取作品 → fetch_user_posts → 视频列表
-4. 创作者数据 → fetch_creator_account_info → 创作者分析
+#### SKILL 版本更新
 
-#### Pattern B: "分析TikTok广告"
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-tiktok`（国内）或 `clawhub upgrade maxhub-tiktok`（国际） |
+| 用户问 "版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-tiktok |
+| 多端点连续 410 | `skillhub upgrade maxhub-tiktok --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-1. 搜索广告 → search_ads → 广告列表
-2. 获取详情 → fetch_ad_detail → 广告详情
-3. 获取分析 → fetch_ad_analysis → 互动分析
+### 常用命令速查表
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
-
-### Step 5: Output Results
-
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查视频详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/tiktok/app/v3/fetch_one_video?aweme_id=xxx"` |
+| 查视频评论 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/tiktok/app/v3/fetch_video_comments?aweme_id=xxx"` |
+| 查商品详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/tiktok/shop/fetch_product_detail?product_id=xxx"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-tiktok` 或 `clawhub info maxhub-tiktok` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：跨境营销选品
-- **应用环境**：跨境电商团队分析海外TikTok热门商品趋势
-- **用户需求**：发现高潜力商品，了解不同地区的消费偏好
-- **使用流程**：获取店铺商品列表 → 分析热卖排行 → 按地区筛选 → 结合广告数据评估
-- **预期效果**：每周输出选品推荐清单，缩短选品决策周期50%
+### 场景一：TikTok 内容创作者出海选题
 
-### 场景二：海外达人合作评估
-- **应用环境**：品牌方寻找TikTok海外KOL进行推广合作
-- **用户需求**：评估达人影响力、粉丝质量和内容匹配度
-- **使用流程**：搜索目标领域创作者 → 获取用户详情 → 分析视频表现 → 查看广告合作数据
-- **预期效果**：快速筛选出ROI预期的合作达人，降低合作风险
+- **角色**：TikTok 出海短视频创作者
+- **需求**：分析当前北美 / 东南亚地区热门视频与音乐趋势，定位下一支爆款方向
+- **使用方式**：调用 `search.md` 拉取热搜关键词 + 音乐排行 → 取 `aweme_id` → 链式调 `video.md` 提取详情 → `analytics.md` 检测虚假流量过滤虚高数据
+- **预期收益**：剔除虚假流量影响后锁定真实爆款，提炼可复用的音乐 + 标题模板
 
-### 场景三：多地区内容趋势对比
-- **应用环境**：全球化运营团队需要对比不同地区的内容趋势
-- **用户需求**：了解美国、日本、东南亚等地区的内容差异和流行趋势
-- **使用流程**：按地区获取热门视频 → 对比内容类型 → 分析互动差异 → 生成区域报告
-- **预期效果**：为不同地区制定差异化内容策略提供数据支撑
+### 场景二：跨境电商 TikTok Shop 选品
 
-## Error Handling
+- **角色**：跨境电商运营 / 选品师
+- **需求**：发现 TikTok Shop 当下热卖商品并评估真实带货能力
+- **使用方式**：`shop.md` 拉取热卖商品 + 分类浏览 → 取 `product_id` → 商品详情 + 评论 → `creator.md` 反查带货达人画像
+- **预期收益**：构建跨境选品决策矩阵，量化商品销量、评论情感与达人匹配度
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：海外营销广告投放分析
 
-### 404 错误专项处理
+- **角色**：海外营销广告优化师
+- **需求**：拆解竞品热门广告创意结构与互动表现，优化自家素材
+- **使用方式**：`ads.md` 搜索热门广告 → 取 `material_id` → 关键帧分析 + 百分位分析 + 互动分析 → 推荐广告找相似素材
+- **预期收益**：基于真实数据反推爆款广告创意公式，缩短素材测试周期，提升 CTR / CVR
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+### 场景四：MCN 创作者数据洞察
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+- **角色**：MCN 数据分析师
+- **需求**：批量评估签约达人账号健康度与受众画像匹配度
+- **使用方式**：`user.md` 取 `sec_user_id` → `creator.md` 拉账号健康 + 违规记录 + 受众画像 → `analytics.md` 创作者里程碑 → `comments.md` 抽样评论质量
+- **预期收益**：建立达人健康度档案，提前预警违规风险，匹配品牌投放需求
 
-### 接口降级与自动切换策略
+## 6. 项目架构
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-tiktok/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 174 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理 + 替换矩阵）
+    ├── video.md                        # 视频域：详情/批量/分享/探索流/Tag/合辑（19 端点）
+    ├── user.md                         # 用户域：信息/粉丝/作品/点赞/转发/收藏（34 端点）
+    ├── search.md                       # 搜索域：综合/视频/用户/音乐/话题/地点/热搜（29 端点）
+    ├── comments.md                     # 评论与直播域：评论/回复/直播间/弹幕/礼物（21 端点）
+    ├── ads.md                          # 广告域：搜索/详情/关键帧/百分位/互动分析（12 端点）
+    ├── creator.md                      # 创作者域：账号健康/收益/分析/橱窗/受众（14 端点）
+    ├── shop.md                         # 电商域：商品/店铺/搜索/分类/热卖（26 端点）
+    ├── analytics.md                    # 数据分析域：虚假流量/视频指标/里程碑（4 端点）
+    ├── tools.md                        # 工具域：msToken/ttwid/XBogus/strData（15 端点）
+    └── update.md                       # SKILL 更新机制（SkillHub / ClawHub / GitHub）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET / POST 请求，参数通过 query string 或 JSON body 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/tiktok/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 174 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ 重试策略矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 视频（Video） | 19 | `video.md` |
+| 用户（User） | 34 | `user.md` |
+| 搜索（Search） | 29 | `search.md` |
+| 评论与直播（Comments） | 21 | `comments.md` |
+| 广告（Ads） | 12 | `ads.md` |
+| 创作者（Creator） | 14 | `creator.md` |
+| 电商（Shop） | 26 | `shop.md` |
+| 数据分析（Analytics） | 4 | `analytics.md` |
+| 工具（Tools） | 15 | `tools.md` |
+| **合计** | **174** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **Agent 友好 7 大原则**：结构胜于叙述、明确指令优于建议、单一来源、词法稳定性、低 token 密度、边界显式声明、错误处理是契约
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，杜绝 Agent 编造字段名
+- **错误处理契约**：HTTP 状态码权威定义 + §3.1 防臆造自检清单（A: 5 步 / B: 6 步）+ 重试策略矩阵 + 端点替换矩阵

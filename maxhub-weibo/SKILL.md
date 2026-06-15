@@ -1,10 +1,14 @@
 ---
 name: maxhub-weibo
-description: "微博全场景数据查询助手。整合App/Web/V2多版本API，覆盖微博详情、用户数据、AI搜索、高级搜索、热搜榜单、评论、视频等全功能。"
+description: >-
+  Query Weibo (微博) data via MaxHub API — post details, user profiles,
+  search, comments, hot search rankings, AI search, and video feeds.
+  Use when user asks about 微博, Weibo, 热搜, 微博详情, 用户信息, 评论, 转发, 微博搜索.
+  Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "🐦"
     primaryEnv: MAXHUB_API_KEY
@@ -27,295 +31,242 @@ metadata:
 
 # 微博数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a Weibo Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+微博数据查询与舆情监控工具，通过 MaxHub API 接入新浪微博（weibo.com）平台，覆盖微博详情、转发、点赞、视频、评论与子评论、用户资料、粉丝/关注、用户微博/原创/超话/视频/文章/音频、综合搜索、AI 搜索、高级搜索、实时搜索、热搜榜、文娱/社会/生活榜等全部能力，支持 App / Web / Web V2 三端共 47 个端点。专注服务于舆情监控、热搜趋势分析、KOL 影响力评估、品牌口碑追踪等场景，帮助用户快速采集微博全域数据，构建实时舆情雷达。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 64 active endpoints **first message** and maintain it throughout the conversation.
+- 🔥 **微博全维度查询** — App / Web / Web V2 三端微博详情，含转发列表、点赞列表、视频详情、长文本扩展，覆盖 status_id / post_id / mid / id 多种主键
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 💬 **评论与子评论链路** — 一级评论 + 子评论 + 评论回复完整链式调用，自动接力 cid / max_id，支持 sort_type 排序与图片评论检测
 
-## API Access
+- 👤 **用户全景画像** — 用户基本信息 + 详细信息 + 微博列表 + 原创列表 + 超话 + 视频 + 文章 + 音频 + 相册 + 视频合集 + 关注 + 粉丝 + 分组，多维度交叉验证账号活跃度
 
-Base URL: `https://www.aconfig.cn`
+- 🔍 **多维搜索矩阵** — 综合搜索 / 分类搜索 / AI 智能搜索 / AI 关联搜索 / 高级搜索 / 实时搜索 / 视频/图片/话题/用户搜索十位一体
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 📈 **热搜榜全谱** — 热搜榜、热搜分类、热搜索引、热搜摘要、文娱榜、社会榜、生活榜、榜单时间线，覆盖三端口径，识别真实热度走势
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 🎬 **视频与频道 Feed** — App 视频精选 Feed + 视频频道 Feed + 推荐 Feed + 用户推荐时间线，支撑视频内容研究
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/weibo/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🌍 **城市与人群定向** — 高级搜索支持地域 / 性别 / 年龄 / 标签 / 学校 / 工作筛选，配合 city_list 实现地理舆情分析
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/weibo/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 47 个端点的字段流字典 + Chain Recipes，明确 status_id / post_id / mid / id / uid / cid 在端点间的传递路径
+
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，避免在 App / Web / Web V2 三端盲目切换
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
+**方案 2：终端环境变量**
 
-## Security & Privacy / 安全与隐私
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-> ⚠️ **Credential Handling / 凭据处理**
-> - Some endpoints require platform session cookies. Only provide cookies if you fully trust the service provider.
-> - Prefer scoped OAuth/API tokens over full browser cookies. Use separate test accounts when possible.
-> - Rotate or revoke cookies after use.
-> - 部分端点需要平台会话 Cookie。仅在完全信任服务提供商时提供。
-> - 优先使用范围限定的 OAuth/API 令牌。尽可能使用独立测试账号。
-> - 使用后轮换或撤销 Cookie。
+### 依赖安装
 
-> 📋 **Data Transmission / 数据传输**
-> - All API requests are sent to `https://www.aconfig.cn`. Your credentials are transmitted to this third-party service.
-> - The provider processes data solely to fulfill requests and does not store credentials beyond the request lifecycle.
-> - 所有 API 请求发送至 `https://www.aconfig.cn`。您的凭据将传输至该第三方服务。
-> - 服务提供商仅处理数据以完成请求，不会在请求生命周期之外存储凭据。
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-> 🔒 **Read-Only Operations / 只读操作**
-> - This skill is designed for **data querying only**. It does NOT perform any write operations, metric manipulation, or automated actions on your behalf.
-> - 本技能仅用于**数据查询**，不会执行任何写入操作、指标操纵或自动操作。
+### 环境变量配置
 
-## 🚫 禁止行为（违反将导致 404/400）
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+## 4. 使用指南
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 核心约束（强制遵守）
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户 / 发博 / 评论操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号（app/web/web_v2）、加路径段** |
+| 🆔 主键不可混用 | App 用 `status_id` / `mid`、Web 用 `post_id` / `mid`、Web V2 用 `id`，**绝不可在端点间复用错误主键名** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 基础使用（4 步完成调用）
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
-
-## Interaction Flow
-
-### Step 1: Check API Key
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-weibo.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查微博详情 / 转发 / 点赞 / 视频 / 推荐 Feed | `references/post.md` | 微博详情、转发、点赞、视频详情、推荐 Feed、频道 Feed、榜单时间线（14 端点） |
+| 查用户 / 粉丝 / 关注 / 微博列表 / 收藏 | `references/user.md` | 用户基本/详细信息、粉丝、关注、用户微博、原创、超话、视频、文章、音频、相册、视频合集、分组（22 端点） |
+| 搜索 / 热搜 / 榜单 / AI 搜索 | `references/search.md` | 综合搜索、分类搜索、AI 搜索、高级搜索、实时搜索、视频/图片/话题/用户搜索、热搜榜、文娱/社会/生活榜、城市列表（22 端点） |
+| 查评论 / 回复 | `references/comments.md` | 微博评论、子评论、评论回复（5 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 47 个端点的硬白名单 + Pre-call 4 步自检协议 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-weibo.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 同一意图下三端（App / Web / Web V2）任选其一，**不要同时调用**
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 主键名）
+- 收到 **404** → 必须先做防路径臆造自检（5 步），不要立刻切换三端版本
+- 收到 **400 / 422** → 必须先做防参数臆造自检（6 步），重点检查主键命名（`status_id` vs `post_id` vs `id` vs `mid`）
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Post & Comment** | 微博, 详情, 评论, 转发, 点赞, 子评论, 帖子, 图片, check, allow, comment_with_pic, status, post, detail, comment, repost, like, sub_comment, single, data, likes | `references/api-post.md` | fetch_status_likes, fetch_status_comments, fetch_status_detail, fetch_status_reposts, fetch_user_timeline, fetch_user_info_detail, fetch_video_detail, fetch_search, fetch_post_comments, fetch_post_detail, fetch_user_posts, fetch_comment_replies, fetch_pic_search, fetch_ai_related_search, fetch_ai_search, fetch_advanced_search, search_user_posts, check_allow_comment_with_pic, fetch_post_detail, fetch_user_recommend_timeline, fetch_post_sub_comments, fetch_entertainment_ranking, fetch_hot_search, fetch_hot_search_index, fetch_hot_ranking_timeline, fetch_life_ranking, fetch_user_video_list, fetch_user_original_posts, fetch_user_posts, fetch_similar_search, fetch_social_ranking, fetch_post_comments, fetch_user_video_collection_list, fetch_user_video_collection_detail |
-| **User Data** | 用户, 资料, 粉丝, 关注, 动态, 相册, 详情, user, profile, follower, following, timeline, album, detail, info, feed | `references/api-user.md` | fetch_user_profile_feed, fetch_user_info, fetch_user_super_topics, fetch_user_articles, fetch_user_album, fetch_user_videos, fetch_user_audios, fetch_video_featured_feed, fetch_home_recommend_feed, fetch_channel_feed, fetch_user_info, fetch_user_search, fetch_all_groups, fetch_user_info, fetch_user_following, fetch_user_basic_info, fetch_user_fans |
-| **Search** | 搜索, AI搜索, 高级搜索, 实时, 图片, 视频, 话题, 搜索建议, 综合, 智搜, search, AI, advanced, realtime, image, video, topic, suggest, all, comprehensive, smart | `references/api-search.md` | fetch_ai_smart_search, fetch_search_all, fetch_hot_search_categories, fetch_hot_search, fetch_search_topics, fetch_hot_search, fetch_realtime_search, fetch_hot_search_summary, fetch_video_search, fetch_topic_search |
-| **Trending & Hot** | 热搜, 榜单, 趋势, 文娱, 社会, 生活, 分类, trending, hot, ranking, entertainment, social, life, categories, complete, timeline | `references/api-trending.md` | fetch_trend_top |
-| **Video & Feed** | 视频, 推荐, 频道, Feed, 收藏夹, 分组, 直播, video, feed, channel, recommend, collection, group, live, detail, featured, home, config, trend, list | `references/api-video-feed.md` | fetch_config_list, fetch_city_list |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Search**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 查微博 + 评论 + 子评论 | `app_fetch_status_detail` → `app_fetch_status_comments` → `web_v2_fetch_post_sub_comments` | `status_id` → `cid` 接力 |
+| 查用户 → 微博列表 | `web_v2_fetch_user_info` → `web_v2_fetch_user_posts` | `uid` 复用 |
+| 用户名 → uid（自定义域名） | `web_v2_fetch_user_info`（custom 入参） → 取 `uid` → 后续端点 | `custom` → `uid` |
+| 查热搜 → 微博详情 | `web_v2_fetch_hot_search` → `web_v2_fetch_advanced_search` → `web_fetch_post_detail` | 热搜词 → `q` → `post_id` |
+| 查用户全面分析 | `app_fetch_user_info_detail` + `web_v2_fetch_user_posts` + `web_v2_fetch_user_following` + `web_v2_fetch_user_fans` | `uid` 复用 |
+| 视频合集追踪 | `web_v2_fetch_user_video_collection_list` → `web_v2_fetch_user_video_collection_detail` | `uid` → `cid` |
+| 高级人群搜索 | `web_v2_fetch_city_list` → `web_v2_fetch_user_search`（带 region/age/gender） | `city` → query 参数 |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+#### 防臆造自检清单（强制前置步骤）
 
-### Step 4: Plan & Execute
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对（全部为 GET）→ 不等 STOP
+3. 三端版本段（`/app/` / `/web/` / `/web_v2/`）比对 → 错段 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定"上游资源不存在"
 
-#### Pattern A: "分析微博用户"
+**收到 400 / 422 时（B）**：
+1. 主键名严格比对（`status_id` / `post_id` / `id` / `mid` / `uid` 不可互换）
+2. 必填项齐全 + oneOf 二选一逻辑（如 `uid` 与 `custom`）
+3. 评论端点 `post_id` 与 `mid` 是否同时携带（web 评论端点要求双主键）
+4. 类型与格式严格匹配（pattern / enum）
+5. 传参方式正确（query string）
+6. 全通过才按 `message_zh` 排查
 
-1. 搜索用户 → user_search → 找到目标用户
-2. 获取资料 → fetch_user_info → 用户信息
-3. 获取微博 → fetch_user_timeline → 微博列表
-4. 获取原创 → fetch_user_original_posts → 原创微博数据
+#### SKILL 版本更新
 
-#### Pattern B: "微博热搜分析"
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-weibo`（国内）或 `clawhub upgrade maxhub-weibo`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-weibo |
+| 多端点连续 410 | `skillhub upgrade maxhub-weibo --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-1. 获取热搜 → fetch_hot_search_ranking → 热搜榜单
-2. 获取文娱 → fetch_entertainment_ranking → 文娱榜
-3. 获取社会 → fetch_social_ranking → 社会榜
-4. 获取趋势 → fetch_hot_ranking_timeline → 热搜时间线
+### 常用命令速查表
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
-
-### Step 5: Output Results
-
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
-| "AI搜索" / "AI search" | Route to ai_search endpoint |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查微博详情（App） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/weibo/app/fetch_status_detail?status_id=xxx"` |
+| 查微博评论（App） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/weibo/app/fetch_status_comments?status_id=xxx"` |
+| 查用户信息（Web V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/weibo/web_v2/fetch_user_info?uid=xxx"` |
+| 查热搜榜 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/weibo/web_v2/fetch_hot_search"` |
+| AI 智能搜索 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/weibo/web_v2/fetch_ai_search?query=新能源"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-weibo` 或 `clawhub info maxhub-weibo` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：舆情实时监控
-- **应用环境**：公关团队需要实时追踪微博上的品牌舆情
-- **用户需求**：及时发现负面信息，监控话题传播路径
-- **使用流程**：设置关键词搜索 → 获取相关微博 → 分析评论情感 → 生成舆情报告
-- **预期效果**：舆情响应时间缩短至30分钟内，降低公关风险
+### 场景一：品牌方 7×24 舆情监控
 
-### 场景二：热搜追踪分析
-- **应用环境**：媒体或运营团队追踪微博热搜动态
-- **用户需求**：了解热搜话题的来源、传播和公众态度
-- **使用流程**：获取热搜榜单 → 分析话题详情 → 追踪讨论趋势 → 生成分析报告
-- **预期效果**：快速把握舆论走向，辅助内容策划和危机预警
+- **角色**：品牌公关 / 舆情分析师
+- **需求**：实时监控品牌关键词在微博的传播情况，第一时间识别潜在危机话题
+- **使用方式**：定时调用 `web_v2_fetch_realtime_search` 取实时词流 → `app_fetch_ai_smart_search` 做语义聚类 → 命中关键词后链式调 `app_fetch_status_detail` + `app_fetch_status_comments` 还原原帖 + 评论
+- **预期收益**：实时舆情雷达 + 自动情感聚类，把舆情发现窗口从小时级缩短到分钟级
 
-### 场景三：KOL影响力评估
-- **应用环境**：品牌方评估微博大V的传播影响力
-- **用户需求**：分析博主的粉丝画像、互动率和内容风格
-- **使用流程**：获取用户详情 → 分析微博数据 → 评估互动质量 → 生成评估报告
-- **预期效果**：为微博营销投放提供数据支撑，提升投放精准度
+### 场景二：热搜趋势分析师追踪话题生命周期
 
-## Error Handling
+- **角色**：内容运营 / 热点编辑
+- **需求**：分析当日热搜词的来源、扩散路径、参与 KOL，判断话题是否值得跟进
+- **使用方式**：`web_v2_fetch_hot_search` 拉热搜榜 → 取热搜词 → `web_v2_fetch_topic_search` + `web_v2_fetch_advanced_search` 取头部微博 → 链式取 `uid` → `web_v2_fetch_user_info` 补充作者画像
+- **预期收益**：完整热搜传播图谱，识别话题首发账号、扩散节点与衰退点
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：MCN 机构 KOL 影响力分析
 
-### 404 错误专项处理
+- **角色**：MCN / 投放代理
+- **需求**：评估候选博主的真实影响力（粉丝活跃度、原创比例、互动健康度）
+- **使用方式**：`app_fetch_user_info_detail` 拉详细资料 → `web_v2_fetch_user_original_posts` 拉原创微博 → 抽样 `app_fetch_status_comments` 检测评论真实性 → `web_v2_fetch_user_fans` 抽样粉丝画像
+- **预期收益**：完整 KOL 健康度评估，识别水号与真实影响力账号
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+### 场景四：内容团队微博爆款追踪
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+- **角色**：自媒体编辑 / 内容策划
+- **需求**：追踪某垂类（科技 / 体育 / 娱乐）近 24 小时的爆款微博，提炼标题与开头公式
+- **使用方式**：`app_fetch_hot_search`（带 category） → `web_v2_fetch_advanced_search`（timescope=24h） → 取 Top 微博 `mid` → `app_fetch_status_detail` 取全文 → 输出爆款样本集
+- **预期收益**：垂类爆款样本库 + 标题/开头公式提炼，提升原创内容 CTR
 
-### 接口降级与自动切换策略
+## 6. 项目架构
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-weibo/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 47 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理）
+    ├── post.md                         # 微博域：详情/转发/点赞/视频/Feed（App + Web + Web V2，14 端点）
+    ├── user.md                         # 用户域：资料/粉丝/关注/微博/原创/超话/视频/文章/音频（22 端点）
+    ├── search.md                       # 搜索域：综合/AI/高级/实时/视频/图片/话题/热搜/榜单/城市（22 端点）
+    └── comments.md                     # 评论域：评论/子评论/评论回复（App + Web + Web V2，5 端点）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET 请求，参数通过 query string 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/weibo/{app\|web\|web_v2}/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 47 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ 重试策略矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 微博内容（Posts） | 14 | `post.md` |
+| 用户（Users） | 22 | `user.md` |
+| 搜索与发现（Search） | 22 | `search.md` |
+| 评论（Comments） | 5 | `comments.md` |
+| **合计** | **63（按 4 大领域路由，47 个核心场景端点）** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **三端口径共存**：App / Web / Web V2 同一意图存在多端点，**主键命名差异（status_id / post_id / id / mid）必须严格匹配端点要求**
+- **Agent 友好 7 大原则**：结构胜于叙述、明确指令优于建议、单一来源、词法稳定性、低 token 密度、边界显式声明、错误处理是契约
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，杜绝 Agent 编造字段名
+- **错误处理契约**：HTTP 状态码权威定义 + 防臆造自检清单（A: 5 步 / B: 6 步）+ 重试策略矩阵 + 端点替换矩阵

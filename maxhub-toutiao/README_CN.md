@@ -1,12 +1,16 @@
-# 今日头条数据助手
+# 今日头条 数据助手
 
 [English](README.md)
 
-今日头条数据查询助手。覆盖文章、视频、用户、评论等全功能。
+今日头条文章、视频、用户、评论数据查询助手。通过 MaxHub API 提供 7 个端点，覆盖 1 个功能领域。
 
 ## 功能
 
-- **内容与用户** — fetch_article_info, fetch_video_info, fetch_user_info, fetch_post_comments, get_user_id_from_profile
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 内容 | `references/content.md` | 文章详情、视频详情、用户信息、用户ID提取、评论 (App+Web) | 7 |
+
+支持 App 和 Web 双端 API。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -23,7 +27,11 @@ npx clawhub install maxhub-toutiao
 
 | 分类 | 示例指令 |
 |------|----------|
-| 内容与用户 | 文章，视频 |
+| 文章 | 查今日头条这篇文章的详情 7450114952884503059 |
+| 视频 | 查今日头条这个视频的信息 |
+| 用户 | 查这个今日头条用户的详细信息 |
+| 评论 | 查今日头条这篇文章的评论 |
+| URL提取 | 从头条用户主页链接获取用户ID |
 
 支持 **中文** 和 **英文** 双语。
 

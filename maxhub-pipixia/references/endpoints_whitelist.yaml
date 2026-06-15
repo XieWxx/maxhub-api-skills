@@ -1,0 +1,142 @@
+# 路径合法性硬白名单
+# Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
+# 禁止臆造路径、修改版本段、拼接新路径。
+
+skill: maxhub-pipixia
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Posts (post.md) ==========
+  - id: fetch_post_detail
+    method: GET
+    path: /api/v1/pipixia/app/fetch_post_detail
+    risk: low
+    required: [cell_id]
+    optional: [cell_type]
+
+  - id: fetch_increase_post_view_count
+    method: GET
+    path: /api/v1/pipixia/app/fetch_increase_post_view_count
+    risk: medium
+    write_operation: true
+    required: [cell_id]
+    optional: [cell_type]
+
+  - id: fetch_post_statistics
+    method: GET
+    path: /api/v1/pipixia/app/fetch_post_statistics
+    risk: low
+    required: [cell_id]
+    optional: []
+
+  - id: fetch_post_comment_list
+    method: GET
+    path: /api/v1/pipixia/app/fetch_post_comment_list
+    risk: low
+    required: [cell_id]
+    optional: [cell_type, offset]
+
+  # ========== Feed (post.md) ==========
+  - id: fetch_home_feed
+    method: GET
+    path: /api/v1/pipixia/app/fetch_home_feed
+    risk: low
+    required: []
+    optional: [cursor]
+
+  - id: fetch_home_short_drama_feed
+    method: GET
+    path: /api/v1/pipixia/app/fetch_home_short_drama_feed
+    risk: low
+    required: []
+    optional: [page]
+
+  # ========== Search (post.md) ==========
+  - id: fetch_search
+    method: GET
+    path: /api/v1/pipixia/app/fetch_search
+    risk: low
+    required: [keyword]
+    optional: [offset, search_type]
+
+  - id: fetch_hot_search_words
+    method: GET
+    path: /api/v1/pipixia/app/fetch_hot_search_words
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_hot_search_board_list
+    method: GET
+    path: /api/v1/pipixia/app/fetch_hot_search_board_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_hot_search_board_detail
+    method: GET
+    path: /api/v1/pipixia/app/fetch_hot_search_board_detail
+    risk: low
+    required: [block_type]
+    optional: []
+
+  # ========== Hashtag (post.md) ==========
+  - id: fetch_hashtag_detail
+    method: GET
+    path: /api/v1/pipixia/app/fetch_hashtag_detail
+    risk: low
+    required: [hashtag_id]
+    optional: []
+
+  - id: fetch_hashtag_post_list
+    method: GET
+    path: /api/v1/pipixia/app/fetch_hashtag_post_list
+    risk: low
+    required: [hashtag_id]
+    optional: [cursor, feed_count, hashtag_request_type, hashtag_sort_type]
+
+  # ========== Tools (post.md) ==========
+  - id: fetch_short_url
+    method: GET
+    path: /api/v1/pipixia/app/fetch_short_url
+    risk: low
+    required: [original_url]
+    optional: []
+
+  # ========== Users (user.md) ==========
+  - id: fetch_user_info
+    method: GET
+    path: /api/v1/pipixia/app/fetch_user_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: fetch_user_post_list
+    method: GET
+    path: /api/v1/pipixia/app/fetch_user_post_list
+    risk: low
+    required: [user_id]
+    optional: [cursor, feed_count]
+
+  - id: fetch_user_follower_list
+    method: GET
+    path: /api/v1/pipixia/app/fetch_user_follower_list
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+  - id: fetch_user_following_list
+    method: GET
+    path: /api/v1/pipixia/app/fetch_user_following_list
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+# ===== 调用前验证协议 =====
+# 每次调用 API 前，Agent 必须静默验证：
+# 1. 请求路径是否逐字符等于 endpoints[].path 中的某一项？否 → STOP
+# 2. HTTP method 是否匹配？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP，要求用户补充或重新查阅 reference
+# 4. 若 risk: high 或 requires_user_confirmation: true，是否已获得用户明确确认？否 → STOP
+# 全部通过后才可发起请求。

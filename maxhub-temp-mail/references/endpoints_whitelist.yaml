@@ -1,0 +1,36 @@
+# 路径合法性硬白名单
+# Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
+
+skill: maxhub-temp-mail
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Mail (mail.md) ==========
+  - id: get_temp_email_address
+    method: GET
+    path: /api/v1/temp_mail/v1/get_temp_email_address
+    risk: low
+    required: []
+    optional: []
+
+  - id: get_emails_inbox
+    method: GET
+    path: /api/v1/temp_mail/v1/get_emails_inbox
+    risk: low
+    required: [token]
+    optional: []
+
+  - id: get_email_by_id
+    method: GET
+    path: /api/v1/temp_mail/v1/get_email_by_id
+    risk: low
+    required: [token, message_id]
+    optional: []
+
+# ===== 调用前验证协议 =====
+# 每次调用 API 前，Agent 必须静默验证：
+# 1. 请求路径是否逐字符等于 endpoints[].path？否 → STOP
+# 2. HTTP method 是否匹配？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP
+# 全部通过后才可发起请求。

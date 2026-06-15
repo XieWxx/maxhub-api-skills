@@ -1,10 +1,15 @@
 ---
 name: maxhub-linkedin
-description: "LinkedIn 职场数据查询助手。覆盖用户资料、公司信息、职位搜索、帖子、评论、广告等全功能，支持V1/V2双版本API。"
+description: >-
+  Query LinkedIn (领英) data via MaxHub API — user profiles, company
+  information, job search, posts, comments, and ads.
+  Use when user asks about any LinkedIn content, 领英, 用户资料, 公司信息,
+  职位, 帖子, 评论, 搜索人脉, or 企业分析.
+  Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "💼"
     primaryEnv: MAXHUB_API_KEY
@@ -27,285 +32,252 @@ metadata:
 
 # LinkedIn 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a LinkedIn Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+LinkedIn 数据查询工具，通过 MaxHub API 接入领英职业社交平台，覆盖用户资料、公司情报、内容动态、职位搜索四大领域，并提供 Web 与 Web V2 双版本接口。专注服务于 B2B 营销、招聘市场分析、海外人才画像、企业竞调与商业情报场景，帮助用户高效采集 LinkedIn 用户画像、公司经营数据、岗位需求与内容互动，构建跨地域人脉与商业洞察。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 85 active endpoints **first message** and maintain it throughout the conversation.
+- 💼 **用户全景画像** — 基础资料、经历、技能、教育、出版、证书、荣誉、志愿、关注/连接、互动记录全维度覆盖
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 🏢 **公司情报采集** — 公司主页、员工列表、关联页面、附属公司、相似/竞品公司、股票行情、岗位数量一站式查询
 
-## API Access
+- 📰 **内容互动追踪** — 帖子详情、评论、回复、表情反馈、转发、Hashtag Feed、群组帖子完整链路
 
-Base URL: `https://www.aconfig.cn`
+- 🔍 **多维搜索矩阵** — 人脉、岗位、帖子、广告、学校、地点、行业建议跨域搜索
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 💼 **职位精细筛选** — 关键词 / 城市 / 经验 / 远程 / 雇佣类型 / Easy Apply 等多维过滤的岗位搜索与详情
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 📢 **广告库情报** — 搜索 LinkedIn 广告库 + 广告详情，支持按广告主、国家、日期筛选
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/linkedin/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🔄 **Web / Web V2 双版本** — 同一资源两种接口可选，V2 多以 `username` / `universal_name` 取代 urn，规避字段空洞
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/linkedin/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 85 个端点的字段流字典 + Chain Recipes，明确 username / urn / universal_name / company_id / post_urn 在端点间的传递路径
+
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵（Web ↔ V2 互为降级方案）
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改 web/web_v2 段、加路径段** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-linkedin.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查用户 / 经历 / 技能 / 关系 / 搜索人脉 | `references/user.md` | 用户资料、经历、教育、技能、证书、荣誉、关注/连接、互动、人脉/学校/地点搜索（Web + V2 双版本） |
+| 查公司 / 员工 / 竞品 / 股票 / 行业 | `references/company.md` | 公司主页、员工、附属页面、岗位数、相似公司、竞品、股价、员工分布（Web + V2 双版本） |
+| 查帖子 / 评论 / 反馈 / Hashtag / 广告 | `references/content.md` | 帖子详情、评论、回复、Reactions、Reposts、群组帖子、Hashtag Feed、广告库（Web + V2 双版本） |
+| 查岗位 / 搜索职位 | `references/jobs.md` | 岗位详情、岗位搜索（Web + V2 双版本） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 + Web↔V2 替换矩阵 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 85 个端点的硬白名单 + Pre-call 4 步自检协议 |
+| SKILL 版本检查与升级 | `references/update.md` | SkillHub / ClawHub / GitHub 三通道更新 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-linkedin.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ V2 接口字段更稳定，**优先 V2**；V2 缺字段时再降级 Web
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
+**Step 4 — 执行并验证**
+
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做防路径臆造自检（5 步），尤其确认 `web` vs `web_v2` 段是否写错
+- 收到 **400 / 422** → 必须先做防参数臆造自检（6 步），重点检查 `urn` / `username` / `universal_name` 是否混用
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
+
+### 高级使用
+
+#### 链式调用图谱（Chain Recipes）
+
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 用户名 → 资料 → 帖子 | `v2_search_users` → `v2_get_user_profile` → `v2_get_user_posts` | `keywords` → `username` 接力 |
+| 用户主页 → 经历 → 技能 | `v2_get_user_profile` → `v2_get_user_experiences` → `v2_get_user_skills` | `username` 复用 |
+| 公司 → 员工 → 岗位 | `v2_get_company_profile` → `v2_get_company_employees` → `v2_get_company_jobs` | `universal_name` 复用 |
+| 公司 → 竞品 → 相似公司 | `v2_get_company_profile` → `v2_get_company_competitors` → `v2_get_company_similar_companies` | `universal_name` 复用 |
+| 岗位搜索 → 详情 → 公司 | `v2_search_jobs` → `v2_get_job_detail` → `v2_get_company_profile` | `keywords` → `job_id` → `universal_name` |
+| 帖子 → 评论 → 回复 | `v2_get_post_detail` → `v2_get_post_comments` → `v2_get_comment_replies` | `post_urn` → `comment_urn` 接力 |
+| Hashtag → Feed → 帖子详情 | `v2_get_hashtag_feed` → `v2_get_post_detail` | `hashtag` → `post_urn` |
+| 广告库 → 广告详情 | `web_search_ads` → `web_get_ad_detail` | `keyword` → `ad_id` |
+
+#### 防臆造自检清单（强制前置步骤）
+
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对 → 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. `web` / `web_v2` 段是否混用 → 错段 STOP
+6. 全通过才判定"上游资源不存在"
+
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（`urn` / `username` / `universal_name` / `post_urn` / `comment_urn` 不可混用）
+2. 必填项齐全
+3. 类型与格式严格匹配（pattern / enum）
+4. 传参方式正确（query vs body / POST vs GET）
+5. 没有 IN 表外的臆造参数
+6. 全通过才按 `message_zh` 排查
+
+#### Web ↔ V2 替换矩阵
+
+| Web 接口（旧） | V2 接口（推荐） | 关键差异 |
 |---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+| `web_get_user_profile`（urn） | `v2_get_user_profile`（username） | V2 主键改为 username，更稳定 |
+| `web_get_company_profile` | `v2_get_company_profile`（universal_name） | V2 必传 universal_name |
+| `web_get_post_detail`（post_id） | `v2_get_post_detail`（post_urn） | V2 主键 urn 化 |
+| `web_search_jobs` | `v2_search_jobs` | V2 参数 `keywords` 取代 `keyword` |
 
-### Step 2: Route — Classify Intent & Load Reference
+#### SKILL 版本更新
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **User Data** | 用户, 资料, 帖子, 技能, 教育, 经历, 出版物, 图片, 志愿者, 推荐, 兴趣, 反应, user, profile, posts, skills, education, experience, publications, images, volunteers, recommendations, interests, reactions, follower, count, top_card, groups | `references/api-user.md` | get_user_publications, get_user_images, get_user_experience, get_user_volunteers, get_user_interests_groups, get_user_skills, get_user_recommendations, get_user_educations, get_user_reactions, get_user_about, get_user_follower_and_connection, get_user_contact, get_user_honors, get_user_videos, get_user_certifications, get_user_comments, get_discovery_relevant_to_user, search_users, get_user_top_card_supplementary, get_user_contact_info, get_user_interested_groups, get_user_publications, get_user_experiences, get_user_skills, get_user_recommendations, get_user_educations, get_user_bio, get_user_honors, get_user_certifications, get_user_recent_activity |
-| **Company Data** | 公司, 职位, 员工, 帖子, 关联, 洞察, company, jobs, people, posts, affiliated, insights, member, count, profile, locations, cta, stock | `references/api-company.md` | search_posts, search_people, search_jobs, get_company_associated_member_insights, get_company_affiliated_pages, get_company_people, get_company_posts, get_company_jobs, get_company_job_count, get_company_profile, get_post_reactions, get_post_comments, get_post_detail, get_post_reposts, get_user_posts, get_user_interests_companies, get_user_profile, get_group_info, get_group_posts, get_job_detail, get_discovery_relevant_to_company, get_post_detail_by_slug, get_hashtag_feed, search_jobs, get_company_stock_quote, get_company_call_to_actions, get_company_posts, get_company_profile, get_company_grouped_locations, get_company_employees, get_company_employee_count_ranges, get_company_jobs, get_company_job_count, get_company_competitors, get_post_detail, get_post_reactions, get_post_comments, get_user_profile_cards, get_user_profile, get_user_top_card, get_user_interested_companies, get_user_images, get_user_posts, get_user_follower_and_connection_count, get_user_videos, get_user_comments, get_company_similar_companies, get_job_detail |
-| **Search & Jobs** | 搜索, 职位, 地理, 学校, 行业, 建议, search, jobs, location, school, industry, suggestion, people, ads, posts | `references/api-search-jobs.md` | search_location, search_schools, search_suggestion_industry |
-| **Content & Ads** | 帖子, 评论, 点赞, 转发, 广告, 详情, 反应, post, comment, reaction, repost, ad, detail | `references/api-content.md` | search_ads, get_ad_detail, get_comments_replies, get_comment_replies |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-linkedin`（国内）或 `clawhub upgrade maxhub-linkedin`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-linkedin |
+| 多端点连续 410 | `skillhub upgrade maxhub-linkedin --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-**Rules:**
-- If uncertain, default to **User Profile**.
-- For **Deep Dive**, read reference files incrementally.
+### 常用命令速查表
 
-### Step 3: Classify Action Mode
-
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
-
-### Step 4: Plan & Execute
-
-#### Pattern A: "分析LinkedIn用户"
-
-1. 获取资料 → get_user_profile → 基本信息
-2. 获取经历 → fetch_user_experience → 工作经历
-3. 获取技能 → fetch_user_skills → 技能列表
-
-#### Pattern B: "分析公司信息"
-
-1. 获取资料 → fetch_company_profile → 公司基本信息
-2. 获取员工 → fetch_company_people → 员工列表
-3. 获取职位 → fetch_company_jobs → 招聘职位
-
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
-
-### Step 5: Output Results
-
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查用户资料（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/linkedin/web_v2/get_user_profile?username=xxx"` |
+| 查公司主页（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/linkedin/web_v2/get_company_profile?universal_name=xxx"` |
+| 搜索岗位（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/linkedin/web_v2/search_jobs?keywords=engineer&location=Beijing"` |
+| 查帖子评论（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/linkedin/web_v2/get_post_comments?post_urn=urn:li:activity:xxx"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-linkedin` 或 `clawhub info maxhub-linkedin` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：商业情报收集
-- **应用环境**：B2B销售团队需要了解目标公司的关键信息
-- **用户需求**：获取公司规模、业务方向、关键决策人等商业信息
-- **使用流程**：搜索目标公司 → 获取公司详情 → 查看员工分布 → 分析职位招聘趋势
-- **预期效果**：10分钟内完成目标公司的全景画像，辅助销售策略制定
+### 场景一：B2B 营销团队挖掘潜在客户
 
-### 场景二：人才市场分析
-- **应用环境**：HR团队或猎头分析行业人才流动趋势
-- **用户需求**：了解岗位需求变化、薪资水平和人才分布
-- **使用流程**：搜索目标职位 → 分析岗位分布 → 获取公司招聘信息 → 生成行业报告
-- **预期效果**：为人才招聘策略提供数据驱动的决策依据
+- **角色**：B2B SaaS 销售
+- **需求**：按行业 + 职位 + 地区批量挖掘目标公司的决策层联系信息
+- **使用方式**：`v2_search_users`（按 title + industry + geo_urn）→ 取 `username` → 链式调 `v2_get_user_profile` + `v2_get_user_top_card` 提取头衔与联系方式线索
+- **预期收益**：批量构建精准客户名单，替代 Sales Navigator 高昂订阅，营销线索成本下降 60%+
 
-### 场景三：竞品公司监测
-- **应用环境**：战略团队持续跟踪竞争对手动态
-- **用户需求**：监控竞品公司的人员变动、业务方向和招聘重点
-- **使用流程**：获取竞品公司信息 → 追踪人员变化 → 分析招聘趋势 → 生成监测报告
-- **预期效果**：及时发现竞品战略调整信号，提前应对
+### 场景二：招聘市场分析师追踪行业岗位需求
 
-## Error Handling
+- **角色**：HRBP / 招聘市场研究员
+- **需求**：监控竞争对手公司近期发布的岗位、JD 关键词与薪资范围
+- **使用方式**：`v2_get_company_profile` 锁定公司 → `v2_get_company_jobs` 拉取岗位列表 → 链式调 `v2_get_job_detail` 提取 JD 与技能要求
+- **预期收益**：竞品招聘动态可日级追踪，识别人才争夺热点与组织扩张方向
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：海外人才画像与背景调查
 
-### 智能重试策略
+- **角色**：跨境招聘 / 人才合伙人
+- **需求**：根据候选人 LinkedIn URL 完整还原其经历、技能、推荐与人脉网络
+- **使用方式**：`v2_get_user_profile` → `v2_get_user_experiences` + `v2_get_user_educations` + `v2_get_user_skills` + `v2_get_user_recommendations` 全维度并行采集
+- **预期收益**：候选人画像构建效率提升 5 倍，人脉网络可视化辅助内推决策
 
-| 错误码 | 重试策略 | 原因 |
-|--------|---------|------|
-| 400 Bad Request | **不重试** | 参数错误，需修正参数后重新调用 |
-| 401 Unauthorized | **不重试** | API Key 无效，需检查配置 |
-| 403 Forbidden | **不重试** | 权限不足，需更换 API Key 或接口 |
-| 404 Not Found | **触发降级** | 接口可能已下线，按降级策略切换替代版本 |
-| 422 Unprocessable | **不重试** | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | 延迟 5 秒后重试，最多 1 次 | 请求过快，需降速 |
-| 500 Server Error | 先重试 1 次，仍失败则**触发降级** | 服务器故障，重试无效则切换替代版本 |
-| 410 Gone | **触发降级** | 接口已废弃，按降级策略切换替代版本 |
+### 场景四：企业竞调与情报采集
 
-**重要**：对 400/404/410/422 错误，不要盲目重试。应分析错误原因，修正参数或切换到替代接口后再调用。
+- **角色**：战略分析师 / 投研
+- **需求**：跟踪某海外标的公司的员工增长、岗位动向、内容传播与竞品图谱
+- **使用方式**：`v2_get_company_profile` → `v2_get_company_employee_count_ranges` → `v2_get_company_competitors` → `v2_get_company_posts` → `web_search_ads`（advertiser_name）补齐广告投放数据
+- **预期收益**：完整的公司经营画像 + 竞品图谱 + 广告策略一站式输出，为投研决策提供高质量原始数据
 
-### 404 错误专项处理
+## 6. 项目架构
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
-
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
-
-### 接口降级与自动切换策略
-
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-linkedin/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 85 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理 + Web↔V2 替换矩阵）
+    ├── user.md                         # 用户域：资料/经历/技能/教育/关系/搜索（Web + V2）
+    ├── company.md                      # 公司域：主页/员工/岗位/竞品/股价（Web + V2）
+    ├── content.md                      # 内容域：帖子/评论/回复/反馈/广告/群组（Web + V2）
+    ├── jobs.md                         # 职位域：岗位详情/岗位搜索（Web + V2）
+    └── update.md                       # SKILL 更新机制（SkillHub / ClawHub / GitHub）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET / POST 请求，参数通过 query string 或 body 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/linkedin/web/*` 与 `web_v2/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 85 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ Web↔V2 替换矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 用户（User） | 43 | `user.md` |
+| 公司（Company） | 20 | `company.md` |
+| 内容（Content） | 16 | `content.md` |
+| 职位（Jobs） | 4 | `jobs.md` |
+| **合计** | **85** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **Web / V2 双版本契约**：V2 优先策略 + 替换矩阵兜底，规避单接口字段空洞或 410 失效风险
+- **链式调用图谱**：字段流字典（`username` / `urn` / `universal_name` / `post_urn` / `comment_urn`）+ Chain Recipes + 跨 reference 链路三层联动
+- **错误处理契约**：HTTP 状态码权威定义 + 防臆造自检清单（A: 5 步 / B: 6 步）+ Web↔V2 替换矩阵

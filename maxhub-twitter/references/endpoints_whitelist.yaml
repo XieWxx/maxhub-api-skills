@@ -1,0 +1,109 @@
+# 路径合法性硬白名单
+# Agent 在调用 API 前必须逐字符比对路径，不在清单中的路径禁止调用。
+# 禁止修改版本段、拼接路径、从模式推断新端点。
+
+skill: maxhub-twitter
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== 推文内容 (content.md) ==========
+  - id: fetch_tweet_detail
+    method: GET
+    path: /api/v1/twitter/web/fetch_tweet_detail
+    risk: low
+    required: [tweet_id]
+    optional: []
+
+  - id: fetch_post_comments
+    method: GET
+    path: /api/v1/twitter/web/fetch_post_comments
+    risk: low
+    required: [tweet_id]
+    optional: [cursor]
+
+  - id: fetch_latest_post_comments
+    method: GET
+    path: /api/v1/twitter/web/fetch_latest_post_comments
+    risk: low
+    required: [tweet_id]
+    optional: [cursor]
+
+  - id: fetch_retweet_user_list
+    method: GET
+    path: /api/v1/twitter/web/fetch_retweet_user_list
+    risk: low
+    required: [tweet_id]
+    optional: [cursor]
+
+  - id: fetch_search_timeline
+    method: GET
+    path: /api/v1/twitter/web/fetch_search_timeline
+    risk: low
+    required: [keyword]
+    optional: [search_type, cursor]
+
+  - id: fetch_trending
+    method: GET
+    path: /api/v1/twitter/web/fetch_trending
+    risk: low
+    required: []
+    optional: [country]
+
+  # ========== 用户 (user.md) ==========
+  - id: fetch_user_profile
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_profile
+    risk: low
+    required: { oneOf: [screen_name, rest_id] }
+    optional: []
+
+  - id: fetch_user_post_tweet
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_post_tweet
+    risk: low
+    required: { oneOf: [screen_name, rest_id] }
+    optional: [cursor]
+
+  - id: fetch_user_tweet_replies
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_tweet_replies
+    risk: low
+    required: [screen_name]
+    optional: [cursor]
+
+  - id: fetch_user_media
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_media
+    risk: low
+    required: [screen_name]
+    optional: [rest_id, cursor]
+
+  - id: fetch_user_followings
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_followings
+    risk: low
+    required: [screen_name]
+    optional: [cursor]
+
+  - id: fetch_user_followers
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_followers
+    risk: low
+    required: [screen_name]
+    optional: [cursor]
+
+  - id: fetch_user_highlights_tweets
+    method: GET
+    path: /api/v1/twitter/web/fetch_user_highlights_tweets
+    risk: low
+    required: [userId]
+    optional: [count, cursor]
+
+# ===== 调用前验证协议 =====
+# 每次 API 调用前，Agent 必须静默验证：
+# 1. 请求路径是否逐字符等于 endpoints[].path 之一？否 → STOP
+# 2. HTTP method 是否匹配对应条目的 method？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP，要求用户补充
+# 4. 若 risk: high 或 requires_user_confirmation: true，用户是否已显式确认？否 → STOP
+# 全部通过后方可发起调用。

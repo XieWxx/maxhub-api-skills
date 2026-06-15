@@ -1,0 +1,97 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-threads
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== User (user.md) ==========
+  - id: fetch_user_info
+    method: GET
+    path: /api/v1/threads/web/fetch_user_info
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: fetch_user_info_by_id
+    method: GET
+    path: /api/v1/threads/web/fetch_user_info_by_id
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: fetch_user_posts
+    method: GET
+    path: /api/v1/threads/web/fetch_user_posts
+    risk: low
+    required: [user_id]
+    optional: [end_cursor]
+
+  - id: fetch_user_reposts
+    method: GET
+    path: /api/v1/threads/web/fetch_user_reposts
+    risk: low
+    required: [user_id]
+    optional: [end_cursor]
+
+  - id: fetch_user_replies
+    method: GET
+    path: /api/v1/threads/web/fetch_user_replies
+    risk: low
+    required: [user_id]
+    optional: [end_cursor]
+
+  # ========== Content (content.md) ==========
+  - id: fetch_post_detail
+    method: GET
+    path: /api/v1/threads/web/fetch_post_detail
+    risk: low
+    required: [post_id]
+    optional: []
+
+  - id: fetch_post_detail_v2
+    method: GET
+    path: /api/v1/threads/web/fetch_post_detail_v2
+    risk: low
+    required: { oneOf: [post_id, url] }
+    optional: []
+
+  - id: fetch_post_comments
+    method: GET
+    path: /api/v1/threads/web/fetch_post_comments
+    risk: low
+    required: [post_id]
+    optional: [end_cursor]
+
+  - id: search_top
+    method: GET
+    path: /api/v1/threads/web/search_top
+    risk: low
+    required: [query]
+    optional: [end_cursor]
+
+  - id: search_recent
+    method: GET
+    path: /api/v1/threads/web/search_recent
+    risk: low
+    required: [query]
+    optional: [end_cursor]
+
+  - id: search_profiles
+    method: GET
+    path: /api/v1/threads/web/search_profiles
+    risk: low
+    required: [query]
+    optional: []
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

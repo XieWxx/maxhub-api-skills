@@ -4,7 +4,7 @@ description: "MaxHub 技能仓库聚合入口。涵盖20个平台的数据查询
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.2.0"
+  version: "3.7.2"
   openclaw:
     emoji: "🌐"
     primaryEnv: MAXHUB_API_KEY
@@ -37,26 +37,26 @@ metadata:
 
 | # | 技能名称 | 平台 | 描述 | 版本 | 引用文件数 |
 |---|---------|------|------|------|-----------|
-| 1 | 📺 maxhub-bilibili | B站 | B站视频、用户、评论、弹幕、直播数据查询助手 | 3.2.0 | 5 |
-| 2 | 🎵 maxhub-douyin | 抖音 | 抖音全场景数据查询助手，7大模块 | 3.2.0 | 8 |
-| 3 | 📸 maxhub-instagram | Instagram | Instagram 全场景数据查询，V1/V2/V3三版API | 3.2.0 | 4 |
-| 4 | 🎬 maxhub-kuaishou | 快手 | 快手全场景数据查询，App/Web双端API | 3.2.0 | 3 |
-| 5 | 🍋 maxhub-lemon8 | Lemon8 | Lemon8 内容数据查询助手 | 3.2.0 | 3 |
-| 6 | 💼 maxhub-linkedin | LinkedIn | LinkedIn 职场数据查询，V1/V2双版API | 3.2.0 | 5 |
-| 7 | 🦐 maxhub-pipixia | 皮皮虾 | 皮皮虾数据查询助手 | 3.2.0 | 3 |
-| 8 | 🤖 maxhub-reddit | Reddit | Reddit 数据查询助手 | 3.2.0 | 4 |
-| 9 | 🎥 maxhub-sora2 | Sora2 | Sora2 视频平台数据查询助手 | 3.2.0 | 3 |
-| 10 | 📧 maxhub-temp-mail | 临时邮箱 | 临时邮箱服务助手 | 3.2.0 | 2 |
-| 11 | 🧵 maxhub-threads | Threads | Threads 数据查询助手 | 3.2.0 | 2 |
-| 12 | 🎶 maxhub-tiktok | TikTok | TikTok 全场景数据查询，7大模块 | 3.2.0 | 5 |
-| 13 | 📰 maxhub-toutiao | 今日头条 | 今日头条数据查询助手 | 3.2.0 | 2 |
-| 14 | 𝕏 maxhub-twitter | Twitter/X | Twitter/X 数据查询助手 | 3.2.0 | 3 |
-| 15 | 💬 maxhub-wechat | 微信 | 微信视频号和公众号数据查询 | 3.2.0 | 3 |
-| 16 | 🐦 maxhub-weibo | 微博 | 微博全场景数据查询，多版本API | 3.2.0 | 6 |
-| 17 | 📕 maxhub-xiaohongshu | 小红书 | 小红书全场景数据查询，多版本API | 3.2.0 | 5 |
-| 18 | 🍉 maxhub-xigua | 西瓜视频 | 西瓜视频数据查询助手 | 3.2.0 | 2 |
-| 19 | ▶️ maxhub-youtube | YouTube | YouTube 全场景数据查询，Web/V2双版API | 3.2.0 | 4 |
-| 20 | 💡 maxhub-zhihu | 知乎 | 知乎数据查询助手 | 3.2.0 | 4 |
+| 1 | 📺 maxhub-bilibili | B站 | B站视频、用户、评论、弹幕、直播数据查询助手 | 3.7.2 | 5 |
+| 2 | 🎵 maxhub-douyin | 抖音 | 抖音全场景数据查询助手，7大模块 | 3.7.2 | 8 |
+| 3 | 📸 maxhub-instagram | Instagram | Instagram 全场景数据查询，V1/V2/V3三版API | 3.7.2 | 4 |
+| 4 | 🎬 maxhub-kuaishou | 快手 | 快手全场景数据查询，App/Web双端API | 3.7.2 | 3 |
+| 5 | 🍋 maxhub-lemon8 | Lemon8 | Lemon8 内容数据查询助手 | 3.7.2 | 3 |
+| 6 | 💼 maxhub-linkedin | LinkedIn | LinkedIn 职场数据查询，V1/V2双版API | 3.7.2 | 5 |
+| 7 | 🦐 maxhub-pipixia | 皮皮虾 | 皮皮虾数据查询助手 | 3.7.2 | 3 |
+| 8 | 🤖 maxhub-reddit | Reddit | Reddit 数据查询助手 | 3.7.2 | 4 |
+| 9 | 🎥 maxhub-sora2 | Sora2 | Sora2 视频平台数据查询助手（17 端点） | 3.7.2 | 4 |
+| 10 | 📧 maxhub-temp-mail | 临时邮箱 | 临时邮箱服务助手 | 3.7.2 | 2 |
+| 11 | 🧵 maxhub-threads | Threads | Threads 数据查询助手 | 3.7.2 | 2 |
+| 12 | 🎶 maxhub-tiktok | TikTok | TikTok 全场景数据查询，7大模块 | 3.7.2 | 5 |
+| 13 | 📰 maxhub-toutiao | 今日头条 | 今日头条数据查询助手 | 3.7.2 | 2 |
+| 14 | 𝕏 maxhub-twitter | Twitter/X | Twitter/X 数据查询助手 | 3.7.2 | 3 |
+| 15 | 💬 maxhub-wechat | 微信 | 微信视频号和公众号数据查询 | 3.7.2 | 3 |
+| 16 | 🐦 maxhub-weibo | 微博 | 微博全场景数据查询，多版本API | 3.7.2 | 6 |
+| 17 | 📕 maxhub-xiaohongshu | 小红书 | 小红书全场景数据查询，多版本API | 3.7.2 | 5 |
+| 18 | 🍉 maxhub-xigua | 西瓜视频 | 西瓜视频数据查询助手 | 3.7.2 | 2 |
+| 19 | ▶️ maxhub-youtube | YouTube | YouTube 全场景数据查询，Web/V2双版API | 3.7.2 | 4 |
+| 20 | 💡 maxhub-zhihu | 知乎 | 知乎数据查询助手 | 3.7.2 | 4 |
 
 ## 分类索引
 
@@ -70,7 +70,7 @@ metadata:
 | 🎶 TikTok | `maxhub-tiktok/` | `api-ads-analytics.md`, `api-search.md`, `api-user.md`, `api-video.md`, `param-mappings.md` |
 | 🍉 西瓜视频 | `maxhub-xigua/` | `api-video-user.md`, `param-mappings.md` |
 | ▶️ YouTube | `maxhub-youtube/` | `api-channel.md`, `api-search.md`, `api-video.md`, `param-mappings.md` |
-| 🎥 Sora2 | `maxhub-sora2/` | `api-cameo.md`, `api-post-user.md`, `param-mappings.md` |
+| 🎥 Sora2 | `maxhub-sora2/` | `post.md`, `user.md`, `tools.md`, `param-mappings.md` |
 
 ### 📱 社交媒体 & 社区
 

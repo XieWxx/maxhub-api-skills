@@ -1,0 +1,66 @@
+# 路径合法性硬白名单
+# Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
+
+skill: maxhub-toutiao
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== App 端 Posts (post.md) ==========
+  - id: app_get_article_info
+    method: GET
+    path: /api/v1/toutiao/app/get_article_info
+    risk: low
+    required: [group_id]
+    optional: []
+
+  - id: app_get_video_info
+    method: GET
+    path: /api/v1/toutiao/app/get_video_info
+    risk: low
+    required: [group_id]
+    optional: []
+
+  - id: app_get_comments
+    method: GET
+    path: /api/v1/toutiao/app/get_comments
+    risk: low
+    required: [group_id, offset]
+    optional: []
+
+  # ========== App 端 Users (user.md) ==========
+  - id: app_get_user_info
+    method: GET
+    path: /api/v1/toutiao/app/get_user_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: app_get_user_id
+    method: GET
+    path: /api/v1/toutiao/app/get_user_id
+    risk: low
+    required: [user_profile_url]
+    optional: []
+
+  # ========== Web 端 Posts (post.md) ==========
+  - id: web_get_article_info
+    method: GET
+    path: /api/v1/toutiao/web/get_article_info
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: web_get_video_info
+    method: GET
+    path: /api/v1/toutiao/web/get_video_info
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+# ===== 调用前验证协议 =====
+# 每次调用 API 前，Agent 必须静默验证：
+# 1. 请求路径是否逐字符等于 endpoints[].path？否 → STOP
+# 2. HTTP method 是否匹配？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP
+# 4. 全部通过后才可发起请求。

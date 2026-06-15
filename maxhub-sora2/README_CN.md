@@ -2,13 +2,17 @@
 
 [English](README.md)
 
-Sora2 视频平台数据查询助手。覆盖作品详情、用户数据、搜索、评论、Cameo等全功能。
+Sora2（sora.chatgpt.com）数据查询助手。覆盖作品、用户、评论、Cameo出镜秀、视频下载，
+并支持触发 Sora2 视频生成任务，全部通过 MaxHub API。
 
 ## 功能
 
-- **作品与用户** — fetch_single_post, fetch_post_comments, fetch_comment_replies, fetch_post_remix_list, fetch_none_watermark_download, fetch_user_profile, fetch_user_posts, fetch_user_following, fetch_user_followers, fetch_feed, search_users
-- **Cameo出镜秀** — fetch_cameo_leaderboard, fetch_user_cameo_list
-- **工具** — upload_image
+- **作品与内容** — `get_post_detail`、`get_post_comments`、`get_comment_replies`、
+  `get_post_remix_list`、`get_video_download_info`、`get_feed`
+- **用户** — `get_user_profile`、`get_user_posts`、`get_user_following`、
+  `get_user_followers`、`get_user_cameo_appearances`、`search_users`
+- **工具与 Cameo** — `create_video`、`get_task_status`、`get_task_detail`、
+  `upload_image`、`get_cameo_leaderboard`
 
 ## 安装
 
@@ -25,9 +29,9 @@ npx clawhub install maxhub-sora2
 
 | 分类 | 示例指令 |
 |------|----------|
-| 作品与用户 | 作品，用户 |
-| Cameo出镜秀 | Cameo，出镜秀 |
-| 工具 | 上传，图片 |
+| 作品与内容 | "查这个 Sora2 作品详情"，"查作品的评论列表" |
+| 用户 | "搜索 Sora2 用户 sam"，"查这个用户发布的作品" |
+| 工具与 Cameo | "生成一个 Sora2 视频"，"查 Cameo 出镜热榜" |
 
 支持 **中文** 和 **英文** 双语。
 

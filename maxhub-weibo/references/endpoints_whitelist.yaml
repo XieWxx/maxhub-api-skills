@@ -1,0 +1,469 @@
+# 端点路径硬白名单，用于路径合法性校验。
+# Agent 在调用 API 前必须逐字符比对请求路径与本文件。
+# 未在清单中的路径一律视为非法 —— STOP 并报告 "Unknown API path"。
+# 禁止修改版本段、拼接路径、按模式臆造新端点。
+
+skill: maxhub-weibo
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Posts / 微博内容 (post.md) ==========
+  - id: app_fetch_status_detail
+    method: GET
+    path: /api/v1/weibo/app/fetch_status_detail
+    risk: low
+    required: [status_id]
+    optional: []
+
+  - id: app_fetch_status_reposts
+    method: GET
+    path: /api/v1/weibo/app/fetch_status_reposts
+    risk: low
+    required: [status_id]
+    optional: [max_id]
+
+  - id: app_fetch_status_likes
+    method: GET
+    path: /api/v1/weibo/app/fetch_status_likes
+    risk: low
+    required: [status_id]
+    optional: [attitude_type]
+
+  - id: app_fetch_video_detail
+    method: GET
+    path: /api/v1/weibo/app/fetch_video_detail
+    risk: low
+    required: [mid]
+    optional: []
+
+  - id: app_fetch_video_featured_feed
+    method: GET
+    path: /api/v1/weibo/app/fetch_video_featured_feed
+    risk: low
+    required: []
+    optional: [page]
+
+  - id: app_fetch_home_recommend_feed
+    method: GET
+    path: /api/v1/weibo/app/fetch_home_recommend_feed
+    risk: low
+    required: []
+    optional: [page, count]
+
+  - id: web_fetch_post_detail
+    method: GET
+    path: /api/v1/weibo/web/fetch_post_detail
+    risk: low
+    required: [post_id]
+    optional: []
+
+  - id: web_fetch_config_list
+    method: GET
+    path: /api/v1/weibo/web/fetch_config_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_fetch_trend_top
+    method: GET
+    path: /api/v1/weibo/web/fetch_trend_top
+    risk: low
+    required: [containerid]
+    optional: [page]
+
+  - id: web_fetch_channel_feed
+    method: GET
+    path: /api/v1/weibo/web/fetch_channel_feed
+    risk: low
+    required: []
+    optional: [channel_name, page]
+
+  - id: web_v2_fetch_post_detail
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_post_detail
+    risk: low
+    required: [id]
+    optional: [is_get_long_text]
+
+  - id: web_v2_check_allow_comment_with_pic
+    method: GET
+    path: /api/v1/weibo/web_v2/check_allow_comment_with_pic
+    risk: low
+    required: [id]
+    optional: []
+
+  - id: web_v2_fetch_user_recommend_timeline
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_recommend_timeline
+    risk: low
+    required: []
+    optional: [refresh, group_id, containerid, extparam, max_id, count]
+
+  - id: web_v2_fetch_hot_ranking_timeline
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_hot_ranking_timeline
+    risk: low
+    required: [ranking_type]
+    optional: [since_id, max_id, count]
+
+  # ========== Users / 微博用户 (user.md) ==========
+  - id: app_fetch_user_info
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_info
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: app_fetch_user_info_detail
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_info_detail
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: app_fetch_user_timeline
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_timeline
+    risk: low
+    required: [uid]
+    optional: [page, filter_type, month]
+
+  - id: app_fetch_user_videos
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_videos
+    risk: low
+    required: [uid]
+    optional: [since_id]
+
+  - id: app_fetch_user_super_topics
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_super_topics
+    risk: low
+    required: [uid]
+    optional: [page]
+
+  - id: app_fetch_user_album
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_album
+    risk: low
+    required: [uid]
+    optional: [since_id]
+
+  - id: app_fetch_user_articles
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_articles
+    risk: low
+    required: [uid]
+    optional: [since_id]
+
+  - id: app_fetch_user_audios
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_audios
+    risk: low
+    required: [uid]
+    optional: [since_id]
+
+  - id: app_fetch_user_profile_feed
+    method: GET
+    path: /api/v1/weibo/app/fetch_user_profile_feed
+    risk: low
+    required: [uid]
+    optional: [since_id]
+
+  - id: web_fetch_user_info
+    method: GET
+    path: /api/v1/weibo/web/fetch_user_info
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_fetch_user_posts
+    method: GET
+    path: /api/v1/weibo/web/fetch_user_posts
+    risk: low
+    required: [uid]
+    optional: [page, since_id]
+
+  - id: web_v2_fetch_user_info
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_info
+    risk: low
+    required: { oneOf: [uid, custom] }
+    optional: []
+
+  - id: web_v2_fetch_user_basic_info
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_basic_info
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_v2_fetch_user_posts
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_posts
+    risk: low
+    required: [uid]
+    optional: [page, feature, since_id]
+
+  - id: web_v2_fetch_user_original_posts
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_original_posts
+    risk: low
+    required: [uid]
+    optional: [page, since_id]
+
+  - id: web_v2_search_user_posts
+    method: GET
+    path: /api/v1/weibo/web_v2/search_user_posts
+    risk: low
+    required: [uid]
+    optional: [q, page, starttime, endtime, hasori, hasret, hastext, haspic, hasvideo, hasmusic]
+
+  - id: web_v2_fetch_user_video_collection_list
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_video_collection_list
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_v2_fetch_user_video_collection_detail
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_video_collection_detail
+    risk: low
+    required: [cid]
+    optional: [cursor, tab_code]
+
+  - id: web_v2_fetch_user_video_list
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_video_list
+    risk: low
+    required: [uid]
+    optional: [cursor]
+
+  - id: web_v2_fetch_user_following
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_following
+    risk: low
+    required: [uid]
+    optional: [page]
+
+  - id: web_v2_fetch_user_fans
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_fans
+    risk: low
+    required: [uid]
+    optional: [page]
+
+  - id: web_v2_fetch_all_groups
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_all_groups
+    risk: low
+    required: []
+    optional: []
+
+  # ========== Comments / 微博评论 (comments.md) ==========
+  - id: app_fetch_status_comments
+    method: GET
+    path: /api/v1/weibo/app/fetch_status_comments
+    risk: low
+    required: [status_id]
+    optional: [max_id, sort_type]
+
+  - id: web_fetch_post_comments
+    method: GET
+    path: /api/v1/weibo/web/fetch_post_comments
+    risk: low
+    required: [post_id, mid]
+    optional: [max_id, max_id_type]
+
+  - id: web_fetch_comment_replies
+    method: GET
+    path: /api/v1/weibo/web/fetch_comment_replies
+    risk: low
+    required: [cid]
+    optional: [max_id]
+
+  - id: web_v2_fetch_post_comments
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_post_comments
+    risk: low
+    required: [id]
+    optional: [count, max_id]
+
+  - id: web_v2_fetch_post_sub_comments
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_post_sub_comments
+    risk: low
+    required: [id]
+    optional: [count, max_id]
+
+  # ========== Search & Discovery / 搜索与发现 (search.md) ==========
+  - id: app_fetch_search_all
+    method: GET
+    path: /api/v1/weibo/app/fetch_search_all
+    risk: low
+    required: [query]
+    optional: [page, search_type]
+
+  - id: app_fetch_ai_smart_search
+    method: GET
+    path: /api/v1/weibo/app/fetch_ai_smart_search
+    risk: low
+    required: [query]
+    optional: [page]
+
+  - id: app_fetch_hot_search
+    method: GET
+    path: /api/v1/weibo/app/fetch_hot_search
+    risk: low
+    required: []
+    optional: [category, page, count, region_name]
+
+  - id: app_fetch_hot_search_categories
+    method: GET
+    path: /api/v1/weibo/app/fetch_hot_search_categories
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_fetch_search
+    method: GET
+    path: /api/v1/weibo/web/fetch_search
+    risk: low
+    required: [keyword]
+    optional: [page, search_type, time_scope]
+
+  - id: web_fetch_hot_search
+    method: GET
+    path: /api/v1/weibo/web/fetch_hot_search
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_fetch_search_topics
+    method: GET
+    path: /api/v1/weibo/web/fetch_search_topics
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_hot_search_index
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_hot_search_index
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_hot_search_summary
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_hot_search_summary
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_hot_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_hot_search
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_entertainment_ranking
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_entertainment_ranking
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_life_ranking
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_life_ranking
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_social_ranking
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_social_ranking
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_v2_fetch_similar_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_similar_search
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: web_v2_fetch_ai_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_ai_search
+    risk: low
+    required: [query]
+    optional: []
+
+  - id: web_v2_fetch_ai_related_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_ai_related_search
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: web_v2_fetch_advanced_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_advanced_search
+    risk: low
+    required: [q]
+    optional: [search_type, include_type, timescope, page]
+
+  - id: web_v2_fetch_city_list
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_city_list
+    risk: low
+    required: []
+    optional: [normalized]
+
+  - id: web_v2_fetch_realtime_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_realtime_search
+    risk: low
+    required: [query]
+    optional: [page]
+
+  - id: web_v2_fetch_user_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_user_search
+    risk: low
+    required: []
+    optional: [query, page, region, auth, gender, age, nickname, tag, school, work]
+
+  - id: web_v2_fetch_video_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_video_search
+    risk: low
+    required: [query]
+    optional: [mode, page]
+
+  - id: web_v2_fetch_pic_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_pic_search
+    risk: low
+    required: [query]
+    optional: [page]
+
+  - id: web_v2_fetch_topic_search
+    method: GET
+    path: /api/v1/weibo/web_v2/fetch_topic_search
+    risk: low
+    required: [query]
+    optional: [page]
+
+# ===== 调用前校验协议 =====
+# 每次调用 API 前，Agent 必须静默完成以下校验：
+# 1. 请求路径是否逐字符等于 endpoints[].path 之一？否 → STOP
+# 2. HTTP 方法是否与匹配条目的 method 一致？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP，向用户索要或重读 reference
+# 4. 若 risk: high 或 requires_user_confirmation: true，用户是否已明确确认？否 → STOP
+# 全部通过后方可发起请求。

@@ -2,14 +2,14 @@
 
 [中文文档](README_CN.md)
 
-Xiaohongshu data assistant with multi-version App/Web APIs for notes, users, search, products, comments, and topics.
+Xiaohongshu (小红书) data assistant with App/Web APIs for notes, users, search & discovery, products, and topics.
 
 ## Features
 
-- **Note Data** — fetch_note_info, fetch_note_detail, fetch_note_comments, fetch_note_sub_comments, fetch_note_image, fetch_one_note_feed
-- **User Data** — fetch_user_info, fetch_user_notes, fetch_user_faved_notes, fetch_user_following, fetch_user_followers, extract_user_id_from_link
-- **Search** — search_notes, search_users, search_products, fetch_search_suggestions, fetch_trending_keywords, fetch_home_feed
-- **Product & Topic** — fetch_product_detail, fetch_product_reviews, fetch_product_review_overview, fetch_product_list, fetch_topic_info, fetch_topic_feed, fetch_hot_list
+- **Notes & Comments** — note detail (image/video), comments, sub-comments
+- **User Profile** — user info, posted notes, favorited notes
+- **Search & Discovery** — search notes/users/images/products, trending, hot list, homepage feed
+- **Products & Topics** — product detail, reviews, recommendations, topic info, topic feed, creator inspiration
 
 ## Install
 
@@ -26,10 +26,10 @@ npx clawhub install maxhub-xiaohongshu
 
 | Category | Example prompts |
 |----------|----------------|
-| Note Data | 笔记, 详情 |
-| User Data | 用户, 资料 |
-| Search | 搜索, 搜 |
-| Product & Topic | 商品, 话题 |
+| Notes & Comments | 笔记, 详情, comments |
+| User Profile | 用户, 资料, profile |
+| Search & Discovery | 搜索, 热榜, trending |
+| Products & Topics | 商品, 话题, product |
 
 Supports both **English** and **Chinese**.
 

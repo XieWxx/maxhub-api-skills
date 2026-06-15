@@ -1,0 +1,1254 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-tiktok
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Video — App V3 (video.md) ==========
+  - id: fetch_one_video
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_one_video
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: fetch_one_video_v2
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_one_video_v2
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: fetch_one_video_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_one_video_v3
+    risk: low
+    required: [aweme_id]
+    optional: [region]
+
+  - id: fetch_multi_video
+    method: POST
+    path: /api/v1/tiktok/app/v3/fetch_multi_video
+    risk: low
+    required: [aweme_ids]
+    optional: []
+
+  - id: fetch_multi_video_v2
+    method: POST
+    path: /api/v1/tiktok/app/v3/fetch_multi_video_v2
+    risk: low
+    required: [aweme_ids]
+    optional: []
+
+  - id: fetch_one_video_by_share_url_v2
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_one_video_by_share_url_v2
+    risk: low
+    required: [share_url]
+    optional: []
+
+  - id: fetch_one_video_by_share_url
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_one_video_by_share_url
+    risk: low
+    required: [share_url]
+    optional: []
+
+  - id: fetch_creator_search_insights_videos
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_creator_search_insights_videos
+    risk: low
+    required: [keyword]
+    optional: [offset, count]
+
+  - id: fetch_home_feed_app_v3
+    method: POST
+    path: /api/v1/tiktok/app/v3/fetch_home_feed
+    risk: low
+    required: []
+    optional: [cookie]
+
+  - id: add_video_play_count
+    method: GET
+    path: /api/v1/tiktok/app/v3/add_video_play_count
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [aweme_type, item_id]
+    optional: []
+
+  - id: open_tiktok_app_to_video_detail
+    method: GET
+    path: /api/v1/tiktok/app/v3/open_tiktok_app_to_video_detail
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  # ========== Video — Web API (video.md) ==========
+  - id: fetch_post_detail
+    method: GET
+    path: /api/v1/tiktok/web/fetch_post_detail
+    risk: low
+    required: [itemId]
+    optional: []
+
+  - id: fetch_post_detail_v2
+    method: GET
+    path: /api/v1/tiktok/web/fetch_post_detail_v2
+    risk: low
+    required: [itemId]
+    optional: []
+
+  - id: fetch_explore_post
+    method: GET
+    path: /api/v1/tiktok/web/fetch_explore_post
+    risk: low
+    required: []
+    optional: [categoryType, count]
+
+  - id: fetch_home_feed_web
+    method: POST
+    path: /api/v1/tiktok/web/fetch_home_feed
+    risk: low
+    required: []
+    optional: [count, cookie]
+
+  - id: fetch_tag_post
+    method: GET
+    path: /api/v1/tiktok/web/fetch_tag_post
+    risk: low
+    required: [challengeID]
+    optional: [count, cursor]
+
+  - id: fetch_user_mix
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_mix
+    risk: low
+    required: [mixId]
+    optional: [cursor, count]
+
+  - id: get_aweme_id
+    method: GET
+    path: /api/v1/tiktok/web/get_aweme_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: get_all_aweme_id
+    method: POST
+    path: /api/v1/tiktok/web/get_all_aweme_id
+    risk: low
+    required: [url]
+    optional: []
+
+  # ========== User — App V3 (user.md) ==========
+  - id: get_user_id_and_sec_user_id_by_username
+    method: GET
+    path: /api/v1/tiktok/app/v3/get_user_id_and_sec_user_id_by_username
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: handler_user_profile
+    method: GET
+    path: /api/v1/tiktok/app/v3/handler_user_profile
+    risk: low
+    required: { oneOf: [user_id, sec_user_id, unique_id] }
+    optional: []
+
+  - id: fetch_webcast_user_info
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_webcast_user_info
+    risk: low
+    required: { oneOf: [user_id, sec_user_id] }
+    optional: []
+
+  - id: fetch_user_country_by_username
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_country_by_username
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: fetch_similar_user_recommendations
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_similar_user_recommendations
+    risk: low
+    required: [sec_uid]
+    optional: [page_token]
+
+  - id: fetch_user_repost_videos
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_repost_videos
+    risk: low
+    required: [user_id]
+    optional: [offset, count]
+
+  - id: fetch_user_post_videos
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_post_videos
+    risk: low
+    required: { oneOf: [sec_user_id, unique_id] }
+    optional: [max_cursor, count, sort_type, region]
+
+  - id: fetch_user_post_videos_v2
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_post_videos_v2
+    risk: low
+    required: { oneOf: [sec_user_id, unique_id] }
+    optional: [max_cursor, count, sort_type]
+
+  - id: fetch_user_post_videos_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_post_videos_v3
+    risk: low
+    required: { oneOf: [sec_user_id, unique_id] }
+    optional: [max_cursor, count, sort_type]
+
+  - id: fetch_user_like_videos
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_like_videos
+    risk: low
+    required: [sec_user_id]
+    optional: [max_cursor, counts]
+
+  - id: fetch_user_follower_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_follower_list
+    risk: low
+    required: { oneOf: [user_id, sec_user_id] }
+    optional: [count, min_time, page_token]
+
+  - id: fetch_user_following_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_following_list
+    risk: low
+    required: { oneOf: [user_id, sec_user_id] }
+    optional: [count, min_time, page_token]
+
+  - id: search_follower_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/search_follower_list
+    risk: low
+    required: [user_id, keyword]
+    optional: []
+
+  - id: search_following_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/search_following_list
+    risk: low
+    required: [user_id, keyword]
+    optional: []
+
+  - id: fetch_user_music_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_music_list
+    risk: low
+    required: [sec_uid]
+    optional: [cursor, count]
+
+  - id: fetch_share_qr_code
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_share_qr_code
+    risk: low
+    required: [object_id]
+    optional: [schema_type]
+
+  - id: open_tiktok_app_to_user_profile
+    method: GET
+    path: /api/v1/tiktok/app/v3/open_tiktok_app_to_user_profile
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: open_tiktok_app_to_send_private_message
+    method: GET
+    path: /api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: fetch_creator_info
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_creator_info
+    risk: low
+    required: [creator_uid]
+    optional: []
+
+  - id: fetch_creator_showcase_product_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_creator_showcase_product_list
+    risk: low
+    required: [kol_id]
+    optional: [count, next_scroll_param]
+
+  # ========== User — Web API (user.md) ==========
+  - id: fetch_user_profile
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_profile
+    risk: low
+    required: { oneOf: [uniqueId, secUid] }
+    optional: []
+
+  - id: fetch_user_post
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_post
+    risk: low
+    required: [secUid]
+    optional: [cursor, count, coverFormat, post_item_list_request_type]
+
+  - id: fetch_user_repost
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_repost
+    risk: low
+    required: [secUid]
+    optional: [cursor, count, coverFormat]
+
+  - id: fetch_user_like
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_like
+    risk: low
+    required: [secUid]
+    optional: [cursor, count, coverFormat, post_item_list_request_type]
+
+  - id: fetch_user_collect
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_collect
+    risk: low
+    required: [cookie, secUid]
+    optional: [cursor, count, coverFormat]
+
+  - id: fetch_user_play_list
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_play_list
+    risk: low
+    required: [secUid]
+    optional: [cursor, count]
+
+  - id: fetch_user_fans
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_fans
+    risk: low
+    required: [secUid]
+    optional: [count, maxCursor, minCursor]
+
+  - id: fetch_user_follow
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_follow
+    risk: low
+    required: [secUid]
+    optional: [count, maxCursor, minCursor]
+
+  - id: fetch_user_live_detail
+    method: GET
+    path: /api/v1/tiktok/web/fetch_user_live_detail
+    risk: low
+    required: [uniqueId]
+    optional: []
+
+  - id: get_user_id
+    method: GET
+    path: /api/v1/tiktok/web/get_user_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: get_sec_user_id
+    method: GET
+    path: /api/v1/tiktok/web/get_sec_user_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: get_all_sec_user_id
+    method: POST
+    path: /api/v1/tiktok/web/get_all_sec_user_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: get_unique_id
+    method: GET
+    path: /api/v1/tiktok/web/get_unique_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: get_all_unique_id
+    method: POST
+    path: /api/v1/tiktok/web/get_all_unique_id
+    risk: low
+    required: [url]
+    optional: []
+
+  # ========== Comments — App V3 (comments.md) ==========
+  - id: fetch_video_comments
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_video_comments
+    risk: low
+    required: [aweme_id]
+    optional: [cursor, count]
+
+  - id: fetch_video_comment_replies
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_video_comment_replies
+    risk: low
+    required: [item_id, comment_id]
+    optional: [cursor, count]
+
+  # ========== Comments — Web API (comments.md) ==========
+  - id: fetch_post_comment
+    method: GET
+    path: /api/v1/tiktok/web/fetch_post_comment
+    risk: low
+    required: [aweme_id]
+    optional: [cursor, count, current_region]
+
+  - id: fetch_post_comment_reply
+    method: GET
+    path: /api/v1/tiktok/web/fetch_post_comment_reply
+    risk: low
+    required: [item_id, comment_id]
+    optional: [cursor, count, current_region]
+
+  # ========== Live — App V3 (comments.md) ==========
+  - id: fetch_live_room_info
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_live_room_info
+    risk: low
+    required: [room_id]
+    optional: []
+
+  - id: fetch_tiktok_live_data
+    method: GET
+    path: /api/v1/tiktok/web/fetch_tiktok_live_data
+    risk: low
+    required: [live_room_url]
+    optional: []
+
+  - id: check_live_room_online
+    method: GET
+    path: /api/v1/tiktok/app/v3/check_live_room_online
+    risk: low
+    required: [room_id]
+    optional: []
+
+  - id: check_live_room_online_batch
+    method: POST
+    path: /api/v1/tiktok/app/v3/check_live_room_online_batch
+    risk: low
+    required: [room_ids]
+    optional: []
+
+  - id: fetch_check_live_alive
+    method: GET
+    path: /api/v1/tiktok/web/fetch_check_live_alive
+    risk: low
+    required: [room_id]
+    optional: []
+
+  - id: fetch_batch_check_live_alive
+    method: GET
+    path: /api/v1/tiktok/web/fetch_batch_check_live_alive
+    risk: low
+    required: [room_ids]
+    optional: []
+
+  - id: fetch_live_ranking_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_live_ranking_list
+    risk: low
+    required: [room_id, anchor_id]
+    optional: []
+
+  - id: fetch_live_room_product_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_live_room_product_list
+    risk: low
+    required: [room_id, author_id]
+    optional: [page_size, offset, region, cookie]
+
+  - id: fetch_live_room_product_list_v2
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_live_room_product_list_v2
+    risk: low
+    required: [room_id, author_id]
+    optional: [page_size, offset, region, cookie]
+
+  - id: fetch_live_daily_rank
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_live_daily_rank
+    risk: low
+    required: []
+    optional: [anchor_id, room_id, rank_type, region_type, gap_interval, cookie]
+
+  # ========== Live — Web API (comments.md) ==========
+  - id: tiktok_live_room
+    method: GET
+    path: /api/v1/tiktok/web/tiktok_live_room
+    risk: low
+    required: [live_room_url, danmaku_type]
+    optional: []
+
+  - id: fetch_live_im_fetch
+    method: GET
+    path: /api/v1/tiktok/web/fetch_live_im_fetch
+    risk: low
+    required: [room_id]
+    optional: [user_unique_id, resp_content_type]
+
+  - id: generate_wss_xb_signature
+    method: GET
+    path: /api/v1/tiktok/web/generate_wss_xb_signature
+    risk: low
+    required: []
+    optional: [user_agent]
+
+  - id: get_live_room_id
+    method: GET
+    path: /api/v1/tiktok/web/get_live_room_id
+    risk: low
+    required: [live_room_url]
+    optional: []
+
+  - id: fetch_live_gift_list
+    method: GET
+    path: /api/v1/tiktok/web/fetch_live_gift_list
+    risk: low
+    required: []
+    optional: [room_id]
+
+  - id: fetch_gift_name_by_id
+    method: POST
+    path: /api/v1/tiktok/web/fetch_gift_name_by_id
+    risk: low
+    required: [gift_id]
+    optional: []
+
+  - id: fetch_gift_names_by_ids
+    method: POST
+    path: /api/v1/tiktok/web/fetch_gift_names_by_ids
+    risk: low
+    required: [gift_ids]
+    optional: []
+
+  # ========== Search — App V3 (search.md) ==========
+  - id: fetch_general_search_result
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_general_search_result
+    risk: low
+    required: [keyword]
+    optional: [offset, count, sort_type, publish_time]
+
+  - id: fetch_video_search_result
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_video_search_result
+    risk: low
+    required: [keyword]
+    optional: [offset, count, sort_type, publish_time, region]
+
+  - id: fetch_user_search_result
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_user_search_result
+    risk: low
+    required: [keyword]
+    optional: [offset, count, user_search_follower_count, user_search_profile_type, user_search_other_pref]
+
+  - id: fetch_music_search_result
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_music_search_result
+    risk: low
+    required: [keyword]
+    optional: [offset, count, filter_by, sort_type, region]
+
+  - id: fetch_hashtag_search_result
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_hashtag_search_result
+    risk: low
+    required: [keyword]
+    optional: [offset, count]
+
+  - id: fetch_live_search_result
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_live_search_result
+    risk: low
+    required: [keyword]
+    optional: [offset, count, region]
+
+  - id: fetch_location_search
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_location_search
+    risk: low
+    required: [keyword]
+    optional: [offset, count]
+
+  - id: fetch_music_detail
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_music_detail
+    risk: low
+    required: [music_id]
+    optional: []
+
+  - id: fetch_music_video_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_music_video_list
+    risk: low
+    required: [music_id]
+    optional: [cursor, count]
+
+  - id: fetch_music_chart_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_music_chart_list
+    risk: low
+    required: []
+    optional: [scene, cursor, count]
+
+  - id: fetch_hashtag_detail
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_hashtag_detail
+    risk: low
+    required: [ch_id]
+    optional: [region]
+
+  - id: fetch_hashtag_video_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_hashtag_video_list
+    risk: low
+    required: [ch_id]
+    optional: [cursor, count, region]
+
+  - id: fetch_creator_search_insights
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_creator_search_insights
+    risk: low
+    required: []
+    optional: [offset, limit, tab, language_filters, category_filters, creator_source, force_refresh]
+
+  - id: fetch_creator_search_insights_detail
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_creator_search_insights_detail
+    risk: low
+    required: [query_id_str]
+    optional: [time_range, start_date, end_date, dimension_list]
+
+  - id: fetch_creator_search_insights_trend
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_creator_search_insights_trend
+    risk: low
+    required: [query_id_str]
+    optional: [from_tab_path, query_analysis_required]
+
+  - id: fetch_product_search
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_search
+    risk: low
+    required: [keyword]
+    optional: [cursor, count, sort_type, customer_review_four_star, have_discount, min_price, max_price]
+
+  - id: fetch_share_short_link
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_share_short_link
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: fetch_content_translate
+    method: POST
+    path: /api/v1/tiktok/app/v3/fetch_content_translate
+    risk: low
+    required: []
+    optional: []
+
+  - id: open_tiktok_app_to_keyword_search
+    method: GET
+    path: /api/v1/tiktok/app/v3/open_tiktok_app_to_keyword_search
+    risk: low
+    required: [keyword]
+    optional: []
+
+  # ========== Search — Web API (search.md) ==========
+  - id: fetch_general_search
+    method: GET
+    path: /api/v1/tiktok/web/fetch_general_search
+    risk: low
+    required: [keyword]
+    optional: [offset, search_id, cookie]
+
+  - id: fetch_search_keyword_suggest
+    method: GET
+    path: /api/v1/tiktok/web/fetch_search_keyword_suggest
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: fetch_search_user
+    method: GET
+    path: /api/v1/tiktok/web/fetch_search_user
+    risk: low
+    required: [keyword]
+    optional: [cursor, search_id, cookie]
+
+  - id: fetch_search_video
+    method: GET
+    path: /api/v1/tiktok/web/fetch_search_video
+    risk: low
+    required: [keyword]
+    optional: [count, offset, search_id, cookie]
+
+  - id: fetch_search_live
+    method: GET
+    path: /api/v1/tiktok/web/fetch_search_live
+    risk: low
+    required: [keyword]
+    optional: [count, offset, search_id, cookie]
+
+  - id: fetch_search_photo
+    method: GET
+    path: /api/v1/tiktok/web/fetch_search_photo
+    risk: low
+    required: [keyword]
+    optional: [count, offset, search_id, cookie]
+
+  - id: fetch_tag_detail
+    method: GET
+    path: /api/v1/tiktok/web/fetch_tag_detail
+    risk: low
+    required: [tag_name]
+    optional: []
+
+  - id: fetch_trending_searchwords
+    method: GET
+    path: /api/v1/tiktok/web/fetch_trending_searchwords
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_live_recommend
+    method: GET
+    path: /api/v1/tiktok/web/fetch_live_recommend
+    risk: low
+    required: [related_live_tag]
+    optional: []
+
+  - id: fetch_live_recommend_tabs
+    method: GET
+    path: /api/v1/tiktok/web/fetch_live_recommend_tabs
+    risk: low
+    required: []
+    optional: [logid]
+
+  # ========== Ads (ads.md) ==========
+  - id: get_ads_detail
+    method: GET
+    path: /api/v1/tiktok/ads/get_ads_detail
+    risk: low
+    required: [ads_id]
+    optional: []
+
+  - id: search_ads
+    method: GET
+    path: /api/v1/tiktok/ads/search_ads
+    risk: low
+    required: []
+    optional: [objective, like, period, industry, keyword, page, limit, order_by, country_code, ad_format, ad_language, search_id]
+
+  - id: get_top_ads_spotlight
+    method: GET
+    path: /api/v1/tiktok/ads/get_top_ads_spotlight
+    risk: low
+    required: []
+    optional: [industry, page, limit]
+
+  - id: get_ad_keyframe_analysis
+    method: GET
+    path: /api/v1/tiktok/ads/get_ad_keyframe_analysis
+    risk: low
+    required: [material_id]
+    optional: [metric]
+
+  - id: get_ad_percentile
+    method: GET
+    path: /api/v1/tiktok/ads/get_ad_percentile
+    risk: low
+    required: [material_id]
+    optional: [metric, period_type]
+
+  - id: get_ad_interactive_analysis
+    method: GET
+    path: /api/v1/tiktok/ads/get_ad_interactive_analysis
+    risk: low
+    required: [material_id]
+    optional: [metric_type, period_type]
+
+  - id: get_recommended_ads
+    method: GET
+    path: /api/v1/tiktok/ads/get_recommended_ads
+    risk: low
+    required: [material_id]
+    optional: [industry, country_code]
+
+  - id: get_query_suggestions
+    method: GET
+    path: /api/v1/tiktok/ads/get_query_suggestions
+    risk: low
+    required: []
+    optional: [query, count, scenario, country_code]
+
+  - id: get_configure_safety
+    method: GET
+    path: /api/v1/tiktok/ads/get_configure_safety
+    risk: low
+    required: []
+    optional: []
+
+  - id: get_location_list
+    method: GET
+    path: /api/v1/tiktok/ads/get_location_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: get_trends_hashtag_list
+    method: GET
+    path: /api/v1/tiktok/ads/get_trends_hashtag_list
+    risk: low
+    required: []
+    optional: [time_range, country_code, page, limit]
+
+  - id: get_trends_hashtag_detail
+    method: GET
+    path: /api/v1/tiktok/ads/get_trends_hashtag_detail
+    risk: low
+    required: [hashtag_id]
+    optional: [time_range, country_code]
+
+  # ========== Analytics (analytics.md) ==========
+  - id: fetch_video_metrics
+    method: GET
+    path: /api/v1/tiktok/analytics/fetch_video_metrics
+    risk: low
+    required: [item_id]
+    optional: []
+
+  - id: detect_fake_views
+    method: GET
+    path: /api/v1/tiktok/analytics/detect_fake_views
+    risk: low
+    required: [item_id]
+    optional: [content_category]
+
+  - id: fetch_comment_keywords
+    method: GET
+    path: /api/v1/tiktok/analytics/fetch_comment_keywords
+    risk: low
+    required: [item_id]
+    optional: []
+
+  - id: fetch_creator_info_and_milestones
+    method: GET
+    path: /api/v1/tiktok/analytics/fetch_creator_info_and_milestones
+    risk: low
+    required: [user_id]
+    optional: []
+
+  # ========== Creator (creator.md) ==========
+  - id: get_account_health_status
+    method: POST
+    path: /api/v1/tiktok/creator/get_account_health_status
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_account_violation_list
+    method: POST
+    path: /api/v1/tiktok/creator/get_account_violation_list
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_account_insights_overview
+    method: POST
+    path: /api/v1/tiktok/creator/get_account_insights_overview
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_live_analytics_summary
+    method: POST
+    path: /api/v1/tiktok/creator/get_live_analytics_summary
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_video_analytics_summary
+    method: POST
+    path: /api/v1/tiktok/creator/get_video_analytics_summary
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_video_list_analytics
+    method: POST
+    path: /api/v1/tiktok/creator/get_video_list_analytics
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_product_analytics_list
+    method: POST
+    path: /api/v1/tiktok/creator/get_product_analytics_list
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_creator_account_info
+    method: POST
+    path: /api/v1/tiktok/creator/get_creator_account_info
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_showcase_product_list
+    method: POST
+    path: /api/v1/tiktok/creator/get_showcase_product_list
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_video_associated_product_list
+    method: POST
+    path: /api/v1/tiktok/creator/get_video_associated_product_list
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_video_detailed_stats
+    method: POST
+    path: /api/v1/tiktok/creator/get_video_detailed_stats
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_video_to_product_stats
+    method: POST
+    path: /api/v1/tiktok/creator/get_video_to_product_stats
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_product_related_videos
+    method: POST
+    path: /api/v1/tiktok/creator/get_product_related_videos
+    risk: low
+    required: [cookie]
+    optional: []
+
+  - id: get_video_audience_stats
+    method: POST
+    path: /api/v1/tiktok/creator/get_video_audience_stats
+    risk: low
+    required: [cookie]
+    optional: []
+
+  # ========== Shop — App V3 (shop.md) ==========
+  - id: fetch_product_detail_app_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_detail
+    risk: low
+    required: [product_id]
+    optional: []
+
+  - id: fetch_product_detail_v2_app_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_detail_v2
+    risk: low
+    required: [product_id]
+    optional: []
+
+  - id: fetch_product_detail_v3_app_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_detail_v3
+    risk: low
+    required: [product_id]
+    optional: [region]
+
+  - id: fetch_product_detail_v4_app_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_detail_v4
+    risk: low
+    required: [product_id]
+    optional: [region]
+
+  - id: fetch_product_review_app_v3
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_review
+    risk: low
+    required: [product_id]
+    optional: [cursor, size, filter_id, sort_type]
+
+  - id: fetch_shop_id_by_share_link
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_id_by_share_link
+    risk: low
+    required: [share_link]
+    optional: []
+
+  - id: fetch_product_id_by_share_link
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_product_id_by_share_link
+    risk: low
+    required: [share_link]
+    optional: []
+
+  - id: fetch_shop_home_page_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_home_page_list
+    risk: low
+    required: [seller_id]
+    optional: []
+
+  - id: fetch_shop_home
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_home
+    risk: low
+    required: [page_id, seller_id]
+    optional: []
+
+  - id: fetch_shop_product_recommend
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_product_recommend
+    risk: low
+    required: [seller_id]
+    optional: [scroll_param, page_size]
+
+  - id: fetch_shop_product_list
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_product_list
+    risk: low
+    required: [seller_id]
+    optional: [scroll_params, page_size, sort_field, sort_order]
+
+  - id: fetch_shop_product_list_v2
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_product_list_v2
+    risk: low
+    required: [seller_id]
+    optional: [scroll_params, page_size, sort_field, sort_order]
+
+  - id: fetch_shop_info
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_info
+    risk: low
+    required: [shop_id]
+    optional: []
+
+  - id: fetch_shop_product_category
+    method: GET
+    path: /api/v1/tiktok/app/v3/fetch_shop_product_category
+    risk: low
+    required: [seller_id]
+    optional: []
+
+  # ========== Shop — Web API (shop.md) ==========
+  - id: fetch_product_detail_shop_web
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_product_detail
+    risk: low
+    required: [product_id]
+    optional: [seller_id, region]
+
+  - id: fetch_product_detail_v2_shop_web
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_product_detail_v2
+    risk: low
+    required: [product_id]
+    optional: [seller_id, region]
+
+  - id: fetch_product_detail_v3_shop_web
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_product_detail_v3
+    risk: low
+    required: [product_id]
+    optional: [region]
+
+  - id: fetch_product_reviews_v2
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_product_reviews_v2
+    risk: low
+    required: [product_id]
+    optional: [page_start, sort_rule, filter_type, filter_value, region]
+
+  - id: fetch_seller_products_list
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_seller_products_list
+    risk: low
+    required: [seller_id]
+    optional: [search_params, region]
+
+  - id: fetch_seller_products_list_v2
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_seller_products_list_v2
+    risk: low
+    required: [seller_id]
+    optional: [searchParams, region]
+
+  - id: fetch_search_word_suggestion_v2
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_search_word_suggestion_v2
+    risk: low
+    required: [search_word]
+    optional: [lang, region]
+
+  - id: fetch_search_products_list
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_search_products_list
+    risk: low
+    required: [search_word]
+    optional: [offset, page_token, region]
+
+  - id: fetch_search_products_list_v2
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_search_products_list_v2
+    risk: low
+    required: [search_word]
+    optional: [offset, page_token, region]
+
+  - id: fetch_products_category_list
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_products_category_list
+    risk: low
+    required: []
+    optional: [region]
+
+  - id: fetch_products_by_category_id
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_products_by_category_id
+    risk: low
+    required: [category_id]
+    optional: [offset, region]
+
+  - id: fetch_hot_selling_products_list
+    method: GET
+    path: /api/v1/tiktok/shop/web/fetch_hot_selling_products_list
+    risk: low
+    required: []
+    optional: [region, count]
+
+  # ========== Tools — Web API (tools.md) ==========
+  - id: generate_real_msToken
+    method: GET
+    path: /api/v1/tiktok/web/generate_real_msToken
+    risk: low
+    required: []
+    optional: [random_strData, browser_type]
+
+  - id: encrypt_strData
+    method: GET
+    path: /api/v1/tiktok/web/encrypt_strData
+    risk: low
+    required: [data]
+    optional: []
+
+  - id: decrypt_strData
+    method: GET
+    path: /api/v1/tiktok/web/decrypt_strData
+    risk: low
+    required: [encrypted_data]
+    optional: []
+
+  - id: generate_fingerprint
+    method: GET
+    path: /api/v1/tiktok/web/generate_fingerprint
+    risk: low
+    required: []
+    optional: [browser_type]
+
+  - id: generate_webid
+    method: GET
+    path: /api/v1/tiktok/web/generate_webid
+    risk: low
+    required: []
+    optional: [cookie, user_agent, url, referer, user_unique_id, app_id]
+
+  - id: generate_ttwid
+    method: GET
+    path: /api/v1/tiktok/web/generate_ttwid
+    risk: low
+    required: []
+    optional: [user_agent]
+
+  - id: generate_xbogus
+    method: POST
+    path: /api/v1/tiktok/web/generate_xbogus
+    risk: low
+    required: []
+    optional: []
+
+  - id: generate_xgnarly
+    method: POST
+    path: /api/v1/tiktok/web/generate_xgnarly
+    risk: low
+    required: []
+    optional: []
+
+  - id: generate_xgnarly_and_xbogus
+    method: POST
+    path: /api/v1/tiktok/web/generate_xgnarly_and_xbogus
+    risk: low
+    required: []
+    optional: []
+
+  - id: generate_x_mssdk_info
+    method: POST
+    path: /api/v1/tiktok/web/generate_x_mssdk_info
+    risk: low
+    required: []
+    optional: []
+
+  - id: generate_hashed_id
+    method: GET
+    path: /api/v1/tiktok/web/generate_hashed_id
+    risk: low
+    required: [email]
+    optional: []
+
+  - id: fetch_tiktok_web_guest_cookie
+    method: GET
+    path: /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie
+    risk: low
+    required: [user_agent]
+    optional: []
+
+  - id: device_register
+    method: GET
+    path: /api/v1/tiktok/web/device_register
+    risk: low
+    required: []
+    optional: []
+
+  - id: TTencrypt_algorithm
+    method: POST
+    path: /api/v1/tiktok/app/v3/TTencrypt_algorithm
+    risk: low
+    required: []
+    optional: []
+
+  - id: encrypt_decrypt_login_request
+    method: POST
+    path: /api/v1/tiktok/app/v3/encrypt_decrypt_login_request
+    risk: low
+    required: []
+    optional: []
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

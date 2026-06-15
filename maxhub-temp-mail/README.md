@@ -2,11 +2,13 @@
 
 [中文文档](README_CN.md)
 
-Temporary email service assistant for generating emails, listing and reading messages.
+Temporary email service assistant for generating emails, listing inbox messages, and reading email details.
 
 ## Features
 
-- **Email Operations** — get_temp_email, get_emails, get_email_by_id
+| Area | Endpoints | Description |
+|------|-----------|-------------|
+| Email Operations | 3 | Generate temp email, list inbox, read email by ID |
 
 ## Install
 
@@ -23,7 +25,7 @@ npx clawhub install maxhub-temp-mail
 
 | Category | Example prompts |
 |----------|----------------|
-| Email Operations | 邮箱, 邮件 |
+| Email Operations | 生成临时邮箱, get temp email, 查收邮件, 查看邮件内容 |
 
 Supports both **English** and **Chinese**.
 

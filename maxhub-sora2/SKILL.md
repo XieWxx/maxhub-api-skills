@@ -1,10 +1,16 @@
 ---
 name: maxhub-sora2
-description: "Sora2 视频平台数据查询助手。覆盖作品详情、用户数据、搜索、评论、Cameo等全功能。"
+description: >-
+  Query Sora2 (sora.chatgpt.com) data via MaxHub API — post details, comments,
+  remix lists, video downloads, user profiles, followers, Cameo appearances,
+  feed, search, and video generation tasks.
+  Use when user asks about Sora2, AI视频, sora.chatgpt.com posts/users, Cameo出镜秀, feed,
+  or generating Sora2 videos.
+  Do NOT invent endpoints — only use paths declared in `references/`.
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "🎥"
     primaryEnv: MAXHUB_API_KEY
@@ -21,259 +27,250 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["sora2", "AI视频", "出镜秀", "帖子分析", "用户分析", "AI生成", "视频创作", "数据采集"]
+    tags: ["sora2", "AI视频", "出镜秀", "Cameo", "帖子分析", "用户分析", "AI生成", "视频创作", "数据采集"]
     category: productivity
 ---
 
 # Sora2 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a Sora2 Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+Sora2 数据查询与视频生成工具，通过 MaxHub API 接入 OpenAI Sora2（sora.chatgpt.com）平台，覆盖作品详情、评论回复、Remix 衍生、视频下载、用户资料、社交关系、Cameo 出镜、首页推荐、用户搜索及视频生成任务等全部能力。专注服务于 Sora2 内容创作者、AI 视频研究者、社媒分析师与自动化工作流场景，帮助用户快速采集 Sora2 数据、提取爆款规律、批量生成 AI 视频内容。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 14 active endpoints **first message** and maintain it throughout the conversation.
+- 🎬 **作品全维度查询** — 支持 post_id 或分享 URL 二选一查询作品完整详情，含作者、视频、点赞/评论/转发统计、Cameo 出镜信息
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 💬 **评论与回复链路** — 一级评论 + 二级回复完整链式调用，自动接力 comment_id，支持游标翻页
 
-## API Access
+- 🔄 **Remix 衍生追踪** — 查询任意作品的全部 Remix 二创列表，挖掘内容传播链路
 
-Base URL: `https://www.aconfig.cn`
+- ⬇️ **无水印视频下载** — 提供 Sora2 作品的无水印下载链接，5xx 时自动降级到带水印 video_url
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 👤 **用户全景画像** — 用户资料、作品列表、关注/粉丝、Cameo 出镜记录、用户名搜索一站式覆盖
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 🔥 **Cameo 全平台热榜** — 实时拉取 Cameo 出镜热度榜单，识别平台明星用户
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/sora2/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🎨 **AI 视频生成** — 支持文生视频、图生视频两种模式，含异步任务轮询与最终视频提取
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/sora2/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 17 个端点的字段流字典 + Chain Recipes，明确 post_id / user_id / comment_id / task_id 在端点间的传递路径
+
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，写入端点 5xx 重试 ≤ 1 次避免重复扣配额
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读优先 | 默认仅用于数据查询；`create_video` / `upload_image` 为写入接口，**须用户明确确认参数后调用** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号、加路径段** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-sora2.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查作品 / 评论 / Remix / 下载 / Feed | `references/post.md` | 作品详情、评论、回复、Remix 列表、视频下载、推荐 Feed（6 端点） |
+| 查用户 / 粉丝 / 关注 / Cameo 出镜 / 搜索用户 | `references/user.md` | 用户资料、用户作品、关注、粉丝、Cameo 出镜、用户搜索（6 端点） |
+| 创建视频 / 任务查询 / 上传图片 / Cameo 热榜 | `references/tools.md` | 创建视频、任务状态、任务详情、上传图片、Cameo 热榜（5 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 + 替换矩阵 + 更新机制 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 17 个端点的硬白名单 + Pre-call 4 步自检协议 |
+| SKILL 版本检查与升级 | `references/update.md` | SkillHub / ClawHub / GitHub 三通道更新 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-sora2.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 写入端点（`create_video` / `upload_image`）调用前**必须**让用户确认参数
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做 §3.1 (A) 防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做 §3.1 (B) 防参数臆造自检（6 步）
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Post & User** | 帖子, 用户, 详情, 评论, 下载, Remix, post, user, detail, comment, download, remix, profile, following, feed | `references/api-post-user.md` | search_users, get_feed, get_post_comments, get_post_remix_list, get_post_detail, get_video_download_info, get_user_profile, get_user_following, get_user_posts, get_user_followers, get_comment_replies |
-| **Cameo** | Cameo, 出镜, 排行, leaderboard, appearance | `references/api-cameo.md` | upload_image, get_cameo_leaderboard, get_user_cameo_appearances |
-| **Tools** | Feed, 推荐, feed, recommend, video, watermark, none | `references/api-tools.md` |  |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Post & User**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 查作品 + 评论 + 回复 | `get_post_detail` → `get_post_comments` → `get_comment_replies` | `post_id` → `comment_id` 接力 |
+| 下载作品视频 | `get_post_detail` → `get_video_download_info` | `post_id` 复用 |
+| 看作品 + 二创 | `get_post_detail` → `get_post_remix_list` | `post_id` 复用 |
+| 用户名 → 用户作品 | `search_users` → `get_user_profile` → `get_user_posts` | `username` → `user_id` |
+| 文生视频（异步） | `create_video` → 轮询 `get_task_status` → `get_task_detail` | `task_id` 接力 |
+| 图生视频（异步） | `upload_image` → `create_video` → 轮询 → `get_task_detail` | `image_id` → `task_id` |
+| Cameo 热榜 → 用户主页 | `get_cameo_leaderboard` → `get_user_profile` | `user_id` 复用 |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+#### 防臆造自检清单（强制前置步骤）
 
-### Step 4: Plan & Execute
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对 → 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定"上游资源不存在"
 
-No predefined patterns. Chain endpoints as needed based on user query.
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（大小写 / 缩写 / 复数）
+2. 必填项齐全 + oneOf 二选一逻辑
+3. 类型与格式严格匹配（pattern / enum）
+4. 传参方式正确（query vs body）
+5. 没有 IN 表外的臆造参数
+6. 全通过才按 `message_zh` 排查
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
+#### 异步任务最佳实践（仅适用 create_video）
 
-### Step 5: Output Results
+- **轮询间隔**：5–10 秒一次
+- **状态语义**：`pending` / `running` 不视为失败，必须继续轮询
+- **轮询上限**：建议 10 分钟封顶；超时后把 `task_id` 返回用户
+- **推荐**：宿主 Agent 支持子会话时，spawn 子会话专职轮询，主会话保持响应
 
-#### Browse Mode
-Present results concisely with key fields.
+#### SKILL 版本更新
 
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-sora2`（国内）或 `clawhub upgrade maxhub-sora2`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-sora2 |
+| 多端点连续 410 | `skillhub upgrade maxhub-sora2 --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-#### Compare Mode
-Side-by-side table + differential insights.
+### 常用命令速查表
 
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查作品详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/sora2/get_post_detail?post_id=s_xxx"` |
+| 查作品评论 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/sora2/get_post_comments?post_id=s_xxx"` |
+| 查任务状态（轮询） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/sora2/get_task_status?task_id=xxx"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-sora2` 或 `clawhub info maxhub-sora2` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：AI视频创作研究
-- **应用环境**：AI技术团队研究Sora2平台的视频创作趋势
-- **用户需求**：了解AI视频的创作模式、风格特点和用户反馈
-- **使用流程**：获取热门帖子 → 分析视频特征 → 追踪用户评价 → 生成研究报告
-- **预期效果**：掌握AI视频创作的最新趋势和技术方向
+### 场景一：Sora2 内容创作者寻找爆款规律
 
-### 场景二：AI视频平台监测
-- **应用环境**：产品团队监测Sora2平台的内容生态
-- **用户需求**：了解平台热门内容、用户活跃度和创作趋势
-- **使用流程**：获取平台数据 → 分析内容分布 → 追踪用户行为 → 生成监测报告
-- **预期效果**：为AI视频产品策略提供数据支撑
+- **角色**：Sora2 内容创作者
+- **需求**：想分析近期 Sora2 平台的热门作品有哪些共同特征，寻找下一个 Remix 灵感
+- **使用方式**：调用 `get_feed` 拉取首页推荐 → 批量取 `post_id` → 链式调 `get_post_detail` 提取 prompt + 视频特征
+- **预期收益**：通过 Feed + 详情链路快速锁定高 totalScore 作品，提炼可复用的提示词模板
 
-## Error Handling
+### 场景二：AI 视频研究者批量采集 Cameo 数据
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+- **角色**：AI 视频领域研究者
+- **需求**：需要全平台 Cameo 出镜热榜及上榜用户的完整出镜记录，分析 Cameo 传播规律
+- **使用方式**：`get_cameo_leaderboard` → 取上榜 `user_id` → 链式调 `get_user_cameo_appearances` 拉取每个用户的完整出镜列表
+- **预期收益**：一次调用矩阵覆盖全平台 Top Cameo 用户，构建完整的 Cameo 数据集
 
-### 404 错误专项处理
+### 场景三：自媒体团队批量生成 AI 视频
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+- **角色**：自媒体内容运营
+- **需求**：根据脚本批量生成 Sora2 视频用于多账号矩阵分发
+- **使用方式**：用户提供 prompt 列表 → 串行调用 `create_video` → 子会话轮询 `get_task_status` → 成功后 `get_task_detail` 取最终视频 URL
+- **预期收益**：异步任务最佳实践确保不阻塞主会话，写入端点防重复扣配额，视频生产效率提升 5–10 倍
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+### 场景四：社媒分析师追踪 Remix 传播链
 
-### 接口降级与自动切换策略
+- **角色**：社媒数据分析师
+- **需求**：跟踪某个爆款作品的全部 Remix 二创及其作者，绘制传播图谱
+- **使用方式**：`get_post_detail` 验证原作品 → `get_post_remix_list` 拉取全部 Remix → 取 `author.user_id` → `get_user_profile` 补充作者画像
+- **预期收益**：完整的内容传播链分析，识别 KOL 二创节点
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
+## 6. 项目架构
 
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-sora2/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 17 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理 + 替换矩阵）
+    ├── post.md                         # 作品域：详情/评论/回复/Remix/下载/Feed（6 端点）
+    ├── user.md                         # 用户域：资料/作品/关注/粉丝/Cameo/搜索（6 端点）
+    ├── tools.md                        # 工具域：上传图片/创建视频/任务查询/Cameo 热榜（5 端点）
+    └── update.md                       # SKILL 更新机制（SkillHub / ClawHub / GitHub）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET 请求，参数通过 query string 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/sora2/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 17 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ 重试策略矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 作品（Posts） | 6 | `post.md` |
+| 用户（Users） | 6 | `user.md` |
+| 工具与 Cameo（Tools） | 5 | `tools.md` |
+| **合计** | **17** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **Agent 友好 7 大原则**：结构胜于叙述、明确指令优于建议、单一来源、词法稳定性、低 token 密度、边界显式声明、错误处理是契约
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，杜绝 Agent 编造字段名
+- **错误处理契约**：HTTP 状态码权威定义 + §3.1 防臆造自检清单（A: 5 步 / B: 6 步）+ 重试策略矩阵 + 端点替换矩阵

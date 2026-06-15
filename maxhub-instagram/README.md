@@ -2,14 +2,18 @@
 
 [中文文档](README_CN.md)
 
-Instagram data assistant supporting V1/V2/V3 APIs for user info, posts, Reels, Stories, comments, search, hashtags, and locations.
+Instagram post, reel, story, user, search, and comment data assistant via MaxHub API. 87 active endpoints across 4 functional areas.
 
 ## Features
 
-- **User Data** — fetch_user_info, fetch_user_posts, fetch_user_followers, fetch_user_following, fetch_user_stories, fetch_user_reels, fetch_user_highlights, fetch_user_tagged_posts, fetch_user_about, fetch_user_brief_info, fetch_user_former_usernames
-- **Post & Media** — fetch_post_info, fetch_post_comments, fetch_comment_replies, fetch_post_likes, fetch_highlight_stories, fetch_post_oembed
-- **Search & Explore** — search_users, search_hashtags, search_locations, general_search, fetch_explore_feed, fetch_hashtag_posts, fetch_location_posts, fetch_location_info, fetch_nearby_content
-- **Content Tools** — convert_media_id_shortcode, extract_shortcode, translate_comment, bulk_translate_comments, fetch_reels_feed, fetch_user_id_by_username
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| Posts & Reels | `references/post.md` | Post details, Reels, Stories, Highlights, likes, tagged posts, reposts, music posts, media ID conversion, oEmbed, translation | 34 |
+| User | `references/user.md` | User profiles, posts, followers, following, related profiles, about, former usernames | 24 |
+| Search | `references/search.md` | User search, hashtag search, location search, general search, explore feed, location details | 23 |
+| Comments | `references/comments.md` | Post comments, comment replies | 6 |
+
+Supports V1, V2, and V3 API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -26,10 +30,10 @@ npx clawhub install maxhub-instagram
 
 | Category | Example prompts |
 |----------|----------------|
-| User Data | 用户, 资料 |
-| Post & Media | 帖子, 帖文 |
-| Search & Explore | 搜索, 搜 |
-| Content Tools | 翻译, 短码 |
+| Posts & Reels | get Instagram post info for..., 查这个Instagram帖子的详情... |
+| User | get Instagram user profile for..., 查这个Instagram用户的粉丝数和帖子... |
+| Search | search Instagram for..., 在Instagram上搜索... |
+| Comments | get Instagram post comments for..., 查这个Instagram帖子的评论... |
 
 Supports both **English** and **Chinese**.
 

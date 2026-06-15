@@ -1,0 +1,291 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-youtube
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Video - Web (video.md) ==========
+  - id: web_get_video_info
+    method: GET
+    path: /api/v1/youtube/web/get_video_info
+    risk: low
+    required: [video_id]
+    optional: [url_access, lang, videos, audios, subtitles, related]
+
+  - id: web_get_video_info_v2
+    method: GET
+    path: /api/v1/youtube/web/get_video_info_v2
+    risk: low
+    required: [video_id]
+    optional: []
+
+  - id: web_get_video_subtitles
+    method: GET
+    path: /api/v1/youtube/web/get_video_subtitles
+    risk: low
+    required: [subtitle_url]
+    optional: [format, fix_overlap, target_lang]
+
+  - id: web_get_relate_video
+    method: GET
+    path: /api/v1/youtube/web/get_relate_video
+    risk: low
+    required: [video_id]
+    optional: [continuation_token]
+
+  - id: web_get_trending_videos
+    method: GET
+    path: /api/v1/youtube/web/get_trending_videos
+    risk: low
+    required: []
+    optional: [language_code, country_code, section]
+
+  # ========== Video - Web V2 (video.md) ==========
+  - id: web_v2_get_video_info
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_info
+    risk: low
+    required: [video_id]
+    optional: [language_code, need_format]
+
+  - id: web_v2_get_video_info_v2
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_info_v2
+    risk: low
+    required: { oneOf: [video_id, video_url] }
+    optional: [need_format]
+
+  - id: web_v2_get_video_streams
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_streams
+    risk: low
+    required: { oneOf: [video_id, video_url] }
+    optional: []
+
+  - id: web_v2_get_video_streams_v2
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_streams_v2
+    risk: low
+    required: { oneOf: [video_id, video_url] }
+    optional: []
+
+  - id: web_v2_get_signed_stream_url
+    method: GET
+    path: /api/v1/youtube/web_v2/get_signed_stream_url
+    risk: low
+    required: [itag]
+    optional: [video_id, video_url]
+
+  - id: web_v2_get_video_captions
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_captions
+    risk: low
+    required: { oneOf: [video_id, video_url] }
+    optional: [language_code, format]
+
+  - id: web_v2_get_video_captions_v2
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_captions_v2
+    risk: low
+    required: { oneOf: [video_id, video_url] }
+    optional: [language_code, format]
+
+  - id: web_v2_get_related_videos
+    method: GET
+    path: /api/v1/youtube/web_v2/get_related_videos
+    risk: low
+    required: { oneOf: [video_id, video_url] }
+    optional: [need_format]
+
+  # ========== Channel - Web (channel.md) ==========
+  - id: web_get_channel_id
+    method: GET
+    path: /api/v1/youtube/web/get_channel_id
+    risk: low
+    required: [channel_name]
+    optional: []
+
+  - id: web_get_channel_id_v2
+    method: GET
+    path: /api/v1/youtube/web/get_channel_id_v2
+    risk: low
+    required: [channel_url]
+    optional: []
+
+  - id: web_get_channel_url
+    method: GET
+    path: /api/v1/youtube/web/get_channel_url
+    risk: low
+    required: [channel_id]
+    optional: []
+
+  - id: web_get_channel_info
+    method: GET
+    path: /api/v1/youtube/web/get_channel_info
+    risk: low
+    required: [channel_id]
+    optional: []
+
+  - id: web_get_channel_videos_v2
+    method: GET
+    path: /api/v1/youtube/web/get_channel_videos_v2
+    risk: low
+    required: [channel_id]
+    optional: [lang, sortBy, contentType, nextToken]
+
+  - id: web_get_channel_short_videos
+    method: GET
+    path: /api/v1/youtube/web/get_channel_short_videos
+    risk: low
+    required: [channel_id]
+    optional: [continuation_token]
+
+  # ========== Channel - Web V2 (channel.md) ==========
+  - id: web_v2_get_channel_description
+    method: GET
+    path: /api/v1/youtube/web_v2/get_channel_description
+    risk: low
+    required: { oneOf: [channel_id, continuation_token] }
+    optional: [language_code, country_code, need_format]
+
+  - id: web_v2_get_channel_id
+    method: GET
+    path: /api/v1/youtube/web_v2/get_channel_id
+    risk: low
+    required: [channel_url]
+    optional: []
+
+  - id: web_v2_get_channel_url
+    method: GET
+    path: /api/v1/youtube/web_v2/get_channel_url
+    risk: low
+    required: [channel_id]
+    optional: []
+
+  - id: web_v2_get_channel_videos
+    method: GET
+    path: /api/v1/youtube/web_v2/get_channel_videos
+    risk: low
+    required: [channel_id]
+    optional: [language_code, country_code, continuation_token, need_format]
+
+  - id: web_v2_get_channel_shorts
+    method: GET
+    path: /api/v1/youtube/web_v2/get_channel_shorts
+    risk: low
+    required: { oneOf: [channel_id, channel_url] }
+    optional: [continuation_token, need_format]
+
+  - id: web_v2_get_channel_community_posts
+    method: GET
+    path: /api/v1/youtube/web_v2/get_channel_community_posts
+    risk: low
+    required: [channel_id]
+    optional: [language_code, country_code, continuation_token, need_format]
+
+  # ========== Comments - Web V2 (comments.md) ==========
+  - id: web_v2_get_video_comments
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_comments
+    risk: low
+    required: [video_id]
+    optional: [language_code, country_code, sort_by, continuation_token, need_format]
+
+  - id: web_v2_get_video_comment_replies
+    method: GET
+    path: /api/v1/youtube/web_v2/get_video_comment_replies
+    risk: low
+    required: [continuation_token]
+    optional: [language_code, country_code, need_format]
+
+  - id: web_v2_get_post_detail
+    method: GET
+    path: /api/v1/youtube/web_v2/get_post_detail
+    risk: low
+    required: [post_id]
+    optional: [language_code, country_code, need_format]
+
+  - id: web_v2_get_post_comments
+    method: GET
+    path: /api/v1/youtube/web_v2/get_post_comments
+    risk: low
+    required: { oneOf: [post_id, continuation_token] }
+    optional: [language_code, country_code, need_format]
+
+  - id: web_v2_get_post_comment_replies
+    method: GET
+    path: /api/v1/youtube/web_v2/get_post_comment_replies
+    risk: low
+    required: [continuation_token]
+    optional: [language_code, country_code, need_format]
+
+  # ========== Search - Web (search.md) ==========
+  - id: web_search_video
+    method: GET
+    path: /api/v1/youtube/web/search_video
+    risk: low
+    required: [search_query]
+    optional: [language_code, order_by, country_code, continuation_token]
+
+  - id: web_search_channel
+    method: GET
+    path: /api/v1/youtube/web/search_channel
+    risk: low
+    required: [channel_id, search_query]
+    optional: [language_code, country_code, continuation_token]
+
+  # ========== Search - Web V2 (search.md) ==========
+  - id: web_v2_get_general_search
+    method: GET
+    path: /api/v1/youtube/web_v2/get_general_search
+    risk: low
+    required: [search_query]
+    optional: [language_code, country_code, time_zone, upload_time, duration, content_type, feature, sort_by, continuation_token]
+
+  - id: web_v2_get_general_search_v2
+    method: GET
+    path: /api/v1/youtube/web_v2/get_general_search_v2
+    risk: low
+    required: [keyword]
+    optional: [continuation_token, upload_date, type, duration, features, sort_by]
+
+  - id: web_v2_get_shorts_search
+    method: GET
+    path: /api/v1/youtube/web_v2/get_shorts_search
+    risk: low
+    required: [search_query]
+    optional: [language_code, country_code, time_zone, upload_time, sort_by, continuation_token, filter_mixed_content]
+
+  - id: web_v2_get_shorts_search_v2
+    method: GET
+    path: /api/v1/youtube/web_v2/get_shorts_search_v2
+    risk: low
+    required: [keyword]
+    optional: [continuation_token, upload_date, sort_by]
+
+  - id: web_v2_get_search_suggestions
+    method: GET
+    path: /api/v1/youtube/web_v2/get_search_suggestions
+    risk: low
+    required: [keyword]
+    optional: [language, region]
+
+  - id: web_v2_search_channels
+    method: GET
+    path: /api/v1/youtube/web_v2/search_channels
+    risk: low
+    required: [keyword]
+    optional: [continuation_token, need_format]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

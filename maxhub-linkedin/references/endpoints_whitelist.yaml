@@ -1,0 +1,621 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-linkedin
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Web API — User (user.md) ==========
+  - id: web_get_user_profile
+    method: GET
+    path: /api/v1/linkedin/web/get_user_profile
+    risk: low
+    required: [username]
+    optional: [include_follower_and_connection, include_experiences, include_skills, include_certifications, include_publications, include_educations, include_volunteers, include_honors, include_interests, include_bio]
+
+  - id: web_get_user_posts
+    method: GET
+    path: /api/v1/linkedin/web/get_user_posts
+    risk: low
+    required: [urn]
+    optional: [page, pagination_token]
+
+  - id: web_get_user_comments
+    method: GET
+    path: /api/v1/linkedin/web/get_user_comments
+    risk: low
+    required: [urn]
+    optional: [page, pagination_token]
+
+  - id: web_get_user_contact
+    method: GET
+    path: /api/v1/linkedin/web/get_user_contact
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: web_get_user_recommendations
+    method: GET
+    path: /api/v1/linkedin/web/get_user_recommendations
+    risk: low
+    required: [urn]
+    optional: [page, type, pagination_token]
+
+  - id: web_get_user_videos
+    method: GET
+    path: /api/v1/linkedin/web/get_user_videos
+    risk: low
+    required: [urn]
+    optional: [page, pagination_token]
+
+  - id: web_get_user_images
+    method: GET
+    path: /api/v1/linkedin/web/get_user_images
+    risk: low
+    required: [urn]
+    optional: [page, pagination_token]
+
+  - id: web_get_user_about
+    method: GET
+    path: /api/v1/linkedin/web/get_user_about
+    risk: low
+    required: [urn]
+    optional: []
+
+  - id: web_get_user_follower_and_connection
+    method: GET
+    path: /api/v1/linkedin/web/get_user_follower_and_connection
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: web_get_user_experience
+    method: GET
+    path: /api/v1/linkedin/web/get_user_experience
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_skills
+    method: GET
+    path: /api/v1/linkedin/web/get_user_skills
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_educations
+    method: GET
+    path: /api/v1/linkedin/web/get_user_educations
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_publications
+    method: GET
+    path: /api/v1/linkedin/web/get_user_publications
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_certifications
+    method: GET
+    path: /api/v1/linkedin/web/get_user_certifications
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_honors
+    method: GET
+    path: /api/v1/linkedin/web/get_user_honors
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_interests_groups
+    method: GET
+    path: /api/v1/linkedin/web/get_user_interests_groups
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_interests_companies
+    method: GET
+    path: /api/v1/linkedin/web/get_user_interests_companies
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_get_user_reactions
+    method: GET
+    path: /api/v1/linkedin/web/get_user_reactions
+    risk: low
+    required: [urn]
+    optional: [page, pagination_token]
+
+  - id: web_get_user_volunteers
+    method: GET
+    path: /api/v1/linkedin/web/get_user_volunteers
+    risk: low
+    required: [urn]
+    optional: [page]
+
+  - id: web_search_people
+    method: GET
+    path: /api/v1/linkedin/web/search_people
+    risk: low
+    required: []
+    optional: [name, first_name, last_name, title, company, school, page, geocode_location, current_company, profile_language, industry, service_category]
+
+  - id: web_search_location
+    method: GET
+    path: /api/v1/linkedin/web/search_location
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: web_search_schools
+    method: GET
+    path: /api/v1/linkedin/web/search_schools
+    risk: low
+    required: [keyword]
+    optional: [page]
+
+  # ========== Web API — Company (company.md) ==========
+  - id: web_get_company_profile
+    method: GET
+    path: /api/v1/linkedin/web/get_company_profile
+    risk: low
+    required: []
+    optional: [company, company_id]
+
+  - id: web_get_company_people
+    method: GET
+    path: /api/v1/linkedin/web/get_company_people
+    risk: low
+    required: [company_id]
+    optional: [page]
+
+  - id: web_get_company_posts
+    method: GET
+    path: /api/v1/linkedin/web/get_company_posts
+    risk: low
+    required: [company_id]
+    optional: [page, sort_by]
+
+  - id: web_get_company_jobs
+    method: GET
+    path: /api/v1/linkedin/web/get_company_jobs
+    risk: low
+    required: [company_id]
+    optional: [page, sort_by, date_posted, experience_level, remote, job_type, easy_apply, under_10_applicants, fair_chance_employer]
+
+  - id: web_get_company_job_count
+    method: GET
+    path: /api/v1/linkedin/web/get_company_job_count
+    risk: low
+    required: [company_id]
+    optional: []
+
+  - id: web_get_company_affiliated_pages
+    method: GET
+    path: /api/v1/linkedin/web/get_company_affiliated_pages
+    risk: low
+    required: [company_id]
+    optional: []
+
+  - id: web_get_company_associated_member_insights
+    method: GET
+    path: /api/v1/linkedin/web/get_company_associated_member_insights
+    risk: low
+    required: [company_id]
+    optional: []
+
+  - id: web_search_suggestion_industry
+    method: GET
+    path: /api/v1/linkedin/web/search_suggestion_industry
+    risk: low
+    required: [keyword]
+    optional: []
+
+  # ========== Web API — Content (content.md) ==========
+  - id: web_get_post_detail
+    method: GET
+    path: /api/v1/linkedin/web/get_post_detail
+    risk: low
+    required: [post_id]
+    optional: []
+
+  - id: web_get_post_comments
+    method: GET
+    path: /api/v1/linkedin/web/get_post_comments
+    risk: low
+    required: [post_id]
+    optional: [page, sort_order, post_type]
+
+  - id: web_get_post_reactions
+    method: GET
+    path: /api/v1/linkedin/web/get_post_reactions
+    risk: low
+    required: [post_id]
+    optional: [page, type]
+
+  - id: web_get_post_reposts
+    method: GET
+    path: /api/v1/linkedin/web/get_post_reposts
+    risk: low
+    required: [post_id]
+    optional: [page, pagination_token]
+
+  - id: web_get_comments_replies
+    method: GET
+    path: /api/v1/linkedin/web/get_comments_replies
+    risk: low
+    required: [post_id, comment_id, previous_replies_token]
+    optional: []
+
+  - id: web_search_posts
+    method: GET
+    path: /api/v1/linkedin/web/search_posts
+    risk: low
+    required: [keyword]
+    optional: [page, date_posted, sort_by, from_member, from_company, content_type]
+
+  - id: web_get_group_info
+    method: GET
+    path: /api/v1/linkedin/web/get_group_info
+    risk: low
+    required: [group_id]
+    optional: []
+
+  - id: web_get_group_posts
+    method: GET
+    path: /api/v1/linkedin/web/get_group_posts
+    risk: low
+    required: [group_id]
+    optional: [page]
+
+  - id: web_search_ads
+    method: GET
+    path: /api/v1/linkedin/web/search_ads
+    risk: low
+    required: []
+    optional: [keyword, advertiser_name, country, date, pagination_token]
+
+  - id: web_get_ad_detail
+    method: GET
+    path: /api/v1/linkedin/web/get_ad_detail
+    risk: low
+    required: [ad_id]
+    optional: []
+
+  # ========== Web API — Jobs (jobs.md) ==========
+  - id: web_get_job_detail
+    method: GET
+    path: /api/v1/linkedin/web/get_job_detail
+    risk: low
+    required: [job_id]
+    optional: [include_skills]
+
+  - id: web_search_jobs
+    method: GET
+    path: /api/v1/linkedin/web/search_jobs
+    risk: low
+    required: [keyword]
+    optional: [page, sort_by, date_posted, geocode, company, experience_level, remote, job_type, easy_apply, has_verifications, under_10_applicants, fair_chance_employer]
+
+  # ========== Web V2 API — User (user.md) ==========
+  - id: v2_get_user_profile
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_profile
+    risk: low
+    required: [username]
+    optional: [include_follower_and_connection, include_experiences, include_skills, include_certifications, include_publications, include_educations, include_volunteers, include_honors, include_interests, include_bio]
+
+  - id: v2_get_user_posts
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_posts
+    risk: low
+    required: [username]
+    optional: [start, count]
+
+  - id: v2_get_user_comments
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_comments
+    risk: low
+    required: [username]
+    optional: [start, count]
+
+  - id: v2_get_user_contact_info
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_contact_info
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_recommendations
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_recommendations
+    risk: low
+    required: [username]
+    optional: [direction]
+
+  - id: v2_get_user_videos
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_videos
+    risk: low
+    required: [username]
+    optional: [start, count]
+
+  - id: v2_get_user_images
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_images
+    risk: low
+    required: [username]
+    optional: [start, count]
+
+  - id: v2_get_user_bio
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_bio
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_follower_and_connection_count
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_follower_and_connection_count
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_profile_cards
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_profile_cards
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_experiences
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_experiences
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_skills
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_skills
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_educations
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_educations
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_publications
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_publications
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_certifications
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_certifications
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_honors
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_honors
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_interested_groups
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_interested_groups
+    risk: low
+    required: [username]
+    optional: [start, count]
+
+  - id: v2_get_user_interested_companies
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_interested_companies
+    risk: low
+    required: [username]
+    optional: [start, count]
+
+  - id: v2_get_user_top_card
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_top_card
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_top_card_supplementary
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_top_card_supplementary
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_user_recent_activity
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_user_recent_activity
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v2_get_discovery_relevant_to_user
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_discovery_relevant_to_user
+    risk: low
+    required: [username]
+    optional: [count, start, pagination_token]
+
+  - id: v2_search_users
+    method: GET
+    path: /api/v1/linkedin/web_v2/search_users
+    risk: low
+    required: [keywords]
+    optional: [start, count, geo_urn, industry_urn, current_company_urn]
+
+  # ========== Web V2 API — Company (company.md) ==========
+  - id: v2_get_company_profile
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_profile
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_employees
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_employees
+    risk: low
+    required: [universal_name]
+    optional: [start, count]
+
+  - id: v2_get_company_posts
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_posts
+    risk: low
+    required: [universal_name]
+    optional: [start, count]
+
+  - id: v2_get_company_jobs
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_jobs
+    risk: low
+    required: [universal_name]
+    optional: [start, count]
+
+  - id: v2_get_company_job_count
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_job_count
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_similar_companies
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_similar_companies
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_competitors
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_competitors
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_stock_quote
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_stock_quote
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_call_to_actions
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_call_to_actions
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_employee_count_ranges
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_employee_count_ranges
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_company_grouped_locations
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_company_grouped_locations
+    risk: low
+    required: [universal_name]
+    optional: []
+
+  - id: v2_get_discovery_relevant_to_company
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_discovery_relevant_to_company
+    risk: low
+    required: [universal_name]
+    optional: [count, start, pagination_token]
+
+  # ========== Web V2 API — Content (content.md) ==========
+  - id: v2_get_post_detail
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_post_detail
+    risk: low
+    required: [post_urn]
+    optional: []
+
+  - id: v2_get_post_detail_by_slug
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_post_detail_by_slug
+    risk: low
+    required: [slug]
+    optional: []
+
+  - id: v2_get_post_comments
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_post_comments
+    risk: low
+    required: [post_urn]
+    optional: [start, count, sort_order]
+
+  - id: v2_get_comment_replies
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_comment_replies
+    risk: low
+    required: [comment_urn]
+    optional: [post_urn, count, pagination_token]
+
+  - id: v2_get_post_reactions
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_post_reactions
+    risk: low
+    required: [post_urn]
+    optional: [reaction_type, start, count]
+
+  - id: v2_get_hashtag_feed
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_hashtag_feed
+    risk: low
+    required: [hashtag]
+    optional: [start, count]
+
+  # ========== Web V2 API — Jobs (jobs.md) ==========
+  - id: v2_get_job_detail
+    method: GET
+    path: /api/v1/linkedin/web_v2/get_job_detail
+    risk: low
+    required: [job_id]
+    optional: []
+
+  - id: v2_search_jobs
+    method: GET
+    path: /api/v1/linkedin/web_v2/search_jobs
+    risk: low
+    required: [keywords]
+    optional: [location, start, count]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

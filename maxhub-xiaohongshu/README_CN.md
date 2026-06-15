@@ -2,14 +2,14 @@
 
 [English](README.md)
 
-小红书全场景数据查询助手。支持App和Web多版本API，覆盖笔记详情、用户数据、搜索、商品、评论、话题等全功能。
+小红书全场景数据查询助手。覆盖笔记详情、用户数据、搜索与发现、商品与话题等功能。
 
 ## 功能
 
-- **笔记数据** — fetch_note_info, fetch_note_detail, fetch_note_comments, fetch_note_sub_comments, fetch_note_image, fetch_one_note_feed
-- **用户数据** — fetch_user_info, fetch_user_notes, fetch_user_faved_notes, fetch_user_following, fetch_user_followers, extract_user_id_from_link
-- **搜索** — search_notes, search_users, search_products, fetch_search_suggestions, fetch_trending_keywords, fetch_home_feed
-- **商品与话题** — fetch_product_detail, fetch_product_reviews, fetch_product_review_overview, fetch_product_list, fetch_topic_info, fetch_topic_feed, fetch_hot_list
+- **笔记与评论** — 笔记详情（图文/视频）、评论、子评论
+- **用户数据** — 用户信息、已发布笔记、收藏笔记
+- **搜索与发现** — 搜索笔记/用户/图片/商品、热搜、热榜、首页推荐
+- **商品与话题** — 商品详情、评价、推荐、话题信息、话题流、创作者灵感
 
 ## 安装
 
@@ -26,10 +26,10 @@ npx clawhub install maxhub-xiaohongshu
 
 | 分类 | 示例指令 |
 |------|----------|
-| 笔记数据 | 笔记，详情 |
-| 用户数据 | 用户，资料 |
-| 搜索 | 搜索，搜 |
-| 商品与话题 | 商品，话题 |
+| 笔记与评论 | 笔记，详情，评论 |
+| 用户数据 | 用户，资料，主页 |
+| 搜索与发现 | 搜索，热榜，热搜 |
+| 商品与话题 | 商品，话题，灵感 |
 
 支持 **中文** 和 **英文** 双语。
 

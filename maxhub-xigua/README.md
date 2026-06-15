@@ -2,11 +2,15 @@
 
 [中文文档](README_CN.md)
 
-Xigua Video data assistant for video details, user data, search, and comments.
+Xigua Video (西瓜视频) video, user, search, and comment data assistant via MaxHub API. 7 active endpoints covering 6 functional areas.
 
 ## Features
 
-- **Video & User** — fetch_single_video, fetch_single_video_v2, fetch_video_play_url, fetch_video_comments, fetch_user_info, fetch_user_posts, search_video
+| Area | Reference | Endpoints |
+|------|-----------|-----------|
+| Content | `references/content.md` | Video detail (v1/v2), play URL, search, comments, user info, user posts | 7 |
+
+Supports Xigua App V2 API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -23,7 +27,10 @@ npx clawhub install maxhub-xigua
 
 | Category | Example prompts |
 |----------|----------------|
-| Video & User | 视频, 用户 |
+| Video | 查西瓜视频详情 item_id..., get Xigua video info for item_id... |
+| Search | 在西瓜视频搜索..., search Xigua for... |
+| Comments | 查西瓜视频评论, get Xigua video comments |
+| User | 查西瓜视频用户信息, get Xigua user info and posts |
 
 Supports both **English** and **Chinese**.
 

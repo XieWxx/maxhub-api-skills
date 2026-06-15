@@ -1,0 +1,289 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-kuaishou
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Video / 视频 (video.md) ==========
+  - id: app_fetch_one_video
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_one_video
+    risk: low
+    required: [photo_id]
+    optional: []
+
+  - id: app_fetch_videos_batch
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_videos_batch
+    risk: low
+    required: [photo_ids]
+    optional: []
+
+  - id: app_fetch_one_video_by_url
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_one_video_by_url
+    risk: low
+    required: [share_text]
+    optional: []
+
+  - id: app_generate_kuaishou_share_link
+    method: GET
+    path: /api/v1/kuaishou/app/generate_kuaishou_share_link
+    risk: low
+    required: [shareObjectId]
+    optional: []
+
+  - id: web_fetch_one_video
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_one_video
+    risk: low
+    required: [share_text]
+    optional: []
+
+  - id: web_fetch_one_video_v2
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_one_video_v2
+    risk: low
+    required: [photo_id]
+    optional: []
+
+  - id: web_fetch_one_video_by_url
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_one_video_by_url
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: web_generate_share_short_url
+    method: GET
+    path: /api/v1/kuaishou/web/generate_share_short_url
+    risk: low
+    required: [photo_id]
+    optional: []
+
+  # ========== User / 用户 (user.md) ==========
+  - id: app_fetch_one_user_v2
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_one_user_v2
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: app_fetch_user_post_v2
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_user_post_v2
+    risk: low
+    required: [user_id]
+    optional: [pcursor, sort]
+
+  - id: app_fetch_user_hot_post
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_user_hot_post
+    risk: low
+    required: [user_id]
+    optional: [pcursor]
+
+  - id: web_fetch_user_info
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_user_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: web_fetch_user_collect
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_user_collect
+    risk: low
+    required: [user_id]
+    optional: [pcursor]
+
+  - id: web_fetch_get_user_id
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_get_user_id
+    risk: low
+    required: [share_link]
+    optional: []
+
+  # ========== Comments / 评论 (comments.md) ==========
+  - id: app_fetch_video_comment
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_video_comment
+    risk: low
+    required: [photo_id]
+    optional: [pcursor]
+
+  - id: app_fetch_video_sub_comments
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_video_sub_comments
+    risk: low
+    required: [photo_id, root_comment_id]
+    optional: [pcursor, count]
+
+  - id: web_fetch_one_video_comment
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_one_video_comment
+    risk: low
+    required: [photo_id]
+    optional: [pcursor]
+
+  - id: web_fetch_one_video_sub_comment
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_one_video_sub_comment
+    risk: low
+    required: [photo_id, root_comment_id]
+    optional: [pcursor]
+
+  # ========== Search / 搜索 (search.md) ==========
+  - id: app_fetch_selection_feed
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_selection_feed
+    risk: low
+    required: []
+    optional: []
+
+  - id: app_search_comprehensive
+    method: GET
+    path: /api/v1/kuaishou/app/search_comprehensive
+    risk: low
+    required: [keyword]
+    optional: [pcursor, sort_type, publish_time, duration]
+
+  - id: app_search_video_v2
+    method: GET
+    path: /api/v1/kuaishou/app/search_video_v2
+    risk: low
+    required: [keyword]
+    optional: [pcursor]
+
+  - id: app_search_user_v2
+    method: GET
+    path: /api/v1/kuaishou/app/search_user_v2
+    risk: low
+    required: [keyword]
+    optional: [pcursor, user_relation, user_gender, fans_sort]
+
+  - id: app_search_image
+    method: GET
+    path: /api/v1/kuaishou/app/search_image
+    risk: low
+    required: [keyword]
+    optional: [pcursor]
+
+  - id: app_search_live
+    method: GET
+    path: /api/v1/kuaishou/app/search_live
+    risk: low
+    required: [keyword]
+    optional: [pcursor]
+
+  - id: app_search_music
+    method: GET
+    path: /api/v1/kuaishou/app/search_music
+    risk: low
+    required: [keyword]
+    optional: [pcursor]
+
+  - id: app_search_tag
+    method: GET
+    path: /api/v1/kuaishou/app/search_tag
+    risk: low
+    required: [keyword]
+    optional: [pcursor]
+
+  - id: app_fetch_tag_feed
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_tag_feed
+    risk: low
+    required: [general_tag_id]
+    optional: [tab, tag_name, tag_type, tag_source, from_photo_id, pcursor]
+
+  - id: app_fetch_hot_board_categories
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_hot_board_categories
+    risk: low
+    required: []
+    optional: []
+
+  - id: app_fetch_hot_board_detail
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_hot_board_detail
+    risk: low
+    required: []
+    optional: [boardType, boardId]
+
+  - id: app_fetch_hot_search_person
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_hot_search_person
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_fetch_kuaishou_hot_list_v1
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v1
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_fetch_kuaishou_hot_list_v2
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_kuaishou_hot_list_v2
+    risk: low
+    required: []
+    optional: [board_type]
+
+  # ========== Live / 直播 (live.md) ==========
+  - id: app_fetch_user_live_info
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_user_live_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: app_fetch_live_top_list
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_live_top_list
+    risk: low
+    required: []
+    optional: [subTabId, subTabName]
+
+  - id: app_fetch_shopping_top_list
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_shopping_top_list
+    risk: low
+    required: []
+    optional: [subTabId, subTabName]
+
+  - id: app_fetch_brand_top_list
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_brand_top_list
+    risk: low
+    required: []
+    optional: [subTabId, subTabName]
+
+  - id: app_fetch_music_ranking
+    method: GET
+    path: /api/v1/kuaishou/app/fetch_music_ranking
+    risk: low
+    required: []
+    optional: [tab_id, count, pcursor]
+
+  - id: web_fetch_user_live_replay
+    method: GET
+    path: /api/v1/kuaishou/web/fetch_user_live_replay
+    risk: low
+    required: [user_id]
+    optional: [pcursor]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

@@ -2,14 +2,18 @@
 
 [English](README.md)
 
-Instagram 全场景数据查询助手。支持V1/V2/V3三个版本API，覆盖用户信息、帖子、Reels、Stories、评论、搜索、话题、地点等全功能。
+Instagram 帖子、Reels、快拍、用户、搜索、评论数据查询助手。通过 MaxHub API 提供 87 个端点，覆盖 4 个功能领域。
 
 ## 功能
 
-- **用户数据** — fetch_user_info, fetch_user_posts, fetch_user_followers, fetch_user_following, fetch_user_stories, fetch_user_reels, fetch_user_highlights, fetch_user_tagged_posts, fetch_user_about, fetch_user_brief_info, fetch_user_former_usernames
-- **帖子与媒体** — fetch_post_info, fetch_post_comments, fetch_comment_replies, fetch_post_likes, fetch_highlight_stories, fetch_post_oembed
-- **搜索与发现** — search_users, search_hashtags, search_locations, general_search, fetch_explore_feed, fetch_hashtag_posts, fetch_location_posts, fetch_location_info, fetch_nearby_content
-- **内容工具** — convert_media_id_shortcode, extract_shortcode, translate_comment, bulk_translate_comments, fetch_reels_feed, fetch_user_id_by_username
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 帖子与Reels | `references/post.md` | 帖子详情、Reels、Stories、Highlights、点赞、标记帖子、转发、音乐帖子、媒体ID转换、oEmbed、翻译 | 34 |
+| 用户 | `references/user.md` | 用户信息、帖子列表、粉丝/关注、相关推荐、About、曾用名 | 24 |
+| 搜索 | `references/search.md` | 用户搜索、话题搜索、地点搜索、综合搜索、探索页、地点详情 | 23 |
+| 评论 | `references/comments.md` | 帖子评论、子评论/回复列表 | 6 |
+
+支持 V1、V2、V3 三个版本 API。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -26,10 +30,10 @@ npx clawhub install maxhub-instagram
 
 | 分类 | 示例指令 |
 |------|----------|
-| 用户数据 | 用户，资料 |
-| 帖子与媒体 | 帖子，帖文 |
-| 搜索与发现 | 搜索，搜 |
-| 内容工具 | 翻译，短码 |
+| 帖子与Reels | 查这个Instagram帖子的详情和点赞数... |
+| 用户 | 查这个Instagram用户的粉丝数和关注列表... |
+| 搜索 | 在Instagram上搜索... |
+| 评论 | 查这个Instagram帖子的热门评论... |
 
 支持 **中文** 和 **英文** 双语。
 

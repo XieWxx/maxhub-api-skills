@@ -1,10 +1,14 @@
 ---
 name: maxhub-youtube
-description: "YouTube 全场景数据查询助手。支持Web/V2双版本API，覆盖视频详情、频道数据、搜索、评论、字幕、Shorts等全功能。"
+description: >-
+  Query YouTube data via MaxHub API — video details, channel profiles,
+  search, comments, subtitles, streams, Shorts, and community posts.
+  Use when user asks about any YouTube video, channel, 评论, 搜索, 字幕, Shorts, or trending content.
+  Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "▶️"
     primaryEnv: MAXHUB_API_KEY
@@ -27,270 +31,252 @@ metadata:
 
 # YouTube 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a YouTube Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+YouTube 数据查询工具，通过 MaxHub API 接入 YouTube 平台 Web / Web V2 双版本接口，覆盖视频详情、播放流（Streams）、字幕（Captions）、推荐与趋势、频道资料、频道视频与 Shorts、社区帖子（Community Posts）、视频评论与回复、综合搜索与建议词等全部能力。专注服务于 YouTube 内容创作者、跨境短视频研究、频道竞品分析与字幕翻译爬取业务，帮助用户提炼爆款选题、量化频道增长、批量采集字幕与评论。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 37 active endpoints **first message** and maintain it throughout the conversation.
+- ▶️ **视频全维度查询** — 支持 video_id 与 video_url 双入口，含播放流（itag 多分辨率）、字幕、相关视频、趋势视频、签名 URL 全覆盖
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 📜 **字幕双端互降** — `web/get_video_subtitles` + `web_v2/get_video_captions` 双链路并存，支持多语言、格式（json3 / vtt / srv3）与目标语言翻译
 
-## API Access
+- 🎬 **频道全景画像** — 频道信息、长视频、Shorts、社区帖子、频道 ID/URL 互转，覆盖创作者完整内容矩阵
 
-Base URL: `https://www.aconfig.cn`
+- 💬 **评论与回复链路** — 一级评论 + 二级回复完整链式调用，支持 continuation_token 翻页与排序，社区帖子也有独立评论 API
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 🔍 **多维度搜索** — 综合、Shorts、频道三类搜索 + 搜索建议词，支持上传时间、时长、特征、排序等过滤
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 🌐 **Web / Web V2 双版本** — V1 偏轻量，V2 字段更丰富（含 need_format、language_code、country_code），按场景择优
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/youtube/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 📈 **趋势与推荐** — `get_trending_videos` 按地区与分区取趋势榜，`get_relate_video` / `get_related_videos` 取相关视频图谱
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/youtube/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🆔 **频道 ID / URL 互转** — 支持 `@handle`、`/c/`、`/channel/` 各种格式输入解析为标准 channel_id，避免下游 404
+
+- 🔗 **链式调用图谱** — 37 端点的字段流字典 + Chain Recipes，明确 video_id / channel_id / continuation_token 在端点间的传递路径
+
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改 web/web_v2 段、加路径** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+| 🔀 版本不互通 | Web 与 Web V2 端点参数不兼容，**禁止跨版本套用参数名（如 `search_query` vs `keyword`）** |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-youtube.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查视频 / 流媒体 / 字幕 / 推荐 / 趋势 / 签名 URL | `references/video.md` | 视频详情、Streams、Captions、相关视频、趋势视频（13 端点） |
+| 查频道 / 长视频 / Shorts / 社区帖 / ID 互转 | `references/channel.md` | 频道信息、视频、Shorts、社区帖子、ID/URL 互转（12 端点） |
+| 综合搜索 / Shorts 搜索 / 频道搜索 / 建议词 | `references/search.md` | 综合搜索、Shorts 搜索、频道搜索、搜索建议（7 端点） |
+| 查评论 / 回复 / 帖子详情 / 帖子评论 | `references/comments.md` | 视频评论、评论回复、社区帖子详情与评论回复（5 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + Web/Web V2 字段流字典 + 错误处理总览 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 37 端点的硬白名单 + Pre-call 4 步自检协议 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-youtube.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ Web / Web V2 切换时**必须**重新读取该版本的 reference，禁止套用对版参数
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
+**Step 4 — 执行并验证**
+
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做 §3.1 (A) 防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做 §3.1 (B) 防参数臆造自检（6 步）
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
+
+### 高级使用
+
+#### 链式调用图谱（Chain Recipes）
+
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 搜索 → 视频详情 | `web_v2_get_general_search_v2` → `web_v2_get_video_info_v2` | `keyword` → `video_id` |
+| 查视频 + 评论 + 回复 | `web_v2_get_video_info` → `web_v2_get_video_comments` → `web_v2_get_video_comment_replies` | `video_id` → `continuation_token` 接力 |
+| 查频道 → 视频列表 | `web_get_channel_id` → `web_get_channel_info` → `web_get_channel_videos_v2` | `channel_name` → `channel_id` |
+| 频道全面分析 | `web_v2_get_channel_description` → `web_v2_get_channel_videos` + `web_v2_get_channel_shorts` + `web_v2_get_channel_community_posts` | `channel_id` 复用 |
+| 字幕双端互降 | `web_v2_get_video_captions` 失败 → 降级 `web_get_video_subtitles` | `video_id` → `subtitle_url` |
+| 视频流 + 签名 URL | `web_v2_get_video_streams` → `web_v2_get_signed_stream_url` | `video_id` → `itag` |
+| 社区帖子 + 评论 | `web_v2_get_post_detail` → `web_v2_get_post_comments` → `web_v2_get_post_comment_replies` | `post_id` → `continuation_token` |
+
+> ⚠️ **字幕选型陷阱**：`web/get_video_subtitles` 必填 `subtitle_url`（需要先从 `get_video_info` 拿到字幕地址），而 `web_v2/get_video_captions` 直接传 `video_id` 即可。优先使用 V2，失败再回退 V1。
+
+#### 防臆造自检清单（强制前置步骤）
+
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对（重点核对 `web/` vs `web_v2/` 段）→ 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对 → 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定"上游资源不存在"
+
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（V1 用 `search_query`、V2 用 `keyword`）
+2. 必填项齐全 + oneOf 二选一逻辑（V2 大量端点支持 `video_id` / `video_url` 二选一）
+3. 类型与格式严格匹配（continuation_token 整段透传、itag 整数）
+4. 传参方式正确（query vs body）
+5. 没有清单外的臆造参数（如把 V1 的 `nextToken` 用到 V2 的 `continuation_token`）
+6. 全通过才按 `message_zh` 排查
+
+#### Web / Web V2 选型建议
+
+| 维度 | Web (V1) | Web V2 |
 |---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+| 端点数量 | 13+ | 24+ |
+| 字段丰富度 | 基础 | 丰富（含 need_format / language_code / country_code 多语言） |
+| 翻页参数 | `nextToken` / `continuation_token` | 统一 `continuation_token` |
+| 字幕能力 | `get_video_subtitles` 需 `subtitle_url` | `get_video_captions` 仅需 `video_id` |
+| 推荐场景 | 趋势视频 / 频道短视频 / 字幕 URL 抓取 | 视频 / 频道 / 评论 / 搜索主链路 |
 
-### Step 2: Route — Classify Intent & Load Reference
+#### SKILL 版本更新
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Video Data** | 视频, 详情, 字幕, 下载, 流, 推荐, 趋势, 相关, video, detail, subtitle, stream, download, related, trending, info, captions | `references/api-video.md` | search_video, get_relate_video, get_video_info, get_video_info_v2, get_video_subtitles, get_trending_videos, get_channel_info, get_channel_short_videos, get_channel_videos_v2, get_shorts_search, get_general_search, get_signed_stream_url, get_post_detail, get_search_suggestions, get_video_comment_replies, get_video_captions_v2, get_video_captions, get_video_streams_v2, get_video_streams, get_related_videos, get_video_comments, get_video_info, get_channel_shorts, get_channel_videos |
-| **Channel Data** | 频道, 信息, 视频, 短视频, 帖子, 社区, 描述, channel, info, videos, shorts, community, posts, description, url, id | `references/api-channel.md` | get_channel_url, get_channel_id_v2, search_channel, get_channel_id, get_shorts_search_v2, get_channel_url, get_channel_id, search_channels, get_post_comments, get_post_comment_replies, get_channel_community_posts, get_channel_description |
-| **Search & Comments** | 搜索, 建议, 频道, 评论, 子评论, search, suggest, channel, comment, reply, sub_comment | `references/api-search.md` | get_general_search_v2 |
-| **Comments** | 评论, 子评论, comment, reply, sub-comment | `references/api-comments.md` |  |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-youtube`（国内）或 `clawhub upgrade maxhub-youtube`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-youtube |
+| 多端点连续 410 | `skillhub upgrade maxhub-youtube --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-**Rules:**
-- If uncertain, default to **Video Data**.
-- For **Deep Dive**, read reference files incrementally.
+### 常用命令速查表
 
-### Step 3: Classify Action Mode
-
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
-
-### Step 4: Plan & Execute
-
-#### Pattern A: "分析YouTube频道"
-
-1. 搜索频道 → search_channel → 找到目标频道
-2. 获取信息 → fetch_channel_info → 频道信息
-3. 获取视频 → fetch_channel_videos → 视频列表
-
-#### Pattern B: "分析视频数据"
-
-1. 获取详情 → fetch_video_info → 视频详情
-2. 获取评论 → fetch_video_comments → 评论列表
-3. 获取字幕 → fetch_video_subtitles → 字幕数据
-
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
-
-### Step 5: Output Results
-
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查视频详情（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/youtube/web_v2/get_video_info?video_id=xxx"` |
+| 查视频字幕（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/youtube/web_v2/get_video_captions?video_id=xxx&language_code=en"` |
+| 查频道视频（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/youtube/web_v2/get_channel_videos?channel_id=UCxxx"` |
+| 综合搜索（V2） | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/youtube/web_v2/get_general_search_v2?keyword=xxx"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-youtube` 或 `clawhub info maxhub-youtube` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：频道竞品分析
-- **应用环境**：内容创作者分析YouTube同领域竞品频道
-- **用户需求**：了解竞品频道的内容策略、发布频率和增长趋势
-- **使用流程**：搜索竞品频道 → 获取频道详情 → 分析视频列表 → 对比关键指标
-- **预期效果**：制定差异化的内容策略，找到增长突破口
+### 场景一：YouTube 内容创作者寻找爆款规律
 
-### 场景二：视频SEO优化
-- **应用环境**：YouTube创作者优化视频搜索排名
-- **用户需求**：分析搜索结果中的高排名视频特征
-- **使用流程**：搜索目标关键词 → 获取排名靠前视频 → 分析标题标签描述 → 提取SEO特征
-- **预期效果**：提升视频搜索可见度，增加自然流量
+- **角色**：YouTube 频道运营 / 长视频创作者
+- **需求**：分析自己赛道的趋势视频特征，提炼标题与封面公式
+- **使用方式**：`web_get_trending_videos` 按地区拉趋势榜 → 取 `video_id` → 链式调 `web_v2_get_video_info_v2` 取标题、时长、播放、互动；对 Top 视频再 `web_v2_get_video_comments` 抽取观众反馈关键词
+- **预期收益**：1 小时内梳理 50+ 趋势视频共性，输出可复用的标题与开场 Hook 模板
 
-### 场景三：评论情感分析
-- **应用环境**：品牌方了解YouTube用户对产品的真实反馈
-- **用户需求**：收集和分析视频评论中的用户态度和需求
-- **使用流程**：获取目标视频 → 拉取评论数据 → 分析情感倾向 → 生成反馈报告
-- **预期效果**：从用户评论中提炼产品改进方向
+### 场景二：跨境短视频研究（Shorts 选品）
 
-## Error Handling
+- **角色**：跨境内容研究员 / TikTok 矩阵运营
+- **需求**：监控 YouTube Shorts 的热门话题与品类，反推选品方向
+- **使用方式**：`web_v2_get_shorts_search_v2` 关键词搜索 → 取 video_id → `web_v2_get_video_info_v2` 取播放与互动；并行 `web_v2_get_channel_shorts` 抓取头部 Shorts 频道全部短视频
+- **预期收益**：识别上升期 Shorts 品类与创作者，反向指导跨境选品与广告 Hook 设计
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：频道竞品全面分析
 
-### 404 错误专项处理
+- **角色**：频道增长经理 / MCN 数据分析
+- **需求**：对 10 个竞品频道进行长视频 + Shorts + 社区帖子 + 评论的 360° 分析
+- **使用方式**：`web_get_channel_id` 解析 `@handle` → `web_v2_get_channel_description` 取频道概况 → `web_v2_get_channel_videos` + `web_v2_get_channel_shorts` + `web_v2_get_channel_community_posts` 全量采集 → 抽样视频 `web_v2_get_video_comments` 看观众结构
+- **预期收益**：构建竞品频道全维度看板，识别其内容节奏、社区运营、爆款规律
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+### 场景四：字幕翻译爬取与素材库
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+- **角色**：知识博主 / 海外内容搬运团队
+- **需求**：批量获取目标频道全部视频的多语言字幕，用于翻译与二创
+- **使用方式**：`web_v2_get_channel_videos` 翻页采集 video_id → `web_v2_get_video_captions` 拉原始字幕 → 失败时降级 `web_get_video_info` 拿 subtitle_url，再 `web_get_video_subtitles` 指定 `target_lang` 翻译
+- **预期收益**：构建带时间码的中英对照字幕素材库，支撑学习笔记、二创剪辑、知识专题制作
 
-### 接口降级与自动切换策略
+## 6. 项目架构
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-youtube/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 37 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理 + Web/V2 差异）
+    ├── video.md                        # 视频域：详情/Streams/Captions/相关/趋势（13 端点）
+    ├── channel.md                      # 频道域：信息/视频/Shorts/社区帖/ID互转（12 端点）
+    ├── search.md                       # 搜索域：综合/Shorts/频道/建议词（7 端点）
+    └── comments.md                     # 评论域：视频评论/回复/帖子评论（5 端点）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET 请求，参数通过 query string 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/youtube/{web,web_v2}/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 37 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ Web↔Web V2 替换矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 视频（Video / Streams / Captions） | 13 | `video.md` |
+| 频道（Channel / Shorts / Community） | 12 | `channel.md` |
+| 搜索（Search / Suggestions） | 7 | `search.md` |
+| 评论（Comments / Post Replies） | 5 | `comments.md` |
+| **合计** | **37** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **Web / Web V2 双版本**：两版独立维护参数命名（`search_query` vs `keyword`），杜绝 Agent 跨版本套用
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，重点防护字幕双端互降与 channel_id 解析陷阱
+- **错误处理契约**：HTTP 状态码权威定义 + §3.1 防臆造自检清单（A: 5 步 / B: 6 步）+ Web↔Web V2 替换矩阵

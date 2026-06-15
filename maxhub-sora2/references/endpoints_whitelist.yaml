@@ -1,0 +1,144 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-sora2
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Posts (post.md) ==========
+  - id: get_post_detail
+    method: GET
+    path: /api/v1/sora2/get_post_detail
+    risk: low
+    required: { oneOf: [post_id, post_url] }
+    optional: []
+
+  - id: get_post_comments
+    method: GET
+    path: /api/v1/sora2/get_post_comments
+    risk: low
+    required: [post_id]
+    optional: [cursor]
+
+  - id: get_comment_replies
+    method: GET
+    path: /api/v1/sora2/get_comment_replies
+    risk: low
+    required: [comment_id]
+    optional: [cursor]
+
+  - id: get_post_remix_list
+    method: GET
+    path: /api/v1/sora2/get_post_remix_list
+    risk: low
+    required: { oneOf: [post_id, post_url] }
+    optional: [cursor]
+
+  - id: get_video_download_info
+    method: GET
+    path: /api/v1/sora2/get_video_download_info
+    risk: low
+    required: { oneOf: [post_id, post_url] }
+    optional: []
+
+  - id: get_feed
+    method: GET
+    path: /api/v1/sora2/get_feed
+    risk: low
+    required: []
+    optional: [cursor, eager_views]
+
+  # ========== Users (user.md) ==========
+  - id: search_users
+    method: GET
+    path: /api/v1/sora2/search_users
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: get_user_profile
+    method: GET
+    path: /api/v1/sora2/get_user_profile
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: get_user_posts
+    method: GET
+    path: /api/v1/sora2/get_user_posts
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+  - id: get_user_following
+    method: GET
+    path: /api/v1/sora2/get_user_following
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+  - id: get_user_followers
+    method: GET
+    path: /api/v1/sora2/get_user_followers
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+  - id: get_user_cameo_appearances
+    method: GET
+    path: /api/v1/sora2/get_user_cameo_appearances
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+  # ========== Tools & Cameo (tools.md) ==========
+  - id: upload_image
+    method: GET
+    path: /api/v1/sora2/upload_image
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [image_url]
+    optional: []
+
+  - id: create_video
+    method: GET
+    path: /api/v1/sora2/create_video
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [prompt]
+    optional: [image_id, duration, aspect_ratio]
+
+  - id: get_task_status
+    method: GET
+    path: /api/v1/sora2/get_task_status
+    risk: low
+    required: [task_id]
+    optional: []
+
+  - id: get_task_detail
+    method: GET
+    path: /api/v1/sora2/get_task_detail
+    risk: low
+    required: [task_id]
+    optional: []
+
+  - id: get_cameo_leaderboard
+    method: GET
+    path: /api/v1/sora2/get_cameo_leaderboard
+    risk: low
+    required: []
+    optional: [cursor]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

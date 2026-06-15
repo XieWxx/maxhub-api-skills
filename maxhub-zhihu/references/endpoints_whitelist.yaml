@@ -1,0 +1,257 @@
+# 路径合法性硬白名单
+# Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
+# 禁止臆造路径、修改版本段、拼接新路径。
+
+skill: maxhub-zhihu
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Posts / Content (post.md) ==========
+  - id: fetch_column_articles
+    method: GET
+    path: /api/v1/zhihu/web/fetch_column_articles
+    risk: low
+    required: [column_id]
+    optional: [limit, offset]
+
+  - id: fetch_column_article_detail
+    method: GET
+    path: /api/v1/zhihu/web/fetch_column_article_detail
+    risk: low
+    required: [article_id]
+    optional: []
+
+  - id: fetch_column_recommend
+    method: GET
+    path: /api/v1/zhihu/web/fetch_column_recommend
+    risk: low
+    required: [article_id]
+    optional: [limit, offset]
+
+  - id: fetch_column_relationship
+    method: GET
+    path: /api/v1/zhihu/web/fetch_column_relationship
+    risk: low
+    required: [article_id]
+    optional: []
+
+  - id: fetch_column_comment_config
+    method: GET
+    path: /api/v1/zhihu/web/fetch_column_comment_config
+    risk: low
+    required: [article_id]
+    optional: []
+
+  - id: fetch_comment_v5
+    method: GET
+    path: /api/v1/zhihu/web/fetch_comment_v5
+    risk: low
+    required: [answer_id]
+    optional: [order_by, limit, offset]
+
+  - id: fetch_sub_comment_v5
+    method: GET
+    path: /api/v1/zhihu/web/fetch_sub_comment_v5
+    risk: low
+    required: [comment_id]
+    optional: [order_by, limit, offset]
+
+  - id: fetch_question_answers
+    method: GET
+    path: /api/v1/zhihu/web/fetch_question_answers
+    risk: low
+    required: [question_id]
+    optional: [cursor, limit, offset, order, session_id]
+
+  - id: fetch_hot_recommend
+    method: GET
+    path: /api/v1/zhihu/web/fetch_hot_recommend
+    risk: low
+    required: []
+    optional: [offset, page_number, session_token]
+
+  - id: fetch_hot_list
+    method: GET
+    path: /api/v1/zhihu/web/fetch_hot_list
+    risk: low
+    required: []
+    optional: [limit, desktop]
+
+  - id: fetch_video_list
+    method: GET
+    path: /api/v1/zhihu/web/fetch_video_list
+    risk: low
+    required: []
+    optional: [offset, limit]
+
+  # ========== Search (search.md) ==========
+  - id: fetch_article_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_article_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit, show_all_topics, search_source, search_hash_id, vertical, sort, time_interval, vertical_info]
+
+  - id: fetch_user_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit]
+
+  - id: fetch_topic_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_topic_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit]
+
+  - id: fetch_scholar_search_v3
+    method: POST
+    path: /api/v1/zhihu/web/fetch_scholar_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit]
+
+  - id: fetch_ai_search
+    method: GET
+    path: /api/v1/zhihu/web/fetch_ai_search
+    risk: low
+    required: [message_content]
+    optional: []
+
+  - id: fetch_ai_search_result
+    method: GET
+    path: /api/v1/zhihu/web/fetch_ai_search_result
+    risk: low
+    required: [message_id]
+    optional: []
+
+  - id: fetch_video_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_video_search_v3
+    risk: low
+    required: [keyword]
+    optional: [limit, offset, search_hash_id]
+
+  - id: fetch_column_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_column_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit, search_hash_id]
+
+  - id: fetch_salt_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_salt_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit, search_hash_id]
+
+  - id: fetch_ebook_search_v3
+    method: GET
+    path: /api/v1/zhihu/web/fetch_ebook_search_v3
+    risk: low
+    required: [keyword]
+    optional: [offset, limit, search_hash_id]
+
+  - id: fetch_preset_search
+    method: GET
+    path: /api/v1/zhihu/web/fetch_preset_search
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_search_recommend
+    method: GET
+    path: /api/v1/zhihu/web/fetch_search_recommend
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_search_suggest
+    method: GET
+    path: /api/v1/zhihu/web/fetch_search_suggest
+    risk: low
+    required: [keyword]
+    optional: []
+
+  # ========== Users (user.md) ==========
+  - id: fetch_user_info
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_info
+    risk: low
+    required: [user_url_token]
+    optional: []
+
+  - id: fetch_user_followees
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_followees
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_user_followers
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_followers
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_user_articles
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_articles
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit, sort_type]
+
+  - id: fetch_user_included_articles
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_included_articles
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_user_follow_columns
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_follow_columns
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_user_follow_questions
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_follow_questions
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_user_follow_collections
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_follow_collections
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_user_follow_topics
+    method: GET
+    path: /api/v1/zhihu/web/fetch_user_follow_topics
+    risk: low
+    required: [user_url_token]
+    optional: [offset, limit]
+
+  - id: fetch_recommend_followees
+    method: GET
+    path: /api/v1/zhihu/web/fetch_recommend_followees
+    risk: low
+    required: []
+    optional: []
+
+# ===== 调用前验证协议 =====
+# 每次调用 API 前，Agent 必须静默验证：
+# 1. 请求路径是否逐字符等于 endpoints[].path 中的某一项？否 → STOP
+# 2. HTTP method 是否匹配？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP
+# 4. 若 risk: high 或 requires_user_confirmation: true，是否已获用户确认？否 → STOP
+# 全部通过后才可发起请求。

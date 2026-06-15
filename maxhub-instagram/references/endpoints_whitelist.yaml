@@ -1,0 +1,639 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-instagram
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== V1 — 用户 (user.md) ==========
+  - id: v1_user_id_to_username
+    method: GET
+    path: /api/v1/instagram/v1/user_id_to_username
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: v1_fetch_user_info_by_username
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_info_by_username
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v1_fetch_user_info_by_username_v2
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_info_by_username_v2
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v1_fetch_user_info_by_username_v3
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_info_by_username_v3
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v1_fetch_user_info_by_id
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_info_by_id
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: v1_fetch_user_info_by_id_v2
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_info_by_id_v2
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: v1_fetch_user_about_info
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_about_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: v1_fetch_user_posts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_posts
+    risk: low
+    required: [user_id]
+    optional: [count, max_id]
+
+  - id: v1_fetch_user_posts_v2
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_posts_v2
+    risk: low
+    required: [user_id]
+    optional: [count, end_cursor]
+
+  - id: v1_fetch_user_reels
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_reels
+    risk: low
+    required: [user_id]
+    optional: [count, max_id]
+
+  - id: v1_fetch_user_reposts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_reposts
+    risk: low
+    required: [user_id]
+    optional: [max_id]
+
+  - id: v1_fetch_user_tagged_posts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_user_tagged_posts
+    risk: low
+    required: [user_id]
+    optional: [count, end_cursor]
+
+  - id: v1_fetch_related_profiles
+    method: GET
+    path: /api/v1/instagram/v1/fetch_related_profiles
+    risk: low
+    required: [user_id]
+    optional: []
+
+  # ========== V1 — 帖子 (post.md) ==========
+  - id: v1_shortcode_to_media_id
+    method: GET
+    path: /api/v1/instagram/v1/shortcode_to_media_id
+    risk: low
+    required: [shortcode]
+    optional: []
+
+  - id: v1_media_id_to_shortcode
+    method: GET
+    path: /api/v1/instagram/v1/media_id_to_shortcode
+    risk: low
+    required: [media_id]
+    optional: []
+
+  - id: v1_fetch_post_by_url
+    method: GET
+    path: /api/v1/instagram/v1/fetch_post_by_url
+    risk: low
+    required: [post_url]
+    optional: []
+
+  - id: v1_fetch_post_by_url_v2
+    method: GET
+    path: /api/v1/instagram/v1/fetch_post_by_url_v2
+    risk: low
+    required: [post_url]
+    optional: []
+
+  - id: v1_fetch_post_by_id
+    method: GET
+    path: /api/v1/instagram/v1/fetch_post_by_id
+    risk: low
+    required: [post_id]
+    optional: []
+
+  - id: v1_fetch_music_posts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_music_posts
+    risk: low
+    required: { oneOf: [music_id, music_url] }
+    optional: [max_id]
+
+  # ========== V1 — 评论 (comments.md) ==========
+  - id: v1_fetch_post_comments_v2
+    method: GET
+    path: /api/v1/instagram/v1/fetch_post_comments_v2
+    risk: low
+    required: [media_id]
+    optional: [sort_order, min_id]
+
+  - id: v1_fetch_comment_replies
+    method: GET
+    path: /api/v1/instagram/v1/fetch_comment_replies
+    risk: low
+    required: [media_id, comment_id]
+    optional: [min_id]
+
+  # ========== V1 — 搜索 (search.md) ==========
+  - id: v1_fetch_search
+    method: GET
+    path: /api/v1/instagram/v1/fetch_search
+    risk: low
+    required: [query]
+    optional: [select]
+
+  - id: v1_fetch_hashtag_posts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_hashtag_posts
+    risk: low
+    required: [hashtag]
+    optional: [end_cursor]
+
+  - id: v1_fetch_location_info
+    method: GET
+    path: /api/v1/instagram/v1/fetch_location_info
+    risk: low
+    required: [location_id]
+    optional: []
+
+  - id: v1_fetch_location_posts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_location_posts
+    risk: low
+    required: [location_id]
+    optional: [tab, end_cursor]
+
+  - id: v1_fetch_cities
+    method: GET
+    path: /api/v1/instagram/v1/fetch_cities
+    risk: low
+    required: [country_code]
+    optional: [page]
+
+  - id: v1_fetch_locations
+    method: GET
+    path: /api/v1/instagram/v1/fetch_locations
+    risk: low
+    required: [city_id]
+    optional: [page]
+
+  - id: v1_fetch_explore_sections
+    method: GET
+    path: /api/v1/instagram/v1/fetch_explore_sections
+    risk: low
+    required: []
+    optional: []
+
+  - id: v1_fetch_section_posts
+    method: GET
+    path: /api/v1/instagram/v1/fetch_section_posts
+    risk: low
+    required: [section_id]
+    optional: [count, max_id]
+
+  # ========== V2 — 用户 (user.md) ==========
+  - id: v2_user_id_to_username
+    method: GET
+    path: /api/v1/instagram/v2/user_id_to_username
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: v2_fetch_user_info
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_info
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: []
+
+  - id: v2_fetch_user_posts
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_posts
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: [pagination_token]
+
+  - id: v2_fetch_user_reels
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_reels
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: [pagination_token]
+
+  - id: v2_fetch_user_followers
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_followers
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: [pagination_token]
+
+  - id: v2_fetch_user_following
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_following
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: [pagination_token]
+
+  - id: v2_fetch_user_stories
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_stories
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: []
+
+  - id: v2_fetch_user_highlights
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_highlights
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: []
+
+  - id: v2_fetch_highlight_stories
+    method: GET
+    path: /api/v1/instagram/v2/fetch_highlight_stories
+    risk: low
+    required: [highlight_id]
+    optional: []
+
+  - id: v2_fetch_user_tagged_posts
+    method: GET
+    path: /api/v1/instagram/v2/fetch_user_tagged_posts
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: [pagination_token]
+
+  - id: v2_fetch_similar_users
+    method: GET
+    path: /api/v1/instagram/v2/fetch_similar_users
+    risk: low
+    required: { oneOf: [username, user_id] }
+    optional: []
+
+  # ========== V2 — 帖子 (post.md) ==========
+  - id: v2_shortcode_to_media_id
+    method: GET
+    path: /api/v1/instagram/v2/shortcode_to_media_id
+    risk: low
+    required: [shortcode]
+    optional: []
+
+  - id: v2_media_id_to_shortcode
+    method: GET
+    path: /api/v1/instagram/v2/media_id_to_shortcode
+    risk: low
+    required: [media_id]
+    optional: []
+
+  - id: v2_fetch_post_info
+    method: GET
+    path: /api/v1/instagram/v2/fetch_post_info
+    risk: low
+    required: [code_or_url]
+    optional: []
+
+  - id: v2_fetch_post_likes
+    method: GET
+    path: /api/v1/instagram/v2/fetch_post_likes
+    risk: low
+    required: [code_or_url]
+    optional: [end_cursor]
+
+  - id: v2_fetch_music_posts
+    method: GET
+    path: /api/v1/instagram/v2/fetch_music_posts
+    risk: low
+    required: [audio_canonical_id]
+    optional: [pagination_token]
+
+  # ========== V2 — 评论 (comments.md) ==========
+  - id: v2_fetch_post_comments
+    method: GET
+    path: /api/v1/instagram/v2/fetch_post_comments
+    risk: low
+    required: [code_or_url]
+    optional: [sort_by, pagination_token]
+
+  - id: v2_fetch_comment_replies
+    method: GET
+    path: /api/v1/instagram/v2/fetch_comment_replies
+    risk: low
+    required: [code_or_url, comment_id]
+    optional: [pagination_token]
+
+  # ========== V2 — 搜索 (search.md) ==========
+  - id: v2_search_users
+    method: GET
+    path: /api/v1/instagram/v2/search_users
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: v2_general_search
+    method: GET
+    path: /api/v1/instagram/v2/general_search
+    risk: low
+    required: [keyword]
+    optional: [pagination_token]
+
+  - id: v2_search_reels
+    method: GET
+    path: /api/v1/instagram/v2/search_reels
+    risk: low
+    required: [keyword]
+    optional: [pagination_token]
+
+  - id: v2_search_music
+    method: GET
+    path: /api/v1/instagram/v2/search_music
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: v2_search_hashtags
+    method: GET
+    path: /api/v1/instagram/v2/search_hashtags
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: v2_search_locations
+    method: GET
+    path: /api/v1/instagram/v2/search_locations
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: v2_search_by_coordinates
+    method: GET
+    path: /api/v1/instagram/v2/search_by_coordinates
+    risk: low
+    required: [latitude, longitude]
+    optional: []
+
+  - id: v2_fetch_hashtag_posts
+    method: GET
+    path: /api/v1/instagram/v2/fetch_hashtag_posts
+    risk: low
+    required: [keyword]
+    optional: [feed_type, pagination_token]
+
+  - id: v2_fetch_location_posts
+    method: GET
+    path: /api/v1/instagram/v2/fetch_location_posts
+    risk: low
+    required: [location_id]
+    optional: [pagination_token]
+
+  # ========== V3 — 用户 (user.md) ==========
+  - id: v3_get_user_id_by_username
+    method: GET
+    path: /api/v1/instagram/v3/get_user_id_by_username
+    risk: low
+    required: [username]
+    optional: []
+
+  - id: v3_get_user_profile
+    method: GET
+    path: /api/v1/instagram/v3/get_user_profile
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: []
+
+  - id: v3_get_user_brief
+    method: GET
+    path: /api/v1/instagram/v3/get_user_brief
+    risk: low
+    required: [user_id, username]
+    optional: []
+
+  - id: v3_get_user_posts
+    method: GET
+    path: /api/v1/instagram/v3/get_user_posts
+    risk: low
+    required: [username]
+    optional: [first, after, before, last, count]
+
+  - id: v3_get_user_tagged_posts
+    method: GET
+    path: /api/v1/instagram/v3/get_user_tagged_posts
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: [first, after, before, last, count]
+
+  - id: v3_get_user_reels
+    method: GET
+    path: /api/v1/instagram/v3/get_user_reels
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: [first, after, before, last, page_size]
+
+  - id: v3_get_user_highlights
+    method: GET
+    path: /api/v1/instagram/v3/get_user_highlights
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: [first, after, before, last]
+
+  - id: v3_get_highlight_stories
+    method: GET
+    path: /api/v1/instagram/v3/get_highlight_stories
+    risk: low
+    required: [highlight_id]
+    optional: [reel_ids, first, last]
+
+  - id: v3_get_user_about
+    method: GET
+    path: /api/v1/instagram/v3/get_user_about
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: []
+
+  - id: v3_get_user_former_usernames
+    method: GET
+    path: /api/v1/instagram/v3/get_user_former_usernames
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: []
+
+  - id: v3_get_user_stories
+    method: GET
+    path: /api/v1/instagram/v3/get_user_stories
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: []
+
+  - id: v3_get_user_following
+    method: GET
+    path: /api/v1/instagram/v3/get_user_following
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: [count, max_id]
+
+  - id: v3_get_user_followers
+    method: GET
+    path: /api/v1/instagram/v3/get_user_followers
+    risk: low
+    required: { oneOf: [user_id, username] }
+    optional: [count, max_id]
+
+  # ========== V3 — 帖子 (post.md) ==========
+  - id: v3_shortcode_to_media_id
+    method: GET
+    path: /api/v1/instagram/v3/shortcode_to_media_id
+    risk: low
+    required: [shortcode]
+    optional: []
+
+  - id: v3_media_id_to_shortcode
+    method: GET
+    path: /api/v1/instagram/v3/media_id_to_shortcode
+    risk: low
+    required: [media_id]
+    optional: []
+
+  - id: v3_extract_shortcode
+    method: GET
+    path: /api/v1/instagram/v3/extract_shortcode
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: v3_get_post_info
+    method: GET
+    path: /api/v1/instagram/v3/get_post_info
+    risk: low
+    required: { oneOf: [media_id, url] }
+    optional: []
+
+  - id: v3_get_post_info_by_code
+    method: GET
+    path: /api/v1/instagram/v3/get_post_info_by_code
+    risk: low
+    required: [code]
+    optional: []
+
+  - id: v3_get_post_oembed
+    method: GET
+    path: /api/v1/instagram/v3/get_post_oembed
+    risk: low
+    required: [url]
+    optional: [hidecaption, maxwidth]
+
+  - id: v3_get_recommended_reels
+    method: GET
+    path: /api/v1/instagram/v3/get_recommended_reels
+    risk: low
+    required: []
+    optional: [first, after]
+
+  - id: v3_translate_comment
+    method: GET
+    path: /api/v1/instagram/v3/translate_comment
+    risk: low
+    required: [comment_id]
+    optional: []
+
+  - id: v3_bulk_translate_comments
+    method: GET
+    path: /api/v1/instagram/v3/bulk_translate_comments
+    risk: low
+    required: [comment_ids]
+    optional: []
+
+  # ========== V3 — 评论 (comments.md) ==========
+  - id: v3_get_post_comments
+    method: GET
+    path: /api/v1/instagram/v3/get_post_comments
+    risk: low
+    required: [code]
+    optional: [min_id, sort_order]
+
+  - id: v3_get_comment_replies
+    method: GET
+    path: /api/v1/instagram/v3/get_comment_replies
+    risk: low
+    required: [media_id, comment_id]
+    optional: [min_id]
+
+  # ========== V3 — 搜索 (search.md) ==========
+  - id: v3_search_users
+    method: GET
+    path: /api/v1/instagram/v3/search_users
+    risk: low
+    required: [query]
+    optional: [rank_token]
+
+  - id: v3_search_hashtags
+    method: GET
+    path: /api/v1/instagram/v3/search_hashtags
+    risk: low
+    required: [query]
+    optional: [rank_token]
+
+  - id: v3_general_search
+    method: GET
+    path: /api/v1/instagram/v3/general_search
+    risk: low
+    required: [query]
+    optional: [next_max_id, rank_token, enable_metadata]
+
+  - id: v3_get_explore
+    method: GET
+    path: /api/v1/instagram/v3/get_explore
+    risk: low
+    required: []
+    optional: [max_id]
+
+  - id: v3_get_location_info
+    method: GET
+    path: /api/v1/instagram/v3/get_location_info
+    risk: low
+    required: [location_id]
+    optional: [show_nearby]
+
+  - id: v3_get_location_posts
+    method: GET
+    path: /api/v1/instagram/v3/get_location_posts
+    risk: low
+    required: [location_id]
+    optional: [tab, first, after, page_size_override]
+
+  - id: v3_get_location_nearby
+    method: GET
+    path: /api/v1/instagram/v3/get_location_nearby
+    risk: low
+    required: [location_id]
+    optional: []
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

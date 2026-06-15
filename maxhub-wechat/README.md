@@ -2,12 +2,17 @@
 
 [中文文档](README_CN.md)
 
-WeChat data assistant covering Channels (video) and Official Accounts (articles) with search, detail, comments, and more.
+WeChat data assistant covering Channels (视频号) videos, Official Accounts (公众号) articles, and cross-platform search via MaxHub API. 22 active endpoints across 3 functional areas.
 
 ## Features
 
-- **Channels** — fetch_channels_home, search_channels, search_channels_latest, fetch_channels_hot_topics, fetch_channels_user_search, fetch_channels_user_search_v2, fetch_channels_live_history, fetch_channels_comprehensive_search, fetch_channels_video_detail, fetch_channels_comments, fetch_channels_default_search
-- **Official Accounts** — search_mp_account, search_mp_article, fetch_mp_article_list, fetch_mp_article_detail_html, fetch_mp_article_detail_json, fetch_mp_article_url, fetch_mp_article_comments, fetch_mp_article_comment_replies, fetch_mp_article_ad, fetch_mp_related_articles, fetch_mp_article_read_count, fetch_mp_long_url_to_short
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| Channels | `references/channels.md` | Channel info, video detail, comments, live streams, collections, share URLs | 12 |
+| MP / Accounts | `references/mp.md` | Article detail, stats, comments, account profile, articles list, services | 9 |
+| Search | `references/search.md` | Universal search across Channels + MP | 1 |
+
+See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -24,8 +29,9 @@ npx clawhub install maxhub-wechat
 
 | Category | Example prompts |
 |----------|----------------|
-| Channels | 视频号, 视频 |
-| Official Accounts | 公众号, 文章 |
+| Channels | 查微信视频号信息, get WeChat Channels video detail |
+| MP / Accounts | 查公众号文章详情, get WeChat official account articles |
+| Search | 微信搜索关键词, search WeChat for... |
 
 Supports both **English** and **Chinese**.
 

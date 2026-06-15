@@ -2,15 +2,20 @@
 
 [中文文档](README_CN.md)
 
-Bilibili video, user, comment, danmaku, and live data assistant with App and Web API support.
+Bilibili video, user, comment, danmaku, live, and collection data assistant via MaxHub API. 41 active endpoints across 6 functional areas.
 
 ## Features
 
-- **Video Data** — fetch_one_video, fetch_video_detail, fetch_video_playurl, fetch_video_comments, fetch_video_danmaku, fetch_video_subtitle, fetch_video_play_info, generate_aid_by_bvid, fetch_video_parts_by_bvid, fetch_vip_video_playurl
-- **User Data** — fetch_user_info, fetch_user_profile, fetch_user_videos, fetch_user_followers, fetch_user_following, fetch_up_stat, fetch_user_relation_stat, extract_user_id, fetch_user_dynamic, fetch_user_collection_folders, fetch_collection_folder_data
-- **Search** — fetch_general_search, fetch_hot_search, search_by_type
-- **Comments & Interaction** — fetch_video_comments, fetch_comment_replies, fetch_dynamic_detail, fetch_dynamic_detail_v2
-- **Live & Feed** — fetch_live_info, fetch_live_areas, fetch_live_streamers, fetch_live_video_data, fetch_home_feed, fetch_popular_feed, fetch_bangumi_tab, fetch_cinema_tab, fetch_comprehensive_popular
+| Area | Reference | Endpoints |
+|------|-----------|-----------|
+| Video | `references/video.md` | Video detail, play URL, subtitle, parts, BV/AV conversion | 13 |
+| User | `references/user.md` | User profiles, stats, videos, dynamics, ID extraction | 10 |
+| Search | `references/search.md` | Search, hot list, feeds, popular, bangumi, cinema | 9 |
+| Comments | `references/comments.md` | Comments, replies, danmaku | 5 |
+| Live | `references/live.md` | Room info, live streams, streamers, areas | 4 |
+| Collections | `references/collections.md` | Collection folders, folder videos | 2 |
+
+Supports both App and Web API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -27,11 +32,12 @@ npx clawhub install maxhub-bilibili
 
 | Category | Example prompts |
 |----------|----------------|
-| Video Data | 视频, 详情 |
-| User Data | 用户, UP主 |
-| Search | 搜索, 搜 |
-| Comments & Interaction | 评论, 回复 |
-| Live & Feed | 直播, 推荐 |
+| Video | 查B站视频详情 BV..., get Bilibili video info for BV... |
+| User | 查B站UP主粉丝数, get Bilibili user stats for UID... |
+| Search | 在B站搜索原神视频, search Bilibili for... |
+| Comments | 查B站视频评论, get Bilibili video comments |
+| Live | 查B站直播间人数, get Bilibili live room info |
+| Collections | 查B站用户收藏夹, get Bilibili user collections |
 
 Supports both **English** and **Chinese**.
 

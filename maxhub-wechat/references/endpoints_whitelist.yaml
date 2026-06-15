@@ -1,0 +1,176 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-wechat
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== 微信公众号 / WeChat MP (mp.md) ==========
+  - id: fetch_article_detail
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_article_detail
+    risk: high
+    required: [url]
+    optional: [raw]
+
+  - id: fetch_article_stats
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_article_stats
+    risk: high
+    required: [url]
+    optional: [raw]
+
+  - id: fetch_article_comments
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_article_comments
+    risk: high
+    required: [url]
+    optional: [buffer, raw]
+
+  - id: fetch_comment_replies
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_comment_replies
+    risk: high
+    required: [url]
+    optional: [content_id, offset, all_pages, raw]
+
+  - id: fetch_related_articles
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_related_articles
+    risk: high
+    required: [url]
+    optional: [raw]
+
+  - id: fetch_article_ad
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_article_ad
+    risk: high
+    required: [url]
+    optional: [raw]
+
+  - id: fetch_account_profile
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_account_profile
+    risk: high
+    required: [username]
+    optional: [raw]
+
+  - id: fetch_account_articles
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_account_articles
+    risk: high
+    required: [username]
+    optional: [page_size, max_pages, offset, raw]
+
+  - id: fetch_account_services
+    method: POST
+    path: /api/v1/wechat_mp/v2/fetch_account_services
+    risk: high
+    required: [username]
+    optional: [raw]
+
+  # ========== 微信视频号 / WeChat Channels (channels.md) ==========
+  - id: fetch_channel_info
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_channel_info
+    risk: high
+    required: [username]
+    optional: [raw]
+
+  - id: fetch_channel_id_to_username
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_channel_id_to_username
+    risk: high
+    required: [channel_id]
+    optional: [raw]
+
+  - id: fetch_user_videos
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_user_videos
+    risk: high
+    required: [username]
+    optional: [last_buffer, raw]
+
+  - id: fetch_video_detail
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_video_detail
+    risk: high
+    required: { oneOf: [object_id, export_id, share_url] }
+    optional: [object_nonce_id, raw]
+
+  - id: fetch_video_comments
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_video_comments
+    risk: high
+    required: [object_id]
+    optional: [last_buffer, comment_id, raw]
+
+  - id: fetch_video_share_url
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_video_share_url
+    risk: high
+    required: [object_id]
+    optional: [raw]
+
+  - id: fetch_user_profile
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_user_profile
+    risk: high
+    required: [username]
+    optional: [raw]
+
+  - id: fetch_user_collections
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_user_collections
+    risk: high
+    required: [username]
+    optional: [raw]
+
+  - id: fetch_collection_videos
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_collection_videos
+    risk: high
+    required: [topic_id]
+    optional: [topic, username, last_buffer, topic_type, raw]
+
+  - id: fetch_live_history
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_live_history
+    risk: high
+    required: [username]
+    optional: [last_buffer, flag, raw]
+
+  - id: fetch_live_detail
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_live_detail
+    risk: high
+    required: [live_id]
+    optional: [scene, finder_username, raw]
+
+  - id: fetch_search_channel_videos
+    method: POST
+    path: /api/v1/wechat_channels/v2/fetch_search_channel_videos
+    risk: high
+    required: [username, keyword]
+    optional: [raw]
+
+  # ========== 微信搜一搜 / WeChat Search (search.md) ==========
+  - id: fetch_search
+    method: POST
+    path: /api/v1/wechat_search/v2/fetch_search
+    risk: high
+    required: [keyword]
+    optional: [business_type, offset, raw]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# 5. All endpoints are POST — params go in request body (JSON), NOT query string.
+# Only proceed when ALL 5 checks pass.

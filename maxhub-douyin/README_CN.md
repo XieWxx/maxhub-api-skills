@@ -2,17 +2,22 @@
 
 [English](README.md)
 
-抖音全场景数据查询助手。覆盖视频详情、用户数据、搜索、热榜、创作者工具、星图达人、内容指数等7大模块。
+抖音全场景数据查询助手。覆盖视频、用户、搜索、热榜、创作者、星图达人、内容指数、直播、评论、工具等10大功能模块，共273个活跃端点。
 
 ## 功能
 
-- **视频与内容** — fetch_one_video, fetch_one_video_v2, fetch_video_comments, fetch_video_comment_replies, fetch_user_post_videos, fetch_user_like_videos, fetch_video_danmaku, fetch_related_videos, batch_fetch_video_info
-- **用户数据** — fetch_user_info, fetch_user_followers, fetch_user_following, fetch_user_profile, batch_fetch_user_info
-- **搜索** — fetch_general_search_v2, fetch_video_search, fetch_user_search, fetch_hashtag_search, fetch_music_search, fetch_live_search, fetch_keyword_suggestions
-- **热榜与趋势** — fetch_hot_search, fetch_hot_total_list, fetch_video_hot_list, fetch_topic_hot_list, fetch_rising_hot_list, fetch_city_hot_list, fetch_hot_list_category
-- **创作者工具** — fetch_creator_hotspot, fetch_item_list, fetch_item_overview, fetch_item_audience, fetch_author_diagnosis, fetch_live_history, fetch_item_analysis_overview
-- **星图达人** — search_kol, fetch_kol_base_info, fetch_kol_data_overview, fetch_kol_service_price, fetch_kol_fans_portrait, fetch_kol_audience_portrait, fetch_kol_video_performance, fetch_kol_xingtu_index
-- **内容指数** — fetch_brand_index, fetch_hot_words, fetch_keyword_trend, fetch_daren_metrics, fetch_daren_fans, fetch_content_trend, fetch_search_trend, fetch_brand_trend_lines
+| 分类 | 端点 | 说明 |
+|------|------|------|
+| **视频** | 42 | 视频详情（单个/批量）、高清播放链接、统计数据、合集/短剧、音乐/话题详情、分享/短链/二维码、频道内容、相关推荐、ID提取 |
+| **用户** | 24 | 用户信息（多方式查询）、粉丝/关注列表、用户作品、喜欢列表、收藏夹、合辑、批量查询、用户搜索 |
+| **搜索** | 19 | 综合搜索、视频/用户/图片/直播/话题搜索、搜索建议、多重搜索、经验/音乐/讨论/学校/图像搜索 |
+| **热榜** | 39 | 热榜分类、上升/同城/挑战热点榜、活动日历、观众画像、视频/话题/搜索热榜、热门内容词、首页推荐、视频频道 |
+| **创作者** | 29 | 创作者活动、素材中心榜单、创作热点、话题/道具/音乐/挑战榜、课程、商单任务、行业分类、作品流量分析、观众画像、账号诊断、直播历史 |
+| **星图KOL** | 43 | KOL ID查询、基本信息、观众/粉丝画像、服务报价、数据概览、KOL搜索、转化分析、星图指数、视频表现、热词分析、热榜、达人广场、MCN搜索、IP日历 |
+| **抖音指数** | 44 | 关键词趋势、关联词、人群画像、达人分析、品牌指数/雷达图/趋势线/周期、话题搜索、创作指南、创作者/消费者画像、消费/互动趋势、趋势报告 |
+| **评论** | 6 | 视频评论、评论回复、视频弹幕（App + Web） |
+| **直播** | 14 | 直播流、弹幕、送礼排行、直播间商品、商品SKU/优惠券/评价、直播间ID转换 |
+| **工具** | 13 | 设备注册、APP跳转链接、游客Cookie、Token生成（msToken/ttwid/verify_fp/s_v_web_id）、签名生成（X-Bogus/A-Bogus/弹幕xb） |
 
 ## 安装
 
@@ -27,15 +32,18 @@ npx clawhub install maxhub-douyin
 
 ## 使用示例
 
-| 分类 | 示例指令 |
-|------|----------|
-| 视频与内容 | 视频，作品 |
-| 用户数据 | 用户，达人 |
-| 搜索 | 搜索，搜 |
-| 热榜与趋势 | 热榜，热搜 |
-| 创作者工具 | 创作者，投稿 |
-| 星图达人 | 星图，KOL |
-| 内容指数 | 指数，品牌 |
+| 分类 | 示例指令（中文） | Example prompts (English) |
+|------|-----------------|--------------------------|
+| 视频 | 查抖音视频 aweme_id=... | Get Douyin video details aweme_id=... |
+| 用户 | 查抖音用户 sec_user_id=... | Get Douyin user profile sec_user_id=... |
+| 搜索 | 搜抖音 "美食" | Search Douyin for "food" |
+| 热榜 | 查抖音热榜 | Show Douyin trending list |
+| 创作者 | 查创作者后台作品数据 | Get Douyin creator item analytics |
+| 星图KOL | 查星图达人 kolId=... | Get Douyin Xingtu KOL data kolId=... |
+| 抖音指数 | 查抖音指数 "关键词"趋势 | Get Douyin index keyword trends |
+| 评论 | 查抖音视频评论 | Get Douyin video comments |
+| 直播 | 查抖音直播数据 | Get Douyin live stream data |
+| 工具 | 生成抖音游客Cookie | Generate Douyin guest Cookie |
 
 支持 **中文** 和 **英文** 双语。
 

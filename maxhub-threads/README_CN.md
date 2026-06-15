@@ -2,12 +2,16 @@
 
 [English](README.md)
 
-Threads 数据查询助手。覆盖帖子详情、用户资料、搜索、评论、转发等全功能。
+Threads 帖子、用户资料、搜索、评论、转发数据查询助手。通过 MaxHub API 提供 11 个端点，覆盖 2 个功能领域。
 
 ## 功能
 
-- **帖子与用户** — fetch_post_detail, fetch_post_detail_v2, fetch_post_comments, fetch_user_info, fetch_user_info_by_id, fetch_user_posts, fetch_user_replies, fetch_user_reposts
-- **搜索** — search_recent, search_top, search_profiles
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 | `references/user.md` | 用户信息、帖子列表、转发、回复 | 5 |
+| 内容 | `references/content.md` | 帖子详情、评论、综合搜索 | 6 |
+
+参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -24,8 +28,9 @@ npx clawhub install maxhub-threads
 
 | 分类 | 示例指令 |
 |------|----------|
-| 帖子与用户 | 帖子，用户 |
-| 搜索 | 搜索，搜 |
+| 用户 | 查Threads用户 lilbieber, threads用户帖子列表 |
+| 内容 | 查Threads帖子详情, threads搜索 bitcoin |
+| 搜索 | 在Threads搜索, Threads热门, Threads最新内容 |
 
 支持 **中文** 和 **英文** 双语。
 

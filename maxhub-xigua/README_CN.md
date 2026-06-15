@@ -1,12 +1,16 @@
-# 西瓜视频数据助手
+# 西瓜视频 数据助手
 
 [English](README.md)
 
-西瓜视频数据查询助手。覆盖视频详情、用户数据、搜索、评论等全功能。
+西瓜视频数据查询助手。通过 MaxHub API 提供 7 个端点，覆盖视频详情、播放链接、搜索、评论、用户信息、用户作品。
 
 ## 功能
 
-- **视频与用户** — fetch_single_video, fetch_single_video_v2, fetch_video_play_url, fetch_video_comments, fetch_user_info, fetch_user_posts, search_video
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 内容 | `references/content.md` | 视频详情 (v1/v2)、播放URL、搜索、评论、用户信息、用户作品 | 7 |
+
+支持西瓜视频 App V2 API。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -23,7 +27,10 @@ npx clawhub install maxhub-xigua
 
 | 分类 | 示例指令 |
 |------|----------|
-| 视频与用户 | 视频，用户 |
+| 视频 | 查西瓜视频这个作品的详情和播放量 item_id... |
+| 搜索 | 在西瓜视频搜索关键词 |
+| 评论 | 查这个西瓜视频作品的评论 |
+| 用户 | 查这个西瓜视频用户的信息和作品列表 |
 
 支持 **中文** 和 **英文** 双语。
 

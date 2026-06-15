@@ -2,15 +2,18 @@
 
 [中文文档](README_CN.md)
 
-Comprehensive Weibo data assistant integrating App/Web/V2 APIs for posts, users, AI search, advanced search, trending, comments, and videos.
+Weibo posts, users, search, comments, hot search rankings, and video feed data assistant via MaxHub API. 64 active endpoints across 4 functional areas.
 
 ## Features
 
-- **Post & Comment** — fetch_post_detail, fetch_post_comments, fetch_post_reposts, fetch_post_likes, fetch_sub_comments, fetch_single_post_data, fetch_comments
-- **User Data** — fetch_user_info, fetch_user_detail, fetch_user_basic_info, fetch_user_timeline, fetch_user_original_posts, fetch_user_articles, fetch_user_videos, fetch_user_all_videos, fetch_user_following, fetch_user_followers, fetch_user_super_topics, user_search
-- **Search** — comprehensive_search, search_weibo, ai_search, ai_search_extension, advanced_search, realtime_search, picture_search, video_search, topic_search, search_user_posts, user_search, fetch_similar_search, fetch_search_suggestions
-- **Trending & Hot** — fetch_hot_search, fetch_hot_search_ranking, fetch_hot_search_complete, fetch_entertainment_ranking, fetch_social_ranking, fetch_life_ranking, fetch_hot_ranking_timeline
-- **Video & Feed** — fetch_video_detail, fetch_video_featured_feed, fetch_home_recommend_feed, fetch_channel_feed, fetch_channel_trend, fetch_channel_config, fetch_video_collection_list, fetch_video_collection_detail, fetch_all_groups, check_image_comment_allowed
+| Area | Reference | Endpoints |
+|------|-----------|-----------|
+| Posts | `references/post.md` | Post detail, reposts, likes, video detail, feeds, trending content, channel hot | 14 |
+| Users | `references/user.md` | User profiles, followers/following, posts, timeline, original posts, super topics, videos, articles, audio, collections, groups | 22 |
+| Search | `references/search.md` | Comprehensive search, AI search, advanced search, realtime search, video/picture/topic search, hot search rankings, entertainment/social/life rankings | 23 |
+| Comments | `references/comments.md` | Post comments, sub-comments, comment replies | 5 |
+
+Supports App, Web, and Web V2 API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -27,11 +30,10 @@ npx clawhub install maxhub-weibo
 
 | Category | Example prompts |
 |----------|----------------|
-| Post & Comment | 微博详情, 评论, 转发 |
-| User Data | 用户信息, 粉丝, 关注 |
-| Search | AI搜索, 高级搜索, 图片搜索 |
-| Trending | 热搜榜, 文娱榜, 社会榜 |
-| Video & Feed | 视频详情, 频道, 推荐 |
+| Posts | 查这条微博的详情 5016922058656962, get Weibo post detail for..., 这条微博有多少转发 |
+| Users | 查微博用户 uid 7648703289 的粉丝数和微博列表, get Weibo user profile and followers, 查这个用户的原创微博 |
+| Search | 搜微博关于人工智能的内容, search Weibo for AI, 查微博热搜榜, get Weibo hot search ranking |
+| Comments | 查微博评论, get Weibo post comments, 查这条评论的回复 |
 
 Supports both **English** and **Chinese**.
 

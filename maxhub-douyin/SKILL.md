@@ -1,10 +1,15 @@
 ---
 name: maxhub-douyin
-description: "抖音数据查询与工具助手。覆盖视频详情、用户数据、搜索、热榜、创作者工具、星图达人、内容指数等模块。含部分交互触发和协议工具接口（已标注）。"
+description: >-
+  Query Douyin (抖音) data via MaxHub API — video details, user profiles,
+  search, trending, creator tools, xingtu KOL analytics, content index,
+  live streaming, and comments.
+  Use when user asks about any 抖音 content, 视频, 用户, 热榜, 搜索, 创作者, 星图, 直播, 评论, or 抖音数据.
+  Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.7.1"
+  version: "3.7.2"
   openclaw:
     emoji: "🎵"
     primaryEnv: MAXHUB_API_KEY
@@ -21,432 +26,273 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["抖音", "douyin", "短视频", "热搜", "视频分析", "用户分析", "创作者", "星图", "抖音指数", "关键词搜索", "评论采集", "直播数据", "话题分析", "舆情监控", "内容营销", "数据采集", "合规", "只读", "数据分析", "合法API"]
+    tags: ["抖音", "douyin", "短视频", "热搜", "视频分析", "用户分析", "创作者", "星图", "抖音指数", "关键词搜索", "评论采集", "直播数据", "话题分析", "数据采集"]
     category: productivity
 ---
 
-# 抖音数据助手
+# 抖音 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a Douyin Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+抖音数据查询与分析工具，通过 MaxHub API 接入抖音平台全量公开数据，覆盖视频详情、用户画像、关键词搜索、热搜热榜、创作者后台、星图 KOL 分析、抖音指数、直播数据、评论弹幕等十大领域共 273 个端点。专注服务于抖音内容创作者、新媒体运营、星图投放分析师、直播数据团队与品牌竞品研究者，帮助用户快速采集抖音全平台数据、提炼爆款规律、辅助选题与投放决策。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 271 active endpoints **first message** and maintain it throughout the conversation.
+- 🎵 **视频全维度查询** — 支持 aweme_id / 分享 URL / 短链 / 二维码多种入口查询视频详情，覆盖播放、统计、合集、短剧、音乐、话题等 42 个端点
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 👤 **用户全景画像** — 用户资料、粉丝/关注、作品、喜欢列表、收藏夹、合辑、搜索、开播信息一站式覆盖（24 端点）
 
-## API Access
+- 🔍 **多模态搜索矩阵** — 综合 / 视频 / 用户 / 图片 / 直播 / 话题 / 经验 / 音乐 / 学校 / 图像 10+ 维度搜索 + 搜索建议（19 端点）
 
-Base URL: `https://www.aconfig.cn`
+- 🔥 **热榜与活动洞察** — 总榜 / 上升 / 同城 / 挑战热点 / 活动日历 / 粉丝画像 / 账号视频话题热榜（39 端点）
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 📊 **创作者后台数据** — 素材中心、商单任务、行业分类、流量分析、观众画像、账号诊断、直播历史（31 端点）
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- ⭐ **星图 KOL 全链路** — KOL ID 反查、基本信息、画像、报价、转化、星图指数、视频表现、达人广场、MCN、IP 日历（43 端点）
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/douyin/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 💬 **评论与弹幕** — 视频一级评论、二级回复、视频弹幕完整链路（6 端点）
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/douyin/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 📈 **抖音指数与品牌** — 关键词趋势、关联词、人群画像、品牌指数、达人分析、创作指南、趋势报告（44 端点）
+
+- 📡 **直播间数据** — 直播流、弹幕、送礼排行、直播商品、商品评价、直播间 ID 转换（14 端点）
+
+- 🛠️ **签名与工具** — 设备注册、APP 跳转、游客 Cookie、msToken / ttwid / verify_fp / s_v_web_id、X-Bogus / A-Bogus / 弹幕 xb 签名（13 端点）
+
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404 / 400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 跨 10 个领域的字段流字典 + Chain Recipes，明确 aweme_id / sec_user_id / room_id / kolid / keyword 在端点间的传递路径
+
+- 📋 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，写入端点 5xx 重试 ≤ 1 次避免重复扣配额
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404 / 410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
+**方案 2：终端环境变量**
 
-## Security & Privacy / 安全与隐私
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-> ⚠️ **Credential Handling / 凭据处理**
-> - ⚠️ **Session cookies are login-equivalent credentials.** Providing your cookie to any third-party service grants that service full access to your account until the session expires.
-> - Only provide cookies if you fully trust the service provider. Use a **separate test account** — never your primary account.
-> - Cookies may be logged, cached, or forwarded by intermediary systems. Rotate or revoke cookies immediately after use.
-> - Do not store cookies in prompts, code samples, or client-side contexts where they may be exposed.
-> - ⚠️ **会话 Cookie 等同于登录凭据。** 向任何第三方服务提供 Cookie 即授予该服务对您账号的完全访问权限，直到会话过期。
-> - 仅在完全信任服务提供商时提供 Cookie。务必使用**独立测试账号**——切勿使用主账号。
-> - Cookie 可能被中间系统记录、缓存或转发。使用后立即轮换或撤销 Cookie。
-> - 不要将 Cookie 存储在提示词、代码示例或客户端上下文中，以免泄露。
+### 依赖安装
 
-> 📋 **Data Transmission / 数据传输**
-> - All API requests are sent to `https://www.aconfig.cn`. Your credentials are transmitted to this third-party service.
-> - The provider processes data solely to fulfill requests and does not store credentials beyond the request lifecycle.
-> - 所有 API 请求发送至 `https://www.aconfig.cn`。您的凭据将传输至该第三方服务。
-> - 服务提供商仅处理数据以完成请求，不会在请求生命周期之外存储凭据。
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-> 🔒 **Read-Only Operations / 只读操作**
-> - **Most endpoints** in this skill are read-only data queries. However, a small number of endpoints can trigger app actions (e.g., open app to send message) or provide protocol utilities (e.g., signature generation). These are clearly marked with ⚠️ warnings in the documentation.
-> - 本技能**大部分端点**为只读数据查询。少数端点可触发应用操作（如打开应用发私信）或提供协议工具（如签名生成），这些端点在文档中已用 ⚠️ 明确标注。
+### 环境变量配置
 
-> 🛡️ **Interface Purpose Declaration / 接口用途声明**
-> - All endpoints in this skill are **legitimate data analysis APIs** provided by the upstream service (aconfig.cn).
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol. They are NOT hacking, exploitation, or attack tools.
-> - `generate_*` endpoints produce platform-specific request signatures. These are protocol utilities for API compatibility, **not** standard OAuth. Use with awareness of platform ToS.
-> - `encrypt_*`/`decrypt_*` endpoints handle data format conversion for the upstream API protocol. These are technical utilities, use only as needed.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法数据分析 API**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准 API 认证和数据处理工具**，不是黑客工具。
-> - `generate_*` 接口生成平台特定的请求签名。这些是 API 兼容性协议工具，**不是**标准 OAuth。使用时需注意平台服务条款。
-> - `encrypt_*`/`decrypt_*` 接口处理上游 API 协议的数据格式转换。这些是技术工具，按需使用。
-> - `detect_fake_views` 是**反欺诈分析工具**，用于识别虚假互动，不是制造虚假互动的工具。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-> ⚠️ **Capability Classification / 能力分类**
-> - **Read-only data queries** (majority): Video details, user profiles, search, trending, analytics — these only retrieve data.
-> - **App interaction triggers** ⚠️: `open_*_app_to_*` — these generate deep links that open the platform app. They do NOT directly send messages or perform actions; they only produce URLs the user can choose to open.
-> - **Protocol utilities** ⚠️: `generate_*`, `encrypt_*`, `decrypt_*`, `register_device` — these are API compatibility tools for request construction. They do NOT circumvent security controls independently.
-> - **Cookie-required endpoints** ⚠️: Some endpoints need a user session cookie for personalized data. See Cookie warnings below.
-> - **只读数据查询**（大多数）：视频详情、用户画像、搜索、热榜、分析——仅获取数据。
-> - **应用交互触发** ⚠️：`open_*_app_to_*`——生成打开平台应用的深度链接，不会直接发送消息或执行操作，仅生成用户可选择打开的 URL。
-> - **协议工具** ⚠️：`generate_*`、`encrypt_*`、`decrypt_*`、`register_device`——用于请求构造的 API 兼容性工具，不会独立绕过安全控制。
-> - **需要 Cookie 的端点** ⚠️：部分端点需要用户会话 Cookie 获取个性化数据。参见下方 Cookie 警告。
+## 4. 使用指南
 
-## 🚫 禁止行为（违反将导致 404/400）
+### 核心约束（强制遵守）
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户 / 发布操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号、加路径段** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+| ⚠️ 高风险端点确认 | `fetch_multi_video` 等批量 / 写入端点须用户明确确认参数后才能调用 |
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 基础使用（4 步完成调用）
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
-
-## 🔒 安全合规声明 / Security & Compliance Declaration
-
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
-
-## Interaction Flow
-
-### Step 1: Check API Key
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-douyin.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查视频详情 / 播放 / 下载 / 统计 | `references/video.md` | 视频详情、批量视频、播放 URL、统计、合集 / 短剧、音乐 / 话题、分享 / 短链 / 二维码、频道内容、ID 提取（42 端点） |
+| 查用户 / 粉丝 / 作品 / 喜欢 | `references/user.md` | 用户信息、粉丝 / 关注、作品、喜欢、收藏夹、合辑、用户搜索、开播信息（24 端点） |
+| 搜索视频 / 用户 / 图片 / 直播 | `references/search.md` | 综合 / 视频 / 用户 / 图片 / 直播 / 话题 / 经验 / 音乐 / 讨论 / 学校 / 图像搜索 + 建议（19 端点） |
+| 查热搜 / 热榜 / 活动日历 | `references/trending.md` | 热榜分类、上升 / 同城 / 挑战热点、活动日历、粉丝画像、账号 / 视频 / 话题 / 搜索热榜、首页推荐（39 端点） |
+| 查创作者数据 / 作品分析 | `references/creator.md` | 创作者活动、素材中心、热门榜单、商单任务、行业分类、流量分析、观众画像、账号诊断、直播历史（31 端点） |
+| 查星图 KOL / 达人分析 | `references/xingtu.md` | KOL ID 查询、基本信息、画像、报价、数据概览、KOL 搜索、转化分析、星图指数、视频表现、热榜、达人广场、MCN、IP 日历（43 端点） |
+| 查评论 / 回复 / 弹幕 | `references/comments.md` | 视频评论、评论回复、视频弹幕（6 端点） |
+| 查抖音指数 / 品牌 / 达人 | `references/content.md` | 关键词趋势、关联词、人群画像、达人分析、视频搜索、品牌指数、话题搜索、创作指南、趋势报告（44 端点） |
+| 查直播 / 直播间 / 商品 | `references/live.md` | 直播流、弹幕、送礼排行、直播间商品、商品详情 / 评价、直播间 ID 转换（14 端点） |
+| 生成 Cookie / Token / 签名 | `references/tools.md` | 设备注册、APP 跳转、游客 Cookie、msToken / ttwid / verify_fp / s_v_web_id、X-Bogus / A-Bogus / 弹幕 xb 签名（13 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 + 替换矩阵 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 273 个端点的硬白名单 + Pre-call 4 步自检协议 |
+| SKILL 版本检查与升级 | `references/update.md` | SkillHub / ClawHub / GitHub 三通道更新 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-douyin.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 高风险端点（批量 / 写入）调用前**必须**让用户确认参数
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: 匹配端点
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做 §3.1 (A) 防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做 §3.1 (B) 防参数臆造自检（6 步）
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-根据用户意图，从下表中找到匹配的端点，**直接使用表中标注的完整路径发起请求**。
-禁止自行拼接或猜测路径。
+### 高级使用
 
-#### 🔥 热榜
+#### 链式调用图谱（Chain Recipes）
 
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 | 说明 |
-|----------|------|------|------|----------|------|
-| 热搜榜、抖音热榜 | fetch_hot_search_result | GET | /api/v1/douyin/web/fetch_hot_search_result | 无 | 返回当前热搜 TOP 50 |
-| 热点总榜 | fetch_hot_total_list | GET | /api/v1/douyin/billboard/fetch_hot_total_list | page, page_size, type | type: snapshot/range |
-| 上升热点 | fetch_hot_rise_list | GET | /api/v1/douyin/billboard/fetch_hot_rise_list | page, page_size, order | order: rank/rank_diff |
-| 同城热点 | fetch_hot_city_list | GET | /api/v1/douyin/billboard/fetch_hot_city_list | page, page_size, order, city_code | city_code 从 fetch_city_list 获取 |
-| 挑战榜 | fetch_hot_challenge_list | GET | /api/v1/douyin/billboard/fetch_hot_challenge_list | page, page_size | |
-| 低粉爆款榜 | fetch_hot_total_low_fan_list | POST | /api/v1/douyin/billboard/fetch_hot_total_low_fan_list | page, page_size, date_window | body 参数 |
-| 高涨粉率榜 | fetch_hot_total_high_fan_list | POST | /api/v1/douyin/billboard/fetch_hot_total_high_fan_list | page, page_size, date_window | body 参数 |
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 查视频 + 评论 | `video.md` → `comments.md` | `aweme_id` 接力 |
+| 搜索 → 视频详情 | `search.md` → `video.md` | `aweme_id` 接力 |
+| 查用户 → 作品 | `user.md` → `user.md` (posts) | `sec_user_id` 接力 |
+| 查创作者 → 视频详情 | `creator.md` → `video.md` | `item_id` → `aweme_id` |
+| 查用户 → 星图 KOL | `user.md` → `xingtu.md` | `uid` / `sec_user_id` → `kolid` |
+| 查热搜 → 视频详情 | `trending.md` → `video.md` | `aweme_id` 接力 |
+| 查直播 → 观众画像 | `live.md` → `creator.md` (audience_portrait) | `room_id` 接力 |
+| 查品牌趋势 → 人群画像 | `content.md` → `content.md` (portrait) | `keyword` 接力 |
+| 用户全面分析 | `user.md` → `user.md` (stats+posts+likes) → `xingtu.md` | `sec_user_id` 复用 |
 
-#### 🔍 搜索
+#### 防臆造自检清单（强制前置步骤）
 
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
-|----------|------|------|------|----------|
-| 综合搜索、搜视频/内容 | fetch_general_search_v1 | POST | /api/v1/douyin/search/fetch_general_search_v1 | keyword |
-| 搜视频（备选） | fetch_general_search_v2 | POST | /api/v1/douyin/search/fetch_general_search_v2 | keyword |
-| 搜视频专用 | fetch_video_search_v1 | POST | /api/v1/douyin/search/fetch_video_search_v1 | keyword |
-| 搜用户 | fetch_user_search_v2 | POST | /api/v1/douyin/user/fetch_user_search_v2 | keyword |
-| 搜话题 | fetch_challenge_search_v1 | POST | /api/v1/douyin/search/fetch_challenge_search_v1 | keyword |
-| 搜图片/图文 | fetch_image_search_v3 | POST | /api/v1/douyin/search/fetch_image_search_v3 | keyword |
-| 搜音乐 | fetch_music_search | POST | /api/v1/douyin/search/fetch_music_search | keyword |
-| 搜索建议/自动补全 | fetch_search_suggest | GET | /api/v1/douyin/app/v3/fetch_search_suggest | keyword |
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对 → 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定 "上游资源不存在"
 
-> **搜索类 POST 请求的通用 body 格式：** `{"keyword":"xxx","cursor":0,"sort_type":"0","publish_time":"0","filter_duration":"0","content_type":"0","search_id":""}`
-> cursor 首次传 0，翻页时使用上次返回值。sort_type: 0=综合, 1=最多点赞, 2=最新发布。
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（大小写 / 缩写 / 复数）
+2. 必填项齐全 + oneOf 二选一逻辑
+3. 类型与格式严格匹配（pattern / enum）
+4. 传参方式正确（query vs body）
+5. 没有 IN 表外的臆造参数
+6. 全通过才按 `message_zh` 排查
 
-#### 🎬 视频
+#### SKILL 版本更新
 
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
-|----------|------|------|------|----------|
-| 视频详情（推荐） | fetch_one_video_v2 | GET | /api/v1/douyin/app/v3/fetch_one_video_v2 | aweme_id |
-| 视频详情（v3，备选） | fetch_one_video_v3 | GET | /api/v1/douyin/app/v3/fetch_one_video_v3 | aweme_id |
-| 通过分享链接查视频 | fetch_one_video_by_share_url | GET | /api/v1/douyin/app/v3/fetch_one_video_by_share_url | share_url |
-| 视频评论 | fetch_video_comments | GET | /api/v1/douyin/web/fetch_video_comments | aweme_id |
-| 评论回复 | fetch_video_comment_replies | GET | /api/v1/douyin/app/v3/fetch_video_comment_replies | aweme_id, comment_id |
-| 视频弹幕 | fetch_video_danmaku_list | GET | /api/v1/douyin/app/v3/fetch_video_danmaku_list | aweme_id |
-| 用户作品列表 | fetch_user_post_videos | GET | /api/v1/douyin/app/v3/fetch_user_post_videos | sec_user_id |
-| 用户喜欢列表 | fetch_user_like_videos | GET | /api/v1/douyin/app/v3/fetch_user_like_videos | sec_user_id |
-| 话题视频列表 | fetch_hashtag_video_list | GET | /api/v1/douyin/app/v3/fetch_hashtag_video_list | ch_id |
-| 音乐视频列表 | fetch_music_video_list | GET | /api/v1/douyin/app/v3/fetch_music_video_list | music_id |
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-douyin`（国内）或 `clawhub upgrade maxhub-douyin`（国际） |
+| 用户问 "版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-douyin |
+| 多端点连续 410 | `skillhub upgrade maxhub-douyin --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-#### 👤 用户
+### 常用命令速查表
 
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
-|----------|------|------|------|----------|
-| 用户主页（推荐） | handler_user_profile_v4 | GET | /api/v1/douyin/app/v3/handler_user_profile_v4 | sec_user_id |
-| 用户主页（v3 备选） | handler_user_profile_v3 | GET | /api/v1/douyin/app/v3/handler_user_profile_v3 | sec_user_id |
-| 通过抖音号查用户 | fetch_user_profile_by_short_id | GET | /api/v1/douyin/app/v3/fetch_user_profile_by_short_id | short_id |
-| 通过 uid 查用户 | fetch_user_profile_by_uid | GET | /api/v1/douyin/app/v3/fetch_user_profile_by_uid | uid |
-| 粉丝列表 | fetch_user_fans_list | GET | /api/v1/douyin/app/v3/fetch_user_fans_list | sec_user_id |
-| 关注列表 | fetch_user_following_list | GET | /api/v1/douyin/app/v3/fetch_user_following_list | sec_user_id |
-| 用户收藏 | fetch_user_collects | GET | /api/v1/douyin/app/v3/fetch_user_collects | sec_user_id |
-| 批量查用户 | fetch_batch_user_profile_v1 | GET | /api/v1/douyin/app/v3/fetch_batch_user_profile_v1 | sec_user_ids（逗号分隔） |
-
-> **sec_user_id 获取方法：** 可从其他接口返回的 `author.sec_uid` 字段获取，或用 `encrypt_uid_to_sec_user_id` 转换。
-
-#### 📊 星图
-
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
-|----------|------|------|------|----------|
-| 星图搜 KOL | search_kol_v2 | GET | /api/v1/douyin/xingtu/search_kol_v2 | keyword |
-| KOL 基础信息 | kol_base_info_v1 | GET | /api/v1/douyin/xingtu/kol_base_info_v1 | kolId |
-| KOL 数据概览 | kol_data_overview_v1 | GET | /api/v1/douyin/xingtu/kol_data_overview_v1 | kolId |
-| KOL 粉丝画像 | kol_fans_portrait_v1 | GET | /api/v1/douyin/xingtu/kol_fans_portrait_v1 | kolId |
-| KOL 报价 | kol_service_price_v1 | GET | /api/v1/douyin/xingtu/kol_service_price_v1 | kolId |
-| KOL 视频表现 | kol_video_performance_v1 | GET | /api/v1/douyin/xingtu/kol_video_performance_v1 | kolId |
-| KOL 观众画像 | kol_audience_portrait_v1 | GET | /api/v1/douyin/xingtu/kol_audience_portrait_v1 | kolId |
-| 达人商业榜 | get_ranking_list_data | GET | /api/v1/douyin/xingtu_v2/get_ranking_list_data | code, qualifier, period, date |
-
-> **kolId 获取方法：** 通过 `get_xingtu_kolid_by_uid` 或 `get_xingtu_kolid_by_sec_user_id` 转换得到。
-
-#### 📈 指数 & 分析
-
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
-|----------|------|------|------|----------|
-| 关键词热度趋势 | fetch_multi_keyword_hot_trend | POST | /api/v1/douyin/index/fetch_multi_keyword_hot_trend | keyword_list, start_date, end_date |
-| 关键词关联词 | fetch_relation_word | POST | /api/v1/douyin/index/fetch_relation_word | keyword, start_date, end_date |
-| 品牌搜索建议 | fetch_brand_suggest | POST | /api/v1/douyin/index/fetch_brand_suggest | keyword |
-| 品牌趋势线 | fetch_brand_lines | POST | /api/v1/douyin/index/fetch_brand_lines | brand_name, start_date, end_date |
-| 品牌雷达图 | fetch_brand_radar_chart | POST | /api/v1/douyin/index/fetch_brand_radar_chart | brand_name, start_date, end_date |
-| 热门关键词 | fetch_hot_words | GET | /api/v1/douyin/index/fetch_hot_words | 无 |
-| 内容创作热门关键词 | fetch_content_creative_keywords | POST | /api/v1/douyin/index/fetch_content_creative_keywords | tag_id, end_date |
-| 内容创作热门话题 | fetch_content_creative_topic | POST | /api/v1/douyin/index/fetch_content_creative_topic | tag_id, end_date |
-
-#### 📺 直播
-
-| 用户意图 | 端点 | 方法 | 路径 | 必填参数 |
-|----------|------|------|------|----------|
-| 直播间信息 | douyin_live_room | GET | /api/v1/douyin/app/v3/douyin_live_room | live_room_url |
-| 链接转直播间号 | get_webcast_id | GET | /api/v1/douyin/web/get_webcast_id | url |
-| 直播间号转 room_id | webcast_id_2_room_id | GET | /api/v1/douyin/web/webcast_id_2_room_id | webcast_id |
-
----
-
-### 路由规则（优先级从高到低）
-
-1. **精确匹配**上表中的「用户意图」列 → 直接使用该行端点
-2. **模糊匹配** → 选择最相关分类，使用该分类下第一个端点（标注"推荐"的优先）
-3. 上表未覆盖的需求 → 加载对应 reference 文件：`skill_view(name="maxhub-douyin", file_path="references/api-{分类}.md")`，但**只能使用该文件中 `**Full path:**` 标注的路径**
-
-### Step 3: Classify Action Mode
-
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
-
-### Step 4: Plan & Execute
-
-#### Pattern A: "分析抖音达人"
-
-1. 搜索用户 → `fetch_user_search_v2`（POST /api/v1/douyin/user/fetch_user_search_v2）→ 获取 sec_user_id
-2. 用户主页 → `handler_user_profile_v4`（GET /api/v1/douyin/app/v3/handler_user_profile_v4）→ 基本信息
-3. 获取作品 → `fetch_user_post_videos`（GET /api/v1/douyin/app/v3/fetch_user_post_videos）→ 视频列表
-4. 星图数据 → `get_xingtu_kolid_by_sec_user_id` 转换 → `kol_base_info_v1`（GET /api/v1/douyin/xingtu/kol_base_info_v1）
-
-#### Pattern B: "抖音热榜分析"
-
-1. 热搜榜 → `fetch_hot_search_result`（GET /api/v1/douyin/web/fetch_hot_search_result）
-2. 热点总榜 → `fetch_hot_total_list`（GET /api/v1/douyin/billboard/fetch_hot_total_list）
-3. 上升热点 → `fetch_hot_rise_list`（GET /api/v1/douyin/billboard/fetch_hot_rise_list）
-
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
-
-### Step 5: Output Results
-
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查视频详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/douyin/app/v3/fetch_one_video?aweme_id=xxx"` |
+| 查视频评论 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/douyin/app/v3/fetch_video_comments?aweme_id=xxx"` |
+| 分享 URL 解析 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/douyin/app/v3/fetch_one_video_by_share_url?share_url=xxx"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-douyin` 或 `clawhub info maxhub-douyin` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：热搜趋势监控
-- **应用环境**：品牌营销团队需要实时追踪抖音热搜动态
-- **用户需求**：了解当前热门话题，把握流量趋势，辅助内容选题决策
-- **使用流程**：调用热搜榜单接口 → 提取关键词和热度值 → 按领域分类汇总 → 生成趋势报告
-- **预期效果**：每日自动获取热搜数据，帮助团队在30分钟内完成选题评估
+### 场景一：抖音内容创作者寻找选题
 
-### 场景二：创作者数据分析
-- **应用环境**：MCN机构或品牌方评估达人合作价值
-- **用户需求**：全面了解创作者的粉丝画像、内容表现和商业价值
-- **使用流程**：搜索创作者 → 获取用户详情 → 拉取作品列表 → 分析互动数据 → 结合星图数据评估
-- **预期效果**：5分钟内完成单个达人的全维度数据评估，支持批量筛选
+- **角色**：抖音短视频创作者
+- **需求**：想分析近期同赛道热门视频共性，寻找下一个选题方向
+- **使用方式**：调用 `trending.md` 拉取分类热榜与上升榜 → 取 `aweme_id` → 链式调 `video.md` 提取标题、话题、音乐 → 调 `comments.md` 抓取评论关键词
+- **预期收益**：通过热榜 + 详情 + 评论三层链路快速锁定高互动作品共同特征，沉淀可复用的选题模板与音乐库
 
-### 场景三：竞品内容监测
-- **应用环境**：运营团队持续跟踪竞品账号的内容策略
-- **用户需求**：定期获取竞品发布内容、互动数据和粉丝变化
-- **使用流程**：获取竞品用户信息 → 拉取最新作品 → 分析评论情感 → 对比历史数据
-- **预期效果**：自动生成竞品周报，包含内容频率、互动趋势和粉丝增长对比
+### 场景二：新媒体团队竞品分析
 
-## Error Handling
+- **角色**：MCN / 品牌新媒体运营
+- **需求**：监控竞品账号的作品节奏、粉丝增长与互动表现
+- **使用方式**：`user.md` 取 `sec_user_id` → 拉取作品列表 + 粉丝统计 → `creator.md` 调用流量分析与观众画像 → `comments.md` 抽样评论
+- **预期收益**：构建竞品账号画像数据库，量化对比内容策略与受众重合度
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：星图 KOL 投放分析
 
-### 智能重试策略
+- **角色**：品牌投放 / 广告优化师
+- **需求**：在投放前评估 KOL 真实粉丝画像、报价合理性与历史转化数据
+- **使用方式**：`user.md` 反查 `uid` → `xingtu.md` 用 KOL ID 查询基本信息 + 服务报价 + 转化分析 + 视频表现 + 星图指数
+- **预期收益**：投放前完成 KOL 健康度筛查，降低无效投放，提升 ROI 决策准确度
 
-| 错误码 | 重试策略 | 原因 |
-|--------|---------|------|
-| 400 Bad Request | **不重试** | 参数错误，需修正参数后重新调用 |
-| 401 Unauthorized | **不重试** | API Key 无效，需检查配置 |
-| 403 Forbidden | **不重试** | 权限不足，需更换 API Key 或接口 |
-| 404 Not Found | **触发降级** | 接口可能已下线，按降级策略切换替代版本 |
-| 422 Unprocessable | **不重试** | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | 延迟 5 秒后重试，最多 1 次 | 请求过快，需降速 |
-| 500 Server Error | 先重试 1 次，仍失败则**触发降级** | 服务器故障，重试无效则切换替代版本 |
-| 410 Gone | **触发降级** | 接口已废弃，按降级策略切换替代版本 |
+### 场景四：直播数据采集与商品分析
 
-**重要**：对 400/404/410/422 错误，不要盲目重试。应分析错误原因，修正参数或切换到替代接口后再调用。
+- **角色**：直播电商运营 / 数据分析师
+- **需求**：实时监控直播间互动、礼物排行与挂车商品转化
+- **使用方式**：`live.md` 取 `room_id` → 拉取弹幕 + 送礼排行 + 直播商品 → `live.md` 商品详情 / 评价 → `creator.md` 观众画像
+- **预期收益**：构建直播间秒级监控面板，识别高转化商品组合与观众分层特征
 
-### 404 错误专项处理
+## 6. 项目架构
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
-
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
-
-### 接口降级与自动切换策略
-
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-douyin/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 273 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理 + 替换矩阵）
+    ├── video.md                        # 视频域：详情/播放/下载/统计/合集/音乐/话题（42 端点）
+    ├── user.md                         # 用户域：资料/粉丝/作品/喜欢/收藏夹/合辑/搜索（24 端点）
+    ├── search.md                       # 搜索域：综合/视频/用户/图片/直播/话题/经验等（19 端点）
+    ├── trending.md                     # 热榜域：分类/上升/同城/挑战/活动/账号/话题（39 端点）
+    ├── creator.md                      # 创作者域：素材/商单/流量/画像/账号诊断（31 端点）
+    ├── xingtu.md                       # 星图域：KOL/画像/报价/转化/指数/MCN/IP 日历（43 端点）
+    ├── comments.md                     # 评论域：评论/回复/弹幕（6 端点）
+    ├── content.md                      # 抖音指数域：关键词/品牌/人群/趋势报告（44 端点）
+    ├── live.md                         # 直播域：直播流/弹幕/礼物/商品/转换（14 端点）
+    ├── tools.md                        # 工具域：Cookie/Token/签名/设备注册（13 端点）
+    └── update.md                       # SKILL 更新机制（SkillHub / ClawHub / GitHub）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET / POST 请求，参数通过 query string 或 JSON body 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/douyin/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 273 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ 重试策略矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 视频（Video） | 42 | `video.md` |
+| 用户（User） | 24 | `user.md` |
+| 搜索（Search） | 19 | `search.md` |
+| 热榜（Trending） | 39 | `trending.md` |
+| 创作者（Creator） | 31 | `creator.md` |
+| 星图（Xingtu） | 43 | `xingtu.md` |
+| 评论（Comments） | 6 | `comments.md` |
+| 抖音指数（Content） | 44 | `content.md` |
+| 直播（Live） | 14 | `live.md` |
+| 工具（Tools） | 13 | `tools.md` |
+| **合计** | **273** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **Agent 友好 7 大原则**：结构胜于叙述、明确指令优于建议、单一来源、词法稳定性、低 token 密度、边界显式声明、错误处理是契约
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，杜绝 Agent 编造字段名
+- **错误处理契约**：HTTP 状态码权威定义 + §3.1 防臆造自检清单（A: 5 步 / B: 6 步）+ 重试策略矩阵 + 端点替换矩阵

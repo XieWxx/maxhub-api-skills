@@ -2,12 +2,16 @@
 
 [中文文档](README_CN.md)
 
-Threads data assistant for posts, user profiles, search, comments, and reposts.
+Threads posts, user profiles, search, comments, and reposts data assistant via MaxHub API. 11 active endpoints across 2 functional areas.
 
 ## Features
 
-- **Post & User** — fetch_post_detail, fetch_post_detail_v2, fetch_post_comments, fetch_user_info, fetch_user_info_by_id, fetch_user_posts, fetch_user_replies, fetch_user_reposts
-- **Search** — search_recent, search_top, search_profiles
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| User | `references/user.md` | User info, posts, reposts, replies | 5 |
+| Content | `references/content.md` | Post detail, comments, search | 6 |
+
+See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -24,8 +28,9 @@ npx clawhub install maxhub-threads
 
 | Category | Example prompts |
 |----------|----------------|
-| Post & User | 帖子, 用户 |
-| Search | 搜索, 搜 |
+| User | 查Threads用户, threads用户 lilbieber, get Threads user posts |
+| Content | 查Threads帖子, threads帖子详情, search Threads for bitcoin |
+| Search | Threads搜索, search Threads profiles, Threads热门内容 |
 
 Supports both **English** and **Chinese**.
 

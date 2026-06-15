@@ -2,13 +2,17 @@
 
 [中文文档](README_CN.md)
 
-Sora2 video platform data assistant for posts, users, search, comments, and Cameo features.
+Sora2 (sora.chatgpt.com) data assistant — query posts, users, comments, Cameo
+features, and trigger Sora2 video generation tasks via the MaxHub API.
 
 ## Features
 
-- **Post & User** — fetch_single_post, fetch_post_comments, fetch_comment_replies, fetch_post_remix_list, fetch_none_watermark_download, fetch_user_profile, fetch_user_posts, fetch_user_following, fetch_user_followers, fetch_feed, search_users
-- **Cameo** — fetch_cameo_leaderboard, fetch_user_cameo_list
-- **Tools** — upload_image
+- **Post & Content** — `get_post_detail`, `get_post_comments`, `get_comment_replies`,
+  `get_post_remix_list`, `get_video_download_info`, `get_feed`
+- **User** — `get_user_profile`, `get_user_posts`, `get_user_following`,
+  `get_user_followers`, `get_user_cameo_appearances`, `search_users`
+- **Tools & Cameo** — `create_video`, `get_task_status`, `get_task_detail`,
+  `upload_image`, `get_cameo_leaderboard`
 
 ## Install
 
@@ -25,9 +29,9 @@ npx clawhub install maxhub-sora2
 
 | Category | Example prompts |
 |----------|----------------|
-| Post & User | 作品, 用户 |
-| Cameo | Cameo, 出镜秀 |
-| Tools | 上传, 图片 |
+| Post & Content | "Get this Sora2 post detail", "查这个 sora 作品的评论" |
+| User | "Search Sora2 user 'sam'", "查这个用户的作品" |
+| Tools & Cameo | "Create a Sora2 video", "查 Cameo 出镜热榜" |
 
 Supports both **English** and **Chinese**.
 

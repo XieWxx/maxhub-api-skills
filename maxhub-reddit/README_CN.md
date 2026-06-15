@@ -2,13 +2,18 @@
 
 [English](README.md)
 
-Reddit 数据查询助手。覆盖帖子详情、版块、用户、搜索、评论、推荐等全功能。
+Reddit 数据查询助手。覆盖帖子、用户资料、搜索、版块、评论和热门趋势。通过 MaxHub API 提供 28 个端点，覆盖 4 个功能领域。
 
 ## 功能
 
-- **帖子数据** — fetch_single_post, fetch_batch_posts, fetch_large_batch_posts, fetch_post_comments, fetch_comment_replies
-- **版块** — fetch_subreddit_info, fetch_subreddit_feed, fetch_subreddit_rules, fetch_subreddit_settings, fetch_subreddit_channels, fetch_community_highlights, check_subreddit_muted
-- **用户与搜索** — fetch_user_profile, fetch_user_posts, fetch_user_comments, fetch_user_active_subreddits, fetch_user_trophies, fetch_trending_searches, fetch_dynamic_search, fetch_search_typeahead, fetch_home_feed, fetch_popular_feed, fetch_news_feed, fetch_games_feed
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 | `references/user.md` | 用户资料、活跃社区、评论、帖子、奖杯 | 5 |
+| 内容 | `references/content.md` | Feed流、帖子详情、评论、回复、Reddit Answers | 13 |
+| 搜索 | `references/search.md` | 搜索自动补全、动态搜索、社区亮点、热门搜索 | 4 |
+| 版块 | `references/subreddit.md` | 版块样式、频道、信息、设置、Feed、静音检查 | 6 |
+
+参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -25,9 +30,10 @@ npx clawhub install maxhub-reddit
 
 | 分类 | 示例指令 |
 |------|----------|
-| 帖子数据 | 帖子，详情 |
-| 版块 | 版块，社区 |
-| 用户与搜索 | 用户，搜索 |
+| 用户 | 查Reddit用户 spez 的资料和帖子 |
+| 内容 | 查Reddit首页推荐帖子 |
+| 搜索 | reddit搜索编程相关内容 |
+| 版块 | 查subreddit r/pics 的热门帖子 |
 
 支持 **中文** 和 **英文** 双语。
 

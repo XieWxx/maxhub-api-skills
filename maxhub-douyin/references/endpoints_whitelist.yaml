@@ -1,0 +1,2136 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-douyin
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== App V3 API (video.md / user.md / comments.md / trending.md / tools.md) ==========
+  - id: app_v3_fetch_one_video
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_one_video
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: app_v3_fetch_one_video_v2
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_one_video_v2
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: app_v3_fetch_one_video_v3
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_one_video_v3
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: app_v3_fetch_share_info_by_share_code
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_share_info_by_share_code
+    risk: low
+    required: [share_code]
+    optional: []
+
+  - id: app_v3_fetch_multi_video
+    method: POST
+    path: /api/v1/douyin/app/v3/fetch_multi_video
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: app_v3_fetch_multi_video_v2
+    method: POST
+    path: /api/v1/douyin/app/v3/fetch_multi_video_v2
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: app_v3_fetch_one_video_by_share_url
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_one_video_by_share_url
+    risk: low
+    required: [share_url]
+    optional: []
+
+  - id: app_v3_fetch_video_high_quality_play_url
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_video_high_quality_play_url
+    risk: low
+    required: { oneOf: [aweme_id, share_url] }
+    optional: [region]
+
+  - id: app_v3_fetch_multi_video_high_quality_play_url
+    method: POST
+    path: /api/v1/douyin/app/v3/fetch_multi_video_high_quality_play_url
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: app_v3_fetch_video_statistics
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_video_statistics
+    risk: low
+    required: [aweme_ids]
+    optional: []
+
+  - id: app_v3_fetch_multi_video_statistics
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_multi_video_statistics
+    risk: low
+    required: [aweme_ids]
+    optional: []
+
+  - id: app_v3_add_video_play_count
+    method: GET
+    path: /api/v1/douyin/app/v3/add_video_play_count
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [aweme_type, item_id]
+    optional: [cookie]
+
+  - id: app_v3_handler_user_profile
+    method: GET
+    path: /api/v1/douyin/app/v3/handler_user_profile
+    risk: low
+    required: [sec_user_id]
+    optional: []
+
+  - id: app_v3_fetch_user_fans_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_user_fans_list
+    risk: low
+    required: []
+    optional: [sec_user_id, max_time, count]
+
+  - id: app_v3_fetch_user_post_videos
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_user_post_videos
+    risk: low
+    required: [sec_user_id]
+    optional: [max_cursor, count, sort_type]
+
+  - id: app_v3_fetch_user_like_videos
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_user_like_videos
+    risk: low
+    required: [sec_user_id]
+    optional: [max_cursor, counts]
+
+  - id: app_v3_fetch_video_comments
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_video_comments
+    risk: low
+    required: [aweme_id]
+    optional: [cursor, count]
+
+  - id: app_v3_fetch_video_comment_replies
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_video_comment_replies
+    risk: low
+    required: [item_id, comment_id]
+    optional: [cursor, count]
+
+  - id: app_v3_fetch_video_mix_detail
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_video_mix_detail
+    risk: low
+    required: [mix_id]
+    optional: []
+
+  - id: app_v3_fetch_video_mix_post_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_video_mix_post_list
+    risk: low
+    required: [mix_id]
+    optional: [cursor, count]
+
+  - id: app_v3_fetch_user_series_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_user_series_list
+    risk: low
+    required: []
+    optional: [user_id, sec_user_id, cursor]
+
+  - id: app_v3_fetch_series_video_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_series_video_list
+    risk: low
+    required: [series_id]
+    optional: [cursor]
+
+  - id: app_v3_fetch_series_detail
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_series_detail
+    risk: low
+    required: [series_id]
+    optional: []
+
+  - id: app_v3_fetch_music_detail
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_music_detail
+    risk: low
+    required: [music_id]
+    optional: []
+
+  - id: app_v3_fetch_music_video_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_music_video_list
+    risk: low
+    required: [music_id]
+    optional: [cursor, count]
+
+  - id: app_v3_fetch_hashtag_detail
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_hashtag_detail
+    risk: low
+    required: [ch_id]
+    optional: []
+
+  - id: app_v3_fetch_hashtag_video_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_hashtag_video_list
+    risk: low
+    required: [ch_id]
+    optional: [cursor, sort_type, count]
+
+  - id: app_v3_fetch_hot_search_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_hot_search_list
+    risk: low
+    required: []
+    optional: [board_type, board_sub_type]
+
+  - id: app_v3_fetch_live_hot_search_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_live_hot_search_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: app_v3_fetch_music_hot_search_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_music_hot_search_list
+    risk: low
+    required: []
+    optional: [chart_type, cursor]
+
+  - id: app_v3_fetch_brand_hot_search_list
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_brand_hot_search_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: app_v3_fetch_brand_hot_search_list_detail
+    method: GET
+    path: /api/v1/douyin/app/v3/fetch_brand_hot_search_list_detail
+    risk: low
+    required: [category_id]
+    optional: []
+
+  - id: app_v3_generate_douyin_short_url
+    method: GET
+    path: /api/v1/douyin/app/v3/generate_douyin_short_url
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: app_v3_generate_douyin_video_share_qrcode
+    method: GET
+    path: /api/v1/douyin/app/v3/generate_douyin_video_share_qrcode
+    risk: low
+    required: [object_id]
+    optional: []
+
+  - id: app_v3_register_device
+    method: GET
+    path: /api/v1/douyin/app/v3/register_device
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: [proxy]
+
+  - id: app_v3_open_douyin_app_to_video_detail
+    method: GET
+    path: /api/v1/douyin/app/v3/open_douyin_app_to_video_detail
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: app_v3_open_douyin_app_to_user_profile
+    method: GET
+    path: /api/v1/douyin/app/v3/open_douyin_app_to_user_profile
+    risk: low
+    required: [uid, sec_uid]
+    optional: []
+
+  - id: app_v3_open_douyin_app_to_keyword_search
+    method: GET
+    path: /api/v1/douyin/app/v3/open_douyin_app_to_keyword_search
+    risk: low
+    required: [keyword]
+    optional: []
+
+  - id: app_v3_open_douyin_app_to_send_private_message
+    method: GET
+    path: /api/v1/douyin/app/v3/open_douyin_app_to_send_private_message
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [uid, sec_uid]
+    optional: []
+
+  # ========== Web API (video.md / user.md / comments.md / live.md / trending.md / tools.md) ==========
+  - id: web_fetch_one_video
+    method: GET
+    path: /api/v1/douyin/web/fetch_one_video
+    risk: low
+    required: [aweme_id]
+    optional: [need_anchor_info]
+
+  - id: web_fetch_one_video_v2
+    method: GET
+    path: /api/v1/douyin/web/fetch_one_video_v2
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: web_fetch_one_video_by_share_url
+    method: GET
+    path: /api/v1/douyin/web/fetch_one_video_by_share_url
+    risk: low
+    required: [share_url]
+    optional: []
+
+  - id: web_fetch_video_high_quality_play_url
+    method: GET
+    path: /api/v1/douyin/web/fetch_video_high_quality_play_url
+    risk: low
+    required: { oneOf: [aweme_id, share_url] }
+    optional: [region]
+
+  - id: web_fetch_multi_video_high_quality_play_url
+    method: POST
+    path: /api/v1/douyin/web/fetch_multi_video_high_quality_play_url
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_multi_video
+    method: POST
+    path: /api/v1/douyin/web/fetch_multi_video
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_one_video_danmaku
+    method: GET
+    path: /api/v1/douyin/web/fetch_one_video_danmaku
+    risk: low
+    required: [item_id, duration, end_time, start_time]
+    optional: []
+
+  - id: web_fetch_home_feed
+    method: POST
+    path: /api/v1/douyin/web/fetch_home_feed
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_related_posts
+    method: GET
+    path: /api/v1/douyin/web/fetch_related_posts
+    risk: low
+    required: [aweme_id]
+    optional: [refresh_index, count]
+
+  - id: web_fetch_user_post_videos
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_post_videos
+    risk: low
+    required: [sec_user_id]
+    optional: [max_cursor, count, filter_type, cookie]
+
+  - id: web_fetch_user_like_videos
+    method: POST
+    path: /api/v1/douyin/web/fetch_user_like_videos
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_user_collection_videos
+    method: POST
+    path: /api/v1/douyin/web/fetch_user_collection_videos
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_user_collects
+    method: POST
+    path: /api/v1/douyin/web/fetch_user_collects
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_user_collects_videos
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_collects_videos
+    risk: low
+    required: [collects_id]
+    optional: [max_cursor, counts]
+
+  - id: web_fetch_user_mix_videos
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_mix_videos
+    risk: low
+    required: [mix_id]
+    optional: [max_cursor, counts]
+
+  - id: web_fetch_user_live_videos
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_live_videos
+    risk: low
+    required: [webcast_id]
+    optional: []
+
+  - id: web_fetch_user_live_videos_by_sec_uid
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_live_videos_by_sec_uid
+    risk: low
+    required: [sec_uid]
+    optional: []
+
+  - id: web_fetch_user_live_videos_by_room_id_v2
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_live_videos_by_room_id_v2
+    risk: low
+    required: [room_id]
+    optional: []
+
+  - id: web_fetch_live_gift_ranking
+    method: GET
+    path: /api/v1/douyin/web/fetch_live_gift_ranking
+    risk: low
+    required: [room_id]
+    optional: [rank_type]
+
+  - id: web_fetch_live_room_product_result
+    method: GET
+    path: /api/v1/douyin/web/fetch_live_room_product_result
+    risk: low
+    required: [room_id, author_id]
+    optional: [offset, limit]
+
+  - id: web_fetch_product_sku_list
+    method: GET
+    path: /api/v1/douyin/web/fetch_product_sku_list
+    risk: low
+    required: [product_id, author_id]
+    optional: []
+
+  - id: web_fetch_product_coupon
+    method: GET
+    path: /api/v1/douyin/web/fetch_product_coupon
+    risk: low
+    required: [product_id, shop_id, price, author_id, sec_user_id]
+    optional: []
+
+  - id: web_fetch_product_review_score
+    method: GET
+    path: /api/v1/douyin/web/fetch_product_review_score
+    risk: low
+    required: [product_id, shop_id]
+    optional: []
+
+  - id: web_fetch_product_review_list
+    method: GET
+    path: /api/v1/douyin/web/fetch_product_review_list
+    risk: low
+    required: [product_id, shop_id]
+    optional: [cursor, count, sort_type]
+
+  - id: web_fetch_user_profile_by_uid
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_profile_by_uid
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_fetch_batch_user_profile_v1
+    method: GET
+    path: /api/v1/douyin/web/fetch_batch_user_profile_v1
+    risk: low
+    required: [sec_user_ids]
+    optional: []
+
+  - id: web_fetch_batch_user_profile_v2
+    method: GET
+    path: /api/v1/douyin/web/fetch_batch_user_profile_v2
+    risk: low
+    required: [sec_user_ids]
+    optional: []
+
+  - id: web_fetch_user_live_info_by_uid
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_live_info_by_uid
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_fetch_user_profile_by_short_id
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_profile_by_short_id
+    risk: low
+    required: [short_id]
+    optional: []
+
+  - id: web_handler_shorten_url
+    method: GET
+    path: /api/v1/douyin/web/handler_shorten_url
+    risk: low
+    required: [target_url]
+    optional: []
+
+  - id: web_handler_user_profile
+    method: GET
+    path: /api/v1/douyin/web/handler_user_profile
+    risk: low
+    required: [sec_user_id]
+    optional: []
+
+  - id: web_handler_user_profile_v2
+    method: GET
+    path: /api/v1/douyin/web/handler_user_profile_v2
+    risk: low
+    required: [unique_id]
+    optional: []
+
+  - id: web_encrypt_uid_to_sec_user_id
+    method: GET
+    path: /api/v1/douyin/web/encrypt_uid_to_sec_user_id
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_handler_user_profile_v3
+    method: GET
+    path: /api/v1/douyin/web/handler_user_profile_v3
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: web_handler_user_profile_v4
+    method: GET
+    path: /api/v1/douyin/web/handler_user_profile_v4
+    risk: low
+    required: [sec_user_id]
+    optional: []
+
+  - id: web_fetch_user_fans_list
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_fans_list
+    risk: low
+    required: []
+    optional: [sec_user_id, max_time, count, source_type]
+
+  - id: web_fetch_user_following_list
+    method: GET
+    path: /api/v1/douyin/web/fetch_user_following_list
+    risk: low
+    required: []
+    optional: [sec_user_id, max_time, count, source_type]
+
+  - id: web_fetch_video_comments
+    method: GET
+    path: /api/v1/douyin/web/fetch_video_comments
+    risk: low
+    required: [aweme_id]
+    optional: [cursor, count]
+
+  - id: web_fetch_video_comment_replies
+    method: GET
+    path: /api/v1/douyin/web/fetch_video_comment_replies
+    risk: low
+    required: [item_id, comment_id]
+    optional: [cursor, count]
+
+  - id: web_fetch_challenge_posts
+    method: POST
+    path: /api/v1/douyin/web/fetch_challenge_posts
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_fetch_hot_search_result
+    method: GET
+    path: /api/v1/douyin/web/fetch_hot_search_result
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_fetch_video_channel_result
+    method: GET
+    path: /api/v1/douyin/web/fetch_video_channel_result
+    risk: low
+    required: [tag_id]
+    optional: [count, refresh_index]
+
+  - id: web_fetch_douyin_web_guest_cookie
+    method: GET
+    path: /api/v1/douyin/web/fetch_douyin_web_guest_cookie
+    risk: low
+    required: [user_agent]
+    optional: []
+
+  - id: web_generate_real_msToken
+    method: GET
+    path: /api/v1/douyin/web/generate_real_msToken
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_generate_ttwid
+    method: GET
+    path: /api/v1/douyin/web/generate_ttwid
+    risk: low
+    required: []
+    optional: [user_agent]
+
+  - id: web_fetch_query_user
+    method: POST
+    path: /api/v1/douyin/web/fetch_query_user
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_generate_verify_fp
+    method: GET
+    path: /api/v1/douyin/web/generate_verify_fp
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_generate_s_v_web_id
+    method: GET
+    path: /api/v1/douyin/web/generate_s_v_web_id
+    risk: low
+    required: []
+    optional: []
+
+  - id: web_generate_wss_xb_signature
+    method: GET
+    path: /api/v1/douyin/web/generate_wss_xb_signature
+    risk: low
+    required: [user_agent, room_id, user_unique_id]
+    optional: []
+
+  - id: web_generate_x_bogus
+    method: POST
+    path: /api/v1/douyin/web/generate_x_bogus
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_generate_a_bogus
+    method: POST
+    path: /api/v1/douyin/web/generate_a_bogus
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_get_sec_user_id
+    method: GET
+    path: /api/v1/douyin/web/get_sec_user_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: web_get_all_sec_user_id
+    method: POST
+    path: /api/v1/douyin/web/get_all_sec_user_id
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_get_aweme_id
+    method: GET
+    path: /api/v1/douyin/web/get_aweme_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: web_get_all_aweme_id
+    method: POST
+    path: /api/v1/douyin/web/get_all_aweme_id
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_get_webcast_id
+    method: GET
+    path: /api/v1/douyin/web/get_webcast_id
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: web_get_all_webcast_id
+    method: POST
+    path: /api/v1/douyin/web/get_all_webcast_id
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: web_webcast_id_2_room_id
+    method: GET
+    path: /api/v1/douyin/web/webcast_id_2_room_id
+    risk: low
+    required: [webcast_id]
+    optional: []
+
+  - id: web_douyin_live_room
+    method: GET
+    path: /api/v1/douyin/web/douyin_live_room
+    risk: low
+    required: [live_room_url, danmaku_type]
+    optional: []
+
+  - id: web_fetch_live_im_fetch
+    method: GET
+    path: /api/v1/douyin/web/fetch_live_im_fetch
+    risk: low
+    required: [room_id, user_unique_id]
+    optional: []
+
+  - id: web_fetch_series_aweme
+    method: GET
+    path: /api/v1/douyin/web/fetch_series_aweme
+    risk: low
+    required: [offset, count, content_type]
+    optional: [cookie]
+
+  - id: web_fetch_knowledge_aweme
+    method: GET
+    path: /api/v1/douyin/web/fetch_knowledge_aweme
+    risk: low
+    required: [count]
+    optional: [refresh_index, cookie]
+
+  - id: web_fetch_game_aweme
+    method: GET
+    path: /api/v1/douyin/web/fetch_game_aweme
+    risk: low
+    required: [count]
+    optional: [refresh_index, cookie]
+
+  - id: web_fetch_cartoon_aweme
+    method: GET
+    path: /api/v1/douyin/web/fetch_cartoon_aweme
+    risk: low
+    required: [count]
+    optional: [refresh_index, cookie]
+
+  - id: web_fetch_music_aweme
+    method: GET
+    path: /api/v1/douyin/web/fetch_music_aweme
+    risk: low
+    required: [count]
+    optional: [refresh_index, cookie]
+
+  - id: web_fetch_food_aweme
+    method: GET
+    path: /api/v1/douyin/web/fetch_food_aweme
+    risk: low
+    required: [count]
+    optional: [refresh_index, cookie]
+
+  # ========== Search API (search.md) ==========
+  - id: search_fetch_general_search_v1
+    method: POST
+    path: /api/v1/douyin/search/fetch_general_search_v1
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_general_search_v2
+    method: POST
+    path: /api/v1/douyin/search/fetch_general_search_v2
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_search_suggest
+    method: POST
+    path: /api/v1/douyin/search/fetch_search_suggest
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_video_search_v1
+    method: POST
+    path: /api/v1/douyin/search/fetch_video_search_v1
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_video_search_v2
+    method: POST
+    path: /api/v1/douyin/search/fetch_video_search_v2
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_multi_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_multi_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_user_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_user_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_user_search_v2
+    method: POST
+    path: /api/v1/douyin/search/fetch_user_search_v2
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_image_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_image_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_image_search_v3
+    method: POST
+    path: /api/v1/douyin/search/fetch_image_search_v3
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_live_search_v1
+    method: POST
+    path: /api/v1/douyin/search/fetch_live_search_v1
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_challenge_search_v1
+    method: POST
+    path: /api/v1/douyin/search/fetch_challenge_search_v1
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_challenge_search_v2
+    method: POST
+    path: /api/v1/douyin/search/fetch_challenge_search_v2
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_challenge_suggest
+    method: POST
+    path: /api/v1/douyin/search/fetch_challenge_suggest
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_experience_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_experience_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_music_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_music_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_discuss_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_discuss_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_school_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_school_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: search_fetch_vision_search
+    method: POST
+    path: /api/v1/douyin/search/fetch_vision_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  # ========== Billboard API (trending.md) ==========
+  - id: billboard_fetch_city_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_city_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: billboard_fetch_content_tag
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_content_tag
+    risk: low
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_category_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_category_list
+    risk: low
+    required: [billboard_type]
+    optional: [snapshot_time, start_date, end_date, keyword]
+
+  - id: billboard_fetch_hot_rise_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_rise_list
+    risk: low
+    required: [page, page_size, order]
+    optional: [sentence_tag, keyword]
+
+  - id: billboard_fetch_hot_city_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_city_list
+    risk: low
+    required: [page, page_size, order]
+    optional: [city_code, sentence_tag, keyword]
+
+  - id: billboard_fetch_hot_challenge_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_challenge_list
+    risk: low
+    required: [page, page_size]
+    optional: [keyword]
+
+  - id: billboard_fetch_hot_total_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_total_list
+    risk: low
+    required: [page, page_size, type]
+    optional: [snapshot_time, start_date, end_date, sentence_tag, keyword]
+
+  - id: billboard_fetch_hot_calendar_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_calendar_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_calendar_detail
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_calendar_detail
+    risk: low
+    required: [calendar_id]
+    optional: []
+
+  - id: billboard_fetch_hot_user_portrait_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_user_portrait_list
+    risk: low
+    required: [aweme_id]
+    optional: [option]
+
+  - id: billboard_fetch_hot_comment_word_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_comment_word_list
+    risk: low
+    required: [aweme_id]
+    optional: []
+
+  - id: billboard_fetch_hot_item_trends_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_item_trends_list
+    risk: low
+    required: []
+    optional: [aweme_id, option, date_window]
+
+  - id: billboard_fetch_hot_account_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_account_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_account_search_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_search_list
+    risk: low
+    required: [keyword, cursor]
+    optional: []
+
+  - id: billboard_fetch_hot_account_trends_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_trends_list
+    risk: low
+    required: [sec_uid]
+    optional: [option, date_window]
+
+  - id: billboard_fetch_hot_account_item_analysis_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_item_analysis_list
+    risk: low
+    required: [sec_uid]
+    optional: []
+
+  - id: billboard_fetch_hot_account_fans_portrait_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_fans_portrait_list
+    risk: low
+    required: [sec_uid]
+    optional: [option]
+
+  - id: billboard_fetch_hot_account_fans_interest_account_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_fans_interest_account_list
+    risk: low
+    required: [sec_uid]
+    optional: []
+
+  - id: billboard_fetch_hot_account_fans_interest_topic_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_fans_interest_topic_list
+    risk: low
+    required: [sec_uid]
+    optional: []
+
+  - id: billboard_fetch_hot_account_fans_interest_search_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_account_fans_interest_search_list
+    risk: low
+    required: [sec_uid]
+    optional: []
+
+  - id: billboard_fetch_hot_total_video_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_video_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_low_fan_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_low_fan_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_high_play_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_high_play_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_high_like_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_high_like_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_high_fan_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_high_fan_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_topic_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_topic_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_high_topic_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_high_topic_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_search_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_search_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_high_search_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_high_search_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_hot_word_list
+    method: POST
+    path: /api/v1/douyin/billboard/fetch_hot_total_hot_word_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: billboard_fetch_hot_total_hot_word_detail_list
+    method: GET
+    path: /api/v1/douyin/billboard/fetch_hot_total_hot_word_detail_list
+    risk: low
+    required: [keyword, word_id, query_day]
+    optional: []
+
+  # ========== Creator API (creator.md) ==========
+  - id: creator_fetch_creator_activity_list
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_activity_list
+    risk: low
+    required: [start_time, end_time]
+    optional: []
+
+  - id: creator_fetch_creator_activity_detail
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_activity_detail
+    risk: low
+    required: [activity_id]
+    optional: []
+
+  - id: creator_fetch_creator_material_center_config
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_material_center_config
+    risk: low
+    required: []
+    optional: []
+
+  - id: creator_fetch_creator_material_center_billboard
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_material_center_billboard
+    risk: low
+    required: []
+    optional: [billboard_tag, order_key, time_filter]
+
+  - id: creator_fetch_creator_material_center_related
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_material_center_related
+    risk: low
+    required: [query_id]
+    optional: [billboard_type, limit, offset]
+
+  - id: creator_fetch_creator_hot_spot_billboard
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_hot_spot_billboard
+    risk: low
+    required: []
+    optional: [billboard_tag, hot_search_type, city_code]
+
+  - id: creator_fetch_creator_hot_topic_billboard
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_hot_topic_billboard
+    risk: low
+    required: []
+    optional: [billboard_tag, order_key, time_filter]
+
+  - id: creator_fetch_creator_hot_props_billboard
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_hot_props_billboard
+    risk: low
+    required: []
+    optional: [billboard_tag, order_key, time_filter]
+
+  - id: creator_fetch_creator_hot_challenge_billboard
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_hot_challenge_billboard
+    risk: low
+    required: []
+    optional: []
+
+  - id: creator_fetch_creator_hot_music_billboard
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_hot_music_billboard
+    risk: low
+    required: []
+    optional: [billboard_tag, order_key, time_filter]
+
+  - id: creator_fetch_creator_hot_course
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_hot_course
+    risk: low
+    required: []
+    optional: [order, limit, offset, category_id]
+
+  - id: creator_fetch_creator_content_category
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_content_category
+    risk: low
+    required: []
+    optional: []
+
+  - id: creator_fetch_creator_content_course
+    method: GET
+    path: /api/v1/douyin/creator/fetch_creator_content_course
+    risk: low
+    required: [category_id]
+    optional: [order, limit, offset]
+
+  - id: creator_fetch_video_danmaku_list
+    method: GET
+    path: /api/v1/douyin/creator/fetch_video_danmaku_list
+    risk: low
+    required: [item_id]
+    optional: [count, offset, order_type, is_blocked]
+
+  - id: creator_fetch_user_search
+    method: GET
+    path: /api/v1/douyin/creator/fetch_user_search
+    risk: low
+    required: [user_name]
+    optional: []
+
+  - id: creator_fetch_mission_task_list
+    method: GET
+    path: /api/v1/douyin/creator/fetch_mission_task_list
+    risk: low
+    required: []
+    optional: [cursor, limit, mission_type, tab_scene, industry_lv1, industry_lv2, platform_channel, pay_type, greater_than_cost_progress, publish_time_start, quick_selector_scene, keyword]
+
+  - id: creator_fetch_industry_category_config
+    method: GET
+    path: /api/v1/douyin/creator/fetch_industry_category_config
+    risk: low
+    required: []
+    optional: []
+
+  # ========== Creator V2 API (creator.md) ==========
+  - id: creator_v2_fetch_item_overview_data
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_overview_data
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_play_source
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_play_source
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_search_keyword
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_search_keyword
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_watch_trend
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_watch_trend
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_danmaku_analysis
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_danmaku_analysis
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_audience_portrait
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_audience_portrait
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_audience_others
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_audience_others
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_analysis_involved_vertical
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_analysis_involved_vertical
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_analysis_overview
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_analysis_overview
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_analysis_item_performance
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_analysis_item_performance
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_list
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_item_list_download
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_item_list_download
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_live_room_history_list
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_live_room_history_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: creator_v2_fetch_author_diagnosis
+    method: POST
+    path: /api/v1/douyin/creator_v2/fetch_author_diagnosis
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  # ========== Index API (content.md) ==========
+  - id: index_fetch_all_valid_date
+    method: GET
+    path: /api/v1/douyin/index/fetch_all_valid_date
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_valid_date_for_relation
+    method: GET
+    path: /api/v1/douyin/index/fetch_valid_date_for_relation
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_all_area
+    method: GET
+    path: /api/v1/douyin/index/fetch_all_area
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_current_hot_topic
+    method: GET
+    path: /api/v1/douyin/index/fetch_current_hot_topic
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_hot_words
+    method: GET
+    path: /api/v1/douyin/index/fetch_hot_words
+    risk: low
+    required: []
+    optional: [app_name]
+
+  - id: index_fetch_keyword_valid_date
+    method: POST
+    path: /api/v1/douyin/index/fetch_keyword_valid_date
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword_list]
+    optional: []
+
+  - id: index_fetch_multi_keyword_hot_trend
+    method: POST
+    path: /api/v1/douyin/index/fetch_multi_keyword_hot_trend
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword_list, start_date, end_date]
+    optional: [app_name, region]
+
+  - id: index_fetch_multi_keyword_interpretation
+    method: POST
+    path: /api/v1/douyin/index/fetch_multi_keyword_interpretation
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword_list, start_date, end_date]
+    optional: [app_name, region]
+
+  - id: index_fetch_relation_word
+    method: POST
+    path: /api/v1/douyin/index/fetch_relation_word
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_portrait
+    method: POST
+    path: /api/v1/douyin/index/fetch_portrait
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_get_user_sub_word
+    method: POST
+    path: /api/v1/douyin/index/fetch_get_user_sub_word
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: index_fetch_encrypt_user_id
+    method: GET
+    path: /api/v1/douyin/index/fetch_encrypt_user_id
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: index_fetch_daren_sug_great_user_list
+    method: POST
+    path: /api/v1/douyin/index/fetch_daren_sug_great_user_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword]
+    optional: [total]
+
+  - id: index_fetch_daren_compare_users_stable
+    method: POST
+    path: /api/v1/douyin/index/fetch_daren_compare_users_stable
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [user_list]
+    optional: [days]
+
+  - id: index_fetch_daren_similar_users
+    method: POST
+    path: /api/v1/douyin/index/fetch_daren_similar_users
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [user_id]
+    optional: []
+
+  - id: index_fetch_daren_great_user_top_video
+    method: POST
+    path: /api/v1/douyin/index/fetch_daren_great_user_top_video
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [user_id, start_date, end_date]
+    optional: []
+
+  - id: index_fetch_daren_great_item_mile_info
+    method: POST
+    path: /api/v1/douyin/index/fetch_daren_great_item_mile_info
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [user_id]
+    optional: []
+
+  - id: index_fetch_daren_great_user_fans_info
+    method: POST
+    path: /api/v1/douyin/index/fetch_daren_great_user_fans_info
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [user_id]
+    optional: []
+
+  - id: index_fetch_item_filter_options
+    method: GET
+    path: /api/v1/douyin/index/fetch_item_filter_options
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_item_sug
+    method: POST
+    path: /api/v1/douyin/index/fetch_item_sug
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [query]
+    optional: []
+
+  - id: index_fetch_item_query
+    method: POST
+    path: /api/v1/douyin/index/fetch_item_query
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [query]
+    optional: [category_id, date_type, label_type, duration_type]
+
+  - id: index_fetch_brand_suggest
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_suggest
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword]
+    optional: []
+
+  - id: index_fetch_brand_valid_info
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_valid_info
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword_list]
+    optional: []
+
+  - id: index_fetch_brand_radar_chart
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_radar_chart
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [brand_name, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_brand_lines
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_lines
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [brand_name, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_brand_cycles
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_cycles
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [brand_name, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_brand_initiative_rank_weekly
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_initiative_rank_weekly
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [brand_name, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_topic_suggest
+    method: POST
+    path: /api/v1/douyin/index/fetch_topic_suggest
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword]
+    optional: [app_name]
+
+  - id: index_fetch_topic_query
+    method: POST
+    path: /api/v1/douyin/index/fetch_topic_query
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [keyword, start_date, end_date]
+    optional: [app_name]
+
+  - id: index_fetch_content_valid_date
+    method: GET
+    path: /api/v1/douyin/index/fetch_content_valid_date
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_brand_hot_videos_time_scope
+    method: POST
+    path: /api/v1/douyin/index/fetch_brand_hot_videos_time_scope
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: index_fetch_content_creative_keywords
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_creative_keywords
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, end_date]
+    optional: [period]
+
+  - id: index_fetch_content_creative_keyword_items
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_creative_keyword_items
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, end_date, keyword]
+    optional: [period]
+
+  - id: index_fetch_content_creative_topic
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_creative_topic
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, end_date]
+    optional: [period, rank_type]
+
+  - id: index_fetch_content_publish_trend
+    method: GET
+    path: /api/v1/douyin/index/fetch_content_publish_trend
+    risk: low
+    required: [tag_id, start_date, end_date]
+    optional: []
+
+  - id: index_fetch_content_creative_duration
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_creative_duration
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, end_date]
+    optional: [period]
+
+  - id: index_fetch_content_author_portrait
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_author_portrait
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, end_date]
+    optional: [period]
+
+  - id: index_fetch_content_consumer_portrait
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_consumer_portrait
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, end_date]
+    optional: [period]
+
+  - id: index_fetch_content_interact_trend
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_interact_trend
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, start_date, end_date]
+    optional: []
+
+  - id: index_fetch_content_consume_trend
+    method: POST
+    path: /api/v1/douyin/index/fetch_content_consume_trend
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [tag_id, start_date, end_date]
+    optional: []
+
+  - id: index_fetch_insight_recommend
+    method: GET
+    path: /api/v1/douyin/index/fetch_insight_recommend
+    risk: low
+    required: []
+    optional: []
+
+  - id: index_fetch_report_search
+    method: POST
+    path: /api/v1/douyin/index/fetch_report_search
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: [current_page, page_size, type, business, report_time, search, category]
+
+  - id: index_fetch_report_detail
+    method: GET
+    path: /api/v1/douyin/index/fetch_report_detail
+    risk: low
+    required: [report_id]
+    optional: []
+
+  - id: index_fetch_insight_get_rec
+    method: GET
+    path: /api/v1/douyin/index/fetch_insight_get_rec
+    risk: low
+    required: [report_id]
+    optional: []
+
+  # ========== Xingtu API (xingtu.md) ==========
+  - id: xingtu_get_sign_image
+    method: GET
+    path: /api/v1/douyin/xingtu/get_sign_image
+    risk: low
+    required: [uri]
+    optional: [durationTS, format]
+
+  - id: xingtu_get_xingtu_kolid_by_uid
+    method: GET
+    path: /api/v1/douyin/xingtu/get_xingtu_kolid_by_uid
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: xingtu_get_xingtu_kolid_by_sec_user_id
+    method: GET
+    path: /api/v1/douyin/xingtu/get_xingtu_kolid_by_sec_user_id
+    risk: low
+    required: [sec_user_id]
+    optional: []
+
+  - id: xingtu_get_xingtu_kolid_by_unique_id
+    method: GET
+    path: /api/v1/douyin/xingtu/get_xingtu_kolid_by_unique_id
+    risk: low
+    required: [unique_id]
+    optional: []
+
+  - id: xingtu_kol_base_info_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_base_info_v1
+    risk: low
+    required: [kolId, platformChannel]
+    optional: []
+
+  - id: xingtu_kol_audience_portrait_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_audience_portrait_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_kol_fans_portrait_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_fans_portrait_v1
+    risk: low
+    required: [kolId]
+    optional: [fansType]
+
+  - id: xingtu_kol_service_price_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_service_price_v1
+    risk: low
+    required: [kolId, platformChannel]
+    optional: []
+
+  - id: xingtu_kol_data_overview_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_data_overview_v1
+    risk: low
+    required: [kolId, _type, _range, flowType]
+    optional: [onlyAssign]
+
+  - id: xingtu_search_kol_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/search_kol_v1
+    risk: low
+    required: [keyword, platformSource, page]
+    optional: []
+
+  - id: xingtu_search_kol_v2
+    method: GET
+    path: /api/v1/douyin/xingtu/search_kol_v2
+    risk: low
+    required: [keyword]
+    optional: [followerRange, contentTag]
+
+  - id: xingtu_kol_conversion_ability_analysis_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_conversion_ability_analysis_v1
+    risk: low
+    required: [kolId, _range]
+    optional: []
+
+  - id: xingtu_kol_video_performance_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_video_performance_v1
+    risk: low
+    required: [kolId, onlyAssign]
+    optional: []
+
+  - id: xingtu_kol_xingtu_index_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_xingtu_index_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_kol_convert_video_display_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_convert_video_display_v1
+    risk: low
+    required: [kolId, detailType, page]
+    optional: []
+
+  - id: xingtu_kol_link_struct_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_link_struct_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_kol_touch_distribution_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_touch_distribution_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_kol_cp_info_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_cp_info_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_kol_rec_videos_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_rec_videos_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_kol_daily_fans_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/kol_daily_fans_v1
+    risk: low
+    required: [kolId, startDate, endDate]
+    optional: []
+
+  - id: xingtu_author_hot_comment_tokens_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/author_hot_comment_tokens_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  - id: xingtu_author_content_hot_comment_keywords_v1
+    method: GET
+    path: /api/v1/douyin/xingtu/author_content_hot_comment_keywords_v1
+    risk: low
+    required: [kolId]
+    optional: []
+
+  # ========== Xingtu V2 API (xingtu.md) ==========
+  - id: xingtu_v2_get_ranking_list_catalog
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_ranking_list_catalog
+    risk: low
+    required: []
+    optional: [codes, biz_scene]
+
+  - id: xingtu_v2_get_ranking_list_data
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_ranking_list_data
+    risk: low
+    required: []
+    optional: [code, qualifier, version, period, date, limit]
+
+  - id: xingtu_v2_get_playlet_actor_rank_catalog
+    method: POST
+    path: /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_catalog
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: xingtu_v2_get_playlet_actor_rank_list
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_playlet_actor_rank_list
+    risk: low
+    required: []
+    optional: [category, name, qualifier, period, date, limit]
+
+  - id: xingtu_v2_get_author_market_fields
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_market_fields
+    risk: low
+    required: []
+    optional: [market_scene]
+
+  - id: xingtu_v2_get_author_base_info
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_base_info
+    risk: low
+    required: [o_author_id]
+    optional: [platform_source, platform_channel, recommend, need_sec_uid, need_linkage_info]
+
+  - id: xingtu_v2_get_author_business_card_info
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_business_card_info
+    risk: low
+    required: [o_author_id]
+    optional: []
+
+  - id: xingtu_v2_get_author_local_info
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_local_info
+    risk: low
+    required: [o_author_id]
+    optional: [platform_source, platform_channel, time_range]
+
+  - id: xingtu_v2_get_author_show_items
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_show_items
+    risk: low
+    required: [o_author_id]
+    optional: [platform_source, platform_channel, limit, only_assign, flow_type]
+
+  - id: xingtu_v2_get_author_hot_comment_tokens
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_hot_comment_tokens
+    risk: low
+    required: [author_id]
+    optional: [num, without_emoji]
+
+  - id: xingtu_v2_get_author_content_hot_keywords
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_content_hot_keywords
+    risk: low
+    required: [author_id]
+    optional: [keyword_type]
+
+  - id: xingtu_v2_get_recommend_for_star_authors
+    method: POST
+    path: /api/v1/douyin/xingtu_v2/get_recommend_for_star_authors
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: xingtu_v2_get_excellent_case_category_list
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_excellent_case_category_list
+    risk: low
+    required: []
+    optional: [platform_source]
+
+  - id: xingtu_v2_get_author_spread_info
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_author_spread_info
+    risk: low
+    required: [o_author_id]
+    optional: [platform_source, platform_channel, type, flow_type, only_assign, range]
+
+  - id: xingtu_v2_get_user_profile_qrcode
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_user_profile_qrcode
+    risk: low
+    required: { oneOf: [core_user_id, sec_uid] }
+    optional: []
+
+  - id: xingtu_v2_get_content_trend_guide
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_content_trend_guide
+    risk: low
+    required: []
+    optional: []
+
+  - id: xingtu_v2_get_ip_activity_industry_list
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_ip_activity_industry_list
+    risk: low
+    required: []
+    optional: []
+
+  - id: xingtu_v2_get_ip_activity_list
+    method: POST
+    path: /api/v1/douyin/xingtu_v2/get_ip_activity_list
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: []
+    optional: []
+
+  - id: xingtu_v2_get_ip_activity_detail
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_ip_activity_detail
+    risk: low
+    required: [id]
+    optional: []
+
+  - id: xingtu_v2_get_resource_list
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_resource_list
+    risk: low
+    required: [resource_id]
+    optional: []
+
+  - id: xingtu_v2_get_demander_mcn_list
+    method: GET
+    path: /api/v1/douyin/xingtu_v2/get_demander_mcn_list
+    risk: low
+    required: []
+    optional: [mcn_name, page, limit, order_by]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

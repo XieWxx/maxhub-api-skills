@@ -2,14 +2,18 @@
 
 [中文文档](README_CN.md)
 
-LinkedIn professional data assistant covering user profiles, companies, jobs, posts, comments, and ads with V1/V2 API support.
+LinkedIn professional data assistant covering user profiles, companies, jobs, posts, comments, and ads. 85 active endpoints across 4 functional areas via MaxHub API.
 
 ## Features
 
-- **User Profile** — get_user_profile, fetch_user_experience, fetch_user_skills, fetch_user_educations, fetch_user_publications, fetch_user_certifications, fetch_user_recommendations, fetch_user_honors, fetch_user_volunteers, fetch_user_bio, fetch_user_contact_info, fetch_user_follower_count, fetch_user_profile_top_card
-- **Company Data** — fetch_company_profile, fetch_company_people, fetch_company_posts, fetch_company_jobs, fetch_company_job_count, fetch_company_affiliated_pages, fetch_company_competitors, fetch_company_locations, fetch_company_cta_buttons, fetch_stock_quote
-- **Search & Jobs** — search_people, search_users, search_jobs, search_posts, search_ads, fetch_job_detail
-- **Content & Interaction** — fetch_post_detail, fetch_post_comments, fetch_post_reactions, fetch_post_reposts, fetch_user_posts, fetch_user_comments, fetch_user_reactions, fetch_hashtag_feed, fetch_comment_replies
+| Area | Reference | Endpoints |
+|------|-----------|-----------|
+| User & People | `references/user.md` | User profiles, posts, contact info, recommendations, experience, skills, education, publications, certifications, honors, interests, reactions, volunteers, follower/connection stats, people search | 45 |
+| Companies | `references/company.md` | Company profiles, employees, posts, jobs, job count, affiliated pages, member insights, competitors, similar companies, stock quotes, CTA buttons, employee distribution, locations | 20 |
+| Jobs | `references/jobs.md` | Job details, job search | 4 |
+| Content & Ads | `references/content.md` | Post details, comments, replies, reactions, reposts, post search, hashtag feed, group info/posts, ad search/details | 16 |
+
+Supports both Web and Web V2 API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -26,10 +30,10 @@ npx clawhub install maxhub-linkedin
 
 | Category | Example prompts |
 |----------|----------------|
-| User Profile | 用户, 资料 |
-| Company Data | 公司, 企业 |
-| Search & Jobs | 搜索, 职位 |
-| Content & Interaction | 帖子, 评论 |
+| User & People | Search LinkedIn for software engineers at Google, 搜索LinkedIn上的Python开发者, get LinkedIn user profile for... |
+| Companies | Get LinkedIn company info for Microsoft, 查LinkedIn上苹果公司的员工分布, search LinkedIn companies in AI |
+| Jobs | Search LinkedIn jobs for machine learning roles, 搜索LinkedIn上的远程工作职位, get LinkedIn job details for... |
+| Content & Ads | Search LinkedIn posts about AI, 查LinkedIn帖子的热门评论, search LinkedIn ads by advertiser |
 
 Supports both **English** and **Chinese**.
 

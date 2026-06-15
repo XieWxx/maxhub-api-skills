@@ -2,14 +2,18 @@
 
 [English](README.md)
 
-LinkedIn 职场数据查询助手。覆盖用户资料、公司信息、职位搜索、帖子、评论、广告等全功能，支持V1/V2双版本API。
+LinkedIn 职场数据查询助手。覆盖用户资料、公司信息、职位搜索、帖子、评论、广告等全功能。通过 MaxHub API 提供 85 个端点，覆盖 4 个功能领域。
 
 ## 功能
 
-- **用户资料** — get_user_profile, fetch_user_experience, fetch_user_skills, fetch_user_educations, fetch_user_publications, fetch_user_certifications, fetch_user_recommendations, fetch_user_honors, fetch_user_volunteers, fetch_user_bio, fetch_user_contact_info, fetch_user_follower_count, fetch_user_profile_top_card
-- **公司数据** — fetch_company_profile, fetch_company_people, fetch_company_posts, fetch_company_jobs, fetch_company_job_count, fetch_company_affiliated_pages, fetch_company_competitors, fetch_company_locations, fetch_company_cta_buttons, fetch_stock_quote
-- **搜索与职位** — search_people, search_users, search_jobs, search_posts, search_ads, fetch_job_detail
-- **内容与互动** — fetch_post_detail, fetch_post_comments, fetch_post_reactions, fetch_post_reposts, fetch_user_posts, fetch_user_comments, fetch_user_reactions, fetch_hashtag_feed, fetch_comment_replies
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 & 人脉 | `references/user.md` | 用户资料、帖子、联系信息、推荐信、工作经历、技能、教育、出版物、认证、荣誉、兴趣、反应、志愿者、粉丝/连接、人脉搜索 | 45 |
+| 公司 | `references/company.md` | 公司资料、员工、帖子、职位、关联页面、竞争对手、相似公司、股价、CTA、员工分布、办公地点 | 20 |
+| 职位 | `references/jobs.md` | 职位详情、职位搜索 | 4 |
+| 内容 & 广告 | `references/content.md` | 帖子详情、评论回复、反应、转发、帖子搜索、话题动态、群组、广告 | 16 |
+
+支持 Web 和 Web V2 双端 API。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -26,10 +30,10 @@ npx clawhub install maxhub-linkedin
 
 | 分类 | 示例指令 |
 |------|----------|
-| 用户资料 | 用户，资料 |
-| 公司数据 | 公司，企业 |
-| 搜索与职位 | 搜索，职位 |
-| 内容与互动 | 帖子，评论 |
+| 用户 & 人脉 | 搜索LinkedIn上的Python开发者, 查这个LinkedIn用户的详细资料和工作经历, search LinkedIn for marketing managers |
+| 公司 | 查LinkedIn上微软的公司信息和员工分布, 搜索LinkedIn上的AI创业公司, get LinkedIn company competitors for... |
+| 职位 | 搜索LinkedIn上的远程工作职位, 查这个LinkedIn职位的详情, search LinkedIn jobs for data scientist |
+| 内容 & 广告 | 搜索LinkedIn上关于AI的帖子, 查这个LinkedIn帖子的评论和反应, search LinkedIn ads by keyword |
 
 支持 **中文** 和 **英文** 双语。
 

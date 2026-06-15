@@ -2,17 +2,22 @@
 
 [中文文档](README_CN.md)
 
-Comprehensive Douyin data assistant covering video, user, search, trending, creator, Xingtu KOL, and content index.
+Comprehensive Douyin data assistant covering video, user, search, trending, creator, xingtu KOL, content index, live, comments, and tools. 273 endpoints across 10 functional areas.
 
 ## Features
 
-- **Video & Content** — fetch_one_video, fetch_one_video_v2, fetch_video_comments, fetch_video_comment_replies, fetch_user_post_videos, fetch_user_like_videos, fetch_video_danmaku, fetch_related_videos, batch_fetch_video_info
-- **User Data** — fetch_user_info, fetch_user_followers, fetch_user_following, fetch_user_profile, batch_fetch_user_info
-- **Search** — fetch_general_search_v2, fetch_video_search, fetch_user_search, fetch_hashtag_search, fetch_music_search, fetch_live_search, fetch_keyword_suggestions
-- **Trending & Billboard** — fetch_hot_search, fetch_hot_total_list, fetch_video_hot_list, fetch_topic_hot_list, fetch_rising_hot_list, fetch_city_hot_list, fetch_hot_list_category
-- **Creator Tools** — fetch_creator_hotspot, fetch_item_list, fetch_item_overview, fetch_item_audience, fetch_author_diagnosis, fetch_live_history, fetch_item_analysis_overview
-- **Xingtu KOL** — search_kol, fetch_kol_base_info, fetch_kol_data_overview, fetch_kol_service_price, fetch_kol_fans_portrait, fetch_kol_audience_portrait, fetch_kol_video_performance, fetch_kol_xingtu_index
-- **Content Index** — fetch_brand_index, fetch_hot_words, fetch_keyword_trend, fetch_daren_metrics, fetch_daren_fans, fetch_content_trend, fetch_search_trend, fetch_brand_trend_lines
+| Category | Endpoints | Description |
+|----------|-----------|-------------|
+| **Video** | 42 | Video detail (single/batch), high-quality play URLs, statistics, mix/series, music/hashtag detail, share/short URL/QR, channel content, related posts, ID extraction |
+| **User** | 24 | User profile (multi-method lookup), fans/following lists, user posts, liked videos, collections, batch profiles, user search |
+| **Search** | 19 | General search, video/user/image/live/hashtag search, search suggestions, multi-search, experience/music/discussion/school/vision search |
+| **Trending** | 39 | Billboard categories, rising/city/challenge hot lists, activity calendar, audience portraits, video/topic/search hot lists, hot words, home feed, video channels |
+| **Creator** | 29 | Creator activities, material center billboards, hot spot/topic/props/music/challenge lists, courses, missions, industry configs, item analytics, audience analysis, account diagnosis, live history |
+| **Xingtu KOL** | 43 | KOL ID lookup, base info, audience/fans portrait, service pricing, data overview, KOL search, conversion analysis, xingtu index, video performance, hot comment analysis, ranking lists, creator marketplace, MCN search, IP calendar |
+| **Content Index** | 44 | Keyword trends, relation words, crowd portrait, daren/creator analytics, brand index/radar/lines/cycles, topic search, content creation guides, audience/creator portraits, consumption/interaction trends, insight reports |
+| **Comments** | 6 | Video comments, comment replies, video danmaku (App + Web) |
+| **Live** | 14 | Live stream data, danmaku, gift rankings, room products, product SKU/coupon/reviews, live room ID conversion |
+| **Tools** | 13 | Device registration, app deep-links, guest cookie, token generators (msToken/ttwid/verify_fp/s_v_web_id), signature generators (X-Bogus/A-Bogus/danmaku xb) |
 
 ## Install
 
@@ -27,15 +32,18 @@ npx clawhub install maxhub-douyin
 
 ## Usage Examples
 
-| Category | Example prompts |
-|----------|----------------|
-| Video & Content | 视频, 作品 |
-| User Data | 用户, 达人 |
-| Search | 搜索, 搜 |
-| Trending & Billboard | 热榜, 热搜 |
-| Creator Tools | 创作者, 投稿 |
-| Xingtu KOL | 星图, KOL |
-| Content Index | 指数, 品牌 |
+| Category | Example prompts (中文) | Example prompts (English) |
+|----------|----------------------|--------------------------|
+| Video | 查抖音视频 aweme_id=... | Get Douyin video details aweme_id=... |
+| User | 查抖音用户 sec_user_id=... | Get Douyin user profile sec_user_id=... |
+| Search | 搜索抖音关键词 "美食" | Search Douyin for "food" |
+| Trending | 查抖音热榜 | Show Douyin trending list |
+| Creator | 查创作者后台作品数据 | Get Douyin creator item analytics |
+| Xingtu KOL | 查星图达人数据 kolId=... | Get Douyin Xingtu KOL data kolId=... |
+| Content Index | 查抖音指数关键词趋势 | Get Douyin index keyword trends |
+| Comments | 查抖音视频评论 | Get Douyin video comments |
+| Live | 查抖音直播数据 | Get Douyin live stream data |
+| Tools | 生成抖音游客Cookie | Generate Douyin guest Cookie |
 
 Supports both **English** and **Chinese**.
 

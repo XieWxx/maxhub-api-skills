@@ -2,11 +2,15 @@
 
 [中文文档](README_CN.md)
 
-Toutiao data assistant for articles, videos, users, and comments.
+Toutiao article, video, user, and comment data assistant via MaxHub API. 7 active endpoints across 1 functional area.
 
 ## Features
 
-- **Content & User** — fetch_article_info, fetch_video_info, fetch_user_info, fetch_post_comments, get_user_id_from_profile
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| Content | `references/content.md` | Articles, videos, user profiles, user ID extraction, comments (App+Web) | 7 |
+
+Supports both App and Web API endpoints. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -23,7 +27,11 @@ npx clawhub install maxhub-toutiao
 
 | Category | Example prompts |
 |----------|----------------|
-| Content & User | 文章, 视频 |
+| Article | 查今日头条文章详情 7450114952884503059, get Toutiao article info for... |
+| Video | 查今日头条视频信息, get Toutiao video info for group_id... |
+| User | 查今日头条用户主页, get Toutiao user info for... |
+| Comments | 查今日头条文章评论, get Toutiao article comments |
+| Search by URL | 从头条用户主页URL获取用户ID, extract user ID from Toutiao profile URL |
 
 Supports both **English** and **Chinese**.
 

@@ -1,0 +1,65 @@
+# 路径合法性硬白名单
+# Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
+
+skill: maxhub-xigua
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Posts (post.md) ==========
+  - id: fetch_one_video
+    method: GET
+    path: /api/v1/xigua/app/v2/fetch_one_video
+    risk: low
+    required: [item_id]
+    optional: []
+
+  - id: fetch_one_video_v2
+    method: GET
+    path: /api/v1/xigua/app/v2/fetch_one_video_v2
+    risk: low
+    required: [item_id]
+    optional: []
+
+  - id: fetch_one_video_play_url
+    method: GET
+    path: /api/v1/xigua/app/v2/fetch_one_video_play_url
+    risk: low
+    required: [item_id]
+    optional: []
+
+  - id: fetch_video_comment_list
+    method: GET
+    path: /api/v1/xigua/app/v2/fetch_video_comment_list
+    risk: low
+    required: [item_id]
+    optional: [offset, count]
+
+  - id: search_video
+    method: GET
+    path: /api/v1/xigua/app/v2/search_video
+    risk: low
+    required: [keyword]
+    optional: [offset, order_type, min_duration, max_duration]
+
+  # ========== Users (user.md) ==========
+  - id: fetch_user_info
+    method: GET
+    path: /api/v1/xigua/app/v2/fetch_user_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: fetch_user_post_list
+    method: GET
+    path: /api/v1/xigua/app/v2/fetch_user_post_list
+    risk: low
+    required: [user_id]
+    optional: [max_behot_time]
+
+# ===== 调用前验证协议 =====
+# 每次调用 API 前，Agent 必须静默验证：
+# 1. 请求路径是否逐字符等于 endpoints[].path？否 → STOP
+# 2. HTTP method 是否匹配？否 → STOP
+# 3. 所有 required 参数是否已提供？否 → STOP
+# 全部通过后才可发起请求。

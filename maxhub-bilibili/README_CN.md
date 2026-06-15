@@ -2,15 +2,20 @@
 
 [English](README.md)
 
-B站视频、用户、评论、弹幕、直播数据查询助手。支持App和Web双端API。
+B站视频、用户、评论、弹幕、直播、收藏夹数据查询助手。通过 MaxHub API 提供 41 个端点，覆盖 6 个功能领域。
 
 ## 功能
 
-- **视频数据** — fetch_one_video, fetch_video_detail, fetch_video_playurl, fetch_video_comments, fetch_video_danmaku, fetch_video_subtitle, fetch_video_play_info, generate_aid_by_bvid, fetch_video_parts_by_bvid, fetch_vip_video_playurl
-- **用户数据** — fetch_user_info, fetch_user_profile, fetch_user_videos, fetch_user_followers, fetch_user_following, fetch_up_stat, fetch_user_relation_stat, extract_user_id, fetch_user_dynamic, fetch_user_collection_folders, fetch_collection_folder_data
-- **搜索** — fetch_general_search, fetch_hot_search, search_by_type
-- **评论互动** — fetch_video_comments, fetch_comment_replies, fetch_dynamic_detail, fetch_dynamic_detail_v2
-- **直播与推荐** — fetch_live_info, fetch_live_areas, fetch_live_streamers, fetch_live_video_data, fetch_home_feed, fetch_popular_feed, fetch_bangumi_tab, fetch_cinema_tab, fetch_comprehensive_popular
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 视频 | `references/video.md` | 视频详情、播放URL、字幕、分P、BV/AV转换 | 13 |
+| 用户 | `references/user.md` | 用户信息、UP主统计、投稿、动态、ID提取 | 10 |
+| 搜索 | `references/search.md` | 综合搜索、分类搜索、热榜、推荐、番剧影视 | 9 |
+| 评论 | `references/comments.md` | 视频评论、二级回复、弹幕 | 5 |
+| 直播 | `references/live.md` | 直播间信息、直播流、分区主播、分区列表 | 4 |
+| 收藏 | `references/collections.md` | 收藏夹列表、收藏夹内视频 | 2 |
+
+支持 App 和 Web 双端 API。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -27,11 +32,12 @@ npx clawhub install maxhub-bilibili
 
 | 分类 | 示例指令 |
 |------|----------|
-| 视频数据 | 视频，详情 |
-| 用户数据 | 用户，UP主 |
-| 搜索 | 搜索，搜 |
-| 评论互动 | 评论，回复 |
-| 直播与推荐 | 直播，推荐 |
+| 视频 | 查B站这个视频的播放量和详情 BV... |
+| 用户 | 查这个B站UP主的粉丝数和投稿 |
+| 搜索 | 在B站搜索原神相关视频 |
+| 评论 | 查这个B站视频的热门评论 |
+| 直播 | 查这个B站直播间有多少人在线 |
+| 收藏 | 查看这个B站用户的公开收藏夹 |
 
 支持 **中文** 和 **英文** 双语。
 

@@ -1,10 +1,14 @@
 ---
 name: maxhub-wechat
-description: "微信数据查询助手。覆盖视频号和公众号两大模块，支持搜索、视频详情、评论、文章、用户等全功能。"
+description: >-
+  Query WeChat data via MaxHub API — Channels (视频号) videos,
+  Official Account (公众号) articles, and cross-platform search.
+  Use when user asks about 微信视频号, 公众号, 微信文章, 微信搜索.
+  Do NOT use for posting or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "💬"
     primaryEnv: MAXHUB_API_KEY
@@ -21,289 +25,256 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["微信", "wechat", "视频号", "公众号", "文章", "用户分析", "内容分析", "社交媒体", "数据采集"]
+    tags: ["微信", "wechat", "视频号", "公众号", "微信文章", "搜索"]
     category: productivity
 ---
 
 # 微信数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a WeChat Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+微信生态数据查询工具，通过 MaxHub API 接入微信公众号（mp.weixin.qq.com）、视频号（Channels）与搜一搜（Search）三端，覆盖文章详情/统计/评论/回复/广告/相关推荐、公众号资料/文章列表/服务、视频号信息/视频详情/评论/分享/直播/合集、跨端搜一搜等全部能力。专注服务于公众号文章爬取、视频号内容研究、微信生态搜索、账号矩阵分析等场景，帮助用户在封闭的微信生态内系统化采集图文与视频数据，输出可分析的结构化结果。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 24 active endpoints **first message** and maintain it throughout the conversation.
+- 💬 **公众号文章全维度查询** — 文章详情、阅读/在看/点赞统计、评论与回复、相关推荐、文章广告六端点串联，仅需文章 URL 即可还原完整数据
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 📰 **公众号账号画像** — 账号资料、历史文章列表（支持分页）、服务列表，一站式构建账号矩阵档案
 
-## API Access
+- 📹 **视频号视频全链路** — 视频详情、评论、分享 URL、用户视频列表、合集视频、直播历史与详情、视频号搜索，覆盖 object_id / export_id / share_url 多种入口
 
-Base URL: `https://www.aconfig.cn`
+- 🔄 **channel_id ↔ username 互转** — 提供 `fetch_channel_id_to_username` 端点，解决视频号 ID 与用户名互转的工程难题
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 🎬 **直播数据采集** — 直播历史 + 直播详情双端点，识别视频号直播节奏与回放数据
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 🔍 **搜一搜跨端检索** — `fetch_search` 单端点跨公众号 + 视频号统一搜索，支持 business_type 过滤
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/wechat/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🚨 **POST + risk:high 全量管控** — 22 个端点全部为 POST 方法 + `risk: high`，**调用前必须用户确认参数**，并以 JSON Body 传参（非 query string）
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/wechat/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 🔗 **链式调用图谱** — 22 个端点的字段流字典 + Chain Recipes，明确 url / username / object_id / channel_id / topic_id 在端点间的传递路径
+
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，POST 写入语义下避免重复扣配额
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| ⚠️ POST 写入语义 | **22 个端点全部为 POST 方法 + `risk: high`**，参数走 JSON Body，**非 query string**，调用前必须用户确认参数 |
+| 🔒 只读用途 | 虽然 HTTP 方法为 POST，但本技能仅用于数据查询，**不执行写入 / 账户 / 发文 / 评论操作** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号（v2）、加路径段** |
+| 🚫 禁止重复调用 | POST 端点重复调用会重复扣配额，**5xx 重试上限 1 次**，业务错误 `code != 0` 不重试 |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-wechat.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查公众号文章 / 评论 / 账号 | `references/mp.md` | 文章详情、统计、评论、回复、相关推荐、广告、账号资料、文章列表、服务（9 端点） |
+| 查视频号 / 视频 / 直播 / 合集 | `references/channels.md` | 视频号信息、ID 互转、用户视频、视频详情、评论、分享 URL、用户资料、合集、直播（12 端点） |
+| 搜一搜 / 跨端搜索 | `references/search.md` | 公众号 + 视频号统一搜索（1 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 22 个端点的硬白名单 + Pre-call 5 步自检协议（含 POST Body 校验） |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-wechat.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 调用任何端点前**必须让用户确认 Body 参数**（risk: high 强制要求）
+- ✅ 视频号入口三选一（`object_id` / `export_id` / `share_url`），不要同时携带
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 5 步 Pre-call 自检（路径 → method=POST → 必填 → 用户确认 → Body=JSON）
+- 收到 **404** → 必须先做防路径臆造自检（5 步），不要立刻切换 mp/channels/search 段
+- 收到 **400 / 422** → 必须先做防参数臆造自检（6 步），重点检查 `oneOf: [object_id, export_id, share_url]` 三选一
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**（避免重复扣配额）
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Channels** | 视频号, 搜索, 详情, 直播, 热门, 主页, 分享, 评论, channels, search, detail, live, hot, home, share, comment, video, user, latest, ordinary, comprehensive | `references/api-channels.md` | fetch_home_page, fetch_video_by_share_url, fetch_search_channels, fetch_search_latest, fetch_hot_words, fetch_user_search_v2, fetch_user_search, fetch_live_history, fetch_search_ordinary, fetch_video_detail, fetch_comments, fetch_default_search, fetch_search_official_account, fetch_search_article, fetch_mp_article_comment_list, fetch_mp_article_comment_reply_list, fetch_mp_article_detail_html, fetch_mp_article_detail_json |
-| **Media Platform** | 公众号, 文章, 搜索, mp, article, search, detail, json, official, account | `references/api-mp.md` | fetch_mp_related_articles, fetch_mp_article_ad, fetch_mp_article_list, fetch_mp_article_url, fetch_mp_article_read_count, fetch_mp_article_url_conversion |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Channels**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 搜一搜 → 公众号文章 | `fetch_search`（business_type=mp） → `fetch_article_detail` | `keyword` → 文章 `url` |
+| 查文章 + 评论 + 回复 | `fetch_article_detail` → `fetch_article_comments` → `fetch_comment_replies` | `url` 复用 + `content_id` |
+| 查账号 → 文章列表 → 详情 | `fetch_account_profile` → `fetch_account_articles` → `fetch_article_detail` | `username` → 文章 `url` |
+| 查视频号 → 视频详情 → 评论 | `fetch_channel_info` → `fetch_user_videos` → `fetch_video_detail` → `fetch_video_comments` | `username` → `object_id` |
+| channel_id → username | `fetch_channel_id_to_username` → 后续视频号端点 | `channel_id` → `username` |
+| 视频号直播追踪 | `fetch_channel_info` → `fetch_live_history` → `fetch_live_detail` | `username` → `live_id` |
+| 视频号合集 | `fetch_user_collections` → `fetch_collection_videos` | `username` → `topic_id` |
+| 视频号内搜索 | `fetch_search_channel_videos` | `username + keyword` 双必填 |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+#### 防臆造自检清单（强制前置步骤）
 
-### Step 4: Plan & Execute
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对（注意 `/wechat_mp/v2/` vs `/wechat_channels/v2/` vs `/wechat_search/v2/`）→ 不在清单中 STOP
+2. Method 比对（**全部为 POST**，不是 GET）→ 不等 STOP
+3. 参数键名比对（`url` / `username` / `object_id` 不可互换）→ 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定"上游资源不存在"
 
-#### Pattern A: "分析视频号"
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（大小写 / 缩写 / 复数）
+2. 必填项齐全 + oneOf 三选一逻辑（视频详情 `object_id` / `export_id` / `share_url`）
+3. **POST Body 是否为合法 JSON**（非 query string、非表单）
+4. Content-Type 是否为 `application/json`
+5. 类型与格式严格匹配（pattern / enum）
+6. 全通过才按 `message_zh` 排查
 
-1. 搜索视频号 → search_channels → 找到目标视频
-2. 获取详情 → fetch_channels_video_detail → 视频详情
-3. 获取评论 → fetch_channels_comments → 评论数据
+#### POST 端点最佳实践
 
-#### Pattern B: "分析公众号文章"
+- **JSON Body 序列化**：使用语言原生 JSON 序列化，不要手拼字符串
+- **Content-Type 必填**：`-H "Content-Type: application/json"`
+- **重试策略**：5xx 重试 ≤ 1 次；4xx / 业务错误**不重试**，避免重复扣配额
+- **用户确认门槛**：所有端点 `risk: high`，调用前必须把完整 Body 给用户确认
 
-1. 搜索公众号 → search_mp_account → 找到目标公众号
-2. 获取文章列表 → fetch_mp_article_list → 文章列表
-3. 获取详情 → fetch_mp_article_detail_json → 文章详情
+#### SKILL 版本更新
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-wechat`（国内）或 `clawhub upgrade maxhub-wechat`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-wechat |
+| 多端点连续 410 | `skillhub upgrade maxhub-wechat --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-### Step 5: Output Results
+### 常用命令速查表
 
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查公众号文章详情 | `curl -X POST -H "$maxhub_auth_header" -H "Content-Type: application/json" -d '{"url":"https://mp.weixin.qq.com/s/xxx"}' "https://www.aconfig.cn/api/v1/wechat_mp/v2/fetch_article_detail"` |
+| 查文章评论 | `curl -X POST -H "$maxhub_auth_header" -H "Content-Type: application/json" -d '{"url":"https://mp.weixin.qq.com/s/xxx"}' "https://www.aconfig.cn/api/v1/wechat_mp/v2/fetch_article_comments"` |
+| 查公众号文章列表 | `curl -X POST -H "$maxhub_auth_header" -H "Content-Type: application/json" -d '{"username":"gh_xxx"}' "https://www.aconfig.cn/api/v1/wechat_mp/v2/fetch_account_articles"` |
+| 查视频号视频详情 | `curl -X POST -H "$maxhub_auth_header" -H "Content-Type: application/json" -d '{"object_id":"xxx"}' "https://www.aconfig.cn/api/v1/wechat_channels/v2/fetch_video_detail"` |
+| 搜一搜 | `curl -X POST -H "$maxhub_auth_header" -H "Content-Type: application/json" -d '{"keyword":"AI"}' "https://www.aconfig.cn/api/v1/wechat_search/v2/fetch_search"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-wechat` 或 `clawhub info maxhub-wechat` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：公众号内容监测
-- **应用环境**：运营团队监控竞品公众号的内容策略
-- **用户需求**：追踪竞品发布频率、内容主题和阅读表现
-- **使用流程**：获取公众号信息 → 拉取最新文章 → 分析内容特征 → 生成监测报告
-- **预期效果**：持续掌握竞品动态，优化自身内容策略
+### 场景一：研究员批量爬取公众号文章
 
-### 场景二：视频号数据分析
-- **应用环境**：品牌方评估微信视频号的传播效果
-- **用户需求**：分析视频号的播放量、互动数据和粉丝增长
-- **使用流程**：获取视频号信息 → 分析视频数据 → 评估互动指标 → 生成效果报告
-- **预期效果**：量化视频号运营效果，指导内容优化方向
+- **角色**：行业研究员 / 自媒体编辑
+- **需求**：批量采集某垂类（科技 / 财经 / 教育）头部公众号近 3 个月文章正文与互动数据
+- **使用方式**：`fetch_search`（business_type=mp） → 取候选公众号 `username` → `fetch_account_profile` 验证 → `fetch_account_articles`（分页）拉文章 URL → `fetch_article_detail` + `fetch_article_stats` 拉正文与阅读数
+- **预期收益**：完整公众号文章语料库 + 阅读/在看数据，支撑选题分析与内容选品
 
-### 场景三：私域流量研究
-- **应用环境**：营销团队研究微信公众号的私域运营策略
-- **用户需求**：了解优质公众号的内容运营和用户互动模式
-- **使用流程**：搜索目标公众号 → 分析文章数据 → 评估用户互动 → 提炼运营策略
-- **预期效果**：借鉴优质账号的运营经验，提升私域运营效率
+### 场景二：MCN 团队视频号内容研究
 
-## Error Handling
+- **角色**：视频号运营 / MCN 内容策划
+- **需求**：分析头部视频号近期爆款视频的封面、标题、互动数据，沉淀爆款公式
+- **使用方式**：`fetch_channel_info` 锁定账号 → `fetch_user_videos` 拉视频列表 → 取 `object_id` → `fetch_video_detail` + `fetch_video_comments` 取详情与评论 → 必要时 `fetch_video_share_url` 取分享链接做侧链分析
+- **预期收益**：视频号爆款样本集 + 评论情感分析，提炼可复用的视频号选题模板
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：增长团队微信生态搜索调研
 
-### 智能重试策略
+- **角色**：增长 PM / 竞品分析师
+- **需求**：在微信生态（公众号 + 视频号）内调研竞品关键词的曝光分布与头部账号
+- **使用方式**：`fetch_search` 跨端搜索（business_type 切换 mp/channels） → 取头部公众号 / 视频号 → 链式调 `fetch_account_profile` / `fetch_channel_info` 补全画像
+- **预期收益**：完整微信生态竞品图谱，识别公众号 + 视频号双端的内容投放分布
 
-| 错误码 | 重试策略 | 原因 |
-|--------|---------|------|
-| 400 Bad Request | **不重试** | 参数错误，需修正参数后重新调用 |
-| 401 Unauthorized | **不重试** | API Key 无效，需检查配置 |
-| 403 Forbidden | **不重试** | 权限不足，需更换 API Key 或接口 |
-| 404 Not Found | **触发降级** | 接口可能已下线，按降级策略切换替代版本 |
-| 422 Unprocessable | **不重试** | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | 延迟 5 秒后重试，最多 1 次 | 请求过快，需降速 |
-| 500 Server Error | 先重试 1 次，仍失败则**触发降级** | 服务器故障，重试无效则切换替代版本 |
-| 410 Gone | **触发降级** | 接口已废弃，按降级策略切换替代版本 |
+### 场景四：数据团队账号矩阵分析
 
-**重要**：对 400/404/410/422 错误，不要盲目重试。应分析错误原因，修正参数或切换到替代接口后再调用。
+- **角色**：数据分析师 / 品牌策略
+- **需求**：评估某品牌的微信账号矩阵（多个公众号 + 多个视频号）整体内容产能与互动健康度
+- **使用方式**：批量传入 `username` 列表 → 并行调用 `fetch_account_profile` + `fetch_account_articles` + `fetch_channel_info` + `fetch_user_videos` → 汇总文章数 / 视频数 / 平均互动 → 输出账号矩阵看板
+- **预期收益**：账号矩阵健康度报表，识别高产 / 低产账号与内容产能差距
 
-### 404 错误专项处理
+## 6. 项目架构
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
-
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
-
-### 接口降级与自动切换策略
-
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-wechat/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 22 端点路径硬白名单 + Pre-call 5 步自检协议（含 POST Body 校验）
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理）
+    ├── mp.md                           # 公众号域：文章详情/统计/评论/回复/广告/账号（9 端点，全 POST）
+    ├── channels.md                     # 视频号域：信息/视频/评论/分享/合集/直播（12 端点，全 POST）
+    └── search.md                       # 搜一搜域：跨端统一搜索（1 端点，POST）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token + JSON Body | **HTTP POST 请求**，参数走 JSON Body，需带 `Content-Type: application/json` |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/{wechat_mp\|wechat_channels\|wechat_search}/v2/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 22 端点的逐字符校验 + 5 步 Pre-call 协议（含 POST Body=JSON 校验） |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ POST 重试策略（5xx ≤ 1 次） |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | HTTP 方法 | 风险等级 | Reference 文件 |
+|------|--------|----------|----------|---------------|
+| 公众号（MP） | 9 | POST | high | `mp.md` |
+| 视频号（Channels） | 12 | POST | high | `channels.md` |
+| 搜一搜（Search） | 1 | POST | high | `search.md` |
+| **合计** | **22** | **全 POST** | **全 high** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **POST 写入语义全管控**：22 个端点全部 POST + risk:high，强制用户确认参数，5xx 重试 ≤ 1 次，杜绝重复扣配额
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **三端段隔离**：`/wechat_mp/v2/` / `/wechat_channels/v2/` / `/wechat_search/v2/` 路径段不可混用
+- **Agent 友好 7 大原则**：结构胜于叙述、明确指令优于建议、单一来源、词法稳定性、低 token 密度、边界显式声明、错误处理是契约
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，杜绝 Agent 编造字段名
+- **错误处理契约**：HTTP 状态码权威定义 + 防臆造自检清单（A: 5 步 / B: 6 步含 POST Body 校验）+ POST 重试策略矩阵

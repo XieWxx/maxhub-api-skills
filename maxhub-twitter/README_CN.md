@@ -2,13 +2,16 @@
 
 [English](README.md)
 
-Twitter/X 数据查询助手。覆盖推文详情、用户资料、搜索、评论、趋势等全功能。
+Twitter/X 数据查询助手。覆盖推文详情、用户资料、搜索、评论、趋势、关注、粉丝、媒体等全功能。通过 MaxHub API 提供 12 个端点，覆盖 2 个功能领域。
 
 ## 功能
 
-- **推文数据** — fetch_single_tweet, fetch_tweet_comments, fetch_comments, fetch_retweet_users
-- **用户数据** — fetch_user_profile, fetch_user_posts, fetch_user_media, fetch_user_replies, fetch_user_highlights, fetch_user_followings, fetch_user_followers
-- **搜索与趋势** — search, fetch_trending
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 | `references/user.md` | 用户资料、用户推文、回复、媒体、关注、粉丝 | 6 |
+| 内容 | `references/content.md` | 推文详情、评论、搜索时间线、趋势、转推列表 | 6 |
+
+支持 Web API 端点。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -25,9 +28,9 @@ npx clawhub install maxhub-twitter
 
 | 分类 | 示例指令 |
 |------|----------|
-| 推文数据 | 推文，详情 |
-| 用户数据 | 用户，资料 |
-| 搜索与趋势 | 搜索，趋势 |
+| 用户 | 查推特用户 @elonmusk 的粉丝和关注, Twitter用户资料 |
+| 内容 | 查推文详情和评论, 搜索推特 |
+| 趋势 | 查Twitter趋势, twitter trending |
 
 支持 **中文** 和 **英文** 双语。
 

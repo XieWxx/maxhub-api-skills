@@ -2,12 +2,17 @@
 
 [English](README.md)
 
-微信数据查询助手。覆盖视频号和公众号两大模块，支持搜索、视频详情、评论、文章、用户等全功能。
+微信数据查询助手。覆盖视频号和公众号两大模块，支持搜索、视频详情、评论、文章、用户等全功能。通过 MaxHub API 提供 22 个端点，覆盖 3 个功能领域。
 
 ## 功能
 
-- **视频号** — fetch_channels_home, search_channels, search_channels_latest, fetch_channels_hot_topics, fetch_channels_user_search, fetch_channels_user_search_v2, fetch_channels_live_history, fetch_channels_comprehensive_search, fetch_channels_video_detail, fetch_channels_comments, fetch_channels_default_search
-- **公众号** — search_mp_account, search_mp_article, fetch_mp_article_list, fetch_mp_article_detail_html, fetch_mp_article_detail_json, fetch_mp_article_url, fetch_mp_article_comments, fetch_mp_article_comment_replies, fetch_mp_article_ad, fetch_mp_related_articles, fetch_mp_article_read_count, fetch_mp_long_url_to_short
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 视频号 | `references/channels.md` | 视频号信息、视频详情、评论、直播、合集、分享链接 | 12 |
+| 公众号 | `references/mp.md` | 文章详情、互动数据、评论、账号资料、文章列表、服务菜单 | 9 |
+| 搜索 | `references/search.md` | 视频号+公众号综合搜索 | 1 |
+
+参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -24,8 +29,9 @@ npx clawhub install maxhub-wechat
 
 | 分类 | 示例指令 |
 |------|----------|
-| 视频号 | 视频号，视频 |
-| 公众号 | 公众号，文章 |
+| 视频号 | 查这个视频号的最近视频和信息 |
+| 公众号 | 查这篇文章的阅读量和评论 |
+| 搜索 | 在微信中搜索关键词 |
 
 支持 **中文** 和 **英文** 双语。
 

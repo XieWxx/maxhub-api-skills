@@ -2,13 +2,18 @@
 
 [中文文档](README_CN.md)
 
-Reddit data assistant for posts, subreddits, users, search, comments, and feeds.
+Reddit data assistant for posts, user profiles, search, subreddits, comments, and trending. 28 active endpoints across 4 functional areas.
 
 ## Features
 
-- **Post Data** — fetch_single_post, fetch_batch_posts, fetch_large_batch_posts, fetch_post_comments, fetch_comment_replies
-- **Subreddit** — fetch_subreddit_info, fetch_subreddit_feed, fetch_subreddit_rules, fetch_subreddit_settings, fetch_subreddit_channels, fetch_community_highlights, check_subreddit_muted
-- **User & Search** — fetch_user_profile, fetch_user_posts, fetch_user_comments, fetch_user_active_subreddits, fetch_user_trophies, fetch_trending_searches, fetch_dynamic_search, fetch_search_typeahead, fetch_home_feed, fetch_popular_feed, fetch_news_feed, fetch_games_feed
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| User | `references/user.md` | User profiles, active subreddits, comments, posts, trophies | 5 |
+| Content | `references/content.md` | Feeds, post details, comments, replies, Reddit Answers | 13 |
+| Search | `references/search.md` | Search typeahead, dynamic search, community highlights, trending | 4 |
+| Subreddit | `references/subreddit.md` | Subreddit style, channels, info, settings, feed, mute check | 6 |
+
+See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -25,9 +30,10 @@ npx clawhub install maxhub-reddit
 
 | Category | Example prompts |
 |----------|----------------|
-| Post Data | 帖子, 详情 |
-| Subreddit | 版块, 社区 |
-| User & Search | 用户, 搜索 |
+| User | 查Reddit用户 spez 的资料, get Reddit user profile |
+| Content | 查Reddit首页推荐, get Reddit post comments |
+| Search | reddit搜索 python, search Reddit for programming |
+| Subreddit | 查subreddit r/pics 的帖子, get subreddit info for AskReddit |
 
 Supports both **English** and **Chinese**.
 

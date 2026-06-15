@@ -1,0 +1,21 @@
+# CI/扫描工具残留
+clawscan.json
+skillspector.json
+static-analysis.json
+virustotal.json
+manifest.json
+REPO_MANIFEST.json
+
+# 工具输出
+tools/
+
+# macOS
+.DS_Store
+
+# 临时文件
+*.tmp
+*.bak
+
+# IDE
+.vscode/
+.idea/

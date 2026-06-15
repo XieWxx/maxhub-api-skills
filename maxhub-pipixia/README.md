@@ -2,13 +2,16 @@
 
 [中文文档](README_CN.md)
 
-PiPiXia data assistant for posts, users, search, trending, comments, and topics.
+PiPiXia post, user, search, trending, hashtag, and comment data assistant via MaxHub API. 17 active endpoints across 2 functional areas.
 
 ## Features
 
-- **Post & User** — fetch_single_video, fetch_post_statistics, fetch_post_comments, fetch_user_info, fetch_user_posts, fetch_user_following, fetch_user_followers
-- **Search & Trending** — fetch_search, fetch_hot_search_board_list, fetch_hot_search_board_detail, fetch_hot_search_words, fetch_hashtag_detail, fetch_hashtag_posts, fetch_home_feed, fetch_home_short_drama
-- **Tools** — generate_short_url, increase_post_view_count
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| User | `references/user.md` | User profiles, post list, followers, following | 4 |
+| Content | `references/content.md` | Post detail, statistics, comments, home feed, search, hot search, hashtags, short drama, short URL | 13 |
+
+All endpoints use the App API. See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -25,9 +28,12 @@ npx clawhub install maxhub-pipixia
 
 | Category | Example prompts |
 |----------|----------------|
-| Post & User | 作品, 用户 |
-| Search & Trending | 搜索, 热搜 |
-| Tools | 短链接, 浏览 |
+| User | 查皮皮虾用户信息, get PiPiXia user profile for user_id... |
+| Post | 查皮皮虾帖子详情, get PiPiXia post statistics |
+| Search | 皮皮虾热搜, search PiPiXia for 搞笑 videos |
+| Comments | 查皮皮虾评论, get PiPiXia post comments |
+| Hashtag | 查皮皮虾话题, get PiPiXia hashtag detail |
+| Feed | 皮皮虾首页推荐, get PiPiXia home feed |
 
 Supports both **English** and **Chinese**.
 

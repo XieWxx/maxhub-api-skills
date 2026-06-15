@@ -2,13 +2,17 @@
 
 [中文文档](README_CN.md)
 
-Zhihu data assistant for user info, search, columns, Q&A, trending, and comments.
+Zhihu user, content, and search data assistant via MaxHub API. 34 active endpoints across 3 functional areas.
 
 ## Features
 
-- **User Data** — fetch_user_info, fetch_user_following, fetch_user_followers, fetch_user_articles, fetch_user_included_articles, fetch_user_columns, fetch_user_follow_topics, fetch_user_follow_questions, fetch_user_follow_collections, fetch_recommend_followees
-- **Search & Trending** — fetch_search_suggest, fetch_search_recommend, fetch_preset_search, fetch_ai_search, fetch_article_search, fetch_user_search, fetch_topic_search, fetch_video_search, fetch_column_search, fetch_hot_list, fetch_hot_recommend, fetch_video_list
-- **Content & Q&A** — fetch_column_articles, fetch_column_article_detail, fetch_article_relationship, fetch_comment_config, fetch_comment_v5, fetch_sub_comment_v5, fetch_question_answers
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| User | `references/user.md` | User profiles, following, followers, articles, columns, questions, collections, topics | 10 |
+| Content | `references/content.md` | Column articles, comments, Q&A, hot list, hot recommend, video list | 11 |
+| Search | `references/search.md` | Article/user/topic/video/column/scholar/ebook search, AI search, preset search, search recommend/suggest | 13 |
+
+See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -25,9 +29,9 @@ npx clawhub install maxhub-zhihu
 
 | Category | Example prompts |
 |----------|----------------|
-| User Data | 用户, 资料 |
-| Search & Trending | 搜索, 热榜 |
-| Content & Q&A | 文章, 专栏 |
+| User | 查知乎, 知乎用户, get zhihu user info, 查知乎用户关注列表 |
+| Content | 知乎热榜, 知乎专栏, zhihu hot list, 查知乎问题回答, get zhihu comments |
+| Search | 知乎搜索, zhihu search, 知乎AI搜索, search zhihu for... |
 
 Supports both **English** and **Chinese**.
 

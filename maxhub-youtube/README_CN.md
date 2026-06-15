@@ -2,14 +2,18 @@
 
 [English](README.md)
 
-YouTube 全场景数据查询助手。支持Web/V2双版本API，覆盖视频详情、频道数据、搜索、评论、字幕、Shorts等全功能。
+YouTube 视频、频道、评论、字幕、流媒体、Shorts 和社区帖子数据查询助手。通过 MaxHub API 提供 38 个端点，覆盖 4 个功能领域。
 
 ## 功能
 
-- **视频数据** — fetch_video_info, fetch_video_info_v2, fetch_video_info_v3, fetch_video_streams, fetch_video_streams_v2, fetch_video_subtitles, fetch_video_captions, fetch_related_videos, fetch_trending_videos
-- **频道数据** — fetch_channel_info, fetch_channel_description, fetch_channel_videos, fetch_channel_videos_v2, fetch_channel_videos_v3, fetch_channel_shorts, fetch_channel_community_posts, get_channel_id, get_channel_id_from_url
-- **搜索** — general_search, general_search_v2, search_video, search_channel, shorts_search, shorts_search_v2, fetch_search_suggestions
-- **评论** — fetch_video_comments, fetch_video_sub_comments, fetch_post_comments, fetch_post_comment_replies
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 视频 | `references/video.md` | 视频详情、流媒体、字幕、推荐视频、趋势视频 | 13 |
+| 频道 | `references/channel.md` | 频道信息、频道视频、Shorts、社区帖子、频道ID查询 | 12 |
+| 搜索 | `references/search.md` | 综合搜索、Shorts搜索、频道搜索、搜索建议 | 8 |
+| 评论 | `references/comments.md` | 视频评论、评论回复、帖子详情、帖子评论回复 | 5 |
+
+支持 Web 和 Web V2 双端 API。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -26,10 +30,10 @@ npx clawhub install maxhub-youtube
 
 | 分类 | 示例指令 |
 |------|----------|
-| 视频数据 | 视频，详情 |
-| 频道数据 | 频道，信息 |
-| 搜索 | 搜索，搜 |
-| 评论 | 评论，回复 |
+| 视频 | 在YouTube上搜索这个视频的详情..., 获取这个YouTube视频的字幕, 查看YouTube趋势视频 |
+| 频道 | 查这个YouTube频道的订阅数和视频列表 @..., 获取YouTube频道Shorts短视频 |
+| 搜索 | 在YouTube上搜索Minecraft教程, 搜索YouTube Shorts相关内容, YouTube搜索推荐 |
+| 评论 | 查看这个YouTube视频的评论, 查看这条评论的回复, 查看YouTube社区帖子 |
 
 支持 **中文** 和 **英文** 双语。
 

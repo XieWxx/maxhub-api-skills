@@ -2,13 +2,16 @@
 
 [English](README.md)
 
-Lemon8 内容数据查询助手。覆盖搜索、发现页、帖子详情、用户信息、评论、话题、热搜等全功能。
+Lemon8 内容数据查询助手。通过 MaxHub API 提供 16 个端点，覆盖 2 个功能领域。
 
 ## 功能
 
-- **搜索与发现** — fetch_search, fetch_discover_content, fetch_discover_banners, fetch_hot_search_keywords, fetch_editor_picks
-- **帖子与用户** — fetch_post_info, fetch_post_comments, fetch_user_info, fetch_user_following, fetch_user_fans, fetch_topic_info, fetch_topic_posts
-- **链接工具** — fetch_post_id_by_link, fetch_user_id_by_link, fetch_post_ids_batch, fetch_user_ids_batch
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 | `references/user.md` | 用户信息、粉丝列表、关注列表、ID提取 | 5 |
+| 内容 | `references/content.md` | 帖子详情、评论、发现页、话题、搜索、ID提取 | 11 |
+
+参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -25,9 +28,8 @@ npx clawhub install maxhub-lemon8
 
 | 分类 | 示例指令 |
 |------|----------|
-| 搜索与发现 | 搜索，发现 |
-| 帖子与用户 | 帖子，用户 |
-| 链接工具 | 分享，链接 |
+| 用户 | 查柠檬8用户信息，查这个lemon8用户的粉丝和关注 |
+| 内容 | 查柠檬8帖子详情，在柠檬8搜索美妆，查lemon8发现页，查lemon8话题帖子 |
 
 支持 **中文** 和 **英文** 双语。
 

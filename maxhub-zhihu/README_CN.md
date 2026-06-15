@@ -2,13 +2,17 @@
 
 [English](README.md)
 
-知乎数据查询助手。覆盖用户信息、搜索、专栏、问答、热榜、评论等全功能。
+知乎用户、内容、搜索数据查询助手。通过 MaxHub API 提供 34 个端点，覆盖 3 个功能领域。
 
 ## 功能
 
-- **用户数据** — fetch_user_info, fetch_user_following, fetch_user_followers, fetch_user_articles, fetch_user_included_articles, fetch_user_columns, fetch_user_follow_topics, fetch_user_follow_questions, fetch_user_follow_collections, fetch_recommend_followees
-- **搜索与热榜** — fetch_search_suggest, fetch_search_recommend, fetch_preset_search, fetch_ai_search, fetch_article_search, fetch_user_search, fetch_topic_search, fetch_video_search, fetch_column_search, fetch_hot_list, fetch_hot_recommend, fetch_video_list
-- **内容与问答** — fetch_column_articles, fetch_column_article_detail, fetch_article_relationship, fetch_comment_config, fetch_comment_v5, fetch_sub_comment_v5, fetch_question_answers
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 | `references/user.md` | 用户信息、关注、粉丝、文章、专栏、问题、收藏、话题 | 10 |
+| 内容 | `references/content.md` | 专栏文章、评论、问答、热榜、首页推荐、视频榜 | 11 |
+| 搜索 | `references/search.md` | 文章/用户/话题/视频/专栏/论文/电子书搜索、AI搜索、预设搜索、搜索推荐/建议 | 13 |
+
+参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -25,9 +29,9 @@ npx clawhub install maxhub-zhihu
 
 | 分类 | 示例指令 |
 |------|----------|
-| 用户数据 | 用户，资料 |
-| 搜索与热榜 | 搜索，热榜 |
-| 内容与问答 | 文章，专栏 |
+| 用户 | 查知乎, 知乎用户, 查知乎用户关注列表, 查知乎用户文章 |
+| 内容 | 知乎热榜, 知乎专栏, 查知乎问题回答, 查知乎评论 |
+| 搜索 | 知乎搜索, 知乎AI搜索, 在知乎搜索..., 知乎搜索建议 |
 
 支持 **中文** 和 **英文** 双语。
 

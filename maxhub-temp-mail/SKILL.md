@@ -1,10 +1,14 @@
 ---
 name: maxhub-temp-mail
-description: "临时邮箱服务助手。支持生成临时邮箱、获取邮件列表和邮件详情。"
+description: >-
+  Temp Mail data assistant via MaxHub API — generate temporary emails,
+  list inbox messages, and read email details.
+  Use when user asks about temp mail, 临时邮箱, disposable email, or email verification.
+  Do NOT use for sensitive or private communications.
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "📧"
     primaryEnv: MAXHUB_API_KEY
@@ -27,251 +31,229 @@ metadata:
 
 # 临时邮箱助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a Temp Mail Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+临时邮箱（一次性邮箱）助手，通过 MaxHub API 提供生成临时邮件地址、查询收件箱与读取邮件详情三件套能力。专注服务于自动化测试、网站注册验证码接收、隐私保护与匿名注册场景，帮助用户在不暴露真实邮箱的前提下完成验证流程。**注意**：本工具会生成新的临时邮箱地址，并非纯只读，且邮件经第三方服务中转，请勿用于接收敏感或私人邮件。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 3 active endpoints **first message** and maintain it throughout the conversation.
+- 📧 **临时邮箱即开即用** — `get_temp_email_address` 一键生成新邮箱地址 + token
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 📥 **收件箱实时查询** — `get_emails_inbox`（token）拉取当前邮箱的全部收件列表
 
-## API Access
+- 📨 **邮件详情读取** — `get_email_by_id`（token + message_id）读取单封邮件正文与附件元数据
 
-Base URL: `https://www.aconfig.cn`
+- 🔐 **Token 权限隔离** — 每次创建的邮箱独立 token，不可跨邮箱访问，防止数据泄露
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- ⚠️ **写入接口隔离** — `get_temp_email_address` 标记为创建型操作，调用前**强制用户确认场景**
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/temp-mail/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🔗 **链式调用图谱** — 3 个端点的字段流字典 + Chain Recipes，明确 token / message_id 在端点间的传递路径
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/temp-mail/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + token 失效处理规则
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| 🔒 非纯只读 | `get_temp_email_address` 是**创建型**接口，调用前**须用户明确确认场景**（仅限非敏感测试 / 注册验证） |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、改版本号、加路径段** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`；邮件正文将经第三方中转，**不得用于敏感 / 私人通信** |
+| 🔑 凭证保护 | API Key 与每次返回的 `token` 不得泄漏至日志或对话；不同邮箱的 token 不可混用 |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-temp-mail.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 创建邮箱 / 查收件箱 / 读邮件 | `references/mail.md` | 临时邮箱地址生成、收件箱列表、邮件详情（3 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + token 字段流 + 错误处理总览 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 3 个端点的硬白名单 + Pre-call 4 步自检协议 |
+| SKILL 版本检查与升级 | `references/update.md` | SkillHub / ClawHub / GitHub 三通道更新 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-temp-mail.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 创建邮箱前**必须**让用户确认使用场景为非敏感
+- ✅ token 是会话凭据，必须在 `get_emails_inbox` / `get_email_by_id` 中复用
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做防参数臆造自检（6 步），重点确认 `token` 与 `message_id` 是否成对出现
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Email Operations** | 邮箱, 邮件, 临时, 获取, email, mail, temp, get | `references/api-email.md` | get_temp_email, get_emails, get_email_by_id |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Email Operations**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 创建邮箱 → 等待收件 → 读取验证码 | `get_temp_email_address` → 轮询 `get_emails_inbox` → `get_email_by_id` | `token` 复用 → `message_id` 接力 |
+| 收件箱实时检查 | `get_emails_inbox`（token） | token 单参 |
+| 单封邮件读取 | `get_email_by_id`（token + message_id） | 必须同 token |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+#### 防臆造自检清单（强制前置步骤）
 
-### Step 4: Plan & Execute
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对 → 有清单外参数 STOP
+4. token 来源溯源（必须来自 `get_temp_email_address` 返回值）→ 编造的 STOP
+5. 全通过才判定"邮件不存在或已过期"
 
-No predefined patterns. Chain endpoints as needed based on user query.
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（`token` / `message_id` 不可混用）
+2. 必填项齐全（`get_email_by_id` 必须 token + message_id 同时传）
+3. 类型与格式严格匹配
+4. 传参方式正确（query string）
+5. 没有 IN 表外的臆造参数
+6. 全通过才按 `message_zh` 排查
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
+#### 轮询最佳实践（接收验证码）
 
-### Step 5: Output Results
+- **轮询间隔**：3–5 秒一次
+- **轮询上限**：建议 5 分钟封顶；超时后提示用户重试或使用其他邮箱
+- **token 失效**：临时邮箱有时效性，超时后需重新调用 `get_temp_email_address` 获取新 token
 
-#### Browse Mode
-Present results concisely with key fields.
+#### SKILL 版本更新
 
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-temp-mail`（国内）或 `clawhub upgrade maxhub-temp-mail`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-temp-mail |
+| 多端点连续 410 | `skillhub upgrade maxhub-temp-mail --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
 
-#### Compare Mode
-Side-by-side table + differential insights.
+### 常用命令速查表
 
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 命令 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 创建临时邮箱 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/temp_mail/v1/get_temp_email_address"` |
+| 查收件箱 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/temp_mail/v1/get_emails_inbox?token=xxx"` |
+| 读邮件详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/temp_mail/v1/get_email_by_id?token=xxx&message_id=yyy"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-temp-mail` 或 `clawhub info maxhub-temp-mail` |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+## 5. 使用场景
 
-### 场景一：隐私保护注册
-- **应用环境**：用户需要在不暴露真实邮箱的情况下完成网站注册
-- **用户需求**：生成一次性临时邮箱接收验证邮件
-- **使用流程**：创建临时邮箱 → 使用邮箱注册 → 接收验证邮件 → 获取邮件内容
-- **预期效果**：保护个人隐私，避免垃圾邮件骚扰
+### 场景一：自动化测试团队接收注册验证码
 
-### 场景二：自动化测试
-- **应用环境**：开发团队进行需要邮箱验证的自动化测试
-- **用户需求**：批量生成临时邮箱，自动接收和读取验证码
-- **使用流程**：创建临时邮箱 → 触发注册流程 → 轮询邮件列表 → 提取验证码
-- **预期效果**：实现邮箱验证流程的全自动化测试
+- **角色**：QA 自动化工程师
+- **需求**：在端到端测试中需要批量注册账号，需要可程序化接收验证码邮件
+- **使用方式**：`get_temp_email_address` 创建邮箱 → 用其作为注册邮箱提交目标系统 → 轮询 `get_emails_inbox` → 命中验证邮件后 `get_email_by_id` 取正文中的验证码
+- **预期收益**：注册场景测试完全无人值守，提升 E2E 测试覆盖率
 
-## Error Handling
+### 场景二：网站注册验证
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+- **角色**：开发者 / 普通用户
+- **需求**：注册非核心服务时不愿暴露常用邮箱
+- **使用方式**：`get_temp_email_address` 取一次性邮箱 → 完成注册 → `get_emails_inbox` 等接收 → `get_email_by_id` 完成验证
+- **预期收益**：避免常用邮箱被营销邮件淹没，提升收件箱信噪比
 
-### 404 错误专项处理
+### 场景三：隐私保护场景
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+- **角色**：隐私敏感用户
+- **需求**：在不可信环境下需要短期接收邮件而不留下身份痕迹
+- **使用方式**：`get_temp_email_address`（用户场景确认后）→ 一次性使用 → 用完不再访问
+- **预期收益**：邮箱不与真实身份绑定，降低数据被聚合的风险（**注意**：仍不适用于敏感 / 法律 / 金融通信）
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+### 场景四：批量薅羊毛 / 多账号测试
 
-### 接口降级与自动切换策略
+- **角色**：增长测试 / 内部多账号测试
+- **需求**：批量为内部测试创建独立邮箱
+- **使用方式**：循环调用 `get_temp_email_address` 生成 N 个 token → 分发给测试账号 → 各自轮询 `get_emails_inbox`
+- **预期收益**：低成本批量构建测试邮箱矩阵，加速增长实验迭代
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
+## 6. 项目架构
 
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-temp-mail/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 3 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + token 字段流 + 错误处理）
+    ├── mail.md                         # 邮件域：邮箱创建 / 收件箱 / 邮件详情（3 端点）
+    └── update.md                       # SKILL 更新机制（SkillHub / ClawHub / GitHub）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET 请求，参数通过 query string 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/temp_mail/v1/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 3 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ token 失效处理 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 邮件（Mail） | 3 | `mail.md` |
+| **合计** | **3** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **创建型接口隔离**：`get_temp_email_address` 单独标记 + 强制场景确认 + 不得用于敏感场景
+- **token 权限模型**：每个临时邮箱独立 token，跨邮箱不可访问，邮件 ID 必须与签发 token 配对使用
+- **错误处理契约**：HTTP 状态码权威定义 + 防臆造自检清单（A: 5 步 / B: 6 步）+ token 失效自动重新创建建议

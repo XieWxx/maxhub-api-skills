@@ -1,10 +1,15 @@
 ---
 name: maxhub-reddit
-description: "Reddit 数据查询助手。覆盖帖子详情、版块、用户、搜索、评论、推荐等全功能。"
+description: >-
+  Query Reddit data via MaxHub API — posts, user profiles, search,
+  subreddits, comments, and trending.
+  Use when user asks about Reddit, subreddit, reddit posts, reddit users,
+  reddit search, or reddit comments.
+  Do NOT use for posting content or account operations (read-only).
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.6.1"
+  version: "3.7.2"
   openclaw:
     emoji: "🤖"
     primaryEnv: MAXHUB_API_KEY
@@ -21,265 +26,256 @@ metadata:
     network:
       - https://www.aconfig.cn
   hermes:
-    tags: ["reddit", "版块", "帖子分析", "评论采集", "用户分析", "社区讨论", "subreddit", "海外论坛", "数据采集"]
+    tags: ["reddit", "版块", "帖子分析", "用户分析", "社区", "搜索", "数据采集"]
     category: productivity
 ---
 
 # Reddit 数据助手
 
-**Get started:** Sign up and get your API key at https://www.aconfig.cn
+## 1. 简介
 
-You are a Reddit Data Assistant. Help users query data via the MaxHub API at https://www.aconfig.cn.
+Reddit 数据查询工具，通过 MaxHub API 接入 Reddit 社区平台，覆盖 Subreddit 版块信息、Home / Popular / Games / News / Explore / Topic 多类 Feed、帖子详情与批量、评论与子回复、用户资料 / 帖子 / 评论 / 奖杯、综合搜索与社区亮点等全部能力。专注服务于海外社区舆情监控、产品反馈采集、Reddit KOL 追踪与趋势话题挖掘业务，帮助用户快速捕捉用户原声、识别上升期 subreddit、量化产品口碑。
 
-**Data disclaimer:** Data obtained through third-party APIs is for reference only.
+## 2. 功能特性
 
-**API coverage:** 13 active endpoints **first message** and maintain it throughout the conversation.
+- 🔴 **帖子全维度查询** — 支持 post_id 单条、批量（小 / 大批量两版）查询帖子完整详情，含 Carousel、视频、点赞、奖章、标签元数据
 
-| User language | Response language | Number format | Example output |
-|---|---|---|---|
-| 中文 | 中文 | 万/亿 (e.g. 1.2亿) | "共找到 1,234 条结果" |
-| English | English | K/M/B (e.g. 120M) | "Found 1,234 results" |
+- 💬 **评论与回复链路** — 一级评论 + 二级回复完整链式调用，支持 `sort_type`（best / top / new / controversial）与 cursor 翻页
 
-## API Access
+- 🏘️ **Subreddit 全景画像** — 版块信息、样式、设置、Feed、Channels、静音检查六大端点，覆盖社区运营所需全部维度
 
-Base URL: `https://www.aconfig.cn`
+- 👤 **用户全景画像** — 用户资料、活跃 Subreddit、用户帖子、用户评论、用户奖杯（Trophies）一站式覆盖
 
-Use the configured `MAXHUB_API_KEY` value as the `Authorization: Bearer` request header.
+- 📰 **多类 Feed 矩阵** — Home / Popular / Games / News / Explore / Topic 六类 Feed 并行，覆盖大众与垂类内容流
 
-```bash
-maxhub_auth_header="Authorization: Bearer ${MAXHUB_API_KEY}"
+- 🔍 **多维度搜索** — 搜索自动补全、动态搜索、社区亮点、热门搜索词四类搜索路径，支持 search_type / sort / time_range 过滤
 
-# GET example
-curl -s "https://www.aconfig.cn/api/v1/reddit/{endpoint}?{params}" \
-  -H "$maxhub_auth_header"
+- 🎯 **Reddit Answers 精简数据** — `fetch_generated_posts` / `fetch_generated_comments` 输出 LLM 友好的精简结构，节省 token
 
-# POST example
-curl -s -X POST "https://www.aconfig.cn/api/v1/reddit/{endpoint}" \
-  -H "$maxhub_auth_header" \
-  -H "Content-Type: application/json" \
-  -d '{...}'
+- 🔗 **链式调用图谱** — 27 端点的字段流字典 + Chain Recipes，明确 post_id / subreddit_name / username / cursor 在端点间的传递路径
+
+- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
+
+- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，5xx 重试 ≤ 1 次避免重复扣配额
+
+- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [MaxHub 控制台](https://www.aconfig.cn) 注册账号并获取 API Key。
+
+#### 配置 API Key
+
+**方案 1：OpenClaw 配置**
+
+将 `MAXHUB_API_KEY` 添加到 `~/.openclaw/openclaw.json` 中：
+
+```json
+{ "env": { "MAXHUB_API_KEY": "ak_xxxx..." } }
 ```
 
-## 🚫 禁止行为（违反将导致 404/400）
+**方案 2：终端环境变量**
 
-以下行为严格禁止，违反一次就浪费用户一次 API 调用：
+```bash
+export MAXHUB_API_KEY="ak_xxxx..."
+```
 
-| 禁止行为 | 正确做法 |
-|----------|----------|
-| ❌ 自行拼接路径（如 `/api/v1/douyin/search/xxx`） | ✅ 使用 Action Table 或 `**Full path:**` 中的路径 |
-| ❌ 猜测参数名（如把 `aweme_id` 写成 `video_id`） | ✅ 使用 Action Table 或 reference 文件中的参数名 |
-| ❌ 假设 v1/v2/v3 参数兼容 | ✅ 降级时重新读取对应版本的参数文档 |
-| ❌ 调用 `fetch_hot_search_list` 或 `app/v3/fetch_video_comments` | ✅ 使用替代端点（见废弃标注） |
-| ❌ 看到 404 后盲目重试 | ✅ 检查路径是否与文档一致，不一致则修正；一致则按降级映射切换 |
+### 依赖安装
 
-**记忆口诀：表里有的直接用，表里没有查 reference，reference 只看 `**Full path:**`**
+本 Skill 不需要额外脚本依赖，所有调用通过 `curl` 完成 HTTP 请求即可，无第三方库依赖。
 
-## 🔒 安全合规声明 / Security & Compliance Declaration
+### 环境变量配置
 
-> - All endpoints in this skill are **legitimate read-only data analysis APIs** provided by the upstream service.
-> - This skill performs **read-only data queries** only. It does NOT execute any write operations, account actions, or platform manipulation.
-> - Endpoints with names containing "encrypt", "decrypt", "generate", "signature", "fingerprint", or "token" are **standard API authentication and data processing utilities** required by the upstream platform's protocol.
-> - `detect_fake_views` is an **anti-fraud analytics tool** that identifies inauthentic engagement, NOT a tool for creating fake engagement.
-> - This skill does NOT perform any unauthorized access, credential theft, platform manipulation, or malicious activity.
-> - 本技能所有接口均为上游服务提供的**合法只读数据分析API**，仅执行**只读数据查询**。
-> - 名称含 "encrypt"/"decrypt"/"generate"/"signature"/"fingerprint"/"token" 的接口是上游平台协议要求的**标准API认证和数据处理工具**。
-> - 本技能不执行任何未授权访问、凭据窃取、平台操纵或恶意活动。
+| 环境变量 | 说明 | 是否必填 | 获取方式 |
+|---|---|---|---|
+| `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
-## Interaction Flow
+## 4. 使用指南
 
-### Step 1: Check API Key
+### 核心约束（强制遵守）
+
+| 规则 | 说明 |
+|------|------|
+| 🔒 只读 | 本技能仅用于数据查询和分析，**不执行写入 / 账户操作（点赞、评论、发帖一律不可）** |
+| 🚫 禁止臆造路径 | 仅使用 `references/endpoints_whitelist.yaml` 中的端点，**不得自行拼接、加版本号、加路径段** |
+| 📋 数据流向第三方 | 所有请求发送至 `https://www.aconfig.cn`，请使用独立测试账号并定期轮换 API Key |
+| 🔑 凭证保护 | 不暴露 API Key、Cookie、Token 至日志或对话 |
+| 🔀 ID 区分 | `subreddit_id`（t5_xxx）与 `subreddit_name`（如 `r/AskReddit`）参数不同名，**严禁混用** |
+
+### 基础使用（4 步完成调用）
+
+**Step 1 — 检查 API Key**
 
 ```bash
 [ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" || echo "missing"
 ```
 
-#### If missing — show setup guide
+若返回 `missing`，停止并提示用户配置 `MAXHUB_API_KEY`。
 
-Chinese user:
+**Step 2 — 匹配意图 → 选择 reference**
 
-> 🔑 需要先配置 MaxHub API Key 才能使用：
->
-> 1. 打开 https://www.aconfig.cn 注册账号
-> 2. 登录后在控制台找到 API Keys，创建一个 Key
-> 3. 选择一种方式配置：
->    - OpenClaw/ClawHub：`openclaw config set skills.entries.maxhub-reddit.apiKey "你的_API_KEY"`
->    - 通用环境变量：`export MAXHUB_API_KEY="你的_API_KEY"`
-> 4. 配置完成后重新发起查询 ✅
+按用户目标从下表选择对应 reference 文件，每个文件自包含其领域的全部端点定义：
 
-English user:
+| 用户目标 | 加载文件 | 覆盖范围 |
+|---------|---------|---------|
+| 查 Feed / 帖子详情 / 评论 / 回复 / 精简数据 | `references/content.md` | Home/Popular/Games/News/Explore/Topic Feed、帖子详情、评论、回复、Reddit Answers（13 端点） |
+| 查 Subreddit / 信息 / 设置 / Feed / 频道 / 静音 | `references/subreddit.md` | 版块样式、Channels、信息、设置、Feed、静音检查（6 端点） |
+| 查用户 / 帖子 / 评论 / 奖杯 / 活跃社区 | `references/user.md` | 用户资料、活跃 Subreddit、用户帖子、用户评论、奖杯（5 端点） |
+| 搜索 / 自动补全 / 社区亮点 / 热门搜索 | `references/search.md` | 搜索自动补全、动态搜索、社区亮点、热门搜索（4 端点） |
+| 跨端点参数查询 / 字段流追溯 | `references/param-mappings.md` | 全局红线 + 端点路由 + 字段流字典 + 错误处理总览 |
+| 路径白名单硬校验 | `references/endpoints_whitelist.yaml` | 28 端点的硬白名单 + Pre-call 4 步自检协议 |
 
-> 🔑 You need a MaxHub API Key to get started:
->
-> 1. Go to https://www.aconfig.cn and sign up
-> 2. Find API Keys in your dashboard and create one
-> 3. Choose one setup method:
->    - OpenClaw/ClawHub: `openclaw config set skills.entries.maxhub-reddit.apiKey "YOUR_API_KEY"`
->    - Generic: `export MAXHUB_API_KEY="YOUR_API_KEY"`
-> 4. Run your query again after setup ✅
+**Step 3 — 构建最小调用计划**
 
-### Step 1.5: Complexity Classification
+- ✅ 优先使用最少端点完成任务，能用一个端点就不用两个
+- ✅ 用户全景分析建议优先 `fetch_user_profile` 单点试探，再决定是否拉评论 / 帖子
+- ❌ 禁止"先 head/tail 试运行"或"先调一个看看"等探索性调用
 
-| Complexity | Criteria | Path |
-|---|---|---|
-| **Simple** | Exactly 1 API call | Skill handles directly |
-| **Deep** | 2+ API calls; analysis, comparison | Multi-endpoint orchestration |
+**Step 4 — 执行并验证**
 
-### Step 2: Route — Classify Intent & Load Reference
+- 调用前比对 `endpoints_whitelist.yaml` 完成 4 步 Pre-call 自检（路径 → method → 必填 → 写入确认）
+- 收到 **404** → 必须先做 §3.1 (A) 防路径臆造自检（5 步）
+- 收到 **400 / 422** → 必须先做 §3.1 (B) 防参数臆造自检（6 步）
+- 收到 **业务 code != 0** → 读 `message_zh` 报告用户，**不重试**
 
-| Intent Group | Trigger signals | Reference file | Key endpoints |
-|---|---|---|---|
-| **Post Data** | 帖子, 详情, 批量, post, detail, batch, large, single | `references/api-post.md` | fetch_post_details_batch_large, fetch_post_details_batch, fetch_post_comments, fetch_subreddit_post_channels, fetch_community_highlights, fetch_post_details |
-| **Subreddit** | 版块, 规则, 样式, 频道, subreddit, rules, style, channel, info, feed, hot, new, rising, top | `references/api-subreddit.md` | fetch_popular_feed, fetch_games_feed, fetch_subreddit_style, fetch_news_feed, fetch_home_feed |
-| **User & Search** | 用户, 搜索, user, search, overview, comments, submissions | `references/api-user-search.md` | fetch_user_profile, fetch_comment_replies |
-| **Deep Dive** | 全面分析, 深度分析, 综合报告, full analysis | Multiple files | Multi-endpoint orchestration |
+### 高级使用
 
-**Rules:**
-- If uncertain, default to **Post Data**.
-- For **Deep Dive**, read reference files incrementally.
+#### 链式调用图谱（Chain Recipes）
 
-### Step 3: Classify Action Mode
+| 用户场景 | 链路 | 字段流 |
+|---------|------|-------|
+| 搜索 → 帖子详情 | `fetch_dynamic_search` → `fetch_post_details` | `query` → `post_id` |
+| 查帖子 + 评论 + 回复 | `fetch_post_details` → `fetch_post_comments` → `fetch_comment_replies` | `post_id` + `cursor` 接力 |
+| 查 Subreddit + Feed | `fetch_subreddit_info` → `fetch_subreddit_feed` → `fetch_post_details` | `subreddit_name` → `post_id` |
+| 查 Subreddit + 设置 | `fetch_subreddit_info` → `fetch_subreddit_settings` | `subreddit_id`（t5_xxx）接力 |
+| 查用户 → 帖子 + 评论 | `fetch_user_profile` → `fetch_user_posts` + `fetch_user_comments` + `fetch_user_active_subreddits` | `username` 复用 |
+| Explore → Topic Feed | `fetch_explore_feed` → `fetch_topic_feed` | `topic_id` 接力 |
+| 批量帖子精简数据 | `fetch_post_details_batch` → `fetch_generated_posts` | `post_ids` 复用，输出 LLM 友好结构 |
 
-| Mode | Signal | Behavior |
-|---|---|---|
-| **Browse** | "搜", "找", "看看", "search", "find", "show me" | Single query, return results + summary |
-| **Analyze** | "分析", "趋势", "why", "analyze", "trend" | Query + structured analysis |
-| **Compare** | "对比", "vs", "区别", "compare" | Multiple queries, side-by-side comparison |
+> ⚠️ **ID 陷阱**：Reddit 同时存在 `subreddit_id`（前缀 `t5_`，用于 settings / muted / community_highlights）与 `subreddit_name`（如 `AskReddit`，用于 Feed / info / channels），**两类 ID 不可互换**。
 
-### Step 4: Plan & Execute
+#### 防臆造自检清单（强制前置步骤）
 
-No predefined patterns. Chain endpoints as needed based on user query.
+**收到 404 时（A）**：
+1. 路径白名单逐字符比对 → 不在清单中 STOP
+2. Method 比对 → 不等 STOP
+3. 参数键名比对（重点核对 `subreddit_id` vs `subreddit_name`）→ 有清单外参数 STOP
+4. 资源 ID 来源溯源 → Agent 编造的 STOP
+5. 全通过才判定"上游资源不存在"
 
-**Execution rules:**
-- Execute all planned queries autonomously.
-- Run independent queries in parallel when possible.
-- If a step fails with 403, skip it and note the limitation.
-- If a step fails with 502, retry once.
-- If a step returns empty data, say so honestly.
+**收到 400 / 422 时（B）**：
+1. 参数名严格比对（`post_id` 不带 `t3_` 前缀；`subreddit_id` 必带 `t5_` 前缀）
+2. 必填项齐全（`fetch_comment_replies` 需 `post_id` + `cursor` 双必填）
+3. 类型与格式严格匹配（sort 枚举 / time_range 枚举）
+4. 传参方式正确（query vs body）
+5. 没有清单外的臆造参数（如把 Reddit 原生 API 的 `limit` 用到 MaxHub 的 `page_size`）
+6. 全通过才按 `message_zh` 排查
 
-### Step 5: Output Results
+#### Reddit Answers 精简数据建议
 
-#### Browse Mode
-Present results concisely with key fields.
-
-#### Analyze Mode
-Tables for rankings, bullet points for insights. End with **Key findings**.
-
-#### Compare Mode
-Side-by-side table + differential insights.
-
-### Step 6: Follow-up Handling
-
-| Follow-up | Action |
+| 场景 | 推荐用法 |
 |---|---|
-| "next page" / "下一页" | Same params, page/cursor +1 |
-| "analyze" / "分析一下" | Switch to analyze mode |
-| "compare with X" / "和X对比" | Add X as second query |
+| 给 LLM 做摘要 | 用 `fetch_generated_posts` / `fetch_generated_comments`，自动剥离冗余字段 |
+| 全量审计 / 数据归档 | 用 `fetch_post_details_batch` / `fetch_post_details_batch_large`，保留全字段 |
+| 单帖深读 | 用 `fetch_post_details`，含 `include_comment_id` 锚定具体评论 |
 
-## Response Guidelines
-1. **Language consistency** — ALL output matches user's detected language.
-2. **Markdown links** — All URLs in `[text](url)` format.
-3. **Humanize numbers** — English: K/M/B. Chinese: 万/亿.
-4. **End with next-step hints** — Contextual suggestions.
-5. **Data-driven** — Base conclusions on actual API data.
-6. **Credential handling** — Keep API key values out of output.
-7. **Strip HTML tags** — API may return HTML in name fields.
-## 🎯 适配场景
+#### SKILL 版本更新
+
+| 触发条件 | 推荐操作 |
+|---------|---------|
+| 合法路径持续 404 / 410 | `skillhub upgrade maxhub-reddit`（国内）或 `clawhub upgrade maxhub-reddit`（国际） |
+| 用户问"版本是多少" | 当前版本 v3.7.2，访问 https://skillhub.cn/skills/maxhub-reddit |
+| 多端点连续 410 | `skillhub upgrade maxhub-reddit --force` |
+| 401 / 402 / 403 | **不是版本问题**，去 https://www.aconfig.cn/console 处理 |
+
+### 常用命令速查表
+
+| 场景 | 命令 |
+|---|---|
+| 查 API Key | `[ -n "${MAXHUB_API_KEY:-}" ] && echo "ok" \|\| echo "missing"` |
+| 查帖子详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/reddit/app/fetch_post_details?post_id=xxx"` |
+| 查帖子评论 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/reddit/app/fetch_post_comments?post_id=xxx"` |
+| 查 Subreddit Feed | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/reddit/app/fetch_subreddit_feed?subreddit_name=AskReddit"` |
+| 查用户资料 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/reddit/app/fetch_user_profile?username=xxx"` |
+| 检查 SKILL 更新 | `skillhub info maxhub-reddit` 或 `clawhub info maxhub-reddit` |
+
+## 5. 使用场景
 
 ### 场景一：海外社区舆情监控
-- **应用环境**：品牌出海团队监控Reddit上的品牌讨论
-- **用户需求**：追踪英文社区中的品牌提及、用户反馈和舆论走向
-- **使用流程**：搜索品牌关键词 → 获取相关帖子 → 分析评论情感 → 生成舆情报告
-- **预期效果**：及时发现海外市场的品牌声誉风险和用户需求
 
-### 场景二：行业趋势研究
-- **应用环境**：研究团队通过Reddit了解海外行业动态
-- **用户需求**：获取行业版块的讨论热点和专业观点
-- **使用流程**：获取目标版块信息 → 拉取热门帖子 → 分析讨论趋势 → 生成研究报告
-- **预期效果**：获取一手海外行业信息和用户真实反馈
+- **角色**：跨境品牌公关 / 舆情分析师
+- **需求**：实时监控品牌相关 subreddit 与关键词下的负面 / 爆款帖子
+- **使用方式**：`fetch_dynamic_search` 关键词搜索 → 取 post_id → `fetch_post_details` 取详情 + `fetch_post_comments` 深挖评论；并行 `fetch_subreddit_feed` 监控自有品牌专属版块
+- **预期收益**：第一时间发现负面舆情与口碑爆款，关键事件响应提速
 
-### 场景三：社区内容挖掘
-- **应用环境**：内容团队从Reddit获取创作灵感和素材
-- **用户需求**：发现高互动内容和热门讨论话题
-- **使用流程**：浏览热门推荐 → 获取帖子详情 → 分析评论观点 → 提炼创作素材
-- **预期效果**：基于真实社区讨论创作高共鸣内容
+### 场景二：产品反馈与用户原声采集
 
-## Error Handling
+- **角色**：海外 SaaS 产品经理 / 用户研究员
+- **需求**：从 r/SaaS、r/productivity 等版块批量采集用户对产品类型的真实反馈
+- **使用方式**：`fetch_subreddit_feed` 翻页取热门帖 → `fetch_post_details_batch` 批量补详情 → `fetch_generated_comments` 输出精简评论喂给 LLM 做主题聚类
+- **预期收益**：构建可量化的用户原声库，反向输入产品迭代与营销文案
 
-| Error | Response |
-|---|---|
-| 400 Bad Request | "参数错误 / Bad request parameters" |
-| 401 Unauthorized | "API Key 无效 / API Key is invalid" |
-| 403 Forbidden | "权限不足 / Insufficient permissions" |
-| 404 Not Found | "接口地址错误或已下线，请检查调用路径是否与文档一致 / Endpoint not found — verify URL matches documentation" |
-| 429 Rate Limit | "请求过快 / Too many requests" |
-| 500 Server Error | "服务器不可用 / Server unavailable" |
-| Empty results |
+### 场景三：Reddit KOL / 优质用户追踪
 
-### 404 错误专项处理
+- **角色**：海外 KOL 投放 / 社区营销
+- **需求**：追踪垂类 subreddit 中的高活跃用户，评估其内容质量与受众影响力
+- **使用方式**：从 `fetch_subreddit_feed` 抽取高赞帖作者 → `fetch_user_profile` + `fetch_user_active_subreddits` 看活跃度 → `fetch_user_posts` + `fetch_user_comments` + `fetch_user_trophies` 评估历史贡献
+- **预期收益**：构建 KOL 评分体系，识别有真实影响力（非僵尸号）的合作候选
 
-当 API 调用返回 **404 Not Found** 时，按以下流程处理：
+### 场景四：趋势话题挖掘与选题输入
 
-1. **验证调用地址**：检查实际调用的 URL 路径是否与 references 文档中 `**Full path:**` 标注的路径**完全一致**
-2. **常见 404 原因**：
-   - ❌ 自行拼接或猜测接口路径（如将 `app_v2` 写成 `app`，或遗漏版本号）
-   - ❌ 使用了已废弃/下线的接口路径
-   - ❌ 路径中缺少必要的子路径段（如 `/api/v1/xiaohongshu/web/fetch_note_comments` 误写为 `/api/v1/xiaohongshu/fetch_note_comments`）
-3. **处理方式**：
-   - 如果地址与文档不一致 → 修正为文档中的正确地址后重新调用
-   - 如果地址与文档一致但仍 404 → 该接口可能已下线，按「接口降级策略」切换到替代版本
-   - 如果所有替代版本均 404 → 向用户说明该功能暂时不可用
+- **角色**：内容运营 / 跨境媒体编辑
+- **需求**：每日识别 Reddit 全站与垂类的趋势话题，输入到内容选题系统
+- **使用方式**：`fetch_trending_searches` 取全站热搜词 → `fetch_explore_feed` 取多元话题 → `fetch_topic_feed` 按 topic_id 深挖 → 对热帖 `fetch_post_details` 取上下文
+- **预期收益**：建立每日趋势话题简报，选题领先 24–48 小时，跨境媒体首发率提升
 
-### 接口降级与自动切换策略
+## 6. 项目架构
 
-当按照文档正确传参后，接口仍返回错误时，按以下策略自动切换到替代接口：
-
-#### 降级触发条件
-
-| 错误码 | 是否触发降级 | 说明 |
-|--------|-------------|------|
-| 400 Bad Request | ❌ 不降级 | 参数格式错误，需修正参数 |
-| 401 Unauthorized | ❌ 不降级 | API Key 无效，需检查配置 |
-| 403 Forbidden | ❌ 不降级 | 权限不足 |
-| 404 Not Found | ✅ **触发降级** | 接口可能已下线，切换到替代版本 |
-| 422 Unprocessable | ❌ 不降级 | 参数验证失败，需修正参数格式 |
-| 429 Rate Limit | ❌ 不降级 | 延迟 5 秒后重试同一接口，最多 1 次 |
-| 500 Server Error | ✅ **触发降级** | 服务器故障，切换到替代版本 |
-| 410 Gone | ✅ **触发降级** | 接口已废弃，切换到替代版本 |
-
-#### 降级执行流程
+### 目录结构
 
 ```
-1. 调用接口 A（最高优先级版本）
-   ↓ 失败（404/500/410）
-2. 查找功能相同的替代接口 B（下一优先级版本）
-   ↓ 按替代接口的参数格式重新构造请求
-3. 调用接口 B
-   ↓ 成功 → 返回结果
-   ↓ 失败 → 继续降级到接口 C
-4. 所有替代接口均失败 → 向用户报告：
-   "该功能当前不可用，已尝试 X 个替代接口均失败。
-    最后一次错误：[错误信息]。
-    建议：[替代方案或稍后重试]"
+maxhub-reddit/
+├── SKILL.md                            # Skill 定义与使用文档（本文件）
+├── README.md                           # 英文项目说明
+├── README_CN.md                        # 中文项目说明
+├── _meta.json                          # 版本元信息（version: 3.7.2）
+└── references/
+    ├── endpoints_whitelist.yaml        # 28 端点路径硬白名单 + Pre-call 4 步自检协议
+    ├── param-mappings.md               # 中枢索引（全局红线 + 字段流字典 + 错误处理）
+    ├── content.md                      # 内容域：Feed/帖子/评论/回复/精简数据（13 端点）
+    ├── subreddit.md                    # 版块域：信息/样式/设置/Feed/Channels/静音（6 端点）
+    ├── user.md                         # 用户域：资料/活跃社区/帖子/评论/奖杯（5 端点）
+    └── search.md                       # 搜索域：自动补全/动态搜索/社区亮点/热门搜索（4 端点）
 ```
 
-#### 已知降级映射
+### 技术栈
 
-404/500/410 时，按此表切换到替代端点。每个映射都经过验证，不要自己发明降级路径。
+| 组件 | 技术 | 说明 |
+|------|------|------|
+| 调用方式 | `curl` + Bearer Token | HTTP GET 请求，参数通过 query string 传递 |
+| 数据接口 | MaxHub API | `https://www.aconfig.cn/api/v1/reddit/app/*`，通过 `MAXHUB_API_KEY` 鉴权 |
+| 路径校验 | YAML 硬白名单 | `endpoints_whitelist.yaml` 提供 28 端点的逐字符校验 + 4 步 Pre-call 协议 |
+| 错误处理 | 决策表 + 自检清单 | HTTP 状态码权威定义 + 防臆造自检（A/B 双轨）+ 端点替换矩阵 |
+| 输出格式 | JSON Standard MaxHub Response | `{code, message, message_zh, data, cache_url}` |
+| 更新通道 | SkillHub / ClawHub / GitHub | 国内 ⭐⭐⭐ SkillHub（腾讯云 CDN）/ 国际 ⭐⭐⭐ ClawHub / 降级 GitHub |
 
-| 失败端点 | 失败原因 | 降级端点 | 降级路径 | 注意事项 |
-|----------|----------|----------|----------|----------|
-| fetch_one_video_v3 | 404 | fetch_one_video_v2 | GET /api/v1/douyin/app/v3/fetch_one_video_v2 | 参数格式相同 |
-| fetch_one_video_v2 | 404 | fetch_one_video | GET /api/v1/douyin/app/v3/fetch_one_video | 参数格式相同 |
-| fetch_general_search_v1 | 500 | fetch_general_search_v2 | POST /api/v1/douyin/search/fetch_general_search_v2 | 参数格式相同 |
-| handler_user_profile_v4 | 404 | handler_user_profile_v3 | GET /api/v1/douyin/app/v3/handler_user_profile_v3 | 参数格式相同 |
+### API 覆盖范围
 
-> 废弃端点（文档标注 ⛔）不在降级范围内——它们已永久不可用，应使用替代端点。
+| 领域 | 端点数 | Reference 文件 |
+|------|--------|---------------|
+| 内容（Feed / Posts / Comments / Generated） | 13 | `content.md` |
+| 版块（Subreddit） | 6 | `subreddit.md` |
+| 用户（User） | 5 | `user.md` |
+| 搜索（Search） | 4 | `search.md` |
+| **合计** | **28** | — |
 
-#### 降级注意事项
+### 关键设计理念
 
-- 切换接口时，**必须**按新接口的参数格式重新构造请求，不同版本的参数名可能不同
-- 降级调用前，先读取替代接口的 references 文档确认参数
-- 最多降级 3 次（即最多尝试 4 个不同版本的接口）
-- 降级调用成功后，在响应中标注实际使用的接口版本
-
- "未找到数据，建议放宽条件 / No data, try broader params" |
+- **防臆造四道闸**：白名单（endpoints_whitelist.yaml）→ 强标记（Full path）→ 禁止规则（Forbidden）→ 错误反馈（STOP）
+- **ID 双轨制**：`subreddit_id`（t5_xxx）与 `subreddit_name`（AskReddit）严格区分，每个端点明确标注必填项类型
+- **链式调用图谱**：字段流字典 + Chain Recipes + 跨 reference 链路三层联动，重点防护 post_id / cursor / subreddit ID 接力陷阱
+- **错误处理契约**：HTTP 状态码权威定义 + §3.1 防臆造自检清单（A: 5 步 / B: 6 步）+ 端点替换矩阵

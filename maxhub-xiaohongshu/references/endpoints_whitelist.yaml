@@ -1,0 +1,294 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-xiaohongshu
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Notes (note.md) — App V2 ==========
+  - id: get_image_note_detail
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_image_note_detail
+    risk: low
+    required: { oneOf: [note_id, share_text] }
+    optional: []
+
+  - id: get_video_note_detail
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_video_note_detail
+    risk: low
+    required: { oneOf: [note_id, share_text] }
+    optional: []
+
+  - id: get_note_comments
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_note_comments
+    risk: low
+    required: { oneOf: [note_id, share_text] }
+    optional: [cursor, index, pageArea, sort_strategy]
+
+  - id: get_note_sub_comments
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_note_sub_comments
+    risk: low
+    required: [comment_id]
+    optional: [note_id, share_text, cursor, index]
+
+  # ========== Notes (note.md) — Web V2 ==========
+  - id: fetch_feed_notes
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_feed_notes
+    risk: low
+    required: [note_id]
+    optional: [share_text]
+
+  - id: fetch_feed_notes_v2
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_feed_notes_v2
+    risk: low
+    required: [note_id]
+    optional: [share_text]
+
+  - id: fetch_note_comments_web_v2
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_note_comments
+    risk: low
+    required: [note_id]
+    optional: [cursor]
+
+  - id: fetch_sub_comments_web_v2
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_sub_comments
+    risk: low
+    required: [note_id, comment_id]
+    optional: [cursor]
+
+  # ========== Notes (note.md) — Web V3 ==========
+  - id: fetch_note_detail
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_note_detail
+    risk: low
+    required: [note_id, xsec_token]
+    optional: []
+
+  - id: fetch_note_comments_web_v3
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_note_comments
+    risk: low
+    required: [note_id, xsec_token]
+    optional: [cursor]
+
+  - id: fetch_sub_comments_web_v3
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_sub_comments
+    risk: low
+    required: [note_id, root_comment_id, xsec_token]
+    optional: [num, cursor]
+
+  # ========== Users (user.md) — App V2 ==========
+  - id: get_user_info
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_user_info
+    risk: low
+    required: { oneOf: [user_id, share_text] }
+    optional: []
+
+  - id: get_user_posted_notes
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_user_posted_notes
+    risk: low
+    required: { oneOf: [user_id, share_text] }
+    optional: [cursor]
+
+  - id: get_user_faved_notes
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_user_faved_notes
+    risk: low
+    required: { oneOf: [user_id, share_text] }
+    optional: [cursor]
+
+  # ========== Users (user.md) — Web V2 ==========
+  - id: fetch_home_notes_app
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_home_notes_app
+    risk: low
+    required: [user_id]
+    optional: [cursor]
+
+  - id: fetch_user_info_app
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_user_info_app
+    risk: low
+    required: [user_id]
+    optional: []
+
+  # ========== Users (user.md) — Web V3 ==========
+  - id: fetch_user_info
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_user_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: fetch_user_notes
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_user_notes
+    risk: low
+    required: [user_id]
+    optional: [cursor, num]
+
+  # ========== Search (search.md) — App V2 ==========
+  - id: search_notes
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/search_notes
+    risk: low
+    required: [keyword]
+    optional: [page, sort_type, note_type, time_filter, search_id, search_session_id, source, ai_mode]
+
+  - id: search_users
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/search_users
+    risk: low
+    required: [keyword]
+    optional: [page, search_id, source]
+
+  - id: search_images
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/search_images
+    risk: low
+    required: [keyword]
+    optional: [page, search_id, search_session_id, word_request_id, source]
+
+  - id: search_products
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/search_products
+    risk: low
+    required: [keyword]
+    optional: [page, search_id, source]
+
+  - id: search_groups
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/search_groups
+    risk: low
+    required: [keyword]
+    optional: [page_no, search_id, source, is_recommend]
+
+  # ========== Search (search.md) — Web V2 ==========
+  - id: fetch_hot_list
+    method: GET
+    path: /api/v1/xiaohongshu/web_v2/fetch_hot_list
+    risk: low
+    required: []
+    optional: []
+
+  # ========== Search (search.md) — Web V3 ==========
+  - id: fetch_search_notes
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_search_notes
+    risk: low
+    required: [keyword]
+    optional: [page, sort, note_type]
+
+  - id: fetch_search_users
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_search_users
+    risk: low
+    required: [keyword]
+    optional: [page]
+
+  - id: fetch_trending
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_trending
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_search_suggest
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_search_suggest
+    risk: low
+    required: []
+    optional: [keyword]
+
+  - id: fetch_homefeed
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_homefeed
+    risk: low
+    required: []
+    optional: [num, cursor_score, category, need_filter_image]
+
+  - id: fetch_homefeed_categories
+    method: GET
+    path: /api/v1/xiaohongshu/web_v3/fetch_homefeed_categories
+    risk: low
+    required: []
+    optional: []
+
+  # ========== Products & Topics (product.md) — App V2 ==========
+  - id: get_product_detail
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_product_detail
+    risk: low
+    required: [sku_id]
+    optional: [source, pre_page]
+
+  - id: get_product_review_overview
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_product_review_overview
+    risk: low
+    required: [sku_id]
+    optional: [tab]
+
+  - id: get_product_reviews
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_product_reviews
+    risk: low
+    required: [sku_id]
+    optional: [page, sort_strategy_type, share_pics_only, from_page]
+
+  - id: get_product_recommendations
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_product_recommendations
+    risk: low
+    required: [sku_id]
+    optional: [cursor_score, region]
+
+  - id: get_topic_info
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_topic_info
+    risk: low
+    required: [page_id]
+    optional: [source, note_id]
+
+  - id: get_topic_feed
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_topic_feed
+    risk: low
+    required: [page_id]
+    optional: [sort, cursor_score, last_note_id, last_note_ct, session_id, first_load_time, source]
+
+  - id: get_creator_inspiration_feed
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_creator_inspiration_feed
+    risk: low
+    required: []
+    optional: [cursor, tab, source]
+
+  - id: get_creator_hot_inspiration_feed
+    method: GET
+    path: /api/v1/xiaohongshu/app_v2/get_creator_hot_inspiration_feed
+    risk: low
+    required: []
+    optional: [cursor]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

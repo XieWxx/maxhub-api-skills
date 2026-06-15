@@ -1,0 +1,315 @@
+# Hard whitelist for path validation.
+# Agent MUST verify the requested path against this file BYTE-BY-BYTE before calling.
+# Any path NOT listed here is INVALID — STOP and report "Unknown API path".
+# Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
+
+skill: maxhub-bilibili
+version: "3.7.2"
+base_url: https://www.aconfig.cn
+
+endpoints:
+  # ========== Video (video.md) ==========
+  - id: fetch_one_video_app
+    method: GET
+    path: /api/v1/bilibili/app/fetch_one_video
+    risk: low
+    required: { oneOf: [av_id, bv_id] }
+    optional: []
+
+  - id: fetch_one_video_web
+    method: GET
+    path: /api/v1/bilibili/web/fetch_one_video
+    risk: low
+    required: [bv_id]
+    optional: []
+
+  - id: fetch_one_video_v2
+    method: GET
+    path: /api/v1/bilibili/web/fetch_one_video_v2
+    risk: low
+    required: [a_id, c_id]
+    optional: []
+
+  - id: fetch_one_video_v3
+    method: GET
+    path: /api/v1/bilibili/web/fetch_one_video_v3
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: fetch_video_detail
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_detail
+    risk: low
+    required: [aid]
+    optional: []
+
+  - id: fetch_video_play_info
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_play_info
+    risk: low
+    required: [url]
+    optional: []
+
+  - id: fetch_video_playurl
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_playurl
+    risk: low
+    required: [bv_id, cid]
+    optional: []
+
+  - id: fetch_vip_video_playurl
+    method: POST
+    path: /api/v1/bilibili/web/fetch_vip_video_playurl
+    risk: high
+    requires_user_confirmation: true
+    write_operation: true
+    required: [bv_id, cid, cookie]
+    optional: []
+
+  - id: fetch_video_subtitle
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_subtitle
+    risk: low
+    required: [a_id, c_id]
+    optional: []
+
+  - id: fetch_video_parts
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_parts
+    risk: low
+    required: [bv_id]
+    optional: []
+
+  - id: bv_to_aid
+    method: GET
+    path: /api/v1/bilibili/web/bv_to_aid
+    risk: low
+    required: [bv_id]
+    optional: []
+
+  # ========== User (user.md) ==========
+  - id: fetch_user_info_app
+    method: GET
+    path: /api/v1/bilibili/app/fetch_user_info
+    risk: low
+    required: [user_id]
+    optional: []
+
+  - id: fetch_user_videos_app
+    method: GET
+    path: /api/v1/bilibili/app/fetch_user_videos
+    risk: low
+    required: [user_id]
+    optional: [post_filter, page, ps]
+
+  - id: fetch_user_profile
+    method: GET
+    path: /api/v1/bilibili/web/fetch_user_profile
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: fetch_user_up_stat
+    method: GET
+    path: /api/v1/bilibili/web/fetch_user_up_stat
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: fetch_user_relation_stat
+    method: GET
+    path: /api/v1/bilibili/web/fetch_user_relation_stat
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: fetch_user_post_videos
+    method: GET
+    path: /api/v1/bilibili/web/fetch_user_post_videos
+    risk: low
+    required: [uid]
+    optional: [pn, order]
+
+  - id: fetch_user_dynamic
+    method: GET
+    path: /api/v1/bilibili/web/fetch_user_dynamic
+    risk: low
+    required: [uid]
+    optional: [offset]
+
+  - id: fetch_dynamic_detail
+    method: GET
+    path: /api/v1/bilibili/web/fetch_dynamic_detail
+    risk: low
+    required: [dynamic_id]
+    optional: []
+
+  - id: fetch_dynamic_detail_v2
+    method: GET
+    path: /api/v1/bilibili/web/fetch_dynamic_detail_v2
+    risk: low
+    required: [dynamic_id]
+    optional: []
+
+  - id: fetch_get_user_id
+    method: GET
+    path: /api/v1/bilibili/web/fetch_get_user_id
+    risk: low
+    required: [share_link]
+    optional: []
+
+  # ========== Search (search.md) ==========
+  - id: fetch_search_all
+    method: GET
+    path: /api/v1/bilibili/app/fetch_search_all
+    risk: low
+    required: [keyword]
+    optional: [page, page_size, order]
+
+  - id: fetch_search_by_type
+    method: GET
+    path: /api/v1/bilibili/app/fetch_search_by_type
+    risk: low
+    required: [keyword]
+    optional: [search_type, page, page_size, order]
+
+  - id: fetch_home_feed
+    method: GET
+    path: /api/v1/bilibili/app/fetch_home_feed
+    risk: low
+    required: []
+    optional: [idx, flush, pull]
+
+  - id: fetch_popular_feed
+    method: GET
+    path: /api/v1/bilibili/app/fetch_popular_feed
+    risk: low
+    required: []
+    optional: [idx, last_param]
+
+  - id: fetch_cinema_tab
+    method: GET
+    path: /api/v1/bilibili/app/fetch_cinema_tab
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_bangumi_tab
+    method: GET
+    path: /api/v1/bilibili/app/fetch_bangumi_tab
+    risk: low
+    required: []
+    optional: []
+
+  - id: fetch_hot_search
+    method: GET
+    path: /api/v1/bilibili/web/fetch_hot_search
+    risk: low
+    required: [limit]
+    optional: []
+
+  - id: fetch_general_search
+    method: GET
+    path: /api/v1/bilibili/web/fetch_general_search
+    risk: low
+    required: [keyword, order, page, page_size]
+    optional: [duration, pubtime_begin_s, pubtime_end_s]
+
+  - id: fetch_com_popular
+    method: GET
+    path: /api/v1/bilibili/web/fetch_com_popular
+    risk: low
+    required: []
+    optional: [pn]
+
+  # ========== Comments (comments.md) ==========
+  - id: fetch_video_comments_app
+    method: GET
+    path: /api/v1/bilibili/app/fetch_video_comments
+    risk: low
+    required: { oneOf: [av_id, bv_id] }
+    optional: [mode, next_offset]
+
+  - id: fetch_reply_detail
+    method: GET
+    path: /api/v1/bilibili/app/fetch_reply_detail
+    risk: low
+    required: [root]
+    optional: [av_id, bv_id, next_offset, ps]
+
+  - id: fetch_video_comments_web
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_comments
+    risk: low
+    required: [bv_id]
+    optional: [pn]
+
+  - id: fetch_comment_reply
+    method: GET
+    path: /api/v1/bilibili/web/fetch_comment_reply
+    risk: low
+    required: [bv_id, rpid]
+    optional: [pn]
+
+  - id: fetch_video_danmaku
+    method: GET
+    path: /api/v1/bilibili/web/fetch_video_danmaku
+    risk: low
+    required: [cid]
+    optional: []
+
+  # ========== Live (live.md) ==========
+  - id: fetch_live_room_detail
+    method: GET
+    path: /api/v1/bilibili/web/fetch_live_room_detail
+    risk: low
+    required: [room_id]
+    optional: []
+
+  - id: fetch_live_videos
+    method: GET
+    path: /api/v1/bilibili/web/fetch_live_videos
+    risk: low
+    required: [room_id]
+    optional: []
+
+  - id: fetch_live_streamers
+    method: GET
+    path: /api/v1/bilibili/web/fetch_live_streamers
+    risk: low
+    required: [area_id]
+    optional: [pn]
+
+  - id: fetch_all_live_areas
+    method: GET
+    path: /api/v1/bilibili/web/fetch_all_live_areas
+    risk: low
+    required: []
+    optional: []
+
+  # ========== Collections (collections.md) ==========
+  - id: fetch_collect_folders
+    method: GET
+    path: /api/v1/bilibili/web/fetch_collect_folders
+    risk: low
+    required: [uid]
+    optional: []
+
+  - id: fetch_user_collection_videos
+    method: GET
+    path: /api/v1/bilibili/web/fetch_user_collection_videos
+    risk: low
+    required: [folder_id]
+    optional: [pn]
+
+# ===== Pre-call verification protocol =====
+# Before EVERY API call, the assistant MUST silently verify:
+# 1. Does the exact path string equal one of `endpoints[].path`? If NO → STOP.
+# 2. Does the HTTP method match the matching entry's `method`? If NO → STOP.
+# 3. Are all `required` params present? If NO → STOP, ask user / reread reference.
+#    - For `oneOf` required params (e.g. { oneOf: [av_id, bv_id] }),
+#      exactly ONE must be provided — not zero, not both.
+# 4. If `risk: high` or `requires_user_confirmation: true`, has user explicitly
+#    confirmed all params? If NO → STOP, ask user to confirm.
+# Only proceed when ALL 4 checks pass.

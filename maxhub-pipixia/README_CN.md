@@ -1,14 +1,17 @@
-# 皮皮虾数据助手
+# 皮皮虾 数据助手
 
 [English](README.md)
 
-皮皮虾数据查询助手。覆盖作品详情、用户数据、搜索、热搜、评论、话题等全功能。
+皮皮虾帖子、用户、搜索、热搜、话题、评论数据查询助手。通过 MaxHub API 提供 17 个端点，覆盖 2 个功能领域。
 
 ## 功能
 
-- **作品与用户** — fetch_single_video, fetch_post_statistics, fetch_post_comments, fetch_user_info, fetch_user_posts, fetch_user_following, fetch_user_followers
-- **搜索与热搜** — fetch_search, fetch_hot_search_board_list, fetch_hot_search_board_detail, fetch_hot_search_words, fetch_hashtag_detail, fetch_hashtag_posts, fetch_home_feed, fetch_home_short_drama
-- **工具** — generate_short_url, increase_post_view_count
+| 领域 | 参考文件 | 覆盖内容 | 端点数 |
+|------|---------|---------|--------|
+| 用户 | `references/user.md` | 用户信息、帖子列表、粉丝列表、关注列表 | 4 |
+| 内容 | `references/content.md` | 帖子详情、统计、评论、首页推荐、搜索、热搜、话题、短剧、短链接 | 13 |
+
+全部使用 App API 端点。参数速查见 `references/param-mappings.md`。
 
 ## 安装
 
@@ -25,9 +28,12 @@ npx clawhub install maxhub-pipixia
 
 | 分类 | 示例指令 |
 |------|----------|
-| 作品与用户 | 作品，用户 |
-| 搜索与热搜 | 搜索，热搜 |
-| 工具 | 短链接，浏览 |
+| 用户 | 查皮皮虾用户信息, 皮皮虾用户帖子列表 |
+| 帖子 | 查皮皮虾帖子详情, 皮皮虾帖子统计数据 |
+| 搜索 | 皮皮虾热搜, 在皮皮虾搜索搞笑视频 |
+| 评论 | 查皮皮虾帖子评论 |
+| 话题 | 查皮皮虾话题详情, 皮皮虾话题帖子 |
+| 首页 | 皮皮虾首页推荐, 皮皮虾短剧推荐 |
 
 支持 **中文** 和 **英文** 双语。
 

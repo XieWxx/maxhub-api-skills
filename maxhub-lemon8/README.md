@@ -2,13 +2,16 @@
 
 [中文文档](README_CN.md)
 
-Lemon8 content data assistant covering search, discover, posts, users, comments, topics, and trending.
+Lemon8 content data assistant via MaxHub API. 16 active endpoints across 2 functional areas.
 
 ## Features
 
-- **Search & Discover** — fetch_search, fetch_discover_content, fetch_discover_banners, fetch_hot_search_keywords, fetch_editor_picks
-- **Post & User** — fetch_post_info, fetch_post_comments, fetch_user_info, fetch_user_following, fetch_user_fans, fetch_topic_info, fetch_topic_posts
-- **Link Tools** — fetch_post_id_by_link, fetch_user_id_by_link, fetch_post_ids_batch, fetch_user_ids_batch
+| Area | Reference | Covers | Endpoints |
+|------|-----------|--------|-----------|
+| User | `references/user.md` | User profiles, followers, following, ID extraction | 5 |
+| Content | `references/content.md` | Post detail, comments, discover, topics, search, ID extraction | 11 |
+
+See `references/param-mappings.md` for parameter quick reference.
 
 ## Install
 
@@ -25,9 +28,8 @@ npx clawhub install maxhub-lemon8
 
 | Category | Example prompts |
 |----------|----------------|
-| Search & Discover | 搜索, 发现 |
-| Post & User | 帖子, 用户 |
-| Link Tools | 分享, 链接 |
+| User | 查柠檬8用户信息, get Lemon8 user profile, 查lemon8用户的粉丝与关注 |
+| Content | 查柠檬8帖子详情, search Lemon8 for makeup, 查lemon8发现页, 查lemon8话题帖子 |
 
 Supports both **English** and **Chinese**.
 
