@@ -12,6 +12,10 @@ tools/
 # macOS
 .DS_Store
 
+# 安全扫描产物（保留 SECURITY-AUDIT-REPORT.md 报告本身，忽略原始 json/txt）
+.security-audit/*.json
+.security-audit/*.txt
+
 # 临时文件
 *.tmp
 *.bak
