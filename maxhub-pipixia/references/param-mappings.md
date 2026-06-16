@@ -50,6 +50,15 @@ Skill: `maxhub-pipixia` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2
 
 ---
 
+## 0.2 原子化 + 编排入口 (Atomic & Orchestration)
+
+> Agent 可通过两层入口快速定位端点与链路：
+> - **原子层**：[`atoms/_index.md`](./atoms/_index.md) — 每个端点封装为原子（atom_id ↔ endpoint_id 映射 + 幂等性 + 链路角色）
+> - **编排层**：[`recipes/_index.md`](./recipes/_index.md) — 每个用户目标封装为 Recipe（trigger_keywords + 多步链路 + 容错）
+> - **推荐流程**：用户语义 → `recipes/_index.md` 匹配 Recipe → 按 Recipe 的 Atomic Steps 调用 `atoms/_index.md` 中的原子
+
+---
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 | ID | 一句话用途 | Reference File | Method | Risk |
