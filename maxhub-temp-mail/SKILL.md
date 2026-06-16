@@ -47,14 +47,6 @@ metadata:
 
 - ⚠️ **写入接口隔离** — `get_temp_email_address` 标记为创建型操作，调用前**强制用户确认场景**
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 3 个端点的字段流字典 + Chain Recipes，明确 token / message_id 在端点间的传递路径
-
-- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + token 失效处理规则
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

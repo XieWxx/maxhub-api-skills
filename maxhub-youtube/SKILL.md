@@ -53,12 +53,6 @@ YouTube 数据查询工具，通过 MaxHub API 接入 YouTube 平台 Web / Web V
 
 - 🆔 **频道 ID / URL 互转** — 支持 `@handle`、`/c/`、`/channel/` 各种格式输入解析为标准 channel_id，避免下游 404
 
-- 🔗 **链式调用图谱** — 37 端点的字段流字典 + Chain Recipes，明确 video_id / channel_id / continuation_token 在端点间的传递路径
-
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

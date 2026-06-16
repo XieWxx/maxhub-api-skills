@@ -51,14 +51,6 @@ metadata:
 
 - 🚨 **POST + risk:high 全量管控** — 22 个端点全部为 POST 方法 + `risk: high`，**调用前必须用户确认参数**，并以 JSON Body 传参（非 query string）
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 22 个端点的字段流字典 + Chain Recipes，明确 url / username / object_id / channel_id / topic_id 在端点间的传递路径
-
-- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，POST 写入语义下避免重复扣配额
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

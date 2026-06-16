@@ -51,14 +51,6 @@ Twitter/X 数据查询与海外舆情研究工具，通过 MaxHub API 接入 Twi
 
 - 🆔 **screen_name ↔ rest_id 互通** — `fetch_user_profile` 与 `fetch_user_post_tweet` 支持 oneOf 入参，账号改名后可用 rest_id 继续追踪
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 13 个端点的字段流字典 + Chain Recipes，明确 tweet_id / screen_name / rest_id / userId / cursor 在端点间的传递路径
-
-- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，明确 cursor 翻页边界
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

@@ -47,14 +47,6 @@ metadata:
 
 - 👤 **用户全景画像** — 用户资料 + 用户作品列表（支持 `max_behot_time` 翻页）
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 7 个端点的字段流字典 + Chain Recipes，明确 item_id / user_id / keyword 在端点间的传递路径
-
-- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + v1 ↔ v2 视频详情替换矩阵
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

@@ -51,14 +51,6 @@ metadata:
 
 - ⚠️ **写入接口隔离** — `fetch_increase_post_view_count` 标记为 `risk: medium / write_operation`，调用前**强制用户确认**
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 17 个端点的字段流字典 + Chain Recipes，明确 cell_id / hashtag_id / user_id / keyword 在端点间的传递路径
-
-- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 写入端点 5xx ≤ 1 次重试规则
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

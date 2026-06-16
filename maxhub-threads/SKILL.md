@@ -46,14 +46,6 @@ Threads 数据查询工具，通过 MaxHub API 接入 Meta 旗下文字社交平
 
 - 🔄 **游标分页统一** — 全量列表接口统一使用 `end_cursor` 翻页，链路稳定
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404/400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 11 个端点的字段流字典 + Chain Recipes，明确 username / user_id / post_id / query 在端点间的传递路径
-
-- 📊 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵（fetch_post_detail ↔ fetch_post_detail_v2）
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404/410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权

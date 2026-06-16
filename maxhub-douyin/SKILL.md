@@ -58,14 +58,6 @@ metadata:
 
 - 🛠️ **签名与工具** — 设备注册、APP 跳转、游客 Cookie、msToken / ttwid / verify_fp / s_v_web_id、X-Bogus / A-Bogus / 弹幕 xb 签名（13 端点）
 
-- 🛡️ **防臆造硬白名单** — `endpoints_whitelist.yaml` 路径硬校验，404 / 400 强制自检清单，杜绝 Agent 臆造 API 地址或参数
-
-- 🔗 **链式调用图谱** — 跨 10 个领域的字段流字典 + Chain Recipes，明确 aweme_id / sec_user_id / room_id / kolid / keyword 在端点间的传递路径
-
-- 📋 **错误处理契约** — HTTP 状态码权威定义 + 重试策略矩阵 + 端点替换矩阵，写入端点 5xx 重试 ≤ 1 次避免重复扣配额
-
-- 🔄 **SKILL 自更新机制** — 内置 SkillHub / ClawHub / GitHub 三通道版本检查，仅在合法路径持续 404 / 410 时建议更新
-
 ## 3. 一键安装
 
 ### 鉴权
