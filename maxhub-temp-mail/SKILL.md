@@ -1,10 +1,7 @@
 ---
 name: maxhub-temp-mail
-description: >-
-  Temp Mail data assistant via MaxHub API — generate temporary emails,
-  list inbox messages, and read email details.
-  Use when user asks about temp mail, 临时邮箱, disposable email, or email verification.
-  Do NOT use for sensitive or private communications.
+description: |-
+  临时邮箱（一次性邮箱）助手，通过 MaxHub API 提供生成临时邮件地址、查询收件箱与读取邮件详情三件套能力。专注服务于自动化测试、网站注册验证码接收、隐私保护与匿名注册场景，帮助用户在不暴露真实邮箱的前提下完成验证流程。注意：本工具会生成新的临时邮箱地址，并非纯只读，且邮件经第三方服务中转，请勿用于接收敏感或私人邮件。
 license: MIT-0
 metadata:
   author: maxhub

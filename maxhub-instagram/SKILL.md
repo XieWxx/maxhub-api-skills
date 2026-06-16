@@ -1,11 +1,7 @@
 ---
 name: maxhub-instagram
-description: >-
-  Query Instagram data via MaxHub API — post details, reels, stories, user profiles,
-  followers, search, hashtags, locations, comments, and media conversion.
-  Use when user asks about Instagram posts, reels, user profiles, followers, search,
-  hashtags, or comments. Supports both English and 中文 (e.g. 在Instagram上搜索...).
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  Instagram 数据查询工具，通过 MaxHub API 接入 Instagram 平台，覆盖 V1 / V2 / V3 三大版本接口，全面支持帖子（Post）、Reels、Stories、Highlights、用户资料、粉丝/关注、Hashtag、Location、评论与回复、综合搜索等数据采集场景。专注服务于海外网红营销、跨境品牌监控、社媒数据爬取、用户增长分析与内容选题等业务，帮助用户快速锁定目标账号、提取爆款规律、量化品牌话题热度。
 license: MIT-0
 metadata:
   author: maxhub

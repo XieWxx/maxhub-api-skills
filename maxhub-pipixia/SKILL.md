@@ -1,10 +1,7 @@
 ---
 name: maxhub-pipixia
-description: >-
-  Query PiPiXia (皮皮虾) data via MaxHub API — posts, user profiles, search,
-  trending, hashtags, and comments. Use when user asks about 皮皮虾, pipixia
-  content, pipixia users, pipixia hot search, or pipixia feed. Do NOT use for
-  posting content or account operations (read-only).
+description: |-
+  皮皮虾数据查询工具，通过 MaxHub API 接入字节跳动旗下搞笑短视频与段子社区皮皮虾，覆盖帖子详情、统计、评论、Home Feed、短剧 Feed、综合搜索、热搜词、热搜榜、Hashtag、短链、用户资料、用户作品 / 粉丝 / 关注等核心能力。专注服务于段子创作、短视频选题、搞笑内容研究与用户画像场景，帮助用户快速采集皮皮虾爆款数据、识别热门话题与高互动达人。
 license: MIT-0
 metadata:
   author: maxhub

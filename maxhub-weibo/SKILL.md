@@ -1,10 +1,7 @@
 ---
 name: maxhub-weibo
-description: >-
-  Query Weibo (微博) data via MaxHub API — post details, user profiles,
-  search, comments, hot search rankings, AI search, and video feeds.
-  Use when user asks about 微博, Weibo, 热搜, 微博详情, 用户信息, 评论, 转发, 微博搜索.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  微博数据查询与舆情监控工具，通过 MaxHub API 接入新浪微博（weibo.com）平台，覆盖微博详情、转发、点赞、视频、评论与子评论、用户资料、粉丝/关注、用户微博/原创/超话/视频/文章/音频、综合搜索、AI 搜索、高级搜索、实时搜索、热搜榜、文娱/社会/生活榜等全部能力，支持 App / Web / Web V2 三端共 47 个端点。专注服务于舆情监控、热搜趋势分析、KOL 影响力评估、品牌口碑追踪等场景，帮助用户快速采集微博全域数据，构建实时舆情雷达。
 license: MIT-0
 metadata:
   author: maxhub

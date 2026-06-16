@@ -1,11 +1,7 @@
 ---
 name: maxhub-zhihu
-description: >-
-  Query Zhihu (知乎) data via MaxHub API — user profiles, articles, search,
-  hot lists, columns, Q&A, and comments.
-  Use when user asks about 知乎, zhihu users, zhihu questions, zhihu search,
-  zhihu hot list, or zhihu columns.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  知乎数据查询工具，通过 MaxHub API 接入中文专业问答与知识社区知乎，覆盖问题回答、专栏文章、评论 / 子评论、热榜推荐、视频列表、用户资料、用户关注 / 粉丝 / 文章 / 收藏 / 话题、综合搜索 + AI 搜索 + 多类目搜索（文章 / 用户 / 话题 / 视频 / 专栏 / 学者 / 盐选 / 电子书）等核心能力。专注服务于知乎内容研究、问答营销、KOL 分析、话题追踪与舆情场景，帮助用户深度挖掘知乎高质量内容与专业用户画像。
 license: MIT-0
 metadata:
   author: maxhub

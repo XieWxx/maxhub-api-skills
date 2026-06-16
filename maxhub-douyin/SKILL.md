@@ -1,11 +1,7 @@
 ---
 name: maxhub-douyin
-description: >-
-  Query Douyin (抖音) data via MaxHub API — video details, user profiles,
-  search, trending, creator tools, xingtu KOL analytics, content index,
-  live streaming, and comments.
-  Use when user asks about any 抖音 content, 视频, 用户, 热榜, 搜索, 创作者, 星图, 直播, 评论, or 抖音数据.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  抖音数据查询与分析工具，通过 MaxHub API 接入抖音平台全量公开数据，覆盖视频详情、用户画像、关键词搜索、热搜热榜、创作者后台、星图 KOL 分析、抖音指数、直播数据、评论弹幕等十大领域共 273 个端点。专注服务于抖音内容创作者、新媒体运营、星图投放分析师、直播数据团队与品牌竞品研究者，帮助用户快速采集抖音全平台数据、提炼爆款规律、辅助选题与投放决策。
 license: MIT-0
 metadata:
   author: maxhub

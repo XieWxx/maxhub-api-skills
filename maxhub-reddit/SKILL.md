@@ -1,11 +1,7 @@
 ---
 name: maxhub-reddit
-description: >-
-  Query Reddit data via MaxHub API — posts, user profiles, search,
-  subreddits, comments, and trending.
-  Use when user asks about Reddit, subreddit, reddit posts, reddit users,
-  reddit search, or reddit comments.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  Reddit 数据查询工具，通过 MaxHub API 接入 Reddit 社区平台，覆盖 Subreddit 版块信息、Home / Popular / Games / News / Explore / Topic 多类 Feed、帖子详情与批量、评论与子回复、用户资料 / 帖子 / 评论 / 奖杯、综合搜索与社区亮点等全部能力。专注服务于海外社区舆情监控、产品反馈采集、Reddit KOL 追踪与趋势话题挖掘业务，帮助用户快速捕捉用户原声、识别上升期 subreddit、量化产品口碑。
 license: MIT-0
 metadata:
   author: maxhub

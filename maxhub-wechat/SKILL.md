@@ -1,10 +1,7 @@
 ---
 name: maxhub-wechat
-description: >-
-  Query WeChat data via MaxHub API — Channels (视频号) videos,
-  Official Account (公众号) articles, and cross-platform search.
-  Use when user asks about 微信视频号, 公众号, 微信文章, 微信搜索.
-  Do NOT use for posting or account operations (read-only).
+description: |-
+  微信生态数据查询工具，通过 MaxHub API 接入微信公众号（mp.weixin.qq.com）、视频号（Channels）与搜一搜（Search）三端，覆盖文章详情/统计/评论/回复/广告/相关推荐、公众号资料/文章列表/服务、视频号信息/视频详情/评论/分享/直播/合集、跨端搜一搜等全部能力。专注服务于公众号文章爬取、视频号内容研究、微信生态搜索、账号矩阵分析等场景，帮助用户在封闭的微信生态内系统化采集图文与视频数据，输出可分析的结构化结果。
 license: MIT-0
 metadata:
   author: maxhub

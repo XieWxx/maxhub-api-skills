@@ -1,11 +1,7 @@
 ---
 name: maxhub-linkedin
-description: >-
-  Query LinkedIn (领英) data via MaxHub API — user profiles, company
-  information, job search, posts, comments, and ads.
-  Use when user asks about any LinkedIn content, 领英, 用户资料, 公司信息,
-  职位, 帖子, 评论, 搜索人脉, or 企业分析.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  LinkedIn 数据查询工具，通过 MaxHub API 接入领英职业社交平台，覆盖用户资料、公司情报、内容动态、职位搜索四大领域，并提供 Web 与 Web V2 双版本接口。专注服务于 B2B 营销、招聘市场分析、海外人才画像、企业竞调与商业情报场景，帮助用户高效采集 LinkedIn 用户画像、公司经营数据、岗位需求与内容互动，构建跨地域人脉与商业洞察。
 license: MIT-0
 metadata:
   author: maxhub

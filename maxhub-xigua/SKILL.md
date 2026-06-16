@@ -1,10 +1,7 @@
 ---
 name: maxhub-xigua
-description: >-
-  Query Xigua (西瓜视频) data via MaxHub API — video details, play URL,
-  user profiles, search, and comments.
-  Use when user asks about any 西瓜视频 content, 视频, 用户, 搜索, or 评论.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  西瓜视频数据查询工具，通过 MaxHub API 接入字节跳动旗下中视频平台西瓜视频，覆盖视频详情（v1 + v2）、视频播放地址、视频评论列表、视频综合搜索、用户资料、用户作品列表等核心能力。专注服务于西瓜视频内容采集、用户研究、中视频内容分析与跨平台数据对齐场景，帮助用户高效获取西瓜视频数据，构建中视频赛道的内容情报基底。
 license: MIT-0
 metadata:
   author: maxhub

@@ -1,10 +1,7 @@
 ---
 name: maxhub-toutiao
-description: >-
-  Query Toutiao (今日头条) data via MaxHub API — articles, videos, user profiles,
-  and comments.
-  Use when user asks about any 头条内容, 文章, 视频, 用户, 评论, or searches for Toutiao data.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  今日头条数据查询工具，通过 MaxHub API 接入字节跳动旗下资讯聚合平台今日头条，覆盖 App 端文章详情 / 视频详情 / 评论列表 / 用户资料 / 用户 ID 解析，以及 Web 端文章详情 / 视频详情两类入口。专注服务于头条内容采集、用户画像研究、文章 / 视频爬取与跨端数据对齐场景，帮助用户高效获取头条内容数据，构建资讯赛道的内容情报基底。
 license: MIT-0
 metadata:
   author: maxhub

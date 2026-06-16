@@ -1,12 +1,7 @@
 ---
 name: maxhub-sora2
-description: >-
-  Query Sora2 (sora.chatgpt.com) data via MaxHub API — post details, comments,
-  remix lists, video downloads, user profiles, followers, Cameo appearances,
-  feed, search, and video generation tasks.
-  Use when user asks about Sora2, AI视频, sora.chatgpt.com posts/users, Cameo出镜秀, feed,
-  or generating Sora2 videos.
-  Do NOT invent endpoints — only use paths declared in `references/`.
+description: |-
+  Sora2 数据查询与视频生成工具，通过 MaxHub API 接入 OpenAI Sora2（sora.chatgpt.com）平台，覆盖作品详情、评论回复、Remix 衍生、视频下载、用户资料、社交关系、Cameo 出镜、首页推荐、用户搜索及视频生成任务等全部能力。专注服务于 Sora2 内容创作者、AI 视频研究者、社媒分析师与自动化工作流场景，帮助用户快速采集 Sora2 数据、提取爆款规律、批量生成 AI 视频内容。
 license: MIT-0
 metadata:
   author: maxhub

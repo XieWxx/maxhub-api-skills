@@ -1,10 +1,7 @@
 ---
 name: maxhub-lemon8
-description: >-
-  Query Lemon8 data via MaxHub API — user profiles, posts, discover,
-  search, topics, and comments.
-  Use when user asks about Lemon8, 柠檬8 content, lemon8 users, lemon8 discover, or lemon8 search.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  Lemon8 数据查询工具，通过 MaxHub API 接入字节跳动旗下海外种草社区 Lemon8（柠檬 8），覆盖笔记详情、评论、用户资料、关注 / 粉丝、Discover 发现、热搜词、话题、综合搜索、分享文本解析等核心能力。专注服务于 Lemon8 种草研究、海外内容运营、话题趋势监测与跨境品牌投放场景，帮助用户高效采集 Lemon8 笔记数据、识别热门话题与种草达人，构建海外生活方式赛道的内容情报。
 license: MIT-0
 metadata:
   author: maxhub

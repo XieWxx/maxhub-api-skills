@@ -1,10 +1,7 @@
 ---
 name: maxhub-twitter
-description: >-
-  Query Twitter/X data via MaxHub API — tweets, user profiles, search,
-  trending, followers, and media. Use when user asks about Twitter, X
-  (formerly Twitter), tweets, twitter users, twitter search, or trending
-  topics. Do NOT use for posting content or account operations (read-only).
+description: |-
+  Twitter/X 数据查询与海外舆情研究工具，通过 MaxHub API 接入 Twitter / X（twitter.com / x.com）平台，覆盖推文详情、评论（最新/热门）、转推用户列表、搜索时间线、趋势话题、用户资料、用户推文 / 回复 / 媒体、关注 / 粉丝、用户精选推文等全部能力。专注服务于海外舆情监控、Twitter KOL 影响力分析、推文爆款研究、趋势话题追踪等场景，帮助用户快速采集 X 平台全域数据，构建跨语种海外社媒洞察。
 license: MIT-0
 metadata:
   author: maxhub

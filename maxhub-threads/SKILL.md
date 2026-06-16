@@ -1,9 +1,7 @@
 ---
 name: maxhub-threads
-description: >-
-  Query Threads data via MaxHub API — posts, user profiles, search, comments, and reposts.
-  Use when user asks about Threads, meta threads, threads posts, threads users, or threads search.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  Threads 数据查询工具，通过 MaxHub API 接入 Meta 旗下文字社交平台 Threads，覆盖帖子详情、评论、用户资料、用户帖子 / 转发 / 回复列表、Top / Recent 搜索、个人主页搜索等核心能力。专注服务于 Threads 内容研究、Meta 社交监控、海外内容创作与跨平台舆情场景，帮助用户快速采集 Threads 数据、识别热门话题与意见领袖，构建 Meta 生态的内容情报。
 license: MIT-0
 metadata:
   author: maxhub

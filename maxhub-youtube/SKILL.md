@@ -1,10 +1,7 @@
 ---
 name: maxhub-youtube
-description: >-
-  Query YouTube data via MaxHub API — video details, channel profiles,
-  search, comments, subtitles, streams, Shorts, and community posts.
-  Use when user asks about any YouTube video, channel, 评论, 搜索, 字幕, Shorts, or trending content.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  YouTube 数据查询工具，通过 MaxHub API 接入 YouTube 平台 Web / Web V2 双版本接口，覆盖视频详情、播放流（Streams）、字幕（Captions）、推荐与趋势、频道资料、频道视频与 Shorts、社区帖子（Community Posts）、视频评论与回复、综合搜索与建议词等全部能力。专注服务于 YouTube 内容创作者、跨境短视频研究、频道竞品分析与字幕翻译爬取业务，帮助用户提炼爆款选题、量化频道增长、批量采集字幕与评论。
 license: MIT-0
 metadata:
   author: maxhub

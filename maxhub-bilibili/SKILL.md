@@ -1,10 +1,7 @@
 ---
 name: maxhub-bilibili
-description: >-
-  Query Bilibili (B站) data via MaxHub API — video details, user profiles,
-  search, comments, danmaku, live streams, collections, and rankings.
-  Use when user asks about any B站 content, UP主, 视频, 弹幕, 直播, 评论, or 搜索.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  B 站（Bilibili）数据查询与分析工具，通过 MaxHub API 接入 B 站全平台公开数据，覆盖视频详情、UP 主画像、关键词搜索、评论弹幕、直播间数据、收藏夹等六大领域共 41 个端点（含番剧 / BV-AV 转换 / 字幕 / 分 P 等 B 站特色能力）。专注服务于 B 站 UP 主、二次元内容创作者、番剧追踪者、字幕弹幕研究者与直播数据团队，帮助用户高效采集 B 站数据、辅助选题与互动分析。
 license: MIT-0
 metadata:
   author: maxhub

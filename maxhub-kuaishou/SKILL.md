@@ -1,10 +1,7 @@
 ---
 name: maxhub-kuaishou
-description: >-
-  Query Kuaishou (快手) data via MaxHub API — video details, user profiles,
-  search, trending, comments, and live streams.
-  Use when user asks about any 快手 content, 视频, 用户, 直播, 评论, 热搜, or 搜索.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  快手数据查询工具，通过 MaxHub API 接入快手平台 App 端与 Web 端双链路，覆盖短视频详情、批量查询、链接解析、用户资料、投稿与收藏、视频评论与子回复、综合搜索、热榜矩阵、直播信息与回放等全部能力。专注服务于快手内容创作者、直播带货分析师、KOL 投放运营、短剧追踪团队与本地生活商家，帮助用户快速锁定爆款视频、量化主播带货能力、追踪热榜走势。
 license: MIT-0
 metadata:
   author: maxhub

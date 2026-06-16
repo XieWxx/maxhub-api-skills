@@ -1,11 +1,7 @@
 ---
 name: maxhub-tiktok
-description: >-
-  Query TikTok data via MaxHub API — video details, user profiles,
-  search, trending, comments, live streams, ads analytics, creator tools,
-  shop/ecommerce, and crypto/encryption utilities.
-  Use when user asks about TikTok content, 视频, 用户, 搜索, 广告, 创作者, 商店, 直播, 评论.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  TikTok 海外短视频数据查询与分析工具，通过 MaxHub API 接入 TikTok 全平台公开数据，覆盖视频详情、用户画像、搜索趋势、评论直播、广告分析、创作者后台、TikTok Shop 电商、虚假流量分析、签名加密工具等九大领域共 174 个端点。专注服务于 TikTok 出海创作者、跨境电商运营、海外营销广告优化师与数据分析团队，帮助用户高效采集 TikTok 全球数据、洞察广告投放与电商选品策略。
 license: MIT-0
 metadata:
   author: maxhub

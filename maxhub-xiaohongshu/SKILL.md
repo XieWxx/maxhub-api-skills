@@ -1,10 +1,7 @@
 ---
 name: maxhub-xiaohongshu
-description: >-
-  Query Xiaohongshu (小红书) data via MaxHub API — notes detail,
-  user profiles, search & discovery, products and topics.
-  Use when user asks about 小红书, 笔记, 用户, 搜索, 商品, 话题, XHS.
-  Do NOT use for posting content or account operations (read-only).
+description: |-
+  小红书数据查询与种草内容研究工具，通过 MaxHub API 接入小红书（xiaohongshu.com）平台，覆盖笔记详情、评论与子评论、用户资料、用户发布/收藏笔记、综合搜索（笔记/用户/图片/商品/话题）、热榜与首页推荐、商品详情与评价、话题信息与 Feed、创作者灵感等全部能力。专注服务于内容种草研究、商品选品、KOL 数据采集、笔记爆款规律分析等场景，帮助用户快速采集小红书全域数据，提炼可复用的内容创作模板。
 license: MIT-0
 metadata:
   author: maxhub
