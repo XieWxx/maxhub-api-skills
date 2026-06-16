@@ -5,7 +5,7 @@ description: |-
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.7.2"
+  version: "3.8.0"
   openclaw:
     emoji: "🎵"
     primaryEnv: MAXHUB_API_KEY

@@ -5,7 +5,7 @@ description: |-
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.7.2"
+  version: "3.8.0"
   openclaw:
     emoji: "📧"
     primaryEnv: MAXHUB_API_KEY
@@ -26,7 +26,7 @@ metadata:
     category: productivity
 ---
 
-# 临时邮箱助手
+# 临时邮箱数据助手
 
 ## 1. 简介
 
