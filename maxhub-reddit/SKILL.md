@@ -36,21 +36,55 @@ metadata:
 
 Reddit 数据查询工具，通过 MaxHub API 接入 Reddit 社区平台，覆盖 Subreddit 版块信息、Home / Popular / Games / News / Explore / Topic 多类 Feed、帖子详情与批量、评论与子回复、用户资料 / 帖子 / 评论 / 奖杯、综合搜索与社区亮点等全部能力。专注服务于海外社区舆情监控、产品反馈采集、Reddit KOL 追踪与趋势话题挖掘业务，帮助用户快速捕捉用户原声、识别上升期 subreddit、量化产品口碑。
 
-## 2. 功能特性
+## 2. 详细功能
 
-- 🔴 **帖子全维度查询** — 支持 post_id 单条、批量（小 / 大批量两版）查询帖子完整详情，含 Carousel、视频、点赞、奖章、标签元数据
+### 帖子数据
+- 查询 Reddit 单条帖子完整详情，含标题、正文、媒体、奖章、标签等元数据
+- 支持图文、Carousel、视频等多形态帖子的结构化展示
+- 提供小批量与大批量两种帖子查询接口，满足不同采集规模
+- 支持锚定到具体评论 ID，便于直接定位讨论上下文
 
-- 💬 **评论与回复链路** — 一级评论 + 二级回复完整链式调用，支持 `sort_type`（best / top / new / controversial）与 cursor 翻页
+### 评论与回复
+- 拉取帖子一级评论列表，支持游标翻页深度采集
+- 拉取指定评论下的二级回复链路
+- 支持按 best、top、new、controversial 等多种排序方式查看评论
+- 评论数据可与帖子数据组合，构建完整讨论树
 
-- 🏘️ **Subreddit 全景画像** — 版块信息、样式、设置、Feed、Channels、静音检查六大端点，覆盖社区运营所需全部维度
+### Subreddit 画像
+- 查询 Subreddit 版块基础资料卡，含订阅数、简介、规则等
+- 拉取 Subreddit 视觉样式信息，了解版块品牌定位
+- 拉取 Subreddit 内部分类频道列表
+- 查询 Subreddit 高级设置信息，洞察版块运营策略
+- 检查 Subreddit 是否被静音，规避无效采集
+- 拉取 Subreddit 帖子流，按版块视角监控内容
 
-- 👤 **用户全景画像** — 用户资料、活跃 Subreddit、用户帖子、用户评论、用户奖杯（Trophies）一站式覆盖
+### 用户画像
+- 查询 Reddit 用户基础资料卡，含 karma、注册时间、头像等
+- 拉取用户活跃 Subreddit 列表，刻画兴趣分布
+- 拉取用户全部历史帖子
+- 拉取用户全部历史评论
+- 查询用户获得的奖杯（Trophies），评估资历与影响力
 
-- 📰 **多类 Feed 矩阵** — Home / Popular / Games / News / Explore / Topic 六类 Feed 并行，覆盖大众与垂类内容流
+### 多类 Feed 矩阵
+- 提供 Home 首页 Feed，覆盖默认推荐流
+- 提供 Popular 全站热门 Feed
+- 提供 Games 游戏垂类 Feed
+- 提供 News 新闻垂类 Feed
+- 提供 Explore 发现 Feed，按话题分类浏览
+- 提供 Topic 分类 Feed，深入特定话题流
 
-- 🔍 **多维度搜索** — 搜索自动补全、动态搜索、社区亮点、热门搜索词四类搜索路径，支持 search_type / sort / time_range 过滤
+### 搜索能力
+- 提供动态综合搜索，按关键词检索帖子、用户、版块
+- 提供搜索自动补全建议，加速关键词输入
+- 提供热门搜索词列表，捕捉全站趋势
+- 提供社区亮点接口，发现版块高光内容
+- 支持搜索类型、排序、时间范围多维过滤
 
-- 🎯 **Reddit Answers 精简数据** — `fetch_generated_posts` / `fetch_generated_comments` 输出 LLM 友好的精简结构，节省 token
+### Reddit Answers 精简数据
+- 提供 LLM 友好的精简帖子数据接口，自动剥离冗余字段
+- 提供 LLM 友好的精简评论数据接口，节省 token 消耗
+- 适合在摘要、问答、主题聚类等大模型场景中直接使用
+- 与全字段批量接口形成互补，用户可按是否做 LLM 处理择优
 
 ## 3. 一键安装
 
