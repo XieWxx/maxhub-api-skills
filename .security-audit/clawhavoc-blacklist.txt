@@ -1,0 +1,11 @@
+# ClawHavoc 已知恶意 skill slug 列表（部分公开样本）
+email-triage-pr0
+crm-enricher
+daily-briefing-v2
+calendar-sync-plus
+web-scrapper
+yahoo-finance-pro
+crypto-tracker-v3
+notion-sync-v2
+slack-bot-helper
+github-actions-pro

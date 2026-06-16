@@ -12,9 +12,9 @@ tools/
 # macOS
 .DS_Store
 
-# 安全扫描产物（保留 SECURITY-AUDIT-REPORT.md 报告、扫描脚本、黑名单；忽略原始扫描输出）
-.security-audit/*.json
-.security-audit/*.txt
+# 安全扫描产物（保留 SECURITY-AUDIT-REPORT.md / 脚本 / 黑名单 / README；忽略原始扫描输出）
+.security-audit/maxhub-*.json
+.security-audit/maxhub-*.txt
 .security-audit/reports/
 
 # 临时文件
