@@ -55,50 +55,50 @@ Skill: `maxhub-douyin` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 > 共 9 个 API 子模块，150+ 端点。按 reference 文件分组。
 
-### video.md — 视频相关
+### video/_index.md — 视频相关（含子文件 detail.md / batch-stats.md / feed-collection.md）
 
 | ID | 一句话用途 | Reference File | Method | Risk |
 |----|----------|---------------|--------|------|
-| app_v3_fetch_one_video | 用 aweme_id 取单个视频详情（App V3） | video.md | GET | low |
-| app_v3_fetch_one_video_v2 | 用 aweme_id 取单个视频详情 V2（App V3） | video.md | GET | low |
-| app_v3_fetch_one_video_v3 | 用 aweme_id 取视频/文章详情 V3（无版权限制） | video.md | GET | low |
-| app_v3_fetch_share_info_by_share_code | 用分享口令取分享信息 | video.md | GET | low |
-| app_v3_fetch_multi_video | 批量获取视频详情（App V3） | video.md | POST | **high** |
-| app_v3_fetch_multi_video_v2 | 批量获取视频详情 V2（App V3） | video.md | POST | **high** |
-| app_v3_fetch_one_video_by_share_url | 用分享链接取视频详情（App V3） | video.md | GET | low |
-| app_v3_fetch_video_high_quality_play_url | 取高清播放链接（App V3，aweme_id/share_url 二选一） | video.md | GET | low |
-| app_v3_fetch_multi_video_high_quality_play_url | 批量取高清播放链接（App V3） | video.md | POST | **high** |
-| app_v3_fetch_video_statistics | 取视频统计数据 | video.md | GET | low |
-| app_v3_fetch_multi_video_statistics | 批量取视频统计数据 | video.md | GET | low |
-| app_v3_add_video_play_count | 增加视频播放量（副作用写入） | video.md | GET | **high** |
-| web_fetch_one_video | 用 aweme_id 取单个视频详情（Web） | video.md | GET | low |
-| web_fetch_one_video_v2 | 用 aweme_id 取单个视频详情 V2（Web） | video.md | GET | low |
-| web_fetch_one_video_by_share_url | 用分享链接取视频详情（Web） | video.md | GET | low |
-| web_fetch_video_high_quality_play_url | 取高清播放链接（Web，aweme_id/share_url 二选一） | video.md | GET | low |
-| web_fetch_multi_video_high_quality_play_url | 批量取高清播放链接（Web） | video.md | POST | **high** |
-| web_fetch_multi_video | 批量获取视频详情（Web） | video.md | POST | **high** |
-| web_fetch_one_video_danmaku | 取视频弹幕数据 | video.md | GET | low |
-| web_fetch_home_feed | 取首页推荐 Feed | video.md | POST | **high** |
-| web_fetch_related_posts | 取相关推荐视频 | video.md | GET | low |
-| app_v3_fetch_video_mix_detail | 取合集详情 | video.md | GET | low |
-| app_v3_fetch_video_mix_post_list | 取合集视频列表 | video.md | GET | low |
-| app_v3_fetch_user_series_list | 取用户短剧列表 | video.md | GET | low |
-| app_v3_fetch_series_video_list | 取短剧视频列表 | video.md | GET | low |
-| app_v3_fetch_series_detail | 取短剧详情 | video.md | GET | low |
-| app_v3_fetch_music_detail | 取音乐详情 | video.md | GET | low |
-| app_v3_fetch_music_video_list | 取音乐关联视频列表 | video.md | GET | low |
-| app_v3_fetch_hashtag_detail | 取话题详情 | video.md | GET | low |
-| app_v3_fetch_hashtag_video_list | 取话题视频列表 | video.md | GET | low |
-| app_v3_generate_douyin_short_url | 生成抖音短链接 | video.md | GET | low |
-| app_v3_generate_douyin_video_share_qrcode | 生成视频分享二维码 | video.md | GET | low |
-| web_fetch_series_aweme | 取短剧频道内容 | video.md | GET | low |
-| web_fetch_knowledge_aweme | 取知识频道内容 | video.md | GET | low |
-| web_fetch_game_aweme | 取游戏频道内容 | video.md | GET | low |
-| web_fetch_cartoon_aweme | 取动漫频道内容 | video.md | GET | low |
-| web_fetch_music_aweme | 取音乐频道内容 | video.md | GET | low |
-| web_fetch_food_aweme | 取美食频道内容 | video.md | GET | low |
-| web_fetch_video_channel_result | 取频道内容 | video.md | GET | low |
-| web_fetch_challenge_posts | 取挑战赛视频列表 | video.md | POST | **high** |
+| app_v3_fetch_one_video | 用 aweme_id 取单个视频详情（App V3） | video/_index.md | GET | low |
+| app_v3_fetch_one_video_v2 | 用 aweme_id 取单个视频详情 V2（App V3） | video/_index.md | GET | low |
+| app_v3_fetch_one_video_v3 | 用 aweme_id 取视频/文章详情 V3（无版权限制） | video/_index.md | GET | low |
+| app_v3_fetch_share_info_by_share_code | 用分享口令取分享信息 | video/_index.md | GET | low |
+| app_v3_fetch_multi_video | 批量获取视频详情（App V3） | video/_index.md | POST | **high** |
+| app_v3_fetch_multi_video_v2 | 批量获取视频详情 V2（App V3） | video/_index.md | POST | **high** |
+| app_v3_fetch_one_video_by_share_url | 用分享链接取视频详情（App V3） | video/_index.md | GET | low |
+| app_v3_fetch_video_high_quality_play_url | 取高清播放链接（App V3，aweme_id/share_url 二选一） | video/_index.md | GET | low |
+| app_v3_fetch_multi_video_high_quality_play_url | 批量取高清播放链接（App V3） | video/_index.md | POST | **high** |
+| app_v3_fetch_video_statistics | 取视频统计数据 | video/_index.md | GET | low |
+| app_v3_fetch_multi_video_statistics | 批量取视频统计数据 | video/_index.md | GET | low |
+| app_v3_add_video_play_count | 增加视频播放量（副作用写入） | video/_index.md | GET | **high** |
+| web_fetch_one_video | 用 aweme_id 取单个视频详情（Web） | video/_index.md | GET | low |
+| web_fetch_one_video_v2 | 用 aweme_id 取单个视频详情 V2（Web） | video/_index.md | GET | low |
+| web_fetch_one_video_by_share_url | 用分享链接取视频详情（Web） | video/_index.md | GET | low |
+| web_fetch_video_high_quality_play_url | 取高清播放链接（Web，aweme_id/share_url 二选一） | video/_index.md | GET | low |
+| web_fetch_multi_video_high_quality_play_url | 批量取高清播放链接（Web） | video/_index.md | POST | **high** |
+| web_fetch_multi_video | 批量获取视频详情（Web） | video/_index.md | POST | **high** |
+| web_fetch_one_video_danmaku | 取视频弹幕数据 | video/_index.md | GET | low |
+| web_fetch_home_feed | 取首页推荐 Feed | video/_index.md | POST | **high** |
+| web_fetch_related_posts | 取相关推荐视频 | video/_index.md | GET | low |
+| app_v3_fetch_video_mix_detail | 取合集详情 | video/_index.md | GET | low |
+| app_v3_fetch_video_mix_post_list | 取合集视频列表 | video/_index.md | GET | low |
+| app_v3_fetch_user_series_list | 取用户短剧列表 | video/_index.md | GET | low |
+| app_v3_fetch_series_video_list | 取短剧视频列表 | video/_index.md | GET | low |
+| app_v3_fetch_series_detail | 取短剧详情 | video/_index.md | GET | low |
+| app_v3_fetch_music_detail | 取音乐详情 | video/_index.md | GET | low |
+| app_v3_fetch_music_video_list | 取音乐关联视频列表 | video/_index.md | GET | low |
+| app_v3_fetch_hashtag_detail | 取话题详情 | video/_index.md | GET | low |
+| app_v3_fetch_hashtag_video_list | 取话题视频列表 | video/_index.md | GET | low |
+| app_v3_generate_douyin_short_url | 生成抖音短链接 | video/_index.md | GET | low |
+| app_v3_generate_douyin_video_share_qrcode | 生成视频分享二维码 | video/_index.md | GET | low |
+| web_fetch_series_aweme | 取短剧频道内容 | video/_index.md | GET | low |
+| web_fetch_knowledge_aweme | 取知识频道内容 | video/_index.md | GET | low |
+| web_fetch_game_aweme | 取游戏频道内容 | video/_index.md | GET | low |
+| web_fetch_cartoon_aweme | 取动漫频道内容 | video/_index.md | GET | low |
+| web_fetch_music_aweme | 取音乐频道内容 | video/_index.md | GET | low |
+| web_fetch_food_aweme | 取美食频道内容 | video/_index.md | GET | low |
+| web_fetch_video_channel_result | 取频道内容 | video/_index.md | GET | low |
+| web_fetch_challenge_posts | 取挑战赛视频列表 | video/_index.md | POST | **high** |
 
 ### user.md — 用户相关
 
@@ -213,47 +213,47 @@ Skill: `maxhub-douyin` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 | web_webcast_id_2_room_id | webcast_id 转 room_id | live.md | GET | low |
 | web_fetch_user_live_info_by_uid | 用 uid 取直播信息 | live.md | GET | low |
 
-### trending.md — 热榜/趋势
+### trending/_index.md — 热榜/趋势（含子文件 hot-search.md / billboard-events.md / account-content.md）
 
 | ID | 一句话用途 | Reference File | Method | Risk |
 |----|----------|---------------|--------|------|
-| app_v3_fetch_hot_search_list | 取热搜榜单（App V3） | trending.md | GET | low |
-| app_v3_fetch_live_hot_search_list | 取直播热搜榜 | trending.md | GET | low |
-| app_v3_fetch_music_hot_search_list | 取音乐热搜榜 | trending.md | GET | low |
-| app_v3_fetch_brand_hot_search_list | 取品牌热搜榜 | trending.md | GET | low |
-| app_v3_fetch_brand_hot_search_list_detail | 取品牌热搜榜详情 | trending.md | GET | low |
-| web_fetch_hot_search_result | 取热搜结果（Web） | trending.md | GET | low |
-| billboard_fetch_city_list | 取城市列表 | trending.md | GET | low |
-| billboard_fetch_content_tag | 取内容标签 | trending.md | GET | low |
-| billboard_fetch_hot_category_list | 取热点分类榜单 | trending.md | GET | low |
-| billboard_fetch_hot_rise_list | 取热点上升榜 | trending.md | GET | low |
-| billboard_fetch_hot_city_list | 取热点城市榜 | trending.md | GET | low |
-| billboard_fetch_hot_challenge_list | 取热点挑战榜 | trending.md | GET | low |
-| billboard_fetch_hot_total_list | 取热点总榜 | trending.md | GET | low |
-| billboard_fetch_hot_calendar_list | 取热点日历 | trending.md | POST | **high** |
-| billboard_fetch_hot_calendar_detail | 取热点日历详情 | trending.md | GET | low |
-| billboard_fetch_hot_user_portrait_list | 取热点观众画像 | trending.md | GET | low |
-| billboard_fetch_hot_comment_word_list | 取热点评论词云 | trending.md | GET | low |
-| billboard_fetch_hot_item_trends_list | 取热点作品趋势 | trending.md | GET | low |
-| billboard_fetch_hot_account_list | 取热门账号列表 | trending.md | POST | **high** |
-| billboard_fetch_hot_account_search_list | 搜索热门账号 | trending.md | GET | low |
-| billboard_fetch_hot_account_trends_list | 取热门账号趋势 | trending.md | GET | low |
-| billboard_fetch_hot_account_item_analysis_list | 取热门账号作品分析 | trending.md | GET | low |
-| billboard_fetch_hot_account_fans_portrait_list | 取热门账号粉丝画像 | trending.md | GET | low |
-| billboard_fetch_hot_account_fans_interest_account_list | 取粉丝兴趣账号 | trending.md | GET | low |
-| billboard_fetch_hot_account_fans_interest_topic_list | 取粉丝兴趣话题 | trending.md | GET | low |
-| billboard_fetch_hot_account_fans_interest_search_list | 取粉丝兴趣搜索 | trending.md | GET | low |
-| billboard_fetch_hot_total_video_list | 取视频榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_low_fan_list | 取低粉爆款榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_high_play_list | 取高播放榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_high_like_list | 取高点赞榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_high_fan_list | 取高粉丝榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_topic_list | 取话题榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_high_topic_list | 取高话题榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_search_list | 取搜索榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_high_search_list | 取高搜索榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_hot_word_list | 取热词榜 | trending.md | POST | **high** |
-| billboard_fetch_hot_total_hot_word_detail_list | 取热词详情 | trending.md | GET | low |
+| app_v3_fetch_hot_search_list | 取热搜榜单（App V3） | trending/_index.md | GET | low |
+| app_v3_fetch_live_hot_search_list | 取直播热搜榜 | trending/_index.md | GET | low |
+| app_v3_fetch_music_hot_search_list | 取音乐热搜榜 | trending/_index.md | GET | low |
+| app_v3_fetch_brand_hot_search_list | 取品牌热搜榜 | trending/_index.md | GET | low |
+| app_v3_fetch_brand_hot_search_list_detail | 取品牌热搜榜详情 | trending/_index.md | GET | low |
+| web_fetch_hot_search_result | 取热搜结果（Web） | trending/_index.md | GET | low |
+| billboard_fetch_city_list | 取城市列表 | trending/_index.md | GET | low |
+| billboard_fetch_content_tag | 取内容标签 | trending/_index.md | GET | low |
+| billboard_fetch_hot_category_list | 取热点分类榜单 | trending/_index.md | GET | low |
+| billboard_fetch_hot_rise_list | 取热点上升榜 | trending/_index.md | GET | low |
+| billboard_fetch_hot_city_list | 取热点城市榜 | trending/_index.md | GET | low |
+| billboard_fetch_hot_challenge_list | 取热点挑战榜 | trending/_index.md | GET | low |
+| billboard_fetch_hot_total_list | 取热点总榜 | trending/_index.md | GET | low |
+| billboard_fetch_hot_calendar_list | 取热点日历 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_calendar_detail | 取热点日历详情 | trending/_index.md | GET | low |
+| billboard_fetch_hot_user_portrait_list | 取热点观众画像 | trending/_index.md | GET | low |
+| billboard_fetch_hot_comment_word_list | 取热点评论词云 | trending/_index.md | GET | low |
+| billboard_fetch_hot_item_trends_list | 取热点作品趋势 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_list | 取热门账号列表 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_account_search_list | 搜索热门账号 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_trends_list | 取热门账号趋势 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_item_analysis_list | 取热门账号作品分析 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_fans_portrait_list | 取热门账号粉丝画像 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_fans_interest_account_list | 取粉丝兴趣账号 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_fans_interest_topic_list | 取粉丝兴趣话题 | trending/_index.md | GET | low |
+| billboard_fetch_hot_account_fans_interest_search_list | 取粉丝兴趣搜索 | trending/_index.md | GET | low |
+| billboard_fetch_hot_total_video_list | 取视频榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_low_fan_list | 取低粉爆款榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_high_play_list | 取高播放榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_high_like_list | 取高点赞榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_high_fan_list | 取高粉丝榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_topic_list | 取话题榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_high_topic_list | 取高话题榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_search_list | 取搜索榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_high_search_list | 取高搜索榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_hot_word_list | 取热词榜 | trending/_index.md | POST | **high** |
+| billboard_fetch_hot_total_hot_word_detail_list | 取热词详情 | trending/_index.md | GET | low |
 
 ### tools.md — 工具类
 
@@ -281,102 +281,102 @@ Skill: `maxhub-douyin` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 | web_handler_shorten_url | 短链接转换 | tools.md | GET | low |
 | web_fetch_query_user | 查询用户信息（POST） | tools.md | POST | **high** |
 
-### content.md — 抖音指数
+### content/_index.md — 抖音指数（含子文件 tools.md / keyword.md / daren.md / brand-topic.md / creative-insight.md）
 
 | ID | 一句话用途 | Reference File | Method | Risk |
 |----|----------|---------------|--------|------|
-| index_fetch_all_valid_date | 取所有有效日期 | content.md | GET | low |
-| index_fetch_valid_date_for_relation | 取关联分析有效日期 | content.md | GET | low |
-| index_fetch_all_area | 取所有地区列表 | content.md | GET | low |
-| index_fetch_current_hot_topic | 取实时热点排行 | content.md | GET | low |
-| index_fetch_hot_words | 取热门关键词 | content.md | GET | low |
-| index_fetch_keyword_valid_date | 取关键词有效日期 | content.md | POST | **high** |
-| index_fetch_multi_keyword_hot_trend | 取多关键词热度趋势 | content.md | POST | **high** |
-| index_fetch_multi_keyword_interpretation | 取多关键词解读 | content.md | POST | **high** |
-| index_fetch_relation_word | 取关联词 | content.md | POST | **high** |
-| index_fetch_portrait | 取人群画像 | content.md | POST | **high** |
-| index_fetch_get_user_sub_word | 取用户订阅词 | content.md | POST | **high** |
-| index_fetch_encrypt_user_id | 加密用户 ID | content.md | GET | low |
-| index_fetch_daren_sug_great_user_list | 取达人推荐列表 | content.md | POST | **high** |
-| index_fetch_daren_compare_users_stable | 取达人对比数据 | content.md | POST | **high** |
-| index_fetch_daren_similar_users | 取相似达人 | content.md | POST | **high** |
-| index_fetch_daren_great_user_top_video | 取达人热门视频 | content.md | POST | **high** |
-| index_fetch_daren_great_item_mile_info | 取达人作品里程碑 | content.md | POST | **high** |
-| index_fetch_daren_great_user_fans_info | 取达人粉丝信息 | content.md | POST | **high** |
-| index_fetch_item_filter_options | 取内容筛选选项 | content.md | GET | low |
-| index_fetch_item_sug | 取内容搜索建议 | content.md | POST | **high** |
-| index_fetch_item_query | 取内容搜索结果 | content.md | POST | **high** |
-| index_fetch_brand_suggest | 取品牌搜索建议 | content.md | POST | **high** |
-| index_fetch_brand_valid_info | 取品牌有效信息 | content.md | POST | **high** |
-| index_fetch_brand_radar_chart | 取品牌雷达图 | content.md | POST | **high** |
-| index_fetch_brand_lines | 取品牌趋势线 | content.md | POST | **high** |
-| index_fetch_brand_cycles | 取品牌周期数据 | content.md | POST | **high** |
-| index_fetch_brand_initiative_rank_weekly | 取品牌主动排名周榜 | content.md | POST | **high** |
-| index_fetch_topic_suggest | 取话题搜索建议 | content.md | POST | **high** |
-| index_fetch_topic_query | 取话题搜索结果 | content.md | POST | **high** |
-| index_fetch_content_valid_date | 取内容有效日期 | content.md | GET | low |
-| index_fetch_brand_hot_videos_time_scope | 取品牌热门视频时间范围 | content.md | POST | **high** |
-| index_fetch_content_creative_keywords | 取内容创作关键词 | content.md | POST | **high** |
-| index_fetch_content_creative_keyword_items | 取内容创作关键词作品 | content.md | POST | **high** |
-| index_fetch_content_creative_topic | 取内容创作话题 | content.md | POST | **high** |
-| index_fetch_content_publish_trend | 取内容发布趋势 | content.md | GET | low |
-| index_fetch_content_creative_duration | 取内容创作时长分布 | content.md | POST | **high** |
-| index_fetch_content_author_portrait | 取内容创作者画像 | content.md | POST | **high** |
-| index_fetch_content_consumer_portrait | 取内容消费者画像 | content.md | POST | **high** |
-| index_fetch_content_interact_trend | 取内容互动趋势 | content.md | POST | **high** |
-| index_fetch_content_consume_trend | 取内容消费趋势 | content.md | POST | **high** |
-| index_fetch_insight_recommend | 取洞察推荐 | content.md | GET | low |
-| index_fetch_report_search | 取报告搜索 | content.md | POST | **high** |
-| index_fetch_report_detail | 取报告详情 | content.md | GET | low |
-| index_fetch_insight_get_rec | 取洞察推荐详情 | content.md | GET | low |
+| index_fetch_all_valid_date | 取所有有效日期 | content/_index.md | GET | low |
+| index_fetch_valid_date_for_relation | 取关联分析有效日期 | content/_index.md | GET | low |
+| index_fetch_all_area | 取所有地区列表 | content/_index.md | GET | low |
+| index_fetch_current_hot_topic | 取实时热点排行 | content/_index.md | GET | low |
+| index_fetch_hot_words | 取热门关键词 | content/_index.md | GET | low |
+| index_fetch_keyword_valid_date | 取关键词有效日期 | content/_index.md | POST | **high** |
+| index_fetch_multi_keyword_hot_trend | 取多关键词热度趋势 | content/_index.md | POST | **high** |
+| index_fetch_multi_keyword_interpretation | 取多关键词解读 | content/_index.md | POST | **high** |
+| index_fetch_relation_word | 取关联词 | content/_index.md | POST | **high** |
+| index_fetch_portrait | 取人群画像 | content/_index.md | POST | **high** |
+| index_fetch_get_user_sub_word | 取用户订阅词 | content/_index.md | POST | **high** |
+| index_fetch_encrypt_user_id | 加密用户 ID | content/_index.md | GET | low |
+| index_fetch_daren_sug_great_user_list | 取达人推荐列表 | content/_index.md | POST | **high** |
+| index_fetch_daren_compare_users_stable | 取达人对比数据 | content/_index.md | POST | **high** |
+| index_fetch_daren_similar_users | 取相似达人 | content/_index.md | POST | **high** |
+| index_fetch_daren_great_user_top_video | 取达人热门视频 | content/_index.md | POST | **high** |
+| index_fetch_daren_great_item_mile_info | 取达人作品里程碑 | content/_index.md | POST | **high** |
+| index_fetch_daren_great_user_fans_info | 取达人粉丝信息 | content/_index.md | POST | **high** |
+| index_fetch_item_filter_options | 取内容筛选选项 | content/_index.md | GET | low |
+| index_fetch_item_sug | 取内容搜索建议 | content/_index.md | POST | **high** |
+| index_fetch_item_query | 取内容搜索结果 | content/_index.md | POST | **high** |
+| index_fetch_brand_suggest | 取品牌搜索建议 | content/_index.md | POST | **high** |
+| index_fetch_brand_valid_info | 取品牌有效信息 | content/_index.md | POST | **high** |
+| index_fetch_brand_radar_chart | 取品牌雷达图 | content/_index.md | POST | **high** |
+| index_fetch_brand_lines | 取品牌趋势线 | content/_index.md | POST | **high** |
+| index_fetch_brand_cycles | 取品牌周期数据 | content/_index.md | POST | **high** |
+| index_fetch_brand_initiative_rank_weekly | 取品牌主动排名周榜 | content/_index.md | POST | **high** |
+| index_fetch_topic_suggest | 取话题搜索建议 | content/_index.md | POST | **high** |
+| index_fetch_topic_query | 取话题搜索结果 | content/_index.md | POST | **high** |
+| index_fetch_content_valid_date | 取内容有效日期 | content/_index.md | GET | low |
+| index_fetch_brand_hot_videos_time_scope | 取品牌热门视频时间范围 | content/_index.md | POST | **high** |
+| index_fetch_content_creative_keywords | 取内容创作关键词 | content/_index.md | POST | **high** |
+| index_fetch_content_creative_keyword_items | 取内容创作关键词作品 | content/_index.md | POST | **high** |
+| index_fetch_content_creative_topic | 取内容创作话题 | content/_index.md | POST | **high** |
+| index_fetch_content_publish_trend | 取内容发布趋势 | content/_index.md | GET | low |
+| index_fetch_content_creative_duration | 取内容创作时长分布 | content/_index.md | POST | **high** |
+| index_fetch_content_author_portrait | 取内容创作者画像 | content/_index.md | POST | **high** |
+| index_fetch_content_consumer_portrait | 取内容消费者画像 | content/_index.md | POST | **high** |
+| index_fetch_content_interact_trend | 取内容互动趋势 | content/_index.md | POST | **high** |
+| index_fetch_content_consume_trend | 取内容消费趋势 | content/_index.md | POST | **high** |
+| index_fetch_insight_recommend | 取洞察推荐 | content/_index.md | GET | low |
+| index_fetch_report_search | 取报告搜索 | content/_index.md | POST | **high** |
+| index_fetch_report_detail | 取报告详情 | content/_index.md | GET | low |
+| index_fetch_insight_get_rec | 取洞察推荐详情 | content/_index.md | GET | low |
 
-### xingtu.md — 星图相关
+### xingtu/_index.md — 星图相关（含子文件 kol-resolver.md / kol-info-v1.md / search-rank.md / v2-business.md）
 
 | ID | 一句话用途 | Reference File | Method | Risk |
 |----|----------|---------------|--------|------|
-| xingtu_get_sign_image | 获取签名图片 | xingtu.md | GET | low |
-| xingtu_get_xingtu_kolid_by_uid | 用 uid 查 kolId | xingtu.md | GET | low |
-| xingtu_get_xingtu_kolid_by_sec_user_id | 用 sec_user_id 查 kolId | xingtu.md | GET | low |
-| xingtu_get_xingtu_kolid_by_unique_id | 用 unique_id 查 kolId | xingtu.md | GET | low |
-| xingtu_kol_base_info_v1 | 取 KOL 基本信息 | xingtu.md | GET | low |
-| xingtu_kol_audience_portrait_v1 | 取 KOL 观众画像 | xingtu.md | GET | low |
-| xingtu_kol_fans_portrait_v1 | 取 KOL 粉丝画像 | xingtu.md | GET | low |
-| xingtu_kol_service_price_v1 | 取 KOL 服务报价 | xingtu.md | GET | low |
-| xingtu_kol_data_overview_v1 | 取 KOL 数据概览 | xingtu.md | GET | low |
-| xingtu_search_kol_v1 | 搜索 KOL V1 | xingtu.md | GET | low |
-| xingtu_search_kol_v2 | 搜索 KOL V2（含筛选） | xingtu.md | GET | low |
-| xingtu_kol_conversion_ability_analysis_v1 | 取 KOL 转化能力分析 | xingtu.md | GET | low |
-| xingtu_kol_video_performance_v1 | 取 KOL 视频表现 | xingtu.md | GET | low |
-| xingtu_kol_xingtu_index_v1 | 取 KOL 星图指数 | xingtu.md | GET | low |
-| xingtu_kol_convert_video_display_v1 | 取 KOL 转化视频展示 | xingtu.md | GET | low |
-| xingtu_kol_link_struct_v1 | 取 KOL 链接结构 | xingtu.md | GET | low |
-| xingtu_kol_touch_distribution_v1 | 取 KOL 触达分布 | xingtu.md | GET | low |
-| xingtu_kol_cp_info_v1 | 取 KOL CP 信息 | xingtu.md | GET | low |
-| xingtu_kol_rec_videos_v1 | 取 KOL 推荐视频 | xingtu.md | GET | low |
-| xingtu_kol_daily_fans_v1 | 取 KOL 每日粉丝 | xingtu.md | GET | low |
-| xingtu_author_hot_comment_tokens_v1 | 取作者热评词 | xingtu.md | GET | low |
-| xingtu_author_content_hot_comment_keywords_v1 | 取作者内容热评关键词 | xingtu.md | GET | low |
-| xingtu_v2_get_ranking_list_catalog | 取排行榜目录 | xingtu.md | GET | low |
-| xingtu_v2_get_ranking_list_data | 取排行榜数据 | xingtu.md | GET | low |
-| xingtu_v2_get_playlet_actor_rank_catalog | 取短剧演员排行目录 | xingtu.md | POST | **high** |
-| xingtu_v2_get_playlet_actor_rank_list | 取短剧演员排行列表 | xingtu.md | GET | low |
-| xingtu_v2_get_author_market_fields | 取创作者市场字段 | xingtu.md | GET | low |
-| xingtu_v2_get_author_base_info | 取创作者基本信息（V2） | xingtu.md | GET | low |
-| xingtu_v2_get_author_business_card_info | 取创作者商业卡片 | xingtu.md | GET | low |
-| xingtu_v2_get_author_local_info | 取创作者本地信息 | xingtu.md | GET | low |
-| xingtu_v2_get_author_show_items | 取创作者展示作品 | xingtu.md | GET | low |
-| xingtu_v2_get_author_hot_comment_tokens | 取创作者热评词（V2） | xingtu.md | GET | low |
-| xingtu_v2_get_author_content_hot_keywords | 取创作者内容热词（V2） | xingtu.md | GET | low |
-| xingtu_v2_get_recommend_for_star_authors | 取星推创作者 | xingtu.md | POST | **high** |
-| xingtu_v2_get_excellent_case_category_list | 取优秀案例分类 | xingtu.md | GET | low |
-| xingtu_v2_get_author_spread_info | 取创作者传播信息 | xingtu.md | GET | low |
-| xingtu_v2_get_user_profile_qrcode | 取用户资料二维码 | xingtu.md | GET | low |
-| xingtu_v2_get_content_trend_guide | 取内容趋势指南 | xingtu.md | GET | low |
-| xingtu_v2_get_ip_activity_industry_list | 取 IP 活动行业列表 | xingtu.md | GET | low |
-| xingtu_v2_get_ip_activity_list | 取 IP 活动列表 | xingtu.md | POST | **high** |
-| xingtu_v2_get_ip_activity_detail | 取 IP 活动详情 | xingtu.md | GET | low |
-| xingtu_v2_get_resource_list | 取资源列表 | xingtu.md | GET | low |
-| xingtu_v2_get_demander_mcn_list | 取需求方 MCN 列表 | xingtu.md | GET | low |
+| xingtu_get_sign_image | 获取签名图片 | xingtu/_index.md | GET | low |
+| xingtu_get_xingtu_kolid_by_uid | 用 uid 查 kolId | xingtu/_index.md | GET | low |
+| xingtu_get_xingtu_kolid_by_sec_user_id | 用 sec_user_id 查 kolId | xingtu/_index.md | GET | low |
+| xingtu_get_xingtu_kolid_by_unique_id | 用 unique_id 查 kolId | xingtu/_index.md | GET | low |
+| xingtu_kol_base_info_v1 | 取 KOL 基本信息 | xingtu/_index.md | GET | low |
+| xingtu_kol_audience_portrait_v1 | 取 KOL 观众画像 | xingtu/_index.md | GET | low |
+| xingtu_kol_fans_portrait_v1 | 取 KOL 粉丝画像 | xingtu/_index.md | GET | low |
+| xingtu_kol_service_price_v1 | 取 KOL 服务报价 | xingtu/_index.md | GET | low |
+| xingtu_kol_data_overview_v1 | 取 KOL 数据概览 | xingtu/_index.md | GET | low |
+| xingtu_search_kol_v1 | 搜索 KOL V1 | xingtu/_index.md | GET | low |
+| xingtu_search_kol_v2 | 搜索 KOL V2（含筛选） | xingtu/_index.md | GET | low |
+| xingtu_kol_conversion_ability_analysis_v1 | 取 KOL 转化能力分析 | xingtu/_index.md | GET | low |
+| xingtu_kol_video_performance_v1 | 取 KOL 视频表现 | xingtu/_index.md | GET | low |
+| xingtu_kol_xingtu_index_v1 | 取 KOL 星图指数 | xingtu/_index.md | GET | low |
+| xingtu_kol_convert_video_display_v1 | 取 KOL 转化视频展示 | xingtu/_index.md | GET | low |
+| xingtu_kol_link_struct_v1 | 取 KOL 链接结构 | xingtu/_index.md | GET | low |
+| xingtu_kol_touch_distribution_v1 | 取 KOL 触达分布 | xingtu/_index.md | GET | low |
+| xingtu_kol_cp_info_v1 | 取 KOL CP 信息 | xingtu/_index.md | GET | low |
+| xingtu_kol_rec_videos_v1 | 取 KOL 推荐视频 | xingtu/_index.md | GET | low |
+| xingtu_kol_daily_fans_v1 | 取 KOL 每日粉丝 | xingtu/_index.md | GET | low |
+| xingtu_author_hot_comment_tokens_v1 | 取作者热评词 | xingtu/_index.md | GET | low |
+| xingtu_author_content_hot_comment_keywords_v1 | 取作者内容热评关键词 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_ranking_list_catalog | 取排行榜目录 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_ranking_list_data | 取排行榜数据 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_playlet_actor_rank_catalog | 取短剧演员排行目录 | xingtu/_index.md | POST | **high** |
+| xingtu_v2_get_playlet_actor_rank_list | 取短剧演员排行列表 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_market_fields | 取创作者市场字段 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_base_info | 取创作者基本信息（V2） | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_business_card_info | 取创作者商业卡片 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_local_info | 取创作者本地信息 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_show_items | 取创作者展示作品 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_hot_comment_tokens | 取创作者热评词（V2） | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_content_hot_keywords | 取创作者内容热词（V2） | xingtu/_index.md | GET | low |
+| xingtu_v2_get_recommend_for_star_authors | 取星推创作者 | xingtu/_index.md | POST | **high** |
+| xingtu_v2_get_excellent_case_category_list | 取优秀案例分类 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_author_spread_info | 取创作者传播信息 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_user_profile_qrcode | 取用户资料二维码 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_content_trend_guide | 取内容趋势指南 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_ip_activity_industry_list | 取 IP 活动行业列表 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_ip_activity_list | 取 IP 活动列表 | xingtu/_index.md | POST | **high** |
+| xingtu_v2_get_ip_activity_detail | 取 IP 活动详情 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_resource_list | 取资源列表 | xingtu/_index.md | GET | low |
+| xingtu_v2_get_demander_mcn_list | 取需求方 MCN 列表 | xingtu/_index.md | GET | low |
 
 ---
 
