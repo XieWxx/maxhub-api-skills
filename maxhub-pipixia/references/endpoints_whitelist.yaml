@@ -2,6 +2,21 @@
 # Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
 # 禁止臆造路径、修改版本段、拼接新路径。
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 151 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     25–47     Posts (post.md)                           (  3 endpoints)
+# ║     48–62     Feed (post.md)                            (  2 endpoints)
+# ║     63–91     Search (post.md)                          (  4 endpoints)
+# ║     92–106    Hashtag (post.md)                         (  2 endpoints)
+# ║    107–114    Tools (post.md)                           (  1 endpoints)
+# ║    115–143    Users (user.md)                           (  4 endpoints)
+# ║    144–150    调用前验证协议                                   (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-pipixia
 version: "3.7.2"
 base_url: https://www.aconfig.cn
@@ -15,13 +30,6 @@ endpoints:
     required: [cell_id]
     optional: [cell_type]
 
-  - id: fetch_increase_post_view_count
-    method: GET
-    path: /api/v1/pipixia/app/fetch_increase_post_view_count
-    risk: medium
-    write_operation: true
-    required: [cell_id]
-    optional: [cell_type]
 
   - id: fetch_post_statistics
     method: GET

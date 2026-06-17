@@ -3,6 +3,31 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 1350 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     36–122    Video — App V3 (video.md)                 ( 11 endpoints)
+# ║    123–186    Video — Web API (video.md)                (  8 endpoints)
+# ║    187–334    User — App V3 (user.md)                   ( 20 endpoints)
+# ║    335–447    User — Web API (user.md)                  ( 14 endpoints)
+# ║    448–462    Comments — App V3 (comments.md)           (  2 endpoints)
+# ║    463–477    Comments — Web API (comments.md)          (  2 endpoints)
+# ║    478–548    Live — App V3 (comments.md)               ( 10 endpoints)
+# ║    549–605    Live — Web API (comments.md)              (  7 endpoints)
+# ║    606–739    Search — App V3 (search.md)               ( 19 endpoints)
+# ║    740–810    Search — Web API (search.md)              ( 10 endpoints)
+# ║    811–895    Ads (ads.md)                              ( 12 endpoints)
+# ║    896–924    Analytics (analytics.md)                  (  4 endpoints)
+# ║    925–1023   Creator (creator.md)                      ( 14 endpoints)
+# ║   1024–1122   Shop — App V3 (shop.md)                   ( 14 endpoints)
+# ║   1123–1207   Shop — Web API (shop.md)                  ( 12 endpoints)
+# ║   1208–1341   Tools — Web API (tools.md)                ( 15 endpoints)
+# ║   1342–1349   Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-tiktok
 version: "3.7.2"
 base_url: https://www.aconfig.cn
@@ -73,6 +98,13 @@ endpoints:
     optional: [cookie]
 
   - id: add_video_play_count
+    # 🚨 RESTRICTED — metric_manipulation: platform metric fraud — violates platform ToS
+    restricted: true
+    risk: critical
+    risk_category: metric_manipulation
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/tiktok/app/v3/add_video_play_count
     risk: high
@@ -139,6 +171,13 @@ endpoints:
     optional: []
 
   - id: get_all_aweme_id
+    # 🚨 RESTRICTED — bulk_extraction: bulk identifier extractor
+    restricted: true
+    risk: critical
+    risk_category: bulk_extraction
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/tiktok/web/get_all_aweme_id
     risk: low
@@ -266,6 +305,13 @@ endpoints:
     optional: []
 
   - id: open_tiktok_app_to_send_private_message
+    # 🚨 RESTRICTED — private_messaging: private-message deep-link
+    restricted: true
+    risk: critical
+    risk_category: private_messaging
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message
     risk: low
@@ -365,6 +411,13 @@ endpoints:
     optional: []
 
   - id: get_all_sec_user_id
+    # 🚨 RESTRICTED — bulk_extraction: bulk identifier extractor
+    restricted: true
+    risk: critical
+    risk_category: bulk_extraction
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/tiktok/web/get_all_sec_user_id
     risk: low
@@ -379,6 +432,13 @@ endpoints:
     optional: []
 
   - id: get_all_unique_id
+    # 🚨 RESTRICTED — bulk_extraction: bulk identifier extractor
+    restricted: true
+    risk: critical
+    risk_category: bulk_extraction
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/tiktok/web/get_all_unique_id
     risk: low
@@ -502,6 +562,13 @@ endpoints:
     optional: [user_unique_id, resp_content_type]
 
   - id: generate_wss_xb_signature
+    # 🚨 RESTRICTED — anti_bot_bypass: WSS signature generator
+    restricted: true
+    risk: critical
+    risk_category: anti_bot_bypass
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/tiktok/web/generate_wss_xb_signature
     risk: low
@@ -1140,6 +1207,13 @@ endpoints:
 
   # ========== Tools — Web API (tools.md) ==========
   - id: generate_real_msToken
+    # 🚨 RESTRICTED — session_bootstrap: msToken generator
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/tiktok/web/generate_real_msToken
     risk: low
@@ -1175,6 +1249,13 @@ endpoints:
     optional: [cookie, user_agent, url, referer, user_unique_id, app_id]
 
   - id: generate_ttwid
+    # 🚨 RESTRICTED — session_bootstrap: ttwid generator
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/tiktok/web/generate_ttwid
     risk: low
@@ -1217,6 +1298,13 @@ endpoints:
     optional: []
 
   - id: fetch_tiktok_web_guest_cookie
+    # 🚨 RESTRICTED — session_bootstrap: guest cookie acquisition
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie
     risk: low
@@ -1238,6 +1326,13 @@ endpoints:
     optional: []
 
   - id: encrypt_decrypt_login_request
+    # 🚨 RESTRICTED — login_crypto: login request crypto helper
+    restricted: true
+    risk: critical
+    risk_category: login_crypto
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/tiktok/app/v3/encrypt_decrypt_login_request
     risk: low

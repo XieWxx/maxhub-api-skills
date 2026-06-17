@@ -3,6 +3,25 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 314 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     30–58     Notes (note.md) — App V2                  (  4 endpoints)
+# ║     59–87     Notes (note.md) — Web V2                  (  4 endpoints)
+# ║     88–109    Notes (note.md) — Web V3                  (  3 endpoints)
+# ║    110–131    Users (user.md) — App V2                  (  3 endpoints)
+# ║    132–146    Users (user.md) — Web V2                  (  2 endpoints)
+# ║    147–161    Users (user.md) — Web V3                  (  2 endpoints)
+# ║    162–197    Search (search.md) — App V2               (  5 endpoints)
+# ║    198–205    Search (search.md) — Web V2               (  1 endpoints)
+# ║    206–248    Search (search.md) — Web V3               (  6 endpoints)
+# ║    249–305    Products & Topics (product.md) — App V2   (  8 endpoints)
+# ║    306–313    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-xiaohongshu
 version: "3.7.2"
 base_url: https://www.aconfig.cn

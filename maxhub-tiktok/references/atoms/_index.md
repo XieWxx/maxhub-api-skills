@@ -1,5 +1,25 @@
 # Atomic Index / 原子索引
 
+## 🚨 高风险能力分组（RESTRICTED — 默认禁用）
+
+> 以下原子被分类为高风险，**默认 agent 不应主动调用**。
+> 仅在用户明确授权 + 一次性确认后才能执行。具体策略见 SKILL.md 的「高风险能力清单」章节。
+
+| atom_id | 风险类别 | 限制原因 |
+|---------|---------|---------|
+| 🚨 add_play_count | metric_manipulation | platform metric fraud (写) — violates platform ToS |
+| 🚨 extract_aweme_id_batch | bulk_extraction | bulk identifier extractor |
+| 🚨 open_app_message | private_messaging | triggers private-message UI; abuse vector for spam/social-engineering |
+| 🚨 extract_sec_user_id_batch | bulk_extraction | bulk identifier extractor |
+| 🚨 extract_unique_id_batch | bulk_extraction | bulk identifier extractor |
+| 🚨 gen_wss_signature | anti_bot_bypass | WSS bullet-chat signature generator |
+| 🚨 gen_msToken | session_bootstrap | msToken generator; session bootstrap |
+| 🚨 gen_ttwid | session_bootstrap | ttwid generator; session bootstrap |
+| 🚨 get_guest_cookie | session_bootstrap | guest cookie acquisition; session bootstrap primitive |
+| 🚨 encrypt_login | login_crypto | login request crypto helper; account-credential adjacent |
+
+---
+
 > 本文件是原子化层（Atomic Layer）的索引。每个端点封装为一个"原子"，具备标准化输入/输出/幂等性/链路角色声明。
 > Agent 可按 atom_id 快速定位端点，无需全文读取 reference 详情。
 
@@ -24,10 +44,10 @@
 | get_tag_post | fetch_tag_post | video.md | 视频 | low | ✓ | ✗ | starter |
 | get_user_mix | fetch_user_mix | video.md | 视频 | low | ✓ | ✗ | relay |
 | get_insights_videos | fetch_creator_search_insights_videos | video.md | 视频 | low | ✓ | ✗ | terminal |
-| add_play_count | add_video_play_count | video.md | 视频 | high | ✗ | ✓ | terminal |
+| 🚨 add_play_count | add_video_play_count | video.md | 视频 | high | ✗ | ✓ | terminal |
 | open_app_video | open_tiktok_app_to_video_detail | video.md | 视频 | low | ✓ | ✗ | terminal |
 | extract_aweme_id | get_aweme_id | video.md | 视频 | low | ✓ | ✗ | starter |
-| extract_aweme_id_batch | get_all_aweme_id | video.md | 视频 | low | ✓ | ✗ | starter |
+| 🚨 extract_aweme_id_batch | get_all_aweme_id | video.md | 视频 | low | ✓ | ✗ | starter |
 
 ### 用户（user）
 
@@ -50,7 +70,7 @@
 | get_user_music | fetch_user_music_list | user.md | 用户 | low | ✓ | ✗ | terminal |
 | get_share_qr | fetch_share_qr_code | user.md | 用户 | low | ✓ | ✗ | terminal |
 | open_app_user | open_tiktok_app_to_user_profile | user.md | 用户 | low | ✓ | ✗ | terminal |
-| open_app_message | open_tiktok_app_to_send_private_message | user.md | 用户 | high | ✗ | ✓ | terminal |
+| 🚨 open_app_message | open_tiktok_app_to_send_private_message | user.md | 用户 | high | ✗ | ✓ | terminal |
 | get_creator_info | fetch_creator_info | user.md | 用户 | low | ✓ | ✗ | relay |
 | get_showcase_products | fetch_creator_showcase_product_list | user.md | 用户 | low | ✓ | ✗ | terminal |
 | get_user_web | fetch_user_profile | user.md | 用户 | low | ✓ | ✗ | standalone |
@@ -64,9 +84,9 @@
 | get_user_live_web | fetch_user_live_detail | user.md | 用户 | low | ✓ | ✗ | relay |
 | extract_user_id | get_user_id | user.md | 用户 | low | ✓ | ✗ | starter |
 | extract_sec_user_id | get_sec_user_id | user.md | 用户 | low | ✓ | ✗ | starter |
-| extract_sec_user_id_batch | get_all_sec_user_id | user.md | 用户 | low | ✓ | ✗ | starter |
+| 🚨 extract_sec_user_id_batch | get_all_sec_user_id | user.md | 用户 | low | ✓ | ✗ | starter |
 | extract_unique_id | get_unique_id | user.md | 用户 | low | ✓ | ✗ | starter |
-| extract_unique_id_batch | get_all_unique_id | user.md | 用户 | low | ✓ | ✗ | starter |
+| 🚨 extract_unique_id_batch | get_all_unique_id | user.md | 用户 | low | ✓ | ✗ | starter |
 
 ### 搜索（search）
 
@@ -122,7 +142,7 @@
 | check_live_alive_batch_web | fetch_batch_check_live_alive | comments.md | 直播 | low | ✓ | ✗ | standalone |
 | get_live_data_web | fetch_tiktok_live_data | comments.md | 直播 | low | ✓ | ✗ | standalone |
 | get_live_im | fetch_live_im_fetch | comments.md | 直播 | low | ✓ | ✗ | relay |
-| gen_wss_signature | generate_wss_xb_signature | comments.md | 直播 | low | ✓ | ✗ | relay |
+| 🚨 gen_wss_signature | generate_wss_xb_signature | comments.md | 直播 | low | ✓ | ✗ | relay |
 | get_live_gift_list | fetch_live_gift_list | comments.md | 直播 | low | ✓ | ✗ | starter |
 | get_gift_name | fetch_gift_name_by_id | comments.md | 直播 | low | ✓ | ✗ | terminal |
 | get_gift_names_batch | fetch_gift_names_by_ids | comments.md | 直播 | low | ✓ | ✗ | terminal |
@@ -207,21 +227,21 @@
 
 | atom_id | endpoint_id | file | domain | risk | idempotent | write_op | chain_role |
 |---------|------------|------|--------|------|-----------|---------|------------|
-| gen_msToken | generate_real_msToken | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 gen_msToken | generate_real_msToken | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | encrypt_strData | encrypt_strData | tools.md | 工具 | low | ✓ | ✗ | relay |
 | decrypt_strData | decrypt_strData | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | gen_fingerprint | generate_fingerprint | tools.md | 工具 | low | ✓ | ✗ | starter |
 | gen_webid | generate_webid | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| gen_ttwid | generate_ttwid | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 gen_ttwid | generate_ttwid | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | gen_xbogus | generate_xbogus | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | gen_xgnarly | generate_xgnarly | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | gen_xgnarly_xbogus | generate_xgnarly_and_xbogus | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | gen_x_mssdk | generate_x_mssdk_info | tools.md | 工具 | low | ✓ | ✗ | standalone |
 | gen_hashed_id | generate_hashed_id | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| get_guest_cookie | fetch_tiktok_web_guest_cookie | tools.md | 工具 | low | ✓ | ✗ | starter |
+| 🚨 get_guest_cookie | fetch_tiktok_web_guest_cookie | tools.md | 工具 | low | ✓ | ✗ | starter |
 | device_register | device_register | tools.md | 工具 | low | ✓ | ✗ | starter |
 | tt_encrypt | TTencrypt_algorithm | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| encrypt_login | encrypt_decrypt_login_request | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 encrypt_login | encrypt_decrypt_login_request | tools.md | 工具 | low | ✓ | ✗ | standalone |
 
 ### 字段说明
 - **atom_id**：业务化别名，Agent 易记易用

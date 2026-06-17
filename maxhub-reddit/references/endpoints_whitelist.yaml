@@ -3,6 +3,22 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 238 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     27–69     Feed / 推荐流 (content.md)                   (  6 endpoints)
+# ║     70–91     Posts / 帖子 (content.md)                   (  3 endpoints)
+# ║     92–106    Comments / 评论 (content.md)                (  2 endpoints)
+# ║    107–121    Reddit Answers / 精简数据 (content.md)        (  2 endpoints)
+# ║    122–150    Search / 搜索 (search.md)                   (  4 endpoints)
+# ║    151–193    Subreddit / 版块 (subreddit.md)             (  6 endpoints)
+# ║    194–229    User / 用户 (user.md)                       (  5 endpoints)
+# ║    230–237    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-reddit
 version: "3.7.2"
 base_url: https://www.aconfig.cn

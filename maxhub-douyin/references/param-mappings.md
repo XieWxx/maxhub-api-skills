@@ -60,6 +60,42 @@ Skill: `maxhub-douyin` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `uid` / `user_id` | 用户数字 ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `cursor` / `max_cursor` | 分页游标（通用） | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `room_id` / `webcast_id` | 直播间 ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `tag_id` / `category_id` | 垂类/分类 ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **2260 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `App V3 API (video.md / user.md / comments.md / trending.md / tools.md)` | 39 | 29–335 | `sed -n '29,335p' references/endpoints_whitelist.yaml` |
+| `Web API (video.md / user.md / comments.md / live.md / trending.md / tools.md)` | 66 | 336–908 | `sed -n '336,908p' references/endpoints_whitelist.yaml` |
+| `Search API (search.md)` | 19 | 909–1080 | `sed -n '909,1080p' references/endpoints_whitelist.yaml` |
+| `Billboard API (trending.md)` | 31 | 1081–1322 | `sed -n '1081,1322p' references/endpoints_whitelist.yaml` |
+| `Creator API (creator.md)` | 17 | 1323–1442 | `sed -n '1323,1442p' references/endpoints_whitelist.yaml` |
+| `Creator V2 API (creator.md)` | 14 | 1443–1569 | `sed -n '1443,1569p' references/endpoints_whitelist.yaml` |
+| `Index API (content.md)` | 44 | 1570–1942 | `sed -n '1570,1942p' references/endpoints_whitelist.yaml` |
+| `Xingtu API (xingtu.md)` | 22 | 1943–2097 | `sed -n '1943,2097p' references/endpoints_whitelist.yaml` |
+| `Xingtu V2 API (xingtu.md)` | 21 | 2098–2251 | `sed -n '2098,2251p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 2252–2259 | `sed -n '2252,2259p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 > 共 9 个 API 子模块，150+ 端点。按 reference 文件分组。

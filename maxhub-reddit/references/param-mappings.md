@@ -61,6 +61,27 @@ Skill: `maxhub-reddit` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 ---
 
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **238 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Feed / 推荐流 (content.md)` | 6 | 27–69 | `sed -n '27,69p' references/endpoints_whitelist.yaml` |
+| `Posts / 帖子 (content.md)` | 3 | 70–91 | `sed -n '70,91p' references/endpoints_whitelist.yaml` |
+| `Comments / 评论 (content.md)` | 2 | 92–106 | `sed -n '92,106p' references/endpoints_whitelist.yaml` |
+| `Reddit Answers / 精简数据 (content.md)` | 2 | 107–121 | `sed -n '107,121p' references/endpoints_whitelist.yaml` |
+| `Search / 搜索 (search.md)` | 4 | 122–150 | `sed -n '122,150p' references/endpoints_whitelist.yaml` |
+| `Subreddit / 版块 (subreddit.md)` | 6 | 151–193 | `sed -n '151,193p' references/endpoints_whitelist.yaml` |
+| `User / 用户 (user.md)` | 5 | 194–229 | `sed -n '194,229p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 230–237 | `sed -n '230,237p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 | ID | 一句话用途 | Reference File | Method | Risk |

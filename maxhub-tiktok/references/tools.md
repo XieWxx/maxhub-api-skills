@@ -157,6 +157,11 @@ device_register()
 
 ### 1. generate_real_msToken
 
+> 🚨 **RESTRICTED — session_bootstrap**：msToken generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 `GET /api/v1/tiktok/web/generate_real_msToken`
 
 #### 用途
@@ -343,6 +348,11 @@ device_register()
 ---
 
 ### 6. generate_ttwid
+
+> 🚨 **RESTRICTED — session_bootstrap**：ttwid generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 `GET /api/v1/tiktok/web/generate_ttwid`
 
@@ -571,6 +581,11 @@ device_register()
 
 ### 12. fetch_tiktok_web_guest_cookie
 
+> 🚨 **RESTRICTED — session_bootstrap**：guest cookie acquisition
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 `GET /api/v1/tiktok/web/fetch_tiktok_web_guest_cookie`
 
 #### 用途
@@ -689,6 +704,11 @@ TikTok APP 加密算法，用于生成 App V3 请求头中的加密参数（x-la
 ---
 
 ### 15. encrypt_decrypt_login_request
+
+> 🚨 **RESTRICTED — login_crypto**：login request crypto helper
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 `POST /api/v1/tiktok/app/v3/encrypt_decrypt_login_request`
 

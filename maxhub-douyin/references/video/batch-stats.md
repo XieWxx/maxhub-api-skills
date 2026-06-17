@@ -156,6 +156,11 @@ Web 版批量获取视频详情，最多支持 50 个。
 
 ### app_v3_add_video_play_count — 增加视频播放量
 
+> 🚨 **RESTRICTED — metric_manipulation**：platform metric fraud — violates platform ToS
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/app/v3/add_video_play_count`
 **Method:** GET · **Risk:** high · **requires_user_confirmation:** true · **write_operation:** true
 

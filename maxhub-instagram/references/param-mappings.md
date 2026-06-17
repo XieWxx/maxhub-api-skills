@@ -60,6 +60,42 @@ Skill: `maxhub-instagram` · Base URL: `https://www.aconfig.cn` · Version: `3.7
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `shortcode` / `code` | 帖子短代码（如 `DRhvwVLAHAG`） | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **661 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `V1 — 用户 (user.md)` | 13 | 32–123 | `sed -n '32,123p' references/endpoints_whitelist.yaml` |
+| `V1 — 帖子 (post.md)` | 6 | 124–166 | `sed -n '124,166p' references/endpoints_whitelist.yaml` |
+| `V1 — 评论 (comments.md)` | 2 | 167–181 | `sed -n '167,181p' references/endpoints_whitelist.yaml` |
+| `V1 — 搜索 (search.md)` | 8 | 182–238 | `sed -n '182,238p' references/endpoints_whitelist.yaml` |
+| `V2 — 用户 (user.md)` | 11 | 239–316 | `sed -n '239,316p' references/endpoints_whitelist.yaml` |
+| `V2 — 帖子 (post.md)` | 5 | 317–352 | `sed -n '317,352p' references/endpoints_whitelist.yaml` |
+| `V2 — 评论 (comments.md)` | 2 | 353–367 | `sed -n '353,367p' references/endpoints_whitelist.yaml` |
+| `V2 — 搜索 (search.md)` | 9 | 368–431 | `sed -n '368,431p' references/endpoints_whitelist.yaml` |
+| `V3 — 用户 (user.md)` | 13 | 432–523 | `sed -n '432,523p' references/endpoints_whitelist.yaml` |
+| `V3 — 帖子 (post.md)` | 9 | 524–587 | `sed -n '524,587p' references/endpoints_whitelist.yaml` |
+| `V3 — 评论 (comments.md)` | 2 | 588–602 | `sed -n '588,602p' references/endpoints_whitelist.yaml` |
+| `V3 — 搜索 (search.md)` | 7 | 603–652 | `sed -n '603,652p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 653–660 | `sed -n '653,660p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 > 同名端点在不同 V1/V2/V3 版本中参数名和返回结构可能不同，使用时务必核对版本。

@@ -126,6 +126,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### app_v3_register_device — 注册抖音 App 设备
 
+> 🚨 **RESTRICTED — session_bootstrap**：fake-client device registration; can evade anti-abuse controls
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/app/v3/register_device`
 **Method:** GET · **Risk:** **high** · **⚠️ 需用户确认**
 
@@ -253,6 +258,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### app_v3_open_douyin_app_to_send_private_message — 生成发送私信的 Deep-Link
 
+> 🚨 **RESTRICTED — private_messaging**：private-message deep-link
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/app/v3/open_douyin_app_to_send_private_message`
 **Method:** GET · **Risk:** **high** · **⚠️ 需用户确认**
 
@@ -286,6 +296,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### web_fetch_douyin_web_guest_cookie — 获取抖音 Web 游客 Cookie
 
+> 🚨 **RESTRICTED — session_bootstrap**：guest cookie acquisition
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/web/fetch_douyin_web_guest_cookie`
 **Method:** GET · **Risk:** low
 
@@ -318,6 +333,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### web_generate_real_msToken — 生成真实 msToken
 
+> 🚨 **RESTRICTED — session_bootstrap**：msToken generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/web/generate_real_msToken`
 **Method:** GET · **Risk:** low
 
@@ -348,6 +368,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### web_generate_ttwid — 生成 ttwid
 
+> 🚨 **RESTRICTED — session_bootstrap**：ttwid generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/web/generate_ttwid`
 **Method:** GET · **Risk:** low
 
@@ -376,6 +401,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### web_generate_verify_fp — 生成 verify_fp
+
+> 🚨 **RESTRICTED — session_bootstrap**：verify_fp generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/douyin/web/generate_verify_fp`
 **Method:** GET · **Risk:** low
@@ -406,6 +436,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### web_generate_s_v_web_id — 生成 s_v_web_id
 
+> 🚨 **RESTRICTED — session_bootstrap**：s_v_web_id generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/web/generate_s_v_web_id`
 **Method:** GET · **Risk:** low
 
@@ -434,6 +469,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### web_generate_x_bogus — 生成 X-Bogus 签名参数
+
+> 🚨 **RESTRICTED — anti_bot_bypass**：X-Bogus signature generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/douyin/web/generate_x_bogus`
 **Method:** POST · **Risk:** **high** · **⚠️ 需用户确认**
@@ -467,6 +507,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### web_generate_a_bogus — 生成 A-Bogus 签名参数
+
+> 🚨 **RESTRICTED — anti_bot_bypass**：A-Bogus signature generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/douyin/web/generate_a_bogus`
 **Method:** POST · **Risk:** **high** · **⚠️ 需用户确认**
@@ -505,6 +550,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### web_generate_wss_xb_signature — 生成弹幕 WSS 签名
+
+> 🚨 **RESTRICTED — anti_bot_bypass**：WSS signature generator
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/douyin/web/generate_wss_xb_signature`
 **Method:** GET · **Risk:** low
@@ -573,6 +623,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### web_get_all_sec_user_id — 批量提取 sec_user_id
 
+> 🚨 **RESTRICTED — bulk_extraction**：bulk identifier extractor
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/web/get_all_sec_user_id`
 **Method:** POST · **Risk:** **high** · **⚠️ 需用户确认**
 
@@ -636,6 +691,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### web_get_all_aweme_id — 批量提取 aweme_id
+
+> 🚨 **RESTRICTED — bulk_extraction**：bulk identifier extractor
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/douyin/web/get_all_aweme_id`
 **Method:** POST · **Risk:** **high** · **⚠️ 需用户确认**
@@ -701,6 +761,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### web_get_all_webcast_id — 批量提取 webcast_id
 
+> 🚨 **RESTRICTED — bulk_extraction**：bulk identifier extractor
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/douyin/web/get_all_webcast_id`
 **Method:** POST · **Risk:** **high** · **⚠️ 需用户确认**
 
@@ -762,6 +827,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### web_fetch_query_user — 查询用户信息
+
+> 🚨 **RESTRICTED — query_helper**：high-risk write_op marked user-search helper
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/douyin/web/fetch_query_user`
 **Method:** POST · **Risk:** **high** · **⚠️ 需用户确认**

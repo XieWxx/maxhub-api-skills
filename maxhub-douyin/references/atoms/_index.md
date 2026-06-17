@@ -1,5 +1,30 @@
 # Atomic Index / 原子索引
 
+## 🚨 高风险能力分组（RESTRICTED — 默认禁用）
+
+> 以下原子被分类为高风险，**默认 agent 不应主动调用**。
+> 仅在用户明确授权 + 一次性确认后才能执行。具体策略见 SKILL.md 的「高风险能力清单」章节。
+
+| atom_id | 风险类别 | 限制原因 |
+|---------|---------|---------|
+| 🚨 add_play_count | metric_manipulation | platform metric fraud (写) — violates platform ToS |
+| 🚨 register_device | session_bootstrap | fake-client device registration; can evade anti-abuse controls |
+| 🚨 open_app_message | private_messaging | triggers private-message UI; abuse vector for spam/social-engineering |
+| 🚨 get_guest_cookie | session_bootstrap | guest cookie acquisition; session bootstrap primitive |
+| 🚨 gen_msToken | session_bootstrap | msToken generator; session bootstrap |
+| 🚨 gen_ttwid | session_bootstrap | ttwid generator; session bootstrap |
+| 🚨 gen_verify_fp | session_bootstrap | verify_fp generator; session bootstrap |
+| 🚨 gen_s_v_web_id | session_bootstrap | s_v_web_id generator |
+| 🚨 gen_x_bogus | anti_bot_bypass | X-Bogus signature generator; bypasses platform anti-scrape controls |
+| 🚨 gen_a_bogus | anti_bot_bypass | A-Bogus signature generator; bypasses anti-scrape |
+| 🚨 gen_wss_signature | anti_bot_bypass | WSS bullet-chat signature generator |
+| 🚨 extract_sec_uid_batch | bulk_extraction | bulk identifier extractor; scale-collection vector |
+| 🚨 extract_aweme_id_batch | bulk_extraction | bulk identifier extractor |
+| 🚨 extract_webcast_id_batch | bulk_extraction | bulk identifier extractor |
+| 🚨 query_user | query_helper | high-risk write_op marked user-search helper |
+
+---
+
 > 本文件是原子化层（Atomic Layer）的索引。每个端点封装为一个"原子"，具备标准化输入/输出/幂等性/链路角色声明。
 > Agent 可按 atom_id 快速定位端点，无需全文读取 reference 详情。
 
@@ -25,7 +50,7 @@
 | get_video_batch_web | web_fetch_multi_video | video/batch-stats.md | 视频 | high | ✗ | ✓ | standalone |
 | get_video_stats | app_v3_fetch_video_statistics | video/batch-stats.md | 视频 | low | ✓ | ✗ | terminal |
 | get_video_stats_batch | app_v3_fetch_multi_video_statistics | video/batch-stats.md | 视频 | low | ✓ | ✗ | terminal |
-| add_play_count | app_v3_add_video_play_count | video/batch-stats.md | 视频 | high | ✗ | ✓ | terminal |
+| 🚨 add_play_count | app_v3_add_video_play_count | video/batch-stats.md | 视频 | high | ✗ | ✓ | terminal |
 | get_share_by_code | app_v3_fetch_share_info_by_share_code | video/batch-stats.md | 视频 | low | ✓ | ✗ | starter |
 | gen_short_url | app_v3_generate_douyin_short_url | video/batch-stats.md | 视频 | low | ✓ | ✗ | terminal |
 | gen_share_qrcode | app_v3_generate_douyin_video_share_qrcode | video/batch-stats.md | 视频 | low | ✓ | ✗ | terminal |
@@ -168,27 +193,27 @@
 
 | atom_id | endpoint_id | file | domain | risk | idempotent | write_op | chain_role |
 |---------|------------|------|--------|------|-----------|---------|------------|
-| register_device | app_v3_register_device | tools.md | 工具 | high | ✗ | ✓ | starter |
+| 🚨 register_device | app_v3_register_device | tools.md | 工具 | high | ✗ | ✓ | starter |
 | open_app_video | app_v3_open_douyin_app_to_video_detail | tools.md | 工具 | low | ✓ | ✗ | terminal |
 | open_app_user | app_v3_open_douyin_app_to_user_profile | tools.md | 工具 | low | ✓ | ✗ | terminal |
 | open_app_search | app_v3_open_douyin_app_to_keyword_search | tools.md | 工具 | low | ✓ | ✗ | terminal |
-| open_app_message | app_v3_open_douyin_app_to_send_private_message | tools.md | 工具 | high | ✗ | ✓ | terminal |
-| get_guest_cookie | web_fetch_douyin_web_guest_cookie | tools.md | 工具 | low | ✓ | ✗ | starter |
-| gen_msToken | web_generate_real_msToken | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| gen_ttwid | web_generate_ttwid | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| gen_verify_fp | web_generate_verify_fp | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| gen_s_v_web_id | web_generate_s_v_web_id | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| gen_x_bogus | web_generate_x_bogus | tools.md | 工具 | high | ✗ | ✓ | standalone |
-| gen_a_bogus | web_generate_a_bogus | tools.md | 工具 | high | ✗ | ✓ | standalone |
-| gen_wss_signature | web_generate_wss_xb_signature | tools.md | 工具 | low | ✓ | ✗ | relay |
+| 🚨 open_app_message | app_v3_open_douyin_app_to_send_private_message | tools.md | 工具 | high | ✗ | ✓ | terminal |
+| 🚨 get_guest_cookie | web_fetch_douyin_web_guest_cookie | tools.md | 工具 | low | ✓ | ✗ | starter |
+| 🚨 gen_msToken | web_generate_real_msToken | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 gen_ttwid | web_generate_ttwid | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 gen_verify_fp | web_generate_verify_fp | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 gen_s_v_web_id | web_generate_s_v_web_id | tools.md | 工具 | low | ✓ | ✗ | standalone |
+| 🚨 gen_x_bogus | web_generate_x_bogus | tools.md | 工具 | high | ✗ | ✓ | standalone |
+| 🚨 gen_a_bogus | web_generate_a_bogus | tools.md | 工具 | high | ✗ | ✓ | standalone |
+| 🚨 gen_wss_signature | web_generate_wss_xb_signature | tools.md | 工具 | low | ✓ | ✗ | relay |
 | extract_sec_uid | web_get_sec_user_id | tools.md | 工具 | low | ✓ | ✗ | starter |
-| extract_sec_uid_batch | web_get_all_sec_user_id | tools.md | 工具 | high | ✗ | ✓ | starter |
+| 🚨 extract_sec_uid_batch | web_get_all_sec_user_id | tools.md | 工具 | high | ✗ | ✓ | starter |
 | extract_aweme_id | web_get_aweme_id | tools.md | 工具 | low | ✓ | ✗ | starter |
-| extract_aweme_id_batch | web_get_all_aweme_id | tools.md | 工具 | high | ✗ | ✓ | starter |
+| 🚨 extract_aweme_id_batch | web_get_all_aweme_id | tools.md | 工具 | high | ✗ | ✓ | starter |
 | extract_webcast_id | web_get_webcast_id | tools.md | 工具 | low | ✓ | ✗ | starter |
-| extract_webcast_id_batch | web_get_all_webcast_id | tools.md | 工具 | high | ✗ | ✓ | starter |
+| 🚨 extract_webcast_id_batch | web_get_all_webcast_id | tools.md | 工具 | high | ✗ | ✓ | starter |
 | shorten_url | web_handler_shorten_url | tools.md | 工具 | low | ✓ | ✗ | standalone |
-| query_user | web_fetch_query_user | tools.md | 工具 | high | ✗ | ✓ | starter |
+| 🚨 query_user | web_fetch_query_user | tools.md | 工具 | high | ✗ | ✓ | starter |
 
 ### 内容指数（content）
 

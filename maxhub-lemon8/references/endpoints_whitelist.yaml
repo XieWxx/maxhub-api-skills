@@ -3,6 +3,17 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 144 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     22–57     User (user.md)                            (  5 endpoints)
+# ║     58–135    Content (content.md)                      ( 11 endpoints)
+# ║    136–143    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-lemon8
 version: "3.7.2"
 base_url: https://www.aconfig.cn

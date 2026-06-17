@@ -3,6 +3,18 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 189 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     23–86     微信公众号 / WeChat MP (mp.md)                 (  9 endpoints)
+# ║     87–171    微信视频号 / WeChat Channels (channels.md)     ( 12 endpoints)
+# ║    172–179    微信搜一搜 / WeChat Search (search.md)         (  1 endpoints)
+# ║    180–188    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-wechat
 version: "3.7.2"
 base_url: https://www.aconfig.cn

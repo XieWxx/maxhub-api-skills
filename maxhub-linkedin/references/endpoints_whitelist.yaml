@@ -3,6 +3,23 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 639 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     28–182    Web API — User (user.md)                  ( 22 endpoints)
+# ║    183–239    Web API — Company (company.md)            (  8 endpoints)
+# ║    240–310    Web API — Content (content.md)            ( 10 endpoints)
+# ║    311–325    Web API — Jobs (jobs.md)                  (  2 endpoints)
+# ║    326–487    Web V2 API — User (user.md)               ( 23 endpoints)
+# ║    488–572    Web V2 API — Company (company.md)         ( 12 endpoints)
+# ║    573–615    Web V2 API — Content (content.md)         (  6 endpoints)
+# ║    616–630    Web V2 API — Jobs (jobs.md)               (  2 endpoints)
+# ║    631–638    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-linkedin
 version: "3.7.2"
 base_url: https://www.aconfig.cn

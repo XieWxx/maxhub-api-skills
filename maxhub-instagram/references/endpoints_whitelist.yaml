@@ -3,6 +3,27 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 661 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     32–123    V1 — 用户 (user.md)                         ( 13 endpoints)
+# ║    124–166    V1 — 帖子 (post.md)                         (  6 endpoints)
+# ║    167–181    V1 — 评论 (comments.md)                     (  2 endpoints)
+# ║    182–238    V1 — 搜索 (search.md)                       (  8 endpoints)
+# ║    239–316    V2 — 用户 (user.md)                         ( 11 endpoints)
+# ║    317–352    V2 — 帖子 (post.md)                         (  5 endpoints)
+# ║    353–367    V2 — 评论 (comments.md)                     (  2 endpoints)
+# ║    368–431    V2 — 搜索 (search.md)                       (  9 endpoints)
+# ║    432–523    V3 — 用户 (user.md)                         ( 13 endpoints)
+# ║    524–587    V3 — 帖子 (post.md)                         (  9 endpoints)
+# ║    588–602    V3 — 评论 (comments.md)                     (  2 endpoints)
+# ║    603–652    V3 — 搜索 (search.md)                       (  7 endpoints)
+# ║    653–660    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-instagram
 version: "3.7.2"
 base_url: https://www.aconfig.cn

@@ -3,6 +3,24 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 2260 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     29–335    App V3 API (video.md / user.md / comments.md / trending.md / tools.md)  ( 39 endpoints)
+# ║    336–908    Web API (video.md / user.md / comments.md / live.md / trending.md / tools.md)  ( 66 endpoints)
+# ║    909–1080   Search API (search.md)                    ( 19 endpoints)
+# ║   1081–1322   Billboard API (trending.md)               ( 31 endpoints)
+# ║   1323–1442   Creator API (creator.md)                  ( 17 endpoints)
+# ║   1443–1569   Creator V2 API (creator.md)               ( 14 endpoints)
+# ║   1570–1942   Index API (content.md)                    ( 44 endpoints)
+# ║   1943–2097   Xingtu API (xingtu.md)                    ( 22 endpoints)
+# ║   2098–2251   Xingtu V2 API (xingtu.md)                 ( 21 endpoints)
+# ║   2252–2259   Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-douyin
 version: "3.7.2"
 base_url: https://www.aconfig.cn
@@ -93,6 +111,13 @@ endpoints:
     optional: []
 
   - id: app_v3_add_video_play_count
+    # 🚨 RESTRICTED — metric_manipulation: platform metric fraud — violates platform ToS
+    restricted: true
+    risk: critical
+    risk_category: metric_manipulation
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/app/v3/add_video_play_count
     risk: high
@@ -256,6 +281,13 @@ endpoints:
     optional: []
 
   - id: app_v3_register_device
+    # 🚨 RESTRICTED — session_bootstrap: fake-client device registration
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/app/v3/register_device
     risk: high
@@ -286,6 +318,13 @@ endpoints:
     optional: []
 
   - id: app_v3_open_douyin_app_to_send_private_message
+    # 🚨 RESTRICTED — private_messaging: private-message deep-link
+    restricted: true
+    risk: critical
+    risk_category: private_messaging
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/app/v3/open_douyin_app_to_send_private_message
     risk: high
@@ -604,6 +643,13 @@ endpoints:
     optional: [count, refresh_index]
 
   - id: web_fetch_douyin_web_guest_cookie
+    # 🚨 RESTRICTED — session_bootstrap: guest cookie acquisition
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/web/fetch_douyin_web_guest_cookie
     risk: low
@@ -611,6 +657,13 @@ endpoints:
     optional: []
 
   - id: web_generate_real_msToken
+    # 🚨 RESTRICTED — session_bootstrap: msToken generator
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/web/generate_real_msToken
     risk: low
@@ -618,6 +671,13 @@ endpoints:
     optional: []
 
   - id: web_generate_ttwid
+    # 🚨 RESTRICTED — session_bootstrap: ttwid generator
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/web/generate_ttwid
     risk: low
@@ -625,6 +685,13 @@ endpoints:
     optional: [user_agent]
 
   - id: web_fetch_query_user
+    # 🚨 RESTRICTED — query_helper: high-risk write_op marked user-search helper
+    restricted: true
+    risk: critical
+    risk_category: query_helper
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/douyin/web/fetch_query_user
     risk: high
@@ -634,6 +701,13 @@ endpoints:
     optional: []
 
   - id: web_generate_verify_fp
+    # 🚨 RESTRICTED — session_bootstrap: verify_fp generator
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/web/generate_verify_fp
     risk: low
@@ -641,6 +715,13 @@ endpoints:
     optional: []
 
   - id: web_generate_s_v_web_id
+    # 🚨 RESTRICTED — session_bootstrap: s_v_web_id generator
+    restricted: true
+    risk: critical
+    risk_category: session_bootstrap
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/web/generate_s_v_web_id
     risk: low
@@ -648,6 +729,13 @@ endpoints:
     optional: []
 
   - id: web_generate_wss_xb_signature
+    # 🚨 RESTRICTED — anti_bot_bypass: WSS signature generator
+    restricted: true
+    risk: critical
+    risk_category: anti_bot_bypass
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: GET
     path: /api/v1/douyin/web/generate_wss_xb_signature
     risk: low
@@ -655,6 +743,13 @@ endpoints:
     optional: []
 
   - id: web_generate_x_bogus
+    # 🚨 RESTRICTED — anti_bot_bypass: X-Bogus signature generator
+    restricted: true
+    risk: critical
+    risk_category: anti_bot_bypass
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/douyin/web/generate_x_bogus
     risk: high
@@ -664,6 +759,13 @@ endpoints:
     optional: []
 
   - id: web_generate_a_bogus
+    # 🚨 RESTRICTED — anti_bot_bypass: A-Bogus signature generator
+    restricted: true
+    risk: critical
+    risk_category: anti_bot_bypass
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/douyin/web/generate_a_bogus
     risk: high
@@ -680,6 +782,13 @@ endpoints:
     optional: []
 
   - id: web_get_all_sec_user_id
+    # 🚨 RESTRICTED — bulk_extraction: bulk identifier extractor
+    restricted: true
+    risk: critical
+    risk_category: bulk_extraction
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/douyin/web/get_all_sec_user_id
     risk: high
@@ -696,6 +805,13 @@ endpoints:
     optional: []
 
   - id: web_get_all_aweme_id
+    # 🚨 RESTRICTED — bulk_extraction: bulk identifier extractor
+    restricted: true
+    risk: critical
+    risk_category: bulk_extraction
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/douyin/web/get_all_aweme_id
     risk: high
@@ -712,6 +828,13 @@ endpoints:
     optional: []
 
   - id: web_get_all_webcast_id
+    # 🚨 RESTRICTED — bulk_extraction: bulk identifier extractor
+    restricted: true
+    risk: critical
+    risk_category: bulk_extraction
+    requires_explicit_user_consent: true
+    requires_one_time_confirmation: true
+    tos_compliance_warning: "may violate platform Terms of Service"
     method: POST
     path: /api/v1/douyin/web/get_all_webcast_id
     risk: high

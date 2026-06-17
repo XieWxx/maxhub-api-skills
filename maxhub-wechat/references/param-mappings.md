@@ -61,6 +61,23 @@ Skill: `maxhub-wechat` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 ---
 
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **189 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `微信公众号 / WeChat MP (mp.md)` | 9 | 23–86 | `sed -n '23,86p' references/endpoints_whitelist.yaml` |
+| `微信视频号 / WeChat Channels (channels.md)` | 12 | 87–171 | `sed -n '87,171p' references/endpoints_whitelist.yaml` |
+| `微信搜一搜 / WeChat Search (search.md)` | 1 | 172–179 | `sed -n '172,179p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 180–188 | `sed -n '180,188p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 ### 微信公众号 (mp.md)

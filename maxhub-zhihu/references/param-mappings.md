@@ -53,6 +53,33 @@ Skill: `maxhub-zhihu` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `offset` / `cursor` | 分页参数（通用） | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **270 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Posts / Content (post.md)` | 11 | 22–99 | `sed -n '22,99p' references/endpoints_whitelist.yaml` |
+| `Search (search.md)` | 13 | 100–191 | `sed -n '100,191p' references/endpoints_whitelist.yaml` |
+| `Users (user.md)` | 10 | 192–262 | `sed -n '192,262p' references/endpoints_whitelist.yaml` |
+| `调用前验证协议` | 0 | 263–269 | `sed -n '263,269p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 | ID | 一句话用途 | Reference File | Method | Risk |

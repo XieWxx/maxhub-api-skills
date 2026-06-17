@@ -604,6 +604,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### open_tiktok_app_to_send_private_message — 唤起 APP 发送私信
 
+> 🚨 **RESTRICTED — private_messaging**：private-message deep-link
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/tiktok/app/v3/open_tiktok_app_to_send_private_message`
 **Method:** GET · **Risk:** low
 
@@ -996,6 +1001,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ### get_all_sec_user_id — 批量提取 sec_user_id
 
+> 🚨 **RESTRICTED — bulk_extraction**：bulk identifier extractor
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
+
 **Full path:** `/api/v1/tiktok/web/get_all_sec_user_id`
 **Method:** POST · **Risk:** low
 
@@ -1043,6 +1053,11 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 ---
 
 ### get_all_unique_id — 批量提取 unique_id
+
+> 🚨 **RESTRICTED — bulk_extraction**：bulk identifier extractor
+>
+> 此端点**默认禁用**。仅在用户当次明确授权后调用，且必须告知合规风险。详见 SKILL.md 「高风险能力清单」章节。
+
 
 **Full path:** `/api/v1/tiktok/web/get_all_unique_id`
 **Method:** POST · **Risk:** low

@@ -60,6 +60,35 @@ Skill: `maxhub-kuaishou` · Base URL: `https://www.aconfig.cn` · Version: `3.7.
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `boardType` / `boardId` | 热榜分类 | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **304 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Video / 视频 (video.md)` | 8 | 25–81 | `sed -n '25,81p' references/endpoints_whitelist.yaml` |
+| `User / 用户 (user.md)` | 6 | 82–124 | `sed -n '82,124p' references/endpoints_whitelist.yaml` |
+| `Comments / 评论 (comments.md)` | 4 | 125–153 | `sed -n '125,153p' references/endpoints_whitelist.yaml` |
+| `Search / 搜索 (search.md)` | 14 | 154–252 | `sed -n '154,252p' references/endpoints_whitelist.yaml` |
+| `Live / 直播 (live.md)` | 6 | 253–295 | `sed -n '253,295p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 296–303 | `sed -n '296,303p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 ### Video / 视频 (video.md)

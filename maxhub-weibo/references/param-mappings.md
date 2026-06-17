@@ -59,6 +59,34 @@ Skill: `maxhub-weibo` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `max_id` / `since_id` / `cursor` | 分页游标（通用） | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **483 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Posts / 微博内容 (post.md)` | 14 | 24–122 | `sed -n '24,122p' references/endpoints_whitelist.yaml` |
+| `Users / 微博用户 (user.md)` | 22 | 123–277 | `sed -n '123,277p' references/endpoints_whitelist.yaml` |
+| `Comments / 微博评论 (comments.md)` | 5 | 278–313 | `sed -n '278,313p' references/endpoints_whitelist.yaml` |
+| `Search & Discovery / 搜索与发现 (search.md)` | 23 | 314–475 | `sed -n '314,475p' references/endpoints_whitelist.yaml` |
+| `调用前校验协议` | 0 | 476–482 | `sed -n '476,482p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 > ID 命名规则：`{端}_` + 原端点名。`app` = App 端，`web` = Web 端，`web_v2` = Web V2 端。

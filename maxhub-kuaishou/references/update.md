@@ -98,10 +98,25 @@ cd ~/.openclaw/skills/maxhub-kuaishou   # 或 ~/.claude/skills/maxhub-kuaishou
 
 # 拉取最新版本
 git pull origin main
+```
 
-# 或重新克隆
-cd ~/.openclaw/skills && rm -rf maxhub-kuaishou \
-  && git clone https://github.com/XieWxx/maxhub-api-skills.git maxhub-kuaishou
+> ⚠️ **如果 git pull 失败需要重装，请按以下三步操作（避免误删）**
+>
+> 1. 先确认当前路径，**不要在错误目录下删除**：
+> ```bash
+> pwd && ls -la ~/.openclaw/skills/maxhub-kuaishou
+> ```
+> 2. 把旧目录**重命名备份**（避免破坏性删除）：
+> ```bash
+> mv ~/.openclaw/skills/maxhub-kuaishou ~/.openclaw/skills/maxhub-kuaishou.bak.$(date +%s)
+> ```
+> 3. 重新克隆：
+> ```bash
+> cd ~/.openclaw/skills && \
+>   git clone https://github.com/XieWxx/maxhub-api-skills.git maxhub-kuaishou
+> ```
+>
+> 备份目录在确认新版本工作正常后再删除。
 ```
 
 仓库地址：https://github.com/XieWxx/maxhub-api-skills

@@ -3,6 +3,22 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 308 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     27–62     Video - Web (video.md)                    (  5 endpoints)
+# ║     63–119    Video - Web V2 (video.md)                 (  8 endpoints)
+# ║    120–162    Channel - Web (channel.md)                (  6 endpoints)
+# ║    163–205    Channel - Web V2 (channel.md)             (  6 endpoints)
+# ║    206–241    Comments - Web V2 (comments.md)           (  5 endpoints)
+# ║    242–256    Search - Web (search.md)                  (  2 endpoints)
+# ║    257–299    Search - Web V2 (search.md)               (  6 endpoints)
+# ║    300–307    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-youtube
 version: "3.7.2"
 base_url: https://www.aconfig.cn

@@ -63,6 +63,48 @@ Skill: `maxhub-tiktok` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2`
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `anchor_id` / `author_id` | 主播 ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `seller_id` / `shop_id` | 商家/店铺 ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `cursor` / `max_cursor` / `offset` / `page_token` | 分页游标（通用） | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **1350 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Video — App V3 (video.md)` | 11 | 36–122 | `sed -n '36,122p' references/endpoints_whitelist.yaml` |
+| `Video — Web API (video.md)` | 8 | 123–186 | `sed -n '123,186p' references/endpoints_whitelist.yaml` |
+| `User — App V3 (user.md)` | 20 | 187–334 | `sed -n '187,334p' references/endpoints_whitelist.yaml` |
+| `User — Web API (user.md)` | 14 | 335–447 | `sed -n '335,447p' references/endpoints_whitelist.yaml` |
+| `Comments — App V3 (comments.md)` | 2 | 448–462 | `sed -n '448,462p' references/endpoints_whitelist.yaml` |
+| `Comments — Web API (comments.md)` | 2 | 463–477 | `sed -n '463,477p' references/endpoints_whitelist.yaml` |
+| `Live — App V3 (comments.md)` | 10 | 478–548 | `sed -n '478,548p' references/endpoints_whitelist.yaml` |
+| `Live — Web API (comments.md)` | 7 | 549–605 | `sed -n '549,605p' references/endpoints_whitelist.yaml` |
+| `Search — App V3 (search.md)` | 19 | 606–739 | `sed -n '606,739p' references/endpoints_whitelist.yaml` |
+| `Search — Web API (search.md)` | 10 | 740–810 | `sed -n '740,810p' references/endpoints_whitelist.yaml` |
+| `Ads (ads.md)` | 12 | 811–895 | `sed -n '811,895p' references/endpoints_whitelist.yaml` |
+| `Analytics (analytics.md)` | 4 | 896–924 | `sed -n '896,924p' references/endpoints_whitelist.yaml` |
+| `Creator (creator.md)` | 14 | 925–1023 | `sed -n '925,1023p' references/endpoints_whitelist.yaml` |
+| `Shop — App V3 (shop.md)` | 14 | 1024–1122 | `sed -n '1024,1122p' references/endpoints_whitelist.yaml` |
+| `Shop — Web API (shop.md)` | 12 | 1123–1207 | `sed -n '1123,1207p' references/endpoints_whitelist.yaml` |
+| `Tools — Web API (tools.md)` | 15 | 1208–1341 | `sed -n '1208,1341p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 1342–1349 | `sed -n '1342,1349p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 > 按 reference 文件分组，快速定位端点所属文件。

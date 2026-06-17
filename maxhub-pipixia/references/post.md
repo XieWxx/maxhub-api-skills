@@ -100,40 +100,6 @@ Base URL: `https://www.aconfig.cn` · Auth: `Authorization: Bearer $MAXHUB_API_K
 
 ---
 
-### fetch_increase_post_view_count — 增加作品浏览数 ⚠️ 写入操作
-
-**Full path:** `/api/v1/pipixia/app/fetch_increase_post_view_count`
-**Method:** GET · **Risk:** medium · **write_operation:** true
-
-#### 用途
-增加指定作品的浏览计数。**写入操作**——调用前应由用户明确确认。
-
-#### 何时使用 / 不使用
-- ✅ 用户明确要求"增加浏览数"
-- ❌ 用户只想看作品详情 → 用 `fetch_post_detail`
-- ❌ 用户未明确确认 → 先与用户确认
-
-#### 输入 (IN)
-| name | type | required | constraints | 说明 |
-|------|------|----------|-------------|------|
-| cell_id | string | yes | 纯数字字符串 | 作品 ID |
-| cell_type | integer | no | default=1 | 作品类型 |
-
-> ⚠️ **写入操作前置确认**：调用前应向用户确认 cell_id 准确无误。
-
-#### 输出可链式字段 (OUT)
-| 字段 | json_path | 语义 | 下游端点 |
-|------|-----------|------|---------|
-| — | — | 执行结果，无链式字段 | — |
-
-#### 错误处理 (ERR · 端点特化)
-| code | 含义 | 行动 | 重试 | 降级/替换 |
-|------|------|------|------|----------|
-| 400/422 | 参数错 | **不要静默重试**，让用户确认参数 | 0 | — |
-| 5xx | 上游故障 | 等 3s 重试 | **≤1 次** | 仍失败 STOP |
-
----
-
 ### fetch_post_statistics — 获取作品统计数据
 
 **Full path:** `/api/v1/pipixia/app/fetch_post_statistics`

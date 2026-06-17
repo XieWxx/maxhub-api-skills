@@ -3,6 +3,19 @@
 # 未在清单中的路径一律视为非法 —— STOP 并报告 "Unknown API path"。
 # 禁止修改版本段、拼接路径、按模式臆造新端点。
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 483 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     24–122    Posts / 微博内容 (post.md)                    ( 14 endpoints)
+# ║    123–277    Users / 微博用户 (user.md)                    ( 22 endpoints)
+# ║    278–313    Comments / 微博评论 (comments.md)             (  5 endpoints)
+# ║    314–475    Search & Discovery / 搜索与发现 (search.md)    ( 23 endpoints)
+# ║    476–482    调用前校验协议                                   (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-weibo
 version: "3.7.2"
 base_url: https://www.aconfig.cn

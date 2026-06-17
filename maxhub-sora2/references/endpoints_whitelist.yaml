@@ -3,6 +3,18 @@
 # Any path NOT listed here is INVALID — STOP and report "Unknown API path".
 # Do NOT mutate version segments, append paths, or invent new endpoints from patterns.
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 157 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     23–65     Posts (post.md)                           (  6 endpoints)
+# ║     66–108    Users (user.md)                           (  6 endpoints)
+# ║    109–148    Tools & Cameo (tools.md)                  (  5 endpoints)
+# ║    149–156    Pre-call verification protocol            (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-sora2
 version: "3.7.2"
 base_url: https://www.aconfig.cn

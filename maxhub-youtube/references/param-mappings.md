@@ -61,6 +61,27 @@ Skill: `maxhub-youtube` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2
 
 ---
 
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **308 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Video - Web (video.md)` | 5 | 27–62 | `sed -n '27,62p' references/endpoints_whitelist.yaml` |
+| `Video - Web V2 (video.md)` | 8 | 63–119 | `sed -n '63,119p' references/endpoints_whitelist.yaml` |
+| `Channel - Web (channel.md)` | 6 | 120–162 | `sed -n '120,162p' references/endpoints_whitelist.yaml` |
+| `Channel - Web V2 (channel.md)` | 6 | 163–205 | `sed -n '163,205p' references/endpoints_whitelist.yaml` |
+| `Comments - Web V2 (comments.md)` | 5 | 206–241 | `sed -n '206,241p' references/endpoints_whitelist.yaml` |
+| `Search - Web (search.md)` | 2 | 242–256 | `sed -n '242,256p' references/endpoints_whitelist.yaml` |
+| `Search - Web V2 (search.md)` | 6 | 257–299 | `sed -n '257,299p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 300–307 | `sed -n '300,307p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 ### Video 端点 (video.md)

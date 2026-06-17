@@ -98,10 +98,25 @@ cd ~/.openclaw/skills/maxhub-douyin   # 或 ~/.claude/skills/maxhub-douyin
 
 # 拉取最新版本
 git pull origin main
+```
 
-# 或重新克隆
-cd ~/.openclaw/skills && rm -rf maxhub-douyin \
-  && git clone https://github.com/XieWxx/maxhub-api-skills.git maxhub-douyin
+> ⚠️ **如果 git pull 失败需要重装，请按以下三步操作（避免误删）**
+>
+> 1. 先确认当前路径，**不要在错误目录下删除**：
+> ```bash
+> pwd && ls -la ~/.openclaw/skills/maxhub-douyin
+> ```
+> 2. 把旧目录**重命名备份**（避免破坏性删除）：
+> ```bash
+> mv ~/.openclaw/skills/maxhub-douyin ~/.openclaw/skills/maxhub-douyin.bak.$(date +%s)
+> ```
+> 3. 重新克隆：
+> ```bash
+> cd ~/.openclaw/skills && \
+>   git clone https://github.com/XieWxx/maxhub-api-skills.git maxhub-douyin
+> ```
+>
+> 备份目录在确认新版本工作正常后再删除。
 ```
 
 仓库地址：https://github.com/XieWxx/maxhub-api-skills

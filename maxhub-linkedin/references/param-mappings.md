@@ -61,6 +61,38 @@ Skill: `maxhub-linkedin` · Base URL: `https://www.aconfig.cn` · Version: `3.7.
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `comment_id` / `comment_urn` | 评论 ID / URN | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **639 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Web API — User (user.md)` | 22 | 28–182 | `sed -n '28,182p' references/endpoints_whitelist.yaml` |
+| `Web API — Company (company.md)` | 8 | 183–239 | `sed -n '183,239p' references/endpoints_whitelist.yaml` |
+| `Web API — Content (content.md)` | 10 | 240–310 | `sed -n '240,310p' references/endpoints_whitelist.yaml` |
+| `Web API — Jobs (jobs.md)` | 2 | 311–325 | `sed -n '311,325p' references/endpoints_whitelist.yaml` |
+| `Web V2 API — User (user.md)` | 23 | 326–487 | `sed -n '326,487p' references/endpoints_whitelist.yaml` |
+| `Web V2 API — Company (company.md)` | 12 | 488–572 | `sed -n '488,572p' references/endpoints_whitelist.yaml` |
+| `Web V2 API — Content (content.md)` | 6 | 573–615 | `sed -n '573,615p' references/endpoints_whitelist.yaml` |
+| `Web V2 API — Jobs (jobs.md)` | 2 | 616–630 | `sed -n '616,630p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 631–638 | `sed -n '631,638p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 ### Web API 端点

@@ -1,29 +1,72 @@
 ---
 name: maxhub-temp-mail
-description: |-
-  临时邮箱（一次性邮箱）助手，通过 MaxHub API 提供生成临时邮件地址、查询收件箱与读取邮件详情三件套能力。专注服务于自动化测试、网站注册验证码接收、隐私保护与匿名注册场景，帮助用户在不暴露真实邮箱的前提下完成验证流程。注意：本工具会生成新的临时邮箱地址，并非纯只读，且邮件经第三方服务中转，请勿用于接收敏感或私人邮件。
+description: 临时邮箱（Temp Mail）收件与一次性邮箱管理 skill，通过 MaxHub API 创建/查询临时邮箱、读取邮件列表与邮件详情。适合注册验证、测试收信、自动化 QA 和一次性收件场景。默认 read-only 数据查询为主，可能创建临时邮箱资源；agent 应避免用于滥用注册、垃圾邮件或规避平台规则，并按 recipes 顺序创建邮箱→轮询收件→读取详情。所有请求发送到 https://www.aconfig.cn。
 license: MIT-0
 metadata:
   author: maxhub
-  version: "3.8.0"
+  version: 3.8.0
   openclaw:
-    emoji: "📧"
+    capability: read_only
+    requires_confirmation:
+    - non_idempotent
+    - cookie_input
+    emoji: 📧
     primaryEnv: MAXHUB_API_KEY
     requires:
       env:
-        - MAXHUB_API_KEY
+      - MAXHUB_API_KEY
       bins:
-        - curl
+      - curl
     env:
-      - name: MAXHUB_API_KEY
-        description: "API key for MaxHub data APIs. Get one at https://www.aconfig.cn"
-        required: true
-        sensitive: true
+    - name: MAXHUB_API_KEY
+      description: API key for MaxHub data APIs. Get one at https://www.aconfig.cn
+      required: true
+      sensitive: true
     network:
-      - https://www.aconfig.cn
+    - https://www.aconfig.cn
+    riskLevel: low
+    defaultMode: recipes_first_read_only
+    skillClass: maxhub-api-skill
+    platform: temp-mail
+    authType: bearer_env
+    dataSource: MaxHub API via https://www.aconfig.cn
+    agentUse:
+      entrypoint: SKILL.md §4 Agent Decision Tree
+      intentIndex: references/recipes/_index.md
+      chainDetails: references/recipes/<domain>.md
+      fieldFlow: references/param-mappings.md
+      endpointWhitelist: references/endpoints_whitelist.yaml
+      selectionPolicy: recipes_first_then_atoms; longest_trigger_match; ask_on_tie
+      parameterPolicy: use recipe extract/in_map and field-flow dictionary; never invent path or parameters
+    privacy:
+      thirdParty: https://www.aconfig.cn
+      transmits:
+      - MAXHUB_API_KEY
+      - user_supplied_ids
+      - keywords
+      - urls
+      - optional_cookies_or_tokens
+      guidance: Use only for authorized data processing; minimize personal data; do not expose secrets in logs or prompts.
   hermes:
-    tags: ["临时邮箱", "temp-mail", "邮件", "隐私", "一次性邮箱", "邮件接收", "测试", "数据采集"]
-    category: productivity
+    tags:
+    - temp-mail
+    - 临时邮箱
+    - 一次性邮箱
+    - 收件箱
+    - 邮件详情
+    - 验证码
+    - 测试
+    - QA
+    category: developer-tools
+    intents:
+    - query
+    - analyze
+    - search
+    - chain
+    - report
+    locale:
+    - zh-CN
+    - en
 ---
 
 # 临时邮箱数据助手
@@ -64,6 +107,13 @@ metadata:
 - 调用前需要明确确认使用场景，避免被滥用于敏感或违规通信
 - 邮件经第三方服务中转，明确不适用于私人、金融与法律等敏感场景
 
+> ### 📋 数据传输与隐私声明（请认真阅读）
+>
+> 1. **第三方传输**：您提供的所有 ID、关键词、链接、cookie 等参数都会通过 HTTPS 发送到 **`https://www.aconfig.cn`**（MaxHub 数据服务）进行处理。
+> 2. **UGC 隐私**：拉回的评论 / 弹幕 / 动态 / 私信 / 联系人等内容可能包含个人信息或敏感 UGC，请勿写入未授权的数据库或公开发布。
+> 3. **凭证保护**：建议使用**独立测试账号**、定期轮换 API Key；**禁止**传入主力生产账号的 cookie 或 session 凭证。
+> 4. **合规责任**：使用方需自行确保符合所在地区的数据保护法律（《个人信息保护法》/ GDPR / 平台 ToS 等），平台账号的合规性由使用方承担。
+
 ## 3. 一键安装
 
 ### 鉴权
@@ -99,6 +149,60 @@ export MAXHUB_API_KEY="ak_xxxx..."
 | `MAXHUB_API_KEY` | MaxHub 数据 API Key | 是 | [MaxHub 控制台](https://www.aconfig.cn) |
 
 ## 4. 使用指南
+
+
+### 🤖 Agent Decision Tree（必读 · 决定调用顺序）
+
+> 此小节定义 agent 在每次接到用户请求时的**标准决策流程**。严格按此顺序执行可大幅提升命中率与减少误调用。
+
+#### 1️⃣ 文档加载顺序（按需 · 不要一次性全读）
+| 步骤 | 何时读 | 加载文件 | 估算 token |
+|------|-------|---------|-----------|
+| ① 永远先读 | 接到任何请求时 | `SKILL.md` §0.1（不支持清单）+ §4（本节） | ~1K |
+| ② 选择 recipe | 用户语义清晰时 | `references/recipes/_index.md`（仅索引） | ~1.5K |
+| ③ 加载 recipe 详情 | 匹配到具体 recipe 时 | `references/recipes/<domain>.md` 的对应段落 | ~500/段 |
+| ④ 加载端点详情 | 自定义链路或参数不明时 | `references/<domain>.md` 单文件 | ~3K |
+| ⑤ 路径白名单校验 | 调用前 | `grep '<endpoint_id>' references/endpoints_whitelist.yaml`（**禁止整体读**） | ~50 行 |
+| ⑥ 跨端点字段路由 | 链式调用时 | `references/param-mappings.md` § 字段流字典 | ~1K |
+
+#### 2️⃣ Recipe 匹配规则（核心）
+1. **加载** `references/recipes/_index.md`，扫 `trigger_keywords` 列
+2. **最长匹配优先**：若用户输入同时命中多个 recipe 的 trigger，**选最长 trigger 命中的那个**（最具体）
+3. **平局询问**：若两个 trigger 长度相同且都命中 → 主动询问用户："您是想看 A 还是 B？"
+4. **无命中**：先查 §0.1 不支持清单 → 不在则进入"自定义链路"流程（步骤 3）
+
+#### 3️⃣ 自定义链路（无现成 Recipe）
+1. 读 `references/atoms/_index.md`，按 `chain_role` 列定位起点（`starter`）和终点（`terminal`）
+2. **优先用 `⭐⭐⭐ 首选`** 标记的端点；不到必要不用 `⭐ 条件` 端点
+3. 字段流（上游 OUT → 下游 IN）由 `param-mappings.md § 字段流字典` 决定，**禁止**自行猜 json_path
+4. 链路完成后，可向维护方建议把它编排成新 recipe
+
+#### 4️⃣ 调用前自检（按 risk 分级 · 节省 token）
+| 端点 risk | 必做自检 | 步骤数 |
+|----------|---------|-------|
+| `risk: low` | ① 路径在 endpoints_whitelist.yaml | 1 步 |
+| `risk: medium` | ① 路径 ② method ③ 必填参数 ④ 写入确认 | 4 步 |
+| `risk: high` | 4 步 + 显式向用户确认参数与意图 | 5 步 |
+| `risk: critical`（restricted） | 6 步高风险确认流程（详见 §高风险能力清单） | 6 步 |
+
+> 旧 SKILL 强制所有调用都做 4 步——现按 risk 等级简化。`low` 端点（占绝大多数）只校验路径即可。
+
+#### 5️⃣ 错误处理快速决策
+| 现象 | 行动 | 重试 |
+|------|------|------|
+| 404 / 410 | §3.1(A) 5 步防臆造自检 → 通过才 STOP；**禁止**自改路径段重试 | 0 |
+| 400 / 422 | §3.1(B) 6 步防参数臆造自检 → 通过才修参重试 | ≤1 |
+| 401 / 402 / 403 | STOP，告知用户去 https://www.aconfig.cn 处理 | 0 |
+| 429 | 读 `Retry-After` 退避；无该头时指数退避+jitter | ≤2 |
+| 5xx | 等 3 秒重试 → 仍失败走端点级"降级/替换" | 1 |
+| HTTP 200 + `code != 0` | 读 `message_zh` 报告用户；**不重试**（业务错误重试无用） | 0 |
+
+#### 6️⃣ 输出契约（与用户对话时）
+1. **数据来源声明**：每次输出明确告知数据来自 `https://www.aconfig.cn` 三方接口
+2. **缺失字段处理**：如某字段链路降级后缺失，**显式说明**"X 暂不可取"，不要静默省略
+3. **不要伪造**：用户问的字段若不在响应里 → 说"未返回"，禁止用其他端点拼凑模拟
+
+
 
 ### 核心约束（强制遵守）
 
@@ -194,6 +298,28 @@ export MAXHUB_API_KEY="ak_xxxx..."
 | 查收件箱 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/temp_mail/v1/get_emails_inbox?token=xxx"` |
 | 读邮件详情 | `curl -H "$maxhub_auth_header" "https://www.aconfig.cn/api/v1/temp_mail/v1/get_email_by_id?token=xxx&message_id=yyy"` |
 | 检查 SKILL 更新 | `skillhub info maxhub-temp-mail` 或 `clawhub info maxhub-temp-mail` |
+
+
+### 📌 端到端使用示例（agent 快速上手）
+
+**用户输入**：「帮我看 新建一个临时邮箱并查收件」
+
+**Agent 执行步骤**：
+
+1. **匹配 recipe**：读 `references/recipes/_index.md` → 找到 trigger 命中 → 选最长匹配的 recipe
+2. **加载 recipe 详情**：读 `references/recipes/<domain>.md` 中对应段落，拿到 Inputs / Atomic Steps / Output
+3. **路径校验**：对每个 atom 的 endpoint_id，`grep` 一下 `endpoints_whitelist.yaml` 确认存在
+4. **risk: low 的端点直接调用，risk: medium+ 先与用户确认**
+5. **链式传递**：上游响应的 json_path 字段（如 `$.data.bvid`）按 recipe 的 `extract` 列绑定为变量，传给下游端点
+6. **错误处理**：按 §错误处理决策表行动；不要自改路径或瞎加参数
+7. **输出**：组装结果给用户，标明数据来自三方接口；缺失字段显式说"未取到"
+
+**反例（agent 不要这么做）**：
+- ❌ 全文加载 `endpoints_whitelist.yaml`（大文件，浪费上下文）
+- ❌ 看到 404 就改路径段重试（会被防臆造规则阻断）
+- ❌ 把没在响应里的字段编一个值返回给用户
+- ❌ 链式调用时忽略 recipe 的 `extract` 列，自己猜 json_path
+
 
 ## 5. 使用场景
 

@@ -60,6 +60,41 @@ Skill: `maxhub-xiaohongshu` · Base URL: `https://www.aconfig.cn` · Version: `3
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `comment_id` / `root_comment_id` | 评论 ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `cursor` / `cursor_score` | 分页游标（通用） | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **314 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Notes (note.md) — App V2` | 4 | 30–58 | `sed -n '30,58p' references/endpoints_whitelist.yaml` |
+| `Notes (note.md) — Web V2` | 4 | 59–87 | `sed -n '59,87p' references/endpoints_whitelist.yaml` |
+| `Notes (note.md) — Web V3` | 3 | 88–109 | `sed -n '88,109p' references/endpoints_whitelist.yaml` |
+| `Users (user.md) — App V2` | 3 | 110–131 | `sed -n '110,131p' references/endpoints_whitelist.yaml` |
+| `Users (user.md) — Web V2` | 2 | 132–146 | `sed -n '132,146p' references/endpoints_whitelist.yaml` |
+| `Users (user.md) — Web V3` | 2 | 147–161 | `sed -n '147,161p' references/endpoints_whitelist.yaml` |
+| `Search (search.md) — App V2` | 5 | 162–197 | `sed -n '162,197p' references/endpoints_whitelist.yaml` |
+| `Search (search.md) — Web V2` | 1 | 198–205 | `sed -n '198,205p' references/endpoints_whitelist.yaml` |
+| `Search (search.md) — Web V3` | 6 | 206–248 | `sed -n '206,248p' references/endpoints_whitelist.yaml` |
+| `Products & Topics (product.md) — App V2` | 8 | 249–305 | `sed -n '249,305p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 306–313 | `sed -n '306,313p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 | ID | 一句话用途 | Reference File | Method | Risk |

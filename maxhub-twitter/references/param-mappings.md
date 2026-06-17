@@ -61,6 +61,22 @@ Skill: `maxhub-twitter` · Base URL: `https://www.aconfig.cn` · Version: `3.7.2
 
 ---
 
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **121 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `推文内容 (content.md)` | 6 | 21–63 | `sed -n '21,63p' references/endpoints_whitelist.yaml` |
+| `用户 (user.md)` | 7 | 64–113 | `sed -n '64,113p' references/endpoints_whitelist.yaml` |
+| `调用前验证协议` | 0 | 114–120 | `sed -n '114,120p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 | ID | 一句话用途 | Reference File | Method | Risk |

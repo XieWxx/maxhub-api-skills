@@ -60,6 +60,37 @@ Skill: `maxhub-bilibili` · Base URL: `https://www.aconfig.cn` · Version: `3.7.
 
 ---
 
+
+## 0.3 ⚡ Agent 速查 · 同义参数表 (Synonym Quick-Lookup)
+
+> 当 agent 拿到上游响应字段时，先查此表确认它是否能直接传给下游端点。
+> 同一行的所有字段名指代**同一个标识**，可在跨端点链路中互换（按下游端点要求的实际名称使用）。
+
+| 同义字段组 | 指代 | 典型出处 (OUT) | 典型用途 (IN) |
+|-----------|------|---------------|--------------|
+| `av_id` / `aid` | AV号/作品aid | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+| `uid` / `user_id` | 用户ID | 见下方 §2 各字段段 OUT 列表 | 见下方 §2 各字段段 IN 列表 |
+
+
+
+
+
+
+## 0.4 📍 endpoints_whitelist.yaml 域内导航 (Loading Map)
+
+> 此 yaml 共 **331 行**。**禁止全文加载**——按下表用 `sed -n` 精确加载所需 domain 段。
+> Agent 调用前用 `grep '<endpoint_id>' references/endpoints_whitelist.yaml` 一次确认 id 存在即可，无需读完整文件。
+
+| 域 (Domain) | 端点数 | 行号区间 | 加载命令 |
+|------------|-------|---------|---------|
+| `Video (video.md)` | 11 | 26–105 | `sed -n '26,105p' references/endpoints_whitelist.yaml` |
+| `User (user.md)` | 10 | 106–176 | `sed -n '106,176p' references/endpoints_whitelist.yaml` |
+| `Search (search.md)` | 9 | 177–240 | `sed -n '177,240p' references/endpoints_whitelist.yaml` |
+| `Comments (comments.md)` | 5 | 241–276 | `sed -n '241,276p' references/endpoints_whitelist.yaml` |
+| `Live (live.md)` | 4 | 277–305 | `sed -n '277,305p' references/endpoints_whitelist.yaml` |
+| `Collections (collections.md)` | 2 | 306–320 | `sed -n '306,320p' references/endpoints_whitelist.yaml` |
+| `Pre-call verification protocol` | 0 | 321–330 | `sed -n '321,330p' references/endpoints_whitelist.yaml` |
+
 ## 1. 端点路由索引 (Endpoint Routing Index)
 
 | ID | 一句话用途 | Reference File | Method | Risk |

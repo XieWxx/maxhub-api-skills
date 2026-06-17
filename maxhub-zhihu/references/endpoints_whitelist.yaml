@@ -2,6 +2,18 @@
 # Agent 在调用 API 前必须逐字符核对本文件，不在清单中的路径禁止调用。
 # 禁止臆造路径、修改版本段、拼接新路径。
 
+
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  📍 LOADING MAP — 270 lines total. Agent: load by section.  ║
+# ║  Use:  sed -n '<from>,<to>p' references/endpoints_whitelist.yaml  ║
+# ╠══════════════════════════════════════════════════════════════════╣
+# ║     22–99     Posts / Content (post.md)                 ( 11 endpoints)
+# ║    100–191    Search (search.md)                        ( 13 endpoints)
+# ║    192–262    Users (user.md)                           ( 10 endpoints)
+# ║    263–269    调用前验证协议                                   (  0 endpoints)
+# ╚══════════════════════════════════════════════════════════════════╝
 skill: maxhub-zhihu
 version: "3.7.2"
 base_url: https://www.aconfig.cn
