@@ -1,38 +1,49 @@
-# Temp Mail Assistant
+# 临时邮箱助手
 
-[中文文档](README_CN.md)
+临时邮箱（一次性邮箱）Skill，通过 MaxHub API 提供生成临时邮件地址、查询收件箱与读取邮件详情三件套能力，共 **3 个端点**。专注服务自动化测试、网站注册验证码接收、隐私保护与匿名注册场景。
 
-Temporary email service assistant for generating emails, listing inbox messages, and reading email details.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Endpoints | Description |
-|------|-----------|-------------|
-| Email Operations | 3 | Generate temp email, list inbox, read email by ID |
+### 临时邮箱即开即用
+- 一键生成新邮箱地址 + 专属访问凭据
 
-## Install
+### 收件箱实时查询
+- 全部邮件列表（发件人/主题/时间）
+- 轮询等待验证码
+
+### 邮件详情读取
+- 完整正文/HTML/附件元数据
+
+### Token 权限隔离
+- 每个邮箱独立凭据
+- 跨邮箱不可访问
+- 过期自动失效
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-temp-mail
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-temp-mail.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| Email Operations | 生成临时邮箱, get temp email, 查收邮件, 查看邮件内容 |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 生成邮箱 | 帮我生成一个临时邮箱 |
+| 查收件箱 | 帮我查这个临时邮箱的收件箱 |
+| 读邮件 | 帮我读取这封邮件的正文内容 |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

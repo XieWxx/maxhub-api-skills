@@ -1,56 +1,130 @@
-# Douyin Data Assistant
+# 抖音数据助手
 
-[中文文档](README_CN.md)
+抖音全场景数据查询 Skill，通过 MaxHub API 接入抖音平台全量公开数据。覆盖视频详情、用户画像、关键词搜索、热搜热榜、创作者后台、星图 KOL 分析、抖音指数、直播数据、评论弹幕等十大领域共 **273 个端点**。专注服务于抖音内容创作者、新媒体运营、星图投放分析师、直播数据团队与品牌竞品研究者。
 
-Comprehensive Douyin data assistant covering video, user, search, trending, creator, xingtu KOL, content index, live, comments, and tools. 273 endpoints across 10 functional areas.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Category | Endpoints | Description |
-|----------|-----------|-------------|
-| **Video** | 42 | Video detail (single/batch), high-quality play URLs, statistics, mix/series, music/hashtag detail, share/short URL/QR, channel content, related posts, ID extraction |
-| **User** | 24 | User profile (multi-method lookup), fans/following lists, user posts, liked videos, collections, batch profiles, user search |
-| **Search** | 19 | General search, video/user/image/live/hashtag search, search suggestions, multi-search, experience/music/discussion/school/vision search |
-| **Trending** | 39 | Billboard categories, rising/city/challenge hot lists, activity calendar, audience portraits, video/topic/search hot lists, hot words, home feed, video channels |
-| **Creator** | 29 | Creator activities, material center billboards, hot spot/topic/props/music/challenge lists, courses, missions, industry configs, item analytics, audience analysis, account diagnosis, live history |
-| **Xingtu KOL** | 43 | KOL ID lookup, base info, audience/fans portrait, service pricing, data overview, KOL search, conversion analysis, xingtu index, video performance, hot comment analysis, ranking lists, creator marketplace, MCN search, IP calendar |
-| **Content Index** | 44 | Keyword trends, relation words, crowd portrait, daren/creator analytics, brand index/radar/lines/cycles, topic search, content creation guides, audience/creator portraits, consumption/interaction trends, insight reports |
-| **Comments** | 6 | Video comments, comment replies, video danmaku (App + Web) |
-| **Live** | 14 | Live stream data, danmaku, gift rankings, room products, product SKU/coupon/reviews, live room ID conversion |
-| **Tools** | 13 | Device registration, app deep-links, guest cookie, token generators (msToken/ttwid/verify_fp/s_v_web_id), signature generators (X-Bogus/A-Bogus/danmaku xb) |
+### 视频数据（42 端点）
+- 查询抖音视频完整详情：标题、封面、播放量、点赞、评论、收藏、分享等核心指标
+- 支持通过视频原始 ID、分享链接、短链接、二维码等多种入口快速定位视频
+- 获取视频无水印高清播放地址，便于素材归档与二次研究
+- 批量查询多个视频的详情与统计数据，适合大规模选题对比与赛道扫描
+- 拉取视频弹幕全量数据，复原视频实时互动氛围
+- 浏览首页推荐流与单条视频的相关推荐，洞察平台分发逻辑
+- 查询合集、短剧、音乐、话题的详情与对应作品列表
+- 浏览知识、游戏、动漫、美食、音乐等垂直频道下的作品聚合
 
-## Install
+### 用户数据（24 端点）
+- 查询抖音用户主页全量信息：昵称、签名、头像、地区、认证、粉丝数、获赞数等
+- 支持通过抖音号、短 ID、加密 ID、UID 等多种用户标识互相转换与查询
+- 批量查询多个用户的资料卡片，适合达人库扩量
+- 拉取用户的粉丝列表与关注列表，构建关系图谱
+- 拉取用户的发布作品、点赞作品、收藏夹与合辑视频
+
+### 搜索能力（19 端点）
+- 执行抖音综合搜索，一次返回视频、用户、话题、直播等混合结果
+- 单独执行视频搜索、用户搜索、图片搜索、直播搜索、话题搜索
+- 执行音乐搜索、经验搜索、讨论搜索、学校搜索与以图搜视频
+- 获取搜索框联想词与话题挑战联想词，辅助关键词扩展
+
+### 评论与弹幕（6 端点）
+- 拉取视频一级评论列表，覆盖 App 端与 Web 端多入口
+- 接力拉取每条评论下的二级回复，构建完整评论树
+- 拉取视频的实时弹幕与历史弹幕全量数据
+
+### 直播数据（14 端点）
+- 查询用户直播间详情：主播信息、直播标题、封面、状态、在线人数
+- 检测用户当前是否在直播以及关联的直播间标识
+- 拉取直播间 IM 实时弹幕流与互动数据
+- 完成直播间不同标识体系之间的互转
+- 拉取直播间送礼排行榜，识别核心粉丝与高价值用户
+- 拉取直播间挂车商品列表、商品规格、优惠券、评价分与评价详情
+
+### 热榜与趋势（39 端点）
+- 拉取抖音综合热搜榜、直播热搜榜、音乐热搜榜、品牌热搜榜
+- 浏览分类热榜、上升热榜、同城热榜、挑战热榜与总榜
+- 查询活动日历的活动列表与单个活动详情
+- 拉取热点话题的关联用户画像、评论词云与作品趋势
+- 查询热门账号榜、账号粉丝画像、粉丝兴趣账号、粉丝兴趣话题、粉丝兴趣搜索
+- 拉取视频总榜、低粉爆款榜、高播放榜、高点赞榜、高涨粉榜
+- 查询话题榜、搜索榜、热词榜及其每个条目的详情
+
+### 创作者后台（29 端点）
+- 查询创作者活动列表与单个活动详情，了解平台扶持机会
+- 浏览素材中心的素材榜、相关推荐与配置项
+- 获取热点榜、热门话题榜、热门道具榜、热门挑战榜、热门音乐榜、热门课程榜
+- 拉取行业分类、任务中心商单列表与内容品类信息
+- 进行作品流量分析：总览、播放来源、搜索关键词、观看趋势
+- 进行作品弹幕分析与观众画像，识别真实受众构成
+- 拉取作品列表、作品深度分析与可下载报表
+- 查询直播间历史回顾与账号诊断报告
+
+### 星图 KOL 分析（43 端点）
+- 通过抖音用户标识反查星图达人 ID
+- 拉取 KOL 基本信息、达人画像、粉丝画像与服务报价
+- 查询 KOL 数据概览、转化能力、视频表现、星图指数与触达分布
+- 拉取 KOL 关联推广视频、合作品牌、日活粉丝走势
+- 拉取 KOL 热门评论高频词与内容关键词，洞察粉丝关注点
+- 进行 KOL 搜索与短剧演员搜索，按多维度筛选合适达人
+- 浏览星图榜单分类目录与具体榜单数据
+- 查询作者营销字段、商业卡片、本地服务信息与作品展示
+- 浏览优秀案例分类、达人传播信息与达人推荐
+- 查询 IP 活动行业、IP 活动列表、活动详情、资源位列表与需求方 MCN 列表
+
+### 抖音指数（44 端点）
+- 查询抖音指数关键词的有效日期范围与当前热点
+- 拉取热门词、关键词热度趋势与多词解读
+- 拉取关键词关联词、人群画像与用户细分词
+- 进行达人搜索、达人对比、相似达人推荐与达人筛选项查询
+- 拉取达人的代表作品、作品里程碑与粉丝画像
+- 进行品牌搜索、品牌信息验证、品牌雷达图、品牌走势线、品牌周期分析
+- 拉取品牌主动指数周榜与品牌时段热门视频
+- 进行话题搜索与话题详情查询
+- 拉取创作灵感关键词、关键词作品、选题建议、发布趋势与时长建议
+- 拉取作者画像、消费画像、互动趋势与消费趋势
+- 搜索趋势研究报告、查看报告详情与智能洞察推荐
+
+### 工具与签名（13 端点）
+- 注册抖音设备并生成 App 端访问凭证
+- 拉取抖音 Web 端游客 Cookie，便于无登录态的数据采集
+- 生成 msToken、ttwid、verify_fp、s_v_web_id 等访问指纹
+- 生成抖音 Web 端反爬签名与弹幕长连接签名
+- 从分享链接、短链中提取视频标识、用户标识、直播间标识，支持单条与批量
+- 生成抖音短链与视频分享二维码
+- 唤起抖音 App 直跳视频、用户主页、关键词搜索与私信会话
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-douyin
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-douyin.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts (中文) | Example prompts (English) |
-|----------|----------------------|--------------------------|
-| Video | 查抖音视频 aweme_id=... | Get Douyin video details aweme_id=... |
-| User | 查抖音用户 sec_user_id=... | Get Douyin user profile sec_user_id=... |
-| Search | 搜索抖音关键词 "美食" | Search Douyin for "food" |
-| Trending | 查抖音热榜 | Show Douyin trending list |
-| Creator | 查创作者后台作品数据 | Get Douyin creator item analytics |
-| Xingtu KOL | 查星图达人数据 kolId=... | Get Douyin Xingtu KOL data kolId=... |
-| Content Index | 查抖音指数关键词趋势 | Get Douyin index keyword trends |
-| Comments | 查抖音视频评论 | Get Douyin video comments |
-| Live | 查抖音直播数据 | Get Douyin live stream data |
-| Tools | 生成抖音游客Cookie | Generate Douyin guest Cookie |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 视频 | 帮我查这个抖音视频的详情和播放数据 |
+| 用户 | 分析这个抖音账号最近 30 天的粉丝增长趋势 |
+| 搜索 | 搜索抖音上关于"美食"的热门视频 |
+| 热榜 | 帮我看看今天抖音热搜第一是什么 |
+| 创作者 | 帮我分析这个作品的流量来源和观众画像 |
+| 星图 KOL | 帮我查这个 KOL 的星图指数和粉丝画像 |
+| 抖音指数 | 帮我查"AI 工具"这个关键词的抖音指数趋势 |
+| 评论 | 帮我拉取这个视频的评论，分析情感倾向 |
+| 直播 | 帮我监控这个直播间的在线人数和送礼排行 |
+| 工具 | 帮我生成抖音游客 Cookie |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

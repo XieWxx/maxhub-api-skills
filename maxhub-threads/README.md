@@ -1,43 +1,54 @@
-# Threads Data Assistant
+# Threads 数据助手
 
-[中文文档](README_CN.md)
+Threads 数据查询 Skill，通过 MaxHub API 接入 Meta 旗下文字社交平台 Threads。覆盖帖子详情、评论、用户资料、用户帖子/转发/回复列表、Top/Recent 搜索、个人主页搜索等核心能力，共 **11 个端点**。专注服务 Threads 内容研究、Meta 社交监控、海外内容创作与跨平台舆情场景。
 
-Threads posts, user profiles, search, comments, and reposts data assistant via MaxHub API. 11 active endpoints across 2 functional areas.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Reference | Covers | Endpoints |
-|------|-----------|--------|-----------|
-| User | `references/user.md` | User info, posts, reposts, replies | 5 |
-| Content | `references/content.md` | Post detail, comments, search | 6 |
+### 帖子查询
+- 帖子详情查询（ID/URL 双入口）
+- 作者上下文
 
-See `references/param-mappings.md` for parameter quick reference.
+### 评论追踪
+- 一级评论列表
 
-## Install
+### 用户洞察
+- 用户资料查询（用户名/user_id 双入口）
+- 原创帖子列表
+- 转发/回复列表
+
+### 搜索能力
+- 热门排序搜索
+- 最新排序搜索
+- 人物档案搜索
+
+### 游标分页统一
+- 全量列表类查询统一游标翻页
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-threads
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-threads.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| User | 查Threads用户, threads用户 lilbieber, get Threads user posts |
-| Content | 查Threads帖子, threads帖子详情, search Threads for bitcoin |
-| Search | Threads搜索, search Threads profiles, Threads热门内容 |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 帖子 | 帮我查这个 Threads 帖子的详情和评论 |
+| 用户 | 帮我查这个 Threads 用户的资料和帖子列表 |
+| 搜索 | 帮我搜索 Threads 上关于"AI"的热门讨论 |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

@@ -1,44 +1,73 @@
-# WeChat Data Assistant
+# 微信数据助手
 
-[中文文档](README_CN.md)
+微信生态数据查询 Skill，通过 MaxHub API 接入微信公众号（mp.weixin.qq.com）、视频号（Channels）与搜一搜（Search）三端。覆盖文章详情/统计/评论/回复/广告/相关推荐、公众号资料/文章列表/服务、视频号信息/视频详情/评论/分享/直播/合集、跨端搜一搜等全部能力，共 **22 个端点**。专注服务于公众号文章爬取、视频号内容研究、微信生态搜索、账号矩阵分析等场景。
 
-WeChat data assistant covering Channels (视频号) videos, Official Accounts (公众号) articles, and cross-platform search via MaxHub API. 22 active endpoints across 3 functional areas.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Reference | Covers | Endpoints |
-|------|-----------|--------|-----------|
-| Channels | `references/channels.md` | Channel info, video detail, comments, live streams, collections, share URLs | 12 |
-| MP / Accounts | `references/mp.md` | Article detail, stats, comments, account profile, articles list, services | 9 |
-| Search | `references/search.md` | Universal search across Channels + MP | 1 |
+### 公众号文章（9 端点）
+- 通过文章链接还原公众号图文文章的完整正文：标题、作者、发布时间、富文本内容、配图
+- 拉取文章的阅读量、在看数、点赞数、分享数等互动统计数据
+- 拉取文章下的留言区评论与作者精选评论列表
+- 拉取被精选评论的多层回复，还原完整对话
+- 拉取与该文章相关联的延伸阅读推荐文章列表
+- 获取文章内嵌的广告物料信息，用于商业内容研究
 
-See `references/param-mappings.md` for parameter quick reference.
+### 公众号账号
+- 查询任意公众号的账号资料：账号名、简介、认证主体、头像、二维码等画像信息
+- 分页拉取该公众号的历史文章列表，按时间倒序回溯全部发文记录
+- 查询公众号开通的服务列表（菜单、商城、小程序等），构建账号矩阵全景
 
-## Install
+### 视频号视频（12 端点）
+- 查询视频号视频的完整详情：标题、文案、封面、视频流地址、互动数据
+- 支持通过视频对象 ID、导出 ID、分享链接三种入口反查同一条视频
+- 拉取视频号视频下的评论列表，分析受众反馈与情感倾向
+- 获取视频的对外分享链接，便于侧链分析与跨平台引流追踪
+- 拉取某个视频号账号下的全部视频列表，用于内容矩阵盘点
+
+### 视频号账号与合集
+- 查询视频号账号的基本信息：账号名、简介、粉丝数、认证主体
+- 查询视频号创作者的主页资料，构建独立的视频号 KOL 画像
+- 拉取该视频号账号下的合集（专辑）列表
+- 拉取某个合集内的全部视频，追踪连载/系列化内容
+- 在某个视频号账号内按关键词搜索其历史视频
+- 支持 channel_id 与 username 互转，解决跨入口数据互通问题
+
+### 视频号直播
+- 拉取某个视频号账号的历史直播列表，识别直播节奏与开播规律
+- 查询某场直播的完整详情：直播标题、开播时间、回放链接、互动数据
+
+### 微信搜一搜（1 端点）
+- 通过搜一搜入口在微信生态内统一检索内容，支持公众号文章与视频号视频两种业务类型切换
+- 一次搜索即可定位候选公众号、候选视频号、候选文章/视频，作为后续画像采集的入口
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-wechat
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-wechat.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| Channels | 查微信视频号信息, get WeChat Channels video detail |
-| MP / Accounts | 查公众号文章详情, get WeChat official account articles |
-| Search | 微信搜索关键词, search WeChat for... |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 公众号文章 | 帮我查这篇公众号文章的阅读量和评论 |
+| 公众号账号 | 帮我拉取这个公众号最近三个月的文章列表 |
+| 视频号视频 | 帮我分析这个视频号最近 30 天的视频表现 |
+| 视频号账号 | 帮我查这个视频号的基本信息和粉丝数据 |
+| 视频号直播 | 帮我查这个视频号的历史直播记录 |
+| 搜一搜 | 帮我在微信生态内搜索"AI 工具"相关内容 |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

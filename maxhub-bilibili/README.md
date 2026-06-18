@@ -1,50 +1,73 @@
-# Bilibili Data Assistant
+# B站数据助手
 
-[中文文档](README_CN.md)
+B 站（Bilibili）数据查询与分析 Skill，通过 MaxHub API 接入 B 站全平台公开数据。覆盖视频详情、UP 主画像、关键词搜索、评论弹幕、直播间数据、收藏夹等六大领域共 **41 个端点**。专注服务 B 站 UP 主、二次元内容创作者、番剧追踪者、字幕弹幕研究者与直播数据团队。
 
-Bilibili video, user, comment, danmaku, live, and collection data assistant via MaxHub API. 41 active endpoints across 6 functional areas.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Reference | Endpoints |
-|------|-----------|-----------|
-| Video | `references/video.md` | Video detail, play URL, subtitle, parts, BV/AV conversion | 13 |
-| User | `references/user.md` | User profiles, stats, videos, dynamics, ID extraction | 10 |
-| Search | `references/search.md` | Search, hot list, feeds, popular, bangumi, cinema | 9 |
-| Comments | `references/comments.md` | Comments, replies, danmaku | 5 |
-| Live | `references/live.md` | Room info, live streams, streamers, areas | 4 |
-| Collections | `references/collections.md` | Collection folders, folder videos | 2 |
+### 视频数据
+- 查询视频完整详情，支持 BV 号和 AV 号双入口
+- 获取视频播放地址，支持大会员高清播放
+- 获取字幕列表与多语言字幕
+- 获取分 P 列表，适配多集视频场景
+- BV 号与 AV 号双向互转
 
-Supports both App and Web API endpoints. See `references/param-mappings.md` for parameter quick reference.
+### UP 主与用户
+- 通过分享链接解析用户信息
+- 查询 UP 主主页信息与投稿统计
+- 获取关系数据：粉丝列表、关注列表、黑名单
+- 获取全部投稿列表与动态列表
 
-## Install
+### 搜索与发现
+- 综合搜索、分类搜索（视频/用户/专栏）
+- 首页推荐流、热门推荐流
+- 影视/番剧分类标签
+
+### 热榜与趋势
+- 全站热搜榜
+
+### 评论与弹幕
+- 一级评论（App/Web 双端）
+- 二级回复
+- 全量弹幕数据
+
+### 直播数据
+- 直播间详情
+- 录播视频列表
+- 直播分区目录与主播列表
+
+### 收藏夹
+- 用户公开收藏夹列表
+- 收藏夹内视频明细
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-bilibili
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-bilibili.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| Video | 查B站视频详情 BV..., get Bilibili video info for BV... |
-| User | 查B站UP主粉丝数, get Bilibili user stats for UID... |
-| Search | 在B站搜索原神视频, search Bilibili for... |
-| Comments | 查B站视频评论, get Bilibili video comments |
-| Live | 查B站直播间人数, get Bilibili live room info |
-| Collections | 查B站用户收藏夹, get Bilibili user collections |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 视频 | 帮我查这个 B 站视频的详情和弹幕数据 |
+| UP 主 | 帮我分析这个 UP 主的投稿数据和粉丝画像 |
+| 搜索 | 帮我搜索 B 站上关于"AI"的热门视频 |
+| 热榜 | 帮我看看今天 B 站热搜榜 |
+| 评论 | 帮我拉取这个视频的弹幕和评论 |
+| 直播 | 帮我查这个直播间的实时数据 |
+| 收藏夹 | 帮我查这个用户的公开收藏夹 |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

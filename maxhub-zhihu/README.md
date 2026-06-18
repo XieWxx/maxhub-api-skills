@@ -1,44 +1,70 @@
-# Zhihu Data Assistant
+# 知乎数据助手
 
-[中文文档](README_CN.md)
+知乎数据查询 Skill，通过 MaxHub API 接入中文专业问答与知识社区知乎。覆盖问题回答、专栏文章、评论/子评论、热榜推荐、视频列表、用户资料、用户关注/粉丝/文章/收藏/话题、综合搜索+AI 搜索+多类目搜索等核心能力，共 **34 个端点**。专注服务知乎内容研究、问答营销、KOL 分析、话题追踪与舆情场景。
 
-Zhihu user, content, and search data assistant via MaxHub API. 34 active endpoints across 3 functional areas.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Reference | Covers | Endpoints |
-|------|-----------|--------|-----------|
-| User | `references/user.md` | User profiles, following, followers, articles, columns, questions, collections, topics | 10 |
-| Content | `references/content.md` | Column articles, comments, Q&A, hot list, hot recommend, video list | 11 |
-| Search | `references/search.md` | Article/user/topic/video/column/scholar/ebook search, AI search, preset search, search recommend/suggest | 13 |
+### 专栏与问答全维度
+- 专栏文章列表（翻页）
+- 文章详情查询
+- 专栏推荐/关联
+- 关注关系/评论配置
+- 问题全部回答（热度/时间排序）
 
-See `references/param-mappings.md` for parameter quick reference.
+### 评论双链路
+- 主评论列表
+- 子评论（盖楼）
+- 长尾翻页
 
-## Install
+### 热榜矩阵
+- 全站热榜
+- 首页热门推荐流
+- 视频热门列表
+
+### 搜索能力
+- 文章/用户/话题/专栏/视频/盐选/电子书搜索
+- 学者搜索
+- 预设/推荐/联想搜索词
+
+### AI 搜索异步链路
+- AI 直答提交 → 轮询 → 获取结果
+- 失败降级到普通文章搜索
+
+### 用户全景画像
+- 基础资料/签名/认证/统计
+- 关注/粉丝列表
+- 文章/收藏文章
+- 关注专栏/问题/收藏夹/话题
+- 推荐关注者
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-zhihu
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-zhihu.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| User | 查知乎, 知乎用户, get zhihu user info, 查知乎用户关注列表 |
-| Content | 知乎热榜, 知乎专栏, zhihu hot list, 查知乎问题回答, get zhihu comments |
-| Search | 知乎搜索, zhihu search, 知乎AI搜索, search zhihu for... |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 热榜 | 帮我看看今天知乎热榜 |
+| 问答 | 帮我查这个问题下的高赞回答 |
+| 用户 | 帮我分析这个知乎大 V 的关注领域 |
+| 搜索 | 帮我搜索知乎上关于"AI"的优质文章 |
+| 专栏 | 帮我查这个专栏的全部文章 |
+| AI 搜索 | 帮我用知乎 AI 搜索"量子计算" |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

@@ -1,46 +1,80 @@
-# Weibo Data Assistant
+# 微博数据助手
 
-[中文文档](README_CN.md)
+微博数据查询与舆情监控 Skill，通过 MaxHub API 接入新浪微博平台。覆盖微博详情、转发、点赞、视频、评论与子评论、用户资料、粉丝/关注、用户微博/原创/超话/视频/文章/音频、综合搜索、AI 搜索、高级搜索、实时搜索、热搜榜、文娱/社会/生活榜等全部能力，支持 App / Web / Web V2 三端共 **64 个端点**。专注服务舆情监控、热搜趋势分析、KOL 影响力评估、品牌口碑追踪等场景。
 
-Weibo posts, users, search, comments, hot search rankings, and video feed data assistant via MaxHub API. 64 active endpoints across 4 functional areas.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Reference | Endpoints |
-|------|-----------|-----------|
-| Posts | `references/post.md` | Post detail, reposts, likes, video detail, feeds, trending content, channel hot | 14 |
-| Users | `references/user.md` | User profiles, followers/following, posts, timeline, original posts, super topics, videos, articles, audio, collections, groups | 22 |
-| Search | `references/search.md` | Comprehensive search, AI search, advanced search, realtime search, video/picture/topic search, hot search rankings, entertainment/social/life rankings | 23 |
-| Comments | `references/comments.md` | Post comments, sub-comments, comment replies | 5 |
+### 微博内容
+- 微博详情查询（App/Web/Web V2 三端）
+- 转发列表与点赞用户列表
+- 带图评论权限检查
 
-Supports App, Web, and Web V2 API endpoints. See `references/param-mappings.md` for parameter quick reference.
+### 视频与频道
+- 视频详情（含流地址）
+- 视频精选 Feed
+- 频道配置与信息流
+- 频道置顶/趋势
 
-## Install
+### 发现与首页推荐
+- App 首页推荐流
+- Web 新版用户推荐时间线
+
+### 用户画像
+- 基础/详细资料（ID/自定义域名双入口）
+- 微博时间线、原创微博
+- 站内搜索、视频/超话/相册/文章/音频列表
+- Feed 推荐、视频合集
+- 关注/粉丝/分组
+
+### 评论与回复
+- 一级评论（App/Web/Web V2 三端）
+- 二级回复/楼中楼
+- 热门/最新排序
+
+### 综合搜索矩阵
+- 综合搜索
+- AI 智能搜索/关联搜索
+- 高级搜索（地域/性别/年龄/学校/工作/时间）
+- 实时搜索
+- 用户/视频/图片/话题搜索
+- 相似搜索建议
+- 城市列表
+
+### 热搜与榜单
+- 实时热搜榜（三端）
+- 分类榜单、索引/摘要视图
+- 话题搜索榜
+- 文娱榜/社会榜/生活榜
+- 热搜时间线
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-weibo
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-weibo.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| Posts | 查这条微博的详情 5016922058656962, get Weibo post detail for..., 这条微博有多少转发 |
-| Users | 查微博用户 uid 7648703289 的粉丝数和微博列表, get Weibo user profile and followers, 查这个用户的原创微博 |
-| Search | 搜微博关于人工智能的内容, search Weibo for AI, 查微博热搜榜, get Weibo hot search ranking |
-| Comments | 查微博评论, get Weibo post comments, 查这条评论的回复 |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 热搜 | 帮我看看今天微博热搜榜 |
+| 微博 | 帮我查这条微博的详情和转发数据 |
+| 用户 | 帮我分析这个微博大 V 的粉丝画像 |
+| 搜索 | 帮我搜索微博上关于"AI"的讨论 |
+| 评论 | 帮我拉取这条微博的评论，分析情感倾向 |
+| 视频 | 帮我查这个微博视频的播放数据 |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持

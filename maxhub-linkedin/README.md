@@ -1,46 +1,74 @@
-# LinkedIn Data Assistant
+# LinkedIn 数据助手
 
-[中文文档](README_CN.md)
+LinkedIn 职业社交数据查询 Skill，通过 MaxHub API 接入领英平台。覆盖用户资料、公司情报、内容动态、职位搜索四大领域，并提供 Web 与 Web V2 双版本接口，共 **85 个端点**。专注服务于 B2B 营销、招聘市场分析、海外人才画像、企业竞调与商业情报场景。
 
-LinkedIn professional data assistant covering user profiles, companies, jobs, posts, comments, and ads. 85 active endpoints across 4 functional areas via MaxHub API.
+- 官网：[https://www.aconfig.cn](https://www.aconfig.cn)
+- SkillHub 商店：[https://skillhub.cn/user/user_2a9d366c](https://skillhub.cn/user/user_2a9d366c)
+- 仓库：[https://github.com/XieWxx/maxhub-api-skills](https://github.com/XieWxx/maxhub-api-skills)
 
-## Features
+## 功能
 
-| Area | Reference | Endpoints |
-|------|-----------|-----------|
-| User & People | `references/user.md` | User profiles, posts, contact info, recommendations, experience, skills, education, publications, certifications, honors, interests, reactions, volunteers, follower/connection stats, people search | 45 |
-| Companies | `references/company.md` | Company profiles, employees, posts, jobs, job count, affiliated pages, member insights, competitors, similar companies, stock quotes, CTA buttons, employee distribution, locations | 20 |
-| Jobs | `references/jobs.md` | Job details, job search | 4 |
-| Content & Ads | `references/content.md` | Post details, comments, replies, reactions, reposts, post search, hashtag feed, group info/posts, ad search/details | 16 |
+### 用户画像（43 端点）
+- 拉取用户基础资料、个人简介、顶部卡片与概览信息，快速锁定关键身份与头衔
+- 完整还原用户工作经历、教育背景、技能、出版物、证书、荣誉、志愿经历等履历切片
+- 采集用户的关注关系、人脉连接数量、关联学校、关联公司、互动记录与近期活动
+- 抓取用户发布的帖子、评论、视频、图片与推荐信，构建对外表达与口碑画像
+- 获取联系信息与可见的对外联系方式，支撑商务触达与背调线索
+- 支持按关键词、行业、地区、公司、学校等条件搜索人脉，批量发现目标人选
+- 搜索学校、地点与行业建议，作为画像与筛选时的标准化字典输入
 
-Supports both Web and Web V2 API endpoints. See `references/param-mappings.md` for parameter quick reference.
+### 公司情报（20 端点）
+- 查询公司主页、企业简介、定位区域、员工规模区间与多地办公点分布
+- 拉取公司员工列表、关联页面、附属公司、相似公司与竞品公司，输出竞争图谱
+- 获取公司发布的帖子动态、对外行动号召与员工互动洞察，跟踪企业内容策略
+- 查询岗位总数、岗位列表与上市公司股价行情，辅助招聘景气度与经营状况判断
 
-## Install
+### 内容互动（16 端点）
+- 查询帖子详情、转发链路、表情反馈分布与互动量级，还原传播路径
+- 拉取帖子评论与评论下的二级回复，挖掘用户真实声量与讨论焦点
+- 通过 Hashtag 信息流拉取话题相关帖子，跟踪话题在领英生态的扩散
+- 采集群组主页信息与群组内的帖子内容，进入垂类社群的封闭讨论
+- 全文搜索帖子内容，定位话题、品牌、人物在领英平台的相关讨论
+
+### 职位筛选（4 端点）
+- 按关键词、城市、经验等级、远程类型、雇佣形式与简易投递等多维条件搜索岗位
+- 拉取岗位详情：JD、技能要求、薪资区间（如有）、招聘公司与发布时间
+- 关联岗位 → 公司主页 → 员工分布，构建一条完整的招聘机会洞察链路
+
+### 广告库
+- 按关键词或广告主名称检索领英广告库，识别同行业品牌的活跃投放
+- 拉取单条广告的素材、文案、投放国家与触达时间，分析创意与策略
+- 结合公司画像与广告数据，沉淀对手在领英平台的内容投放图谱
+
+### Web 与 V2 双版本
+- 同一份用户、公司、帖子资源同时提供两种接口契约，可按字段稳定性自由切换
+- V2 接口以稳定的 username/universal_name 取代易变的内部 ID，降低长期采集失效风险
+- 当 V2 接口字段缺失时，可降级到 Web 版本兜底完成同等数据采集
+
+## 安装
 
 ```bash
 npx clawhub install maxhub-linkedin
 ```
 
-## Setup
+## 配置
 
-1. Go to [www.aconfig.cn](https://www.aconfig.cn) to register and get your API Key
-2. Configure: `openclaw config set skills.entries.maxhub-linkedin.apiKey "<your-key>"` or `export MAXHUB_API_KEY="<your-key>"`
+1. 前往 [www.aconfig.cn](https://www.aconfig.cn) 注册并获取 API Key
+2. 配置环境变量：`export MAXHUB_API_KEY="<你的-key>"`
 
-## Usage Examples
+## 使用示例
 
-| Category | Example prompts |
-|----------|----------------|
-| User & People | Search LinkedIn for software engineers at Google, 搜索LinkedIn上的Python开发者, get LinkedIn user profile for... |
-| Companies | Get LinkedIn company info for Microsoft, 查LinkedIn上苹果公司的员工分布, search LinkedIn companies in AI |
-| Jobs | Search LinkedIn jobs for machine learning roles, 搜索LinkedIn上的远程工作职位, get LinkedIn job details for... |
-| Content & Ads | Search LinkedIn posts about AI, 查LinkedIn帖子的热门评论, search LinkedIn ads by advertiser |
+直接用自然语言与 AI 对话即可：
 
-Supports both **English** and **Chinese**.
-
-## Links
-
-- Website: [www.aconfig.cn](https://www.aconfig.cn)
+| 分类 | 示例指令 |
+|------|----------|
+| 用户 | 帮我查这个 LinkedIn 用户的完整职业经历和技能 |
+| 人脉搜索 | 帮我找出北京地区 AI 行业的 CTO |
+| 公司 | 帮我查这家公司的基本信息、员工规模和竞品分布 |
+| 职位 | 帮我搜索 LinkedIn 上的远程机器学习岗位 |
+| 内容 | 帮我分析这篇 LinkedIn 帖子的传播数据和评论 |
+| 广告 | 帮我查这个品牌在 LinkedIn 上的广告投放情况 |
 
 ---
 
-Powered by [MaxHub](https://www.aconfig.cn)
+由 [MaxHub API](https://www.aconfig.cn) 提供技术支持
